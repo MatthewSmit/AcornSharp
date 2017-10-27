@@ -10,7 +10,7 @@ namespace AcornSharp.Cli
             // No directives
             //------------------------------------------------------------------------
 
-            test("foo", new Node
+            Test("foo", new Node
             {
                 type = "Program",
                 start = 0,
@@ -34,7 +34,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("function wrap() { foo }", new Node
+            Test("function wrap() { foo }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -83,7 +83,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("!function wrap() { foo }", new Node
+            Test("!function wrap() { foo }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -147,7 +147,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("() => { foo }", new Node
+            Test("() => { foo }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -197,7 +197,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("100", new Node
+            Test("100", new Node
             {
                 type = "Program",
                 start = 0,
@@ -222,7 +222,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("\"use strict\" + 1", new Node
+            Test("\"use strict\" + 1", new Node
             {
                 type = "Program",
                 start = 0,
@@ -266,7 +266,7 @@ namespace AcornSharp.Cli
             // One directive
             //------------------------------------------------------------------------
 
-            test("\"use strict\"\n foo", new Node
+            Test("\"use strict\"\n foo", new Node
             {
                 type = "Program",
                 start = 0,
@@ -305,7 +305,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("'use strict'; foo", new Node
+            Test("'use strict'; foo", new Node
             {
                 type = "Program",
                 start = 0,
@@ -344,7 +344,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("function wrap() { \"use strict\"\n foo }", new Node
+            Test("function wrap() { \"use strict\"\n foo }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -408,7 +408,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("!function wrap() { \"use strict\"\n foo }", new Node
+            Test("!function wrap() { \"use strict\"\n foo }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -487,7 +487,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("() => { \"use strict\"\n foo }", new Node
+            Test("() => { \"use strict\"\n foo }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -552,7 +552,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("() => \"use strict\"", new Node
+            Test("() => \"use strict\"", new Node
             {
                 type = "Program",
                 start = 0,
@@ -587,7 +587,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("({ wrap() { \"use strict\"; foo } })", new Node
+            Test("({ wrap() { \"use strict\"; foo } })", new Node
             {
                 type = "Program",
                 start = 0,
@@ -678,7 +678,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("(class { wrap() { \"use strict\"; foo } })", new Node
+            Test("(class { wrap() { \"use strict\"; foo } })", new Node
             {
                 type = "Program",
                 start = 0,
@@ -777,7 +777,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 6});
 
             // Should not decode escape sequence.
-            test("\"\\u0075se strict\"", new Node
+            Test("\"\\u0075se strict\"", new Node
             {
                 type = "Program",
                 start = 0,
@@ -806,7 +806,7 @@ namespace AcornSharp.Cli
             // Two or more directives.
             //------------------------------------------------------------------------
 
-            test("\"use asm\"; \"use strict\"; foo", new Node
+            Test("\"use asm\"; \"use strict\"; foo", new Node
             {
                 type = "Program",
                 start = 0,
@@ -860,7 +860,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("function wrap() { \"use asm\"; \"use strict\"; foo }", new Node
+            Test("function wrap() { \"use asm\"; \"use strict\"; foo }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -943,7 +943,7 @@ namespace AcornSharp.Cli
             // One string after other expressions.
             //------------------------------------------------------------------------
 
-            test("\"use strict\"; foo; \"use asm\"", new Node
+            Test("\"use strict\"; foo; \"use asm\"", new Node
             {
                 type = "Program",
                 start = 0,
@@ -997,7 +997,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("function wrap() { \"use asm\"; foo; \"use strict\" }", new Node
+            Test("function wrap() { \"use asm\"; foo; \"use strict\" }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1080,7 +1080,7 @@ namespace AcornSharp.Cli
             // One string in a block.
             //------------------------------------------------------------------------
 
-            test("{ \"use strict\"; }", new Node
+            Test("{ \"use strict\"; }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1114,7 +1114,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("function wrap() { { \"use strict\" } foo }", new Node
+            Test("function wrap() { { \"use strict\" } foo }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1191,7 +1191,7 @@ namespace AcornSharp.Cli
             // One string with parentheses.
             //------------------------------------------------------------------------
 
-            test("(\"use strict\"); foo", new Node
+            Test("(\"use strict\"); foo", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1230,7 +1230,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("function wrap() { (\"use strict\"); foo }", new Node
+            Test("function wrap() { (\"use strict\"); foo }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1298,7 +1298,7 @@ namespace AcornSharp.Cli
             // Complex cases such as the function in a default parameter.
             //------------------------------------------------------------------------
 
-            test("function a() { \"use strict\" } \"use strict\"; foo", new Node
+            Test("function a() { \"use strict\" } \"use strict\"; foo", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1377,7 +1377,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("function a(a = function() { \"use strict\"; foo }) { \"use strict\" }", new Node
+            Test("function a(a = function() { \"use strict\"; foo }) { \"use strict\" }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1490,7 +1490,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("(a = () => { \"use strict\"; foo }) => { \"use strict\" }", new Node
+            Test("(a = () => { \"use strict\"; foo }) => { \"use strict\" }", new Node
             {
                 type = "Program",
                 start = 0,

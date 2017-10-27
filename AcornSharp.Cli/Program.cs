@@ -6,12 +6,10 @@ namespace AcornSharp.Cli
     internal static partial class Program
     {
         private static Driver driver;
-        private static Acorn acorn;
 
         private static void Main()
         {
             driver = new Driver();
-            acorn = new Acorn();
 
             Tests();
             TestsHarmony();
@@ -37,18 +35,7 @@ namespace AcornSharp.Cli
 
             var modes = new Dictionary<string, Mode>
             {
-                {"Normal", new Mode(acorn.Parse, false, null)},
-                {
-                    "Loose", new Mode(acorn.ParseDammit, true, test =>
-                    {
-                        if (test.options != null)
-                        {
-                            if (test.options.loose)
-                                return true;
-                        }
-                        return false;
-                    })
-                }
+                {"Normal", new Mode(Acorn.Parse, false, null)}
             };
 
             void Report(Stats stats, string state, string code, string message)
@@ -98,7 +85,7 @@ namespace AcornSharp.Cli
             GroupEnd();
         }
 
-        private static void test(string code, Node ast, Options options = null)
+        private static void Test(string code, Node ast, Options options = null)
         {
             driver.Test(code, ast, options);
         }

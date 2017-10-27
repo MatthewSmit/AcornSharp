@@ -10,7 +10,7 @@ namespace AcornSharp.Cli
             // Async Function Declarations
 
             // async == false
-            test("function foo() { }", new Node
+            Test("function foo() { }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -46,7 +46,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
 
             // async == true
-            test("async function foo() { }", new Node
+            Test("async function foo() { }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -82,7 +82,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
 
             // a reference and a normal function declaration if there is a linebreak between 'async' and 'function'.
-            test("async\nfunction foo() { }", new Node
+            Test("async\nfunction foo() { }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -131,7 +131,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
 
             // export
-            test("export async function foo() { }", new Node
+            Test("export async function foo() { }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -175,7 +175,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8, sourceType = "module"});
 
             // export default
-            test("export default async function() { }", new Node
+            Test("export default async function() { }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -214,7 +214,7 @@ namespace AcornSharp.Cli
             testFail("async function* foo() { }", "Unexpected token (1:14)", new Options {ecmaVersion = 8});
 
             // 'await' is valid as function names.
-            test("async function await() { }", new Node
+            Test("async function await() { }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -258,7 +258,7 @@ namespace AcornSharp.Cli
             // Async Function Expressions
 
             // async == false
-            test("(function foo() { })", new Node
+            Test("(function foo() { })", new Node
             {
                 type = "Program",
                 start = 0,
@@ -300,7 +300,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
 
             // async == true
-            test("(async function foo() { })", new Node
+            Test("(async function foo() { })", new Node
             {
                 type = "Program",
                 start = 0,
@@ -348,7 +348,7 @@ namespace AcornSharp.Cli
             testFail("(async function* foo() { })", "Unexpected token (1:15)", new Options {ecmaVersion = 8});
 
             // export default
-            test("export default (async function() { })", new Node
+            Test("export default (async function() { })", new Node
             {
                 type = "Program",
                 start = 0,
@@ -392,7 +392,7 @@ namespace AcornSharp.Cli
             // Async Arrow Function Expressions
 
             // async == false
-            test("a => a", new Node
+            Test("a => a", new Node
             {
                 type = "Program",
                 start = 0,
@@ -436,7 +436,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("(a) => a", new Node
+            Test("(a) => a", new Node
             {
                 type = "Program",
                 start = 0,
@@ -481,7 +481,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
 
             // async == true
-            test("async a => a", new Node
+            Test("async a => a", new Node
             {
                 type = "Program",
                 start = 0,
@@ -525,7 +525,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("async () => a", new Node
+            Test("async () => a", new Node
             {
                 type = "Program",
                 start = 0,
@@ -560,7 +560,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("async (a, b) => a", new Node
+            Test("async (a, b) => a", new Node
             {
                 type = "Program",
                 start = 0,
@@ -612,7 +612,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
 
             // OK even if it's an invalid syntax in the case `=>` didn't exist.
-            test("async ({a = b}) => a", new Node
+            Test("async ({a = b}) => a", new Node
             {
                 type = "Program",
                 start = 0,
@@ -699,7 +699,7 @@ namespace AcornSharp.Cli
             testFail("async ({a = b})", "Shorthand property assignments are valid only in destructuring patterns (1:10)", new Options {ecmaVersion = 8});
 
             // AssignmentPattern/AssignmentExpression
-            test("async ({a: b = c}) => a", new Node
+            Test("async ({a: b = c}) => a", new Node
             {
                 type = "Program",
                 start = 0,
@@ -782,7 +782,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("async ({a: b = c})", new Node
+            Test("async ({a: b = c})", new Node
             {
                 type = "Program",
                 start = 0,
@@ -863,7 +863,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
 
             // a reference and a normal arrow function if there is a linebreak between 'async' and the 1st parameter.
-            test("async\na => a", new Node
+            Test("async\na => a", new Node
             {
                 type = "Program",
                 start = 0,
@@ -928,7 +928,7 @@ namespace AcornSharp.Cli
             testFail("async ()\n=> a", "Unexpected token (2:0)", new Options {ecmaVersion = 8});
 
             // a call expression with 'await' reference.
-            test("async (await)", new Node
+            Test("async (await)", new Node
             {
                 type = "Program",
                 start = 0,
@@ -976,7 +976,7 @@ namespace AcornSharp.Cli
             testFail("async ([await]) => 1", "Can not use 'await' as identifier inside an async function (1:8)", new Options {ecmaVersion = 8});
 
             // can use 'yield' identifier outside generators.
-            test("async yield => 1", new Node
+            Test("async yield => 1", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1025,7 +1025,7 @@ namespace AcornSharp.Cli
             // Async Methods (object)
 
             // async == false
-            test("({foo() { }})", new Node
+            Test("({foo() { }})", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1087,7 +1087,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
 
             // async == true
-            test("({async foo() { }})", new Node
+            Test("({async foo() { }})", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1149,7 +1149,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
 
             // OK with 'async' as a method name
-            test("({async() { }})", new Node
+            Test("({async() { }})", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1219,7 +1219,7 @@ namespace AcornSharp.Cli
             testFail("({async* foo() { }})", "Unexpected token (1:7)", new Options {ecmaVersion = 8});
 
             // 'await' is valid as function names.
-            test("({async await() { }})", new Node
+            Test("({async await() { }})", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1281,7 +1281,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
 
             // cannot use 'await' inside async functions.
-            test("async function wrap() {\n({async await() { }})\n}", new Node { }, new Options {ecmaVersion = 8});
+            Test("async function wrap() {\n({async await() { }})\n}", new Node { }, new Options {ecmaVersion = 8});
             testFail("({async foo() { var await }})", "Can not use 'await' as identifier inside an async function (1:20)", new Options {ecmaVersion = 8});
             testFail("({async foo(await) { }})", "Can not use 'await' as identifier inside an async function (1:12)", new Options {ecmaVersion = 8});
             testFail("({async foo() { return {await} }})", "Can not use 'await' as identifier inside an async function (1:24)", new Options {ecmaVersion = 8});
@@ -1293,7 +1293,7 @@ namespace AcornSharp.Cli
             // Async Methods (class)
 
             // async == false
-            test("class A {foo() { }}", new Node
+            Test("class A {foo() { }}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1362,7 +1362,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
 
             // async == true
-            test("class A {async foo() { }}", new Node
+            Test("class A {async foo() { }}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1430,7 +1430,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("class A {static async foo() { }}", new Node
+            Test("class A {static async foo() { }}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1499,7 +1499,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
 
             // OK 'async' as a method name.
-            test("class A {async() { }}", new Node
+            Test("class A {async() { }}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1567,7 +1567,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("class A {static async() { }}", new Node
+            Test("class A {static async() { }}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1635,7 +1635,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("class A {*async() { }}", new Node
+            Test("class A {*async() { }}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1703,7 +1703,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("class A {static* async() { }}", new Node
+            Test("class A {static* async() { }}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1785,7 +1785,7 @@ namespace AcornSharp.Cli
             testFail("class A {static async* foo() { }}", "Unexpected token (1:21)", new Options {ecmaVersion = 8});
 
             // 'await' is valid as function names.
-            test("class A {async await() { }}", new Node
+            Test("class A {async await() { }}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1853,7 +1853,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("class A {static async await() { }}", new Node
+            Test("class A {static async await() { }}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1922,7 +1922,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
 
             // cannot use 'await' inside async functions.
-            test("async function wrap() {\nclass A {async await() { }}\n}", new Node { }, new Options {ecmaVersion = 8});
+            Test("async function wrap() {\nclass A {async await() { }}\n}", new Node { }, new Options {ecmaVersion = 8});
             testFail("class A {async foo() { var await }}", "Can not use 'await' as identifier inside an async function (1:27)", new Options {ecmaVersion = 8});
             testFail("class A {async foo(await) { }}", "Can not use 'await' as identifier inside an async function (1:19)", new Options {ecmaVersion = 8});
             testFail("class A {async foo() { return {await} }}", "Can not use 'await' as identifier inside an async function (1:31)", new Options {ecmaVersion = 8});
@@ -1930,7 +1930,7 @@ namespace AcornSharp.Cli
             // Await Expressions
 
             // 'await' is an identifier in scripts.
-            test("await", new Node
+            Test("await", new Node
             {
                 type = "Program",
                 start = 0,
@@ -1962,7 +1962,7 @@ namespace AcornSharp.Cli
             testFail("await a", "The keyword 'await' is reserved (1:0)", new Options {ecmaVersion = 8, sourceType = "module"});
 
             // Await expressions in async functions.
-            test("async function foo(a, b) { await a }", new Node
+            Test("async function foo(a, b) { await a }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -2034,7 +2034,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("(async function foo(a) { await a })", new Node
+            Test("(async function foo(a) { await a })", new Node
             {
                 type = "Program",
                 start = 0,
@@ -2105,7 +2105,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("(async (a) => await a)", new Node
+            Test("(async (a) => await a)", new Node
             {
                 type = "Program",
                 start = 0,
@@ -2155,7 +2155,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("({async foo(a) { await a }})", new Node
+            Test("({async foo(a) { await a }})", new Node
             {
                 type = "Program",
                 start = 0,
@@ -2246,7 +2246,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("(class {async foo(a) { await a }})", new Node
+            Test("(class {async foo(a) { await a }})", new Node
             {
                 type = "Program",
                 start = 0,
@@ -2345,7 +2345,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
 
             // Await expressions are an unary expression.
-            test("async function foo(a, b) { await a + await b }", new Node
+            Test("async function foo(a, b) { await a + await b }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -2438,7 +2438,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
 
             // 'await + 1' is a binary expression outside of async functions.
-            test("function foo() { await + 1 }", new Node
+            Test("function foo() { await + 1 }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -2504,7 +2504,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
 
             // 'await + 1' is an await expression in async functions.
-            test("async function foo() { await + 1 }", new Node
+            Test("async function foo() { await + 1 }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -2586,7 +2586,7 @@ namespace AcornSharp.Cli
             testFail("async function foo(a = class extends (await b) {}) {}", "Await expression cannot be a default value (1:38)", new Options {ecmaVersion = 8});
 
             // Allow await expressions inside functions in default parameters:
-            test("async function foo(a = async function foo() { await b }) {}", new Node
+            Test("async function foo(a = async function foo() { await b }) {}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -2681,7 +2681,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("async function foo(a = async () => await b) {}", new Node
+            Test("async function foo(a = async () => await b) {}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -2755,7 +2755,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("async function foo(a = {async bar() { await b }}) {}", new Node
+            Test("async function foo(a = {async bar() { await b }}) {}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -2870,7 +2870,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("async function foo(a = class {async bar() { await b }}) {}", new Node
+            Test("async function foo(a = class {async bar() { await b }}) {}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -2993,7 +2993,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
 
             // Distinguish ParenthesizedExpression or ArrowFunctionExpression
-            test("async function wrap() {\n(a = await b)\n}", new Node
+            Test("async function wrap() {\n(a = await b)\n}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -3064,7 +3064,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
             testFail("async function wrap() {\n(a = await b) => a\n}", "Await expression cannot be a default value (2:5)", new Options {ecmaVersion = 8});
 
-            test("async function wrap() {\n({a = await b} = obj)\n}", new Node
+            Test("async function wrap() {\n({a = await b} = obj)\n}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -3174,7 +3174,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
             testFail("async function wrap() {\n({a = await b} = obj) => a\n}", "Await expression cannot be a default value (2:6)", new Options {ecmaVersion = 8});
 
-            test("function* wrap() {\nasync(a = yield b)\n}", new Node
+            Test("function* wrap() {\nasync(a = yield b)\n}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -3263,7 +3263,7 @@ namespace AcornSharp.Cli
             testFail("function* wrap() {\nasync(a = yield b) => a\n}", "Yield expression cannot be a default value (2:10)", new Options {ecmaVersion = 8});
 
             // https://github.com/ternjs/acorn/issues/464
-            test("f = ({ w = counter(), x = counter(), y = counter(), z = counter() } = { w: null, x: 0, y: false, z: '' }) => {}", new Node
+            Test("f = ({ w = counter(), x = counter(), y = counter(), z = counter() } = { w: null, x: 0, y: false, z: '' }) => {}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -3614,7 +3614,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("({ async: true })", new Node
+            Test("({ async: true })", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3649,7 +3649,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 8});
 
             // Tests for B.3.4 FunctionDeclarations in IfStatement Statement Clauses
-            test("if (x) async function f() {}", new Node
+            Test("if (x) async function f() {}", new Node
                 {
                     type = "Program",
                     body = new List<Node>
@@ -3673,7 +3673,7 @@ namespace AcornSharp.Cli
             testFail("f = async ((x)) => x", "Parenthesized pattern (1:11)", new Options {ecmaVersion = 8});
 
             // allow 'async' as a shorthand property in script.
-            test("({async})", new Node
+            Test("({async})", new Node
                 {
                     type = "Program",
                     start = 0,
@@ -3725,7 +3725,7 @@ namespace AcornSharp.Cli
                 new Options {ecmaVersion = 8}
             );
 
-            test("({async, foo})", new Node
+            Test("({async, foo})", new Node
                 {
                     type = "Program",
                     start = 0,
@@ -3801,7 +3801,7 @@ namespace AcornSharp.Cli
                 new Options {ecmaVersion = 8}
             );
 
-            test("({async = 0} = {})", new Node
+            Test("({async = 0} = {})", new Node
                 {
                     type = "Program",
                     start = 0,
@@ -3882,7 +3882,7 @@ namespace AcornSharp.Cli
             );
 
             // async functions with vary names.
-            test("({async \"foo\"(){}})", new Node
+            Test("({async \"foo\"(){}})", new Node
                 {
                     type = "Program",
                     start = 0,
@@ -3946,7 +3946,7 @@ namespace AcornSharp.Cli
                 new Options {ecmaVersion = 8}
             );
 
-            test("({async 'foo'(){}})", new Node
+            Test("({async 'foo'(){}})", new Node
                 {
                     type = "Program",
                     start = 0,
@@ -4010,7 +4010,7 @@ namespace AcornSharp.Cli
                 new Options {ecmaVersion = 8}
             );
 
-            test("({async 100(){}})", new Node
+            Test("({async 100(){}})", new Node
                 {
                     type = "Program",
                     start = 0,
@@ -4074,7 +4074,7 @@ namespace AcornSharp.Cli
                 new Options {ecmaVersion = 8}
             );
 
-            test("({async [foo](){}})", new Node
+            Test("({async [foo](){}})", new Node
                 {
                     type = "Program",
                     start = 0,
@@ -4137,7 +4137,7 @@ namespace AcornSharp.Cli
                 new Options {ecmaVersion = 8}
             );
 
-            test("({ async delete() {} })", new Node { }, new Options {ecmaVersion = 8});
+            Test("({ async delete() {} })", new Node { }, new Options {ecmaVersion = 8});
         }
     }
 }

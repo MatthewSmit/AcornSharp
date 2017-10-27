@@ -86,85 +86,58 @@ namespace AcornSharp
             // start with. Many are trivial to parse, some require a bit of
             // complexity.
 
-            if (starttype == TokenType._break || starttype == TokenType._continue)
+            switch (starttype)
             {
-                return parseBreakContinueStatement(node, starttype.Keyword);
+                case TokenType._break:
+                case TokenType._continue:
+                    return parseBreakContinueStatement(node, TokenInformation.Types[starttype].Keyword);
+                case TokenType._debugger:
+                    return parseDebuggerStatement(node);
+                case TokenType._do:
+                    return parseDoStatement(node);
+                case TokenType._for:
+                    return parseForStatement(node);
+                case TokenType._function:
+                    if (!declaration && Options.ecmaVersion >= 6) unexpected();
+                    return parseFunctionStatement(node, false);
+                case TokenType._class:
+                    if (!declaration) unexpected();
+                    return parseClass(node, "true");
+                case TokenType._if:
+                    return parseIfStatement(node);
+                case TokenType._return:
+                    return parseReturnStatement(node);
+                case TokenType._switch:
+                    return parseSwitchStatement(node);
+                case TokenType._throw:
+                    return parseThrowStatement(node);
+                case TokenType._try:
+                    return parseTryStatement(node);
+                case TokenType._const:
+                case TokenType._var:
+                    kind = kind ?? (string)value;
+                    if (!declaration && kind != "var") unexpected();
+                    return parseVarStatement(node, kind);
+                case TokenType._while:
+                    return parseWhileStatement(node);
+                case TokenType._with:
+                    return parseWithStatement(node);
+                case TokenType.braceL:
+                    return parseBlock();
+                case TokenType.semi:
+                    return parseEmptyStatement(node);
+                case TokenType._export:
+                case TokenType._import:
+                    if (!Options.allowImportExportEverywhere)
+                    {
+                        if (!topLevel)
+                            raise(start, "'import' and 'export' may only appear at the top level");
+                        if (!inModule)
+                            raise(start, "'import' and 'export' may appear only with 'sourceType: module'");
+                    }
+                    return starttype == TokenType._import ? parseImport(node) : parseExport(node, exports);
             }
-            if (starttype == TokenType._debugger)
-            {
-                return parseDebuggerStatement(node);
-            }
-            if (starttype == TokenType._do)
-            {
-                return parseDoStatement(node);
-            }
-            if (starttype == TokenType._for)
-            {
-                return parseForStatement(node);
-            }
-            if (starttype == TokenType._function)
-            {
-                if (!declaration && Options.ecmaVersion >= 6) unexpected();
-                return parseFunctionStatement(node, false);
-            }
-            if (starttype == TokenType._class)
-            {
-                if (!declaration) unexpected();
-                return parseClass(node, "true");
-            }
-            if (starttype == TokenType._if)
-            {
-                return parseIfStatement(node);
-            }
-            if (starttype == TokenType._return)
-            {
-                return parseReturnStatement(node);
-            }
-            if (starttype == TokenType._switch)
-            {
-                return parseSwitchStatement(node);
-            }
-            if (starttype == TokenType._throw)
-            {
-                return parseThrowStatement(node);
-            }
-            if (starttype == TokenType._try)
-            {
-                return parseTryStatement(node);
-            }
-            if (starttype == TokenType._const || starttype == TokenType._var)
-            {
-                kind = kind ?? (string)value;
-                if (!declaration && kind != "var") unexpected();
-                return parseVarStatement(node, kind);
-            }
-            if (starttype == TokenType._while)
-            {
-                return parseWhileStatement(node);
-            }
-            if (starttype == TokenType._with)
-            {
-                return parseWithStatement(node);
-            }
-            if (starttype == TokenType.braceL)
-            {
-                return parseBlock();
-            }
-            if (starttype == TokenType.semi)
-            {
-                return parseEmptyStatement(node);
-            }
-            if (starttype == TokenType._export || starttype == TokenType._import)
-            {
-                if (!Options.allowImportExportEverywhere)
-                {
-                    if (!topLevel)
-                        raise(start, "'import' and 'export' may only appear at the top level");
-                    if (!inModule)
-                        raise(start, "'import' and 'export' may appear only with 'sourceType: module'");
-                }
-                return starttype == TokenType._import ? parseImport(node) : parseExport(node, exports);
-            }
+
             if (isAsyncFunction() && declaration)
             {
                 next();
@@ -431,7 +404,7 @@ namespace AcornSharp
                 if (label.name == maybeName)
                     raise(expr.start, "Label '" + maybeName + "' is already declared");
             }
-            var kind = type.IsLoop ? "loop" : type == TokenType._switch ? "switch" : null;
+            var kind = TokenInformation.Types[type].IsLoop ? "loop" : type == TokenType._switch ? "switch" : null;
             for (var i = labels.Count - 1; i >= 0; i--)
             {
                 var label = labels[i];
@@ -817,10 +790,10 @@ namespace AcornSharp
 
         private bool shouldParseExportStatement()
         {
-            return type.Keyword == "var" ||
-                   type.Keyword == "const" ||
-                   type.Keyword == "class" ||
-                   type.Keyword == "function" ||
+            return TokenInformation.Types[type].Keyword == "var" ||
+                   TokenInformation.Types[type].Keyword == "const" ||
+                   TokenInformation.Types[type].Keyword == "class" ||
+                   TokenInformation.Types[type].Keyword == "function" ||
                    isLet() ||
                    isAsyncFunction();
         }

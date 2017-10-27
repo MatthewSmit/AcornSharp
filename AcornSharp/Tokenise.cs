@@ -922,7 +922,7 @@ namespace AcornSharp
             if (keywords.IsMatch(word))
             {
                 if (containsEsc) raiseRecoverable(start, "Escape sequence in keyword " + word);
-                type = TokenType.Keywords[word];
+                type = TokenInformation.Keywords[word];
             }
             finishToken(type, word);
         }

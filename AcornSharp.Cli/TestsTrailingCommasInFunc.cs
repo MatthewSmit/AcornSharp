@@ -9,7 +9,7 @@ namespace AcornSharp.Cli
             //------------------------------------------------------------------------------
             // allow
 
-            test("function foo(a,) { }", new Node
+            Test("function foo(a,) { }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -53,7 +53,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("(function(a,) { })", new Node
+            Test("(function(a,) { })", new Node
             {
                 type = "Program",
                 start = 0,
@@ -97,7 +97,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("(a,) => a", new Node
+            Test("(a,) => a", new Node
             {
                 type = "Program",
                 start = 0,
@@ -141,7 +141,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("async (a,) => a", new Node
+            Test("async (a,) => a", new Node
             {
                 type = "Program",
                 start = 0,
@@ -185,7 +185,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("({foo(a,) {}})", new Node
+            Test("({foo(a,) {}})", new Node
             {
                 type = "Program",
                 start = 0,
@@ -255,7 +255,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("class A {foo(a,) {}}", new Node
+            Test("class A {foo(a,) {}}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -332,7 +332,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("class A {static foo(a,) {}}", new Node
+            Test("class A {static foo(a,) {}}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -409,7 +409,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("(class {foo(a,) {}})", new Node
+            Test("(class {foo(a,) {}})", new Node
             {
                 type = "Program",
                 start = 0,
@@ -486,7 +486,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("(class {static foo(a,) {}})", new Node
+            Test("(class {static foo(a,) {}})", new Node
             {
                 type = "Program",
                 start = 0,
@@ -563,7 +563,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("export default function foo(a,) { }", new Node
+            Test("export default function foo(a,) { }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -613,7 +613,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             }, new Options {ecmaVersion = 8, sourceType = "module"});
 
-            test("export default (function foo(a,) { })", new Node
+            Test("export default (function foo(a,) { })", new Node
             {
                 type = "Program",
                 start = 0,
@@ -663,7 +663,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             }, new Options {ecmaVersion = 8, sourceType = "module"});
 
-            test("export function foo(a,) { }", new Node
+            Test("export function foo(a,) { }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -715,7 +715,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             }, new Options {ecmaVersion = 8, sourceType = "module"});
 
-            test("foo(a,)", new Node
+            Test("foo(a,)", new Node
             {
                 type = "Program",
                 start = 0,
@@ -755,7 +755,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("new foo(a,)", new Node
+            Test("new foo(a,)", new Node
             {
                 type = "Program",
                 start = 0,
@@ -795,7 +795,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("foo(...a,)", new Node
+            Test("foo(...a,)", new Node
             {
                 type = "Program",
                 start = 0,
@@ -841,7 +841,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 8});
 
-            test("new foo(...a,)", new Node
+            Test("new foo(...a,)", new Node
             {
                 type = "Program",
                 start = 0,

@@ -6,7 +6,7 @@ namespace AcornSharp.Cli
     {
         private static void TestsES7()
         {
-            test("x **= 42", new Node
+            Test("x **= 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -43,7 +43,7 @@ namespace AcornSharp.Cli
 
             testFail("x **= 42", "Unexpected token (1:3)", new Options {ecmaVersion = 6});
 
-            test("x ** y", new Node
+            Test("x ** y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -81,7 +81,7 @@ namespace AcornSharp.Cli
             testFail("x ** y", "Unexpected token (1:3)", new Options {ecmaVersion = 6});
 
             // ** has highest precedence
-            test("3 ** 5 * 1", new Node
+            Test("3 ** 5 * 1", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -121,7 +121,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 7,
             });
 
-            test("3 % 5 ** 1", new Node
+            Test("3 % 5 ** 1", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -171,7 +171,7 @@ namespace AcornSharp.Cli
             testFail("+2** 2;", "Unexpected token (1:2)", new Options {ecmaVersion = 7});
 
             // make sure base operand check doesn't affect other operators
-            test("-a * 5", new Node
+            Test("-a * 5", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -206,7 +206,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 6});
 
 
-            test("(-5) ** y", new Node
+            Test("(-5) ** y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -242,7 +242,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 7
             });
 
-            test("++a ** 2", new Node
+            Test("++a ** 2", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -277,7 +277,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 7});
 
-            test("a-- ** 2", new Node
+            Test("a-- ** 2", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -320,10 +320,10 @@ namespace AcornSharp.Cli
             testFail("(a=2) => { 'use strict'; }", "Illegal 'use strict' directive in function with non-simple parameter list (1:0)", new Options {ecmaVersion = 7});
             testFail("function foo({a}) { 'use strict'; }", "Illegal 'use strict' directive in function with non-simple parameter list (1:0)", new Options {ecmaVersion = 7});
             testFail("({a}) => { 'use strict'; }", "Illegal 'use strict' directive in function with non-simple parameter list (1:0)", new Options {ecmaVersion = 7});
-            test("function foo(a) { 'use strict'; }", new Node { }, new Options {ecmaVersion = 7});
+            Test("function foo(a) { 'use strict'; }", new Node { }, new Options {ecmaVersion = 7});
 
             // Tests for B.3.4 FunctionDeclarations in IfStatement Statement Clauses
-            test("if (x) function f() {}", new Node
+            Test("if (x) function f() {}", new Node
                 {
                     type = "Program",
                     body = new List<Node>
@@ -342,7 +342,7 @@ namespace AcornSharp.Cli
                 new Options {ecmaVersion = 7}
             );
 
-            test("if (x) function f() { return 23; } else function f() { return 42; }", new Node
+            Test("if (x) function f() { return 23; } else function f() { return 42; }", new Node
                 {
                     type = "Program",
                     body = new List<Node>

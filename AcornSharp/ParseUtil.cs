@@ -40,13 +40,13 @@ namespace AcornSharp
         // Tests whether parsed token is a contextual keyword.
         private bool isContextual(string name)
         {
-            return type == TokenType.Types["name"] && (string)value == name;
+            return type == TokenType.name && (string)value == name;
         }
 
         // Consumes contextual keyword if possible.
         private bool eatContextual(string name)
         {
-            return (string)value == name && eat(TokenType.Types["name"]);
+            return (string)value == name && eat(TokenType.name);
         }
 
         // Asserts that following token is given contextual keyword.

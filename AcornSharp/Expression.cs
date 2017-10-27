@@ -178,7 +178,7 @@ namespace AcornSharp
                 potentialArrowAt = start;
             var left = parseMaybeConditional(noIn, refDestructuringErrors);
             if (afterLeftParse != null) left = afterLeftParse(this, left, startPos, startLoc);
-            if (type.IsAssign)
+            if (type == TokenType.eq || type == TokenType.assign)
             {
                 checkPatternErrors(refDestructuringErrors, true);
                 if (!ownDestructuringErrors) refDestructuringErrors.Reset();
@@ -233,7 +233,7 @@ namespace AcornSharp
         // operator that has a lower precedence than the set it is parsing.
         private Node parseExprOp(Node left, int leftStartPos, Position leftStartLoc, int minPrec, bool noIn)
         {
-            var prec = type.BinaryOperation;
+            var prec = TokenInformation.Types[type].BinaryOperation;
             if (prec >= 0 && (!noIn || type != TokenType._in))
             {
                 if (prec > minPrec)
@@ -271,7 +271,7 @@ namespace AcornSharp
                 expr = parseAwait();
                 sawUnary = true;
             }
-            else if (type.Prefix)
+            else if (TokenInformation.Types[type].Prefix)
             {
                 var node = startNode();
                 var update = type == TokenType.incDec;
@@ -291,7 +291,7 @@ namespace AcornSharp
             {
                 expr = parseExprSubscripts(refDestructuringErrors);
                 if (checkExpressionErrors(refDestructuringErrors)) return expr;
-                while (type.Postfix && !canInsertSemicolon())
+                while (TokenInformation.Types[type].Postfix && !canInsertSemicolon())
                 {
                     var node = startNodeAt(startPos, startLoc);
                     node.@operator = (string)value;
@@ -446,7 +446,7 @@ namespace AcornSharp
             {
                 node = startNode();
                 node.value = type == TokenType._null ? null : (object)(type == TokenType._true);
-                node.raw = type.Keyword;
+                node.raw = TokenInformation.Types[type].Keyword;
                 next();
                 return finishNode(node, "Literal");
             }
@@ -658,19 +658,11 @@ namespace AcornSharp
                 {
                     raiseRecoverable(start, "Bad escape sequence in untagged template literal");
                 }
-                elem.value = new TemplateNode
-                {
-                    raw = (string)value,
-                    cooked = null
-                };
+                elem.value = new TemplateNode((string)value, null);
             }
             else
             {
-                elem.value = new TemplateNode
-                {
-                    raw = templateRawRegex.Replace(input.Substring(start, end - start), "\n"),
-                    cooked = (string)value
-                };
+                elem.value = new TemplateNode(templateRawRegex.Replace(input.Substring(start, end - start), "\n"), (string)value);
             }
             next();
             elem.tail = type == TokenType.backQuote;
@@ -699,7 +691,7 @@ namespace AcornSharp
         private bool isAsyncProp(Node prop)
         {
             return !prop.computed && prop.key.type == "Identifier" && prop.key.name == "async" &&
-                   (type == TokenType.name || type == TokenType.num || type == TokenType.@string || type == TokenType.bracketL || type.Keyword != null) &&
+                   (type == TokenType.name || type == TokenType.num || type == TokenType.@string || type == TokenType.bracketL || TokenInformation.Types[type].Keyword != null) &&
                    !lineBreak.IsMatch(input.Substring(lastTokEnd, start - lastTokEnd));
         }
 
@@ -970,8 +962,8 @@ namespace AcornSharp
             return true;
         }
 
-// Checks function params for various disallowed patterns such as using "eval"
-// or "arguments" and duplicate parameters.
+        // Checks function params for various disallowed patterns such as using "eval"
+        // or "arguments" and duplicate parameters.
         private void checkParams(Node node, bool allowDuplicates)
         {
             var nameHash = new HashSet<string>();
@@ -1041,9 +1033,9 @@ namespace AcornSharp
             {
                 node.name = (string)value;
             }
-            else if (type.Keyword != null)
+            else if (TokenInformation.Types[type].Keyword != null)
             {
-                node.name = type.Keyword;
+                node.name = TokenInformation.Types[type].Keyword;
 
                 // To fix https://github.com/ternjs/acorn/issues/575
                 // `class` and `function` keywords push new context into this.context.
@@ -1070,7 +1062,7 @@ namespace AcornSharp
 
             var node = startNode();
             next();
-            if (type == TokenType.semi || canInsertSemicolon() || type != TokenType.star && !type.StartsExpression)
+            if (type == TokenType.semi || canInsertSemicolon() || type != TokenType.star && !TokenInformation.Types[type].StartsExpression)
             {
                 node.@delegate = false;
                 node.argument = null;

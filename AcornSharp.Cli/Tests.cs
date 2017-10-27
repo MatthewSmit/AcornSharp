@@ -6,7 +6,7 @@ namespace AcornSharp.Cli
     {
         private static void Tests()
         {
-            test("this\n", new Node
+            Test("this\n", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -25,7 +25,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 0))
             });
 
-            test("null\n", new Node
+            Test("null\n", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -45,7 +45,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 0))
             });
 
-            test("\n    42\n\n", new Node
+            Test("\n    42\n\n", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -65,7 +65,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(4, 0))
             });
 
-            test("/foobar/", new Node
+            Test("/foobar/", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -87,7 +87,7 @@ namespace AcornSharp.Cli
                 }
             });
 
-            test("/[a-z]/g", new Node
+            Test("/[a-z]/g", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -109,7 +109,7 @@ namespace AcornSharp.Cli
                 }
             });
 
-            test("(1 + 2 ) * 3", new Node
+            Test("(1 + 2 ) * 3", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -153,7 +153,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 12))
             });
 
-            test("(1 + 2 ) * 3", new Node
+            Test("(1 + 2 ) * 3", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -205,7 +205,7 @@ namespace AcornSharp.Cli
                 preserveParens = true
             });
 
-            test("(x = 23)", new Node
+            Test("(x = 23)", new Node
             {
                 body = new List<Node>
                 {
@@ -237,7 +237,7 @@ namespace AcornSharp.Cli
                 type = "Program"
             }, new Options {preserveParens = true});
 
-            test("x = []", new Node
+            Test("x = []", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -269,7 +269,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("x = [ ]", new Node
+            Test("x = [ ]", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -301,7 +301,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("x = [ 42 ]", new Node
+            Test("x = [ 42 ]", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -341,7 +341,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 10))
             });
 
-            test("x = [ 42, ]", new Node
+            Test("x = [ 42, ]", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -381,7 +381,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 11))
             });
 
-            test("x = [ ,, 42 ]", new Node
+            Test("x = [ ,, 42 ]", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -423,7 +423,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 13))
             });
 
-            test("x = [ 1, 2, 3, ]", new Node
+            Test("x = [ 1, 2, 3, ]", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -475,7 +475,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 16))
             });
 
-            test("x = [ 1, 2,, 3, ]", new Node
+            Test("x = [ 1, 2,, 3, ]", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -528,7 +528,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 17))
             });
 
-            test("日本語 = []", new Node
+            Test("日本語 = []", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -560,7 +560,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 8))
             });
 
-            test("T‿ = []", new Node
+            Test("T‿ = []", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -592,7 +592,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("T‌ = []", new Node
+            Test("T‌ = []", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -624,7 +624,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("T‍ = []", new Node
+            Test("T‍ = []", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -656,7 +656,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("ⅣⅡ = []", new Node
+            Test("ⅣⅡ = []", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -688,7 +688,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("ⅣⅡ = []", new Node
+            Test("ⅣⅡ = []", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -720,7 +720,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("x = {}", new Node
+            Test("x = {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -752,7 +752,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("x = { }", new Node
+            Test("x = { }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -784,7 +784,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("x = { answer: 42 }", new Node
+            Test("x = { answer: 42 }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -835,7 +835,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 18))
             });
 
-            test("x = { if: 42 }", new Node
+            Test("x = { if: 42 }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -886,7 +886,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 14))
             });
 
-            test("x = { true: 42 }", new Node
+            Test("x = { true: 42 }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -937,7 +937,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 16))
             });
 
-            test("x = { false: 42 }", new Node
+            Test("x = { false: 42 }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -988,7 +988,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 17))
             });
 
-            test("x = { null: 42 }", new Node
+            Test("x = { null: 42 }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1039,7 +1039,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 16))
             });
 
-            test("x = { \"answer\": 42 }", new Node
+            Test("x = { \"answer\": 42 }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1090,7 +1090,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 20))
             });
 
-            test("x = { x: 1, x: 2 }", new Node
+            Test("x = { x: 1, x: 2 }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1158,7 +1158,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 18))
             });
 
-            test("x = { get width() { return m_width } }", new Node
+            Test("x = { get width() { return m_width } }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1229,7 +1229,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 38))
             });
 
-            test("x = { get undef() {} }", new Node
+            Test("x = { get undef() {} }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1287,7 +1287,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 22))
             });
 
-            test("x = { get if() {} }", new Node
+            Test("x = { get if() {} }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1345,7 +1345,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 19))
             });
 
-            test("x = { get true() {} }", new Node
+            Test("x = { get true() {} }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1403,7 +1403,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 21))
             });
 
-            test("x = { get false() {} }", new Node
+            Test("x = { get false() {} }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1461,7 +1461,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 22))
             });
 
-            test("x = { get null() {} }", new Node
+            Test("x = { get null() {} }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1519,7 +1519,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 21))
             });
 
-            test("x = { get \"undef\"() {} }", new Node
+            Test("x = { get \"undef\"() {} }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1577,7 +1577,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 24))
             });
 
-            test("x = { get 10() {} }", new Node
+            Test("x = { get 10() {} }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1635,7 +1635,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 19))
             });
 
-            test("x = { set width(w) { m_width = w } }", new Node
+            Test("x = { set width(w) { m_width = w } }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1726,7 +1726,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 36))
             });
 
-            test("x = { set if(w) { m_if = w } }", new Node
+            Test("x = { set if(w) { m_if = w } }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1817,7 +1817,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 30))
             });
 
-            test("x = { set true(w) { m_true = w } }", new Node
+            Test("x = { set true(w) { m_true = w } }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1908,7 +1908,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 34))
             });
 
-            test("x = { set false(w) { m_false = w } }", new Node
+            Test("x = { set false(w) { m_false = w } }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1999,7 +1999,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 36))
             });
 
-            test("x = { set null(w) { m_null = w } }", new Node
+            Test("x = { set null(w) { m_null = w } }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2090,7 +2090,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 34))
             });
 
-            test("x = { set \"null\"(w) { m_null = w } }", new Node
+            Test("x = { set \"null\"(w) { m_null = w } }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2181,7 +2181,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 36))
             });
 
-            test("x = { set 10(w) { m_null = w } }", new Node
+            Test("x = { set 10(w) { m_null = w } }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2272,7 +2272,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 32))
             });
 
-            test("x = { get: 42 }", new Node
+            Test("x = { get: 42 }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2323,7 +2323,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 15))
             });
 
-            test("x = { set: 43 }", new Node
+            Test("x = { set: 43 }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2374,7 +2374,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 15))
             });
 
-            test("/* block comment */ 42", new Node
+            Test("/* block comment */ 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2394,7 +2394,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 22))
             });
 
-            test("42 /*The*/ /*Answer*/", new Node
+            Test("42 /*The*/ /*Answer*/", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2414,7 +2414,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 21))
             });
 
-            test("42 /*the*/ /*answer*/", new Node
+            Test("42 /*the*/ /*answer*/", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2434,7 +2434,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 21))
             });
 
-            test("/* multiline\ncomment\nshould\nbe\nignored */ 42", new Node
+            Test("/* multiline\ncomment\nshould\nbe\nignored */ 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2454,7 +2454,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(5, 13))
             });
 
-            test("/*a\r\nb*/ 42", new Node
+            Test("/*a\r\nb*/ 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2474,7 +2474,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 6))
             });
 
-            test("/*a\rb*/ 42", new Node
+            Test("/*a\rb*/ 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2494,7 +2494,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 6))
             });
 
-            test("/*a\nb*/ 42", new Node
+            Test("/*a\nb*/ 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2514,7 +2514,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 6))
             });
 
-            test("/*a\nc*/ 42", new Node
+            Test("/*a\nc*/ 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2534,7 +2534,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 6))
             });
 
-            test("// line comment\n42", new Node
+            Test("// line comment\n42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2554,7 +2554,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 2))
             });
 
-            test("42 // line comment", new Node
+            Test("42 // line comment", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2574,7 +2574,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 18))
             });
 
-            test("// Hello, world!\n42", new Node
+            Test("// Hello, world!\n42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2594,21 +2594,21 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 2))
             });
 
-            test("// Hello, world!\n", new Node
+            Test("// Hello, world!\n", new Node
             {
                 type = "Program",
                 body = new List<Node>(),
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 0))
             });
 
-            test("// Hallo, world!\n", new Node
+            Test("// Hallo, world!\n", new Node
             {
                 type = "Program",
                 body = new List<Node>(),
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 0))
             });
 
-            test("//\n42", new Node
+            Test("//\n42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2628,21 +2628,21 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 2))
             });
 
-            test("//", new Node
+            Test("//", new Node
             {
                 type = "Program",
                 body = new List<Node>(),
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 2))
             });
 
-            test("// ", new Node
+            Test("// ", new Node
             {
                 type = "Program",
                 body = new List<Node>(),
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 3))
             });
 
-            test("/**/42", new Node
+            Test("/**/42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2662,7 +2662,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("// Hello, world!\n\n//   Another hello\n42", new Node
+            Test("// Hello, world!\n\n//   Another hello\n42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2682,7 +2682,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(4, 2))
             });
 
-            test("if (x) { // Some comment\ndoThat(); }", new Node
+            Test("if (x) { // Some comment\ndoThat(); }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2728,7 +2728,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 11))
             });
 
-            test("switch (answer) { case 42: /* perfect */ bingo() }", new Node
+            Test("switch (answer) { case 42: /* perfect */ bingo() }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2782,7 +2782,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 50))
             });
 
-            test("0", new Node
+            Test("0", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2802,7 +2802,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 1))
             });
 
-            test("3", new Node
+            Test("3", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2822,7 +2822,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 1))
             });
 
-            test("5", new Node
+            Test("5", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2842,7 +2842,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 1))
             });
 
-            test("42", new Node
+            Test("42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2862,7 +2862,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 2))
             });
 
-            test(".14", new Node
+            Test(".14", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2882,7 +2882,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 3))
             });
 
-            test("3.14159", new Node
+            Test("3.14159", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2902,7 +2902,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("6.02214179e+23", new Node
+            Test("6.02214179e+23", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2922,7 +2922,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 14))
             });
 
-            test("1.492417830e-10", new Node
+            Test("1.492417830e-10", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2942,7 +2942,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 15))
             });
 
-            test("0x0", new Node
+            Test("0x0", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2962,7 +2962,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 3))
             });
 
-            test("0e+100", new Node
+            Test("0e+100", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2982,7 +2982,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("0xabc", new Node
+            Test("0xabc", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3002,7 +3002,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 5))
             });
 
-            test("0xdef", new Node
+            Test("0xdef", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3022,7 +3022,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 5))
             });
 
-            test("0X1A", new Node
+            Test("0X1A", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3042,7 +3042,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 4))
             });
 
-            test("0x10", new Node
+            Test("0x10", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3062,7 +3062,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 4))
             });
 
-            test("0x100", new Node
+            Test("0x100", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3082,7 +3082,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 5))
             });
 
-            test("0X04", new Node
+            Test("0X04", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3102,7 +3102,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 4))
             });
 
-            test("02", new Node
+            Test("02", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3122,7 +3122,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 2))
             });
 
-            test("012", new Node
+            Test("012", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3142,7 +3142,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 3))
             });
 
-            test("0012", new Node
+            Test("0012", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3162,7 +3162,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 4))
             });
 
-            test("\"Hello\"", new Node
+            Test("\"Hello\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3182,7 +3182,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("\"\\n\\r\\t\\v\\b\\f\\\\\\'\\\"\\0\"", new Node
+            Test("\"\\n\\r\\t\\v\\b\\f\\\\\\'\\\"\\0\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3202,7 +3202,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 22))
             });
 
-            test("\"\\u0061\"", new Node
+            Test("\"\\u0061\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3222,7 +3222,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 8))
             });
 
-            test("\"\\x61\"", new Node
+            Test("\"\\x61\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3242,7 +3242,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("\"Hello\\nworld\"", new Node
+            Test("\"Hello\\nworld\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3262,7 +3262,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 14))
             });
 
-            test("\"Hello\\\nworld\"", new Node
+            Test("\"Hello\\\nworld\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3282,7 +3282,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 6))
             });
 
-            test("\"Hello\\02World\"", new Node
+            Test("\"Hello\\02World\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3302,7 +3302,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 15))
             });
 
-            test("\"Hello\\012World\"", new Node
+            Test("\"Hello\\012World\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3322,7 +3322,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 16))
             });
 
-            test("\"Hello\\122World\"", new Node
+            Test("\"Hello\\122World\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3342,7 +3342,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 16))
             });
 
-            test("\"Hello\\0122World\"", new Node
+            Test("\"Hello\\0122World\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3362,7 +3362,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 17))
             });
 
-            test("\"Hello\\312World\"", new Node
+            Test("\"Hello\\312World\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3382,7 +3382,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 16))
             });
 
-            test("\"Hello\\412World\"", new Node
+            Test("\"Hello\\412World\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3402,7 +3402,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 16))
             });
 
-            test("\"Hello\\812World\"", new Node
+            Test("\"Hello\\812World\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3422,7 +3422,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 16))
             });
 
-            test("\"Hello\\712World\"", new Node
+            Test("\"Hello\\712World\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3442,7 +3442,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 16))
             });
 
-            test("\"Hello\\0World\"", new Node
+            Test("\"Hello\\0World\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3462,7 +3462,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 14))
             });
 
-            test("\"Hello\\\r\nworld\"", new Node
+            Test("\"Hello\\\r\nworld\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3482,7 +3482,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 6))
             });
 
-            test("\"Hello\\1World\"", new Node
+            Test("\"Hello\\1World\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3502,7 +3502,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 14))
             });
 
-            test("var x = /[a-z]/i", new Node
+            Test("var x = /[a-z]/i", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3536,7 +3536,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 16))
             });
 
-            test("var x = /[x-z]/i", new Node
+            Test("var x = /[x-z]/i", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3570,7 +3570,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 16))
             });
 
-            test("var x = /[a-c]/i", new Node
+            Test("var x = /[a-c]/i", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3604,7 +3604,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 16))
             });
 
-            test("var x = /[P QR]/i", new Node
+            Test("var x = /[P QR]/i", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3638,7 +3638,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 17))
             });
 
-            test("var x = /foo\\/bar/", new Node
+            Test("var x = /foo\\/bar/", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3672,7 +3672,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 18))
             });
 
-            test("var x = /=([^=\\s])+/g", new Node
+            Test("var x = /=([^=\\s])+/g", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3706,7 +3706,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 21))
             });
 
-            test("var x = /[P QR]/\\u0067", new Node
+            Test("var x = /[P QR]/\\u0067", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3740,7 +3740,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 22))
             });
 
-            test("new Button", new Node
+            Test("new Button", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3766,7 +3766,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 10))
             });
 
-            test("new Button()", new Node
+            Test("new Button()", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3792,7 +3792,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 12))
             });
 
-            test("new new foo", new Node
+            Test("new new foo", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3824,7 +3824,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 11))
             });
 
-            test("new new foo()", new Node
+            Test("new new foo()", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3856,7 +3856,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 13))
             });
 
-            test("new foo().bar()", new Node
+            Test("new foo().bar()", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3900,7 +3900,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 15))
             });
 
-            test("new foo[bar]", new Node
+            Test("new foo[bar]", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3938,7 +3938,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 12))
             });
 
-            test("new foo.bar()", new Node
+            Test("new foo.bar()", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3976,7 +3976,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 13))
             });
 
-            test("( new foo).bar()", new Node
+            Test("( new foo).bar()", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4020,7 +4020,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 16))
             });
 
-            test("foo(bar, baz)", new Node
+            Test("foo(bar, baz)", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4060,7 +4060,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 13))
             });
 
-            test("(    foo  )()", new Node
+            Test("(    foo  )()", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4086,7 +4086,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 13))
             });
 
-            test("universe.milkyway", new Node
+            Test("universe.milkyway", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4118,7 +4118,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 17))
             });
 
-            test("universe.milkyway.solarsystem", new Node
+            Test("universe.milkyway.solarsystem", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4162,7 +4162,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 29))
             });
 
-            test("universe.milkyway.solarsystem.Earth", new Node
+            Test("universe.milkyway.solarsystem.Earth", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4218,7 +4218,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 35))
             });
 
-            test("universe[galaxyName, otherUselessName]", new Node
+            Test("universe[galaxyName, otherUselessName]", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4264,7 +4264,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 38))
             });
 
-            test("universe[galaxyName]", new Node
+            Test("universe[galaxyName]", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4296,7 +4296,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 20))
             });
 
-            test("universe[42].galaxies", new Node
+            Test("universe[42].galaxies", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4340,7 +4340,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 21))
             });
 
-            test("universe(42).galaxies", new Node
+            Test("universe(42).galaxies", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4386,7 +4386,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 21))
             });
 
-            test("universe(42).galaxies(14, 3, 77).milkyway", new Node
+            Test("universe(42).galaxies(14, 3, 77).milkyway", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4470,7 +4470,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 41))
             });
 
-            test("earth.asia.Indonesia.prepareForElection(2014)", new Node
+            Test("earth.asia.Indonesia.prepareForElection(2014)", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4540,7 +4540,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 45))
             });
 
-            test("universe.if", new Node
+            Test("universe.if", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4572,7 +4572,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 11))
             });
 
-            test("universe.true", new Node
+            Test("universe.true", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4604,7 +4604,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 13))
             });
 
-            test("universe.false", new Node
+            Test("universe.false", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4636,7 +4636,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 14))
             });
 
-            test("universe.null", new Node
+            Test("universe.null", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4668,7 +4668,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 13))
             });
 
-            test("x++", new Node
+            Test("x++", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4695,7 +4695,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 3))
             });
 
-            test("x--", new Node
+            Test("x--", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4722,7 +4722,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 3))
             });
 
-            test("eval++", new Node
+            Test("eval++", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4749,7 +4749,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("eval--", new Node
+            Test("eval--", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4776,7 +4776,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("arguments++", new Node
+            Test("arguments++", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4803,7 +4803,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 11))
             });
 
-            test("arguments--", new Node
+            Test("arguments--", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4830,7 +4830,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 11))
             });
 
-            test("++x", new Node
+            Test("++x", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4857,7 +4857,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 3))
             });
 
-            test("--x", new Node
+            Test("--x", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4884,7 +4884,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 3))
             });
 
-            test("++eval", new Node
+            Test("++eval", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4911,7 +4911,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("--eval", new Node
+            Test("--eval", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4938,7 +4938,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("++arguments", new Node
+            Test("++arguments", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4965,7 +4965,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 11))
             });
 
-            test("--arguments", new Node
+            Test("--arguments", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4992,7 +4992,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 11))
             });
 
-            test("+x", new Node
+            Test("+x", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5019,7 +5019,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 2))
             });
 
-            test("-x", new Node
+            Test("-x", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5046,7 +5046,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 2))
             });
 
-            test("~x", new Node
+            Test("~x", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5073,7 +5073,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 2))
             });
 
-            test("!x", new Node
+            Test("!x", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5100,7 +5100,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 2))
             });
 
-            test("void x", new Node
+            Test("void x", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5127,7 +5127,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("delete x", new Node
+            Test("delete x", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5154,7 +5154,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 8))
             });
 
-            test("typeof x", new Node
+            Test("typeof x", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5181,7 +5181,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 8))
             });
 
-            test("x * y", new Node
+            Test("x * y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5213,7 +5213,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 5))
             });
 
-            test("x / y", new Node
+            Test("x / y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5245,7 +5245,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 5))
             });
 
-            test("x % y", new Node
+            Test("x % y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5277,7 +5277,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 5))
             });
 
-            test("x + y", new Node
+            Test("x + y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5309,7 +5309,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 5))
             });
 
-            test("x - y", new Node
+            Test("x - y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5341,7 +5341,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 5))
             });
 
-            test("x << y", new Node
+            Test("x << y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5373,7 +5373,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("x >> y", new Node
+            Test("x >> y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5405,7 +5405,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("x >>> y", new Node
+            Test("x >>> y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5437,7 +5437,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("x < y", new Node
+            Test("x < y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5469,7 +5469,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 5))
             });
 
-            test("x > y", new Node
+            Test("x > y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5501,7 +5501,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 5))
             });
 
-            test("x <= y", new Node
+            Test("x <= y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5533,7 +5533,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("x >= y", new Node
+            Test("x >= y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5565,7 +5565,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("x in y", new Node
+            Test("x in y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5597,7 +5597,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("x instanceof y", new Node
+            Test("x instanceof y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5629,7 +5629,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 14))
             });
 
-            test("x < y < z", new Node
+            Test("x < y < z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5673,7 +5673,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x == y", new Node
+            Test("x == y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5705,7 +5705,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("x != y", new Node
+            Test("x != y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5737,7 +5737,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("x === y", new Node
+            Test("x === y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5769,7 +5769,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("x !== y", new Node
+            Test("x !== y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5801,7 +5801,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("x & y", new Node
+            Test("x & y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5833,7 +5833,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 5))
             });
 
-            test("x ^ y", new Node
+            Test("x ^ y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5865,7 +5865,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 5))
             });
 
-            test("x | y", new Node
+            Test("x | y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5897,7 +5897,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 5))
             });
 
-            test("x + y + z", new Node
+            Test("x + y + z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5941,7 +5941,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x - y + z", new Node
+            Test("x - y + z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5985,7 +5985,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x + y - z", new Node
+            Test("x + y - z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6029,7 +6029,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x - y - z", new Node
+            Test("x - y - z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6073,7 +6073,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x + y * z", new Node
+            Test("x + y * z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6117,7 +6117,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x + y / z", new Node
+            Test("x + y / z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6161,7 +6161,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x - y % z", new Node
+            Test("x - y % z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6205,7 +6205,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x * y * z", new Node
+            Test("x * y * z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6249,7 +6249,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x * y / z", new Node
+            Test("x * y / z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6293,7 +6293,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x * y % z", new Node
+            Test("x * y % z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6337,7 +6337,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x % y * z", new Node
+            Test("x % y * z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6381,7 +6381,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x << y << z", new Node
+            Test("x << y << z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6425,7 +6425,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 11))
             });
 
-            test("x | y | z", new Node
+            Test("x | y | z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6469,7 +6469,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x & y & z", new Node
+            Test("x & y & z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6513,7 +6513,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x ^ y ^ z", new Node
+            Test("x ^ y ^ z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6557,7 +6557,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x & y | z", new Node
+            Test("x & y | z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6601,7 +6601,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x | y ^ z", new Node
+            Test("x | y ^ z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6645,7 +6645,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x | y & z", new Node
+            Test("x | y & z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6689,7 +6689,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x || y", new Node
+            Test("x || y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6721,7 +6721,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("x && y", new Node
+            Test("x && y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6753,7 +6753,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("x || y || z", new Node
+            Test("x || y || z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6797,7 +6797,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 11))
             });
 
-            test("x && y && z", new Node
+            Test("x && y && z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6841,7 +6841,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 11))
             });
 
-            test("x || y && z", new Node
+            Test("x || y && z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6885,7 +6885,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 11))
             });
 
-            test("x || y ^ z", new Node
+            Test("x || y ^ z", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6929,7 +6929,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 10))
             });
 
-            test("y ? 1 : 2", new Node
+            Test("y ? 1 : 2", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6966,7 +6966,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x && y ? 1 : 2", new Node
+            Test("x && y ? 1 : 2", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7015,7 +7015,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 14))
             });
 
-            test("x = 42", new Node
+            Test("x = 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7047,7 +7047,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("eval = 42", new Node
+            Test("eval = 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7079,7 +7079,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("arguments = 42", new Node
+            Test("arguments = 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7111,7 +7111,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 14))
             });
 
-            test("x *= 42", new Node
+            Test("x *= 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7143,7 +7143,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("x /= 42", new Node
+            Test("x /= 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7175,7 +7175,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("x %= 42", new Node
+            Test("x %= 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7207,7 +7207,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("x += 42", new Node
+            Test("x += 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7239,7 +7239,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("x -= 42", new Node
+            Test("x -= 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7271,7 +7271,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("x <<= 42", new Node
+            Test("x <<= 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7303,7 +7303,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 8))
             });
 
-            test("x >>= 42", new Node
+            Test("x >>= 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7335,7 +7335,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 8))
             });
 
-            test("x >>>= 42", new Node
+            Test("x >>>= 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7367,7 +7367,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("x &= 42", new Node
+            Test("x &= 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7399,7 +7399,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("x ^= 42", new Node
+            Test("x ^= 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7431,7 +7431,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("x |= 42", new Node
+            Test("x |= 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7463,7 +7463,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("{ foo }", new Node
+            Test("{ foo }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7491,7 +7491,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("{ doThis(); doThat(); }", new Node
+            Test("{ doThis(); doThat(); }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7542,7 +7542,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 23))
             });
 
-            test("{}", new Node
+            Test("{}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7557,7 +7557,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 2))
             });
 
-            test("var x", new Node
+            Test("var x", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7587,7 +7587,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 5))
             });
 
-            test("var await", new Node
+            Test("var await", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7617,7 +7617,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("var x, y;", new Node
+            Test("var x, y;", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7659,7 +7659,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("var x = 42", new Node
+            Test("var x = 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7694,7 +7694,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 10))
             });
 
-            test("var eval = 42, arguments = 42", new Node
+            Test("var eval = 42, arguments = 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7746,7 +7746,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 29))
             });
 
-            test("var x = 14, y = 3, z = 1977", new Node
+            Test("var x = 14, y = 3, z = 1977", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7815,7 +7815,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 27))
             });
 
-            test("var implements, interface, package", new Node
+            Test("var implements, interface, package", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7869,7 +7869,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 34))
             });
 
-            test("var private, protected, public, static", new Node
+            Test("var private, protected, public, static", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7935,7 +7935,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 38))
             });
 
-            test(";", new Node
+            Test(";", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7949,7 +7949,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 1))
             });
 
-            test("x", new Node
+            Test("x", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7969,7 +7969,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 1))
             });
 
-            test("x, y", new Node
+            Test("x, y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8003,7 +8003,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 4))
             });
 
-            test("\\u0061", new Node
+            Test("\\u0061", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8023,7 +8023,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
             });
 
-            test("a\\u0061", new Node
+            Test("a\\u0061", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8043,7 +8043,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 7))
             });
 
-            test("if (morning) goodMorning()", new Node
+            Test("if (morning) goodMorning()", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8081,7 +8081,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 26))
             });
 
-            test("if (morning) (function(){})", new Node
+            Test("if (morning) (function(){})", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8120,7 +8120,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 27))
             });
 
-            test("if (morning) var x = 0;", new Node
+            Test("if (morning) var x = 0;", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8167,7 +8167,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 23))
             });
 
-            test("if (morning) function a(){}", new Node
+            Test("if (morning) function a(){}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8206,7 +8206,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 27))
             });
 
-            test("if (morning) goodMorning(); else goodDay()", new Node
+            Test("if (morning) goodMorning(); else goodDay()", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8260,7 +8260,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 42))
             });
 
-            test("do keep(); while (true)", new Node
+            Test("do keep(); while (true)", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8297,7 +8297,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 23))
             });
 
-            test("do keep(); while (true);", new Node
+            Test("do keep(); while (true);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8334,7 +8334,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 24))
             });
 
-            test("do { x++; y--; } while (x < 10)", new Node
+            Test("do { x++; y--; } while (x < 10)", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8410,7 +8410,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 31))
             });
 
-            test("{ do { } while (false);false }", new Node
+            Test("{ do { } while (false);false }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8455,7 +8455,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 30))
             });
 
-            test("while (true) doSomething()", new Node
+            Test("while (true) doSomething()", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8492,7 +8492,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 26))
             });
 
-            test("while (x < 10) { x++; y--; }", new Node
+            Test("while (x < 10) { x++; y--; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8568,7 +8568,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 28))
             });
 
-            test("for(;;);", new Node
+            Test("for(;;);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8590,7 +8590,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 8))
             });
 
-            test("for(;;){}", new Node
+            Test("for(;;){}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8613,7 +8613,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("for(x = 0;;);", new Node
+            Test("for(x = 0;;);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8652,7 +8652,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 13))
             });
 
-            test("for(var x = 0;;);", new Node
+            Test("for(var x = 0;;);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8699,7 +8699,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 17))
             });
 
-            test("for(var x = 0, y = 1;;);", new Node
+            Test("for(var x = 0, y = 1;;);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8763,7 +8763,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 24))
             });
 
-            test("for(x = 0; x < 42;);", new Node
+            Test("for(x = 0; x < 42;);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8819,7 +8819,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 20))
             });
 
-            test("for(x = 0; x < 42; x++);", new Node
+            Test("for(x = 0; x < 42; x++);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8887,7 +8887,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 24))
             });
 
-            test("for(x = 0; x < 42; x++) process(x);", new Node
+            Test("for(x = 0; x < 42; x++) process(x);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8975,7 +8975,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 35))
             });
 
-            test("for(x in list) process(x);", new Node
+            Test("for(x in list) process(x);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9026,7 +9026,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 26))
             });
 
-            test("for (var x in list) process(x);", new Node
+            Test("for (var x in list) process(x);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9092,7 +9092,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 31))
             });
 
-            test("for (var x = 42 in list) process(x);", new Node
+            Test("for (var x = 42 in list) process(x);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9163,7 +9163,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 36))
             });
 
-            test("for (var i = function() { return 10 in [] } in list) process(x);", new Node
+            Test("for (var i = function() { return 10 in [] } in list) process(x);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9266,7 +9266,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 64))
             });
 
-            test("while (true) { continue; }", new Node
+            Test("while (true) { continue; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9300,7 +9300,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 26))
             });
 
-            test("while (true) { continue }", new Node
+            Test("while (true) { continue }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9334,7 +9334,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 25))
             });
 
-            test("done: while (true) { continue done }", new Node
+            Test("done: while (true) { continue done }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9384,7 +9384,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 36))
             });
 
-            test("done: while (true) { continue done; }", new Node
+            Test("done: while (true) { continue done; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9434,7 +9434,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 37))
             });
 
-            test("while (true) { break }", new Node
+            Test("while (true) { break }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9468,7 +9468,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 22))
             });
 
-            test("done: while (true) { break done }", new Node
+            Test("done: while (true) { break done }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9518,7 +9518,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 33))
             });
 
-            test("done: while (true) { break done; }", new Node
+            Test("done: while (true) { break done; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9568,10 +9568,10 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 34))
             });
 
-            test("target1: target2: while (true) { continue target1; }", new Node { });
-            test("target1: target2: target3: while (true) { continue target1; }", new Node { });
+            Test("target1: target2: while (true) { continue target1; }", new Node { });
+            Test("target1: target2: target3: while (true) { continue target1; }", new Node { });
 
-            test("(function(){ return })", new Node
+            Test("(function(){ return })", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9606,7 +9606,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 22))
             });
 
-            test("(function(){ return; })", new Node
+            Test("(function(){ return; })", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9641,7 +9641,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 23))
             });
 
-            test("(function(){ return x; })", new Node
+            Test("(function(){ return x; })", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9681,7 +9681,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 25))
             });
 
-            test("(function(){ return x * y })", new Node
+            Test("(function(){ return x * y })", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9733,7 +9733,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 28))
             });
 
-            test("with (x) foo = bar", new Node
+            Test("with (x) foo = bar", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9776,7 +9776,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 18))
             });
 
-            test("with (x) foo = bar;", new Node
+            Test("with (x) foo = bar;", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9821,13 +9821,13 @@ namespace AcornSharp.Cli
 
             // Test that innocuous string that evaluates to `use strict` is not promoted to
             // Use Strict directive.
-            test("'use\\x20strict'; with (x) foo = bar;", new Node { });
+            Test("'use\\x20strict'; with (x) foo = bar;", new Node { });
 
             // Test that innocuous string that evaluates to `use strict` is not promoted to
             // Use Strict directive.
-            test(@"""use\\x20strict""; with (x) foo = bar;", new Node { });
+            Test(@"""use\\x20strict""; with (x) foo = bar;", new Node { });
 
-            test("with (x) { foo = bar }", new Node
+            Test("with (x) { foo = bar }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9878,7 +9878,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 22))
             });
 
-            test("switch (x) {}", new Node
+            Test("switch (x) {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9899,7 +9899,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 13))
             });
 
-            test("switch (answer) { case 42: hi(); break; }", new Node
+            Test("switch (answer) { case 42: hi(); break; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9959,7 +9959,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 41))
             });
 
-            test("switch (answer) { case 42: hi(); break; default: break }", new Node
+            Test("switch (answer) { case 42: hi(); break; default: break }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10034,7 +10034,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 56))
             });
 
-            test("start: for (;;) break start", new Node
+            Test("start: for (;;) break start", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10073,7 +10073,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 27))
             });
 
-            test("start: while (true) break start", new Node
+            Test("start: while (true) break start", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10115,7 +10115,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 31))
             });
 
-            test("throw x;", new Node
+            Test("throw x;", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10135,7 +10135,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 8))
             });
 
-            test("throw x * y", new Node
+            Test("throw x * y", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10167,7 +10167,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 11))
             });
 
-            test("throw { message: \"Error\" }", new Node
+            Test("throw { message: \"Error\" }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10206,7 +10206,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 26))
             });
 
-            test("try { } catch (e) { }", new Node
+            Test("try { } catch (e) { }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10244,7 +10244,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 21))
             });
 
-            test("try { } catch (eval) { }", new Node
+            Test("try { } catch (eval) { }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10282,7 +10282,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 24))
             });
 
-            test("try { } catch (arguments) { }", new Node
+            Test("try { } catch (arguments) { }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10320,7 +10320,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 29))
             });
 
-            test("try { } catch (e) { say(e) }", new Node
+            Test("try { } catch (e) { say(e) }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10385,7 +10385,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 28))
             });
 
-            test("try { } finally { cleanup(stuff) }", new Node
+            Test("try { } finally { cleanup(stuff) }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10439,7 +10439,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 34))
             });
 
-            test("try { doThat(); } catch (e) { say(e) }", new Node
+            Test("try { doThat(); } catch (e) { say(e) }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10523,7 +10523,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 38))
             });
 
-            test("try { doThat(); } catch (e) { say(e) } finally { cleanup(stuff) }", new Node
+            Test("try { doThat(); } catch (e) { say(e) } finally { cleanup(stuff) }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10639,7 +10639,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 65))
             });
 
-            test("debugger;", new Node
+            Test("debugger;", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10653,7 +10653,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             });
 
-            test("function hello() { sayHi(); }", new Node
+            Test("function hello() { sayHi(); }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10699,7 +10699,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 29))
             });
 
-            test("function eval() { }", new Node
+            Test("function eval() { }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10726,7 +10726,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 19))
             });
 
-            test("function arguments() { }", new Node
+            Test("function arguments() { }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10753,7 +10753,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 24))
             });
 
-            test("function test(t, t) { }", new Node
+            Test("function test(t, t) { }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10794,7 +10794,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 23))
             });
 
-            test("(function test(t, t) { })", new Node
+            Test("(function test(t, t) { })", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10840,7 +10840,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 25))
             });
 
-            test("function eval() { function inner() { \"use strict\" } }", new Node
+            Test("function eval() { function inner() { \"use strict\" } }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10900,7 +10900,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 53))
             });
 
-            test("function hello(a) { sayHi(); }", new Node
+            Test("function hello(a) { sayHi(); }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10954,7 +10954,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 30))
             });
 
-            test("function hello(a, b) { sayHi(); }", new Node
+            Test("function hello(a, b) { sayHi(); }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11014,7 +11014,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 33))
             });
 
-            test("function hello(...rest) { }", new Node
+            Test("function hello(...rest) { }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11056,7 +11056,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("function hello(a, ...rest) { }", new Node
+            Test("function hello(a, ...rest) { }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11104,7 +11104,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("var hi = function() { sayHi() };", new Node
+            Test("var hi = function() { sayHi() };", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11165,7 +11165,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 32))
             });
 
-            test("var hi = function (...r) { sayHi() };", new Node
+            Test("var hi = function (...r) { sayHi() };", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11241,7 +11241,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("var hi = function eval() { };", new Node
+            Test("var hi = function eval() { };", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11288,7 +11288,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 29))
             });
 
-            test("var hi = function arguments() { };", new Node
+            Test("var hi = function arguments() { };", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11335,7 +11335,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 34))
             });
 
-            test("var hello = function hi() { sayHi() };", new Node
+            Test("var hello = function hi() { sayHi() };", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11401,7 +11401,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 38))
             });
 
-            test("(function(){})", new Node
+            Test("(function(){})", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11428,7 +11428,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 14))
             });
 
-            test("{ x\n++y }", new Node
+            Test("{ x\n++y }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11474,7 +11474,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 5))
             });
 
-            test("{ x\n--y }", new Node
+            Test("{ x\n--y }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11520,7 +11520,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 5))
             });
 
-            test("var x /* comment */;", new Node
+            Test("var x /* comment */;", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11550,7 +11550,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 20))
             });
 
-            test("{ var x = 14, y = 3\nz; }", new Node
+            Test("{ var x = 14, y = 3\nz; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11621,7 +11621,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 4))
             });
 
-            test("while (true) { continue\nthere; }", new Node
+            Test("while (true) { continue\nthere; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11666,7 +11666,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 8))
             });
 
-            test("while (true) { continue // Comment\nthere; }", new Node
+            Test("while (true) { continue // Comment\nthere; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11711,7 +11711,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 8))
             });
 
-            test("while (true) { continue /* Multiline\nComment */there; }", new Node
+            Test("while (true) { continue /* Multiline\nComment */there; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11756,7 +11756,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 18))
             });
 
-            test("while (true) { break\nthere; }", new Node
+            Test("while (true) { break\nthere; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11801,7 +11801,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 8))
             });
 
-            test("while (true) { break // Comment\nthere; }", new Node
+            Test("while (true) { break // Comment\nthere; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11846,7 +11846,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 8))
             });
 
-            test("while (true) { break /* Multiline\nComment */there; }", new Node
+            Test("while (true) { break /* Multiline\nComment */there; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11891,7 +11891,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 18))
             });
 
-            test("(function(){ return\nx; })", new Node
+            Test("(function(){ return\nx; })", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11937,7 +11937,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 5))
             });
 
-            test("(function(){ return // Comment\nx; })", new Node
+            Test("(function(){ return // Comment\nx; })", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11983,7 +11983,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 5))
             });
 
-            test("(function(){ return/* Multiline\nComment */x; })", new Node
+            Test("(function(){ return/* Multiline\nComment */x; })", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -12029,7 +12029,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 15))
             });
 
-            test("{ throw error\nerror; }", new Node
+            Test("{ throw error\nerror; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -12068,7 +12068,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 8))
             });
 
-            test("{ throw error// Comment\nerror; }", new Node
+            Test("{ throw error// Comment\nerror; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -12107,7 +12107,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 8))
             });
 
-            test("{ throw error/* Multiline\nComment */error; }", new Node
+            Test("{ throw error/* Multiline\nComment */error; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -12146,14 +12146,14 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(2, 18))
             });
 
-            test("", new Node
+            Test("", new Node
             {
                 type = "Program",
                 body = new List<Node>(),
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 0))
             });
 
-            test("foo: if (true) break foo;", new Node
+            Test("foo: if (true) break foo;", new Node
             {
                 type = "Program",
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 25)),
@@ -12196,7 +12196,7 @@ namespace AcornSharp.Cli
                 }
             });
 
-            test("(function () {\n 'use strict';\n '\0';\n}())", new Node
+            Test("(function () {\n 'use strict';\n '\0';\n}())", new Node
             {
                 type = "Program",
                 loc = new SourceLocation(new Position(1, 0), new Position(4, 4)),
@@ -12253,7 +12253,7 @@ namespace AcornSharp.Cli
                 }
             });
 
-            test("123..toString(10)", new Node
+            Test("123..toString(10)", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -12292,7 +12292,7 @@ namespace AcornSharp.Cli
                 }
             });
 
-            test("123.+2", new Node
+            Test("123.+2", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -12319,7 +12319,7 @@ namespace AcornSharp.Cli
                 }
             });
 
-            test("a\u2028b", new Node
+            Test("a\u2028b", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -12345,7 +12345,7 @@ namespace AcornSharp.Cli
                 }
             });
 
-            test("'a\\u0026b'", new Node
+            Test("'a\\u0026b'", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -12362,7 +12362,7 @@ namespace AcornSharp.Cli
                 }
             });
 
-            test("foo: 10; foo: 20;", new Node
+            Test("foo: 10; foo: 20;", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -12408,7 +12408,7 @@ namespace AcornSharp.Cli
                 }
             });
 
-            test("if(1)/  foo/", new Node
+            Test("if(1)/  foo/", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -12436,7 +12436,7 @@ namespace AcornSharp.Cli
                 }
             });
 
-            test("price_9̶9̶_89", new Node
+            Test("price_9̶9̶_89", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -12454,10 +12454,10 @@ namespace AcornSharp.Cli
             });
             
             // `\0` is valid even in strict mode
-            test("function hello() { 'use strict'; \"\\0\"; }", new Node { });
+            Test("function hello() { 'use strict'; \"\\0\"; }", new Node { });
             
             // option tests
-            test("var a = 1;", new Node
+            Test("var a = 1;", new Node
             {
                 type = "Program",
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 10)),
@@ -12496,7 +12496,7 @@ namespace AcornSharp.Cli
                 sourceFile = "test.js"
             });
 
-            test("a.in / b", new Node
+            Test("a.in / b", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -12534,29 +12534,29 @@ namespace AcornSharp.Cli
             });
             
             // A number of slash-disambiguation corner cases
-            test("return {} / 2", new Node { }, new Options {allowReturnOutsideFunction = true});
-            test("return\n{}\n/foo/", new Node { }, new Options {allowReturnOutsideFunction = true});
-            test("+{} / 2", new Node { });
-            test("{}\n/foo/", new Node { });
-            test("x++\n{}\n/foo/", new Node { });
-            test("{{}\n/foo/}", new Node { });
-            test("while (1) /foo/", new Node { });
-            test("while (1) {} /foo/", new Node { });
-            test("(1) / 2", new Node { });
-            test("({a: [1]}+[]) / 2", new Node { });
-            test("{[1]}\n/foo/", new Node { });
-            test("switch(a) { case 1: {}\n/foo/ }", new Node { });
-            test("({1: {} / 2})", new Node { });
-            test("+x++ / 2", new Node { });
-            test("foo.in\n{}\n/foo/", new Node { });
-            test("var x = function f() {} / 3;", new Node { });
-            test("+function f() {} / 3;", new Node { });
-            test("foo: function x() {} /regexp/", new Node { });
-            test("x = {foo: function x() {} / divide}", new Node { });
-            test("foo; function f() {} /regexp/", new Node { });
-            test("{function f() {} /regexp/}", new Node { });
+            Test("return {} / 2", new Node { }, new Options {allowReturnOutsideFunction = true});
+            Test("return\n{}\n/foo/", new Node { }, new Options {allowReturnOutsideFunction = true});
+            Test("+{} / 2", new Node { });
+            Test("{}\n/foo/", new Node { });
+            Test("x++\n{}\n/foo/", new Node { });
+            Test("{{}\n/foo/}", new Node { });
+            Test("while (1) /foo/", new Node { });
+            Test("while (1) {} /foo/", new Node { });
+            Test("(1) / 2", new Node { });
+            Test("({a: [1]}+[]) / 2", new Node { });
+            Test("{[1]}\n/foo/", new Node { });
+            Test("switch(a) { case 1: {}\n/foo/ }", new Node { });
+            Test("({1: {} / 2})", new Node { });
+            Test("+x++ / 2", new Node { });
+            Test("foo.in\n{}\n/foo/", new Node { });
+            Test("var x = function f() {} / 3;", new Node { });
+            Test("+function f() {} / 3;", new Node { });
+            Test("foo: function x() {} /regexp/", new Node { });
+            Test("x = {foo: function x() {} / divide}", new Node { });
+            Test("foo; function f() {} /regexp/", new Node { });
+            Test("{function f() {} /regexp/}", new Node { });
 
-            test("{}/=/", new Node
+            Test("{}/=/", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -12578,7 +12578,7 @@ namespace AcornSharp.Cli
                 }
             });
 
-            test("foo <!--bar\n+baz", new Node
+            Test("foo <!--bar\n+baz", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -12605,7 +12605,7 @@ namespace AcornSharp.Cli
                 }
             });
 
-            test("x = y-->10;\n --> nothing", new Node
+            Test("x = y-->10;\n --> nothing", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -12648,7 +12648,7 @@ namespace AcornSharp.Cli
                 }
             });
 
-            test("'use strict';\nobject.static();", new Node
+            Test("'use strict';\nobject.static();", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -13288,7 +13288,7 @@ namespace AcornSharp.Cli
 
             testFail("function a(b = c) {}", "Unexpected token (1:13)");
 
-            test("let++", new Node
+            Test("let++", new Node
             {
                 type = "Program",
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 5)),
@@ -13316,7 +13316,7 @@ namespace AcornSharp.Cli
             });
             
             // ECMA 6 support
-            test("let x", new Node
+            Test("let x", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -13346,7 +13346,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 5))
             }, new Options {ecmaVersion = 6});
 
-            test("let x, y;", new Node
+            Test("let x, y;", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -13388,7 +13388,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 9))
             }, new Options {ecmaVersion = 6});
 
-            test("let x = 42", new Node
+            Test("let x = 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -13423,7 +13423,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 10))
             }, new Options {ecmaVersion = 6});
 
-            test("let eval = 42, arguments = 42", new Node
+            Test("let eval = 42, arguments = 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -13475,7 +13475,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 29))
             }, new Options {ecmaVersion = 6});
 
-            test("let x = 14, y = 3, z = 1977", new Node
+            Test("let x = 14, y = 3, z = 1977", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -13544,7 +13544,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 27))
             }, new Options {ecmaVersion = 6});
 
-            test("for(let x = 0;;);", new Node
+            Test("for(let x = 0;;);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -13591,7 +13591,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 17))
             }, new Options {ecmaVersion = 6});
 
-            test("for(let x = 0, y = 1;;);", new Node
+            Test("for(let x = 0, y = 1;;);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -13655,7 +13655,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 24))
             }, new Options {ecmaVersion = 6});
 
-            test("for (let x in list) process(x);", new Node
+            Test("for (let x in list) process(x);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -13721,7 +13721,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 31))
             }, new Options {ecmaVersion = 6});
 
-            test("const x = 42", new Node
+            Test("const x = 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -13756,7 +13756,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 12))
             }, new Options {ecmaVersion = 6});
 
-            test("const eval = 42, arguments = 42", new Node
+            Test("const eval = 42, arguments = 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -13808,7 +13808,7 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 31))
             }, new Options {ecmaVersion = 6});
 
-            test("const x = 14, y = 3, z = 1977", new Node
+            Test("const x = 14, y = 3, z = 1977", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -13879,7 +13879,7 @@ namespace AcornSharp.Cli
 
             testFail("const a;", "Unexpected token (1:7)", new Options {ecmaVersion = 6});
 
-            test("for(const x = 0;;);", new Node
+            Test("for(const x = 0;;);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -13965,7 +13965,7 @@ namespace AcornSharp.Cli
             //  ]
             //});
 
-            test("<!--\n;", new Node
+            Test("<!--\n;", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -14037,15 +14037,15 @@ namespace AcornSharp.Cli
             //  ]
             //});
 
-            test("function f(f) { 'use strict'; }", new Node { });
+            Test("function f(f) { 'use strict'; }", new Node { });
 
             // https://github.com/ternjs/acorn/issues/180
-            test("#!/usr/bin/node\n;", new Node {}, new Options{
+            Test("#!/usr/bin/node\n;", new Node {}, new Options{
               allowHashBang=  true,
             });
 
             // https://github.com/ternjs/acorn/issues/204
-            test("(function () {} / 1)", new Node
+            Test("(function () {} / 1)", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -14074,7 +14074,7 @@ namespace AcornSharp.Cli
                 }
             });
 
-            test("function f() {} / 1 /", new Node
+            Test("function f() {} / 1 /", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -14103,7 +14103,7 @@ namespace AcornSharp.Cli
             });
 
             // https://github.com/ternjs/acorn/issues/320
-            test(@"do /x/; while (false);", new Node
+            Test(@"do /x/; while (false);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -14158,7 +14158,7 @@ namespace AcornSharp.Cli
 
             // https://github.com/ternjs/acorn/issues/363
 
-            test("/[a-z]/gim", new Node
+            Test("/[a-z]/gim", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -14184,7 +14184,7 @@ namespace AcornSharp.Cli
 
             testFail("function(){}", "Unexpected token (1:8)");
 
-            test("0123. in/foo/i", new Node
+            Test("0123. in/foo/i", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -14232,7 +14232,7 @@ namespace AcornSharp.Cli
                 }
             });
 
-            test("0128", new Node
+            Test("0128", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -14250,19 +14250,19 @@ namespace AcornSharp.Cli
                 }
             });
 
-            test("undefined", new Node { }, new Options {ecmaVersion = 8});
+            Test("undefined", new Node { }, new Options {ecmaVersion = 8});
 
             testFail("\\u{74}rue", "Escape sequence in keyword true (1:0)", new Options { ecmaVersion = 6});
 
             testFail("(x=1)=2", "Parenthesized pattern (1:0)");
 
-            test("(foo = [])[0] = 4;", new Node { });
+            Test("(foo = [])[0] = 4;", new Node { });
 
-            test("for ((foo = []).bar in {}) {}", new Node { });
+            Test("for ((foo = []).bar in {}) {}", new Node { });
 
-            test("((b), a=1)", new Node { });
+            Test("((b), a=1)", new Node { });
 
-            test("(x) = 1", new Node { });
+            Test("(x) = 1", new Node { });
 
             testFail("try {} catch (foo) { var foo; }", "Identifier 'foo' has already been declared (1:25)");
             testFail("try {} catch (foo) { let foo; }", "Identifier 'foo' has already been declared (1:25)", new Options { ecmaVersion = 6});
@@ -14274,15 +14274,15 @@ namespace AcornSharp.Cli
             testFail("let foo; try {} catch (foo) {} let foo;", "Identifier 'foo' has already been declared (1:35)", new Options { ecmaVersion = 6});
             testFail("try {} catch (foo) { function foo() {} }", "Identifier 'foo' has already been declared (1:30)");
 
-            test("try {} catch (foo) {} var foo;", new Node { });
-            test("try {} catch (foo) {} let foo;", new Node { }, new Options {ecmaVersion = 6});
-            test("try {} catch (foo) { { let foo; } }", new Node { }, new Options {ecmaVersion = 6});
-            test("try {} catch (foo) { function x() { var foo; } }", new Node { }, new Options {ecmaVersion = 6});
-            test("try {} catch (foo) { function x(foo) {} }", new Node { }, new Options {ecmaVersion = 6});
+            Test("try {} catch (foo) {} var foo;", new Node { });
+            Test("try {} catch (foo) {} let foo;", new Node { }, new Options {ecmaVersion = 6});
+            Test("try {} catch (foo) { { let foo; } }", new Node { }, new Options {ecmaVersion = 6});
+            Test("try {} catch (foo) { function x() { var foo; } }", new Node { }, new Options {ecmaVersion = 6});
+            Test("try {} catch (foo) { function x(foo) {} }", new Node { }, new Options {ecmaVersion = 6});
 
-            test("'use strict'; let foo = function foo() {}", new Node { }, new Options {ecmaVersion = 6});
+            Test("'use strict'; let foo = function foo() {}", new Node { }, new Options {ecmaVersion = 6});
 
-            test("/**/ --> comment\n", new Node { });
+            Test("/**/ --> comment\n", new Node { });
         }
     }
 }

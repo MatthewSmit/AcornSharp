@@ -2,16 +2,19 @@
 
 namespace AcornSharp
 {
-    public class TemplateNode : IEquatable<TemplateNode>
+    public sealed class TemplateNode : IEquatable<TemplateNode>
     {
-        public string raw;
-        public string cooked;
+        public TemplateNode(string raw, string cooked)
+        {
+            Raw = raw;
+            Cooked = cooked;
+        }
 
         public bool Equals(TemplateNode other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return string.Equals(raw, other.raw) && string.Equals(cooked, other.cooked);
+            return string.Equals(Raw, other.Raw) && string.Equals(Cooked, other.Cooked);
         }
 
         public override bool Equals(object obj)
@@ -26,7 +29,7 @@ namespace AcornSharp
         {
             unchecked
             {
-                return ((raw != null ? raw.GetHashCode() : 0) * 397) ^ (cooked != null ? cooked.GetHashCode() : 0);
+                return ((Raw != null ? Raw.GetHashCode() : 0) * 397) ^ (Cooked != null ? Cooked.GetHashCode() : 0);
             }
         }
 
@@ -39,5 +42,8 @@ namespace AcornSharp
         {
             return !Equals(left, right);
         }
+
+        public string Raw { get; }
+        public string Cooked { get; }
     }
 }

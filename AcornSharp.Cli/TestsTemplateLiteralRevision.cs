@@ -6,7 +6,7 @@ namespace AcornSharp.Cli
     {
         private static void TestsTemplateLiteralRevision()
         {
-            test("`foo`", new Node
+            Test("`foo`", new Node
             {
                 type = "Program",
                 start = 0,
@@ -31,11 +31,7 @@ namespace AcornSharp.Cli
                                     type = "TemplateElement",
                                     start = 1,
                                     end = 4,
-                                    value = new TemplateNode
-                                    {
-                                        raw = "foo",
-                                        cooked = "foo"
-                                    },
+                                    value = new TemplateNode("foo", "foo"),
                                     tail = true
                                 }
                             }
@@ -45,7 +41,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 9});
 
-            test("`foo\\u25a0`", new Node
+            Test("`foo\\u25a0`", new Node
             {
                 type = "Program",
                 start = 0,
@@ -70,11 +66,7 @@ namespace AcornSharp.Cli
                                     type = "TemplateElement",
                                     start = 1,
                                     end = 10,
-                                    value = new TemplateNode
-                                    {
-                                        raw = "foo\\u25a0",
-                                        cooked = "foo■"
-                                    },
+                                    value = new TemplateNode("foo\\u25a0", "foo■"),
                                     tail = true
                                 }
                             }
@@ -84,7 +76,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 9});
 
-            test("`foo${bar}\\u25a0`", new Node
+            Test("`foo${bar}\\u25a0`", new Node
             {
                 type = "Program",
                 start = 0,
@@ -118,11 +110,7 @@ namespace AcornSharp.Cli
                                     type = "TemplateElement",
                                     start = 1,
                                     end = 4,
-                                    value = new TemplateNode
-                                    {
-                                        raw = "foo",
-                                        cooked = "foo"
-                                    },
+                                    value = new TemplateNode("foo", "foo"),
                                     tail = false
                                 },
                                 new Node
@@ -130,11 +118,7 @@ namespace AcornSharp.Cli
                                     type = "TemplateElement",
                                     start = 10,
                                     end = 16,
-                                    value = new TemplateNode
-                                    {
-                                        raw = "\\u25a0",
-                                        cooked = "■"
-                                    },
+                                    value = new TemplateNode("\\u25a0", "■"),
                                     tail = true
                                 }
                             }
@@ -144,7 +128,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 9});
 
-            test("foo`\\u25a0`", new Node
+            Test("foo`\\u25a0`", new Node
             {
                 type = "Program",
                 start = 0,
@@ -181,11 +165,7 @@ namespace AcornSharp.Cli
                                         type = "TemplateElement",
                                         start = 4,
                                         end = 10,
-                                        value = new TemplateNode
-                                        {
-                                            raw = "\\u25a0",
-                                            cooked = "■"
-                                        },
+                                        value = new TemplateNode("\\u25a0", "■"),
                                         tail = true
                                     }
                                 }
@@ -196,7 +176,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 9});
 
-            test("foo`foo${bar}\\u25a0`", new Node
+            Test("foo`foo${bar}\\u25a0`", new Node
             {
                 type = "Program",
                 start = 0,
@@ -242,11 +222,7 @@ namespace AcornSharp.Cli
                                         type = "TemplateElement",
                                         start = 4,
                                         end = 7,
-                                        value = new TemplateNode
-                                        {
-                                            raw = "foo",
-                                            cooked = "foo"
-                                        },
+                                        value = new TemplateNode("foo", "foo"),
                                         tail = false
                                     },
                                     new Node
@@ -254,11 +230,7 @@ namespace AcornSharp.Cli
                                         type = "TemplateElement",
                                         start = 13,
                                         end = 19,
-                                        value = new TemplateNode
-                                        {
-                                            raw = "\\u25a0",
-                                            cooked = "■"
-                                        },
+                                        value = new TemplateNode("\\u25a0", "■"),
                                         tail = true
                                     }
                                 }
@@ -282,7 +254,7 @@ namespace AcornSharp.Cli
             testFail("foo`\\unicode", "Unterminated template (1:4)", new Options {ecmaVersion = 9});
             testFail("foo`\\unicode\\`", "Unterminated template (1:4)", new Options {ecmaVersion = 9});
 
-            test("foo`\\unicode`", new Node
+            Test("foo`\\unicode`", new Node
             {
                 type = "Program",
                 start = 0,
@@ -319,11 +291,7 @@ namespace AcornSharp.Cli
                                         type = "TemplateElement",
                                         start = 4,
                                         end = 12,
-                                        value = new TemplateNode
-                                        {
-                                            raw = "\\unicode",
-                                            cooked = null
-                                        },
+                                        value = new TemplateNode("\\unicode", null),
                                         tail = true
                                     }
                                 }
@@ -334,7 +302,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 9});
 
-            test("foo`foo${bar}\\unicode`", new Node
+            Test("foo`foo${bar}\\unicode`", new Node
             {
                 type = "Program",
                 start = 0,
@@ -380,11 +348,7 @@ namespace AcornSharp.Cli
                                         type = "TemplateElement",
                                         start = 4,
                                         end = 7,
-                                        value = new TemplateNode
-                                        {
-                                            raw = "foo",
-                                            cooked = "foo"
-                                        },
+                                        value = new TemplateNode("foo", "foo"),
                                         tail = false
                                     },
                                     new Node
@@ -392,11 +356,7 @@ namespace AcornSharp.Cli
                                         type = "TemplateElement",
                                         start = 13,
                                         end = 21,
-                                        value = new TemplateNode
-                                        {
-                                            raw = "\\unicode",
-                                            cooked = null
-                                        },
+                                        value = new TemplateNode("\\unicode", null),
                                         tail = true
                                     }
                                 }
@@ -407,7 +367,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 9});
 
-            test("foo`\\u`", new Node
+            Test("foo`\\u`", new Node
             {
                 type = "Program",
                 start = 0,
@@ -444,11 +404,7 @@ namespace AcornSharp.Cli
                                         type = "TemplateElement",
                                         start = 4,
                                         end = 6,
-                                        value = new TemplateNode
-                                        {
-                                            raw = "\\u",
-                                            cooked = null
-                                        },
+                                        value = new TemplateNode("\\u", null),
                                         tail = true
                                     }
                                 }
@@ -459,7 +415,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 9});
 
-            test("foo`\\u{`", new Node
+            Test("foo`\\u{`", new Node
             {
                 type = "Program",
                 start = 0,
@@ -496,11 +452,7 @@ namespace AcornSharp.Cli
                                         type = "TemplateElement",
                                         start = 4,
                                         end = 7,
-                                        value = new TemplateNode
-                                        {
-                                            raw = "\\u{",
-                                            cooked = null
-                                        },
+                                        value = new TemplateNode("\\u{", null),
                                         tail = true
                                     }
                                 }
@@ -511,7 +463,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 9});
 
-            test("foo`\\u{abcdx`", new Node
+            Test("foo`\\u{abcdx`", new Node
             {
                 type = "Program",
                 start = 0,
@@ -548,11 +500,7 @@ namespace AcornSharp.Cli
                                         type = "TemplateElement",
                                         start = 4,
                                         end = 12,
-                                        value = new TemplateNode
-                                        {
-                                            raw = "\\u{abcdx",
-                                            cooked = null
-                                        },
+                                        value = new TemplateNode("\\u{abcdx", null),
                                         tail = true
                                     }
                                 }
@@ -563,7 +511,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 9});
 
-            test("foo`\\u{abcdx}`", new Node
+            Test("foo`\\u{abcdx}`", new Node
             {
                 type = "Program",
                 start = 0,
@@ -600,11 +548,7 @@ namespace AcornSharp.Cli
                                         type = "TemplateElement",
                                         start = 4,
                                         end = 13,
-                                        value = new TemplateNode
-                                        {
-                                            raw = "\\u{abcdx}",
-                                            cooked = null
-                                        },
+                                        value = new TemplateNode("\\u{abcdx}", null),
                                         tail = true
                                     }
                                 }
@@ -615,7 +559,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 9});
 
-            test("foo`\\unicode\\\\`", new Node
+            Test("foo`\\unicode\\\\`", new Node
             {
                 type = "Program",
                 start = 0,
@@ -652,11 +596,7 @@ namespace AcornSharp.Cli
                                         type = "TemplateElement",
                                         start = 4,
                                         end = 14,
-                                        value = new TemplateNode
-                                        {
-                                            raw = "\\unicode\\\\",
-                                            cooked = null
-                                        },
+                                        value = new TemplateNode("\\unicode\\\\", null),
                                         tail = true
                                     }
                                 }
@@ -667,10 +607,10 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 9});
 
-            test("`${ {class: 1} }`", new Node { }, new Options {ecmaVersion = 9});
-            test("`${ {delete: 1} }`", new Node { }, new Options {ecmaVersion = 9});
-            test("`${ {enum: 1} }`", new Node { }, new Options {ecmaVersion = 9});
-            test("`${ {function: 1} }`", new Node { }, new Options {ecmaVersion = 9});
+            Test("`${ {class: 1} }`", new Node { }, new Options {ecmaVersion = 9});
+            Test("`${ {delete: 1} }`", new Node { }, new Options {ecmaVersion = 9});
+            Test("`${ {enum: 1} }`", new Node { }, new Options {ecmaVersion = 9});
+            Test("`${ {function: 1} }`", new Node { }, new Options {ecmaVersion = 9});
         }
     }
 }

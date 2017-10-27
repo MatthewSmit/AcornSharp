@@ -48,7 +48,7 @@ namespace AcornSharp.Cli
 
             // ES6 Unicode Code Point Escape Sequence
 
-            test("\"\\u{714E}\\u{8336}\"", new Node
+            Test("\"\\u{714E}\\u{8336}\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -72,7 +72,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("\"\\u{20BB7}\\u{91CE}\\u{5BB6}\"", new Node
+            Test("\"\\u{20BB7}\\u{91CE}\\u{5BB6}\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -98,7 +98,7 @@ namespace AcornSharp.Cli
 
             // ES6: Numeric Literal
 
-            test("00", new Node
+            Test("00", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -122,7 +122,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("0o0", new Node
+            Test("0o0", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -146,7 +146,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("function test() {'use strict'; 0o0; }", new Node
+            Test("function test() {'use strict'; 0o0; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -204,7 +204,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("0o2", new Node
+            Test("0o2", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -228,7 +228,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("0o12", new Node
+            Test("0o12", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -252,7 +252,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("0O0", new Node
+            Test("0O0", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -276,7 +276,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("function test() {'use strict'; 0O0; }", new Node
+            Test("function test() {'use strict'; 0O0; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -334,7 +334,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("0O2", new Node
+            Test("0O2", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -358,7 +358,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("0O12", new Node
+            Test("0O12", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -382,7 +382,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("0b0", new Node
+            Test("0b0", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -406,7 +406,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("0b1", new Node
+            Test("0b1", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -430,7 +430,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("0b10", new Node
+            Test("0b10", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -454,7 +454,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("0B0", new Node
+            Test("0B0", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -478,7 +478,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("0B1", new Node
+            Test("0B1", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -502,7 +502,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("0B10", new Node
+            Test("0B10", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -528,7 +528,7 @@ namespace AcornSharp.Cli
 
             // ES6 Template Strings
 
-            test("`42`", new Node
+            Test("`42`", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -544,7 +544,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = "TemplateElement",
-                                    value = new TemplateNode {raw = "42", cooked = "42"},
+                                    value = new TemplateNode("42", "42"),
                                     tail = true,
                                     loc = new SourceLocation(new Position(1, 1), new Position(1, 3))
                                 }
@@ -561,7 +561,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("raw`42`", new Node
+            Test("raw`42`", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -586,7 +586,7 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = "TemplateElement",
-                                        value = new TemplateNode {raw = "42", cooked = "42"},
+                                        value = new TemplateNode("42", "42"),
                                         tail = true,
                                         loc = new SourceLocation(new Position(1, 4), new Position(1, 6))
                                     }
@@ -605,7 +605,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("raw`hello ${name}`", new Node
+            Test("raw`hello ${name}`", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -630,14 +630,14 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = "TemplateElement",
-                                        value = new TemplateNode {raw = "hello ", cooked = "hello "},
+                                        value = new TemplateNode("hello ", "hello "),
                                         tail = false,
                                         loc = new SourceLocation(new Position(1, 4), new Position(1, 10))
                                     },
                                     new Node
                                     {
                                         type = "TemplateElement",
-                                        value = new TemplateNode {raw = "", cooked = ""},
+                                        value = new TemplateNode("", ""),
                                         tail = true,
                                         loc = new SourceLocation(new Position(1, 17), new Position(1, 17))
                                     }
@@ -664,7 +664,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("`$`", new Node
+            Test("`$`", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -680,7 +680,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = "TemplateElement",
-                                    value = new TemplateNode {raw = "$", cooked = "$"},
+                                    value = new TemplateNode("$", "$"),
                                     tail = true,
                                     loc = new SourceLocation(new Position(1, 1), new Position(1, 2))
                                 }
@@ -697,7 +697,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("`\\n\\r\\b\\v\\t\\f\\\n\\\r\n`", new Node
+            Test("`\\n\\r\\b\\v\\t\\f\\\n\\\r\n`", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -713,7 +713,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = "TemplateElement",
-                                    value = new TemplateNode {raw = "\\n\\r\\b\\v\\t\\f\\\n\\\n", cooked = "\n\r\b\u000b\t\f"},
+                                    value = new TemplateNode("\\n\\r\\b\\v\\t\\f\\\n\\\n", "\n\r\b\u000b\t\f"),
                                     tail = true,
                                     loc = new SourceLocation(new Position(1, 1), new Position(3, 0))
                                 }
@@ -730,7 +730,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("`\n\r\n\r`", new Node
+            Test("`\n\r\n\r`", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -746,7 +746,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = "TemplateElement",
-                                    value = new TemplateNode {raw = "\n\n\n", cooked = "\n\n\n"},
+                                    value = new TemplateNode("\n\n\n", "\n\n\n"),
                                     tail = true,
                                     loc = new SourceLocation(new Position(1, 1), new Position(4, 0))
                                 }
@@ -763,7 +763,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("`\\u{000042}\\u0042\\x42u0\\A`", new Node
+            Test("`\\u{000042}\\u0042\\x42u0\\A`", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -779,7 +779,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = "TemplateElement",
-                                    value = new TemplateNode {raw = "\\u{000042}\\u0042\\x42u0\\A", cooked = "BBBu0A"},
+                                    value = new TemplateNode("\\u{000042}\\u0042\\x42u0\\A", "BBBu0A"),
                                     tail = true,
                                     loc = new SourceLocation(new Position(1, 1), new Position(1, 25))
                                 }
@@ -796,7 +796,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("new raw`42`", new Node
+            Test("new raw`42`", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -824,7 +824,7 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = "TemplateElement",
-                                            value = new TemplateNode {raw = "42", cooked = "42"},
+                                            value = new TemplateNode("42", "42"),
                                             tail = true,
                                             loc = new SourceLocation(new Position(1, 8), new Position(1, 10))
                                         }
@@ -846,7 +846,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("`outer${{x: {y: 10}}}bar${`nested${function(){return 1;}}endnest`}end`", new Node
+            Test("`outer${{x: {y: 10}}}bar${`nested${function(){return 1;}}endnest`}end`", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -941,21 +941,13 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = "TemplateElement",
-                                            value = new TemplateNode
-                                            {
-                                                cooked = "nested",
-                                                raw = "nested"
-                                            },
+                                            value = new TemplateNode("nested", "nested"),
                                             tail = false
                                         },
                                         new Node
                                         {
                                             type = "TemplateElement",
-                                            value = new TemplateNode
-                                            {
-                                                cooked = "endnest",
-                                                raw = "endnest"
-                                            },
+                                            value = new TemplateNode("endnest", "endnest"),
                                             tail = true
                                         }
                                     }
@@ -966,31 +958,19 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = "TemplateElement",
-                                    value = new TemplateNode
-                                    {
-                                        cooked = "outer",
-                                        raw = "outer"
-                                    },
+                                    value = new TemplateNode("outer", "outer"),
                                     tail = false
                                 },
                                 new Node
                                 {
                                     type = "TemplateElement",
-                                    value = new TemplateNode
-                                    {
-                                        cooked = "bar",
-                                        raw = "bar"
-                                    },
+                                    value = new TemplateNode("bar", "bar"),
                                     tail = false
                                 },
                                 new Node
                                 {
                                     type = "TemplateElement",
-                                    value = new TemplateNode
-                                    {
-                                        cooked = "end",
-                                        raw = "end"
-                                    },
+                                    value = new TemplateNode("end", "end"),
                                     tail = true
                                 }
                             }
@@ -1005,7 +985,7 @@ namespace AcornSharp.Cli
 
             // ES6: Switch Case Declaration
 
-            test("switch (answer) { case 42: let t = 42; break; }", new Node
+            Test("switch (answer) { case 42: let t = 42; break; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1081,7 +1061,7 @@ namespace AcornSharp.Cli
 
             // ES6: Arrow Function
 
-            test("() => \"test\"", new Node
+            Test("() => \"test\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1114,7 +1094,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("e => \"test\"", new Node
+            Test("e => \"test\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1155,7 +1135,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("(e) => \"test\"", new Node
+            Test("(e) => \"test\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1196,7 +1176,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("(a, b) => \"test\"", new Node
+            Test("(a, b) => \"test\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1243,7 +1223,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("e => { 42; }", new Node
+            Test("e => { 42; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1297,7 +1277,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("e => ({ property: 42 })", new Node
+            Test("e => ({ property: 42 })", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1361,7 +1341,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("e => { label: 42 }", new Node
+            Test("e => { label: 42 }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1426,7 +1406,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("(a, b) => { 42; }", new Node
+            Test("(a, b) => { 42; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1486,7 +1466,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("([a, , b]) => 42", new Node
+            Test("([a, , b]) => 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1548,7 +1528,7 @@ namespace AcornSharp.Cli
             testFail("a => {}()", "Unexpected token (1:7)", new Options {ecmaVersion = 6});
             testFail("console.log(typeof () => {});", "Unexpected token (1:20)", new Options {ecmaVersion = 6});
 
-            test("(() => {})()", new Node
+            Test("(() => {})()", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1588,7 +1568,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("((() => {}))()", new Node
+            Test("((() => {}))()", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1629,7 +1609,7 @@ namespace AcornSharp.Cli
             });
 
 
-            test("(x=1) => x * x", new Node
+            Test("(x=1) => x * x", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1693,7 +1673,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("eval => 42", new Node
+            Test("eval => 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1734,7 +1714,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("arguments => 42", new Node
+            Test("arguments => 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1775,7 +1755,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("(a) => 00", new Node
+            Test("(a) => 00", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1816,7 +1796,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("(eval, a) => 42", new Node
+            Test("(eval, a) => 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1863,7 +1843,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("(eval = 10) => 42", new Node
+            Test("(eval = 10) => 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1916,7 +1896,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("(eval, a = 10) => 42", new Node
+            Test("(eval, a = 10) => 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -1975,7 +1955,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("(x => x)", new Node
+            Test("(x => x)", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2015,7 +1995,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("x => y => 42", new Node
+            Test("x => y => 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2073,7 +2053,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("(x) => ((y, z) => (x, y, z))", new Node
+            Test("(x) => ((y, z) => (x, y, z))", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2156,7 +2136,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("foo(() => {})", new Node
+            Test("foo(() => {})", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2202,7 +2182,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("foo((x, y) => {})", new Node
+            Test("foo((x, y) => {})", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2264,7 +2244,7 @@ namespace AcornSharp.Cli
 
             // ES6: Method Definition
 
-            test("x = { method() { } }", new Node
+            Test("x = { method() { } }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2331,7 +2311,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("x = { method(test) { } }", new Node
+            Test("x = { method(test) { } }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2406,7 +2386,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("x = { 'method'() { } }", new Node
+            Test("x = { 'method'() { } }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2474,7 +2454,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("x = { get() { } }", new Node
+            Test("x = { get() { } }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2541,7 +2521,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("x = { set() { } }", new Node
+            Test("x = { set() { } }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2610,7 +2590,7 @@ namespace AcornSharp.Cli
 
             // Harmony: Object Literal Property Value Shorthand
 
-            test("x = { y, z }", new Node
+            Test("x = { y, z }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2691,7 +2671,7 @@ namespace AcornSharp.Cli
 
             // Harmony: Destructuring
 
-            test("[a, b] = [b, a]", new Node
+            Test("[a, b] = [b, a]", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2754,7 +2734,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("({ responseText: text } = res)", new Node
+            Test("({ responseText: text } = res)", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2812,7 +2792,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("const {a} = {}", new Node
+            Test("const {a} = {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2873,7 +2853,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("const [a] = []", new Node
+            Test("const [a] = []", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2919,7 +2899,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("let {a} = {}", new Node
+            Test("let {a} = {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -2980,7 +2960,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("let [a] = []", new Node
+            Test("let [a] = []", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3026,7 +3006,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("var {a} = {}", new Node
+            Test("var {a} = {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3087,7 +3067,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("var [a] = []", new Node
+            Test("var [a] = []", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3133,7 +3113,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("const {a:b} = {}", new Node
+            Test("const {a:b} = {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3194,7 +3174,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("let {a:b} = {}", new Node
+            Test("let {a:b} = {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3255,7 +3235,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("var {a:b} = {}", new Node
+            Test("var {a:b} = {}", new Node
             {
                 type = "Program",
                 sourceType = "script",
@@ -3319,7 +3299,7 @@ namespace AcornSharp.Cli
 
             // Harmony: Modules
 
-            test("export var document", new Node
+            Test("export var document", new Node
             {
                 type = "Program",
                 sourceType = "module",
@@ -3361,7 +3341,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            test("export var document = { }", new Node
+            Test("export var document = { }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3409,7 +3389,7 @@ namespace AcornSharp.Cli
 
             testFail("export var await", "The keyword 'await' is reserved (1:11)", new Options {ecmaVersion = 6, sourceType = "module"});
 
-            test("export let document", new Node
+            Test("export let document", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3450,7 +3430,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            test("export let document = { }", new Node
+            Test("export let document = { }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3496,7 +3476,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            test("export const document = { }", new Node
+            Test("export const document = { }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3542,7 +3522,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            test("export function parse() { }", new Node
+            Test("export function parse() { }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3582,7 +3562,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            test("export class Class {}", new Node
+            Test("export class Class {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3623,7 +3603,7 @@ namespace AcornSharp.Cli
             testFail("export new Foo();", "Unexpected token (1:7)", new Options {ecmaVersion = 6, sourceType = "module"});
             testFail("export typeof foo;", "Unexpected token (1:7)", new Options {ecmaVersion = 6, sourceType = "module"});
 
-            test("export default 42", new Node
+            Test("export default 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3648,7 +3628,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            test("export default function () {}", new Node
+            Test("export default function () {}", new Node
             {
                 type = "Program",
                 range = (0, 29),
@@ -3677,7 +3657,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6, sourceType = "module"});
 
-            test("export default function f() {}", new Node
+            Test("export default function f() {}", new Node
             {
                 type = "Program",
                 range = (0, 30),
@@ -3711,7 +3691,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6, sourceType = "module"});
 
-            test("export default class {}", new Node
+            Test("export default class {}", new Node
             {
                 type = "Program",
                 range = (0, 23),
@@ -3738,7 +3718,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6, sourceType = "module"});
 
-            test("export default class A {}", new Node
+            Test("export default class A {}", new Node
             {
                 type = "Program",
                 range = (0, 25),
@@ -3770,7 +3750,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6, sourceType = "module"});
 
-            test("export default (class{});", new Node
+            Test("export default (class{});", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3795,7 +3775,7 @@ namespace AcornSharp.Cli
 
             testFail("export *", "Unexpected token (1:8)", new Options {ecmaVersion = 6, sourceType = "module"});
 
-            test("export * from \"crypto\"", new Node
+            Test("export * from \"crypto\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3820,7 +3800,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            test("export { encrypt }", new Node
+            Test("export { encrypt }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3860,7 +3840,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            test("export { encrypt, decrypt }", new Node
+            Test("export { encrypt, decrypt }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3917,7 +3897,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            test("export { encrypt as default }", new Node
+            Test("export { encrypt as default }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -3957,7 +3937,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            test("export { encrypt, decrypt as dec }", new Node
+            Test("export { encrypt, decrypt as dec }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4014,7 +3994,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            test("export { default } from \"other\"", new Node
+            Test("export { default } from \"other\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4065,7 +4045,7 @@ namespace AcornSharp.Cli
             testFail("export { default as foo }", "Unexpected keyword 'default' (1:9)", new Options {ecmaVersion = 6, sourceType = "module"});
             testFail("export { if as foo }", "Unexpected keyword 'if' (1:9)", new Options {ecmaVersion = 6, sourceType = "module"});
 
-            test("import \"jquery\"", new Node
+            Test("import \"jquery\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4091,7 +4071,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            test("import $ from \"jquery\"", new Node
+            Test("import $ from \"jquery\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4130,7 +4110,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            test("import { encrypt, decrypt } from \"crypto\"", new Node
+            Test("import { encrypt, decrypt } from \"crypto\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4192,7 +4172,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            test("import { encrypt as enc } from \"crypto\"", new Node
+            Test("import { encrypt as enc } from \"crypto\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4237,7 +4217,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            test("import crypto, { decrypt, encrypt as enc } from \"crypto\"", new Node
+            Test("import crypto, { decrypt, encrypt as enc } from \"crypto\"", new Node
             {
                 type = "Program",
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 56)),
@@ -4312,7 +4292,7 @@ namespace AcornSharp.Cli
 
             testFail("import default from \"foo\"", "Unexpected token (1:7)", new Options {ecmaVersion = 6, sourceType = "module"});
 
-            test("import { null as nil } from \"bar\"", new Node
+            Test("import { null as nil } from \"bar\"", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4357,7 +4337,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            test("import * as crypto from \"crypto\"", new Node
+            Test("import * as crypto from \"crypto\"", new Node
             {
                 type = "Program",
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 32)),
@@ -4406,7 +4386,7 @@ namespace AcornSharp.Cli
 
             // Harmony: Yield Expression
 
-            test("(function* () { yield v })", new Node
+            Test("(function* () { yield v })", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4458,7 +4438,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            test("(function* () { yield\nv })", new Node
+            Test("(function* () { yield\nv })", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4516,7 +4496,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            test("(function* () { yield *v })", new Node
+            Test("(function* () { yield *v })", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4567,7 +4547,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("function* test () { yield *v }", new Node
+            Test("function* test () { yield *v }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4618,7 +4598,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("var x = { *test () { yield *v } };", new Node
+            Test("var x = { *test () { yield *v } };", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4707,7 +4687,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("function* foo() { console.log(yield); }", new Node
+            Test("function* foo() { console.log(yield); }", new Node
             {
                 body = new List<Node>
                 {
@@ -4767,7 +4747,7 @@ namespace AcornSharp.Cli
                 type = "Program"
             }, new Options {ecmaVersion = 6});
 
-            test("function* t() {}", new Node
+            Test("function* t() {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4799,7 +4779,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("(function* () { yield yield 10 })", new Node
+            Test("(function* () { yield yield 10 })", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4862,7 +4842,7 @@ namespace AcornSharp.Cli
 
             // Harmony: Iterators
 
-            test("for(x of list) process(x);", new Node
+            Test("for(x of list) process(x);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4916,7 +4896,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("for (var x of list) process(x);", new Node
+            Test("for (var x of list) process(x);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -4985,7 +4965,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("for (var x = 42 of list) process(x);", new Node
+            Test("for (var x = 42 of list) process(x);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5060,7 +5040,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("for (let x of list) process(x);", new Node
+            Test("for (let x of list) process(x);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5131,7 +5111,7 @@ namespace AcornSharp.Cli
 
             // Harmony: Class (strawman)
 
-            test("var A = class extends B {}", new Node
+            Test("var A = class extends B {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5180,7 +5160,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A extends class B extends C {} {}", new Node
+            Test("class A extends class B extends C {} {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5232,7 +5212,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A {get() {}}", new Node
+            Test("class A {get() {}}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5293,7 +5273,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A { static get() {}}", new Node
+            Test("class A { static get() {}}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5354,7 +5334,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A extends B {get foo() {}}", new Node
+            Test("class A extends B {get foo() {}}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5420,7 +5400,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A extends B { static get foo() {}}", new Node
+            Test("class A extends B { static get foo() {}}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5486,7 +5466,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A {set a(v) {}}", new Node
+            Test("class A {set a(v) {}}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5555,7 +5535,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A { static set a(v) {}}", new Node
+            Test("class A { static set a(v) {}}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5624,7 +5604,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A {set(v) {};}", new Node
+            Test("class A {set(v) {};}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5693,7 +5673,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A { static set(v) {};}", new Node
+            Test("class A { static set(v) {};}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5762,7 +5742,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A {*gen(v) { yield v; }}", new Node
+            Test("class A {*gen(v) { yield v; }}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5850,7 +5830,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A { static *gen(v) { yield v; }}", new Node
+            Test("class A { static *gen(v) { yield v; }}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -5938,7 +5918,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("\"use strict\"; (class A {constructor() { super() }})", new Node
+            Test("\"use strict\"; (class A {constructor() { super() }})", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6034,7 +6014,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A {'constructor'() {}}", new Node
+            Test("class A {'constructor'() {}}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6082,7 +6062,7 @@ namespace AcornSharp.Cli
 
             testFail("class A { *constructor() {} }", "Constructor can't be a generator (1:11)", new Options {ecmaVersion = 6});
 
-            test("class A {static foo() {}}", new Node
+            Test("class A {static foo() {}}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6143,7 +6123,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A {foo() {} static bar() {}}", new Node
+            Test("class A {foo() {} static bar() {}}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6233,7 +6213,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("\"use strict\"; (class A { static constructor() { super() }})", new Node
+            Test("\"use strict\"; (class A { static constructor() { super() }})", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6329,7 +6309,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A { foo() {} bar() {}}", new Node
+            Test("class A { foo() {} bar() {}}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6419,7 +6399,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A { get foo() {} set foo(v) {}}", new Node
+            Test("class A { get foo() {} set foo(v) {}}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6517,7 +6497,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A { static get foo() {} get foo() {}}", new Node
+            Test("class A { static get foo() {} get foo() {}}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6607,7 +6587,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A { static get foo() {} static get bar() {} }", new Node
+            Test("class A { static get foo() {} static get bar() {} }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6697,7 +6677,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A { static get foo() {} static set foo(v) {} get foo() {} set foo(v) {}}", new Node
+            Test("class A { static get foo() {} static set foo(v) {} get foo() {} set foo(v) {}}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -6862,7 +6842,7 @@ namespace AcornSharp.Cli
             });
 
 
-            test("class A { static [foo]() {} }", new Node
+            Test("class A { static [foo]() {} }", new Node
             {
                 type = "Program",
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 29)),
@@ -6923,7 +6903,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A { static get [foo]() {} }", new Node
+            Test("class A { static get [foo]() {} }", new Node
             {
                 type = "Program",
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 33)),
@@ -6985,7 +6965,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A { set foo(v) {} get foo() {} }", new Node
+            Test("class A { set foo(v) {} get foo() {} }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7083,7 +7063,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A { foo() {} get foo() {} }", new Node
+            Test("class A { foo() {} get foo() {} }", new Node
             {
                 type = "Program",
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 33)),
@@ -7173,7 +7153,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class Semicolon { ; }", new Node
+            Test("class Semicolon { ; }", new Node
             {
                 type = "Program",
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 21)),
@@ -7205,7 +7185,7 @@ namespace AcornSharp.Cli
 
             // ES6: Computed Properties
 
-            test("({[x]: 10})", new Node
+            Test("({[x]: 10})", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7252,7 +7232,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("({[\"x\" + \"y\"]: 10})", new Node
+            Test("({[\"x\" + \"y\"]: 10})", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7313,7 +7293,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("({[x]: function() {}})", new Node
+            Test("({[x]: function() {}})", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7368,7 +7348,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("({[x]: 10, y: 20})", new Node
+            Test("({[x]: 10, y: 20})", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7437,7 +7417,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("({get [x]() {}, set [x](v) {}})", new Node
+            Test("({get [x]() {}, set [x](v) {}})", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7530,7 +7510,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("({[x]() {}})", new Node
+            Test("({[x]() {}})", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7585,7 +7565,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("var {[x]: y} = {y}", new Node
+            Test("var {[x]: y} = {y}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7669,7 +7649,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("function f({[x]: y}) {}", new Node
+            Test("function f({[x]: y}) {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7732,7 +7712,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("var x = {*[test]() { yield *v; }}", new Node
+            Test("var x = {*[test]() { yield *v; }}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7821,7 +7801,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("class A {[x]() {}}", new Node
+            Test("class A {[x]() {}}", new Node
             {
                 type = "Program",
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 18)),
@@ -7886,7 +7866,7 @@ namespace AcornSharp.Cli
 
             // ES6: Default parameters
 
-            test("function f([x] = [1]) {}", new Node
+            Test("function f([x] = [1]) {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -7954,7 +7934,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("function f([x] = [1]) { 'use strict' }", new Node
+            Test("function f([x] = [1]) { 'use strict' }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8036,7 +8016,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("function f({x} = {x: 10}) {}", new Node
+            Test("function f({x} = {x: 10}) {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8134,7 +8114,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("f = function({x} = {x: 10}) {}", new Node
+            Test("f = function({x} = {x: 10}) {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8244,7 +8224,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("({f: function({x} = {x: 10}) {}})", new Node
+            Test("({f: function({x} = {x: 10}) {}})", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8365,7 +8345,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("({f({x} = {x: 10}) {}})", new Node
+            Test("({f({x} = {x: 10}) {}})", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8486,7 +8466,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("(class {f({x} = {x: 10}) {}})", new Node
+            Test("(class {f({x} = {x: 10}) {}})", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8612,7 +8592,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("(({x} = {x: 10}) => {})", new Node
+            Test("(({x} = {x: 10}) => {})", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8710,7 +8690,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("x = function(y = 1) {}", new Node
+            Test("x = function(y = 1) {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8774,7 +8754,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("function f(a = 1) {}", new Node
+            Test("function f(a = 1) {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8826,7 +8806,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("x = { f: function(a=1) {} }", new Node
+            Test("x = { f: function(a=1) {} }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -8913,7 +8893,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("x = { f(a=1) {} }", new Node
+            Test("x = { f(a=1) {} }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9002,7 +8982,7 @@ namespace AcornSharp.Cli
 
             // ES6: Rest parameters
 
-            test("function f(a, ...b) {}", new Node
+            Test("function f(a, ...b) {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9054,7 +9034,7 @@ namespace AcornSharp.Cli
 
             // ES6: Destructured Parameters
 
-            test("function x([ a, b ]){}", new Node
+            Test("function x([ a, b ]){}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9108,7 +9088,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("function x({ a, b }){}", new Node
+            Test("function x({ a, b }){}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9196,7 +9176,7 @@ namespace AcornSharp.Cli
 
             testFail("function x({ a: { w, x }, b: [y, z] }, ...[a, b, c]){}", "Unexpected token (1:42)", new Options {ecmaVersion = 6});
 
-            test("(function x([ a, b ]){})", new Node
+            Test("(function x([ a, b ]){})", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9255,7 +9235,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("(function x({ a, b }){})", new Node
+            Test("(function x({ a, b }){})", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9350,7 +9330,7 @@ namespace AcornSharp.Cli
 
             testFail("(function x({ a: { w, x }, b: [y, z] }, ...[a, b, c]){})", "Unexpected token (1:43)", new Options {ecmaVersion = 6});
 
-            test("({ x([ a, b ]){} })", new Node
+            Test("({ x([ a, b ]){} })", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9427,7 +9407,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("({ x(...[ a, b ]){} })", new Node
+            Test("({ x(...[ a, b ]){} })", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9508,7 +9488,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 7
             });
 
-            test("({ x({ a: { w, x }, b: [y, z] }, ...[a, b, c]){} })", new Node
+            Test("({ x({ a: { w, x }, b: [y, z] }, ...[a, b, c]){} })", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9703,7 +9683,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 7
             });
 
-            test("(...a) => {}", new Node
+            Test("(...a) => {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9747,7 +9727,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("(a, ...b) => {}", new Node
+            Test("(a, ...b) => {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9797,7 +9777,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("({ a }) => {}", new Node
+            Test("({ a }) => {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9860,7 +9840,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("({ a }, ...b) => {}", new Node
+            Test("({ a }, ...b) => {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -9937,7 +9917,7 @@ namespace AcornSharp.Cli
 
             testFail("(a, ...[b]) => {}", "Unexpected token (1:7)", new Options {ecmaVersion = 6});
 
-            test("({ a: [a, b] }, ...c) => {}", new Node
+            Test("({ a: [a, b] }, ...c) => {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10024,7 +10004,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("({ a: b, c }, [d, e], ...f) => {}", new Node
+            Test("({ a: b, c }, [d, e], ...f) => {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10140,7 +10120,7 @@ namespace AcornSharp.Cli
 
             // ES6: SpreadElement
 
-            test("[...a] = b", new Node
+            Test("[...a] = b", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10188,7 +10168,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("[a, ...b] = c", new Node
+            Test("[a, ...b] = c", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10242,7 +10222,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("[{ a, b }, ...c] = d", new Node
+            Test("[{ a, b }, ...c] = d", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10340,7 +10320,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("[a, ...[b, c]] = d", new Node
+            Test("[a, ...[b, c]] = d", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10408,7 +10388,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("var [...a] = b", new Node
+            Test("var [...a] = b", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10459,7 +10439,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("var [a, ...b] = c", new Node
+            Test("var [a, ...b] = c", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10516,7 +10496,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("var [{ a, b }, ...c] = d", new Node
+            Test("var [{ a, b }, ...c] = d", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10617,7 +10597,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("var [a, ...[b, c]] = d", new Node
+            Test("var [a, ...[b, c]] = d", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10688,7 +10668,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 7
             });
 
-            test("func(...a)", new Node
+            Test("func(...a)", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10730,7 +10710,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("func(a, ...b)", new Node
+            Test("func(a, ...b)", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10778,7 +10758,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("func(...a, b)", new Node
+            Test("func(...a, b)", new Node
             {
                 type = "Program",
                 loc = new SourceLocation(new Position(1, 0), new Position(1, 13)),
@@ -10826,7 +10806,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("/[a-z]/u", new Node
+            Test("/[a-z]/u", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10851,7 +10831,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("/[\\uD834\\uDF06-\\uD834\\uDF08a-z]/u", new Node
+            Test("/[\\uD834\\uDF06-\\uD834\\uDF08a-z]/u", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -10876,7 +10856,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("do {} while (false) foo();", new Node
+            Test("do {} while (false) foo();", new Node
             {
                 type = "Program",
                 start = 0,
@@ -11061,7 +11041,7 @@ namespace AcornSharp.Cli
             testFail("({this} = x)", "Unexpected keyword 'this' (1:2)", new Options {ecmaVersion = 6});
             testFail("var x = {this}", "Unexpected keyword 'this' (1:9)", new Options {ecmaVersion = 6});
 
-            test("yield* 10", new Node
+            Test("yield* 10", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11098,7 +11078,7 @@ namespace AcornSharp.Cli
                 loose = false
             });
 
-            test("e => yield* 10", new Node
+            Test("e => yield* 10", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11154,7 +11134,7 @@ namespace AcornSharp.Cli
 
             testFail("(function () { yield 10 })", "Unexpected token (1:21)", new Options {ecmaVersion = 6});
 
-            test("(function () { yield* 10 })", new Node
+            Test("(function () { yield* 10 })", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11213,7 +11193,7 @@ namespace AcornSharp.Cli
                 loose = false
             });
 
-            test("let + 1", new Node
+            Test("let + 1", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11241,7 +11221,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("var let = 1", new Node
+            Test("var let = 1", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11274,7 +11254,7 @@ namespace AcornSharp.Cli
 
             testFail("'use strict'; let + 1", "The keyword 'let' is reserved (1:14)", new Options {ecmaVersion = 6});
 
-            test("var yield = 2", new Node
+            Test("var yield = 2", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11347,7 +11327,7 @@ namespace AcornSharp.Cli
 
             testFail("(...[ 5 ]) => {}", "Unexpected token (1:6)", new Options {ecmaVersion = 7});
 
-            test("[...{ a }] = b", new Node { }, new Options {ecmaVersion = 6});
+            Test("[...{ a }] = b", new Node { }, new Options {ecmaVersion = 6});
 
             testFail("[...a, b] = c", "Comma is not permitted after the rest element (1:5)", new Options {ecmaVersion = 6});
 
@@ -11374,7 +11354,7 @@ namespace AcornSharp.Cli
             /* Regression tests */
 
             // # https://github.com/ternjs/acorn/issues/127
-            test("doSmth(`${x} + ${y} = ${x + y}`)", new Node
+            Test("doSmth(`${x} + ${y} = ${x + y}`)", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11428,25 +11408,25 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = "TemplateElement",
-                                            value = new TemplateNode {cooked = "", raw = ""},
+                                            value = new TemplateNode("", ""),
                                             tail = false
                                         },
                                         new Node
                                         {
                                             type = "TemplateElement",
-                                            value = new TemplateNode {cooked = " + ", raw = " + "},
+                                            value = new TemplateNode(" + ", " + "),
                                             tail = false
                                         },
                                         new Node
                                         {
                                             type = "TemplateElement",
-                                            value = new TemplateNode {cooked = " = ", raw = " = "},
+                                            value = new TemplateNode(" = ", " = "),
                                             tail = false
                                         },
                                         new Node
                                         {
                                             type = "TemplateElement",
-                                            value = new TemplateNode {cooked = "", raw = ""},
+                                            value = new TemplateNode("", ""),
                                             tail = true
                                         }
                                     }
@@ -11458,7 +11438,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 6});
 
             // # https://github.com/ternjs/acorn/issues/129
-            test("function normal(x, y = 10) {}", new Node
+            Test("function normal(x, y = 10) {}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11506,7 +11486,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 6});
 
             // test preserveParens option with arrow functions
-            test("() => 42", new Node
+            Test("() => 42", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11523,7 +11503,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 6, preserveParens = true});
 
             // https://github.com/ternjs/acorn/issues/161
-            test("import foo, * as bar from 'baz';", new Node
+            Test("import foo, * as bar from 'baz';", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11563,7 +11543,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 6, sourceType = "module"});
 
             // https://github.com/ternjs/acorn/issues/173
-            test("`{${x}}`, `}`", new Node
+            Test("`{${x}}`, `}`", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11592,13 +11572,13 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = "TemplateElement",
-                                            value = new TemplateNode {cooked = "{", raw = "{"},
+                                            value = new TemplateNode("{", "{"),
                                             tail = false
                                         },
                                         new Node
                                         {
                                             type = "TemplateElement",
-                                            value = new TemplateNode {cooked = "}", raw = "}"},
+                                            value = new TemplateNode("}", "}"),
                                             tail = true
                                         }
                                     }
@@ -11612,7 +11592,7 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = "TemplateElement",
-                                            value = new TemplateNode {cooked = "}", raw = "}"},
+                                            value = new TemplateNode("}", "}"),
                                             tail = true
                                         }
                                     }
@@ -11624,7 +11604,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 6});
 
             // https://github.com/ternjs/acorn/issues/186
-            test("var {get} = obj;", new Node
+            Test("var {get} = obj;", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -11676,7 +11656,7 @@ namespace AcornSharp.Cli
 
             // Destructuring defaults (https://github.com/ternjs/acorn/issues/181)
 
-            test("var {propName: localVar = defaultValue} = obj", new Node
+            Test("var {propName: localVar = defaultValue} = obj", new Node
             {
                 type = "Program",
                 range = (0, 45),
@@ -11748,7 +11728,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("var {propName = defaultValue} = obj", new Node
+            Test("var {propName = defaultValue} = obj", new Node
             {
                 type = "Program",
                 range = (0, 35),
@@ -11820,7 +11800,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("var {get = defaultValue} = obj", new Node
+            Test("var {get = defaultValue} = obj", new Node
             {
                 type = "Program",
                 range = (0, 30),
@@ -11892,7 +11872,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("var [localVar = defaultValue] = obj", new Node
+            Test("var [localVar = defaultValue] = obj", new Node
             {
                 type = "Program",
                 range = (0, 35),
@@ -11949,7 +11929,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("({x = 0} = obj)", new Node
+            Test("({x = 0} = obj)", new Node
             {
                 type = "Program",
                 range = (0, 15),
@@ -12018,7 +11998,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("({x = 0}) => x", new Node
+            Test("({x = 0}) => x", new Node
             {
                 type = "Program",
                 range = (0, 14),
@@ -12092,7 +12072,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("[a, {b: {c = 1}}] = arr", new Node
+            Test("[a, {b: {c = 1}}] = arr", new Node
             {
                 type = "Program",
                 range = (0, 23),
@@ -12198,7 +12178,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("for ({x = 0} in arr);", new Node
+            Test("for ({x = 0} in arr);", new Node
             {
                 type = "Program",
                 range = (0, 21),
@@ -12272,7 +12252,7 @@ namespace AcornSharp.Cli
 
             // https://github.com/ternjs/acorn/issues/191
 
-            test("try {} catch ({message}) {}", new Node
+            Test("try {} catch ({message}) {}", new Node
             {
                 type = "Program",
                 range = (0, 27),
@@ -12338,7 +12318,7 @@ namespace AcornSharp.Cli
 
             // https://github.com/ternjs/acorn/issues/192
 
-            test("class A { static() {} }", new Node
+            Test("class A { static() {} }", new Node
             {
                 type = "Program",
                 range = (0, 23),
@@ -12401,7 +12381,7 @@ namespace AcornSharp.Cli
 
             // https://github.com/ternjs/acorn/issues/213
 
-            test("for (const x of list) process(x);", new Node
+            Test("for (const x of list) process(x);", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -12467,7 +12447,7 @@ namespace AcornSharp.Cli
                 range = (0, 33)
             }, new Options {ecmaVersion = 6});
 
-            test("class A { *static() {} }", new Node
+            Test("class A { *static() {} }", new Node
             {
                 type = "Program",
                 range = (0, 24),
@@ -12528,7 +12508,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("`${/\\d/.exec('1')[0]}`", new Node
+            Test("`${/\\d/.exec('1')[0]}`", new Node
             {
                 type = "Program",
                 start = 0,
@@ -12613,11 +12593,7 @@ namespace AcornSharp.Cli
                                     type = "TemplateElement",
                                     start = 1,
                                     end = 1,
-                                    value = new TemplateNode
-                                    {
-                                        raw = "",
-                                        cooked = ""
-                                    },
+                                    value = new TemplateNode("", ""),
                                     tail = false
                                 },
                                 new Node
@@ -12625,11 +12601,7 @@ namespace AcornSharp.Cli
                                     type = "TemplateElement",
                                     start = 21,
                                     end = 21,
-                                    value = new TemplateNode
-                                    {
-                                        raw = "",
-                                        cooked = ""
-                                    },
+                                    value = new TemplateNode("", ""),
                                     tail = true
                                 }
                             }
@@ -12641,7 +12613,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            test("var _𐒦 = 10;", new Node
+            Test("var _𐒦 = 10;", new Node
             {
                 type = "Program",
                 start = 0,
@@ -12682,7 +12654,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("var 𫠝_ = 10;", new Node
+            Test("var 𫠝_ = 10;", new Node
             {
                 type = "Program",
                 start = 0,
@@ -12723,7 +12695,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("var _\\u{104A6} = 10;", new Node
+            Test("var _\\u{104A6} = 10;", new Node
             {
                 type = "Program",
                 start = 0,
@@ -12764,7 +12736,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("let [x,] = [1]", new Node
+            Test("let [x,] = [1]", new Node
             {
                 start = 0,
                 body = new List<Node>
@@ -12823,7 +12795,7 @@ namespace AcornSharp.Cli
                 end = 14
             }, new Options {ecmaVersion = 6});
 
-            test("let {x} = y", new Node
+            Test("let {x} = y", new Node
             {
                 start = 0,
                 body = new List<Node>
@@ -12889,9 +12861,9 @@ namespace AcornSharp.Cli
                 end = 11
             }, new Options {ecmaVersion = 6});
 
-            test("[x,,] = 1", new Node { }, new Options {ecmaVersion = 6});
+            Test("[x,,] = 1", new Node { }, new Options {ecmaVersion = 6});
 
-            test("for (var [name, value] in obj) {}", new Node
+            Test("for (var [name, value] in obj) {}", new Node
             {
                 body = new List<Node>
                 {
@@ -12961,7 +12933,7 @@ namespace AcornSharp.Cli
 
             testFail("function* y({yield}) {}", "Can not use 'yield' as identifier inside a generator (1:13)", new Options {ecmaVersion = 6});
 
-            test("function foo() { new.target; }", new Node
+            Test("function foo() { new.target; }", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -13001,7 +12973,7 @@ namespace AcornSharp.Cli
             testFail("new.prop", "The only valid meta property for new is new.target (1:4)", new Options {ecmaVersion = 6});
             testFail("new.target", "new.target can only be used in functions (1:0)", new Options {ecmaVersion = 6});
 
-            test("export default function foo() {} false", new Node
+            Test("export default function foo() {} false", new Node
             {
                 body = new List<Node>
                 {
@@ -13071,14 +13043,14 @@ namespace AcornSharp.Cli
 
             testFail("({ __proto__: 1, __proto__: 2 })", "Redefinition of __proto__ property (1:17)", new Options {ecmaVersion = 6});
             testFail("({ '__proto__': 1, __proto__: 2 })", "Redefinition of __proto__ property (1:19)", new Options {ecmaVersion = 6});
-            test("({ ['__proto__']: 1, __proto__: 2 })", new Node { }, new Options {ecmaVersion = 6});
-            test("({ __proto__() { return 1 }, __proto__: 2 })", new Node { }, new Options {ecmaVersion = 6});
-            test("({ get __proto__() { return 1 }, __proto__: 2 })", new Node { }, new Options {ecmaVersion = 6});
-            test("({ __proto__, __proto__: 2 })", new Node { }, new Options {ecmaVersion = 6});
+            Test("({ ['__proto__']: 1, __proto__: 2 })", new Node { }, new Options {ecmaVersion = 6});
+            Test("({ __proto__() { return 1 }, __proto__: 2 })", new Node { }, new Options {ecmaVersion = 6});
+            Test("({ get __proto__() { return 1 }, __proto__: 2 })", new Node { }, new Options {ecmaVersion = 6});
+            Test("({ __proto__, __proto__: 2 })", new Node { }, new Options {ecmaVersion = 6});
 
-            test("export default /foo/", new Node { }, new Options {ecmaVersion = 6, sourceType = "module"});
+            Test("export default /foo/", new Node { }, new Options {ecmaVersion = 6, sourceType = "module"});
 
-            test("var await = 0", new Node
+            Test("var await = 0", new Node
             {
                 type = "Program",
                 start = 0,
@@ -13139,7 +13111,7 @@ namespace AcornSharp.Cli
 
             // https://github.com/ternjs/acorn/issues/363
 
-            test("/[a-z]/gimuy", new Node
+            Test("/[a-z]/gimuy", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -13167,7 +13139,7 @@ namespace AcornSharp.Cli
             testFail("export let [{x = 2}] = a; export {x}", "Duplicate export 'x' (1:34)", new Options {ecmaVersion = 6, sourceType = "module"});
             testFail("export default 100; export default 3", "Duplicate export 'default' (1:27)", new Options {ecmaVersion = 6, sourceType = "module"});
 
-            test("(([,]) => 0)", new Node
+            Test("(([,]) => 0)", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -13199,7 +13171,7 @@ namespace AcornSharp.Cli
 
             // 'eval' and 'arguments' are not reserved word, but those can not be a BindingIdentifier.
 
-            test("function foo() { return {arguments} }", new Node
+            Test("function foo() { return {arguments} }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -13274,7 +13246,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 6});
 
-            test("function foo() { return {eval} }", new Node
+            Test("function foo() { return {eval} }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -13349,7 +13321,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 6});
 
-            test("function foo() { 'use strict'; return {arguments} }", new Node
+            Test("function foo() { 'use strict'; return {arguments} }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -13438,7 +13410,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 6});
 
-            test("function foo() { 'use strict'; return {eval} }", new Node
+            Test("function foo() { 'use strict'; return {eval} }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -13527,7 +13499,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 6});
 
-            test("function foo() { return {yield} }", new Node
+            Test("function foo() { return {yield} }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -13614,7 +13586,7 @@ namespace AcornSharp.Cli
             testFail("function* wrap() { return (a = 1 + (yield)) => a }", "Yield expression cannot be a default value (1:36)", new Options {ecmaVersion = 6});
 
             // can use yield expressions in parameters if it's inside of a nested generator.
-            test("function* foo(a = function*(b) { yield b }) { }", new Node
+            Test("function* foo(a = function*(b) { yield b }) { }", new Node
             {
                 type = "Program",
                 start = 0,
@@ -13713,7 +13685,7 @@ namespace AcornSharp.Cli
 
             // 'yield' as function names.
 
-            test("function* yield() {}", new Node
+            Test("function* yield() {}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -13747,7 +13719,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 6});
 
-            test("({*yield() {}})", new Node
+            Test("({*yield() {}})", new Node
             {
                 type = "Program",
                 start = 0,
@@ -13807,7 +13779,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 6});
 
-            test("class A {*yield() {}}", new Node
+            Test("class A {*yield() {}}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -13876,8 +13848,8 @@ namespace AcornSharp.Cli
 
             testFail("(function* yield() {})", "Can not use 'yield' as identifier inside a generator (1:11)", new Options {ecmaVersion = 6});
             testFail("function* wrap() {\nfunction* yield() {}\n}", "Can not use 'yield' as identifier inside a generator (2:10)", new Options {ecmaVersion = 6});
-            test("function* wrap() {\n({*yield() {}})\n}", new Node { }, new Options {ecmaVersion = 6});
-            test("function* wrap() {\nclass A {*yield() {}}\n}", new Node { }, new Options {ecmaVersion = 6});
+            Test("function* wrap() {\n({*yield() {}})\n}", new Node { }, new Options {ecmaVersion = 6});
+            Test("function* wrap() {\nclass A {*yield() {}}\n}", new Node { }, new Options {ecmaVersion = 6});
 
             // Forbid yield expressions in default parameters:
             testFail("function* foo(a = yield b) {}", "Yield expression cannot be a default value (1:18)", new Options {ecmaVersion = 6});
@@ -13887,7 +13859,7 @@ namespace AcornSharp.Cli
             testFail("function* foo(a = class extends (yield b) {}) {}", "Yield expression cannot be a default value (1:33)", new Options {ecmaVersion = 6});
 
             // Allow yield expressions inside functions in default parameters:
-            test("function* foo(a = function* foo() { yield b }) {}", new Node
+            Test("function* foo(a = function* foo() { yield b }) {}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -13981,7 +13953,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 6});
 
-            test("function* foo(a = {*bar() { yield b }}) {}", new Node
+            Test("function* foo(a = {*bar() { yield b }}) {}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -14095,7 +14067,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 6});
 
-            test("function* foo(a = class {*bar() { yield b }}) {}", new Node
+            Test("function* foo(a = class {*bar() { yield b }}) {}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -14217,7 +14189,7 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 6});
 
             // Distinguish ParenthesizedExpression or ArrowFunctionExpression
-            test("function* wrap() {\n(a = yield b)\n}", new Node
+            Test("function* wrap() {\n(a = yield b)\n}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -14289,7 +14261,7 @@ namespace AcornSharp.Cli
 
             testFail("function* wrap() {\n(a = yield b) => a\n}", "Yield expression cannot be a default value (2:5)", new Options {ecmaVersion = 6});
 
-            test("function* wrap() {\n({a = yield b} = obj)\n}", new Node
+            Test("function* wrap() {\n({a = yield b} = obj)\n}", new Node
             {
                 type = "Program",
                 start = 0,
@@ -14398,7 +14370,7 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 6});
 
-            test("export default class Foo {}++x", new Node
+            Test("export default class Foo {}++x", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -14441,7 +14413,7 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             }, new Options {ecmaVersion = 6, sourceType = "module"});
 
-            test("function *f() { yield\n{}/1/g\n}", new Node
+            Test("function *f() { yield\n{}/1/g\n}", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -14493,17 +14465,17 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            test("class B extends A { foo(a = super.foo()) { return a }}", new Node { }, new Options {ecmaVersion = 6});
+            Test("class B extends A { foo(a = super.foo()) { return a }}", new Node { }, new Options {ecmaVersion = 6});
 
             testFail("function* wrap() {\n({a = yield b} = obj) => a\n}", "Yield expression cannot be a default value (2:6)", new Options {ecmaVersion = 6});
 
             // invalid syntax '*foo: 1'
             testFail("({*foo: 1})", "Unexpected token (1:6)", new Options {ecmaVersion = 6});
 
-            test("export { x as y } from './y.js';\nexport { x as z } from './z.js';",
+            Test("export { x as y } from './y.js';\nexport { x as z } from './z.js';",
                 new Node { }, new Options {sourceType = "module", ecmaVersion = 6});
 
-            test("export { default as y } from './y.js';\nexport default 42;",
+            Test("export { default as y } from './y.js';\nexport default 42;",
                 new Node { }, new Options {sourceType = "module", ecmaVersion = 6});
 
             testFail("export { default} from './y.js';\nexport default 42;", "Duplicate export 'default' (2:7)", new Options {sourceType = "module", ecmaVersion = 6});
@@ -14514,9 +14486,9 @@ namespace AcornSharp.Cli
 
             testFail("({x, y}) = {}", "Parenthesized pattern (1:0)", new Options {ecmaVersion = 6});
 
-            test("[x, (y), {z, u: (v)}] = foo", new Node { }, new Options {ecmaVersion = 6});
+            Test("[x, (y), {z, u: (v)}] = foo", new Node { }, new Options {ecmaVersion = 6});
 
-            test("export default function(x) {};", new Node {body = new List<Node> {new Node { }, new Node { }}}, new Options {ecmaVersion = 6, sourceType = "module"});
+            Test("export default function(x) {};", new Node {body = new List<Node> {new Node { }, new Node { }}}, new Options {ecmaVersion = 6, sourceType = "module"});
 
             testFail("var foo = 1; let foo = 1;", "Identifier 'foo' has already been declared (1:17)", new Options {ecmaVersion = 6});
 
@@ -14584,69 +14556,69 @@ namespace AcornSharp.Cli
 
             testFail("try {} catch (foo) { let foo = 1; }", "Identifier 'foo' has already been declared (1:25)", new Options {ecmaVersion = 6});
 
-            test("var foo = 1; var foo = 1;", new Node { }, new Options {ecmaVersion = 6});
+            Test("var foo = 1; var foo = 1;", new Node { }, new Options {ecmaVersion = 6});
 
-            test("if (x) var foo = 1; var foo = 1;", new Node { }, new Options {ecmaVersion = 6});
+            Test("if (x) var foo = 1; var foo = 1;", new Node { }, new Options {ecmaVersion = 6});
 
-            test("function x() { var foo = 1; } let foo = 1;", new Node { }, new Options {ecmaVersion = 6});
+            Test("function x() { var foo = 1; } let foo = 1;", new Node { }, new Options {ecmaVersion = 6});
 
-            test("function foo() { let foo = 1; }", new Node { }, new Options {ecmaVersion = 6});
+            Test("function foo() { let foo = 1; }", new Node { }, new Options {ecmaVersion = 6});
 
-            test("var foo = 1; { let foo = 1; }", new Node { }, new Options {ecmaVersion = 6});
+            Test("var foo = 1; { let foo = 1; }", new Node { }, new Options {ecmaVersion = 6});
 
-            test("{ let foo = 1; { let foo = 2; } }", new Node { }, new Options {ecmaVersion = 6});
+            Test("{ let foo = 1; { let foo = 2; } }", new Node { }, new Options {ecmaVersion = 6});
 
-            test("var foo; try {} catch (_) { let foo; }", new Node { }, new Options {ecmaVersion = 6});
+            Test("var foo; try {} catch (_) { let foo; }", new Node { }, new Options {ecmaVersion = 6});
 
-            test("let x = 1; function foo(x) {}", new Node { }, new Options {ecmaVersion = 6});
+            Test("let x = 1; function foo(x) {}", new Node { }, new Options {ecmaVersion = 6});
 
-            test("for (let i = 0;;); for (let i = 0;;);", new Node { }, new Options {ecmaVersion = 6});
+            Test("for (let i = 0;;); for (let i = 0;;);", new Node { }, new Options {ecmaVersion = 6});
 
-            test("for (const foo of bar); for (const foo of bar);", new Node { }, new Options {ecmaVersion = 6});
+            Test("for (const foo of bar); for (const foo of bar);", new Node { }, new Options {ecmaVersion = 6});
 
-            test("for (const foo in bar); for (const foo in bar);", new Node { }, new Options {ecmaVersion = 6});
+            Test("for (const foo in bar); for (const foo in bar);", new Node { }, new Options {ecmaVersion = 6});
 
-            test("for (let foo in bar) { let foo = 1; }", new Node { }, new Options {ecmaVersion = 6});
+            Test("for (let foo in bar) { let foo = 1; }", new Node { }, new Options {ecmaVersion = 6});
 
-            test("for (let foo of bar) { let foo = 1; }", new Node { }, new Options {ecmaVersion = 6});
+            Test("for (let foo of bar) { let foo = 1; }", new Node { }, new Options {ecmaVersion = 6});
 
-            test("class Foo { method(foo) {} method2() { let foo; } }", new Node { }, new Options {ecmaVersion = 6});
+            Test("class Foo { method(foo) {} method2() { let foo; } }", new Node { }, new Options {ecmaVersion = 6});
 
-            test("() => { let foo; }; foo => {}", new Node { }, new Options {ecmaVersion = 6});
+            Test("() => { let foo; }; foo => {}", new Node { }, new Options {ecmaVersion = 6});
 
-            test("() => { let foo; }; () => { let foo; }", new Node { }, new Options {ecmaVersion = 6});
+            Test("() => { let foo; }; () => { let foo; }", new Node { }, new Options {ecmaVersion = 6});
 
-            test("switch(x) { case 1: let foo = 1; } let foo = 1;", new Node { }, new Options {ecmaVersion = 6});
+            Test("switch(x) { case 1: let foo = 1; } let foo = 1;", new Node { }, new Options {ecmaVersion = 6});
 
-            test("'use strict'; function foo() { let foo = 1; }", new Node { }, new Options {ecmaVersion = 6});
+            Test("'use strict'; function foo() { let foo = 1; }", new Node { }, new Options {ecmaVersion = 6});
 
-            test("let foo = 1; function x() { var foo = 1; }", new Node { }, new Options {ecmaVersion = 6});
+            Test("let foo = 1; function x() { var foo = 1; }", new Node { }, new Options {ecmaVersion = 6});
 
-            test("[...foo, bar = 1]", new Node { }, new Options {ecmaVersion = 6});
+            Test("[...foo, bar = 1]", new Node { }, new Options {ecmaVersion = 6});
 
-            test("for (var a of /b/) {}", new Node { }, new Options {ecmaVersion = 6});
+            Test("for (var a of /b/) {}", new Node { }, new Options {ecmaVersion = 6});
 
-            test("for (var {a} of /b/) {}", new Node { }, new Options {ecmaVersion = 6});
+            Test("for (var {a} of /b/) {}", new Node { }, new Options {ecmaVersion = 6});
 
-            test("for (let {a} of /b/) {}", new Node { }, new Options {ecmaVersion = 6});
+            Test("for (let {a} of /b/) {}", new Node { }, new Options {ecmaVersion = 6});
 
-            test("function* bar() { yield /re/ }", new Node { }, new Options {ecmaVersion = 6});
+            Test("function* bar() { yield /re/ }", new Node { }, new Options {ecmaVersion = 6});
 
-            test("function* bar() { yield class {} }", new Node { }, new Options {ecmaVersion = 6});
+            Test("function* bar() { yield class {} }", new Node { }, new Options {ecmaVersion = 6});
 
-            test("() => {}\n/re/", new Node { }, new Options {ecmaVersion = 6});
+            Test("() => {}\n/re/", new Node { }, new Options {ecmaVersion = 6});
 
-            test("(() => {}) + 2", new Node { }, new Options {ecmaVersion = 6});
+            Test("(() => {}) + 2", new Node { }, new Options {ecmaVersion = 6});
 
             testFail("(x) => {} + 2", "Unexpected token (1:10)", new Options {ecmaVersion = 6});
 
-            test("function *f1() { function g() { return yield / 1 } }", new Node { }, new Options {ecmaVersion = 6});
+            Test("function *f1() { function g() { return yield / 1 } }", new Node { }, new Options {ecmaVersion = 6});
 
-            test("class Foo {} /regexp/", new Node { }, new Options {ecmaVersion = 6});
+            Test("class Foo {} /regexp/", new Node { }, new Options {ecmaVersion = 6});
 
-            test("(class Foo {} / 2)", new Node { }, new Options {ecmaVersion = 6});
+            Test("(class Foo {} / 2)", new Node { }, new Options {ecmaVersion = 6});
 
-            test("1 <!--b", new Node
+            Test("1 <!--b", new Node
             {
                 type = "Program",
                 body = new List<Node>
@@ -14667,9 +14639,9 @@ namespace AcornSharp.Cli
             testFail("class A extends B { constructor() { super; } }", "Unexpected token (1:41)", new Options {ecmaVersion = 6});
             testFail("class A extends B { constructor() { (super)() } }", "Unexpected token (1:42)", new Options {ecmaVersion = 6});
             testFail("class A extends B { foo() { (super).foo } }", "Unexpected token (1:34)", new Options {ecmaVersion = 6});
-            test("({super: 1})", new Node { }, new Options {ecmaVersion = 6});
-            test("import {super as a} from 'a'", new Node { }, new Options {ecmaVersion = 6, sourceType = "module"});
-            test("export {a as super}", new Node { }, new Options {ecmaVersion = 6, sourceType = "module"});
+            Test("({super: 1})", new Node { }, new Options {ecmaVersion = 6});
+            Test("import {super as a} from 'a'", new Node { }, new Options {ecmaVersion = 6, sourceType = "module"});
+            Test("export {a as super}", new Node { }, new Options {ecmaVersion = 6, sourceType = "module"});
         }
     }
 }

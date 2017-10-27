@@ -23,207 +23,242 @@ namespace AcornSharp
     // `isLoop` marks a keyword as starting a loop, which is important
     // to know when parsing a label, in order to allow or disallow
     // continue jumps to that label.
-    public sealed class TokenType
+    public enum TokenType
     {
-        public static readonly TokenType num;
-        public static readonly TokenType regexp;
-        public static readonly TokenType @string;
-        public static readonly TokenType name;
-        public static readonly TokenType eof;
+        num,
+        regexp,
+        @string,
+        name,
+        eof,
 
-        // Punctuation token types.
-        public static readonly TokenType bracketL;
+        bracketL,
 
-        public static readonly TokenType bracketR;
-        public static readonly TokenType braceL;
-        public static readonly TokenType braceR;
-        public static readonly TokenType parenL;
-        public static readonly TokenType parenR;
-        public static readonly TokenType comma;
-        public static readonly TokenType semi;
-        public static readonly TokenType colon;
-        public static readonly TokenType dot;
-        public static readonly TokenType question;
-        public static readonly TokenType arrow;
-        public static readonly TokenType template;
-        public static readonly TokenType invalidTemplate;
-        public static readonly TokenType ellipsis;
-        public static readonly TokenType backQuote;
-        public static readonly TokenType dollarBraceL;
+        bracketR,
+        braceL,
+        braceR,
+        parenL,
+        parenR,
+        comma,
+        semi,
+        colon,
+        dot,
+        question,
+        arrow,
+        template,
+        invalidTemplate,
+        ellipsis,
+        backQuote,
+        dollarBraceL,
 
-        public static readonly TokenType eq;
-        public static readonly TokenType assign;
-        public static readonly TokenType incDec;
-        public static readonly TokenType prefix;
-        public static readonly TokenType logicalOR;
-        public static readonly TokenType logicalAND;
-        public static readonly TokenType bitwiseOR;
-        public static readonly TokenType bitwiseXOR;
-        public static readonly TokenType bitwiseAND;
-        public static readonly TokenType equality;
-        public static readonly TokenType relational;
-        public static readonly TokenType bitShift;
-        public static readonly TokenType plusMin;
-        public static readonly TokenType modulo;
-        public static readonly TokenType star;
-        public static readonly TokenType slash;
-        public static readonly TokenType starstar;
+        eq,
+        assign,
+        incDec,
+        prefix,
+        logicalOR,
+        logicalAND,
+        bitwiseOR,
+        bitwiseXOR,
+        bitwiseAND,
+        equality,
+        relational,
+        bitShift,
+        plusMin,
+        modulo,
+        star,
+        slash,
+        starstar,
 
-        // Keyword token types.
-        public static readonly TokenType _break;
+        _break,
 
-        public static readonly TokenType _case;
-        public static readonly TokenType _catch;
-        public static readonly TokenType _continue;
-        public static readonly TokenType _debugger;
-        public static readonly TokenType _default;
-        public static readonly TokenType _do;
-        public static readonly TokenType _else;
-        public static readonly TokenType _finally;
-        public static readonly TokenType _for;
-        public static readonly TokenType _function;
-        public static readonly TokenType _if;
-        public static readonly TokenType _return;
-        public static readonly TokenType _switch;
-        public static readonly TokenType _throw;
-        public static readonly TokenType _try;
-        public static readonly TokenType _var;
-        public static readonly TokenType _const;
-        public static readonly TokenType _while;
-        public static readonly TokenType _with;
-        public static readonly TokenType _new;
-        public static readonly TokenType _this;
-        public static readonly TokenType _super;
-        public static readonly TokenType _class;
-        public static readonly TokenType _extends;
-        public static readonly TokenType _export;
-        public static readonly TokenType _import;
-        public static readonly TokenType _null;
-        public static readonly TokenType _true;
-        public static readonly TokenType _false;
-        public static readonly TokenType _in;
-        public static readonly TokenType _instanceof;
-        public static readonly TokenType _typeof;
-        public static readonly TokenType _void;
-        public static readonly TokenType _delete;
+        _case,
+        _catch,
+        _continue,
+        _debugger,
+        _default,
+        _do,
+        _else,
+        _finally,
+        _for,
+        _function,
+        _if,
+        _return,
+        _switch,
+        _throw,
+        _try,
+        _var,
+        _const,
+        _while,
+        _with,
+        _new,
+        _this,
+        _super,
+        _class,
+        _extends,
+        _export,
+        _import,
+        _null,
+        _true,
+        _false,
+        _in,
+        _instanceof,
+        _typeof,
+        _void,
+        _delete
+    }
 
-        // Map keyword names to token types.
-        private static readonly Dictionary<string, TokenType> keywords;
+    internal sealed class TokenInformation
+    {
+        private static readonly Dictionary<TokenType, TokenInformation> types;
 
-        private static readonly Dictionary<string, TokenType> types;
-
-        static TokenType()
+        private static readonly Dictionary<string, TokenType> keywords = new Dictionary<string, TokenType>
         {
-            keywords = new Dictionary<string, TokenType>();
+            {"break", TokenType._break},
+            {"case", TokenType._case},
+            {"catch", TokenType._catch},
+            {"continue", TokenType._continue},
+            {"debugger", TokenType._debugger},
+            {"default", TokenType._default},
+            {"do", TokenType._do},
+            {"else", TokenType._else},
+            {"finally", TokenType._finally},
+            {"for", TokenType._for},
+            {"function", TokenType._function},
+            {"if", TokenType._if},
+            {"return", TokenType._return},
+            {"switch", TokenType._switch},
+            {"throw", TokenType._throw},
+            {"try", TokenType._try},
+            {"var", TokenType._var},
+            {"const", TokenType._const},
+            {"while", TokenType._while},
+            {"with", TokenType._with},
+            {"new", TokenType._new},
+            {"this", TokenType._this},
+            {"super", TokenType._super},
+            {"class", TokenType._class},
+            {"extends", TokenType._extends},
+            {"export", TokenType._export},
+            {"import", TokenType._import},
+            {"null", TokenType._null},
+            {"true", TokenType._true},
+            {"false", TokenType._false},
+            {"in", TokenType._in},
+            {"instanceof", TokenType._instanceof},
+            {"typeof", TokenType._typeof},
+            {"void", TokenType._void},
+            {"delete", TokenType._delete}
+        };
 
-            num = new TokenType("num", startsExpr: true);
-            regexp = new TokenType("regexp", startsExpr: true);
-            @string = new TokenType("string", startsExpr: true);
-            name = new TokenType("name", startsExpr: true);
-            eof = new TokenType("eof");
+        static TokenInformation()
+        {
+            var num = new TokenInformation(startsExpr: true);
+            var regexp = new TokenInformation(startsExpr: true);
+            var @string = new TokenInformation(startsExpr: true);
+            var name = new TokenInformation(startsExpr: true);
+            var eof = new TokenInformation();
 
             // Punctuation token types.
-            bracketL = new TokenType("[", beforeExpr: true, startsExpr: true);
+            var bracketL = new TokenInformation(beforeExpr: true, startsExpr: true);
 
-            bracketR = new TokenType("]");
-            braceL = new TokenType("{", beforeExpr: true, startsExpr: true);
-            braceR = new TokenType("}");
-            parenL = new TokenType("(", beforeExpr: true, startsExpr: true);
-            parenR = new TokenType(")");
-            comma = new TokenType(",", beforeExpr: true);
-            semi = new TokenType(";", beforeExpr: true);
-            colon = new TokenType(":", beforeExpr: true);
-            dot = new TokenType(".");
-            question = new TokenType("?", beforeExpr: true);
-            arrow = new TokenType("=>", beforeExpr: true);
-            template = new TokenType("template");
-            invalidTemplate = new TokenType("invalidTemplate");
-            ellipsis = new TokenType("...", beforeExpr: true);
-            backQuote = new TokenType("`", startsExpr: true);
-            dollarBraceL = new TokenType("${", beforeExpr: true, startsExpr: true);
+            var bracketR = new TokenInformation();
+            var braceL = new TokenInformation(beforeExpr: true, startsExpr: true);
+            var braceR = new TokenInformation();
+            var parenL = new TokenInformation(beforeExpr: true, startsExpr: true);
+            var parenR = new TokenInformation();
+            var comma = new TokenInformation(beforeExpr: true);
+            var semi = new TokenInformation(beforeExpr: true);
+            var colon = new TokenInformation(beforeExpr: true);
+            var dot = new TokenInformation();
+            var question = new TokenInformation(beforeExpr: true);
+            var arrow = new TokenInformation(beforeExpr: true);
+            var template = new TokenInformation();
+            var invalidTemplate = new TokenInformation();
+            var ellipsis = new TokenInformation(beforeExpr: true);
+            var backQuote = new TokenInformation(startsExpr: true);
+            var dollarBraceL = new TokenInformation(beforeExpr: true, startsExpr: true);
 
-            eq = new TokenType("=", beforeExpr: true, isAssign: true);
-            assign = new TokenType("_=", beforeExpr: true, isAssign: true);
-            incDec = new TokenType("++/--", prefix: true, postfix: true, startsExpr: true);
-            prefix = new TokenType("!/~", beforeExpr: true, prefix: true, startsExpr: true);
-            logicalOR = CreateBinaryOperation("||", 1);
-            logicalAND = CreateBinaryOperation("&&", 2);
-            bitwiseOR = CreateBinaryOperation("|", 3);
-            bitwiseXOR = CreateBinaryOperation("^", 4);
-            bitwiseAND = CreateBinaryOperation("&", 5);
-            equality = CreateBinaryOperation("==/!=/===/!==", 6);
-            relational = CreateBinaryOperation("</>/<=/>=", 7);
-            bitShift = CreateBinaryOperation("<</>>/>>>", 8);
-            plusMin = new TokenType("+/-", beforeExpr: true, binaryOperation: 9, prefix: true, startsExpr: true);
-            modulo = CreateBinaryOperation("%", 10);
-            star = CreateBinaryOperation("*", 10);
-            slash = CreateBinaryOperation("/", 10);
-            starstar = new TokenType("**", beforeExpr: true);
+            var eq = new TokenInformation(beforeExpr: true);
+            var assign = new TokenInformation(beforeExpr: true);
+            var incDec = new TokenInformation(prefix: true, postfix: true, startsExpr: true);
+            var prefix = new TokenInformation(beforeExpr: true, prefix: true, startsExpr: true);
+            var logicalOR = CreateBinaryOperation(1);
+            var logicalAND = CreateBinaryOperation(2);
+            var bitwiseOR = CreateBinaryOperation(3);
+            var bitwiseXOR = CreateBinaryOperation(4);
+            var bitwiseAND = CreateBinaryOperation(5);
+            var equality = CreateBinaryOperation(6);
+            var relational = CreateBinaryOperation(7);
+            var bitShift = CreateBinaryOperation(8);
+            var plusMin = new TokenInformation(beforeExpr: true, binaryOperation: 9, prefix: true, startsExpr: true);
+            var modulo = CreateBinaryOperation(10);
+            var star = CreateBinaryOperation(10);
+            var slash = CreateBinaryOperation(10);
+            var starstar = new TokenInformation(beforeExpr: true);
 
             // Keyword token types.
-            _break = CreateKeyword("break");
+            var _break = CreateKeyword("break");
 
-            _case = CreateKeyword("case", true);
-            _catch = CreateKeyword("catch");
-            _continue = CreateKeyword("continue");
-            _debugger = CreateKeyword("debugger");
-            _default = CreateKeyword("default", true);
-            _do = CreateKeyword("do", isLoop: true, beforeExpr: true);
-            _else = CreateKeyword("else", true);
-            _finally = CreateKeyword("finally");
-            _for = CreateKeyword("for", isLoop: true);
-            _function = CreateKeyword("function", startsExpr: true);
-            _if = CreateKeyword("if");
-            _return = CreateKeyword("return", true);
-            _switch = CreateKeyword("switch");
-            _throw = CreateKeyword("throw", true);
-            _try = CreateKeyword("try");
-            _var = CreateKeyword("var");
-            _const = CreateKeyword("const");
-            _while = CreateKeyword("while", isLoop: true);
-            _with = CreateKeyword("with");
-            _new = CreateKeyword("new", true, true);
-            _this = CreateKeyword("this", startsExpr: true);
-            _super = CreateKeyword("super", startsExpr: true);
-            _class = CreateKeyword("class", startsExpr: true);
-            _extends = CreateKeyword("extends", true);
-            _export = CreateKeyword("export");
-            _import = CreateKeyword("import");
-            _null = CreateKeyword("null", startsExpr: true);
-            _true = CreateKeyword("true", startsExpr: true);
-            _false = CreateKeyword("false", startsExpr: true);
-            _in = CreateKeyword("in", true, binop: 7);
-            _instanceof = CreateKeyword("instanceof", true, binop: 7);
-            _typeof = CreateKeyword("typeof", true, prefix: true, startsExpr: true);
-            _void = CreateKeyword("void", true, prefix: true, startsExpr: true);
-            _delete = CreateKeyword("delete", true, prefix: true, startsExpr: true);
+            var _case = CreateKeyword("case", true);
+            var _catch = CreateKeyword("catch");
+            var _continue = CreateKeyword("continue");
+            var _debugger = CreateKeyword("debugger");
+            var _default = CreateKeyword("default", true);
+            var _do = CreateKeyword("do", isLoop: true, beforeExpr: true);
+            var _else = CreateKeyword("else", true);
+            var _finally = CreateKeyword("finally");
+            var _for = CreateKeyword("for", isLoop: true);
+            var _function = CreateKeyword("function", startsExpr: true);
+            var _if = CreateKeyword("if");
+            var _return = CreateKeyword("return", true);
+            var _switch = CreateKeyword("switch");
+            var _throw = CreateKeyword("throw", true);
+            var _try = CreateKeyword("try");
+            var _var = CreateKeyword("var");
+            var _const = CreateKeyword("const");
+            var _while = CreateKeyword("while", isLoop: true);
+            var _with = CreateKeyword("with");
+            var _new = CreateKeyword("new", true, true);
+            var _this = CreateKeyword("this", startsExpr: true);
+            var _super = CreateKeyword("super", startsExpr: true);
+            var _class = CreateKeyword("class", startsExpr: true);
+            var _extends = CreateKeyword("extends", true);
+            var _export = CreateKeyword("export");
+            var _import = CreateKeyword("import");
+            var _null = CreateKeyword("null", startsExpr: true);
+            var _true = CreateKeyword("true", startsExpr: true);
+            var _false = CreateKeyword("false", startsExpr: true);
+            var _in = CreateKeyword("in", true, binop: 7);
+            var _instanceof = CreateKeyword("instanceof", true, binop: 7);
+            var _typeof = CreateKeyword("typeof", true, prefix: true, startsExpr: true);
+            var _void = CreateKeyword("void", true, prefix: true, startsExpr: true);
+            var _delete = CreateKeyword("delete", true, prefix: true, startsExpr: true);
 
-            types = new Dictionary<string, TokenType>
+            types = new Dictionary<TokenType, TokenInformation>
             {
-                {"num", num},
-                {"regexp", regexp},
-                {"string", @string},
-                {"name", name},
-                {"eof", eof},
+                {TokenType.num, num},
+                {TokenType.regexp, regexp},
+                {TokenType.@string, @string},
+                {TokenType.name, name},
+                {TokenType.eof, eof},
 
                 // Punctuation token types.
-                {"bracketL", bracketL},
-                {"bracketR", bracketR},
-                {"braceL", braceL},
-                {"braceR", braceR},
-                {"parenL", parenL},
-                {"parenR", parenR},
-                {"comma", comma},
-                {"semi", semi},
-                {"colon", colon},
-                {"dot", dot},
-                {"question", question},
-                {"arrow", arrow},
-                {"template", template},
-                {"invalidTemplate", invalidTemplate},
-                {"ellipsis", ellipsis},
-                {"backQuote", backQuote},
-                {"dollarBraceL", dollarBraceL},
+                {TokenType.bracketL, bracketL},
+                {TokenType.bracketR, bracketR},
+                {TokenType.braceL, braceL},
+                {TokenType.braceR, braceR},
+                {TokenType.parenL, parenL},
+                {TokenType.parenR, parenR},
+                {TokenType.comma, comma},
+                {TokenType.semi, semi},
+                {TokenType.colon, colon},
+                {TokenType.dot, dot},
+                {TokenType.question, question},
+                {TokenType.arrow, arrow},
+                {TokenType.template, template},
+                {TokenType.invalidTemplate, invalidTemplate},
+                {TokenType.ellipsis, ellipsis},
+                {TokenType.backQuote, backQuote},
+                {TokenType.dollarBraceL, dollarBraceL},
 
                 // Operators. These carry several kinds of properties to help the
                 // parser use them properly (the presence of these properties is
@@ -239,60 +274,60 @@ namespace AcornSharp
                 // binary operators with a very low precedence, that should result
                 // in AssignmentExpression nodes.
 
-                {"eq", eq},
-                {"assign", assign},
-                {"incDec", incDec},
-                {"prefix", prefix},
-                {"logicalOR", logicalOR},
-                {"logicalAND", logicalAND},
-                {"bitwiseOR", bitwiseOR},
-                {"bitwiseXOR", bitwiseXOR},
-                {"bitwiseAND", bitwiseAND},
-                {"equality", equality},
-                {"relational", relational},
-                {"bitShift", bitShift},
-                {"plusMin", plusMin},
-                {"modulo", modulo},
-                {"star", star},
-                {"slash", slash},
-                {"starstar", starstar},
+                {TokenType.eq, eq},
+                {TokenType.assign, assign},
+                {TokenType.incDec, incDec},
+                {TokenType.prefix, prefix},
+                {TokenType.logicalOR, logicalOR},
+                {TokenType.logicalAND, logicalAND},
+                {TokenType.bitwiseOR, bitwiseOR},
+                {TokenType.bitwiseXOR, bitwiseXOR},
+                {TokenType.bitwiseAND, bitwiseAND},
+                {TokenType.equality, equality},
+                {TokenType.relational, relational},
+                {TokenType.bitShift, bitShift},
+                {TokenType.plusMin, plusMin},
+                {TokenType.modulo, modulo},
+                {TokenType.star, star},
+                {TokenType.slash, slash},
+                {TokenType.starstar, starstar},
 
                 // Keyword token types.
-                {"_break", _break},
-                {"_case", _case},
-                {"_catch", _catch},
-                {"_continue", _continue},
-                {"_debugger", _debugger},
-                {"_default", _default},
-                {"_do", _do},
-                {"_else", _else},
-                {"_finally", _finally},
-                {"_for", _for},
-                {"_function", _function},
-                {"_if", _if},
-                {"_return", _return},
-                {"_switch", _switch},
-                {"_throw", _throw},
-                {"_try", _try},
-                {"_var", _var},
-                {"_const", _const},
-                {"_while", _while},
-                {"_with", _with},
-                {"_new", _new},
-                {"_this", _this},
-                {"_super", _super},
-                {"_class", _class},
-                {"_extends", _extends},
-                {"_export", _export},
-                {"_import", _import},
-                {"_null", _null},
-                {"_true", _true},
-                {"_false", _false},
-                {"_in", _in},
-                {"_instanceof", _instanceof},
-                {"_typeof", _typeof},
-                {"_void", _void},
-                {"_delete", _delete}
+                {TokenType._break, _break},
+                {TokenType._case, _case},
+                {TokenType._catch, _catch},
+                {TokenType._continue, _continue},
+                {TokenType._debugger, _debugger},
+                {TokenType._default, _default},
+                {TokenType._do, _do},
+                {TokenType._else, _else},
+                {TokenType._finally, _finally},
+                {TokenType._for, _for},
+                {TokenType._function, _function},
+                {TokenType._if, _if},
+                {TokenType._return, _return},
+                {TokenType._switch, _switch},
+                {TokenType._throw, _throw},
+                {TokenType._try, _try},
+                {TokenType._var, _var},
+                {TokenType._const, _const},
+                {TokenType._while, _while},
+                {TokenType._with, _with},
+                {TokenType._new, _new},
+                {TokenType._this, _this},
+                {TokenType._super, _super},
+                {TokenType._class, _class},
+                {TokenType._extends, _extends},
+                {TokenType._export, _export},
+                {TokenType._import, _import},
+                {TokenType._null, _null},
+                {TokenType._true, _true},
+                {TokenType._false, _false},
+                {TokenType._in, _in},
+                {TokenType._instanceof, _instanceof},
+                {TokenType._typeof, _typeof},
+                {TokenType._void, _void},
+                {TokenType._delete, _delete}
             };
 
             // Token-specific context update code
@@ -307,58 +342,51 @@ namespace AcornSharp
             name.UpdateContext = Parser.NameUpdateContext;
         }
 
-        public TokenType(string label,
-            string keyword = null,
+        public TokenInformation(string keyword = null,
             bool beforeExpr = false,
             bool startsExpr = false,
             bool isLoop = false,
-            bool isAssign = false,
             bool prefix = false,
             bool postfix = false,
             int binaryOperation = -1)
         {
-            Label = label;
             Keyword = keyword;
             BeforeExpression = beforeExpr;
             StartsExpression = startsExpr;
             IsLoop = isLoop;
-            IsAssign = isAssign;
             Prefix = prefix;
             Postfix = postfix;
             BinaryOperation = binaryOperation;
             UpdateContext = null;
         }
 
-        private static TokenType CreateBinaryOperation(string name, int prec)
+        private static TokenInformation CreateBinaryOperation(int prec)
         {
-            return new TokenType(name, beforeExpr: true, binaryOperation: prec);
+            return new TokenInformation(beforeExpr: true, binaryOperation: prec);
         }
 
         // Succinct definitions of keyword token types
-        private static TokenType CreateKeyword(string name,
+        private static TokenInformation CreateKeyword(string keyword,
             bool beforeExpr = false,
             bool startsExpr = false,
             bool isLoop = false,
-            bool isAssign = false,
             bool prefix = false,
             bool postfix = false,
             int binop = -1)
         {
-            return keywords[name] = new TokenType(name, name, beforeExpr, startsExpr, isLoop, isAssign, prefix, postfix, binop);
+            return new TokenInformation(keyword, beforeExpr, startsExpr, isLoop, prefix, postfix, binop);
         }
 
-        public string Label { get; }
         public string Keyword { get; }
         public bool BeforeExpression { get; }
         public bool StartsExpression { get; }
         public bool IsLoop { get; }
-        public bool IsAssign { get; }
         public bool Prefix { get; }
         public bool Postfix { get; }
         public int BinaryOperation { get; }
         public Action<Parser, TokenType> UpdateContext { get; internal set; }
 
-        public static IReadOnlyDictionary<string, TokenType> Types => types;
+        public static IReadOnlyDictionary<TokenType, TokenInformation> Types => types;
         public static IReadOnlyDictionary<string, TokenType> Keywords => keywords;
     }
 }

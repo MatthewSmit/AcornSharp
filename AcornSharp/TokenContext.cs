@@ -45,12 +45,12 @@ namespace AcornSharp
         private void updateContext(TokenType prevType)
         {
             Action<Parser, TokenType> update;
-            if (type.Keyword != null && prevType == TokenType.dot)
+            if (TokenInformation.Types[type].Keyword != null && prevType == TokenType.dot)
                 exprAllowed = false;
-            else if ((update = type.UpdateContext) != null)
+            else if ((update = TokenInformation.Types[type].UpdateContext) != null)
                 update(this, prevType);
             else
-                exprAllowed = type.BeforeExpression;
+                exprAllowed = TokenInformation.Types[type].BeforeExpression;
         }
 
         internal static void ParenBraceRUpdateContext(Parser parser, TokenType _)
@@ -94,7 +94,7 @@ namespace AcornSharp
 
         internal static void FunctionClassUpdateContext(Parser parser, TokenType prevType)
         {
-            if (prevType.BeforeExpression && prevType != TokenType.semi && prevType != TokenType._else &&
+            if (TokenInformation.Types[prevType].BeforeExpression && prevType != TokenType.semi && prevType != TokenType._else &&
                 !((prevType == TokenType.colon || prevType == TokenType.braceL) && parser.curContext() == TokContext.b_stat))
                 parser.context.Add(TokContext.f_expr);
             else
