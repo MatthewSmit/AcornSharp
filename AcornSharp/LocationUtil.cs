@@ -21,7 +21,7 @@
                 }
                 else
                 {
-                    return new Position(line, offset - cur);
+                    return new Position(line, offset - cur, offset);
                 }
             }
         }

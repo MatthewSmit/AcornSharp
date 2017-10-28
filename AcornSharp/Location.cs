@@ -22,7 +22,7 @@
 
         public Position curPosition()
         {
-            return new Position(curLine, pos - lineStart);
+            return new Position(curLine, pos - lineStart, pos);
         }
     }
 }
