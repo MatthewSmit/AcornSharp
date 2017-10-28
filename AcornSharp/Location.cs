@@ -7,17 +7,16 @@
         // the location of the error, attaches the position to the end
         // of the error message, and then raises a `SyntaxError` with that
         // message.
-        private void raise(int pos, string message)
+        private static void raise(Position position, string message)
         {
-            var loc = getLineInfo(input, pos);
-            message += " (" + loc.Line + ":" + loc.Column + ")";
-            var err = new SyntaxError(message, pos, loc, this.pos.Index);
+            message += " (" + position.Line + ":" + position.Column + ")";
+            var err = new SyntaxError(message, position);
             throw err;
         }
 
-        private void raiseRecoverable(int pos, string message)
+        private static void raiseRecoverable(Position position, string message)
         {
-            raise(pos, message);
+            raise(position, message);
         }
 
         public Position curPosition()

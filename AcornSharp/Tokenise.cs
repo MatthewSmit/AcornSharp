@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 namespace AcornSharp
 {
     [SuppressMessage("ReSharper", "LocalVariableHidesMember")]
+    [SuppressMessage("ReSharper", "ParameterHidesMember")]
     public sealed partial class Parser
     {
         // Object type used to represent tokens. Note that normally, tokens
@@ -117,7 +118,7 @@ namespace AcornSharp
             var start = pos;
             pos = pos.Increment(2);
             var end = input.IndexOf("*/", pos.Index, StringComparison.Ordinal);
-            if (end == -1) raise(pos.Index - 2, "Unterminated comment");
+            if (end == -1) raise(pos.Increment(-2), "Unterminated comment");
             pos = new Position(pos.Line, pos.Column + (end - start.Index), end + 2);
             var lastIndex = start.Index;
             while (true)
@@ -489,7 +490,7 @@ namespace AcornSharp
                     return;
             }
 
-            raise(pos.Index, "Unexpected character '" + codePointToString(code) + "'");
+            raise(pos, "Unexpected character '" + codePointToString(code) + "'");
         }
 
         private void finishOp(TokenType type, int size)
@@ -506,9 +507,9 @@ namespace AcornSharp
             var start = pos;
             while (true)
             {
-                if (pos.Index >= input.Length) raise(start.Index, "Unterminated regular expression");
+                if (pos.Index >= input.Length) raise(start, "Unterminated regular expression");
                 var ch = input[pos.Index];
-                if (lineBreak.IsMatch(ch.ToString())) raise(start.Index, "Unterminated regular expression");
+                if (lineBreak.IsMatch(ch.ToString())) raise(start, "Unterminated regular expression");
                 if (!escaped)
                 {
                     if (ch == '[') inClass = true;
@@ -529,7 +530,7 @@ namespace AcornSharp
             {
                 var validFlags = new Regex("^[gim]*$");
                 if (Options.ecmaVersion >= 6) validFlags = new Regex("^[gimuy]*$");
-                if (!validFlags.IsMatch(mods)) raise(start.Index, "Invalid regular expression flag");
+                if (!validFlags.IsMatch(mods)) raise(start, "Invalid regular expression flag");
             }
             finishToken(TokenType.regexp, new RegexNode
             {
@@ -568,10 +569,10 @@ namespace AcornSharp
             var val = readInt(radix);
             if (!val.HasValue)
             {
-                raise(start.Index + 2, "Expected number in radix " + radix);
+                raise(start.Increment(2), "Expected number in radix " + radix);
                 return;
             }
-            if (isIdentifierStart(fullCharCodeAtPos())) raise(pos.Index, "Identifier directly after number");
+            if (isIdentifierStart(fullCharCodeAtPos())) raise(pos, "Identifier directly after number");
             finishToken(TokenType.num, val.Value);
         }
 
@@ -581,7 +582,7 @@ namespace AcornSharp
             var start = pos;
             var isFloat = false;
             var octal = input[pos.Index] == 48;
-            if (!startsWithDot && readInt(10) == null) raise(start.Index, "Invalid number");
+            if (!startsWithDot && readInt(10) == null) raise(start, "Invalid number");
             if (octal && pos.Index == start.Index + 1) octal = false;
             var next = input.Get(pos.Index);
 
@@ -600,10 +601,10 @@ namespace AcornSharp
                 pos = pos.Increment(1);
                 next = input.Get(pos.Index);
                 if (next == 43 || next == 45) pos = pos.Increment(1);// '+-'
-                if (readInt(10) == null) raise(start.Index, "Invalid number");
+                if (readInt(10) == null) raise(start, "Invalid number");
                 isFloat = true;
             }
-            if (isIdentifierStart(fullCharCodeAtPos())) raise(pos.Index, "Identifier directly after number");
+            if (isIdentifierStart(fullCharCodeAtPos())) raise(pos, "Identifier directly after number");
 
             var str = input.Substring(start.Index, pos - start);
             object val;
@@ -611,7 +612,7 @@ namespace AcornSharp
             else if (!octal || str.Length == 1) val = parseInt(str, 10);
             else if (strict)
             {
-                raise(start.Index, "Invalid number");
+                raise(start, "Invalid number");
                 return;
             }
             else if (Regex.IsMatch(str, "[89]")) val = parseInt(str, 10);
@@ -632,7 +633,7 @@ namespace AcornSharp
                 var codePos = pos = pos.Increment(1);
                 code = readHexChar(input.IndexOf("}", pos.Index, StringComparison.Ordinal) - pos.Index);
                 pos = pos.Increment(1);
-                if (code > 0x10FFFF) invalidStringToken(codePos.Index, "Code point out of bounds");
+                if (code > 0x10FFFF) invalidStringToken(codePos, "Code point out of bounds");
             }
             else
             {
@@ -652,7 +653,7 @@ namespace AcornSharp
             var chunkStart = pos = pos.Increment(1);
             while (true)
             {
-                if (pos.Index >= input.Length) raise(start.Index, "Unterminated string constant");
+                if (pos.Index >= input.Length) raise(start, "Unterminated string constant");
                 var ch = input[pos.Index];
                 if (ch == quote) break;
                 if (ch == 92)
@@ -664,7 +665,7 @@ namespace AcornSharp
                 }
                 else
                 {
-                    if (isNewLine(ch)) raise(start.Index, "Unterminated string constant");
+                    if (isNewLine(ch)) raise(start, "Unterminated string constant");
                     pos = pos.Increment(1);
                 }
             }
@@ -693,7 +694,7 @@ namespace AcornSharp
             inTemplateElement = false;
         }
 
-        private void invalidStringToken(int position, string message)
+        private void invalidStringToken(Position position, string message)
         {
             if (inTemplateElement && Options.ecmaVersion >= 9)
             {
@@ -709,7 +710,7 @@ namespace AcornSharp
             var chunkStart = pos;
             while (true)
             {
-                if (pos.Index >= input.Length) raise(start.Index, "Unterminated template");
+                if (pos.Index >= input.Length) raise(start, "Unterminated template");
                 var ch = input[pos.Index];
                 if (ch == 96 || ch == 36 && input[pos.Index + 1] == 123)
                 {
@@ -790,7 +791,7 @@ namespace AcornSharp
                     // no default
                 }
             }
-            raise(start.Index, "Unterminated template");
+            raise(start, "Unterminated template");
         }
 
         // Used to read escaped characters
@@ -828,7 +829,7 @@ namespace AcornSharp
                         }
                         if (octalStr != "0" && (strict || inTemplate))
                         {
-                            invalidStringToken(pos.Index - 2, "Octal literal in strict mode");
+                            invalidStringToken(pos.Increment(-2), "Octal literal in strict mode");
                         }
                         pos = pos.Increment(octalStr.Length - 1);
                         return ((char)octal).ToString();
@@ -863,7 +864,7 @@ namespace AcornSharp
             var n = readInt(16, len);
             if (!n.HasValue)
             {
-                invalidStringToken(codePos.Index, "Bad character escape sequence");
+                invalidStringToken(codePos, "Bad character escape sequence");
                 return 0;
             }
             return n.Value;
@@ -896,11 +897,11 @@ namespace AcornSharp
                     var escStart = pos;
                     pos = pos.Increment(1);
                     if (input.Get(pos.Index) != 117) // "u"
-                        invalidStringToken(pos.Index, "Expecting Unicode escape sequence \\uXXXX");
+                        invalidStringToken(pos, "Expecting Unicode escape sequence \\uXXXX");
                     pos = pos.Increment(1);
                     var esc = readCodePoint();
                     if (!(first ? (Func<int, bool, bool>)isIdentifierStart : isIdentifierChar)(esc, astral))
-                        invalidStringToken(escStart.Index, "Invalid Unicode escape");
+                        invalidStringToken(escStart, "Invalid Unicode escape");
                     word += codePointToString(esc);
                     chunkStart = pos;
                 }
@@ -921,7 +922,7 @@ namespace AcornSharp
             var type = TokenType.name;
             if (keywords.IsMatch(word))
             {
-                if (containsEsc) raiseRecoverable(start.Index, "Escape sequence in keyword " + word);
+                if (containsEsc) raiseRecoverable(start, "Escape sequence in keyword " + word);
                 type = TokenInformation.Keywords[word];
             }
             finishToken(type, word);

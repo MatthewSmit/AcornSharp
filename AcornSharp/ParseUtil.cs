@@ -109,51 +109,51 @@ namespace AcornSharp
         }
 
         // Raise an unexpected token error.
-        private void unexpected(int? pos = null)
+        private void unexpected(Position pos = default )
         {
-            raise(pos ?? start.Index, "Unexpected token");
+            raise(pos.Line != 0 ? pos : start, "Unexpected token");
         }
 
         private sealed class DestructuringErrors
         {
-            public int shorthandAssign = -1;
-            public int trailingComma = -1;
-            public int parenthesizedAssign = -1;
-            public int parenthesizedBind = -1;
+            public Position shorthandAssign;
+            public Position trailingComma;
+            public Position parenthesizedAssign;
+            public Position parenthesizedBind;
 
             public void Reset()
             {
-                shorthandAssign = -1;
-                trailingComma = -1;
-                parenthesizedAssign = -1;
-                parenthesizedBind = -1;
+                shorthandAssign = default;
+                trailingComma = default;
+                parenthesizedAssign = default;
+                parenthesizedBind = default;
             }
         }
 
-        private void checkPatternErrors(DestructuringErrors refDestructuringErrors, bool isAssign)
+        private static void checkPatternErrors(DestructuringErrors refDestructuringErrors, bool isAssign)
         {
             if (refDestructuringErrors == null) return;
-            if (refDestructuringErrors.trailingComma > -1)
+            if (refDestructuringErrors.trailingComma.Line > 0)
             {
                 raiseRecoverable(refDestructuringErrors.trailingComma, "Comma is not permitted after the rest element");
             }
             var parens = isAssign ? refDestructuringErrors.parenthesizedAssign : refDestructuringErrors.parenthesizedBind;
-            if (parens > -1) raiseRecoverable(parens, "Parenthesized pattern");
+            if (parens.Line > 0) raiseRecoverable(parens, "Parenthesized pattern");
         }
 
-        private bool checkExpressionErrors(DestructuringErrors refDestructuringErrors, bool andThrow = false)
+        private static bool checkExpressionErrors(DestructuringErrors refDestructuringErrors, bool andThrow = false)
         {
-            var pos = refDestructuringErrors?.shorthandAssign ?? -1;
-            if (!andThrow) return pos >= 0;
-            if (pos > -1) raise(pos, "Shorthand property assignments are valid only in destructuring patterns");
+            var pos = refDestructuringErrors?.shorthandAssign ?? default;
+            if (!andThrow) return pos.Line > 0;
+            if (pos.Line > 0) raise(pos, "Shorthand property assignments are valid only in destructuring patterns");
             return false;
         }
 
         private void checkYieldAwaitInDefaultParams()
         {
-            if (yieldPos != 0 && (awaitPos == 0 || yieldPos < awaitPos))
+            if (yieldPos.Line > 0 && (awaitPos.Line == 0 || yieldPos.Index < awaitPos.Index))
                 raise(yieldPos, "Yield expression cannot be a default value");
-            if (awaitPos != 0)
+            if (awaitPos.Line > 0)
                 raise(awaitPos, "Await expression cannot be a default value");
         }
 

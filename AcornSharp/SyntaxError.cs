@@ -4,16 +4,12 @@ namespace AcornSharp
 {
     public sealed class SyntaxError : Exception
     {
-        private int pos;
-        private Position loc;
-        private int raisedAt;
+        private readonly Position position;
 
-        public SyntaxError(string message, int pos, Position loc, int raisedAt) :
+        public SyntaxError(string message, Position position) :
             base(message)
         {
-            this.pos = pos;
-            this.loc = loc;
-            this.raisedAt = raisedAt;
+            this.position = position;
         }
     }
 }

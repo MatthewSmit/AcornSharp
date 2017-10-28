@@ -23,9 +23,9 @@ namespace AcornSharp
         private Position pos;
         private Stack<Scope> scopeStack;
         private List<Label> labels;
-        private int awaitPos;
-        private int yieldPos;
-        private int potentialArrowAt;
+        private Position awaitPos;
+        private Position yieldPos;
+        private Position potentialArrowAt;
         private bool inAsync;
         private bool inGenerator;
         private bool inFunction;
@@ -39,10 +39,10 @@ namespace AcornSharp
         private List<TokContext> context;
         private bool inModule;
         private bool strict;
-        private int shorthandAssign;
-        private int trailingComma;
-        private int parenthesizedAssign;
-        private int parenthesizedBind;
+        private Position shorthandAssign;
+        private Position trailingComma;
+        private Position parenthesizedAssign;
+        private Position parenthesizedBind;
         private bool inTemplateElement;
 
         public Parser(Options options, string input, int? startPos = null)
@@ -113,12 +113,12 @@ namespace AcornSharp
             strict = inModule || strictDirective(pos.Index);
 
             // Used to signify the start of a potential arrow function
-            potentialArrowAt = -1;
+            potentialArrowAt = default;
 
             // Flags to track whether we are in a function, a generator, an async function.
             inFunction = inGenerator = inAsync = false;
             // Positions to delayed-check that yield/await does not exist in default parameters.
-            yieldPos = awaitPos = 0;
+            yieldPos = awaitPos = default;
             // Labels in scope.
             labels = new List<Label>();
 

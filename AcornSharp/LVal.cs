@@ -16,7 +16,7 @@ namespace AcornSharp
                 {
                     case NodeType.Identifier:
                         if (inAsync && node.name == "await")
-                            raise(node.start, "Can not use 'await' as identifier inside an async function");
+                            raise(node.loc.Start, "Can not use 'await' as identifier inside an async function");
                         break;
 
                     case NodeType.ObjectPattern:
@@ -27,7 +27,7 @@ namespace AcornSharp
                         node.type = NodeType.ObjectPattern;
                         foreach (var prop in node.properties)
                         {
-                            if (prop.kind != "init") raise(prop.key.start, "Object pattern can't contain getter or setter");
+                            if (prop.kind != "init") raise(prop.key.loc.Start, "Object pattern can't contain getter or setter");
                             toAssignable((Node)prop.value, isBinding);
                         }
                         break;
@@ -47,7 +47,7 @@ namespace AcornSharp
                         }
                         else
                         {
-                            raise(node.left.end, "Only '=' operator can be used for specifying default value.");
+                            raise(node.left.loc.End, "Only '=' operator can be used for specifying default value.");
                             break;
                         }
 
@@ -63,7 +63,7 @@ namespace AcornSharp
                         goto default;
 
                     default:
-                        raise(node.start, "Assigning to rvalue");
+                        raise(node.loc.Start, "Assigning to rvalue");
                         break;
                 }
             }
@@ -90,7 +90,7 @@ namespace AcornSharp
                 }
 
                 if (Options.ecmaVersion == 6 && isBinding && last != null && last.type == NodeType.RestElement && last.argument.type != NodeType.Identifier)
-                    unexpected(last.argument.start);
+                    unexpected(last.argument.loc.Start);
             }
             for (var i = 0; i < end; i++)
             {
@@ -168,7 +168,7 @@ namespace AcornSharp
                 {
                     var rest = parseRestBinding();
                     elts.Add(rest);
-                    if (type == TokenType.comma) raise(start.Index, "Comma is not permitted after the rest element");
+                    if (type == TokenType.comma) raise(start, "Comma is not permitted after the rest element");
                     expect(close);
                     break;
                 }
@@ -204,11 +204,11 @@ namespace AcornSharp
             {
                 case NodeType.Identifier:
                     if (strict && reservedWordsStrictBind.IsMatch(expr.name))
-                        raiseRecoverable(expr.start, (bindingType != null ? "Binding " : "Assigning to ") + expr.name + " in strict mode");
+                        raiseRecoverable(expr.loc.Start, (bindingType != null ? "Binding " : "Assigning to ") + expr.name + " in strict mode");
                     if (checkClashes != null)
                     {
                         if (checkClashes.Contains(expr.name))
-                            raiseRecoverable(expr.start, "Argument name clash");
+                            raiseRecoverable(expr.loc.Start, "Argument name clash");
                         checkClashes.Add(expr.name);
                     }
                     if (bindingType != null && bindingType != "none")
@@ -218,7 +218,7 @@ namespace AcornSharp
                             bindingType != "var" && !canDeclareLexicalName(expr.name)
                         )
                         {
-                            raiseRecoverable(expr.start, $"Identifier '{expr.name}' has already been declared");
+                            raiseRecoverable(expr.loc.Start, $"Identifier '{expr.name}' has already been declared");
                         }
                         if (bindingType == "var")
                         {
@@ -232,7 +232,7 @@ namespace AcornSharp
                     break;
 
                 case NodeType.MemberExpression:
-                    if (bindingType != null) raiseRecoverable(expr.start, "Binding" + " member expression");
+                    if (bindingType != null) raiseRecoverable(expr.loc.Start, "Binding" + " member expression");
                     break;
 
                 case NodeType.ObjectPattern:
@@ -260,7 +260,7 @@ namespace AcornSharp
                     break;
 
                 default:
-                    raise(expr.start, (bindingType != null ? "Binding" : "Assigning to") + " rvalue");
+                    raise(expr.loc.Start, (bindingType != null ? "Binding" : "Assigning to") + " rvalue");
                     break;
             }
         }

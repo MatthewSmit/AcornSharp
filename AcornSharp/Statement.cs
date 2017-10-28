@@ -131,9 +131,9 @@ namespace AcornSharp
                     if (!Options.allowImportExportEverywhere)
                     {
                         if (!topLevel)
-                            raise(start.Index, "'import' and 'export' may only appear at the top level");
+                            raise(start, "'import' and 'export' may only appear at the top level");
                         if (!inModule)
-                            raise(start.Index, "'import' and 'export' may appear only with 'sourceType: module'");
+                            raise(start, "'import' and 'export' may appear only with 'sourceType: module'");
                     }
                     return starttype == TokenType._import ? parseImport(node) : parseExport(node, exports);
             }
@@ -175,7 +175,7 @@ namespace AcornSharp
                     if (node.label != null && isBreak) break;
                 }
             }
-            if (i == labels.Count) raise(node.start, "Unsyntactic " + keyword);
+            if (i == labels.Count) raise(node.loc.Start, "Unsyntactic " + keyword);
             return finishNode(node, isBreak ? NodeType.BreakStatement : NodeType.ContinueStatement);
         }
 
@@ -266,7 +266,7 @@ namespace AcornSharp
         private Node parseReturnStatement(Node node)
         {
             if (!inFunction && !Options.allowReturnOutsideFunction)
-                raise(start.Index, "'return' outside of function");
+                raise(start, "'return' outside of function");
             next();
 
             // In `return` (and `break`/`continue`), the keywords with
@@ -311,7 +311,7 @@ namespace AcornSharp
                     }
                     else
                     {
-                        if (sawDefault) raiseRecoverable(lastTokStart.Index, "Multiple default clauses");
+                        if (sawDefault) raiseRecoverable(lastTokStart, "Multiple default clauses");
                         sawDefault = true;
                         cur.test = null;
                     }
@@ -334,7 +334,7 @@ namespace AcornSharp
         {
             next();
             if (lineBreak.IsMatch(input.Substring(lastTokEnd.Index, start.Index - lastTokEnd.Index)))
-                raise(lastTokEnd.Index, "Illegal newline after throw");
+                raise(lastTokEnd, "Illegal newline after throw");
             node.argument = parseExpression();
             semicolon();
             return finishNode(node, NodeType.ThrowStatement);
@@ -360,7 +360,7 @@ namespace AcornSharp
             }
             node.finalizer = eat(TokenType._finally) ? parseBlock() : null;
             if (node.handler == null && node.finalizer == null)
-                raise(node.start, "Missing catch or finally clause");
+                raise(node.loc.Start, "Missing catch or finally clause");
             return finishNode(node, NodeType.TryStatement);
         }
 
@@ -384,7 +384,7 @@ namespace AcornSharp
 
         private Node parseWithStatement(Node node)
         {
-            if (strict) raise(start.Index, "'with' in strict mode");
+            if (strict) raise(start, "'with' in strict mode");
             next();
             node.@object = parseParenExpression();
             node.fbody = parseStatement(false);
@@ -402,7 +402,7 @@ namespace AcornSharp
             foreach (var label in labels)
             {
                 if (label.name == maybeName)
-                    raise(expr.start, "Label '" + maybeName + "' is already declared");
+                    raise(expr.loc.Start, "Label '" + maybeName + "' is already declared");
             }
             var kind = TokenInformation.Types[type].IsLoop ? "loop" : type == TokenType._switch ? "switch" : null;
             for (var i = labels.Count - 1; i >= 0; i--)
@@ -420,7 +420,7 @@ namespace AcornSharp
             if (node.fbody.type == NodeType.ClassDeclaration ||
                 node.fbody.type == NodeType.VariableDeclaration && node.fbody.kind != "var" ||
                 node.fbody.type == NodeType.FunctionDeclaration && (strict || node.fbody.generator))
-                raiseRecoverable(node.fbody.start, "Invalid labeled declaration");
+                raiseRecoverable(node.fbody.loc.Start, "Invalid labeled declaration");
             labels.Pop();
             node.label = expr;
             return finishNode(node, NodeType.LabeledStatement);
@@ -508,7 +508,7 @@ namespace AcornSharp
                 }
                 else if (decl.id.type != NodeType.Identifier && !(isFor && (type == TokenType._in || isContextual("of"))))
                 {
-                    raise(lastTokEnd.Index, "Complex binding patterns require an initialization value");
+                    raise(lastTokEnd, "Complex binding patterns require an initialization value");
                 }
                 else
                 {
@@ -552,8 +552,8 @@ namespace AcornSharp
             var oldInFunc = inFunction;
             inGenerator = node.generator;
             inAsync = node.async;
-            yieldPos = 0;
-            awaitPos = 0;
+            yieldPos = default;
+            awaitPos = default;
             inFunction = true;
             enterFunctionScope();
 
@@ -626,10 +626,10 @@ namespace AcornSharp
                     if (!method.@static && (key.type == NodeType.Identifier && key.name == "constructor" ||
                                             key.type == NodeType.Literal && (string)key.value == "constructor"))
                     {
-                        if (hadConstructor) raise(key.start, "Duplicate constructor in the same class");
-                        if (isGetSet) raise(key.start, "Constructor can't have get/set modifier");
-                        if (isGenerator) raise(key.start, "Constructor can't be a generator");
-                        if (isAsync) raise(key.start, "Constructor can't be an async method");
+                        if (hadConstructor) raise(key.loc.Start, "Duplicate constructor in the same class");
+                        if (isGetSet) raise(key.loc.Start, "Constructor can't have get/set modifier");
+                        if (isGenerator) raise(key.loc.Start, "Constructor can't be a generator");
+                        if (isAsync) raise(key.loc.Start, "Constructor can't be an async method");
                         method.kind = "constructor";
                         hadConstructor = true;
                     }
@@ -641,7 +641,7 @@ namespace AcornSharp
                     var value = (Node)method.value;
                     if (value.@params.Count != paramCount)
                     {
-                        var start = value.start;
+                        var start = value.loc.Start;
                         if (method.kind == "get")
                             raiseRecoverable(start, "getter should have no params");
                         else
@@ -650,7 +650,7 @@ namespace AcornSharp
                     else
                     {
                         if (method.kind == "set" && value.@params[0].type == NodeType.RestElement)
-                            raiseRecoverable(value.@params[0].start, "Setter cannot use rest params");
+                            raiseRecoverable(value.@params[0].loc.Start, "Setter cannot use rest params");
                     }
                 }
             }
@@ -697,7 +697,7 @@ namespace AcornSharp
             if (eat(TokenType._default))
             {
                 // export default ...
-                checkExport(exports, "default", lastTokStart.Index);
+                checkExport(exports, "default", lastTokStart);
                 var isAsync = false;
                 if (type == TokenType._function || (isAsync = isAsyncFunction()))
                 {
@@ -725,7 +725,7 @@ namespace AcornSharp
                 if (node.declaration.type == NodeType.VariableDeclaration)
                     checkVariableExport(exports, node.declaration.declarations);
                 else
-                    checkExport(exports, node.declaration.id.name, node.declaration.id.start);
+                    checkExport(exports, node.declaration.id.name, node.declaration.id.loc.Start);
                 node.specifiers = new List<Node>();
                 node.source = null;
             }
@@ -744,7 +744,7 @@ namespace AcornSharp
                     // check for keywords used as local names
                     foreach (var spec in node.specifiers)
                     {
-                        checkUnreserved(spec.local.start, spec.local.end, spec.local.name);
+                        checkUnreserved(spec.local.loc.Start, spec.local.loc.End, spec.local.name);
                     }
 
                     node.source = null;
@@ -754,7 +754,7 @@ namespace AcornSharp
             return finishNode(node, NodeType.ExportNamedDeclaration);
         }
 
-        private void checkExport(IDictionary<string, bool> exports, string name, int pos)
+        private static void checkExport(IDictionary<string, bool> exports, string name, Position pos)
         {
             if (exports == null) return;
             if (exports.ContainsKey(name))
@@ -762,13 +762,13 @@ namespace AcornSharp
             exports[name] = true;
         }
 
-        private void checkPatternExport(IDictionary<string, bool> exports, Node pat)
+        private static void checkPatternExport(IDictionary<string, bool> exports, Node pat)
         {
             var type = pat.type;
             switch (type)
             {
                 case NodeType.Identifier:
-                    checkExport(exports, pat.name, pat.start);
+                    checkExport(exports, pat.name, pat.loc.Start);
                     break;
                 case NodeType.ObjectPattern:
                     foreach (var prop in pat.properties)
@@ -789,7 +789,7 @@ namespace AcornSharp
             }
         }
 
-        private void checkVariableExport(IDictionary<string, bool> exports, IEnumerable<Node> decls)
+        private static void checkVariableExport(IDictionary<string, bool> exports, IEnumerable<Node> decls)
         {
             if (exports == null) return;
             foreach (var decl in decls)
@@ -825,7 +825,7 @@ namespace AcornSharp
                 var node = startNode();
                 node.local = parseIdent(true);
                 node.exported = eatContextual("as") ? parseIdent(true) : node.local;
-                checkExport(exports, node.exported.name, node.exported.start);
+                checkExport(exports, node.exported.name, node.exported.loc.Start);
                 nodes.Add(finishNode(node, NodeType.ExportSpecifier));
             }
             return nodes;
@@ -894,7 +894,7 @@ namespace AcornSharp
                 }
                 else
                 {
-                    checkUnreserved(node.imported.start, node.imported.end, node.imported.name);
+                    checkUnreserved(node.imported.loc.Start, node.imported.loc.End, node.imported.name);
                     node.local = node.imported;
                 }
                 checkLVal(node.local, "let");
