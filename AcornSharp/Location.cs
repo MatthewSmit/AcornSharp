@@ -11,7 +11,7 @@
         {
             var loc = getLineInfo(input, pos);
             message += " (" + loc.Line + ":" + loc.Column + ")";
-            var err = new SyntaxError(message, pos, loc, this.pos);
+            var err = new SyntaxError(message, pos, loc, this.pos.Index);
             throw err;
         }
 
@@ -22,7 +22,7 @@
 
         public Position curPosition()
         {
-            return new Position(curLine, pos - lineStart, pos);
+            return new Position(pos.Line, pos.Column, pos.Index);
         }
     }
 }

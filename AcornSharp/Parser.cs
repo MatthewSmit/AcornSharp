@@ -20,9 +20,7 @@ namespace AcornSharp
         private Regex reservedWords;
         private Regex reservedWordsStrict;
         private Regex reservedWordsStrictBind;
-        private int pos;
-        private int lineStart;
-        private int curLine;
+        private Position pos;
         private Stack<Scope> scopeStack;
         private List<Label> labels;
         private int awaitPos;
@@ -83,15 +81,14 @@ namespace AcornSharp
             // The current position of the tokenizer in the input.
             if (startPos.HasValue)
             {
-                pos = startPos.Value;
-                lineStart = this.input.LastIndexOf('\n', startPos.Value - 1) + 1;
+//                pos = startPos.Value;
+//                lineStart = this.input.LastIndexOf('\n', startPos.Value - 1) + 1;
 //                curLine = this.input.slice(0, lineStart).split(lineBreak).length;
                 throw new NotImplementedException();
             }
             else
             {
-                pos = lineStart = 0;
-                curLine = 1;
+                pos = new Position(1, 0, 0);
             }
 
             // Properties of the current token:
@@ -113,7 +110,7 @@ namespace AcornSharp
 
             // Figure out if it's a module code.
             inModule = options.sourceType == "module";
-            strict = inModule || strictDirective(pos);
+            strict = inModule || strictDirective(pos.Index);
 
             // Used to signify the start of a potential arrow function
             potentialArrowAt = -1;
@@ -126,7 +123,7 @@ namespace AcornSharp
             labels = new List<Label>();
 
             // If enabled, skip leading hashbang line.
-            if (pos == 0 && options.allowHashBang && this.input.Substring(0, 2) == "#!")
+            if (pos.Index == 0 && options.allowHashBang && this.input.Substring(0, 2) == "#!")
                 skipLineComment(2);
 
             // Scope tracking for duplicate variable names (see scope.js)

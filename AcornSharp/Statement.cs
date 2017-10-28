@@ -35,8 +35,8 @@ namespace AcornSharp
         private bool isLet()
         {
             if (type != TokenType.name || Options.ecmaVersion < 6 || (string)value != "let") return false;
-            var skip = skipWhiteSpace.Match(input, pos);
-            var next = this.pos + skip.Groups[0].Length;
+            var skip = skipWhiteSpace.Match(input, pos.Index);
+            var next = this.pos.Index + skip.Groups[0].Length;
             var nextCh = input[next];
             if (nextCh == 91 || nextCh == 123) return true; // '{' and '['
             if (isIdentifierStart(nextCh, true))
@@ -57,9 +57,9 @@ namespace AcornSharp
             if (type != TokenType.name || Options.ecmaVersion < 8 || (string)value != "async")
                 return false;
 
-            var skip = skipWhiteSpace.Match(input, pos);
-            var next = pos + skip.Groups[0].Length;
-            return !lineBreak.IsMatch(input.Substring(pos, next - pos)) &&
+            var skip = skipWhiteSpace.Match(input, pos.Index);
+            var next = pos.Index + skip.Groups[0].Length;
+            return !lineBreak.IsMatch(input.Substring(pos.Index, next - pos.Index)) &&
                    input.Length >= next + 8 && input.Substring(next, 8) == "function" &&
                    (next + 8 == input.Length || !isIdentifierChar(input.Get(next + 8)));
         }

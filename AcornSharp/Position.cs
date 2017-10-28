@@ -11,6 +11,11 @@ namespace AcornSharp
             Index = index;
         }
 
+        public Position Increment(int i)
+        {
+            return new Position(Line, Column + i, Index + i);
+        }
+
         public override string ToString()
         {
             return $"(Line: {Line}, Column: {Column}, Index: {Index})";
@@ -52,6 +57,11 @@ namespace AcornSharp
         public static bool operator !=(Position left, Position right)
         {
             return !Equals(left, right);
+        }
+
+        public static int operator -(Position left, Position right)
+        {
+            return left.Index - right.Index;
         }
     }
 }
