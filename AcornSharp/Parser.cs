@@ -25,8 +25,6 @@ namespace AcornSharp
         private int curLine;
         private Stack<Scope> scopeStack;
         private List<Label> labels;
-        private int lastTokStart;
-        private int lastTokEnd;
         private int awaitPos;
         private int yieldPos;
         private int potentialArrowAt;
@@ -37,8 +35,8 @@ namespace AcornSharp
         private object value;
         private Position start;
         private Position end;
-        private Position lastTokStartLoc;
-        private Position lastTokEndLoc;
+        private Position lastTokStart;
+        private Position lastTokEnd;
         private bool exprAllowed;
         private List<TokContext> context;
         private bool inModule;
@@ -105,8 +103,7 @@ namespace AcornSharp
             start = end = curPosition();
 
             // Position information for the previous token
-            lastTokEndLoc = lastTokStartLoc = null;
-            lastTokStart = lastTokEnd = pos;
+            lastTokStart = lastTokEnd = curPosition();
 
             // The context stack is used to superficially track syntactic
             // context to predict whether a regular expression is allowed in a

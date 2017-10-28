@@ -40,10 +40,8 @@ namespace AcornSharp
                 throw new NotImplementedException();
             }
 
-            lastTokEnd = end.Index;
-            lastTokStart = start.Index;
-            lastTokEndLoc = end;
-            lastTokStartLoc = start;
+            lastTokEnd = end;
+            lastTokStart = start;
             nextToken();
         }
 
@@ -297,7 +295,7 @@ namespace AcornSharp
             if (next == code)
             {
                 if (next == 45 && !inModule && input.Get(pos + 2) == 62 &&
-                    (lastTokEnd == 0 || lineBreak.IsMatch(input.Substring(lastTokEnd, pos - lastTokEnd))))
+                    (lastTokEnd.Index == 0 || lineBreak.IsMatch(input.Substring(lastTokEnd.Index, pos - lastTokEnd.Index))))
                 {
                     // A `-->` line comment
                     skipLineComment(3);

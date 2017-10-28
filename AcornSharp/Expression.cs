@@ -307,7 +307,7 @@ namespace AcornSharp
         {
             var startLoc = start;
             var expr = parseExprAtom(refDestructuringErrors);
-            var skipArrowSubscripts = expr.type == NodeType.ArrowFunctionExpression && input.Substring(lastTokStart, lastTokEnd - lastTokStart) != ")";
+            var skipArrowSubscripts = expr.type == NodeType.ArrowFunctionExpression && input.Substring(lastTokStart.Index, lastTokEnd.Index - lastTokStart.Index) != ")";
             if (checkExpressionErrors(refDestructuringErrors) || skipArrowSubscripts) return expr;
             var result = parseSubscripts(expr, startLoc);
             if (refDestructuringErrors != null && result.type == NodeType.MemberExpression)
@@ -321,7 +321,7 @@ namespace AcornSharp
         private Node parseSubscripts(Node @base, Position startLoc, bool noCalls = false)
         {
             var maybeAsyncArrow = Options.ecmaVersion >= 8 && @base.type == NodeType.Identifier && @base.name == "async" &&
-                                  lastTokEnd == @base.end && !canInsertSemicolon();
+                                  lastTokEnd.Index == @base.end && !canInsertSemicolon();
             for (;;)
             {
                 bool computed;
@@ -561,7 +561,7 @@ namespace AcornSharp
                     return parseParenArrowList(startLoc, exprList);
                 }
 
-                if (exprList.Count == 0 || lastIsComma) unexpected(lastTokStart);
+                if (exprList.Count == 0 || lastIsComma) unexpected(lastTokStart.Index);
                 if (spreadStart >= 0) unexpected(spreadStart);
                 checkExpressionErrors(refDestructuringErrors, true);
                 yieldPos = oldYieldPos != 0 ? oldYieldPos : yieldPos;
@@ -680,7 +680,7 @@ namespace AcornSharp
         {
             return !prop.computed && prop.key.type == NodeType.Identifier && prop.key.name == "async" &&
                    (type == TokenType.name || type == TokenType.num || type == TokenType.@string || type == TokenType.bracketL || TokenInformation.Types[type].Keyword != null) &&
-                   !lineBreak.IsMatch(input.Substring(lastTokEnd, start.Index - lastTokEnd));
+                   !lineBreak.IsMatch(input.Substring(lastTokEnd.Index, start.Index - lastTokEnd.Index));
         }
 
         private Node parseObj(bool isPattern, DestructuringErrors refDestructuringErrors = null)

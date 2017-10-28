@@ -60,7 +60,7 @@ namespace AcornSharp
         {
             return type == TokenType.eof ||
                    type == TokenType.braceR ||
-                   lineBreak.IsMatch(input.Substring(lastTokEnd, start.Index - lastTokEnd));
+                   lineBreak.IsMatch(input.Substring(lastTokEnd.Index, start.Index - lastTokEnd.Index));
         }
 
         private bool insertSemicolon()

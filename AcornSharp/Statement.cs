@@ -311,7 +311,7 @@ namespace AcornSharp
                     }
                     else
                     {
-                        if (sawDefault) raiseRecoverable(lastTokStart, "Multiple default clauses");
+                        if (sawDefault) raiseRecoverable(lastTokStart.Index, "Multiple default clauses");
                         sawDefault = true;
                         cur.test = null;
                     }
@@ -333,8 +333,8 @@ namespace AcornSharp
         private Node parseThrowStatement(Node node)
         {
             next();
-            if (lineBreak.IsMatch(input.Substring(lastTokEnd, start.Index - lastTokEnd)))
-                raise(lastTokEnd, "Illegal newline after throw");
+            if (lineBreak.IsMatch(input.Substring(lastTokEnd.Index, start.Index - lastTokEnd.Index)))
+                raise(lastTokEnd.Index, "Illegal newline after throw");
             node.argument = parseExpression();
             semicolon();
             return finishNode(node, NodeType.ThrowStatement);
@@ -508,7 +508,7 @@ namespace AcornSharp
                 }
                 else if (decl.id.type != NodeType.Identifier && !(isFor && (type == TokenType._in || isContextual("of"))))
                 {
-                    raise(lastTokEnd, "Complex binding patterns require an initialization value");
+                    raise(lastTokEnd.Index, "Complex binding patterns require an initialization value");
                 }
                 else
                 {
@@ -697,7 +697,7 @@ namespace AcornSharp
             if (eat(TokenType._default))
             {
                 // export default ...
-                checkExport(exports, "default", lastTokStart);
+                checkExport(exports, "default", lastTokStart.Index);
                 var isAsync = false;
                 if (type == TokenType._function || (isAsync = isAsyncFunction()))
                 {

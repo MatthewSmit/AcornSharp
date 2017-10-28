@@ -27,7 +27,7 @@ namespace AcornSharp
 
         private Node finishNode(Node node, NodeType type)
         {
-            return finishNodeAt(node, type, lastTokEndLoc);
+            return finishNodeAt(node, type, lastTokEnd);
         }
     }
 
