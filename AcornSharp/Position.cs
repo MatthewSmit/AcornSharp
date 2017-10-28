@@ -11,6 +11,11 @@ namespace AcornSharp
             Index = index;
         }
 
+        public override string ToString()
+        {
+            return $"(Line: {Line}, Column: {Column}, Index: {Index})";
+        }
+
         public bool Equals(Position other)
         {
             if (ReferenceEquals(null, other)) return false;

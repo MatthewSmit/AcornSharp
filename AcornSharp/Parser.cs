@@ -23,10 +23,8 @@ namespace AcornSharp
         private int pos;
         private int lineStart;
         private int curLine;
-        private int end;
         private Stack<Scope> scopeStack;
         private List<Label> labels;
-        private int start;
         private int lastTokStart;
         private int lastTokEnd;
         private int awaitPos;
@@ -37,8 +35,8 @@ namespace AcornSharp
         private bool inFunction;
         private TokenType type;
         private object value;
-        private Position startLoc;
-        private Position endLoc;
+        private Position start;
+        private Position end;
         private Position lastTokStartLoc;
         private Position lastTokEndLoc;
         private bool exprAllowed;
@@ -103,11 +101,8 @@ namespace AcornSharp
             type = TokenType.eof;
             // For tokens that include more information than their type, the value
             value = null;
-            // Its start and end offset
-            start = end = pos;
-            // And, if locations are used, the {line, column} object
-            // corresponding to those offsets
-            startLoc = endLoc = curPosition();
+            // Its start and end
+            start = end = curPosition();
 
             // Position information for the previous token
             lastTokEndLoc = lastTokStartLoc = null;

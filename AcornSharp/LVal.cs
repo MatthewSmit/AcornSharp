@@ -169,13 +169,13 @@ namespace AcornSharp
                     var rest = parseRestBinding();
                     parseBindingListItem(rest);
                     elts.Add(rest);
-                    if (type == TokenType.comma) raise(start, "Comma is not permitted after the rest element");
+                    if (type == TokenType.comma) raise(start.Index, "Comma is not permitted after the rest element");
                     expect(close);
                     break;
                 }
                 else
                 {
-                    var elem = parseMaybeDefault(start, startLoc);
+                    var elem = parseMaybeDefault(start);
                     parseBindingListItem(elem);
                     elts.Add(elem);
                 }
@@ -189,11 +189,11 @@ namespace AcornSharp
         }
 
         // Parses assignment pattern around given atom if possible.
-        private Node parseMaybeDefault(int startPos, Position startLoc, Node left = null)
+        private Node parseMaybeDefault(Position startLoc, Node left = null)
         {
             left = left ?? parseBindingAtom();
             if (Options.ecmaVersion < 6 || !eat(TokenType.eq)) return left;
-            var node = startNodeAt(startPos, startLoc);
+            var node = startNodeAt(startLoc);
             node.left = left;
             node.right = parseMaybeAssign();
             return finishNode(node, NodeType.AssignmentPattern);

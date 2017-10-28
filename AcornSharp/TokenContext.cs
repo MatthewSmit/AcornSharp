@@ -22,7 +22,7 @@ namespace AcornSharp
             // after a `yield` or `of` construct. See the `updateContext` for
             // `tt.name`.
             if (prevType == TokenType._return || prevType == TokenType.name && exprAllowed)
-                return lineBreak.IsMatch(input.Substring(lastTokEnd, start - lastTokEnd));
+                return lineBreak.IsMatch(input.Substring(lastTokEnd, start.Index - lastTokEnd));
             if (prevType == TokenType._else || prevType == TokenType.semi || prevType == TokenType.eof || prevType == TokenType.parenR || prevType == TokenType.arrow)
                 return true;
             if (prevType == TokenType.braceL)

@@ -4,12 +4,8 @@ namespace AcornSharp.Cli
 {
     internal static partial class Program
     {
-        private static Driver driver;
-
         private static void Main()
         {
-            driver = new Driver();
-
             var t0 = DateTime.Now;
             Tests();
             TestsHarmony();
@@ -22,20 +18,7 @@ namespace AcornSharp.Cli
             Console.WriteLine("Tests run in " + duration + "ms");
         }
 
-        private static void Test(string code, Node ast, Options options = null)
-        {
-            driver.Test(code, ast, options);
-        }
-
-        private static void testFail(string code, string message, Options options = null)
-        {
-            driver.TestFail(code, message, options);
-        }
-    }
-
-    internal sealed class Driver
-    {
-        public void Test(string code, Node expectedAst, Options options)
+        public static void Test(string code, Node expectedAst, Options options = null)
         {
             if (options == null)
                 options = new Options();
@@ -48,7 +31,7 @@ namespace AcornSharp.Cli
                 throw new NotImplementedException();
         }
 
-        public void TestFail(string code, string error, Options options)
+        private static void testFail(string code, string error, Options options = null)
         {
             if (options == null)
                 options = new Options();

@@ -22,6 +22,13 @@ namespace AcornSharp
         public Position End { get; }
         public string Source { get; }
 
+        public override string ToString()
+        {
+            if (Source == null)
+                return $"(Start: {Start}, End: {End})";
+            return $"(Start: {Start}, End: {End}, Source: {Source})";
+        }
+
         public bool Equals(SourceLocation other)
         {
             if (ReferenceEquals(null, other)) return false;

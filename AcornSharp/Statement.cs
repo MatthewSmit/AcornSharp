@@ -131,9 +131,9 @@ namespace AcornSharp
                     if (!Options.allowImportExportEverywhere)
                     {
                         if (!topLevel)
-                            raise(start, "'import' and 'export' may only appear at the top level");
+                            raise(start.Index, "'import' and 'export' may only appear at the top level");
                         if (!inModule)
-                            raise(start, "'import' and 'export' may appear only with 'sourceType: module'");
+                            raise(start.Index, "'import' and 'export' may appear only with 'sourceType: module'");
                     }
                     return starttype == TokenType._import ? parseImport(node) : parseExport(node, exports);
             }
@@ -266,7 +266,7 @@ namespace AcornSharp
         private Node parseReturnStatement(Node node)
         {
             if (!inFunction && !Options.allowReturnOutsideFunction)
-                raise(start, "'return' outside of function");
+                raise(start.Index, "'return' outside of function");
             next();
 
             // In `return` (and `break`/`continue`), the keywords with
@@ -333,7 +333,7 @@ namespace AcornSharp
         private Node parseThrowStatement(Node node)
         {
             next();
-            if (lineBreak.IsMatch(input.Substring(lastTokEnd, start - lastTokEnd)))
+            if (lineBreak.IsMatch(input.Substring(lastTokEnd, start.Index - lastTokEnd)))
                 raise(lastTokEnd, "Illegal newline after throw");
             node.argument = parseExpression();
             semicolon();
@@ -384,7 +384,7 @@ namespace AcornSharp
 
         private Node parseWithStatement(Node node)
         {
-            if (strict) raise(start, "'with' in strict mode");
+            if (strict) raise(start.Index, "'with' in strict mode");
             next();
             node.@object = parseParenExpression();
             node.fbody = parseStatement(false);
@@ -410,12 +410,12 @@ namespace AcornSharp
                 var label = labels[i];
                 if (label.statementStart == node.start)
                 {
-                    label.statementStart = start;
+                    label.statementStart = start.Index;
                     label.kind = kind;
                 }
                 else break;
             }
-            labels.Add(new Label {name = maybeName, kind = kind, statementStart = start});
+            labels.Add(new Label {name = maybeName, kind = kind, statementStart = start.Index });
             node.fbody = parseStatement(true);
             if (node.fbody.type == NodeType.ClassDeclaration ||
                 node.fbody.type == NodeType.VariableDeclaration && node.fbody.kind != "var" ||

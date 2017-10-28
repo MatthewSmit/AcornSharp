@@ -60,7 +60,7 @@ namespace AcornSharp
         {
             return type == TokenType.eof ||
                    type == TokenType.braceR ||
-                   lineBreak.IsMatch(input.Substring(lastTokEnd, start - lastTokEnd));
+                   lineBreak.IsMatch(input.Substring(lastTokEnd, start.Index - lastTokEnd));
         }
 
         private bool insertSemicolon()
@@ -111,7 +111,7 @@ namespace AcornSharp
         // Raise an unexpected token error.
         private void unexpected(int? pos = null)
         {
-            raise(pos ?? start, "Unexpected token");
+            raise(pos ?? start.Index, "Unexpected token");
         }
 
         private sealed class DestructuringErrors

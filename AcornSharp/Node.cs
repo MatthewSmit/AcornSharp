@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 namespace AcornSharp
 {
@@ -8,27 +7,27 @@ namespace AcornSharp
     {
         private Node startNode()
         {
-            return new Node(this, this.start, this.startLoc);
+            return new Node(this, start);
         }
 
-        public Node startNodeAt(int pos, Position loc)
+        public Node startNodeAt(Position pos)
         {
-            return new Node(this, pos, loc);
+            return new Node(this, pos);
         }
 
         // Finish an AST node, adding `type` and `end` properties.
-        private Node finishNodeAt(Node node, NodeType type, int pos, Position loc)
+        private Node finishNodeAt(Node node, NodeType type, Position pos)
         {
             node.type = type;
-            node.end = pos;
-            node.loc = new SourceLocation(node.loc.Start, loc, node.loc.Source);
-            node.range = (node.range.Item1, pos);
+            node.end = pos.Index;
+            node.loc = new SourceLocation(node.loc.Start, pos, node.loc.Source);
+            node.range = (node.range.Item1, pos.Index);
             return node;
         }
 
         private Node finishNode(Node node, NodeType type)
         {
-            return finishNodeAt(node, type, lastTokEnd, lastTokEndLoc);
+            return finishNodeAt(node, type, lastTokEndLoc);
         }
     }
 
@@ -104,15 +103,15 @@ namespace AcornSharp
         {
         }
 
-        public Node(Parser parser, int pos, Position loc)
+        public Node(Parser parser, Position pos)
         {
             type = NodeType.Unknown;
-            start = pos;
+            start = pos.Index;
             end = 0;
-            this.loc = new SourceLocation(parser, loc);
+            loc = new SourceLocation(parser, pos);
             if (parser.Options.directSourceFile != null)
                 sourceFile = parser.Options.directSourceFile;
-            range = (pos, 0);
+            range = (pos.Index, 0);
         }
 
         public bool TestEquals(Node other)

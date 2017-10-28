@@ -24,10 +24,10 @@ namespace AcornSharp
             {
                 type = p.type;
                 value = p.value;
-                start = p.start;
-                end = p.end;
-                loc = new SourceLocation(p, p.startLoc, p.endLoc);
-                range = (p.start, p.end);
+                start = p.start.Index;
+                end = p.end.Index;
+                loc = new SourceLocation(p, p.start, p.end);
+                range = (p.start.Index, p.end.Index);
             }
         }
 
@@ -40,10 +40,10 @@ namespace AcornSharp
                 throw new NotImplementedException();
             }
 
-            lastTokEnd = end;
-            lastTokStart = start;
-            lastTokEndLoc = endLoc;
-            lastTokStartLoc = startLoc;
+            lastTokEnd = end.Index;
+            lastTokStart = start.Index;
+            lastTokEndLoc = end;
+            lastTokStartLoc = start;
             nextToken();
         }
 
@@ -81,8 +81,7 @@ namespace AcornSharp
             var curContext = this.curContext();
             if (curContext == null || curContext.PreserveSpace != true) skipSpace();
 
-            start = pos;
-            startLoc = curPosition();
+            start = curPosition();
             if (pos >= input.Length)
             {
                 finishToken(TokenType.eof);
@@ -204,8 +203,7 @@ namespace AcornSharp
         // right position.
         private void finishToken(TokenType type, object val = null)
         {
-            end = pos;
-            endLoc = curPosition();
+            end = curPosition();
             var prevType = this.type;
             this.type = type;
             value = val;
@@ -571,7 +569,7 @@ namespace AcornSharp
             var val = readInt(radix);
             if (!val.HasValue)
             {
-                raise(start + 2, "Expected number in radix " + radix);
+                raise(start.Index + 2, "Expected number in radix " + radix);
                 return;
             }
             if (isIdentifierStart(fullCharCodeAtPos())) raise(pos, "Identifier directly after number");
@@ -654,7 +652,7 @@ namespace AcornSharp
             var chunkStart = ++pos;
             while (true)
             {
-                if (pos >= input.Length) raise(start, "Unterminated string constant");
+                if (pos >= input.Length) raise(start.Index, "Unterminated string constant");
                 var ch = input[pos];
                 if (ch == quote) break;
                 if (ch == 92)
@@ -666,7 +664,7 @@ namespace AcornSharp
                 }
                 else
                 {
-                    if (isNewLine(ch)) raise(start, "Unterminated string constant");
+                    if (isNewLine(ch)) raise(start.Index, "Unterminated string constant");
                     ++pos;
                 }
             }
@@ -711,12 +709,12 @@ namespace AcornSharp
             var chunkStart = pos;
             while (true)
             {
-                if (pos >= input.Length) raise(start, "Unterminated template");
+                if (pos >= input.Length) raise(start.Index, "Unterminated template");
                 var ch = input[pos];
                 if (ch == 96 || ch == 36 && input[pos + 1] == 123)
                 {
                     // '`', '${'
-                    if (pos == start && (type == TokenType.template || type == TokenType.invalidTemplate))
+                    if (pos == start.Index && (type == TokenType.template || type == TokenType.invalidTemplate))
                     {
                         if (ch == 36)
                         {
@@ -786,13 +784,13 @@ namespace AcornSharp
                     // falls through
 
                     case '`':
-                        finishToken(TokenType.invalidTemplate, input.Substring(start, pos - start));
+                        finishToken(TokenType.invalidTemplate, input.Substring(start.Index, pos - start.Index));
                         return;
 
                     // no default
                 }
             }
-            raise(start, "Unterminated template");
+            raise(start.Index, "Unterminated template");
         }
 
         // Used to read escaped characters
@@ -921,7 +919,7 @@ namespace AcornSharp
             var type = TokenType.name;
             if (keywords.IsMatch(word))
             {
-                if (containsEsc) raiseRecoverable(start, "Escape sequence in keyword " + word);
+                if (containsEsc) raiseRecoverable(start.Index, "Escape sequence in keyword " + word);
                 type = TokenInformation.Keywords[word];
             }
             finishToken(type, word);
