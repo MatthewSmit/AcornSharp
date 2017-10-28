@@ -8,19 +8,19 @@ namespace AcornSharp.Cli
         {
             Test("`foo`", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 5,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 5,
                         expression = new Node
                         {
-                            type = "TemplateLiteral",
+                            type = NodeType.TemplateLiteral,
                             start = 0,
                             end = 5,
                             expressions = new List<Node>(),
@@ -28,7 +28,7 @@ namespace AcornSharp.Cli
                             {
                                 new Node
                                 {
-                                    type = "TemplateElement",
+                                    type = NodeType.TemplateElement,
                                     start = 1,
                                     end = 4,
                                     value = new TemplateNode("foo", "foo"),
@@ -43,19 +43,19 @@ namespace AcornSharp.Cli
 
             Test("`foo\\u25a0`", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 11,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 11,
                         expression = new Node
                         {
-                            type = "TemplateLiteral",
+                            type = NodeType.TemplateLiteral,
                             start = 0,
                             end = 11,
                             expressions = new List<Node>(),
@@ -63,7 +63,7 @@ namespace AcornSharp.Cli
                             {
                                 new Node
                                 {
-                                    type = "TemplateElement",
+                                    type = NodeType.TemplateElement,
                                     start = 1,
                                     end = 10,
                                     value = new TemplateNode("foo\\u25a0", "foo■"),
@@ -78,26 +78,26 @@ namespace AcornSharp.Cli
 
             Test("`foo${bar}\\u25a0`", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 17,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 17,
                         expression = new Node
                         {
-                            type = "TemplateLiteral",
+                            type = NodeType.TemplateLiteral,
                             start = 0,
                             end = 17,
                             expressions = new List<Node>
                             {
                                 new Node
                                 {
-                                    type = "Identifier",
+                                    type = NodeType.Identifier,
                                     start = 6,
                                     end = 9,
                                     name = "bar"
@@ -107,7 +107,7 @@ namespace AcornSharp.Cli
                             {
                                 new Node
                                 {
-                                    type = "TemplateElement",
+                                    type = NodeType.TemplateElement,
                                     start = 1,
                                     end = 4,
                                     value = new TemplateNode("foo", "foo"),
@@ -115,7 +115,7 @@ namespace AcornSharp.Cli
                                 },
                                 new Node
                                 {
-                                    type = "TemplateElement",
+                                    type = NodeType.TemplateElement,
                                     start = 10,
                                     end = 16,
                                     value = new TemplateNode("\\u25a0", "■"),
@@ -130,31 +130,31 @@ namespace AcornSharp.Cli
 
             Test("foo`\\u25a0`", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 11,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 11,
                         expression = new Node
                         {
-                            type = "TaggedTemplateExpression",
+                            type = NodeType.TaggedTemplateExpression,
                             start = 0,
                             end = 11,
                             tag = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 0,
                                 end = 3,
                                 name = "foo"
                             },
                             quasi = new Node
                             {
-                                type = "TemplateLiteral",
+                                type = NodeType.TemplateLiteral,
                                 start = 3,
                                 end = 11,
                                 expressions = new List<Node>(),
@@ -162,7 +162,7 @@ namespace AcornSharp.Cli
                                 {
                                     new Node
                                     {
-                                        type = "TemplateElement",
+                                        type = NodeType.TemplateElement,
                                         start = 4,
                                         end = 10,
                                         value = new TemplateNode("\\u25a0", "■"),
@@ -178,38 +178,38 @@ namespace AcornSharp.Cli
 
             Test("foo`foo${bar}\\u25a0`", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 20,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 20,
                         expression = new Node
                         {
-                            type = "TaggedTemplateExpression",
+                            type = NodeType.TaggedTemplateExpression,
                             start = 0,
                             end = 20,
                             tag = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 0,
                                 end = 3,
                                 name = "foo"
                             },
                             quasi = new Node
                             {
-                                type = "TemplateLiteral",
+                                type = NodeType.TemplateLiteral,
                                 start = 3,
                                 end = 20,
                                 expressions = new List<Node>
                                 {
                                     new Node
                                     {
-                                        type = "Identifier",
+                                        type = NodeType.Identifier,
                                         start = 9,
                                         end = 12,
                                         name = "bar"
@@ -219,7 +219,7 @@ namespace AcornSharp.Cli
                                 {
                                     new Node
                                     {
-                                        type = "TemplateElement",
+                                        type = NodeType.TemplateElement,
                                         start = 4,
                                         end = 7,
                                         value = new TemplateNode("foo", "foo"),
@@ -227,7 +227,7 @@ namespace AcornSharp.Cli
                                     },
                                     new Node
                                     {
-                                        type = "TemplateElement",
+                                        type = NodeType.TemplateElement,
                                         start = 13,
                                         end = 19,
                                         value = new TemplateNode("\\u25a0", "■"),
@@ -256,31 +256,31 @@ namespace AcornSharp.Cli
 
             Test("foo`\\unicode`", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 13,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 13,
                         expression = new Node
                         {
-                            type = "TaggedTemplateExpression",
+                            type = NodeType.TaggedTemplateExpression,
                             start = 0,
                             end = 13,
                             tag = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 0,
                                 end = 3,
                                 name = "foo"
                             },
                             quasi = new Node
                             {
-                                type = "TemplateLiteral",
+                                type = NodeType.TemplateLiteral,
                                 start = 3,
                                 end = 13,
                                 expressions = new List<Node>(),
@@ -288,7 +288,7 @@ namespace AcornSharp.Cli
                                 {
                                     new Node
                                     {
-                                        type = "TemplateElement",
+                                        type = NodeType.TemplateElement,
                                         start = 4,
                                         end = 12,
                                         value = new TemplateNode("\\unicode", null),
@@ -304,38 +304,38 @@ namespace AcornSharp.Cli
 
             Test("foo`foo${bar}\\unicode`", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 22,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 22,
                         expression = new Node
                         {
-                            type = "TaggedTemplateExpression",
+                            type = NodeType.TaggedTemplateExpression,
                             start = 0,
                             end = 22,
                             tag = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 0,
                                 end = 3,
                                 name = "foo"
                             },
                             quasi = new Node
                             {
-                                type = "TemplateLiteral",
+                                type = NodeType.TemplateLiteral,
                                 start = 3,
                                 end = 22,
                                 expressions = new List<Node>
                                 {
                                     new Node
                                     {
-                                        type = "Identifier",
+                                        type = NodeType.Identifier,
                                         start = 9,
                                         end = 12,
                                         name = "bar"
@@ -345,7 +345,7 @@ namespace AcornSharp.Cli
                                 {
                                     new Node
                                     {
-                                        type = "TemplateElement",
+                                        type = NodeType.TemplateElement,
                                         start = 4,
                                         end = 7,
                                         value = new TemplateNode("foo", "foo"),
@@ -353,7 +353,7 @@ namespace AcornSharp.Cli
                                     },
                                     new Node
                                     {
-                                        type = "TemplateElement",
+                                        type = NodeType.TemplateElement,
                                         start = 13,
                                         end = 21,
                                         value = new TemplateNode("\\unicode", null),
@@ -369,31 +369,31 @@ namespace AcornSharp.Cli
 
             Test("foo`\\u`", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 7,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 7,
                         expression = new Node
                         {
-                            type = "TaggedTemplateExpression",
+                            type = NodeType.TaggedTemplateExpression,
                             start = 0,
                             end = 7,
                             tag = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 0,
                                 end = 3,
                                 name = "foo"
                             },
                             quasi = new Node
                             {
-                                type = "TemplateLiteral",
+                                type = NodeType.TemplateLiteral,
                                 start = 3,
                                 end = 7,
                                 expressions = new List<Node>(),
@@ -401,7 +401,7 @@ namespace AcornSharp.Cli
                                 {
                                     new Node
                                     {
-                                        type = "TemplateElement",
+                                        type = NodeType.TemplateElement,
                                         start = 4,
                                         end = 6,
                                         value = new TemplateNode("\\u", null),
@@ -417,31 +417,31 @@ namespace AcornSharp.Cli
 
             Test("foo`\\u{`", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 8,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 8,
                         expression = new Node
                         {
-                            type = "TaggedTemplateExpression",
+                            type = NodeType.TaggedTemplateExpression,
                             start = 0,
                             end = 8,
                             tag = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 0,
                                 end = 3,
                                 name = "foo"
                             },
                             quasi = new Node
                             {
-                                type = "TemplateLiteral",
+                                type = NodeType.TemplateLiteral,
                                 start = 3,
                                 end = 8,
                                 expressions = new List<Node>(),
@@ -449,7 +449,7 @@ namespace AcornSharp.Cli
                                 {
                                     new Node
                                     {
-                                        type = "TemplateElement",
+                                        type = NodeType.TemplateElement,
                                         start = 4,
                                         end = 7,
                                         value = new TemplateNode("\\u{", null),
@@ -465,31 +465,31 @@ namespace AcornSharp.Cli
 
             Test("foo`\\u{abcdx`", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 13,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 13,
                         expression = new Node
                         {
-                            type = "TaggedTemplateExpression",
+                            type = NodeType.TaggedTemplateExpression,
                             start = 0,
                             end = 13,
                             tag = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 0,
                                 end = 3,
                                 name = "foo"
                             },
                             quasi = new Node
                             {
-                                type = "TemplateLiteral",
+                                type = NodeType.TemplateLiteral,
                                 start = 3,
                                 end = 13,
                                 expressions = new List<Node>(),
@@ -497,7 +497,7 @@ namespace AcornSharp.Cli
                                 {
                                     new Node
                                     {
-                                        type = "TemplateElement",
+                                        type = NodeType.TemplateElement,
                                         start = 4,
                                         end = 12,
                                         value = new TemplateNode("\\u{abcdx", null),
@@ -513,31 +513,31 @@ namespace AcornSharp.Cli
 
             Test("foo`\\u{abcdx}`", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 14,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 14,
                         expression = new Node
                         {
-                            type = "TaggedTemplateExpression",
+                            type = NodeType.TaggedTemplateExpression,
                             start = 0,
                             end = 14,
                             tag = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 0,
                                 end = 3,
                                 name = "foo"
                             },
                             quasi = new Node
                             {
-                                type = "TemplateLiteral",
+                                type = NodeType.TemplateLiteral,
                                 start = 3,
                                 end = 14,
                                 expressions = new List<Node>(),
@@ -545,7 +545,7 @@ namespace AcornSharp.Cli
                                 {
                                     new Node
                                     {
-                                        type = "TemplateElement",
+                                        type = NodeType.TemplateElement,
                                         start = 4,
                                         end = 13,
                                         value = new TemplateNode("\\u{abcdx}", null),
@@ -561,31 +561,31 @@ namespace AcornSharp.Cli
 
             Test("foo`\\unicode\\\\`", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 15,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 15,
                         expression = new Node
                         {
-                            type = "TaggedTemplateExpression",
+                            type = NodeType.TaggedTemplateExpression,
                             start = 0,
                             end = 15,
                             tag = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 0,
                                 end = 3,
                                 name = "foo"
                             },
                             quasi = new Node
                             {
-                                type = "TemplateLiteral",
+                                type = NodeType.TemplateLiteral,
                                 start = 3,
                                 end = 15,
                                 expressions = new List<Node>(),
@@ -593,7 +593,7 @@ namespace AcornSharp.Cli
                                 {
                                     new Node
                                     {
-                                        type = "TemplateElement",
+                                        type = NodeType.TemplateElement,
                                         start = 4,
                                         end = 14,
                                         value = new TemplateNode("\\unicode\\\\", null),

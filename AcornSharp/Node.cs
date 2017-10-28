@@ -17,7 +17,7 @@ namespace AcornSharp
         }
 
         // Finish an AST node, adding `type` and `end` properties.
-        private Node finishNodeAt(Node node, string type, int pos, Position loc)
+        private Node finishNodeAt(Node node, NodeType type, int pos, Position loc)
         {
             node.type = type;
             node.end = pos;
@@ -26,15 +26,15 @@ namespace AcornSharp
             return node;
         }
 
-        private Node finishNode(Node node, string type)
+        private Node finishNode(Node node, NodeType type)
         {
-            return finishNodeAt(node, type, this.lastTokEnd, this.lastTokEndLoc);
+            return finishNodeAt(node, type, lastTokEnd, lastTokEndLoc);
         }
     }
 
     public class Node : IEquatable<Node>
     {
-        public string type;
+        public NodeType type;
         public IList<Node> body;
         public Node expression;
         public bool bexpression;
@@ -106,7 +106,7 @@ namespace AcornSharp
 
         public Node(Parser parser, int pos, Position loc)
         {
-            type = "";
+            type = NodeType.Unknown;
             start = pos;
             end = 0;
             this.loc = new SourceLocation(parser, loc);
@@ -122,7 +122,7 @@ namespace AcornSharp
             if (ReferenceEquals(this, other))
                 return true;
 
-            if (type != null && !string.Equals(type, other.type, StringComparison.Ordinal)) return false;
+            if (type != NodeType.Unknown && type != other.type) return false;
             if (body != null && !TestEquals(body, other.body)) return false;
             if (!TestEquals(expression, other.expression)) return false;
             if (bexpression && bexpression != other.bexpression) return false;
@@ -351,7 +351,7 @@ namespace AcornSharp
         {
             unchecked
             {
-                var hashCode = (type != null ? type.GetHashCode() : 0);
+                var hashCode = type.GetHashCode();
                 hashCode = (hashCode * 397) ^ (body != null ? body.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (expression != null ? expression.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ bexpression.GetHashCode();

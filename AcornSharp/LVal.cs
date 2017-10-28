@@ -14,17 +14,17 @@ namespace AcornSharp
             {
                 switch (node.type)
                 {
-                    case "Identifier":
+                    case NodeType.Identifier:
                         if (inAsync && node.name == "await")
                             raise(node.start, "Can not use 'await' as identifier inside an async function");
                         break;
 
-                    case "ObjectPattern":
-                    case "ArrayPattern":
+                    case NodeType.ObjectPattern:
+                    case NodeType.ArrayPattern:
                         break;
 
-                    case "ObjectExpression":
-                        node.type = "ObjectPattern";
+                    case NodeType.ObjectExpression:
+                        node.type = NodeType.ObjectPattern;
                         foreach (var prop in node.properties)
                         {
                             if (prop.kind != "init") raise(prop.key.start, "Object pattern can't contain getter or setter");
@@ -32,18 +32,18 @@ namespace AcornSharp
                         }
                         break;
 
-                    case "ArrayExpression":
-                        node.type = "ArrayPattern";
+                    case NodeType.ArrayExpression:
+                        node.type = NodeType.ArrayPattern;
                         toAssignableList(node.elements, isBinding);
                         break;
 
-                    case "AssignmentExpression":
+                    case NodeType.AssignmentExpression:
                         if (node.@operator == "=")
                         {
-                            node.type = "AssignmentPattern";
+                            node.type = NodeType.AssignmentPattern;
                             node.@operator = null;
                             toAssignable(node.left, isBinding);
-                            goto case "AssignmentPattern";
+                            goto case NodeType.AssignmentPattern;
                         }
                         else
                         {
@@ -51,14 +51,14 @@ namespace AcornSharp
                             break;
                         }
 
-                    case "AssignmentPattern":
+                    case NodeType.AssignmentPattern:
                         break;
 
-                    case "ParenthesizedExpression":
+                    case NodeType.ParenthesizedExpression:
                         toAssignable(node.expression, isBinding);
                         break;
 
-                    case "MemberExpression":
+                    case NodeType.MemberExpression:
                         if (!isBinding) break;
                         goto default;
 
@@ -77,19 +77,19 @@ namespace AcornSharp
             if (end != 0)
             {
                 var last = exprList[end - 1];
-                if (last != null && last.type == "RestElement")
+                if (last != null && last.type == NodeType.RestElement)
                 {
                     --end;
                 }
-                else if (last != null && last.type == "SpreadElement")
+                else if (last != null && last.type == NodeType.SpreadElement)
                 {
-                    last.type = "RestElement";
+                    last.type = NodeType.RestElement;
                     var arg = last.argument;
                     toAssignable(arg, isBinding);
                     --end;
                 }
 
-                if (Options.ecmaVersion == 6 && isBinding && last != null && last.type == "RestElement" && last.argument.type != "Identifier")
+                if (Options.ecmaVersion == 6 && isBinding && last != null && last.type == NodeType.RestElement && last.argument.type != NodeType.Identifier)
                     unexpected(last.argument.start);
             }
             for (var i = 0; i < end; i++)
@@ -107,7 +107,7 @@ namespace AcornSharp
             var node = startNode();
             next();
             node.argument = parseMaybeAssign(false, refDestructuringErrors);
-            return finishNode(node, "SpreadElement");
+            return finishNode(node, NodeType.SpreadElement);
         }
 
         private Node parseRestBinding()
@@ -121,7 +121,7 @@ namespace AcornSharp
 
             node.argument = parseBindingAtom();
 
-            return finishNode(node, "RestElement");
+            return finishNode(node, NodeType.RestElement);
         }
 
         // Parses lvalue (assignable) atom.
@@ -137,7 +137,7 @@ namespace AcornSharp
                 var node = startNode();
                 next();
                 node.elements = parseBindingList(TokenType.bracketR, true, true);
-                return finishNode(node, "ArrayPattern");
+                return finishNode(node, NodeType.ArrayPattern);
             }
             if (type == TokenType.braceL)
             {
@@ -196,7 +196,7 @@ namespace AcornSharp
             var node = startNodeAt(startPos, startLoc);
             node.left = left;
             node.right = parseMaybeAssign();
-            return finishNode(node, "AssignmentPattern");
+            return finishNode(node, NodeType.AssignmentPattern);
         }
 
         // Verify that a node is an lval — something that can be assigned
@@ -209,7 +209,7 @@ namespace AcornSharp
         {
             switch (expr.type)
             {
-                case "Identifier":
+                case NodeType.Identifier:
                     if (strict && reservedWordsStrictBind.IsMatch(expr.name))
                         raiseRecoverable(expr.start, (bindingType != null ? "Binding " : "Assigning to ") + expr.name + " in strict mode");
                     if (checkClashes != null)
@@ -238,31 +238,31 @@ namespace AcornSharp
                     }
                     break;
 
-                case "MemberExpression":
+                case NodeType.MemberExpression:
                     if (bindingType != null) raiseRecoverable(expr.start, "Binding" + " member expression");
                     break;
 
-                case "ObjectPattern":
+                case NodeType.ObjectPattern:
                     foreach (var prop in expr.properties)
                         checkLVal((Node)prop.value, bindingType, checkClashes);
                     break;
 
-                case "ArrayPattern":
+                case NodeType.ArrayPattern:
                     foreach (var elem in expr.elements)
                     {
                         if (elem != null) checkLVal(elem, bindingType, checkClashes);
                     }
                     break;
 
-                case "AssignmentPattern":
+                case NodeType.AssignmentPattern:
                     checkLVal(expr.left, bindingType, checkClashes);
                     break;
 
-                case "RestElement":
+                case NodeType.RestElement:
                     checkLVal(expr.argument, bindingType, checkClashes);
                     break;
 
-                case "ParenthesizedExpression":
+                case NodeType.ParenthesizedExpression:
                     checkLVal(expr.expression, bindingType, checkClashes);
                     break;
 

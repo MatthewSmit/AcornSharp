@@ -159,9 +159,9 @@ namespace AcornSharp
 
         private static bool isSimpleAssignTarget(Node expr)
         {
-            if (expr.type == "ParenthesizedExpression")
+            if (expr.type ==  NodeType.ParenthesizedExpression)
                 return isSimpleAssignTarget(expr.expression);
-            return expr.type == "Identifier" || expr.type == "MemberExpression";
+            return expr.type == NodeType.Identifier || expr.type == NodeType.MemberExpression;
         }
     }
 }

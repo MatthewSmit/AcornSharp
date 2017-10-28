@@ -12,19 +12,19 @@ namespace AcornSharp.Cli
 
             Test("foo", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 3,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 3,
                         expression = new Node
                         {
-                            type = "Identifier",
+                            type = NodeType.Identifier,
                             start = 0,
                             end = 3,
                             name = "foo"
@@ -36,19 +36,19 @@ namespace AcornSharp.Cli
 
             Test("function wrap() { foo }", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 23,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "FunctionDeclaration",
+                        type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 23,
                         id =  new Node
                         {
-                            type = "Identifier",
+                            type = NodeType.Identifier,
                             start = 9,
                             end = 13,
                             name = "wrap"
@@ -58,19 +58,19 @@ namespace AcornSharp.Cli
                         @params = new List<Node>(),
                         fbody = new Node
                         {
-                            type = "BlockStatement",
+                            type = NodeType.BlockStatement,
                             start = 16,
                             end = 23,
                             body = new List<Node>
                             {
                                 new Node
                                 {
-                                    type = "ExpressionStatement",
+                                    type = NodeType.ExpressionStatement,
                                     start = 18,
                                     end = 21,
                                     expression = new Node
                                     {
-                                        type = "Identifier",
+                                        type = NodeType.Identifier,
                                         start = 18,
                                         end = 21,
                                         name = "foo"
@@ -85,31 +85,31 @@ namespace AcornSharp.Cli
 
             Test("!function wrap() { foo }", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 24,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 24,
                         expression = new Node
                         {
-                            type = "UnaryExpression",
+                            type = NodeType.UnaryExpression,
                             start = 0,
                             end = 24,
                             @operator = "!",
                             prefix = true,
                             argument = new Node
                             {
-                                type = "FunctionExpression",
+                                type = NodeType.FunctionExpression,
                                 start = 1,
                                 end = 24,
                                 id =  new Node
                                 {
-                                    type = "Identifier",
+                                    type = NodeType.Identifier,
                                     start = 10,
                                     end = 14,
                                     name = "wrap"
@@ -119,19 +119,19 @@ namespace AcornSharp.Cli
                                 @params = new List<Node>(),
                                 fbody = new Node
                                 {
-                                    type = "BlockStatement",
+                                    type = NodeType.BlockStatement,
                                     start = 17,
                                     end = 24,
                                     body = new List<Node>
                                     {
                                         new Node
                                         {
-                                            type = "ExpressionStatement",
+                                            type = NodeType.ExpressionStatement,
                                             start = 19,
                                             end = 22,
                                             expression = new Node
                                             {
-                                                type = "Identifier",
+                                                type = NodeType.Identifier,
                                                 start = 19,
                                                 end = 22,
                                                 name = "foo"
@@ -149,19 +149,19 @@ namespace AcornSharp.Cli
 
             Test("() => { foo }", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 13,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 13,
                         expression = new Node
                         {
-                            type = "ArrowFunctionExpression",
+                            type = NodeType.ArrowFunctionExpression,
                             start = 0,
                             end = 13,
                             id = null,
@@ -170,19 +170,19 @@ namespace AcornSharp.Cli
                             @params = new List<Node>(),
                             fbody = new Node
                             {
-                                type = "BlockStatement",
+                                type = NodeType.BlockStatement,
                                 start = 6,
                                 end = 13,
                                 body = new List<Node>
                                 {
                                     new Node
                                     {
-                                        type = "ExpressionStatement",
+                                        type = NodeType.ExpressionStatement,
                                         start = 8,
                                         end = 11,
                                         expression = new Node
                                         {
-                                            type = "Identifier",
+                                            type = NodeType.Identifier,
                                             start = 8,
                                             end = 11,
                                             name = "foo"
@@ -199,19 +199,19 @@ namespace AcornSharp.Cli
 
             Test("100", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 3,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 3,
                         expression = new Node
                         {
-                            type = "Literal",
+                            type = NodeType.Literal,
                             start = 0,
                             end = 3,
                             value = 100,
@@ -224,24 +224,24 @@ namespace AcornSharp.Cli
 
             Test("\"use strict\" + 1", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 16,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 16,
                         expression = new Node
                         {
-                            type = "BinaryExpression",
+                            type = NodeType.BinaryExpression,
                             start = 0,
                             end = 16,
                             left = new Node
                             {
-                                type = "Literal",
+                                type = NodeType.Literal,
                                 start = 0,
                                 end = 12,
                                 value = "use strict",
@@ -250,7 +250,7 @@ namespace AcornSharp.Cli
                             @operator = "+",
                             right = new Node
                             {
-                                type = "Literal",
+                                type = NodeType.Literal,
                                 start = 15,
                                 end = 16,
                                 value = 1,
@@ -268,19 +268,19 @@ namespace AcornSharp.Cli
 
             Test("\"use strict\"\n foo", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 17,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 12,
                         expression = new Node
                         {
-                            type = "Literal",
+                            type = NodeType.Literal,
                             start = 0,
                             end = 12,
                             value = "use strict",
@@ -290,12 +290,12 @@ namespace AcornSharp.Cli
                     },
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 14,
                         end = 17,
                         expression = new Node
                         {
-                            type = "Identifier",
+                            type = NodeType.Identifier,
                             start = 14,
                             end = 17,
                             name = "foo"
@@ -307,19 +307,19 @@ namespace AcornSharp.Cli
 
             Test("'use strict'; foo", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 17,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 13,
                         expression = new Node
                         {
-                            type = "Literal",
+                            type = NodeType.Literal,
                             start = 0,
                             end = 12,
                             value = "use strict",
@@ -329,12 +329,12 @@ namespace AcornSharp.Cli
                     },
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 14,
                         end = 17,
                         expression = new Node
                         {
-                            type = "Identifier",
+                            type = NodeType.Identifier,
                             start = 14,
                             end = 17,
                             name = "foo"
@@ -346,19 +346,19 @@ namespace AcornSharp.Cli
 
             Test("function wrap() { \"use strict\"\n foo }", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 37,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "FunctionDeclaration",
+                        type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 37,
                         id =  new Node
                         {
-                            type = "Identifier",
+                            type = NodeType.Identifier,
                             start = 9,
                             end = 13,
                             name = "wrap"
@@ -368,19 +368,19 @@ namespace AcornSharp.Cli
                         @params = new List<Node>(),
                         fbody = new Node
                         {
-                            type = "BlockStatement",
+                            type = NodeType.BlockStatement,
                             start = 16,
                             end = 37,
                             body = new List<Node>
                             {
                                 new Node
                                 {
-                                    type = "ExpressionStatement",
+                                    type = NodeType.ExpressionStatement,
                                     start = 18,
                                     end = 30,
                                     expression = new Node
                                     {
-                                        type = "Literal",
+                                        type = NodeType.Literal,
                                         start = 18,
                                         end = 30,
                                         value = "use strict",
@@ -390,12 +390,12 @@ namespace AcornSharp.Cli
                                 },
                                 new Node
                                 {
-                                    type = "ExpressionStatement",
+                                    type = NodeType.ExpressionStatement,
                                     start = 32,
                                     end = 35,
                                     expression = new Node
                                     {
-                                        type = "Identifier",
+                                        type = NodeType.Identifier,
                                         start = 32,
                                         end = 35,
                                         name = "foo"
@@ -410,31 +410,31 @@ namespace AcornSharp.Cli
 
             Test("!function wrap() { \"use strict\"\n foo }", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 38,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 38,
                         expression = new Node
                         {
-                            type = "UnaryExpression",
+                            type = NodeType.UnaryExpression,
                             start = 0,
                             end = 38,
                             @operator = "!",
                             prefix = true,
                             argument = new Node
                             {
-                                type = "FunctionExpression",
+                                type = NodeType.FunctionExpression,
                                 start = 1,
                                 end = 38,
                                 id =  new Node
                                 {
-                                    type = "Identifier",
+                                    type = NodeType.Identifier,
                                     start = 10,
                                     end = 14,
                                     name = "wrap"
@@ -444,19 +444,19 @@ namespace AcornSharp.Cli
                                 @params = new List<Node>(),
                                 fbody = new Node
                                 {
-                                    type = "BlockStatement",
+                                    type = NodeType.BlockStatement,
                                     start = 17,
                                     end = 38,
                                     body = new List<Node>
                                     {
                                         new Node
                                         {
-                                            type = "ExpressionStatement",
+                                            type = NodeType.ExpressionStatement,
                                             start = 19,
                                             end = 31,
                                             expression = new Node
                                             {
-                                                type = "Literal",
+                                                type = NodeType.Literal,
                                                 start = 19,
                                                 end = 31,
                                                 value = "use strict",
@@ -466,12 +466,12 @@ namespace AcornSharp.Cli
                                         },
                                         new Node
                                         {
-                                            type = "ExpressionStatement",
+                                            type = NodeType.ExpressionStatement,
                                             start = 33,
                                             end = 36,
                                             expression = new Node
                                             {
-                                                type = "Identifier",
+                                                type = NodeType.Identifier,
                                                 start = 33,
                                                 end = 36,
                                                 name = "foo"
@@ -489,19 +489,19 @@ namespace AcornSharp.Cli
 
             Test("() => { \"use strict\"\n foo }", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 27,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 27,
                         expression = new Node
                         {
-                            type = "ArrowFunctionExpression",
+                            type = NodeType.ArrowFunctionExpression,
                             start = 0,
                             end = 27,
                             id = null,
@@ -510,19 +510,19 @@ namespace AcornSharp.Cli
                             @params = new List<Node>(),
                             fbody = new Node
                             {
-                                type = "BlockStatement",
+                                type = NodeType.BlockStatement,
                                 start = 6,
                                 end = 27,
                                 body = new List<Node>
                                 {
                                     new Node
                                     {
-                                        type = "ExpressionStatement",
+                                        type = NodeType.ExpressionStatement,
                                         start = 8,
                                         end = 20,
                                         expression = new Node
                                         {
-                                            type = "Literal",
+                                            type = NodeType.Literal,
                                             start = 8,
                                             end = 20,
                                             value = "use strict",
@@ -532,12 +532,12 @@ namespace AcornSharp.Cli
                                     },
                                     new Node
                                     {
-                                        type = "ExpressionStatement",
+                                        type = NodeType.ExpressionStatement,
                                         start = 22,
                                         end = 25,
                                         expression = new Node
                                         {
-                                            type = "Identifier",
+                                            type = NodeType.Identifier,
                                             start = 22,
                                             end = 25,
                                             name = "foo"
@@ -554,19 +554,19 @@ namespace AcornSharp.Cli
 
             Test("() => \"use strict\"", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 18,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 18,
                         expression = new Node
                         {
-                            type = "ArrowFunctionExpression",
+                            type = NodeType.ArrowFunctionExpression,
                             start = 0,
                             end = 18,
                             id = null,
@@ -575,7 +575,7 @@ namespace AcornSharp.Cli
                             @params = new List<Node>(),
                             fbody = new Node
                             {
-                                type = "Literal",
+                                type = NodeType.Literal,
                                 start = 6,
                                 end = 18,
                                 value = "use strict",
@@ -589,26 +589,26 @@ namespace AcornSharp.Cli
 
             Test("({ wrap() { \"use strict\"; foo } })", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 34,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 34,
                         expression = new Node
                         {
-                            type = "ObjectExpression",
+                            type = NodeType.ObjectExpression,
                             start = 1,
                             end = 33,
                             properties = new List<Node>
                             {
                                 new Node
                                 {
-                                    type = "Property",
+                                    type = NodeType.Property,
                                     start = 3,
                                     end = 31,
                                     method = true,
@@ -616,7 +616,7 @@ namespace AcornSharp.Cli
                                     computed = false,
                                     key = new Node
                                     {
-                                        type = "Identifier",
+                                        type = NodeType.Identifier,
                                         start = 3,
                                         end = 7,
                                         name = "wrap"
@@ -624,7 +624,7 @@ namespace AcornSharp.Cli
                                     kind = "init",
                                     value = new Node
                                     {
-                                        type = "FunctionExpression",
+                                        type = NodeType.FunctionExpression,
                                         start = 7,
                                         end = 31,
                                         id = null,
@@ -633,19 +633,19 @@ namespace AcornSharp.Cli
                                         @params = new List<Node>(),
                                         fbody = new Node
                                         {
-                                            type = "BlockStatement",
+                                            type = NodeType.BlockStatement,
                                             start = 10,
                                             end = 31,
                                             body = new List<Node>
                                             {
                                                 new Node
                                                 {
-                                                    type = "ExpressionStatement",
+                                                    type = NodeType.ExpressionStatement,
                                                     start = 12,
                                                     end = 25,
                                                     expression = new Node
                                                     {
-                                                        type = "Literal",
+                                                        type = NodeType.Literal,
                                                         start = 12,
                                                         end = 24,
                                                         value = "use strict",
@@ -655,12 +655,12 @@ namespace AcornSharp.Cli
                                                 },
                                                 new Node
                                                 {
-                                                    type = "ExpressionStatement",
+                                                    type = NodeType.ExpressionStatement,
                                                     start = 26,
                                                     end = 29,
                                                     expression = new Node
                                                     {
-                                                        type = "Identifier",
+                                                        type = NodeType.Identifier,
                                                         start = 26,
                                                         end = 29,
                                                         name = "foo"
@@ -680,39 +680,39 @@ namespace AcornSharp.Cli
 
             Test("(class { wrap() { \"use strict\"; foo } })", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 40,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 40,
                         expression = new Node
                         {
-                            type = "ClassExpression",
+                            type = NodeType.ClassExpression,
                             start = 1,
                             end = 39,
                             id = null,
                             superClass = null,
                             fbody = new Node
                             {
-                                type = "ClassBody",
+                                type = NodeType.ClassBody,
                                 start = 7,
                                 end = 39,
                                 body = new List<Node>
                                 {
                                     new Node
                                     {
-                                        type = "MethodDefinition",
+                                        type = NodeType.MethodDefinition,
                                         start = 9,
                                         end = 37,
                                         computed = false,
                                         key = new Node
                                         {
-                                            type = "Identifier",
+                                            type = NodeType.Identifier,
                                             start = 9,
                                             end = 13,
                                             name = "wrap"
@@ -721,7 +721,7 @@ namespace AcornSharp.Cli
                                         kind = "method",
                                         value = new Node
                                         {
-                                            type = "FunctionExpression",
+                                            type = NodeType.FunctionExpression,
                                             start = 13,
                                             end = 37,
                                             id = null,
@@ -730,19 +730,19 @@ namespace AcornSharp.Cli
                                             @params = new List<Node>(),
                                             fbody = new Node
                                             {
-                                                type = "BlockStatement",
+                                                type = NodeType.BlockStatement,
                                                 start = 16,
                                                 end = 37,
                                                 body = new List<Node>
                                                 {
                                                     new Node
                                                     {
-                                                        type = "ExpressionStatement",
+                                                        type = NodeType.ExpressionStatement,
                                                         start = 18,
                                                         end = 31,
                                                         expression = new Node
                                                         {
-                                                            type = "Literal",
+                                                            type = NodeType.Literal,
                                                             start = 18,
                                                             end = 30,
                                                             value = "use strict",
@@ -752,12 +752,12 @@ namespace AcornSharp.Cli
                                                     },
                                                     new Node
                                                     {
-                                                        type = "ExpressionStatement",
+                                                        type = NodeType.ExpressionStatement,
                                                         start = 32,
                                                         end = 35,
                                                         expression = new Node
                                                         {
-                                                            type = "Identifier",
+                                                            type = NodeType.Identifier,
                                                             start = 32,
                                                             end = 35,
                                                             name = "foo"
@@ -779,19 +779,19 @@ namespace AcornSharp.Cli
             // Should not decode escape sequence.
             Test("\"\\u0075se strict\"", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 17,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 17,
                         expression = new Node
                         {
-                            type = "Literal",
+                            type = NodeType.Literal,
                             start = 0,
                             end = 17,
                             value = "use strict",
@@ -808,19 +808,19 @@ namespace AcornSharp.Cli
 
             Test("\"use asm\"; \"use strict\"; foo", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 28,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 10,
                         expression = new Node
                         {
-                            type = "Literal",
+                            type = NodeType.Literal,
                             start = 0,
                             end = 9,
                             value = "use asm",
@@ -830,12 +830,12 @@ namespace AcornSharp.Cli
                     },
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 11,
                         end = 24,
                         expression = new Node
                         {
-                            type = "Literal",
+                            type = NodeType.Literal,
                             start = 11,
                             end = 23,
                             value = "use strict",
@@ -845,12 +845,12 @@ namespace AcornSharp.Cli
                     },
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 25,
                         end = 28,
                         expression = new Node
                         {
-                            type = "Identifier",
+                            type = NodeType.Identifier,
                             start = 25,
                             end = 28,
                             name = "foo"
@@ -862,19 +862,19 @@ namespace AcornSharp.Cli
 
             Test("function wrap() { \"use asm\"; \"use strict\"; foo }", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 48,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "FunctionDeclaration",
+                        type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 48,
                         id =  new Node
                         {
-                            type = "Identifier",
+                            type = NodeType.Identifier,
                             start = 9,
                             end = 13,
                             name = "wrap"
@@ -884,19 +884,19 @@ namespace AcornSharp.Cli
                         @params = new List<Node>(),
                         fbody = new Node
                         {
-                            type = "BlockStatement",
+                            type = NodeType.BlockStatement,
                             start = 16,
                             end = 48,
                             body = new List<Node>
                             {
                                 new Node
                                 {
-                                    type = "ExpressionStatement",
+                                    type = NodeType.ExpressionStatement,
                                     start = 18,
                                     end = 28,
                                     expression = new Node
                                     {
-                                        type = "Literal",
+                                        type = NodeType.Literal,
                                         start = 18,
                                         end = 27,
                                         value = "use asm",
@@ -906,12 +906,12 @@ namespace AcornSharp.Cli
                                 },
                                 new Node
                                 {
-                                    type = "ExpressionStatement",
+                                    type = NodeType.ExpressionStatement,
                                     start = 29,
                                     end = 42,
                                     expression = new Node
                                     {
-                                        type = "Literal",
+                                        type = NodeType.Literal,
                                         start = 29,
                                         end = 41,
                                         value = "use strict",
@@ -921,12 +921,12 @@ namespace AcornSharp.Cli
                                 },
                                 new Node
                                 {
-                                    type = "ExpressionStatement",
+                                    type = NodeType.ExpressionStatement,
                                     start = 43,
                                     end = 46,
                                     expression = new Node
                                     {
-                                        type = "Identifier",
+                                        type = NodeType.Identifier,
                                         start = 43,
                                         end = 46,
                                         name = "foo"
@@ -945,19 +945,19 @@ namespace AcornSharp.Cli
 
             Test("\"use strict\"; foo; \"use asm\"", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 28,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 13,
                         expression = new Node
                         {
-                            type = "Literal",
+                            type = NodeType.Literal,
                             start = 0,
                             end = 12,
                             value = "use strict",
@@ -967,12 +967,12 @@ namespace AcornSharp.Cli
                     },
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 14,
                         end = 18,
                         expression = new Node
                         {
-                            type = "Identifier",
+                            type = NodeType.Identifier,
                             start = 14,
                             end = 17,
                             name = "foo"
@@ -981,12 +981,12 @@ namespace AcornSharp.Cli
                     },
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 19,
                         end = 28,
                         expression = new Node
                         {
-                            type = "Literal",
+                            type = NodeType.Literal,
                             start = 19,
                             end = 28,
                             value = "use asm",
@@ -999,19 +999,19 @@ namespace AcornSharp.Cli
 
             Test("function wrap() { \"use asm\"; foo; \"use strict\" }", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 48,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "FunctionDeclaration",
+                        type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 48,
                         id =  new Node
                         {
-                            type = "Identifier",
+                            type = NodeType.Identifier,
                             start = 9,
                             end = 13,
                             name = "wrap"
@@ -1021,19 +1021,19 @@ namespace AcornSharp.Cli
                         @params = new List<Node>(),
                         fbody = new Node
                         {
-                            type = "BlockStatement",
+                            type = NodeType.BlockStatement,
                             start = 16,
                             end = 48,
                             body = new List<Node>
                             {
                                 new Node
                                 {
-                                    type = "ExpressionStatement",
+                                    type = NodeType.ExpressionStatement,
                                     start = 18,
                                     end = 28,
                                     expression = new Node
                                     {
-                                        type = "Literal",
+                                        type = NodeType.Literal,
                                         start = 18,
                                         end = 27,
                                         value = "use asm",
@@ -1043,12 +1043,12 @@ namespace AcornSharp.Cli
                                 },
                                 new Node
                                 {
-                                    type = "ExpressionStatement",
+                                    type = NodeType.ExpressionStatement,
                                     start = 29,
                                     end = 33,
                                     expression = new Node
                                     {
-                                        type = "Identifier",
+                                        type = NodeType.Identifier,
                                         start = 29,
                                         end = 32,
                                         name = "foo"
@@ -1057,12 +1057,12 @@ namespace AcornSharp.Cli
                                 },
                                 new Node
                                 {
-                                    type = "ExpressionStatement",
+                                    type = NodeType.ExpressionStatement,
                                     start = 34,
                                     end = 46,
                                     expression = new Node
                                     {
-                                        type = "Literal",
+                                        type = NodeType.Literal,
                                         start = 34,
                                         end = 46,
                                         value = "use strict",
@@ -1082,26 +1082,26 @@ namespace AcornSharp.Cli
 
             Test("{ \"use strict\"; }", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 17,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "BlockStatement",
+                        type = NodeType.BlockStatement,
                         start = 0,
                         end = 17,
                         body = new List<Node>
                         {
                             new Node
                             {
-                                type = "ExpressionStatement",
+                                type = NodeType.ExpressionStatement,
                                 start = 2,
                                 end = 15,
                                 expression = new Node
                                 {
-                                    type = "Literal",
+                                    type = NodeType.Literal,
                                     start = 2,
                                     end = 14,
                                     value = "use strict",
@@ -1116,19 +1116,19 @@ namespace AcornSharp.Cli
 
             Test("function wrap() { { \"use strict\" } foo }", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 40,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "FunctionDeclaration",
+                        type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 40,
                         id =  new Node
                         {
-                            type = "Identifier",
+                            type = NodeType.Identifier,
                             start = 9,
                             end = 13,
                             name = "wrap"
@@ -1138,26 +1138,26 @@ namespace AcornSharp.Cli
                         @params = new List<Node>(),
                         fbody = new Node
                         {
-                            type = "BlockStatement",
+                            type = NodeType.BlockStatement,
                             start = 16,
                             end = 40,
                             body = new List<Node>
                             {
                                 new Node
                                 {
-                                    type = "BlockStatement",
+                                    type = NodeType.BlockStatement,
                                     start = 18,
                                     end = 34,
                                     body = new List<Node>
                                     {
                                         new Node
                                         {
-                                            type = "ExpressionStatement",
+                                            type = NodeType.ExpressionStatement,
                                             start = 20,
                                             end = 32,
                                             expression = new Node
                                             {
-                                                type = "Literal",
+                                                type = NodeType.Literal,
                                                 start = 20,
                                                 end = 32,
                                                 value = "use strict",
@@ -1169,12 +1169,12 @@ namespace AcornSharp.Cli
                                 },
                                 new Node
                                 {
-                                    type = "ExpressionStatement",
+                                    type = NodeType.ExpressionStatement,
                                     start = 35,
                                     end = 38,
                                     expression = new Node
                                     {
-                                        type = "Identifier",
+                                        type = NodeType.Identifier,
                                         start = 35,
                                         end = 38,
                                         name = "foo"
@@ -1193,19 +1193,19 @@ namespace AcornSharp.Cli
 
             Test("(\"use strict\"); foo", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 19,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 15,
                         expression = new Node
                         {
-                            type = "Literal",
+                            type = NodeType.Literal,
                             start = 1,
                             end = 13,
                             value = "use strict",
@@ -1215,12 +1215,12 @@ namespace AcornSharp.Cli
                     },
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 16,
                         end = 19,
                         expression = new Node
                         {
-                            type = "Identifier",
+                            type = NodeType.Identifier,
                             start = 16,
                             end = 19,
                             name = "foo"
@@ -1232,19 +1232,19 @@ namespace AcornSharp.Cli
 
             Test("function wrap() { (\"use strict\"); foo }", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 39,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "FunctionDeclaration",
+                        type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 39,
                         id =  new Node
                         {
-                            type = "Identifier",
+                            type = NodeType.Identifier,
                             start = 9,
                             end = 13,
                             name = "wrap"
@@ -1254,19 +1254,19 @@ namespace AcornSharp.Cli
                         @params = new List<Node>(),
                         fbody = new Node
                         {
-                            type = "BlockStatement",
+                            type = NodeType.BlockStatement,
                             start = 16,
                             end = 39,
                             body = new List<Node>
                             {
                                 new Node
                                 {
-                                    type = "ExpressionStatement",
+                                    type = NodeType.ExpressionStatement,
                                     start = 18,
                                     end = 33,
                                     expression = new Node
                                     {
-                                        type = "Literal",
+                                        type = NodeType.Literal,
                                         start = 19,
                                         end = 31,
                                         value = "use strict",
@@ -1276,12 +1276,12 @@ namespace AcornSharp.Cli
                                 },
                                 new Node
                                 {
-                                    type = "ExpressionStatement",
+                                    type = NodeType.ExpressionStatement,
                                     start = 34,
                                     end = 37,
                                     expression = new Node
                                     {
-                                        type = "Identifier",
+                                        type = NodeType.Identifier,
                                         start = 34,
                                         end = 37,
                                         name = "foo"
@@ -1300,19 +1300,19 @@ namespace AcornSharp.Cli
 
             Test("function a() { \"use strict\" } \"use strict\"; foo", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 47,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "FunctionDeclaration",
+                        type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 29,
                         id =  new Node
                         {
-                            type = "Identifier",
+                            type = NodeType.Identifier,
                             start = 9,
                             end = 10,
                             name = "a"
@@ -1322,19 +1322,19 @@ namespace AcornSharp.Cli
                         @params = new List<Node>(),
                         fbody = new Node
                         {
-                            type = "BlockStatement",
+                            type = NodeType.BlockStatement,
                             start = 13,
                             end = 29,
                             body = new List<Node>
                             {
                                 new Node
                                 {
-                                    type = "ExpressionStatement",
+                                    type = NodeType.ExpressionStatement,
                                     start = 15,
                                     end = 27,
                                     expression = new Node
                                     {
-                                        type = "Literal",
+                                        type = NodeType.Literal,
                                         start = 15,
                                         end = 27,
                                         value = "use strict",
@@ -1347,12 +1347,12 @@ namespace AcornSharp.Cli
                     },
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 30,
                         end = 43,
                         expression = new Node
                         {
-                            type = "Literal",
+                            type = NodeType.Literal,
                             start = 30,
                             end = 42,
                             value = "use strict",
@@ -1362,12 +1362,12 @@ namespace AcornSharp.Cli
                     },
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 44,
                         end = 47,
                         expression = new Node
                         {
-                            type = "Identifier",
+                            type = NodeType.Identifier,
                             start = 44,
                             end = 47,
                             name = "foo"
@@ -1379,19 +1379,19 @@ namespace AcornSharp.Cli
 
             Test("function a(a = function() { \"use strict\"; foo }) { \"use strict\" }", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 65,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "FunctionDeclaration",
+                        type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 65,
                         id =  new Node
                         {
-                            type = "Identifier",
+                            type = NodeType.Identifier,
                             start = 9,
                             end = 10,
                             name = "a"
@@ -1402,19 +1402,19 @@ namespace AcornSharp.Cli
                         {
                             new Node
                             {
-                                type = "AssignmentPattern",
+                                type = NodeType.AssignmentPattern,
                                 start = 11,
                                 end = 47,
                                 left = new Node
                                 {
-                                    type = "Identifier",
+                                    type = NodeType.Identifier,
                                     start = 11,
                                     end = 12,
                                     name = "a"
                                 },
                                 right = new Node
                                 {
-                                    type = "FunctionExpression",
+                                    type = NodeType.FunctionExpression,
                                     start = 15,
                                     end = 47,
                                     id = null,
@@ -1423,19 +1423,19 @@ namespace AcornSharp.Cli
                                     @params = new List<Node>(),
                                     fbody = new Node
                                     {
-                                        type = "BlockStatement",
+                                        type = NodeType.BlockStatement,
                                         start = 26,
                                         end = 47,
                                         body = new List<Node>
                                         {
                                             new Node
                                             {
-                                                type = "ExpressionStatement",
+                                                type = NodeType.ExpressionStatement,
                                                 start = 28,
                                                 end = 41,
                                                 expression = new Node
                                                 {
-                                                    type = "Literal",
+                                                    type = NodeType.Literal,
                                                     start = 28,
                                                     end = 40,
                                                     value = "use strict",
@@ -1445,12 +1445,12 @@ namespace AcornSharp.Cli
                                             },
                                             new Node
                                             {
-                                                type = "ExpressionStatement",
+                                                type = NodeType.ExpressionStatement,
                                                 start = 42,
                                                 end = 45,
                                                 expression = new Node
                                                 {
-                                                    type = "Identifier",
+                                                    type = NodeType.Identifier,
                                                     start = 42,
                                                     end = 45,
                                                     name = "foo"
@@ -1464,19 +1464,19 @@ namespace AcornSharp.Cli
                         },
                         fbody = new Node
                         {
-                            type = "BlockStatement",
+                            type = NodeType.BlockStatement,
                             start = 49,
                             end = 65,
                             body = new List<Node>
                             {
                                 new Node
                                 {
-                                    type = "ExpressionStatement",
+                                    type = NodeType.ExpressionStatement,
                                     start = 51,
                                     end = 63,
                                     expression = new Node
                                     {
-                                        type = "Literal",
+                                        type = NodeType.Literal,
                                         start = 51,
                                         end = 63,
                                         value = "use strict",
@@ -1492,19 +1492,19 @@ namespace AcornSharp.Cli
 
             Test("(a = () => { \"use strict\"; foo }) => { \"use strict\" }", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 53,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 53,
                         expression = new Node
                         {
-                            type = "ArrowFunctionExpression",
+                            type = NodeType.ArrowFunctionExpression,
                             start = 0,
                             end = 53,
                             id = null,
@@ -1514,19 +1514,19 @@ namespace AcornSharp.Cli
                             {
                                 new Node
                                 {
-                                    type = "AssignmentPattern",
+                                    type = NodeType.AssignmentPattern,
                                     start = 1,
                                     end = 32,
                                     left = new Node
                                     {
-                                        type = "Identifier",
+                                        type = NodeType.Identifier,
                                         start = 1,
                                         end = 2,
                                         name = "a"
                                     },
                                     right = new Node
                                     {
-                                        type = "ArrowFunctionExpression",
+                                        type = NodeType.ArrowFunctionExpression,
                                         start = 5,
                                         end = 32,
                                         id = null,
@@ -1535,19 +1535,19 @@ namespace AcornSharp.Cli
                                         @params = new List<Node>(),
                                         fbody = new Node
                                         {
-                                            type = "BlockStatement",
+                                            type = NodeType.BlockStatement,
                                             start = 11,
                                             end = 32,
                                             body = new List<Node>
                                             {
                                                 new Node
                                                 {
-                                                    type = "ExpressionStatement",
+                                                    type = NodeType.ExpressionStatement,
                                                     start = 13,
                                                     end = 26,
                                                     expression = new Node
                                                     {
-                                                        type = "Literal",
+                                                        type = NodeType.Literal,
                                                         start = 13,
                                                         end = 25,
                                                         value = "use strict",
@@ -1557,12 +1557,12 @@ namespace AcornSharp.Cli
                                                 },
                                                 new Node
                                                 {
-                                                    type = "ExpressionStatement",
+                                                    type = NodeType.ExpressionStatement,
                                                     start = 27,
                                                     end = 30,
                                                     expression = new Node
                                                     {
-                                                        type = "Identifier",
+                                                        type = NodeType.Identifier,
                                                         start = 27,
                                                         end = 30,
                                                         name = "foo"
@@ -1576,19 +1576,19 @@ namespace AcornSharp.Cli
                             },
                             fbody = new Node
                             {
-                                type = "BlockStatement",
+                                type = NodeType.BlockStatement,
                                 start = 37,
                                 end = 53,
                                 body = new List<Node>
                                 {
                                     new Node
                                     {
-                                        type = "ExpressionStatement",
+                                        type = NodeType.ExpressionStatement,
                                         start = 39,
                                         end = 51,
                                         expression = new Node
                                         {
-                                            type = "Literal",
+                                            type = NodeType.Literal,
                                             start = 39,
                                             end = 51,
                                             value = "use strict",

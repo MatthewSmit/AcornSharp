@@ -8,25 +8,25 @@ namespace AcornSharp.Cli
         {
             Test("x **= 42", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         expression = new Node
                         {
-                            type = "AssignmentExpression",
+                            type = NodeType.AssignmentExpression,
                             @operator = "**=",
                             left = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 name = "x",
                                 loc = new SourceLocation(new Position(1, 0), new Position(1, 1))
                             },
                             right = new Node
                             {
-                                type = "Literal",
+                                type = NodeType.Literal,
                                 value = 42,
                                 loc = new SourceLocation(new Position(1, 6), new Position(1, 8))
                             },
@@ -45,25 +45,25 @@ namespace AcornSharp.Cli
 
             Test("x ** y", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         expression = new Node
                         {
-                            type = "BinaryExpression",
+                            type = NodeType.BinaryExpression,
                             left = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 name = "x",
                                 loc = new SourceLocation(new Position(1, 0), new Position(1, 1))
                             },
                             @operator = "**",
                             right = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 name = "y",
                                 loc = new SourceLocation(new Position(1, 5), new Position(1, 6))
                             },
@@ -83,34 +83,34 @@ namespace AcornSharp.Cli
             // ** has highest precedence
             Test("3 ** 5 * 1", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         expression = new Node
                         {
-                            type = "BinaryExpression",
+                            type = NodeType.BinaryExpression,
                             @operator = "*",
                             left = new Node
                             {
-                                type = "BinaryExpression",
+                                type = NodeType.BinaryExpression,
                                 @operator = "**",
                                 left = new Node
                                 {
-                                    type = "Literal",
+                                    type = NodeType.Literal,
                                     value = 3
                                 },
                                 right = new Node
                                 {
-                                    type = "Literal",
+                                    type = NodeType.Literal,
                                     value = 5
                                 }
                             },
                             right = new Node
                             {
-                                type = "Literal",
+                                type = NodeType.Literal,
                                 value = 1
                             }
                         }
@@ -123,33 +123,33 @@ namespace AcornSharp.Cli
 
             Test("3 % 5 ** 1", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         expression = new Node
                         {
-                            type = "BinaryExpression",
+                            type = NodeType.BinaryExpression,
                             @operator = "%",
                             left = new Node
                             {
-                                type = "Literal",
+                                type = NodeType.Literal,
                                 value = 3
                             },
                             right = new Node
                             {
-                                type = "BinaryExpression",
+                                type = NodeType.BinaryExpression,
                                 @operator = "**",
                                 left = new Node
                                 {
-                                    type = "Literal",
+                                    type = NodeType.Literal,
                                     value = 5
                                 },
                                 right = new Node
                                 {
-                                    type = "Literal",
+                                    type = NodeType.Literal,
                                     value = 1
                                 }
                             }
@@ -173,30 +173,30 @@ namespace AcornSharp.Cli
             // make sure base operand check doesn't affect other operators
             Test("-a * 5", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         expression = new Node
                         {
-                            type = "BinaryExpression",
+                            type = NodeType.BinaryExpression,
                             left = new Node
                             {
-                                type = "UnaryExpression",
+                                type = NodeType.UnaryExpression,
                                 @operator = "-",
                                 prefix = true,
                                 argument = new Node
                                 {
-                                    type = "Identifier",
+                                    type = NodeType.Identifier,
                                     name = "a"
                                 }
                             },
                             @operator = "*",
                             right = new Node
                             {
-                                type = "Literal",
+                                type = NodeType.Literal,
                                 value = 5,
                             }
                         }
@@ -208,30 +208,30 @@ namespace AcornSharp.Cli
 
             Test("(-5) ** y", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         expression = new Node
                         {
-                            type = "BinaryExpression",
+                            type = NodeType.BinaryExpression,
                             left = new Node
                             {
-                                type = "UnaryExpression",
+                                type = NodeType.UnaryExpression,
                                 @operator = "-",
                                 prefix = true,
                                 argument = new Node
                                 {
-                                    type = "Literal",
+                                    type = NodeType.Literal,
                                     value = 5
                                 }
                             },
                             @operator = "**",
                             right = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 name = "y"
                             }
                         }
@@ -244,30 +244,30 @@ namespace AcornSharp.Cli
 
             Test("++a ** 2", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         expression = new Node
                         {
-                            type = "BinaryExpression",
+                            type = NodeType.BinaryExpression,
                             left = new Node
                             {
-                                type = "UpdateExpression",
+                                type = NodeType.UpdateExpression,
                                 @operator = "++",
                                 prefix = true,
                                 argument = new Node
                                 {
-                                    type = "Identifier",
+                                    type = NodeType.Identifier,
                                     name = "a"
                                 }
                             },
                             @operator = "**",
                             right = new Node
                             {
-                                type = "Literal",
+                                type = NodeType.Literal,
                                 value = 2,
                                 raw = "2"
                             }
@@ -279,30 +279,30 @@ namespace AcornSharp.Cli
 
             Test("a-- ** 2", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         expression = new Node
                         {
-                            type = "BinaryExpression",
+                            type = NodeType.BinaryExpression,
                             left = new Node
                             {
-                                type = "UpdateExpression",
+                                type = NodeType.UpdateExpression,
                                 @operator = "--",
                                 prefix = false,
                                 argument = new Node
                                 {
-                                    type = "Identifier",
+                                    type = NodeType.Identifier,
                                     name = "a"
                                 }
                             },
                             @operator = "**",
                             right = new Node
                             {
-                                type = "Literal",
+                                type = NodeType.Literal,
                                 value = 2,
                                 raw = "2"
                             }
@@ -325,15 +325,15 @@ namespace AcornSharp.Cli
             // Tests for B.3.4 FunctionDeclarations in IfStatement Statement Clauses
             Test("if (x) function f() {}", new Node
                 {
-                    type = "Program",
+                    type = NodeType.Program,
                     body = new List<Node>
                     {
                         new Node
                         {
-                            type = "IfStatement",
+                            type = NodeType.IfStatement,
                             consequent = new Node
                             {
-                                type = "FunctionDeclaration"
+                                type = NodeType.FunctionDeclaration
                             },
                             alternate = null
                         }
@@ -344,19 +344,19 @@ namespace AcornSharp.Cli
 
             Test("if (x) function f() { return 23; } else function f() { return 42; }", new Node
                 {
-                    type = "Program",
+                    type = NodeType.Program,
                     body = new List<Node>
                     {
                         new Node
                         {
-                            type = "IfStatement",
+                            type = NodeType.IfStatement,
                             consequent = new Node
                             {
-                                type = "FunctionDeclaration"
+                                type = NodeType.FunctionDeclaration
                             },
                             alternate = new Node
                             {
-                                type = "FunctionDeclaration"
+                                type = NodeType.FunctionDeclaration
                             }
                         }
                     }

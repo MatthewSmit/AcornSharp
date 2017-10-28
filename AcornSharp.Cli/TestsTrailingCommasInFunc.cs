@@ -11,19 +11,19 @@ namespace AcornSharp.Cli
 
             Test("function foo(a,) { }", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 20,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "FunctionDeclaration",
+                        type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 20,
                         id = new Node
                         {
-                            type = "Identifier",
+                            type = NodeType.Identifier,
                             start = 9,
                             end = 12,
                             name = "foo"
@@ -32,7 +32,7 @@ namespace AcornSharp.Cli
                         {
                             new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 13,
                                 end = 14,
                                 name = "a"
@@ -43,7 +43,7 @@ namespace AcornSharp.Cli
                         async = false,
                         fbody = new Node
                         {
-                            type = "BlockStatement",
+                            type = NodeType.BlockStatement,
                             start = 17,
                             end = 20,
                             body = new List<Node>()
@@ -55,19 +55,19 @@ namespace AcornSharp.Cli
 
             Test("(function(a,) { })", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 18,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 18,
                         expression = new Node
                         {
-                            type = "FunctionExpression",
+                            type = NodeType.FunctionExpression,
                             start = 1,
                             end = 17,
                             id = null,
@@ -75,7 +75,7 @@ namespace AcornSharp.Cli
                             {
                                 new Node
                                 {
-                                    type = "Identifier",
+                                    type = NodeType.Identifier,
                                     start = 10,
                                     end = 11,
                                     name = "a"
@@ -86,7 +86,7 @@ namespace AcornSharp.Cli
                             async = false,
                             fbody = new Node
                             {
-                                type = "BlockStatement",
+                                type = NodeType.BlockStatement,
                                 start = 14,
                                 end = 17,
                                 body = new List<Node>()
@@ -99,19 +99,19 @@ namespace AcornSharp.Cli
 
             Test("(a,) => a", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 9,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 9,
                         expression = new Node
                         {
-                            type = "ArrowFunctionExpression",
+                            type = NodeType.ArrowFunctionExpression,
                             start = 0,
                             end = 9,
                             id = null,
@@ -119,7 +119,7 @@ namespace AcornSharp.Cli
                             {
                                 new Node
                                 {
-                                    type = "Identifier",
+                                    type = NodeType.Identifier,
                                     start = 1,
                                     end = 2,
                                     name = "a"
@@ -130,7 +130,7 @@ namespace AcornSharp.Cli
                             async = false,
                             fbody = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 8,
                                 end = 9,
                                 name = "a"
@@ -143,19 +143,19 @@ namespace AcornSharp.Cli
 
             Test("async (a,) => a", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 15,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 15,
                         expression = new Node
                         {
-                            type = "ArrowFunctionExpression",
+                            type = NodeType.ArrowFunctionExpression,
                             start = 0,
                             end = 15,
                             id = null,
@@ -163,7 +163,7 @@ namespace AcornSharp.Cli
                             {
                                 new Node
                                 {
-                                    type = "Identifier",
+                                    type = NodeType.Identifier,
                                     start = 7,
                                     end = 8,
                                     name = "a"
@@ -174,7 +174,7 @@ namespace AcornSharp.Cli
                             async = true,
                             fbody = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 14,
                                 end = 15,
                                 name = "a"
@@ -187,26 +187,26 @@ namespace AcornSharp.Cli
 
             Test("({foo(a,) {}})", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 14,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 14,
                         expression = new Node
                         {
-                            type = "ObjectExpression",
+                            type = NodeType.ObjectExpression,
                             start = 1,
                             end = 13,
                             properties = new List<Node>
                             {
                                 new Node
                                 {
-                                    type = "Property",
+                                    type = NodeType.Property,
                                     start = 2,
                                     end = 12,
                                     method = true,
@@ -214,7 +214,7 @@ namespace AcornSharp.Cli
                                     computed = false,
                                     key = new Node
                                     {
-                                        type = "Identifier",
+                                        type = NodeType.Identifier,
                                         start = 2,
                                         end = 5,
                                         name = "foo"
@@ -222,7 +222,7 @@ namespace AcornSharp.Cli
                                     kind = "init",
                                     value = new Node
                                     {
-                                        type = "FunctionExpression",
+                                        type = NodeType.FunctionExpression,
                                         start = 5,
                                         end = 12,
                                         id = null,
@@ -230,7 +230,7 @@ namespace AcornSharp.Cli
                                         {
                                             new Node
                                             {
-                                                type = "Identifier",
+                                                type = NodeType.Identifier,
                                                 start = 6,
                                                 end = 7,
                                                 name = "a"
@@ -241,7 +241,7 @@ namespace AcornSharp.Cli
                                         async = false,
                                         fbody = new Node
                                         {
-                                            type = "BlockStatement",
+                                            type = NodeType.BlockStatement,
                                             start = 10,
                                             end = 12,
                                             body = new List<Node>()
@@ -257,19 +257,19 @@ namespace AcornSharp.Cli
 
             Test("class A {foo(a,) {}}", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 20,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ClassDeclaration",
+                        type = NodeType.ClassDeclaration,
                         start = 0,
                         end = 20,
                         id = new Node
                         {
-                            type = "Identifier",
+                            type = NodeType.Identifier,
                             start = 6,
                             end = 7,
                             name = "A"
@@ -277,21 +277,21 @@ namespace AcornSharp.Cli
                         superClass = null,
                         fbody = new Node
                         {
-                            type = "ClassBody",
+                            type = NodeType.ClassBody,
                             start = 8,
                             end = 20,
                             body = new List<Node>
                             {
                                 new Node
                                 {
-                                    type = "MethodDefinition",
+                                    type = NodeType.MethodDefinition,
                                     start = 9,
                                     end = 19,
                                     @static = false,
                                     computed = false,
                                     key = new Node
                                     {
-                                        type = "Identifier",
+                                        type = NodeType.Identifier,
                                         start = 9,
                                         end = 12,
                                         name = "foo"
@@ -299,7 +299,7 @@ namespace AcornSharp.Cli
                                     kind = "method",
                                     value = new Node
                                     {
-                                        type = "FunctionExpression",
+                                        type = NodeType.FunctionExpression,
                                         start = 12,
                                         end = 19,
                                         id = null,
@@ -307,7 +307,7 @@ namespace AcornSharp.Cli
                                         {
                                             new Node
                                             {
-                                                type = "Identifier",
+                                                type = NodeType.Identifier,
                                                 start = 13,
                                                 end = 14,
                                                 name = "a"
@@ -318,7 +318,7 @@ namespace AcornSharp.Cli
                                         async = false,
                                         fbody = new Node
                                         {
-                                            type = "BlockStatement",
+                                            type = NodeType.BlockStatement,
                                             start = 17,
                                             end = 19,
                                             body = new List<Node>()
@@ -334,19 +334,19 @@ namespace AcornSharp.Cli
 
             Test("class A {static foo(a,) {}}", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 27,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ClassDeclaration",
+                        type = NodeType.ClassDeclaration,
                         start = 0,
                         end = 27,
                         id = new Node
                         {
-                            type = "Identifier",
+                            type = NodeType.Identifier,
                             start = 6,
                             end = 7,
                             name = "A"
@@ -354,21 +354,21 @@ namespace AcornSharp.Cli
                         superClass = null,
                         fbody = new Node
                         {
-                            type = "ClassBody",
+                            type = NodeType.ClassBody,
                             start = 8,
                             end = 27,
                             body = new List<Node>
                             {
                                 new Node
                                 {
-                                    type = "MethodDefinition",
+                                    type = NodeType.MethodDefinition,
                                     start = 9,
                                     end = 26,
                                     @static = true,
                                     computed = false,
                                     key = new Node
                                     {
-                                        type = "Identifier",
+                                        type = NodeType.Identifier,
                                         start = 16,
                                         end = 19,
                                         name = "foo"
@@ -376,7 +376,7 @@ namespace AcornSharp.Cli
                                     kind = "method",
                                     value = new Node
                                     {
-                                        type = "FunctionExpression",
+                                        type = NodeType.FunctionExpression,
                                         start = 19,
                                         end = 26,
                                         id = null,
@@ -384,7 +384,7 @@ namespace AcornSharp.Cli
                                         {
                                             new Node
                                             {
-                                                type = "Identifier",
+                                                type = NodeType.Identifier,
                                                 start = 20,
                                                 end = 21,
                                                 name = "a"
@@ -395,7 +395,7 @@ namespace AcornSharp.Cli
                                         async = false,
                                         fbody = new Node
                                         {
-                                            type = "BlockStatement",
+                                            type = NodeType.BlockStatement,
                                             start = 24,
                                             end = 26,
                                             body = new List<Node>()
@@ -411,40 +411,40 @@ namespace AcornSharp.Cli
 
             Test("(class {foo(a,) {}})", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 20,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 20,
                         expression = new Node
                         {
-                            type = "ClassExpression",
+                            type = NodeType.ClassExpression,
                             start = 1,
                             end = 19,
                             id = null,
                             superClass = null,
                             fbody = new Node
                             {
-                                type = "ClassBody",
+                                type = NodeType.ClassBody,
                                 start = 7,
                                 end = 19,
                                 body = new List<Node>
                                 {
                                     new Node
                                     {
-                                        type = "MethodDefinition",
+                                        type = NodeType.MethodDefinition,
                                         start = 8,
                                         end = 18,
                                         @static = false,
                                         computed = false,
                                         key = new Node
                                         {
-                                            type = "Identifier",
+                                            type = NodeType.Identifier,
                                             start = 8,
                                             end = 11,
                                             name = "foo"
@@ -452,7 +452,7 @@ namespace AcornSharp.Cli
                                         kind = "method",
                                         value = new Node
                                         {
-                                            type = "FunctionExpression",
+                                            type = NodeType.FunctionExpression,
                                             start = 11,
                                             end = 18,
                                             id = null,
@@ -460,7 +460,7 @@ namespace AcornSharp.Cli
                                             {
                                                 new Node
                                                 {
-                                                    type = "Identifier",
+                                                    type = NodeType.Identifier,
                                                     start = 12,
                                                     end = 13,
                                                     name = "a"
@@ -471,7 +471,7 @@ namespace AcornSharp.Cli
                                             async = false,
                                             fbody = new Node
                                             {
-                                                type = "BlockStatement",
+                                                type = NodeType.BlockStatement,
                                                 start = 16,
                                                 end = 18,
                                                 body = new List<Node>()
@@ -488,40 +488,40 @@ namespace AcornSharp.Cli
 
             Test("(class {static foo(a,) {}})", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 27,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 27,
                         expression = new Node
                         {
-                            type = "ClassExpression",
+                            type = NodeType.ClassExpression,
                             start = 1,
                             end = 26,
                             id = null,
                             superClass = null,
                             fbody = new Node
                             {
-                                type = "ClassBody",
+                                type = NodeType.ClassBody,
                                 start = 7,
                                 end = 26,
                                 body = new List<Node>
                                 {
                                     new Node
                                     {
-                                        type = "MethodDefinition",
+                                        type = NodeType.MethodDefinition,
                                         start = 8,
                                         end = 25,
                                         @static = true,
                                         computed = false,
                                         key = new Node
                                         {
-                                            type = "Identifier",
+                                            type = NodeType.Identifier,
                                             start = 15,
                                             end = 18,
                                             name = "foo"
@@ -529,7 +529,7 @@ namespace AcornSharp.Cli
                                         kind = "method",
                                         value = new Node
                                         {
-                                            type = "FunctionExpression",
+                                            type = NodeType.FunctionExpression,
                                             start = 18,
                                             end = 25,
                                             id = null,
@@ -537,7 +537,7 @@ namespace AcornSharp.Cli
                                             {
                                                 new Node
                                                 {
-                                                    type = "Identifier",
+                                                    type = NodeType.Identifier,
                                                     start = 19,
                                                     end = 20,
                                                     name = "a"
@@ -548,7 +548,7 @@ namespace AcornSharp.Cli
                                             async = false,
                                             fbody = new Node
                                             {
-                                                type = "BlockStatement",
+                                                type = NodeType.BlockStatement,
                                                 start = 23,
                                                 end = 25,
                                                 body = new List<Node>()
@@ -565,24 +565,24 @@ namespace AcornSharp.Cli
 
             Test("export default function foo(a,) { }", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 35,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExportDefaultDeclaration",
+                        type = NodeType.ExportDefaultDeclaration,
                         start = 0,
                         end = 35,
                         declaration = new Node
                         {
-                            type = "FunctionDeclaration",
+                            type = NodeType.FunctionDeclaration,
                             start = 15,
                             end = 35,
                             id = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 24,
                                 end = 27,
                                 name = "foo"
@@ -591,7 +591,7 @@ namespace AcornSharp.Cli
                             {
                                 new Node
                                 {
-                                    type = "Identifier",
+                                    type = NodeType.Identifier,
                                     start = 28,
                                     end = 29,
                                     name = "a"
@@ -602,7 +602,7 @@ namespace AcornSharp.Cli
                             async = false,
                             fbody = new Node
                             {
-                                type = "BlockStatement",
+                                type = NodeType.BlockStatement,
                                 start = 32,
                                 end = 35,
                                 body = new List<Node>()
@@ -615,24 +615,24 @@ namespace AcornSharp.Cli
 
             Test("export default (function foo(a,) { })", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 37,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExportDefaultDeclaration",
+                        type = NodeType.ExportDefaultDeclaration,
                         start = 0,
                         end = 37,
                         declaration = new Node
                         {
-                            type = "FunctionExpression",
+                            type = NodeType.FunctionExpression,
                             start = 16,
                             end = 36,
                             id = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 25,
                                 end = 28,
                                 name = "foo"
@@ -641,7 +641,7 @@ namespace AcornSharp.Cli
                             {
                                 new Node
                                 {
-                                    type = "Identifier",
+                                    type = NodeType.Identifier,
                                     start = 29,
                                     end = 30,
                                     name = "a"
@@ -652,7 +652,7 @@ namespace AcornSharp.Cli
                             async = false,
                             fbody = new Node
                             {
-                                type = "BlockStatement",
+                                type = NodeType.BlockStatement,
                                 start = 33,
                                 end = 36,
                                 body = new List<Node>()
@@ -665,24 +665,24 @@ namespace AcornSharp.Cli
 
             Test("export function foo(a,) { }", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 27,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExportNamedDeclaration",
+                        type = NodeType.ExportNamedDeclaration,
                         start = 0,
                         end = 27,
                         declaration = new Node
                         {
-                            type = "FunctionDeclaration",
+                            type = NodeType.FunctionDeclaration,
                             start = 7,
                             end = 27,
                             id = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 16,
                                 end = 19,
                                 name = "foo"
@@ -691,7 +691,7 @@ namespace AcornSharp.Cli
                             {
                                 new Node
                                 {
-                                    type = "Identifier",
+                                    type = NodeType.Identifier,
                                     start = 20,
                                     end = 21,
                                     name = "a"
@@ -702,7 +702,7 @@ namespace AcornSharp.Cli
                             async = false,
                             fbody = new Node
                             {
-                                type = "BlockStatement",
+                                type = NodeType.BlockStatement,
                                 start = 24,
                                 end = 27,
                                 body = new List<Node>()
@@ -717,24 +717,24 @@ namespace AcornSharp.Cli
 
             Test("foo(a,)", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 7,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 7,
                         expression = new Node
                         {
-                            type = "CallExpression",
+                            type = NodeType.CallExpression,
                             start = 0,
                             end = 7,
                             callee = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 0,
                                 end = 3,
                                 name = "foo"
@@ -743,7 +743,7 @@ namespace AcornSharp.Cli
                             {
                                 new Node
                                 {
-                                    type = "Identifier",
+                                    type = NodeType.Identifier,
                                     start = 4,
                                     end = 5,
                                     name = "a"
@@ -757,24 +757,24 @@ namespace AcornSharp.Cli
 
             Test("new foo(a,)", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 11,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 11,
                         expression = new Node
                         {
-                            type = "NewExpression",
+                            type = NodeType.NewExpression,
                             start = 0,
                             end = 11,
                             callee = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 4,
                                 end = 7,
                                 name = "foo"
@@ -783,7 +783,7 @@ namespace AcornSharp.Cli
                             {
                                 new Node
                                 {
-                                    type = "Identifier",
+                                    type = NodeType.Identifier,
                                     start = 8,
                                     end = 9,
                                     name = "a"
@@ -797,24 +797,24 @@ namespace AcornSharp.Cli
 
             Test("foo(...a,)", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 10,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 10,
                         expression = new Node
                         {
-                            type = "CallExpression",
+                            type = NodeType.CallExpression,
                             start = 0,
                             end = 10,
                             callee = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 0,
                                 end = 3,
                                 name = "foo"
@@ -823,12 +823,12 @@ namespace AcornSharp.Cli
                             {
                                 new Node
                                 {
-                                    type = "SpreadElement",
+                                    type = NodeType.SpreadElement,
                                     start = 4,
                                     end = 8,
                                     argument = new Node
                                     {
-                                        type = "Identifier",
+                                        type = NodeType.Identifier,
                                         start = 7,
                                         end = 8,
                                         name = "a"
@@ -843,24 +843,24 @@ namespace AcornSharp.Cli
 
             Test("new foo(...a,)", new Node
             {
-                type = "Program",
+                type = NodeType.Program,
                 start = 0,
                 end = 14,
                 body = new List<Node>
                 {
                     new Node
                     {
-                        type = "ExpressionStatement",
+                        type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 14,
                         expression = new Node
                         {
-                            type = "NewExpression",
+                            type = NodeType.NewExpression,
                             start = 0,
                             end = 14,
                             callee = new Node
                             {
-                                type = "Identifier",
+                                type = NodeType.Identifier,
                                 start = 4,
                                 end = 7,
                                 name = "foo"
@@ -869,12 +869,12 @@ namespace AcornSharp.Cli
                             {
                                 new Node
                                 {
-                                    type = "SpreadElement",
+                                    type = NodeType.SpreadElement,
                                     start = 8,
                                     end = 12,
                                     argument = new Node
                                     {
-                                        type = "Identifier",
+                                        type = NodeType.Identifier,
                                         start = 11,
                                         end = 12,
                                         name = "a"
