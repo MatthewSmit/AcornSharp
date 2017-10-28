@@ -22,20 +22,20 @@ namespace AcornSharp.Cli
                             {
                                 type = NodeType.Identifier,
                                 name = "x",
-                                loc = new SourceLocation(new Position(1, 0), new Position(1, 1))
+                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
                             },
                             right = new Node
                             {
                                 type = NodeType.Literal,
                                 value = 42,
-                                loc = new SourceLocation(new Position(1, 6), new Position(1, 8))
+                                loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 8, 8))
                             },
-                            loc = new SourceLocation(new Position(1, 0), new Position(1, 8))
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
                         },
-                        loc = new SourceLocation(new Position(1, 0), new Position(1, 8))
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0), new Position(1, 8))
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
             }, new Options
             {
                 ecmaVersion = 7
@@ -58,21 +58,21 @@ namespace AcornSharp.Cli
                             {
                                 type = NodeType.Identifier,
                                 name = "x",
-                                loc = new SourceLocation(new Position(1, 0), new Position(1, 1))
+                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
                             },
                             @operator = "**",
                             right = new Node
                             {
                                 type = NodeType.Identifier,
                                 name = "y",
-                                loc = new SourceLocation(new Position(1, 5), new Position(1, 6))
+                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
                             },
-                            loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                         },
-                        loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0), new Position(1, 6))
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
             }, new Options
             {
                 ecmaVersion = 7
