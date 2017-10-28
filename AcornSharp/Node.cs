@@ -16,7 +16,7 @@ namespace AcornSharp
         }
 
         // Finish an AST node, adding `type` and `end` properties.
-        private Node finishNodeAt(Node node, NodeType type, Position pos)
+        private static Node finishNodeAt(Node node, NodeType type, Position pos)
         {
             node.type = type;
             node.end = pos.Index;
@@ -125,7 +125,7 @@ namespace AcornSharp
             if (body != null && !TestEquals(body, other.body)) return false;
             if (!TestEquals(expression, other.expression)) return false;
             if (bexpression && bexpression != other.bexpression) return false;
-            if (loc != null && !Equals(loc, other.loc)) return false;
+            if (loc.Start.Line > 0 && !Equals(loc, other.loc)) return false;
             if (value != null && !TestEquals(value, other.value)) return false;
             if (regex != null && !Equals(regex, other.regex)) return false;
             if (left != null && !TestEquals(left, other.left)) return false;
@@ -250,7 +250,7 @@ namespace AcornSharp
             if (ReferenceEquals(this, other))
                 return true;
 
-            if (!string.Equals(type, other.type)) return false;
+            if (!Equals(type, other.type)) return false;
             if (!Equals(body, other.body)) return false;
             if (!Equals(expression, other.expression)) return false;
             if (bexpression != other.bexpression) return false;

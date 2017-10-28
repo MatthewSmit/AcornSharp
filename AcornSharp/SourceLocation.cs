@@ -2,7 +2,7 @@
 
 namespace AcornSharp
 {
-    public sealed class SourceLocation : IEquatable<SourceLocation>
+    public struct SourceLocation : IEquatable<SourceLocation>
     {
         public SourceLocation(Position start, Position end, string sourceFile = null)
         {
@@ -11,11 +11,11 @@ namespace AcornSharp
             Source = sourceFile;
         }
 
-        public SourceLocation(Parser p, Position start, Position end = null)
+        public SourceLocation(Parser p, Position start, Position end = default)
         {
             Start = start;
             End = end;
-            if (p.sourceFile != null) Source = p.sourceFile;
+            Source = p.sourceFile;
         }
 
         public Position Start { get; }
@@ -31,24 +31,21 @@ namespace AcornSharp
 
         public bool Equals(SourceLocation other)
         {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
             return Equals(Start, other.Start) && Equals(End, other.End);
         }
 
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            return obj is SourceLocation && Equals((SourceLocation)obj);
+            return obj is SourceLocation location && Equals(location);
         }
 
         public override int GetHashCode()
         {
             unchecked
             {
-                var hashCode = (Start != null ? Start.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (End != null ? End.GetHashCode() : 0);
+                var hashCode = Start.GetHashCode();
+                hashCode = (hashCode * 397) ^ End.GetHashCode();
                 return hashCode;
             }
         }

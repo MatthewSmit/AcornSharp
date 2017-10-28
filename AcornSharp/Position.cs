@@ -2,7 +2,7 @@
 
 namespace AcornSharp
 {
-    public sealed class Position : IEquatable<Position>
+    public struct Position : IEquatable<Position>
     {
         public Position(int line, int column, int index)
         {
@@ -23,15 +23,12 @@ namespace AcornSharp
 
         public bool Equals(Position other)
         {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
             return Line == other.Line && Column == other.Column && Index == other.Index;
         }
 
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
             return obj is Position position && Equals(position);
         }
 

@@ -592,12 +592,12 @@ namespace AcornSharp
             return val;
         }
 
-        private Node parseParenItem(Node item)
+        private static Node parseParenItem(Node item)
         {
             return item;
         }
 
-        private Node parseParenItem(Parser parser, Node item, int position, Position location)
+        private static Node parseParenItem(Parser parser, Node item, int position, Position location)
         {
             return item;
         }
@@ -702,7 +702,7 @@ namespace AcornSharp
                 var prop = startNode();
                 var isGenerator = false;
                 bool isAsync;
-                Position startLoc = null;
+                Position startLoc = default;
                 if (Options.ecmaVersion >= 6)
                 {
                     prop.method = false;
@@ -941,7 +941,7 @@ namespace AcornSharp
             strict = oldStrict;
         }
 
-        private bool isSimpleParamList(IEnumerable<Node> @params)
+        private static bool isSimpleParamList(IEnumerable<Node> @params)
         {
             foreach (var param in @params)
                 if (param.type != NodeType.Identifier) return false;
@@ -1011,7 +1011,7 @@ namespace AcornSharp
                 raiseRecoverable(start, $"The keyword '{name}' is reserved");
         }
 
-        private Node parseIdent(bool liberal = false, bool isBinding = false)
+        private Node parseIdent(bool liberal = false)
         {
             var node = startNode();
             if (liberal && "never".Equals(Options.allowReserved)) liberal = false;

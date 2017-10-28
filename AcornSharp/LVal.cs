@@ -167,7 +167,6 @@ namespace AcornSharp
                 else if (type == TokenType.ellipsis)
                 {
                     var rest = parseRestBinding();
-                    parseBindingListItem(rest);
                     elts.Add(rest);
                     if (type == TokenType.comma) raise(start.Index, "Comma is not permitted after the rest element");
                     expect(close);
@@ -176,16 +175,10 @@ namespace AcornSharp
                 else
                 {
                     var elem = parseMaybeDefault(start);
-                    parseBindingListItem(elem);
                     elts.Add(elem);
                 }
             }
             return elts;
-        }
-
-        private Node parseBindingListItem(Node param)
-        {
-            return param;
         }
 
         // Parses assignment pattern around given atom if possible.

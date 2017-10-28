@@ -113,7 +113,7 @@ namespace AcornSharp
 
         private void skipBlockComment()
         {
-            var startLoc = Options.onComment != null && curPosition() != null;
+            var startLoc = Options.onComment != null;
             var start = pos;
             pos = pos.Increment(2);
             var end = input.IndexOf("*/", pos.Index, StringComparison.Ordinal);
@@ -136,7 +136,7 @@ namespace AcornSharp
         private void skipLineComment(int startSkip)
         {
             var start = pos;
-            var startLoc = Options.onComment != null && curPosition() != null;
+            var startLoc = Options.onComment != null;
             pos = pos.Increment(startSkip);
             var ch = input.Get(pos.Index);
             while (pos.Index < input.Length && !isNewLine(ch))
@@ -641,7 +641,7 @@ namespace AcornSharp
             return code;
         }
 
-        private string codePointToString(int code)
+        private static string codePointToString(int code)
         {
             return char.ConvertFromUtf32(code);
         }
