@@ -144,9 +144,10 @@ namespace AcornSharp
             var expr = parseMaybeAssign(noIn, refDestructuringErrors);
             if (type == TokenType.comma)
             {
+                var expressions = new List<BaseNode> {expr};
+                while (eat(TokenType.comma)) expressions.Add(parseMaybeAssign(noIn, refDestructuringErrors));
                 var node = new BaseNode(this, start);
-                node.expressions = new List<BaseNode> {expr};
-                while (eat(TokenType.comma)) node.expressions.Add(parseMaybeAssign(noIn, refDestructuringErrors));
+                node.expressions = expressions;
                 return finishNode(node, NodeType.SequenceExpression);
             }
             return expr;
@@ -182,13 +183,16 @@ namespace AcornSharp
             {
                 checkPatternErrors(refDestructuringErrors, true);
                 if (!ownDestructuringErrors) refDestructuringErrors.Reset();
-                var node = new BaseNode(this, startLoc);
-                node.@operator = (string)value;
-                node.left = type == TokenType.eq ? toAssignable(left) : left;
+                var @operator = (string)value;
+                var leftNode = type == TokenType.eq ? toAssignable(left) : left;
                 refDestructuringErrors.shorthandAssign = default; // reset because shorthand default was used correctly
                 checkLVal(left);
                 next();
-                node.right = parseMaybeAssign(noIn);
+                var right = parseMaybeAssign(noIn);
+                var node = new BaseNode(this, startLoc);
+                node.@operator = @operator;
+                node.left = leftNode;
+                node.right = right;
                 return finishNode(node, NodeType.AssignmentExpression);
             }
             if (ownDestructuringErrors) checkExpressionErrors(refDestructuringErrors, true);
@@ -205,12 +209,10 @@ namespace AcornSharp
             if (checkExpressionErrors(refDestructuringErrors)) return expr;
             if (eat(TokenType.question))
             {
-                var node = new BaseNode(this, startLoc);
-                node.test = expr;
-                node.consequent = parseMaybeAssign();
+                var consequent = parseMaybeAssign();
                 expect(TokenType.colon);
-                node.alternate = parseMaybeAssign(noIn);
-                return finishNode(node, NodeType.ConditionalExpression);
+                var alternate = parseMaybeAssign(noIn);
+                return new ConditionalExpressionNode(this, startLoc, lastTokEnd, expr, consequent, alternate);
             }
             return expr;
         }

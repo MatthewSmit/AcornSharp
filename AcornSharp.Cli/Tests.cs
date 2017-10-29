@@ -5463,24 +5463,20 @@ namespace AcornSharp.Cli
                     new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(default)
-                        {
-                            type = NodeType.ConditionalExpression,
-                            test = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "y"),
-                            consequent = new BaseNode(default)
+                        expression = new ConditionalExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)),
+                            new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "y"),
+                            new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 value = 1,
                                 loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5))
                             },
-                            alternate = new BaseNode(default)
+                            new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 value = 2,
                                 loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9))
-                            },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-                        },
+                            }),
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                     }
                 },
@@ -5495,10 +5491,8 @@ namespace AcornSharp.Cli
                     new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(default)
-                        {
-                            type = NodeType.ConditionalExpression,
-                            test = new BaseNode(default)
+                        expression = new ConditionalExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
+                            new BaseNode(default)
                             {
                                 type = NodeType.LogicalExpression,
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
@@ -5506,20 +5500,18 @@ namespace AcornSharp.Cli
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y"),
                                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                             },
-                            consequent = new BaseNode(default)
+                            new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 value = 1,
                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
                             },
-                            alternate = new BaseNode(default)
+                            new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 value = 2,
                                 loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14))
-                            },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
-                        },
+                            }),
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
                     }
                 },

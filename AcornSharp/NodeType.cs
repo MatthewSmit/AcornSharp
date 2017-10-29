@@ -29,7 +29,7 @@
         SwitchStatement,
         ThrowStatement,
         CatchClause,
-        ConditionalExpression,
+//        ConditionalExpression,
         TryStatement,
         WhileStatement,
         WithStatement,
