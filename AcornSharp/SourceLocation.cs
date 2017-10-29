@@ -11,13 +11,6 @@ namespace AcornSharp
             Source = sourceFile;
         }
 
-        public SourceLocation(Parser p, Position start, Position end = default)
-        {
-            Start = start;
-            End = end;
-            Source = p.sourceFile;
-        }
-
         public Position Start { get; }
         public Position End { get; }
         public string Source { get; }

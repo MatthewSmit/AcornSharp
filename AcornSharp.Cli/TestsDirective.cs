@@ -22,13 +22,7 @@ namespace AcornSharp.Cli
                         type = NodeType.ExpressionStatement,
                         start = 0,
                         end = 3,
-                        expression = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 0,
-                            end = 3,
-                            name = "foo"
-                        },
+                        expression = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                         directive = null // check this property does not exist.
                     }
                 }
@@ -46,13 +40,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 23,
-                        id =  new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 9,
-                            end = 13,
-                            name = "wrap"
-                        },
+                        id =  new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                         generator = false,
                         bexpression = false,
                         @params = new List<Node>(),
@@ -68,13 +56,7 @@ namespace AcornSharp.Cli
                                     type = NodeType.ExpressionStatement,
                                     start = 18,
                                     end = 21,
-                                    expression = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        start = 18,
-                                        end = 21,
-                                        name = "foo"
-                                    },
+                                    expression = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 21, 21)), "foo"),
                                     directive = null // check this property does not exist.
                                 }
                             }
@@ -107,13 +89,7 @@ namespace AcornSharp.Cli
                                 type = NodeType.FunctionExpression,
                                 start = 1,
                                 end = 24,
-                                id =  new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    start = 10,
-                                    end = 14,
-                                    name = "wrap"
-                                },
+                                id =  new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 14, 14)), "wrap"),
                                 generator = false,
                                 bexpression = false,
                                 @params = new List<Node>(),
@@ -129,13 +105,7 @@ namespace AcornSharp.Cli
                                             type = NodeType.ExpressionStatement,
                                             start = 19,
                                             end = 22,
-                                            expression = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                start = 19,
-                                                end = 22,
-                                                name = "foo"
-                                            },
+                                            expression = new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 22, 22)), "foo"),
                                             directive = null // check this property does not exist.
                                         }
                                     }
@@ -180,13 +150,7 @@ namespace AcornSharp.Cli
                                         type = NodeType.ExpressionStatement,
                                         start = 8,
                                         end = 11,
-                                        expression = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            start = 8,
-                                            end = 11,
-                                            name = "foo"
-                                        },
+                                        expression = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 11, 11)), "foo"),
                                         directive = null // check this property does not exist.
                                     }
                                 }
@@ -293,13 +257,7 @@ namespace AcornSharp.Cli
                         type = NodeType.ExpressionStatement,
                         start = 14,
                         end = 17,
-                        expression = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 14,
-                            end = 17,
-                            name = "foo"
-                        },
+                        expression = new IdentifierNode(new SourceLocation(new Position(2, 1, 14), new Position(2, 4, 17)), "foo"),
                         directive = null // check this property does not exist.
                     }
                 }
@@ -332,13 +290,7 @@ namespace AcornSharp.Cli
                         type = NodeType.ExpressionStatement,
                         start = 14,
                         end = 17,
-                        expression = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 14,
-                            end = 17,
-                            name = "foo"
-                        },
+                        expression = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 17, 17)), "foo"),
                         directive = null // check this property does not exist.
                     }
                 }
@@ -356,13 +308,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 37,
-                        id =  new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 9,
-                            end = 13,
-                            name = "wrap"
-                        },
+                        id =  new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                         generator = false,
                         bexpression = false,
                         @params = new List<Node>(),
@@ -393,13 +339,7 @@ namespace AcornSharp.Cli
                                     type = NodeType.ExpressionStatement,
                                     start = 32,
                                     end = 35,
-                                    expression = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        start = 32,
-                                        end = 35,
-                                        name = "foo"
-                                    },
+                                    expression = new IdentifierNode(new SourceLocation(new Position(2, 1, 32), new Position(2, 4, 35)), "foo"),
                                     directive = null // check this property does not exist.
                                 }
                             }
@@ -432,13 +372,7 @@ namespace AcornSharp.Cli
                                 type = NodeType.FunctionExpression,
                                 start = 1,
                                 end = 38,
-                                id =  new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    start = 10,
-                                    end = 14,
-                                    name = "wrap"
-                                },
+                                id =  new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 14, 14)), "wrap"),
                                 generator = false,
                                 bexpression = false,
                                 @params = new List<Node>(),
@@ -469,13 +403,7 @@ namespace AcornSharp.Cli
                                             type = NodeType.ExpressionStatement,
                                             start = 33,
                                             end = 36,
-                                            expression = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                start = 33,
-                                                end = 36,
-                                                name = "foo"
-                                            },
+                                            expression = new IdentifierNode(new SourceLocation(new Position(2, 1, 33), new Position(2, 4, 36)), "foo"),
                                             directive = null // check this property does not exist.
                                         }
                                     }
@@ -535,13 +463,7 @@ namespace AcornSharp.Cli
                                         type = NodeType.ExpressionStatement,
                                         start = 22,
                                         end = 25,
-                                        expression = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            start = 22,
-                                            end = 25,
-                                            name = "foo"
-                                        },
+                                        expression = new IdentifierNode(new SourceLocation(new Position(2, 1, 22), new Position(2, 4, 25)), "foo"),
                                         directive = null // check this property does not exist.
                                     }
                                 }
@@ -614,13 +536,7 @@ namespace AcornSharp.Cli
                                     method = true,
                                     shorthand = false,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        start = 3,
-                                        end = 7,
-                                        name = "wrap"
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 7, 7)), "wrap"),
                                     kind = "init",
                                     value = new Node
                                     {
@@ -658,13 +574,7 @@ namespace AcornSharp.Cli
                                                     type = NodeType.ExpressionStatement,
                                                     start = 26,
                                                     end = 29,
-                                                    expression = new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        start = 26,
-                                                        end = 29,
-                                                        name = "foo"
-                                                    },
+                                                    expression = new IdentifierNode(new SourceLocation(new Position(1, 26, 26), new Position(1, 29, 29)), "foo"),
                                                     directive = null // check this property does not exist.
                                                 }
                                             }
@@ -710,13 +620,7 @@ namespace AcornSharp.Cli
                                         start = 9,
                                         end = 37,
                                         computed = false,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            start = 9,
-                                            end = 13,
-                                            name = "wrap"
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                                         @static = false,
                                         kind = "method",
                                         value = new Node
@@ -755,13 +659,7 @@ namespace AcornSharp.Cli
                                                         type = NodeType.ExpressionStatement,
                                                         start = 32,
                                                         end = 35,
-                                                        expression = new Node
-                                                        {
-                                                            type = NodeType.Identifier,
-                                                            start = 32,
-                                                            end = 35,
-                                                            name = "foo"
-                                                        },
+                                                        expression = new IdentifierNode(new SourceLocation(new Position(1, 32, 32), new Position(1, 35, 35)), "foo"),
                                                         directive = null // check this property does not exist.
                                                     }
                                                 }
@@ -848,13 +746,7 @@ namespace AcornSharp.Cli
                         type = NodeType.ExpressionStatement,
                         start = 25,
                         end = 28,
-                        expression = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 25,
-                            end = 28,
-                            name = "foo"
-                        },
+                        expression = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 28, 28)), "foo"),
                         directive = null // check this property does not exist.
                     }
                 }
@@ -872,13 +764,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 48,
-                        id =  new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 9,
-                            end = 13,
-                            name = "wrap"
-                        },
+                        id =  new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                         generator = false,
                         bexpression = false,
                         @params = new List<Node>(),
@@ -924,13 +810,7 @@ namespace AcornSharp.Cli
                                     type = NodeType.ExpressionStatement,
                                     start = 43,
                                     end = 46,
-                                    expression = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        start = 43,
-                                        end = 46,
-                                        name = "foo"
-                                    },
+                                    expression = new IdentifierNode(new SourceLocation(new Position(1, 43, 43), new Position(1, 46, 46)), "foo"),
                                     directive = null // check this property does not exist.
                                 }
                             }
@@ -970,13 +850,7 @@ namespace AcornSharp.Cli
                         type = NodeType.ExpressionStatement,
                         start = 14,
                         end = 18,
-                        expression = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 14,
-                            end = 17,
-                            name = "foo"
-                        },
+                        expression = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 17, 17)), "foo"),
                         directive = null // check this property does not exist.
                     },
                     new Node
@@ -1009,13 +883,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 48,
-                        id =  new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 9,
-                            end = 13,
-                            name = "wrap"
-                        },
+                        id =  new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                         generator = false,
                         bexpression = false,
                         @params = new List<Node>(),
@@ -1046,13 +914,7 @@ namespace AcornSharp.Cli
                                     type = NodeType.ExpressionStatement,
                                     start = 29,
                                     end = 33,
-                                    expression = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        start = 29,
-                                        end = 32,
-                                        name = "foo"
-                                    },
+                                    expression = new IdentifierNode(new SourceLocation(new Position(1, 29, 29), new Position(1, 32, 32)), "foo"),
                                     directive = null // check this property does not exist.
                                 },
                                 new Node
@@ -1126,13 +988,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 40,
-                        id =  new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 9,
-                            end = 13,
-                            name = "wrap"
-                        },
+                        id =  new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                         generator = false,
                         bexpression = false,
                         @params = new List<Node>(),
@@ -1172,13 +1028,7 @@ namespace AcornSharp.Cli
                                     type = NodeType.ExpressionStatement,
                                     start = 35,
                                     end = 38,
-                                    expression = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        start = 35,
-                                        end = 38,
-                                        name = "foo"
-                                    },
+                                    expression = new IdentifierNode(new SourceLocation(new Position(1, 35, 35), new Position(1, 38, 38)), "foo"),
                                     directive = null // check this property does not exist.
                                 }
                             }
@@ -1218,13 +1068,7 @@ namespace AcornSharp.Cli
                         type = NodeType.ExpressionStatement,
                         start = 16,
                         end = 19,
-                        expression = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 16,
-                            end = 19,
-                            name = "foo"
-                        },
+                        expression = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 19, 19)), "foo"),
                         directive = null // check this property does not exist.
                     }
                 }
@@ -1242,13 +1086,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 39,
-                        id =  new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 9,
-                            end = 13,
-                            name = "wrap"
-                        },
+                        id =  new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                         generator = false,
                         bexpression = false,
                         @params = new List<Node>(),
@@ -1279,13 +1117,7 @@ namespace AcornSharp.Cli
                                     type = NodeType.ExpressionStatement,
                                     start = 34,
                                     end = 37,
-                                    expression = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        start = 34,
-                                        end = 37,
-                                        name = "foo"
-                                    },
+                                    expression = new IdentifierNode(new SourceLocation(new Position(1, 34, 34), new Position(1, 37, 37)), "foo"),
                                     directive = null // check this property does not exist.
                                 }
                             }
@@ -1310,13 +1142,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 29,
-                        id =  new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 9,
-                            end = 10,
-                            name = "a"
-                        },
+                        id =  new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "a"),
                         generator = false,
                         bexpression = false,
                         @params = new List<Node>(),
@@ -1365,13 +1191,7 @@ namespace AcornSharp.Cli
                         type = NodeType.ExpressionStatement,
                         start = 44,
                         end = 47,
-                        expression = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 44,
-                            end = 47,
-                            name = "foo"
-                        },
+                        expression = new IdentifierNode(new SourceLocation(new Position(1, 44, 44), new Position(1, 47, 47)), "foo"),
                         directive = null // check this property does not exist.
                     }
                 }
@@ -1389,13 +1209,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 65,
-                        id =  new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 9,
-                            end = 10,
-                            name = "a"
-                        },
+                        id =  new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "a"),
                         generator = false,
                         bexpression = false,
                         @params = new List<Node>
@@ -1405,13 +1219,7 @@ namespace AcornSharp.Cli
                                 type = NodeType.AssignmentPattern,
                                 start = 11,
                                 end = 47,
-                                left = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    start = 11,
-                                    end = 12,
-                                    name = "a"
-                                },
+                                left = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "a"),
                                 right = new Node
                                 {
                                     type = NodeType.FunctionExpression,
@@ -1448,13 +1256,7 @@ namespace AcornSharp.Cli
                                                 type = NodeType.ExpressionStatement,
                                                 start = 42,
                                                 end = 45,
-                                                expression = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    start = 42,
-                                                    end = 45,
-                                                    name = "foo"
-                                                },
+                                                expression = new IdentifierNode(new SourceLocation(new Position(1, 42, 42), new Position(1, 45, 45)), "foo"),
                                                 directive = null // check this property does not exist.
                                             }
                                         }
@@ -1517,13 +1319,7 @@ namespace AcornSharp.Cli
                                     type = NodeType.AssignmentPattern,
                                     start = 1,
                                     end = 32,
-                                    left = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        start = 1,
-                                        end = 2,
-                                        name = "a"
-                                    },
+                                    left = new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a"),
                                     right = new Node
                                     {
                                         type = NodeType.ArrowFunctionExpression,
@@ -1560,13 +1356,7 @@ namespace AcornSharp.Cli
                                                     type = NodeType.ExpressionStatement,
                                                     start = 27,
                                                     end = 30,
-                                                    expression = new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        start = 27,
-                                                        end = 30,
-                                                        name = "foo"
-                                                    },
+                                                    expression = new IdentifierNode(new SourceLocation(new Position(1, 27, 27), new Position(1, 30, 30)), "foo"),
                                                     directive = null // check this property does not exist.
                                                 }
                                             }

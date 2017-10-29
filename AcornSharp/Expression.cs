@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
+using JetBrains.Annotations;
 
 namespace AcornSharp
 {
@@ -79,15 +80,15 @@ namespace AcornSharp
                 return;
             var key = prop.key;
             string name;
-            switch (key.type)
+            if (key is IdentifierNode identifierNode)
+                name = identifierNode.name;
+            else if (key.type == NodeType.Literal)
             {
-                case NodeType.Identifier:
-                    name = key.name;
-                    break;
-                case NodeType.Literal:
-                    name = key.value.ToString();
-                    break;
-                default: return;
+                name = key.value.ToString();
+            }
+            else
+            {
+                return;
             }
             var kind = prop.kind;
             if (Options.ecmaVersion >= 6)
@@ -276,7 +277,7 @@ namespace AcornSharp
                 checkExpressionErrors(refDestructuringErrors, true);
                 if (update) checkLVal(node.argument);
                 else if (strict && node.@operator == "delete" &&
-                         node.argument.type == NodeType.Identifier)
+                         node.argument is IdentifierNode)
                     raiseRecoverable(node.loc.Start, "Deleting local variable in strict mode");
                 else sawUnary = true;
                 expr = finishNode(node, update ? NodeType.UpdateExpression : NodeType.UnaryExpression);
@@ -320,7 +321,7 @@ namespace AcornSharp
 
         private Node parseSubscripts(Node @base, Position startLoc, bool noCalls = false)
         {
-            var maybeAsyncArrow = Options.ecmaVersion >= 8 && @base.type == NodeType.Identifier && @base.name == "async" &&
+            var maybeAsyncArrow = Options.ecmaVersion >= 8 && @base is IdentifierNode identifierNode && identifierNode.name == "async" &&
                                   lastTokEnd.Index == @base.end && !canInsertSemicolon();
             for (;;)
             {
@@ -394,7 +395,9 @@ namespace AcornSharp
                 // SuperCall:
                 //     super Arguments
                 if (type != TokenType.dot && type != TokenType.bracketL && type != TokenType.parenL)
-                    unexpected();
+                {
+                    raise(start, "Unexpected token");
+                }
                 return finishNode(node, NodeType.Super);
             }
             if (type == TokenType._this)
@@ -417,7 +420,9 @@ namespace AcornSharp
                     {
                         id = parseIdent();
                         if (canInsertSemicolon() || !eat(TokenType.arrow))
-                            unexpected();
+                        {
+                            raise(start, "Unexpected token");
+                        }
                         return parseArrowExpression(startNodeAt(startLoc), new[] {id}, true);
                     }
                 }
@@ -484,7 +489,7 @@ namespace AcornSharp
             {
                 return parseTemplate();
             }
-            unexpected();
+            raise(start, "Unexpected token");
             return null;
         }
 
@@ -555,14 +560,23 @@ namespace AcornSharp
                 {
                     checkPatternErrors(refDestructuringErrors, false);
                     checkYieldAwaitInDefaultParams();
-                    if (innerParenStart.Line > 0) unexpected(innerParenStart);
+                    if (innerParenStart.Line > 0)
+                    {
+                        raise(innerParenStart, "Unexpected token");
+                    }
                     yieldPos = oldYieldPos;
                     awaitPos = oldAwaitPos;
                     return parseParenArrowList(startLoc, exprList);
                 }
 
-                if (exprList.Count == 0 || lastIsComma) unexpected(lastTokStart);
-                if (spreadStart.Line > 0) unexpected(spreadStart);
+                if (exprList.Count == 0 || lastIsComma)
+                {
+                    raise(lastTokStart, "Unexpected token");
+                }
+                if (spreadStart.Line > 0)
+                {
+                    raise(spreadStart, "Unexpected token");
+                }
                 checkExpressionErrors(refDestructuringErrors, true);
                 yieldPos = oldYieldPos.Line != 0 ? oldYieldPos : yieldPos;
                 awaitPos = oldAwaitPos.Line != 0 ? oldAwaitPos : awaitPos;
@@ -620,8 +634,9 @@ namespace AcornSharp
             if (Options.ecmaVersion >= 6 && eat(TokenType.dot))
             {
                 node.meta = meta;
-                node.property = parseIdent(true);
-                if (node.property.name != "target")
+                var identifierNode = parseIdent(true);
+                node.property = identifierNode;
+                if (identifierNode.name != "target")
                     raiseRecoverable(node.property.loc.Start, "The only valid meta property for new is new.target");
                 if (!inFunction)
                     raiseRecoverable(node.loc.Start, "new.target can only be used in functions");
@@ -678,7 +693,7 @@ namespace AcornSharp
         // Parse an object literal or binding pattern.
         private bool isAsyncProp(Node prop)
         {
-            return !prop.computed && prop.key.type == NodeType.Identifier && prop.key.name == "async" &&
+            return !prop.computed && prop.key is IdentifierNode identifierNode && identifierNode.name == "async" &&
                    (type == TokenType.name || type == TokenType.num || type == TokenType.@string || type == TokenType.bracketL || TokenInformation.Types[type].Keyword != null) &&
                    !lineBreak.IsMatch(input.Substring(lastTokEnd.Index, start.Index - lastTokEnd.Index));
         }
@@ -734,7 +749,9 @@ namespace AcornSharp
         private void parsePropertyValue(Node prop, bool isPattern, bool isGenerator, bool isAsync, Position startLoc, DestructuringErrors refDestructuringErrors)
         {
             if ((isGenerator || isAsync) && type == TokenType.colon)
-                unexpected();
+            {
+                raise(start, "Unexpected token");
+            }
 
             if (eat(TokenType.colon))
             {
@@ -743,18 +760,24 @@ namespace AcornSharp
             }
             else if (Options.ecmaVersion >= 6 && type == TokenType.parenL)
             {
-                if (isPattern) unexpected();
+                if (isPattern)
+                {
+                    raise(start, "Unexpected token");
+                }
                 prop.kind = "init";
                 prop.method = true;
                 prop.value = parseMethod(isGenerator, isAsync);
             }
             else if (!isPattern &&
-                     Options.ecmaVersion >= 5 && !prop.computed && prop.key.type == NodeType.Identifier &&
-                     (prop.key.name == "get" || prop.key.name == "set") &&
+                     Options.ecmaVersion >= 5 && !prop.computed && prop.key is IdentifierNode identifierNode &&
+                     (identifierNode.name == "get" || identifierNode.name == "set") &&
                      type != TokenType.comma && type != TokenType.braceR)
             {
-                if (isGenerator || isAsync) unexpected();
-                prop.kind = prop.key.name;
+                if (isGenerator || isAsync)
+                {
+                    raise(start, "Unexpected token");
+                }
+                prop.kind = identifierNode.name;
                 parsePropertyName(prop);
                 prop.value = parseMethod(false);
                 var paramCount = prop.kind == "get" ? 0 : 1;
@@ -773,9 +796,9 @@ namespace AcornSharp
                         raiseRecoverable(value.@params[0].loc.Start, "Setter cannot use rest params");
                 }
             }
-            else if (Options.ecmaVersion >= 6 && !prop.computed && prop.key.type == NodeType.Identifier)
+            else if (Options.ecmaVersion >= 6 && !prop.computed && prop.key is IdentifierNode identifierNode2)
             {
-                checkUnreserved(prop.key.loc.Start, prop.key.loc.End, prop.key.name);
+                checkUnreserved(prop.key.loc.Start, prop.key.loc.End, identifierNode2.name);
                 prop.kind = "init";
                 if (isPattern)
                 {
@@ -793,7 +816,10 @@ namespace AcornSharp
                 }
                 prop.shorthand = true;
             }
-            else unexpected();
+            else
+            {
+                raise(start, "Unexpected token");
+            }
         }
 
         private Node parsePropertyName(Node prop)
@@ -944,7 +970,12 @@ namespace AcornSharp
         private static bool isSimpleParamList(IEnumerable<Node> @params)
         {
             foreach (var param in @params)
-                if (param.type != NodeType.Identifier) return false;
+            {
+                if (!(param is IdentifierNode))
+                {
+                    return false;
+                }
+            }
             return true;
         }
 
@@ -1011,32 +1042,35 @@ namespace AcornSharp
                 raiseRecoverable(start, $"The keyword '{name}' is reserved");
         }
 
-        private Node parseIdent(bool liberal = false)
+        [NotNull]
+        private IdentifierNode parseIdent(bool liberal = false)
         {
-            var node = startNode();
+            var start = this.start;
             if (liberal && "never".Equals(Options.allowReserved)) liberal = false;
+
+            string name = null;
             if (type == TokenType.name)
             {
-                node.name = (string)value;
+                name = (string)value;
             }
             else if (TokenInformation.Types[type].Keyword != null)
             {
-                node.name = TokenInformation.Types[type].Keyword;
+                name = TokenInformation.Types[type].Keyword;
 
                 // To fix https://github.com/ternjs/acorn/issues/575
                 // `class` and `function` keywords push new context into this.context.
                 // But there is no chance to pop the context if the keyword is consumed as an identifier such as a property name.
-                if (node.name == "class" || node.name == "function")
+                if (name == "class" || name == "function")
                 {
                     context.Pop();
                 }
             }
             else
             {
-                unexpected();
+                raise(this.start, "Unexpected token");
             }
             next();
-            finishNode(node, NodeType.Identifier);
+            var node = new IdentifierNode(this, start, lastTokEnd, name);
             if (!liberal) checkUnreserved(node.loc.Start, node.loc.Start, node.name);
             return node;
         }

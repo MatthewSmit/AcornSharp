@@ -98,10 +98,16 @@ namespace AcornSharp
                 case TokenType._for:
                     return parseForStatement(node);
                 case TokenType._function:
-                    if (!declaration && Options.ecmaVersion >= 6) unexpected();
+                    if (!declaration && Options.ecmaVersion >= 6)
+                    {
+                        raise(start, "Unexpected token");
+                    }
                     return parseFunctionStatement(node, false);
                 case TokenType._class:
-                    if (!declaration) unexpected();
+                    if (!declaration)
+                    {
+                        raise(start, "Unexpected token");
+                    }
                     return parseClass(node, "true");
                 case TokenType._if:
                     return parseIfStatement(node);
@@ -116,7 +122,10 @@ namespace AcornSharp
                 case TokenType._const:
                 case TokenType._var:
                     kind = kind ?? (string)value;
-                    if (!declaration && kind != "var") unexpected();
+                    if (!declaration && kind != "var")
+                    {
+                        raise(start, "Unexpected token");
+                    }
                     return parseVarStatement(node, kind);
                 case TokenType._while:
                     return parseWhileStatement(node);
@@ -146,8 +155,8 @@ namespace AcornSharp
 
             var maybeName = value;
             var expr = parseExpression();
-            if (starttype == TokenType.name && expr.type == NodeType.Identifier && eat(TokenType.colon))
-                return parseLabeledStatement(node, (string)maybeName, expr);
+            if (starttype == TokenType.name && expr is IdentifierNode identifierNode && eat(TokenType.colon))
+                return parseLabeledStatement(node, (string)maybeName, identifierNode);
             return parseExpressionStatement(node, expr);
         }
 
@@ -156,7 +165,10 @@ namespace AcornSharp
             var isBreak = keyword == "break";
             next();
             if (eat(TokenType.semi) || insertSemicolon()) node.label = null;
-            else if (type != TokenType.name) unexpected();
+            else if (type != TokenType.name)
+            {
+                raise(start, "Unexpected token");
+            }
             else
             {
                 node.label = parseIdent();
@@ -319,7 +331,10 @@ namespace AcornSharp
                 }
                 else
                 {
-                    if (cur == null) unexpected();
+                    if (cur == null)
+                    {
+                        raise(start, "Unexpected token");
+                    }
                     cur.sconsequent.Add(parseStatement(true));
                 }
             }
@@ -397,7 +412,7 @@ namespace AcornSharp
             return finishNode(node, NodeType.EmptyStatement);
         }
 
-        private Node parseLabeledStatement(Node node, string maybeName, Node expr)
+        private Node parseLabeledStatement(Node node, string maybeName, IdentifierNode expr)
         {
             foreach (var label in labels)
             {
@@ -504,9 +519,9 @@ namespace AcornSharp
                 }
                 else if (kind == "const" && !(type == TokenType._in || Options.ecmaVersion >= 6 && isContextual("of")))
                 {
-                    unexpected();
+                    raise(start, "Unexpected token");
                 }
-                else if (decl.id.type != NodeType.Identifier && !(isFor && (type == TokenType._in || isContextual("of"))))
+                else if (!(decl.id is IdentifierNode) && !(isFor && (type == TokenType._in || isContextual("of"))))
                 {
                     raise(lastTokEnd, "Complex binding patterns require an initialization value");
                 }
@@ -601,12 +616,15 @@ namespace AcornSharp
                 method.@static = isMaybeStatic && type != TokenType.parenL;
                 if (method.@static)
                 {
-                    if (isGenerator) unexpected();
+                    if (isGenerator)
+                    {
+                        raise(start, "Unexpected token");
+                    }
                     isGenerator = eat(TokenType.star);
                     parsePropertyName(method);
                 }
                 if (Options.ecmaVersion >= 8 && !isGenerator && !method.computed &&
-                    method.key.type == NodeType.Identifier && method.key.name == "async" && type != TokenType.parenL &&
+                    method.key is IdentifierNode identifierNode && identifierNode.name == "async" && type != TokenType.parenL &&
                     !canInsertSemicolon())
                 {
                     isAsync = true;
@@ -617,13 +635,13 @@ namespace AcornSharp
                 if (!method.computed)
                 {
                     var key = method.key;
-                    if (!isGenerator && !isAsync && key.type == NodeType.Identifier && type != TokenType.parenL && (key.name == "get" || key.name == "set"))
+                    if (!isGenerator && !isAsync && key is IdentifierNode identifierNode2 && type != TokenType.parenL && (identifierNode2.name == "get" || identifierNode2.name == "set"))
                     {
                         isGetSet = true;
-                        method.kind = key.name;
+                        method.kind = identifierNode2.name;
                         key = parsePropertyName(method);
                     }
-                    if (!method.@static && (key.type == NodeType.Identifier && key.name == "constructor" ||
+                    if (!method.@static && (key is IdentifierNode identifierNode3 && identifierNode3.name == "constructor" ||
                                             key.type == NodeType.Literal && (string)key.value == "constructor"))
                     {
                         if (hadConstructor) raise(key.loc.Start, "Duplicate constructor in the same class");
@@ -671,7 +689,9 @@ namespace AcornSharp
             else
             {
                 if (isStatement == "true")
-                    unexpected();
+                {
+                    raise(start, "Unexpected token");
+                }
                 else node.id = null;
             }
         }
@@ -690,7 +710,10 @@ namespace AcornSharp
             {
                 expectContextual("from");
                 if (type == TokenType.@string) node.source = parseExprAtom();
-                else unexpected();
+                else
+                {
+                    raise(start, "Unexpected token");
+                }
                 semicolon();
                 return finishNode(node, NodeType.ExportAllDeclaration);
             }
@@ -725,7 +748,7 @@ namespace AcornSharp
                 if (node.declaration.type == NodeType.VariableDeclaration)
                     checkVariableExport(exports, node.declaration.declarations);
                 else
-                    checkExport(exports, node.declaration.id.name, node.declaration.id.loc.Start);
+                    checkExport(exports, ((IdentifierNode)node.declaration.id).name, node.declaration.id.loc.Start);
                 node.specifiers = new List<Node>();
                 node.source = null;
             }
@@ -737,7 +760,10 @@ namespace AcornSharp
                 if (eatContextual("from"))
                 {
                     if (type == TokenType.@string) node.source = parseExprAtom();
-                    else unexpected();
+                    else
+                    {
+                        raise(start, "Unexpected token");
+                    }
                 }
                 else
                 {
@@ -764,27 +790,32 @@ namespace AcornSharp
 
         private static void checkPatternExport(IDictionary<string, bool> exports, Node pat)
         {
-            var type = pat.type;
-            switch (type)
+            switch (pat)
             {
-                case NodeType.Identifier:
-                    checkExport(exports, pat.name, pat.loc.Start);
+                case IdentifierNode identifierNode:
+                    checkExport(exports, identifierNode.name, pat.loc.Start);
                     break;
-                case NodeType.ObjectPattern:
-                    foreach (var prop in pat.properties)
-                        checkPatternExport(exports, (Node)prop.value);
-                    break;
-                case NodeType.ArrayPattern:
-                    foreach (var elt in pat.elements)
+                default:
+                    if (pat.type == NodeType.ObjectPattern)
                     {
-                        if (elt != null) checkPatternExport(exports, elt);
+                        foreach (var prop in pat.properties)
+                            checkPatternExport(exports, (Node)prop.value);
                     }
-                    break;
-                case NodeType.AssignmentPattern:
-                    checkPatternExport(exports, pat.left);
-                    break;
-                case NodeType.ParenthesizedExpression:
-                    checkPatternExport(exports, pat.expression);
+                    else if (pat.type == NodeType.ArrayPattern)
+                    {
+                        foreach (var elt in pat.elements)
+                        {
+                            if (elt != null) checkPatternExport(exports, elt);
+                        }
+                    }
+                    else if (pat.type == NodeType.AssignmentPattern)
+                    {
+                        checkPatternExport(exports, pat.left);
+                    }
+                    else if (pat.type == NodeType.ParenthesizedExpression)
+                    {
+                        checkPatternExport(exports, pat.expression);
+                    }
                     break;
             }
         }
@@ -846,7 +877,10 @@ namespace AcornSharp
                 node.specifiers = parseImportSpecifiers();
                 expectContextual("from");
                 if (type == TokenType.@string) node.source = parseExprAtom();
-                else unexpected();
+                else
+                {
+                    raise(start, "Unexpected token");
+                }
             }
             semicolon();
             return finishNode(node, NodeType.ImportDeclaration);

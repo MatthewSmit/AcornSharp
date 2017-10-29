@@ -154,12 +154,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "test",
-                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "test"),
                         @params = new List<Node>(),
                         fbody = new Node
                         {
@@ -284,12 +279,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "test",
-                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "test"),
                         @params = new List<Node>(),
                         fbody = new Node
                         {
@@ -572,12 +562,7 @@ namespace AcornSharp.Cli
                         expression = new Node
                         {
                             type = NodeType.TaggedTemplateExpression,
-                            tag = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "raw",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
-                            },
+                            tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "raw"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
@@ -616,12 +601,7 @@ namespace AcornSharp.Cli
                         expression = new Node
                         {
                             type = NodeType.TaggedTemplateExpression,
-                            tag = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "raw",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
-                            },
+                            tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "raw"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
@@ -644,12 +624,7 @@ namespace AcornSharp.Cli
                                 },
                                 expressions = new List<Node>
                                 {
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "name",
-                                        loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 16, 16))
-                                    }
+                                    new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 16, 16)), "name")
                                 },
                                 loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 18, 18))
                             },
@@ -810,12 +785,7 @@ namespace AcornSharp.Cli
                             callee = new Node
                             {
                                 type = NodeType.TaggedTemplateExpression,
-                                tag = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "raw",
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
-                                },
+                                tag = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)), "raw"),
                                 quasi = new Node
                                 {
                                     type = NodeType.TemplateLiteral,
@@ -870,11 +840,7 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = false,
                                             computed = false,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "x"
-                                            },
+                                            key = new IdentifierNode(default, "x"),
                                             value = new Node
                                             {
                                                 type = NodeType.ObjectExpression,
@@ -886,11 +852,7 @@ namespace AcornSharp.Cli
                                                         method = false,
                                                         shorthand = false,
                                                         computed = false,
-                                                        key = new Node
-                                                        {
-                                                            type = NodeType.Identifier,
-                                                            name = "y"
-                                                        },
+                                                        key = new IdentifierNode(default, "y"),
                                                         value = new Node
                                                         {
                                                             type = NodeType.Literal,
@@ -993,12 +955,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.SwitchStatement,
-                        discriminant = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "answer",
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 14, 14))
-                        },
+                        discriminant = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 14, 14)), "answer"),
                         cases = new List<Node>
                         {
                             new Node
@@ -1021,12 +978,7 @@ namespace AcornSharp.Cli
                                             new Node
                                             {
                                                 type = NodeType.VariableDeclarator,
-                                                id = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    name = "t",
-                                                    loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 32, 32))
-                                                },
+                                                id = new IdentifierNode(new SourceLocation(new Position(1, 31, 31), new Position(1, 32, 32)), "t"),
                                                 init = new Node
                                                 {
                                                     type = NodeType.Literal,
@@ -1108,12 +1060,7 @@ namespace AcornSharp.Cli
                             id = null,
                             @params = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "e",
-                                    loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-                                }
+                                new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "e")
                             },
                             fbody = new Node
                             {
@@ -1149,12 +1096,7 @@ namespace AcornSharp.Cli
                             id = null,
                             @params = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "e",
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2))
-                                }
+                                new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "e")
                             },
                             fbody = new Node
                             {
@@ -1190,18 +1132,8 @@ namespace AcornSharp.Cli
                             id = null,
                             @params = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "a",
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2))
-                                },
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "b",
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5))
-                                }
+                                new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a"),
+                                new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "b")
                             },
                             fbody = new Node
                             {
@@ -1237,12 +1169,7 @@ namespace AcornSharp.Cli
                             id = null,
                             @params = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "e",
-                                    loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-                                }
+                                new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "e")
                             },
                             fbody = new Node
                             {
@@ -1291,12 +1218,7 @@ namespace AcornSharp.Cli
                             id = null,
                             @params = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "e",
-                                    loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-                                }
+                                new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "e")
                             },
                             fbody = new Node
                             {
@@ -1306,12 +1228,7 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "property",
-                                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 16, 16))
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 16, 16)), "property"),
                                         value = new Node
                                         {
                                             type = NodeType.Literal,
@@ -1355,12 +1272,7 @@ namespace AcornSharp.Cli
                             id = null,
                             @params = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "e",
-                                    loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-                                }
+                                new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "e")
                             },
                             fbody = new Node
                             {
@@ -1370,12 +1282,7 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.LabeledStatement,
-                                        label = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "label",
-                                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 12, 12))
-                                        },
+                                        label = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 12, 12)), "label"),
                                         fbody = new Node
                                         {
                                             type = NodeType.ExpressionStatement,
@@ -1420,18 +1327,8 @@ namespace AcornSharp.Cli
                             id = null,
                             @params = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "a",
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2))
-                                },
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "b",
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5))
-                                }
+                                new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a"),
+                                new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "b")
                             },
                             fbody = new Node
                             {
@@ -1485,19 +1382,9 @@ namespace AcornSharp.Cli
                                     type = NodeType.ArrayPattern,
                                     elements = new List<Node>
                                     {
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "a",
-                                            loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3))
-                                        },
+                                        new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), "a"),
                                         null,
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "b",
-                                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
-                                        }
+                                        new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "b")
                                     },
                                     loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 9, 9))
                                 }
@@ -1626,12 +1513,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.AssignmentPattern,
-                                    left = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2))
-                                    },
+                                    left = new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "x"),
                                     right = new Node
                                     {
                                         type = NodeType.Literal,
@@ -1646,18 +1528,8 @@ namespace AcornSharp.Cli
                             {
                                 type = NodeType.BinaryExpression,
                                 @operator = "*",
-                                left = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "x",
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                                },
-                                right = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "x",
-                                    loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14))
-                                },
+                                left = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "x"),
+                                right = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "x"),
                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 14, 14))
                             },
                             generator = false,
@@ -1687,12 +1559,7 @@ namespace AcornSharp.Cli
                             id = null,
                             @params = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "eval",
-                                    loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
-                                }
+                                new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4)), "eval")
                             },
                             fbody = new Node
                             {
@@ -1728,12 +1595,7 @@ namespace AcornSharp.Cli
                             id = null,
                             @params = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "arguments",
-                                    loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-                                }
+                                new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)), "arguments")
                             },
                             fbody = new Node
                             {
@@ -1769,12 +1631,7 @@ namespace AcornSharp.Cli
                             id = null,
                             @params = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "a",
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2))
-                                }
+                                new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a")
                             },
                             fbody = new Node
                             {
@@ -1810,18 +1667,8 @@ namespace AcornSharp.Cli
                             id = null,
                             @params = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "eval",
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 5, 5))
-                                },
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "a",
-                                    loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
-                                }
+                                new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 5, 5)), "eval"),
+                                new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a")
                             },
                             fbody = new Node
                             {
@@ -1860,12 +1707,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.AssignmentPattern,
-                                    left = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "eval",
-                                        loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 5, 5))
-                                    },
+                                    left = new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 5, 5)), "eval"),
                                     right = new Node
                                     {
                                         type = NodeType.Literal,
@@ -1910,21 +1752,11 @@ namespace AcornSharp.Cli
                             id = null,
                             @params = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "eval",
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 5, 5))
-                                },
+                                new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 5, 5)), "eval"),
                                 new Node
                                 {
                                     type = NodeType.AssignmentPattern,
-                                    left = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "a",
-                                        loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
-                                    },
+                                    left = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a"),
                                     right = new Node
                                     {
                                         type = NodeType.Literal,
@@ -1969,19 +1801,9 @@ namespace AcornSharp.Cli
                             id = null,
                             @params = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "x",
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2))
-                                }
+                                new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "x")
                             },
-                            fbody = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "x",
-                                loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                            },
+                            fbody = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "x"),
                             generator = false,
                             bexpression = true,
                             loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 7, 7))
@@ -2009,12 +1831,7 @@ namespace AcornSharp.Cli
                             id = null,
                             @params = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "x",
-                                    loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-                                }
+                                new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x")
                             },
                             fbody = new Node
                             {
@@ -2022,12 +1839,7 @@ namespace AcornSharp.Cli
                                 id = null,
                                 @params = new List<Node>
                                 {
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "y",
-                                        loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
-                                    }
+                                    new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y")
                                 },
                                 fbody = new Node
                                 {
@@ -2067,12 +1879,7 @@ namespace AcornSharp.Cli
                             id = null,
                             @params = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "x",
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2))
-                                }
+                                new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "x")
                             },
                             fbody = new Node
                             {
@@ -2080,42 +1887,17 @@ namespace AcornSharp.Cli
                                 id = null,
                                 @params = new List<Node>
                                 {
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "y",
-                                        loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                                    },
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "z",
-                                        loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13))
-                                    }
+                                    new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "y"),
+                                    new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "z")
                                 },
                                 fbody = new Node
                                 {
                                     type = NodeType.SequenceExpression,
                                     expressions = new List<Node>
                                     {
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "x",
-                                            loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 20, 20))
-                                        },
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "y",
-                                            loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23))
-                                        },
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "z",
-                                            loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 26, 26))
-                                        }
+                                        new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 20, 20)), "x"),
+                                        new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23)), "y"),
+                                        new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 26, 26)), "z")
                                     },
                                     loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 26, 26))
                                 },
@@ -2147,12 +1929,7 @@ namespace AcornSharp.Cli
                         expression = new Node
                         {
                             type = NodeType.CallExpression,
-                            callee = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "foo",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
-                            },
+                            callee = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             arguments = new List<Node>
                             {
                                 new Node
@@ -2193,12 +1970,7 @@ namespace AcornSharp.Cli
                         expression = new Node
                         {
                             type = NodeType.CallExpression,
-                            callee = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "foo",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
-                            },
+                            callee = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             arguments = new List<Node>
                             {
                                 new Node
@@ -2207,18 +1979,8 @@ namespace AcornSharp.Cli
                                     id = null,
                                     @params = new List<Node>
                                     {
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "x",
-                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
-                                        },
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "y",
-                                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9))
-                                        }
+                                        new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "x"),
+                                        new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "y")
                                     },
                                     fbody = new Node
                                     {
@@ -2256,12 +2018,7 @@ namespace AcornSharp.Cli
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
-                            left = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "x",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-                            },
+                            left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new Node
                             {
                                 type = NodeType.ObjectExpression,
@@ -2270,12 +2027,7 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "method",
-                                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 12, 12))
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 12, 12)), "method"),
                                         value = new Node
                                         {
                                             type = NodeType.FunctionExpression,
@@ -2323,12 +2075,7 @@ namespace AcornSharp.Cli
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
-                            left = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "x",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-                            },
+                            left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new Node
                             {
                                 type = NodeType.ObjectExpression,
@@ -2337,24 +2084,14 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "method",
-                                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 12, 12))
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 12, 12)), "method"),
                                         value = new Node
                                         {
                                             type = NodeType.FunctionExpression,
                                             id = null,
                                             @params = new List<Node>
                                             {
-                                                new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    name = "test",
-                                                    loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 17, 17))
-                                                }
+                                                new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 17, 17)), "test")
                                             },
                                             fbody = new Node
                                             {
@@ -2398,12 +2135,7 @@ namespace AcornSharp.Cli
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
-                            left = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "x",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-                            },
+                            left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new Node
                             {
                                 type = NodeType.ObjectExpression,
@@ -2466,12 +2198,7 @@ namespace AcornSharp.Cli
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
-                            left = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "x",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-                            },
+                            left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new Node
                             {
                                 type = NodeType.ObjectExpression,
@@ -2480,12 +2207,7 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "get",
-                                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 9, 9))
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 9, 9)), "get"),
                                         value = new Node
                                         {
                                             type = NodeType.FunctionExpression,
@@ -2533,12 +2255,7 @@ namespace AcornSharp.Cli
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
-                            left = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "x",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-                            },
+                            left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new Node
                             {
                                 type = NodeType.ObjectExpression,
@@ -2547,12 +2264,7 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "set",
-                                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 9, 9))
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 9, 9)), "set"),
                                         value = new Node
                                         {
                                             type = NodeType.FunctionExpression,
@@ -2602,12 +2314,7 @@ namespace AcornSharp.Cli
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
-                            left = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "x",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-                            },
+                            left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new Node
                             {
                                 type = NodeType.ObjectExpression,
@@ -2616,18 +2323,8 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "y",
-                                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                                        },
-                                        value = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "y",
-                                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "y"),
+                                        value = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "y"),
                                         kind = "init",
                                         method = false,
                                         shorthand = true,
@@ -2637,18 +2334,8 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "z",
-                                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                                        },
-                                        value = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "z",
-                                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "z"),
+                                        value = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "z"),
                                         kind = "init",
                                         method = false,
                                         shorthand = true,
@@ -2688,18 +2375,8 @@ namespace AcornSharp.Cli
                                 type = NodeType.ArrayPattern,
                                 elements = new List<Node>
                                 {
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "a",
-                                        loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2))
-                                    },
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "b",
-                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5))
-                                    }
+                                    new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a"),
+                                    new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "b")
                                 },
                                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                             },
@@ -2708,18 +2385,8 @@ namespace AcornSharp.Cli
                                 type = NodeType.ArrayExpression,
                                 elements = new List<Node>
                                 {
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "b",
-                                        loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11))
-                                    },
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "a",
-                                        loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14))
-                                    }
+                                    new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "b"),
+                                    new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "a")
                                 },
                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 15, 15))
                             },
@@ -2754,18 +2421,8 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "responseText",
-                                            loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 15, 15))
-                                        },
-                                        value = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "text",
-                                            loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 21, 21))
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 15, 15)), "responseText"),
+                                        value = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 21, 21)), "text"),
                                         kind = "init",
                                         method = false,
                                         shorthand = false,
@@ -2775,12 +2432,7 @@ namespace AcornSharp.Cli
                                 },
                                 loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 23, 23))
                             },
-                            right = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "res",
-                                loc = new SourceLocation(new Position(1, 26, 26), new Position(1, 29, 29))
-                            },
+                            right = new IdentifierNode(new SourceLocation(new Position(1, 26, 26), new Position(1, 29, 29)), "res"),
                             loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 29, 29))
                         },
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
@@ -2813,18 +2465,8 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "a",
-                                                loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
-                                            },
-                                            value = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "a",
-                                                loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a"),
+                                            value = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a"),
                                             kind = "init",
                                             method = false,
                                             shorthand = true,
@@ -2871,12 +2513,7 @@ namespace AcornSharp.Cli
                                     type = NodeType.ArrayPattern,
                                     elements = new List<Node>
                                     {
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "a",
-                                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
-                                        }
+                                        new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a")
                                     },
                                     loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 9, 9))
                                 },
@@ -2920,18 +2557,8 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "a",
-                                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
-                                            },
-                                            value = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "a",
-                                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a"),
+                                            value = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a"),
                                             kind = "init",
                                             method = false,
                                             shorthand = true,
@@ -2978,12 +2605,7 @@ namespace AcornSharp.Cli
                                     type = NodeType.ArrayPattern,
                                     elements = new List<Node>
                                     {
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "a",
-                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
-                                        }
+                                        new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a")
                                     },
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
                                 },
@@ -3027,18 +2649,8 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "a",
-                                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
-                                            },
-                                            value = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "a",
-                                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a"),
+                                            value = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a"),
                                             kind = "init",
                                             method = false,
                                             shorthand = true,
@@ -3085,12 +2697,7 @@ namespace AcornSharp.Cli
                                     type = NodeType.ArrayPattern,
                                     elements = new List<Node>
                                     {
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "a",
-                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
-                                        }
+                                        new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a")
                                     },
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
                                 },
@@ -3134,18 +2741,8 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "a",
-                                                loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
-                                            },
-                                            value = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "b",
-                                                loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a"),
+                                            value = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "b"),
                                             kind = "init",
                                             method = false,
                                             shorthand = false,
@@ -3195,18 +2792,8 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "a",
-                                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
-                                            },
-                                            value = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "b",
-                                                loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a"),
+                                            value = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "b"),
                                             kind = "init",
                                             method = false,
                                             shorthand = false,
@@ -3257,18 +2844,8 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "a",
-                                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
-                                            },
-                                            value = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "b",
-                                                loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a"),
+                                            value = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "b"),
                                             kind = "init",
                                             method = false,
                                             shorthand = false,
@@ -3316,12 +2893,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.VariableDeclarator,
-                                    id = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "document",
-                                        loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
-                                    },
+                                    id = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19)), "document"),
                                     init = null,
                                     loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
                                 }
@@ -3357,12 +2929,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.VariableDeclarator,
-                                    id = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "document",
-                                        loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
-                                    },
+                                    id = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19)), "document"),
                                     init = new Node
                                     {
                                         type = NodeType.ObjectExpression,
@@ -3405,12 +2972,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.VariableDeclarator,
-                                    id = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "document",
-                                        loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
-                                    },
+                                    id = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19)), "document"),
                                     init = null,
                                     loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
                                 }
@@ -3446,12 +3008,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.VariableDeclarator,
-                                    id = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "document",
-                                        loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
-                                    },
+                                    id = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19)), "document"),
                                     init = new Node
                                     {
                                         type = NodeType.ObjectExpression,
@@ -3492,12 +3049,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.VariableDeclarator,
-                                    id = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "document",
-                                        loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 21, 21))
-                                    },
+                                    id = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 21, 21)), "document"),
                                     init = new Node
                                     {
                                         type = NodeType.ObjectExpression,
@@ -3533,12 +3085,7 @@ namespace AcornSharp.Cli
                         declaration = new Node
                         {
                             type = NodeType.FunctionDeclaration,
-                            id = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "parse",
-                                loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 21, 21))
-                            },
+                            id = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 21, 21)), "parse"),
                             @params = new List<Node>(),
                             fbody = new Node
                             {
@@ -3573,12 +3120,7 @@ namespace AcornSharp.Cli
                         declaration = new Node
                         {
                             type = NodeType.ClassDeclaration,
-                            id = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "Class",
-                                loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 18, 18))
-                            },
+                            id = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 18, 18)), "Class"),
                             superClass = null,
                             fbody = new Node
                             {
@@ -3671,12 +3213,7 @@ namespace AcornSharp.Cli
                         {
                             type = NodeType.FunctionDeclaration,
                             range = (15, 30),
-                            id = new Node
-                            {
-                                type = NodeType.Identifier,
-                                range = (24, 25),
-                                name = "f"
-                            },
+                            id = new IdentifierNode(new SourceLocation(new Position(1, 24, 24), new Position(1, 25, 25)), "f"),
                             generator = false,
                             bexpression = false,
                             @params = new List<Node>(),
@@ -3732,12 +3269,7 @@ namespace AcornSharp.Cli
                         {
                             type = NodeType.ClassDeclaration,
                             range = (15, 25),
-                            id = new Node
-                            {
-                                type = NodeType.Identifier,
-                                range = (21, 22),
-                                name = "A"
-                            },
+                            id = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22)), "A"),
                             superClass = null,
                             fbody = new Node
                             {
@@ -3814,18 +3346,8 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.ExportSpecifier,
-                                exported = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "encrypt",
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
-                                },
-                                local = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "encrypt",
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
-                                },
+                                exported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
+                                local = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
                             }
                         },
@@ -3854,35 +3376,15 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.ExportSpecifier,
-                                exported = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "encrypt",
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
-                                },
-                                local = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "encrypt",
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
-                                },
+                                exported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
+                                local = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
                             },
                             new Node
                             {
                                 type = NodeType.ExportSpecifier,
-                                exported = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "decrypt",
-                                    loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25))
-                                },
-                                local = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "decrypt",
-                                    loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25))
-                                },
+                                exported = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25)), "decrypt"),
+                                local = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25)), "decrypt"),
                                 loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25))
                             }
                         },
@@ -3911,18 +3413,8 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.ExportSpecifier,
-                                exported = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "default",
-                                    loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 27, 27))
-                                },
-                                local = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "encrypt",
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
-                                },
+                                exported = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 27, 27)), "default"),
+                                local = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 27, 27))
                             }
                         },
@@ -3951,35 +3443,15 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.ExportSpecifier,
-                                exported = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "encrypt",
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
-                                },
-                                local = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "encrypt",
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
-                                },
+                                exported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
+                                local = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
                             },
                             new Node
                             {
                                 type = NodeType.ExportSpecifier,
-                                exported = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "dec",
-                                    loc = new SourceLocation(new Position(1, 29, 29), new Position(1, 32, 32))
-                                },
-                                local = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "decrypt",
-                                    loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25))
-                                },
+                                exported = new IdentifierNode(new SourceLocation(new Position(1, 29, 29), new Position(1, 32, 32)), "dec"),
+                                local = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25)), "decrypt"),
                                 loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 32, 32))
                             }
                         },
@@ -4008,18 +3480,8 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.ExportSpecifier,
-                                exported = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "default",
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
-                                },
-                                local = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "default",
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
-                                },
+                                exported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "default"),
+                                local = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "default"),
                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
                             }
                         },
@@ -4084,12 +3546,7 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.ImportDefaultSpecifier,
-                                local = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "$",
-                                    loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
-                                },
+                                local = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "$"),
                                 loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
                             }
                         },
@@ -4123,35 +3580,15 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.ImportSpecifier,
-                                imported = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "encrypt",
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
-                                },
-                                local = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "encrypt",
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
-                                },
+                                imported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
+                                local = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
                             },
                             new Node
                             {
                                 type = NodeType.ImportSpecifier,
-                                imported = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "decrypt",
-                                    loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25))
-                                },
-                                local = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "decrypt",
-                                    loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25))
-                                },
+                                imported = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25)), "decrypt"),
+                                local = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25)), "decrypt"),
                                 loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25))
                             }
                         },
@@ -4185,18 +3622,8 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.ImportSpecifier,
-                                imported = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "encrypt",
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
-                                },
-                                local = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "enc",
-                                    loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 23, 23))
-                                },
+                                imported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
+                                local = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 23, 23)), "enc"),
                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 23, 23))
                             }
                         },
@@ -4233,46 +3660,21 @@ namespace AcornSharp.Cli
                             {
                                 type = NodeType.ImportDefaultSpecifier,
                                 loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 13, 13)),
-                                local = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 13, 13)),
-                                    name = "crypto"
-                                }
+                                local = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 13, 13)), "crypto")
                             },
                             new Node
                             {
                                 type = NodeType.ImportSpecifier,
                                 loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 24, 24)),
-                                imported = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 24, 24)),
-                                    name = "decrypt"
-                                },
-                                local = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 24, 24)),
-                                    name = "decrypt"
-                                }
+                                imported = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 24, 24)), "decrypt"),
+                                local = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 24, 24)), "decrypt")
                             },
                             new Node
                             {
                                 type = NodeType.ImportSpecifier,
                                 loc = new SourceLocation(new Position(1, 26, 26), new Position(1, 40, 40)),
-                                imported = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    loc = new SourceLocation(new Position(1, 26, 26), new Position(1, 33, 33)),
-                                    name = "encrypt"
-                                },
-                                local = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    loc = new SourceLocation(new Position(1, 37, 37), new Position(1, 40, 40)),
-                                    name = "enc"
-                                }
+                                imported = new IdentifierNode(new SourceLocation(new Position(1, 26, 26), new Position(1, 33, 33)), "encrypt"),
+                                local = new IdentifierNode(new SourceLocation(new Position(1, 37, 37), new Position(1, 40, 40)), "enc")
                             }
                         },
                         source = new Node
@@ -4305,18 +3707,8 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.ImportSpecifier,
-                                imported = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "null",
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13))
-                                },
-                                local = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "nil",
-                                    loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20))
-                                },
+                                imported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "null"),
+                                local = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20)), "nil"),
                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 20, 20))
                             }
                         },
@@ -4353,12 +3745,7 @@ namespace AcornSharp.Cli
                             {
                                 type = NodeType.ImportNamespaceSpecifier,
                                 loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 18, 18)),
-                                local = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 18, 18)),
-                                    name = "crypto"
-                                }
+                                local = new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 18, 18)), "crypto")
                             }
                         },
                         source = new Node
@@ -4410,12 +3797,7 @@ namespace AcornSharp.Cli
                                         expression = new Node
                                         {
                                             type = NodeType.YieldExpression,
-                                            argument = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "v",
-                                                loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23))
-                                            },
+                                            argument = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23)), "v"),
                                             @delegate = false,
                                             loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 23, 23))
                                         },
@@ -4471,12 +3853,7 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.ExpressionStatement,
-                                        expression = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "v",
-                                            loc = new SourceLocation(new Position(2, 0, 22), new Position(2, 1, 23))
-                                        },
+                                        expression = new IdentifierNode(new SourceLocation(new Position(2, 0, 22), new Position(2, 1, 23)), "v"),
                                         loc = new SourceLocation(new Position(2, 0, 22), new Position(2, 1, 23))
                                     }
                                 },
@@ -4520,12 +3897,7 @@ namespace AcornSharp.Cli
                                         expression = new Node
                                         {
                                             type = NodeType.YieldExpression,
-                                            argument = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "v",
-                                                loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 24, 24))
-                                            },
+                                            argument = new IdentifierNode(new SourceLocation(new Position(1, 23, 23), new Position(1, 24, 24)), "v"),
                                             @delegate = true,
                                             loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 24, 24))
                                         },
@@ -4555,12 +3927,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "test",
-                            loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 14, 14))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 14, 14)), "test"),
                         @params = new List<Node>(),
                         fbody = new Node
                         {
@@ -4573,12 +3940,7 @@ namespace AcornSharp.Cli
                                     expression = new Node
                                     {
                                         type = NodeType.YieldExpression,
-                                        argument = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "v",
-                                            loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 28, 28))
-                                        },
+                                        argument = new IdentifierNode(new SourceLocation(new Position(1, 27, 27), new Position(1, 28, 28)), "v"),
                                         @delegate = true,
                                         loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 28, 28))
                                     },
@@ -4611,12 +3973,7 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "x",
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5))
-                                },
+                                id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "x"),
                                 init = new Node
                                 {
                                     type = NodeType.ObjectExpression,
@@ -4625,12 +3982,7 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "test",
-                                                loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 15, 15))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 15, 15)), "test"),
                                             value = new Node
                                             {
                                                 type = NodeType.FunctionExpression,
@@ -4647,12 +3999,7 @@ namespace AcornSharp.Cli
                                                             expression = new Node
                                                             {
                                                                 type = NodeType.YieldExpression,
-                                                                argument = new Node
-                                                                {
-                                                                    type = NodeType.Identifier,
-                                                                    name = "v",
-                                                                    loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29))
-                                                                },
+                                                                argument = new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29)), "v"),
                                                                 @delegate = true,
                                                                 loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 29, 29))
                                                             },
@@ -4693,11 +4040,7 @@ namespace AcornSharp.Cli
                 {
                     new Node
                     {
-                        id = new Node
-                        {
-                            name = "foo",
-                            type = NodeType.Identifier,
-                        },
+                        id = new IdentifierNode(default, "foo"),
                         generator = true,
                         bexpression = false,
                         @params = new List<Node>(),
@@ -4711,18 +4054,10 @@ namespace AcornSharp.Cli
                                     {
                                         callee = new Node
                                         {
-                                            @object = new Node
-                                            {
-                                                name = "console",
-                                                type = NodeType.Identifier,
-                                            },
-                                            property = new Node
-                                            {
-                                                name = "log",
-                                                type = NodeType.Identifier,
-                                            },
+                                            @object = new IdentifierNode(default, "console"),
+                                            property = new IdentifierNode(default, "log"),
                                             computed = false,
-                                            type = NodeType.MemberExpression,
+                                            type = NodeType.MemberExpression
                                         },
                                         arguments = new List<Node>
                                         {
@@ -4755,12 +4090,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "t",
-                            loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "t"),
                         @params = new List<Node>(),
                         fbody = new Node
                         {
@@ -4850,38 +4180,18 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ForOfStatement,
-                        left = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "x",
-                            loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5))
-                        },
-                        right = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "list",
-                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13))
-                        },
+                        left = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "x"),
+                        right = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "list"),
                         fbody = new Node
                         {
                             type = NodeType.ExpressionStatement,
                             expression = new Node
                             {
                                 type = NodeType.CallExpression,
-                                callee = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "process",
-                                    loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 22, 22))
-                                },
+                                callee = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 22, 22)), "process"),
                                 arguments = new List<Node>
                                 {
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 24, 24))
-                                    }
+                                    new IdentifierNode(new SourceLocation(new Position(1, 23, 23), new Position(1, 24, 24)), "x")
                                 },
                                 loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 25, 25))
                             },
@@ -4912,12 +4222,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.VariableDeclarator,
-                                    id = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                                    },
+                                    id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "x"),
                                     init = null,
                                     loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
                                 }
@@ -4925,32 +4230,17 @@ namespace AcornSharp.Cli
                             kind = "var",
                             loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 10, 10))
                         },
-                        right = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "list",
-                            loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 18, 18))
-                        },
+                        right = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 18, 18)), "list"),
                         fbody = new Node
                         {
                             type = NodeType.ExpressionStatement,
                             expression = new Node
                             {
                                 type = NodeType.CallExpression,
-                                callee = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "process",
-                                    loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 27, 27))
-                                },
+                                callee = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 27, 27)), "process"),
                                 arguments = new List<Node>
                                 {
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29))
-                                    }
+                                    new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29)), "x")
                                 },
                                 loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 30, 30))
                             },
@@ -4981,12 +4271,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.VariableDeclarator,
-                                    id = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                                    },
+                                    id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "x"),
                                     init = new Node
                                     {
                                         type = NodeType.Literal,
@@ -5000,32 +4285,17 @@ namespace AcornSharp.Cli
                             kind = "var",
                             loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 15, 15))
                         },
-                        right = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "list",
-                            loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 23, 23))
-                        },
+                        right = new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 23, 23)), "list"),
                         fbody = new Node
                         {
                             type = NodeType.ExpressionStatement,
                             expression = new Node
                             {
                                 type = NodeType.CallExpression,
-                                callee = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "process",
-                                    loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 32, 32))
-                                },
+                                callee = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 32, 32)), "process"),
                                 arguments = new List<Node>
                                 {
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        loc = new SourceLocation(new Position(1, 33, 33), new Position(1, 34, 34))
-                                    }
+                                    new IdentifierNode(new SourceLocation(new Position(1, 33, 33), new Position(1, 34, 34)), "x")
                                 },
                                 loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 35, 35))
                             },
@@ -5056,12 +4326,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.VariableDeclarator,
-                                    id = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                                    },
+                                    id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "x"),
                                     init = null,
                                     loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
                                 }
@@ -5069,32 +4334,17 @@ namespace AcornSharp.Cli
                             kind = "let",
                             loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 10, 10))
                         },
-                        right = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "list",
-                            loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 18, 18))
-                        },
+                        right = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 18, 18)), "list"),
                         fbody = new Node
                         {
                             type = NodeType.ExpressionStatement,
                             expression = new Node
                             {
                                 type = NodeType.CallExpression,
-                                callee = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "process",
-                                    loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 27, 27))
-                                },
+                                callee = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 27, 27)), "process"),
                                 arguments = new List<Node>
                                 {
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29))
-                                    }
+                                    new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29)), "x")
                                 },
                                 loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 30, 30))
                             },
@@ -5124,21 +4374,11 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "A",
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5))
-                                },
+                                id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "A"),
                                 init = new Node
                                 {
                                     type = NodeType.ClassExpression,
-                                    superClass = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "B",
-                                        loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23))
-                                    },
+                                    superClass = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23)), "B"),
                                     fbody = new Node
                                     {
                                         type = NodeType.ClassBody,
@@ -5168,27 +4408,12 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = new Node
                         {
                             type = NodeType.ClassExpression,
-                            id = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "B",
-                                loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23))
-                            },
-                            superClass = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "C",
-                                loc = new SourceLocation(new Position(1, 32, 32), new Position(1, 33, 33))
-                            },
+                            id = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23)), "B"),
+                            superClass = new IdentifierNode(new SourceLocation(new Position(1, 32, 32), new Position(1, 33, 33)), "C"),
                             fbody = new Node
                             {
                                 type = NodeType.ClassBody,
@@ -5220,12 +4445,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -5236,12 +4456,7 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "get",
-                                        loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "get"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -5281,12 +4496,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -5297,12 +4507,7 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "get",
-                                        loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20)), "get"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -5342,18 +4547,8 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
-                        superClass = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "B",
-                            loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
+                        superClass = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17)), "B"),
                         fbody = new Node
                         {
                             type = NodeType.ClassBody,
@@ -5363,12 +4558,7 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "foo",
-                                        loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 26, 26))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 23, 23), new Position(1, 26, 26)), "foo"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -5408,18 +4598,8 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
-                        superClass = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "B",
-                            loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
+                        superClass = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17)), "B"),
                         fbody = new Node
                         {
                             type = NodeType.ClassBody,
@@ -5429,12 +4609,7 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "foo",
-                                        loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 34, 34))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 31, 31), new Position(1, 34, 34)), "foo"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -5474,12 +4649,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -5490,24 +4660,14 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "a",
-                                        loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "a"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<Node>
                                         {
-                                            new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "v",
-                                                loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16))
-                                            }
+                                            new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)), "v")
                                         },
                                         fbody = new Node
                                         {
@@ -5543,12 +4703,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -5559,24 +4714,14 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "a",
-                                        loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22)), "a"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<Node>
                                         {
-                                            new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "v",
-                                                loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 24, 24))
-                                            }
+                                            new IdentifierNode(new SourceLocation(new Position(1, 23, 23), new Position(1, 24, 24)), "v")
                                         },
                                         fbody = new Node
                                         {
@@ -5612,12 +4757,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -5628,24 +4768,14 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "set",
-                                        loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "set"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<Node>
                                         {
-                                            new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "v",
-                                                loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14))
-                                            }
+                                            new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "v")
                                         },
                                         fbody = new Node
                                         {
@@ -5681,12 +4811,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -5697,24 +4822,14 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "set",
-                                        loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20)), "set"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<Node>
                                         {
-                                            new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "v",
-                                                loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22))
-                                            }
+                                            new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22)), "v")
                                         },
                                         fbody = new Node
                                         {
@@ -5750,12 +4865,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -5766,24 +4876,14 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "gen",
-                                        loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13)), "gen"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<Node>
                                         {
-                                            new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "v",
-                                                loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15))
-                                            }
+                                            new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "v")
                                         },
                                         fbody = new Node
                                         {
@@ -5796,12 +4896,7 @@ namespace AcornSharp.Cli
                                                     expression = new Node
                                                     {
                                                         type = NodeType.YieldExpression,
-                                                        argument = new Node
-                                                        {
-                                                            type = NodeType.Identifier,
-                                                            name = "v",
-                                                            loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 26, 26))
-                                                        },
+                                                        argument = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 26, 26)), "v"),
                                                         @delegate = false,
                                                         loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 26, 26))
                                                     },
@@ -5838,12 +4933,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -5854,24 +4944,14 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "gen",
-                                        loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 21, 21))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 21, 21)), "gen"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<Node>
                                         {
-                                            new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "v",
-                                                loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23))
-                                            }
+                                            new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23)), "v")
                                         },
                                         fbody = new Node
                                         {
@@ -5884,12 +4964,7 @@ namespace AcornSharp.Cli
                                                     expression = new Node
                                                     {
                                                         type = NodeType.YieldExpression,
-                                                        argument = new Node
-                                                        {
-                                                            type = NodeType.Identifier,
-                                                            name = "v",
-                                                            loc = new SourceLocation(new Position(1, 33, 33), new Position(1, 34, 34))
-                                                        },
+                                                        argument = new IdentifierNode(new SourceLocation(new Position(1, 33, 33), new Position(1, 34, 34)), "v"),
                                                         @delegate = false,
                                                         loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 34, 34))
                                                     },
@@ -5941,12 +5016,7 @@ namespace AcornSharp.Cli
                         expression = new Node
                         {
                             type = NodeType.ClassExpression,
-                            id = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "A",
-                                loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22))
-                            },
+                            id = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22)), "A"),
                             superClass = null,
                             fbody = new Node
                             {
@@ -5957,12 +5027,7 @@ namespace AcornSharp.Cli
                                     {
                                         type = NodeType.MethodDefinition,
                                         computed = false,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "constructor",
-                                            loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 35, 35))
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 24, 24), new Position(1, 35, 35)), "constructor"),
                                         value = new Node
                                         {
                                             type = NodeType.FunctionExpression,
@@ -6022,7 +5087,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id =  new Node{type = NodeType.Identifier, name = "A"},
+                        id =  new IdentifierNode(default, "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -6070,12 +5135,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -6086,12 +5146,7 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "foo",
-                                        loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 19, 19))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 19, 19)), "foo"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -6131,12 +5186,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -6147,12 +5197,7 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "foo",
-                                        loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -6176,12 +5221,7 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "bar",
-                                        loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 28, 28))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 28, 28)), "bar"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -6236,12 +5276,7 @@ namespace AcornSharp.Cli
                         expression = new Node
                         {
                             type = NodeType.ClassExpression,
-                            id = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "A",
-                                loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22))
-                            },
+                            id = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22)), "A"),
                             superClass = null,
                             fbody = new Node
                             {
@@ -6252,12 +5287,7 @@ namespace AcornSharp.Cli
                                     {
                                         type = NodeType.MethodDefinition,
                                         computed = false,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "constructor",
-                                            loc = new SourceLocation(new Position(1, 32, 32), new Position(1, 43, 43))
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 32, 32), new Position(1, 43, 43)), "constructor"),
                                         value = new Node
                                         {
                                             type = NodeType.FunctionExpression,
@@ -6317,12 +5347,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -6333,12 +5358,7 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "foo",
-                                        loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13)), "foo"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -6362,12 +5382,7 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "bar",
-                                        loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 22, 22))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 22, 22)), "bar"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -6407,12 +5422,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -6423,12 +5433,7 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "foo",
-                                        loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 17, 17))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 17, 17)), "foo"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -6452,24 +5457,14 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "foo",
-                                        loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 30, 30))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 27, 27), new Position(1, 30, 30)), "foo"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<Node>
                                         {
-                                            new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "v",
-                                                loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 32, 32))
-                                            }
+                                            new IdentifierNode(new SourceLocation(new Position(1, 31, 31), new Position(1, 32, 32)), "v")
                                         },
                                         fbody = new Node
                                         {
@@ -6505,12 +5500,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -6521,12 +5511,7 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "foo",
-                                        loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 24, 24))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 24, 24)), "foo"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -6550,12 +5535,7 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "foo",
-                                        loc = new SourceLocation(new Position(1, 34, 34), new Position(1, 37, 37))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 34, 34), new Position(1, 37, 37)), "foo"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -6595,12 +5575,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -6611,12 +5586,7 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "foo",
-                                        loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 24, 24))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 24, 24)), "foo"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -6640,12 +5610,7 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "bar",
-                                        loc = new SourceLocation(new Position(1, 41, 41), new Position(1, 44, 44))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 41, 41), new Position(1, 44, 44)), "bar"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -6685,12 +5650,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -6701,12 +5661,7 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "foo",
-                                        loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 24, 24))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 24, 24)), "foo"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -6730,24 +5685,14 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "foo",
-                                        loc = new SourceLocation(new Position(1, 41, 41), new Position(1, 44, 44))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 41, 41), new Position(1, 44, 44)), "foo"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<Node>
                                         {
-                                            new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "v",
-                                                loc = new SourceLocation(new Position(1, 45, 45), new Position(1, 46, 46))
-                                            }
+                                            new IdentifierNode(new SourceLocation(new Position(1, 45, 45), new Position(1, 46, 46)), "v")
                                         },
                                         fbody = new Node
                                         {
@@ -6767,12 +5712,7 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "foo",
-                                        loc = new SourceLocation(new Position(1, 55, 55), new Position(1, 58, 58))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 55, 55), new Position(1, 58, 58)), "foo"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -6796,24 +5736,14 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "foo",
-                                        loc = new SourceLocation(new Position(1, 68, 68), new Position(1, 71, 71))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 68, 68), new Position(1, 71, 71)), "foo"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<Node>
                                         {
-                                            new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "v",
-                                                loc = new SourceLocation(new Position(1, 72, 72), new Position(1, 73, 73))
-                                            }
+                                            new IdentifierNode(new SourceLocation(new Position(1, 72, 72), new Position(1, 73, 73)), "v")
                                         },
                                         fbody = new Node
                                         {
@@ -6852,12 +5782,7 @@ namespace AcornSharp.Cli
                     {
                         type = NodeType.ClassDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29)),
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)),
-                            name = "A"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -6871,12 +5796,7 @@ namespace AcornSharp.Cli
                                     loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 27, 27)),
                                     @static = true,
                                     computed = true,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 21, 21)),
-                                        name = "foo"
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 21, 21)), "foo"),
                                     kind = "method",
                                     value = new Node
                                     {
@@ -6913,13 +5833,7 @@ namespace AcornSharp.Cli
                     {
                         type = NodeType.ClassDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)),
-                            range = (6, 7),
-                            name = "A"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -6933,12 +5847,7 @@ namespace AcornSharp.Cli
                                     loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 31, 31)),
                                     @static = true,
                                     computed = true,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 25, 25)),
-                                        name = "foo"
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 25, 25)), "foo"),
                                     kind = "get",
                                     value = new Node
                                     {
@@ -6973,12 +5882,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "A",
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -6989,24 +5893,14 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "foo",
-                                        loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 17, 17))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 17, 17)), "foo"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<Node>
                                         {
-                                            new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "v",
-                                                loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19))
-                                            }
+                                            new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19)), "v")
                                         },
                                         fbody = new Node
                                         {
@@ -7026,12 +5920,7 @@ namespace AcornSharp.Cli
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "foo",
-                                        loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 31, 31))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 31, 31)), "foo"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -7073,12 +5962,7 @@ namespace AcornSharp.Cli
                     {
                         type = NodeType.ClassDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)),
-                            name = "A"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -7092,12 +5976,7 @@ namespace AcornSharp.Cli
                                     loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 18, 18)),
                                     @static = false,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13)),
-                                        name = "foo"
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13)), "foo"),
                                     kind = "method",
                                     value = new Node
                                     {
@@ -7121,12 +6000,7 @@ namespace AcornSharp.Cli
                                     loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 31, 31)),
                                     @static = false,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 26, 26)),
-                                        name = "foo"
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 23, 23), new Position(1, 26, 26)), "foo"),
                                     kind = "get",
                                     value = new Node
                                     {
@@ -7163,12 +6037,7 @@ namespace AcornSharp.Cli
                     {
                         type = NodeType.ClassDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 15, 15)),
-                            name = "Semicolon"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 15, 15)), "Semicolon"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -7201,12 +6070,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.Property,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "x"),
                                     value = new Node
                                     {
                                         type = NodeType.Literal,
@@ -7309,12 +6173,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.Property,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "x"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -7364,12 +6223,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.Property,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "x"),
                                     value = new Node
                                     {
                                         type = NodeType.Literal,
@@ -7386,12 +6240,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.Property,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "y",
-                                        loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "y"),
                                     value = new Node
                                     {
                                         type = NodeType.Literal,
@@ -7433,12 +6282,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.Property,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "x"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -7463,24 +6307,14 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.Property,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22)), "x"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<Node>
                                         {
-                                            new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "v",
-                                                loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 25, 25))
-                                            }
+                                            new IdentifierNode(new SourceLocation(new Position(1, 24, 24), new Position(1, 25, 25)), "v")
                                         },
                                         fbody = new Node
                                         {
@@ -7526,12 +6360,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.Property,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "x"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -7586,18 +6415,8 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "x",
-                                                loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                                            },
-                                            value = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "y",
-                                                loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "x"),
+                                            value = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "y"),
                                             kind = "init",
                                             method = false,
                                             shorthand = false,
@@ -7615,18 +6434,8 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "y",
-                                                loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17))
-                                            },
-                                            value = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "y",
-                                                loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17)), "y"),
+                                            value = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17)), "y"),
                                             kind = "init",
                                             method = false,
                                             shorthand = true,
@@ -7657,12 +6466,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "f",
-                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "f"),
                         @params = new List<Node>
                         {
                             new Node
@@ -7673,18 +6477,8 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "x",
-                                            loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14))
-                                        },
-                                        value = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "y",
-                                            loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18))
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "x"),
+                                        value = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18)), "y"),
                                         kind = "init",
                                         method = false,
                                         shorthand = false,
@@ -7725,12 +6519,7 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "x",
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5))
-                                },
+                                id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "x"),
                                 init = new Node
                                 {
                                     type = NodeType.ObjectExpression,
@@ -7739,12 +6528,7 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "test",
-                                                loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 15, 15))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 15, 15)), "test"),
                                             value = new Node
                                             {
                                                 type = NodeType.FunctionExpression,
@@ -7761,12 +6545,7 @@ namespace AcornSharp.Cli
                                                             expression = new Node
                                                             {
                                                                 type = NodeType.YieldExpression,
-                                                                argument = new Node
-                                                                {
-                                                                    type = NodeType.Identifier,
-                                                                    name = "v",
-                                                                    loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29))
-                                                                },
+                                                                argument = new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29)), "v"),
                                                                 @delegate = true,
                                                                 loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 29, 29))
                                                             },
@@ -7811,12 +6590,7 @@ namespace AcornSharp.Cli
                     {
                         type = NodeType.ClassDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)),
-                            name = "A"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -7830,12 +6604,7 @@ namespace AcornSharp.Cli
                                     loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 17, 17)),
                                     @static = false,
                                     computed = true,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)),
-                                        name = "x"
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "x"),
                                     kind = "method",
                                     value = new Node
                                     {
@@ -7874,12 +6643,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "f",
-                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "f"),
                         @params = new List<Node>
                         {
                             new Node
@@ -7890,12 +6654,7 @@ namespace AcornSharp.Cli
                                     type = NodeType.ArrayPattern,
                                     elements = new List<Node>
                                     {
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "x",
-                                            loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13))
-                                        }
+                                        new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "x")
                                     },
                                     loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 14, 14))
                                 },
@@ -7942,12 +6701,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "f",
-                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "f"),
                         @params = new List<Node>
                         {
                             new Node
@@ -7958,12 +6712,7 @@ namespace AcornSharp.Cli
                                     type = NodeType.ArrayPattern,
                                     elements = new List<Node>
                                     {
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "x",
-                                            loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13))
-                                        }
+                                        new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "x")
                                     },
                                     loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 14, 14))
                                 },
@@ -8024,12 +6773,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "f",
-                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "f"),
                         @params = new List<Node>
                         {
                             new Node
@@ -8043,18 +6787,8 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "x",
-                                                loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13))
-                                            },
-                                            value = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "x",
-                                                loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "x"),
+                                            value = new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "x"),
                                             kind = "init",
                                             method = false,
                                             shorthand = true,
@@ -8072,12 +6806,7 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "x",
-                                                loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19)), "x"),
                                             value = new Node
                                             {
                                                 type = NodeType.Literal,
@@ -8126,12 +6855,7 @@ namespace AcornSharp.Cli
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
-                            left = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "f",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-                            },
+                            left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "f"),
                             right = new Node
                             {
                                 type = NodeType.FunctionExpression,
@@ -8149,18 +6873,8 @@ namespace AcornSharp.Cli
                                                 new Node
                                                 {
                                                     type = NodeType.Property,
-                                                    key = new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        name = "x",
-                                                        loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15))
-                                                    },
-                                                    value = new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        name = "x",
-                                                        loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15))
-                                                    },
+                                                    key = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "x"),
+                                                    value = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "x"),
                                                     kind = "init",
                                                     method = false,
                                                     shorthand = true,
@@ -8178,12 +6892,7 @@ namespace AcornSharp.Cli
                                                 new Node
                                                 {
                                                     type = NodeType.Property,
-                                                    key = new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        name = "x",
-                                                        loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 21, 21))
-                                                    },
+                                                    key = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 21, 21)), "x"),
                                                     value = new Node
                                                     {
                                                         type = NodeType.Literal,
@@ -8240,12 +6949,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.Property,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "f",
-                                        loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), "f"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -8263,18 +6967,8 @@ namespace AcornSharp.Cli
                                                         new Node
                                                         {
                                                             type = NodeType.Property,
-                                                            key = new Node
-                                                            {
-                                                                type = NodeType.Identifier,
-                                                                name = "x",
-                                                                loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16))
-                                                            },
-                                                            value = new Node
-                                                            {
-                                                                type = NodeType.Identifier,
-                                                                name = "x",
-                                                                loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16))
-                                                            },
+                                                            key = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)), "x"),
+                                                            value = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)), "x"),
                                                             kind = "init",
                                                             method = false,
                                                             shorthand = true,
@@ -8292,12 +6986,7 @@ namespace AcornSharp.Cli
                                                         new Node
                                                         {
                                                             type = NodeType.Property,
-                                                            key = new Node
-                                                            {
-                                                                type = NodeType.Identifier,
-                                                                name = "x",
-                                                                loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22))
-                                                            },
+                                                            key = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22)), "x"),
                                                             value = new Node
                                                             {
                                                                 type = NodeType.Literal,
@@ -8361,12 +7050,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.Property,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "f",
-                                        loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), "f"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -8384,18 +7068,8 @@ namespace AcornSharp.Cli
                                                         new Node
                                                         {
                                                             type = NodeType.Property,
-                                                            key = new Node
-                                                            {
-                                                                type = NodeType.Identifier,
-                                                                name = "x",
-                                                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
-                                                            },
-                                                            value = new Node
-                                                            {
-                                                                type = NodeType.Identifier,
-                                                                name = "x",
-                                                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
-                                                            },
+                                                            key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "x"),
+                                                            value = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "x"),
                                                             kind = "init",
                                                             method = false,
                                                             shorthand = true,
@@ -8413,12 +7087,7 @@ namespace AcornSharp.Cli
                                                         new Node
                                                         {
                                                             type = NodeType.Property,
-                                                            key = new Node
-                                                            {
-                                                                type = NodeType.Identifier,
-                                                                name = "x",
-                                                                loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12))
-                                                            },
+                                                            key = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "x"),
                                                             value = new Node
                                                             {
                                                                 type = NodeType.Literal,
@@ -8487,12 +7156,7 @@ namespace AcornSharp.Cli
                                     {
                                         type = NodeType.MethodDefinition,
                                         computed = false,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "f",
-                                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9))
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "f"),
                                         value = new Node
                                         {
                                             type = NodeType.FunctionExpression,
@@ -8510,18 +7174,8 @@ namespace AcornSharp.Cli
                                                             new Node
                                                             {
                                                                 type = NodeType.Property,
-                                                                key = new Node
-                                                                {
-                                                                    type = NodeType.Identifier,
-                                                                    name = "x",
-                                                                    loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12))
-                                                                },
-                                                                value = new Node
-                                                                {
-                                                                    type = NodeType.Identifier,
-                                                                    name = "x",
-                                                                    loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12))
-                                                                },
+                                                                key = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "x"),
+                                                                value = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "x"),
                                                                 kind = "init",
                                                                 method = false,
                                                                 shorthand = true,
@@ -8539,12 +7193,7 @@ namespace AcornSharp.Cli
                                                             new Node
                                                             {
                                                                 type = NodeType.Property,
-                                                                key = new Node
-                                                                {
-                                                                    type = NodeType.Identifier,
-                                                                    name = "x",
-                                                                    loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18))
-                                                                },
+                                                                key = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18)), "x"),
                                                                 value = new Node
                                                                 {
                                                                     type = NodeType.Literal,
@@ -8617,18 +7266,8 @@ namespace AcornSharp.Cli
                                             new Node
                                             {
                                                 type = NodeType.Property,
-                                                key = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    name = "x",
-                                                    loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
-                                                },
-                                                value = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    name = "x",
-                                                    loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
-                                                },
+                                                key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "x"),
+                                                value = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "x"),
                                                 kind = "init",
                                                 method = false,
                                                 shorthand = true,
@@ -8646,12 +7285,7 @@ namespace AcornSharp.Cli
                                             new Node
                                             {
                                                 type = NodeType.Property,
-                                                key = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    name = "x",
-                                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                                                },
+                                                key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "x"),
                                                 value = new Node
                                                 {
                                                     type = NodeType.Literal,
@@ -8702,12 +7336,7 @@ namespace AcornSharp.Cli
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
-                            left = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "x",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-                            },
+                            left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new Node
                             {
                                 type = NodeType.FunctionExpression,
@@ -8717,12 +7346,7 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.AssignmentPattern,
-                                        left = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "y",
-                                            loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14))
-                                        },
+                                        left = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "y"),
                                         right = new Node
                                         {
                                             type = NodeType.Literal,
@@ -8762,23 +7386,13 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "f",
-                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "f"),
                         @params = new List<Node>
                         {
                             new Node
                             {
                                 type = NodeType.AssignmentPattern,
-                                left = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "a",
-                                    loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12))
-                                },
+                                left = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "a"),
                                 right = new Node
                                 {
                                     type = NodeType.Literal,
@@ -8818,12 +7432,7 @@ namespace AcornSharp.Cli
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
-                            left = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "x",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-                            },
+                            left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new Node
                             {
                                 type = NodeType.ObjectExpression,
@@ -8832,12 +7441,7 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "f",
-                                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "f"),
                                         value = new Node
                                         {
                                             type = NodeType.FunctionExpression,
@@ -8847,12 +7451,7 @@ namespace AcornSharp.Cli
                                                 new Node
                                                 {
                                                     type = NodeType.AssignmentPattern,
-                                                    left = new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        name = "a",
-                                                        loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19))
-                                                    },
+                                                    left = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19)), "a"),
                                                     right = new Node
                                                     {
                                                         type = NodeType.Literal,
@@ -8905,12 +7504,7 @@ namespace AcornSharp.Cli
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
-                            left = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "x",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-                            },
+                            left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new Node
                             {
                                 type = NodeType.ObjectExpression,
@@ -8919,12 +7513,7 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "f",
-                                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "f"),
                                         value = new Node
                                         {
                                             type = NodeType.FunctionExpression,
@@ -8934,12 +7523,7 @@ namespace AcornSharp.Cli
                                                 new Node
                                                 {
                                                     type = NodeType.AssignmentPattern,
-                                                    left = new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        name = "a",
-                                                        loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9))
-                                                    },
+                                                    left = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "a"),
                                                     right = new Node
                                                     {
                                                         type = NodeType.Literal,
@@ -8990,29 +7574,14 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "f",
-                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "f"),
                         @params = new List<Node>
                         {
-                            new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "a",
-                                loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12))
-                            },
+                            new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "a"),
                             new Node
                             {
                                 type = NodeType.RestElement,
-                                argument = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "b",
-                                    loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18))
-                                }
+                                argument = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18)), "b")
                             }
                         },
                         fbody = new Node
@@ -9042,12 +7611,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "x",
-                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "x"),
                         @params = new List<Node>
                         {
                             new Node
@@ -9055,18 +7619,8 @@ namespace AcornSharp.Cli
                                 type = NodeType.ArrayPattern,
                                 elements = new List<Node>
                                 {
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "a",
-                                        loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14))
-                                    },
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "b",
-                                        loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17))
-                                    }
+                                    new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "a"),
+                                    new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17)), "b")
                                 },
                                 loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
                             }
@@ -9096,12 +7650,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "x",
-                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "x"),
                         @params = new List<Node>
                         {
                             new Node
@@ -9112,18 +7661,8 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "a",
-                                            loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14))
-                                        },
-                                        value = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "a",
-                                            loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14))
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "a"),
+                                        value = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "a"),
                                         kind = "init",
                                         method = false,
                                         shorthand = true,
@@ -9133,18 +7672,8 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "b",
-                                            loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17))
-                                        },
-                                        value = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "b",
-                                            loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17))
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17)), "b"),
+                                        value = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17)), "b"),
                                         kind = "init",
                                         method = false,
                                         shorthand = true,
@@ -9187,12 +7716,7 @@ namespace AcornSharp.Cli
                         expression = new Node
                         {
                             type = NodeType.FunctionExpression,
-                            id = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "x",
-                                loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11))
-                            },
+                            id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "x"),
                             @params = new List<Node>
                             {
                                 new Node
@@ -9200,18 +7724,8 @@ namespace AcornSharp.Cli
                                     type = NodeType.ArrayPattern,
                                     elements = new List<Node>
                                     {
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "a",
-                                            loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15))
-                                        },
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "b",
-                                            loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18))
-                                        }
+                                        new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a"),
+                                        new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18)), "b")
                                     },
                                     loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 20, 20))
                                 }
@@ -9246,12 +7760,7 @@ namespace AcornSharp.Cli
                         expression = new Node
                         {
                             type = NodeType.FunctionExpression,
-                            id = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "x",
-                                loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11))
-                            },
+                            id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "x"),
                             @params = new List<Node>
                             {
                                 new Node
@@ -9262,18 +7771,8 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "a",
-                                                loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15))
-                                            },
-                                            value = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "a",
-                                                loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a"),
+                                            value = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a"),
                                             kind = "init",
                                             method = false,
                                             shorthand = true,
@@ -9283,18 +7782,8 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "b",
-                                                loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18))
-                                            },
-                                            value = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "b",
-                                                loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18)), "b"),
+                                            value = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18)), "b"),
                                             kind = "init",
                                             method = false,
                                             shorthand = true,
@@ -9346,12 +7835,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.Property,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "x"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -9363,18 +7847,8 @@ namespace AcornSharp.Cli
                                                 type = NodeType.ArrayPattern,
                                                 elements = new List<Node>
                                                 {
-                                                    new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        name = "a",
-                                                        loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
-                                                    },
-                                                    new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        name = "b",
-                                                        loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11))
-                                                    }
+                                                    new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a"),
+                                                    new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "b")
                                                 },
                                                 loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 13, 13))
                                             }
@@ -9423,12 +7897,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.Property,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "x"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -9443,18 +7912,8 @@ namespace AcornSharp.Cli
                                                     type = NodeType.ArrayPattern,
                                                     elements = new List<Node>
                                                     {
-                                                        new Node
-                                                        {
-                                                            type = NodeType.Identifier,
-                                                            name = "a",
-                                                            loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11))
-                                                        },
-                                                        new Node
-                                                        {
-                                                            type = NodeType.Identifier,
-                                                            name = "b",
-                                                            loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14))
-                                                        }
+                                                        new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "a"),
+                                                        new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "b")
                                                     },
                                                     loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 16, 16))
                                                 }
@@ -9504,12 +7963,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.Property,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "x"),
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
@@ -9524,12 +7978,7 @@ namespace AcornSharp.Cli
                                                     new Node
                                                     {
                                                         type = NodeType.Property,
-                                                        key = new Node
-                                                        {
-                                                            type = NodeType.Identifier,
-                                                            name = "a",
-                                                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
-                                                        },
+                                                        key = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a"),
                                                         value = new Node
                                                         {
                                                             type = NodeType.ObjectPattern,
@@ -9538,18 +7987,8 @@ namespace AcornSharp.Cli
                                                                 new Node
                                                                 {
                                                                     type = NodeType.Property,
-                                                                    key = new Node
-                                                                    {
-                                                                        type = NodeType.Identifier,
-                                                                        name = "w",
-                                                                        loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13))
-                                                                    },
-                                                                    value = new Node
-                                                                    {
-                                                                        type = NodeType.Identifier,
-                                                                        name = "w",
-                                                                        loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13))
-                                                                    },
+                                                                    key = new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "w"),
+                                                                    value = new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "w"),
                                                                     kind = "init",
                                                                     method = false,
                                                                     shorthand = true,
@@ -9559,18 +7998,8 @@ namespace AcornSharp.Cli
                                                                 new Node
                                                                 {
                                                                     type = NodeType.Property,
-                                                                    key = new Node
-                                                                    {
-                                                                        type = NodeType.Identifier,
-                                                                        name = "x",
-                                                                        loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16))
-                                                                    },
-                                                                    value = new Node
-                                                                    {
-                                                                        type = NodeType.Identifier,
-                                                                        name = "x",
-                                                                        loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16))
-                                                                    },
+                                                                    key = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)), "x"),
+                                                                    value = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)), "x"),
                                                                     kind = "init",
                                                                     method = false,
                                                                     shorthand = true,
@@ -9589,29 +8018,14 @@ namespace AcornSharp.Cli
                                                     new Node
                                                     {
                                                         type = NodeType.Property,
-                                                        key = new Node
-                                                        {
-                                                            type = NodeType.Identifier,
-                                                            name = "b",
-                                                            loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 21, 21))
-                                                        },
+                                                        key = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 21, 21)), "b"),
                                                         value = new Node
                                                         {
                                                             type = NodeType.ArrayPattern,
                                                             elements = new List<Node>
                                                             {
-                                                                new Node
-                                                                {
-                                                                    type = NodeType.Identifier,
-                                                                    name = "y",
-                                                                    loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 25, 25))
-                                                                },
-                                                                new Node
-                                                                {
-                                                                    type = NodeType.Identifier,
-                                                                    name = "z",
-                                                                    loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 28, 28))
-                                                                }
+                                                                new IdentifierNode(new SourceLocation(new Position(1, 24, 24), new Position(1, 25, 25)), "y"),
+                                                                new IdentifierNode(new SourceLocation(new Position(1, 27, 27), new Position(1, 28, 28)), "z")
                                                             },
                                                             loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 29, 29))
                                                         },
@@ -9632,24 +8046,9 @@ namespace AcornSharp.Cli
                                                     type = NodeType.ArrayPattern,
                                                     elements = new List<Node>
                                                     {
-                                                        new Node
-                                                        {
-                                                            type = NodeType.Identifier,
-                                                            name = "a",
-                                                            loc = new SourceLocation(new Position(1, 37, 37), new Position(1, 38, 38))
-                                                        },
-                                                        new Node
-                                                        {
-                                                            type = NodeType.Identifier,
-                                                            name = "b",
-                                                            loc = new SourceLocation(new Position(1, 40, 40), new Position(1, 41, 41))
-                                                        },
-                                                        new Node
-                                                        {
-                                                            type = NodeType.Identifier,
-                                                            name = "c",
-                                                            loc = new SourceLocation(new Position(1, 43, 43), new Position(1, 44, 44))
-                                                        }
+                                                        new IdentifierNode(new SourceLocation(new Position(1, 37, 37), new Position(1, 38, 38)), "a"),
+                                                        new IdentifierNode(new SourceLocation(new Position(1, 40, 40), new Position(1, 41, 41)), "b"),
+                                                        new IdentifierNode(new SourceLocation(new Position(1, 43, 43), new Position(1, 44, 44)), "c")
                                                     },
                                                     loc = new SourceLocation(new Position(1, 36, 36), new Position(1, 45, 45))
                                                 }
@@ -9700,12 +8099,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.RestElement,
-                                    argument = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "a",
-                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5))
-                                    }
+                                    argument = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "a")
                                 }
                             },
                             fbody = new Node
@@ -9741,21 +8135,11 @@ namespace AcornSharp.Cli
                             id = null,
                             @params = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "a",
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2))
-                                },
+                                new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a"),
                                 new Node
                                 {
                                     type = NodeType.RestElement,
-                                    argument = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "b",
-                                        loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
-                                    }
+                                    argument = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "b")
                                 }
                             },
                             fbody = new Node
@@ -9799,18 +8183,8 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "a",
-                                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
-                                            },
-                                            value = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "a",
-                                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "a"),
+                                            value = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "a"),
                                             kind = "init",
                                             method = false,
                                             shorthand = true,
@@ -9862,18 +8236,8 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "a",
-                                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
-                                            },
-                                            value = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "a",
-                                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "a"),
+                                            value = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "a"),
                                             kind = "init",
                                             method = false,
                                             shorthand = true,
@@ -9886,12 +8250,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.RestElement,
-                                    argument = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "b",
-                                        loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12))
-                                    }
+                                    argument = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "b")
                                 }
                             },
                             fbody = new Node
@@ -9939,29 +8298,14 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "a",
-                                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "a"),
                                             value = new Node
                                             {
                                                 type = NodeType.ArrayPattern,
                                                 elements = new List<Node>
                                                 {
-                                                    new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        name = "a",
-                                                        loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
-                                                    },
-                                                    new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        name = "b",
-                                                        loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11))
-                                                    }
+                                                    new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a"),
+                                                    new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "b")
                                                 },
                                                 loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 12, 12))
                                             },
@@ -9977,12 +8321,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.RestElement,
-                                    argument = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "c",
-                                        loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 20, 20))
-                                    }
+                                    argument = new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 20, 20)), "c")
                                 }
                             },
                             fbody = new Node
@@ -10026,18 +8365,8 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "a",
-                                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
-                                            },
-                                            value = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "b",
-                                                loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "a"),
+                                            value = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "b"),
                                             kind = "init",
                                             method = false,
                                             shorthand = false,
@@ -10047,18 +8376,8 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "c",
-                                                loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                                            },
-                                            value = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "c",
-                                                loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "c"),
+                                            value = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "c"),
                                             kind = "init",
                                             method = false,
                                             shorthand = true,
@@ -10073,30 +8392,15 @@ namespace AcornSharp.Cli
                                     type = NodeType.ArrayPattern,
                                     elements = new List<Node>
                                     {
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "d",
-                                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16))
-                                        },
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "e",
-                                            loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19))
-                                        }
+                                        new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)), "d"),
+                                        new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19)), "e")
                                     },
                                     loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 20, 20))
                                 },
                                 new Node
                                 {
                                     type = NodeType.RestElement,
-                                    argument = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "f",
-                                        loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 26, 26))
-                                    }
+                                    argument = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 26, 26)), "f")
                                 }
                             },
                             fbody = new Node
@@ -10140,23 +8444,13 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.RestElement,
-                                        argument = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "a",
-                                            loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5))
-                                        },
+                                        argument = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "a"),
                                         loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 5, 5))
                                     }
                                 },
                                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                             },
-                            right = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "b",
-                                loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
-                            },
+                            right = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "b"),
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
                         },
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
@@ -10185,32 +8479,17 @@ namespace AcornSharp.Cli
                                 type = NodeType.ArrayPattern,
                                 elements = new List<Node>
                                 {
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "a",
-                                        loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2))
-                                    },
+                                    new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a"),
                                     new Node
                                     {
                                         type = NodeType.RestElement,
-                                        argument = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "b",
-                                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
-                                        },
+                                        argument = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "b"),
                                         loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 8, 8))
                                     }
                                 },
                                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                             },
-                            right = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "c",
-                                loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13))
-                            },
+                            right = new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "c"),
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
                         },
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
@@ -10247,18 +8526,8 @@ namespace AcornSharp.Cli
                                             new Node
                                             {
                                                 type = NodeType.Property,
-                                                key = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    name = "a",
-                                                    loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
-                                                },
-                                                value = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    name = "a",
-                                                    loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
-                                                },
+                                                key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "a"),
+                                                value = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "a"),
                                                 kind = "init",
                                                 method = false,
                                                 shorthand = true,
@@ -10268,18 +8537,8 @@ namespace AcornSharp.Cli
                                             new Node
                                             {
                                                 type = NodeType.Property,
-                                                key = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    name = "b",
-                                                    loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                                                },
-                                                value = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    name = "b",
-                                                    loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
-                                                },
+                                                key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "b"),
+                                                value = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "b"),
                                                 kind = "init",
                                                 method = false,
                                                 shorthand = true,
@@ -10292,23 +8551,13 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.RestElement,
-                                        argument = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "c",
-                                            loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15))
-                                        },
+                                        argument = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "c"),
                                         loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 15, 15))
                                     }
                                 },
                                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
                             },
-                            right = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "d",
-                                loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 20, 20))
-                            },
+                            right = new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 20, 20)), "d"),
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
                         },
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
@@ -10337,12 +8586,7 @@ namespace AcornSharp.Cli
                                 type = NodeType.ArrayPattern,
                                 elements = new List<Node>
                                 {
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "a",
-                                        loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2))
-                                    },
+                                    new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a"),
                                     new Node
                                     {
                                         type = NodeType.RestElement,
@@ -10351,18 +8595,8 @@ namespace AcornSharp.Cli
                                             type = NodeType.ArrayPattern,
                                             elements = new List<Node>
                                             {
-                                                new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    name = "b",
-                                                    loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9))
-                                                },
-                                                new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    name = "c",
-                                                    loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12))
-                                                }
+                                                new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "b"),
+                                                new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "c")
                                             },
                                             loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 13, 13))
                                         },
@@ -10371,12 +8605,7 @@ namespace AcornSharp.Cli
                                 },
                                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
                             },
-                            right = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "d",
-                                loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18))
-                            },
+                            right = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18)), "d"),
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
                         },
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
@@ -10409,23 +8638,13 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.RestElement,
-                                            argument = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "a",
-                                                loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9))
-                                            },
+                                            argument = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "a"),
                                             loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 9, 9))
                                         }
                                     },
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 10, 10))
                                 },
-                                init = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "b",
-                                    loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14))
-                                },
+                                init = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "b"),
                                 loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 14, 14))
                             }
                         },
@@ -10457,32 +8676,17 @@ namespace AcornSharp.Cli
                                     type = NodeType.ArrayPattern,
                                     elements = new List<Node>
                                     {
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "a",
-                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
-                                        },
+                                        new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a"),
                                         new Node
                                         {
                                             type = NodeType.RestElement,
-                                            argument = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "b",
-                                                loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12))
-                                            },
+                                            argument = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "b"),
                                             loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 12, 12))
                                         }
                                     },
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 13, 13))
                                 },
-                                init = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "c",
-                                    loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17))
-                                },
+                                init = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17)), "c"),
                                 loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 17, 17))
                             }
                         },
@@ -10522,18 +8726,8 @@ namespace AcornSharp.Cli
                                                 new Node
                                                 {
                                                     type = NodeType.Property,
-                                                    key = new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        name = "a",
-                                                        loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
-                                                    },
-                                                    value = new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        name = "a",
-                                                        loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
-                                                    },
+                                                    key = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a"),
+                                                    value = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a"),
                                                     kind = "init",
                                                     method = false,
                                                     shorthand = true,
@@ -10543,18 +8737,8 @@ namespace AcornSharp.Cli
                                                 new Node
                                                 {
                                                     type = NodeType.Property,
-                                                    key = new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        name = "b",
-                                                        loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11))
-                                                    },
-                                                    value = new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        name = "b",
-                                                        loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11))
-                                                    },
+                                                    key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "b"),
+                                                    value = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "b"),
                                                     kind = "init",
                                                     method = false,
                                                     shorthand = true,
@@ -10567,23 +8751,13 @@ namespace AcornSharp.Cli
                                         new Node
                                         {
                                             type = NodeType.RestElement,
-                                            argument = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "c",
-                                                loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19))
-                                            },
+                                            argument = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19)), "c"),
                                             loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 19, 19))
                                         }
                                     },
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 20, 20))
                                 },
-                                init = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "d",
-                                    loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 24, 24))
-                                },
+                                init = new IdentifierNode(new SourceLocation(new Position(1, 23, 23), new Position(1, 24, 24)), "d"),
                                 loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 24, 24))
                             }
                         },
@@ -10615,12 +8789,7 @@ namespace AcornSharp.Cli
                                     type = NodeType.ArrayPattern,
                                     elements = new List<Node>
                                     {
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "a",
-                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
-                                        },
+                                        new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a"),
                                         new Node
                                         {
                                             type = NodeType.RestElement,
@@ -10629,18 +8798,8 @@ namespace AcornSharp.Cli
                                                 type = NodeType.ArrayPattern,
                                                 elements = new List<Node>
                                                 {
-                                                    new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        name = "b",
-                                                        loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13))
-                                                    },
-                                                    new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        name = "c",
-                                                        loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16))
-                                                    }
+                                                    new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "b"),
+                                                    new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)), "c")
                                                 },
                                                 loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 17, 17))
                                             },
@@ -10649,12 +8808,7 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 18, 18))
                                 },
-                                init = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "d",
-                                    loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22))
-                                },
+                                init = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22)), "d"),
                                 loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 22, 22))
                             }
                         },
@@ -10679,23 +8833,13 @@ namespace AcornSharp.Cli
                         expression = new Node
                         {
                             type = NodeType.CallExpression,
-                            callee = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "func",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
-                            },
+                            callee = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4)), "func"),
                             arguments = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.SpreadElement,
-                                    argument = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "a",
-                                        loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9))
-                                    },
+                                    argument = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "a"),
                                     loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 9, 9))
                                 }
                             },
@@ -10721,29 +8865,14 @@ namespace AcornSharp.Cli
                         expression = new Node
                         {
                             type = NodeType.CallExpression,
-                            callee = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "func",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
-                            },
+                            callee = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4)), "func"),
                             arguments = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "a",
-                                    loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
-                                },
+                                new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a"),
                                 new Node
                                 {
                                     type = NodeType.SpreadElement,
-                                    argument = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "b",
-                                        loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12))
-                                    },
+                                    argument = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "b"),
                                     loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 12, 12))
                                 }
                             },
@@ -10772,31 +8901,16 @@ namespace AcornSharp.Cli
                         {
                             type = NodeType.CallExpression,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
-                            callee = new Node
-                            {
-                                type = NodeType.Identifier,
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4)),
-                                name = "func"
-                            },
+                            callee = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4)), "func"),
                             arguments = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.SpreadElement,
                                     loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 9, 9)),
-                                    argument = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)),
-                                        name = "a"
-                                    }
+                                    argument = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "a")
                                 },
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)),
-                                    name = "b"
-                                }
+                                new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "b")
                             }
                         }
                     }
@@ -10894,13 +9008,7 @@ namespace AcornSharp.Cli
                             type = NodeType.CallExpression,
                             start = 20,
                             end = 25,
-                            callee = new Node
-                            {
-                                type = NodeType.Identifier,
-                                start = 20,
-                                end = 23,
-                                name = "foo"
-                            },
+                            callee = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 23, 23)), "foo"),
                             arguments = new List<Node>()
                         }
                     }
@@ -11053,12 +9161,7 @@ namespace AcornSharp.Cli
                         {
                             type = NodeType.BinaryExpression,
                             @operator = "*",
-                            left = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "yield",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
-                            },
+                            left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)), "yield"),
                             right = new Node
                             {
                                 type = NodeType.Literal,
@@ -11092,23 +9195,13 @@ namespace AcornSharp.Cli
                             id = null,
                             @params = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "e",
-                                    loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-                                }
+                                new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "e")
                             },
                             fbody = new Node
                             {
                                 type = NodeType.BinaryExpression,
                                 @operator = "*",
-                                left = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "yield",
-                                    loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 10, 10))
-                                },
+                                left = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 10, 10)), "yield"),
                                 right = new Node
                                 {
                                     type = NodeType.Literal,
@@ -11159,12 +9252,7 @@ namespace AcornSharp.Cli
                                         {
                                             type = NodeType.BinaryExpression,
                                             @operator = "*",
-                                            left = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "yield",
-                                                loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 20, 20))
-                                            },
+                                            left = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 20, 20)), "yield"),
                                             right = new Node
                                             {
                                                 type = NodeType.Literal,
@@ -11204,11 +9292,7 @@ namespace AcornSharp.Cli
                         expression = new Node
                         {
                             type = NodeType.BinaryExpression,
-                            left = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "let"
-                            },
+                            left = new IdentifierNode(default, "let"),
                             @operator = "+",
                             right = new Node
                             {
@@ -11234,11 +9318,7 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "let"
-                                },
+                                id = new IdentifierNode(default, "let"),
                                 init = new Node
                                 {
                                     type = NodeType.Literal,
@@ -11267,11 +9347,7 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "yield"
-                                },
+                                id = new IdentifierNode(default, "yield"),
                                 init = new Node
                                 {
                                     type = NodeType.Literal,
@@ -11365,11 +9441,7 @@ namespace AcornSharp.Cli
                         expression = new Node
                         {
                             type = NodeType.CallExpression,
-                            callee = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "doSmth"
-                            },
+                            callee = new IdentifierNode(default, "doSmth"),
                             arguments = new List<Node>
                             {
                                 new Node
@@ -11377,30 +9449,14 @@ namespace AcornSharp.Cli
                                     type = NodeType.TemplateLiteral,
                                     expressions = new List<Node>
                                     {
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "x"
-                                        },
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "y"
-                                        },
+                                        new IdentifierNode(default, "x"),
+                                        new IdentifierNode(default, "y"),
                                         new Node
                                         {
                                             type = NodeType.BinaryExpression,
-                                            left = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "x"
-                                            },
+                                            left = new IdentifierNode(default, "x"),
                                             @operator = "+",
-                                            right = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "y"
-                                            }
+                                            right = new IdentifierNode(default, "y")
                                         }
                                     },
                                     quasis = new List<Node>
@@ -11446,26 +9502,14 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "normal"
-                        },
+                        id = new IdentifierNode(default, "normal"),
                         @params = new List<Node>
                         {
-                            new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "x"
-                            },
+                            new IdentifierNode(default, "x"),
                             new Node
                             {
                                 type = NodeType.AssignmentPattern,
-                                left = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "y"
-                                },
+                                left = new IdentifierNode(default, "y"),
                                 right = new Node
                                 {
                                     type = NodeType.Literal,
@@ -11516,20 +9560,12 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.ImportDefaultSpecifier,
-                                local = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "foo"
-                                }
+                                local = new IdentifierNode(default, "foo")
                             },
                             new Node
                             {
                                 type = NodeType.ImportNamespaceSpecifier,
-                                local = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "bar"
-                                }
+                                local = new IdentifierNode(default, "bar")
                             }
                         },
                         source = new Node
@@ -11561,11 +9597,7 @@ namespace AcornSharp.Cli
                                     type = NodeType.TemplateLiteral,
                                     expressions = new List<Node>
                                     {
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            name = "x"
-                                        }
+                                        new IdentifierNode(default, "x")
                                     },
                                     quasis = new List<Node>
                                     {
@@ -11628,25 +9660,13 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = true,
                                             computed = false,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "get"
-                                            },
+                                            key = new IdentifierNode(default, "get"),
                                             kind = "init",
-                                            value = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                name = "get"
-                                            }
+                                            value = new IdentifierNode(default, "get")
                                         }
                                     }
                                 },
-                                init = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "obj"
-                                }
+                                init = new IdentifierNode(default, "obj")
                             }
                         },
                         kind = "var"
@@ -11685,39 +9705,19 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = false,
                                             computed = false,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                range = (5, 13),
-                                                name = "propName"
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 13, 13)), "propName"),
                                             value = new Node
                                             {
                                                 type = NodeType.AssignmentPattern,
                                                 range = (15, 38),
-                                                left = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    range = (15, 23),
-                                                    name = "localVar"
-                                                },
-                                                right = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    range = (26, 38),
-                                                    name = "defaultValue"
-                                                }
+                                                left = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 23, 23)), "localVar"),
+                                                right = new IdentifierNode(new SourceLocation(new Position(1, 26, 26), new Position(1, 38, 38)), "defaultValue")
                                             },
                                             kind = "init"
                                         }
                                     }
                                 },
-                                init = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    range = (42, 45),
-                                    name = "obj"
-                                }
+                                init = new IdentifierNode(new SourceLocation(new Position(1, 42, 42), new Position(1, 45, 45)), "obj")
                             }
                         },
                         kind = "var"
@@ -11757,39 +9757,19 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = true,
                                             computed = false,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                range = (5, 13),
-                                                name = "propName"
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 13, 13)), "propName"),
                                             kind = "init",
                                             value = new Node
                                             {
                                                 type = NodeType.AssignmentPattern,
                                                 range = (5, 28),
-                                                left = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    range = (5, 13),
-                                                    name = "propName"
-                                                },
-                                                right = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    range = (16, 28),
-                                                    name = "defaultValue"
-                                                }
+                                                left = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 13, 13)), "propName"),
+                                                right = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 28, 28)), "defaultValue")
                                             }
                                         }
                                     }
                                 },
-                                init = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    range = (32, 35),
-                                    name = "obj"
-                                }
+                                init = new IdentifierNode(new SourceLocation(new Position(1, 32, 32), new Position(1, 35, 35)), "obj")
                             }
                         },
                         kind = "var"
@@ -11829,39 +9809,19 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = true,
                                             computed = false,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                range = (5, 8),
-                                                name = "get"
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 8, 8)), "get"),
                                             kind = "init",
                                             value = new Node
                                             {
                                                 type = NodeType.AssignmentPattern,
                                                 range = (5, 23),
-                                                left = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    range = (5, 8),
-                                                    name = "get"
-                                                },
-                                                right = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    range = (11, 23),
-                                                    name = "defaultValue"
-                                                }
+                                                left = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 8, 8)), "get"),
+                                                right = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 23, 23)), "defaultValue")
                                             }
                                         }
                                     }
                                 },
-                                init = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    range = (27, 30),
-                                    name = "obj"
-                                }
+                                init = new IdentifierNode(new SourceLocation(new Position(1, 27, 27), new Position(1, 30, 30)), "obj")
                             }
                         },
                         kind = "var"
@@ -11898,27 +9858,12 @@ namespace AcornSharp.Cli
                                         {
                                             type = NodeType.AssignmentPattern,
                                             range = (5, 28),
-                                            left = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                range = (5, 13),
-                                                name = "localVar"
-                                            },
-                                            right = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                range = (16, 28),
-                                                name = "defaultValue"
-                                            }
+                                            left = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 13, 13)), "localVar"),
+                                            right = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 28, 28)), "defaultValue")
                                         }
                                     }
                                 },
-                                init = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    range = (32, 35),
-                                    name = "obj"
-                                }
+                                init = new IdentifierNode(new SourceLocation(new Position(1, 32, 32), new Position(1, 35, 35)), "obj")
                             }
                         },
                         kind = "var"
@@ -11957,23 +9902,13 @@ namespace AcornSharp.Cli
                                         method = false,
                                         shorthand = true,
                                         computed = false,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            range = (2, 3),
-                                            name = "x"
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), "x"),
                                         kind = "init",
                                         value = new Node
                                         {
                                             type = NodeType.AssignmentPattern,
                                             range = (2, 7),
-                                            left = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                range = (2, 3),
-                                                name = "x"
-                                            },
+                                            left = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), "x"),
                                             right = new Node
                                             {
                                                 type = NodeType.Literal,
@@ -11984,12 +9919,7 @@ namespace AcornSharp.Cli
                                     }
                                 }
                             },
-                            right = new Node
-                            {
-                                type = NodeType.Identifier,
-                                range = (11, 14),
-                                name = "obj"
-                            }
+                            right = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 14, 14)), "obj")
                         }
                     }
                 }
@@ -12030,23 +9960,13 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = true,
                                             computed = false,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                range = (2, 3),
-                                                name = "x"
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), "x"),
                                             kind = "init",
                                             value = new Node
                                             {
                                                 type = NodeType.AssignmentPattern,
                                                 range = (2, 7),
-                                                left = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    range = (2, 3),
-                                                    name = "x"
-                                                },
+                                                left = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), "x"),
                                                 right = new Node
                                                 {
                                                     type = NodeType.Literal,
@@ -12058,12 +9978,7 @@ namespace AcornSharp.Cli
                                     }
                                 }
                             },
-                            fbody = new Node
-                            {
-                                type = NodeType.Identifier,
-                                range = (13, 14),
-                                name = "x"
-                            }
+                            fbody = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "x")
                         }
                     }
                 }
@@ -12093,12 +10008,7 @@ namespace AcornSharp.Cli
                                 range = (0, 17),
                                 elements = new List<Node>
                                 {
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        range = (1, 2),
-                                        name = "a"
-                                    },
+                                    new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a"),
                                     new Node
                                     {
                                         type = NodeType.ObjectPattern,
@@ -12112,12 +10022,7 @@ namespace AcornSharp.Cli
                                                 method = false,
                                                 shorthand = false,
                                                 computed = false,
-                                                key = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    range = (5, 6),
-                                                    name = "b"
-                                                },
+                                                key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "b"),
                                                 value = new Node
                                                 {
                                                     type = NodeType.ObjectPattern,
@@ -12131,23 +10036,13 @@ namespace AcornSharp.Cli
                                                             method = false,
                                                             shorthand = true,
                                                             computed = false,
-                                                            key = new Node
-                                                            {
-                                                                type = NodeType.Identifier,
-                                                                range = (9, 10),
-                                                                name = "c"
-                                                            },
+                                                            key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "c"),
                                                             kind = "init",
                                                             value = new Node
                                                             {
                                                                 type = NodeType.AssignmentPattern,
                                                                 range = (9, 14),
-                                                                left = new Node
-                                                                {
-                                                                    type = NodeType.Identifier,
-                                                                    range = (9, 10),
-                                                                    name = "c"
-                                                                },
+                                                                left = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "c"),
                                                                 right = new Node
                                                                 {
                                                                     type = NodeType.Literal,
@@ -12164,12 +10059,7 @@ namespace AcornSharp.Cli
                                     }
                                 }
                             },
-                            right = new Node
-                            {
-                                type = NodeType.Identifier,
-                                range = (20, 23),
-                                name = "arr"
-                            }
+                            right = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 23, 23)), "arr")
                         }
                     }
                 }
@@ -12201,23 +10091,13 @@ namespace AcornSharp.Cli
                                     method = false,
                                     shorthand = true,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        range = (6, 7),
-                                        name = "x"
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "x"),
                                     kind = "init",
                                     value = new Node
                                     {
                                         type = NodeType.AssignmentPattern,
                                         range = (6, 11),
-                                        left = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            range = (6, 7),
-                                            name = "x"
-                                        },
+                                        left = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "x"),
                                         right = new Node
                                         {
                                             type = NodeType.Literal,
@@ -12228,12 +10108,7 @@ namespace AcornSharp.Cli
                                 }
                             }
                         },
-                        right = new Node
-                        {
-                            type = NodeType.Identifier,
-                            range = (16, 19),
-                            name = "arr"
-                        },
+                        right = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 19, 19)), "arr"),
                         fbody = new Node
                         {
                             type = NodeType.EmptyStatement,
@@ -12285,19 +10160,9 @@ namespace AcornSharp.Cli
                                         method = false,
                                         shorthand = true,
                                         computed = false,
-                                        key = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            range = (15, 22),
-                                            name = "message"
-                                        },
+                                        key = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 22, 22)), "message"),
                                         kind = "init",
-                                        value = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            range = (15, 22),
-                                            name = "message"
-                                        }
+                                        value = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 22, 22)), "message")
                                     }
                                 }
                             },
@@ -12328,12 +10193,7 @@ namespace AcornSharp.Cli
                     {
                         type = NodeType.ClassDeclaration,
                         range = (0, 23),
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            range = (6, 7),
-                            name = "A"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -12346,12 +10206,7 @@ namespace AcornSharp.Cli
                                     type = NodeType.MethodDefinition,
                                     range = (10, 21),
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        range = (10, 16),
-                                        name = "static"
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 16, 16)), "static"),
                                     @static = false,
                                     kind = "method",
                                     value = new Node
@@ -12397,12 +10252,7 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.VariableDeclarator,
-                                    id = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        range = (11, 12)
-                                    },
+                                    id = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "x"),
                                     init = null,
                                     range = (11, 12)
                                 }
@@ -12410,32 +10260,17 @@ namespace AcornSharp.Cli
                             kind = "const",
                             range = (5, 12)
                         },
-                        right = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "list",
-                            range = (16, 20)
-                        },
+                        right = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 20, 20)), "list"),
                         fbody = new Node
                         {
                             type = NodeType.ExpressionStatement,
                             expression = new Node
                             {
                                 type = NodeType.CallExpression,
-                                callee = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "process",
-                                    range = (22, 29)
-                                },
+                                callee = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 29, 29)), "process"),
                                 arguments = new List<Node>
                                 {
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        name = "x",
-                                        range = (30, 31)
-                                    }
+                                    new IdentifierNode(new SourceLocation(new Position(1, 30, 30), new Position(1, 31, 31)), "x")
                                 },
                                 range = (22, 32)
                             },
@@ -12457,12 +10292,7 @@ namespace AcornSharp.Cli
                     {
                         type = NodeType.ClassDeclaration,
                         range = (0, 24),
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            range = (6, 7),
-                            name = "A"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -12475,12 +10305,7 @@ namespace AcornSharp.Cli
                                     type = NodeType.MethodDefinition,
                                     range = (10, 22),
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        range = (11, 17),
-                                        name = "static"
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 17, 17)), "static"),
                                     @static = false,
                                     kind = "method",
                                     value = new Node
@@ -12554,13 +10379,7 @@ namespace AcornSharp.Cli
                                                 },
                                                 raw = "/\\d/"
                                             },
-                                            property = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                start = 8,
-                                                end = 12,
-                                                name = "exec"
-                                            },
+                                            property = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 12, 12)), "exec"),
                                             computed = false
                                         },
                                         arguments = new List<Node>
@@ -12632,13 +10451,7 @@ namespace AcornSharp.Cli
                                 type = NodeType.VariableDeclarator,
                                 start = 4,
                                 end = 12,
-                                id = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    start = 4,
-                                    end = 7,
-                                    name = "_𐒦"
-                                },
+                                id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)), "_𐒦"),
                                 init = new Node
                                 {
                                     type = NodeType.Literal,
@@ -12673,13 +10486,7 @@ namespace AcornSharp.Cli
                                 type = NodeType.VariableDeclarator,
                                 start = 4,
                                 end = 12,
-                                id = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    start = 4,
-                                    end = 7,
-                                    name = "𫠝_"
-                                },
+                                id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)), "𫠝_"),
                                 init = new Node
                                 {
                                     type = NodeType.Literal,
@@ -12714,13 +10521,7 @@ namespace AcornSharp.Cli
                                 type = NodeType.VariableDeclarator,
                                 start = 4,
                                 end = 19,
-                                id = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    start = 4,
-                                    end = 14,
-                                    name = "_𐒦"
-                                },
+                                id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 14, 14)), "_𐒦"),
                                 init = new Node
                                 {
                                     type = NodeType.Literal,
@@ -12754,13 +10555,7 @@ namespace AcornSharp.Cli
                                     start = 4,
                                     elements = new List<Node>
                                     {
-                                        new Node
-                                        {
-                                            start = 5,
-                                            name = "x",
-                                            type = NodeType.Identifier,
-                                            end = 6
-                                        }
+                                        new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "x")
                                     },
                                     type = NodeType.ArrayPattern,
                                     end = 8
@@ -12819,21 +10614,9 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = true,
                                             computed = false,
-                                            key = new Node
-                                            {
-                                                start = 5,
-                                                name = "x",
-                                                type = NodeType.Identifier,
-                                                end = 6
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "x"),
                                             kind = "init",
-                                            value = new Node
-                                            {
-                                                start = 5,
-                                                name = "x",
-                                                type = NodeType.Identifier,
-                                                end = 6
-                                            },
+                                            value = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "x"),
                                             type = NodeType.Property,
                                             end = 6
                                         }
@@ -12841,13 +10624,7 @@ namespace AcornSharp.Cli
                                     type = NodeType.ObjectPattern,
                                     end = 7
                                 },
-                                init = new Node
-                                {
-                                    start = 10,
-                                    name = "y",
-                                    type = NodeType.Identifier,
-                                    end = 11
-                                },
+                                init = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "y"),
                                 type = NodeType.VariableDeclarator,
                                 end = 11
                             }
@@ -12879,16 +10656,8 @@ namespace AcornSharp.Cli
                                     {
                                         elements = new List<Node>
                                         {
-                                            new Node
-                                            {
-                                                name = "name",
-                                                type = NodeType.Identifier
-                                            },
-                                            new Node
-                                            {
-                                                name = "value",
-                                                type = NodeType.Identifier
-                                            }
+                                            new IdentifierNode(default, "name"),
+                                            new IdentifierNode(default, "value")
                                         },
                                         type = NodeType.ArrayPattern
                                     },
@@ -12899,11 +10668,7 @@ namespace AcornSharp.Cli
                             kind = "var",
                             type = NodeType.VariableDeclaration
                         },
-                        right = new Node
-                        {
-                            name = "obj",
-                            type = NodeType.Identifier
-                        },
+                        right = new IdentifierNode(default, "obj"),
                         fbody = new Node
                         {
                             body = new List<Node>(),
@@ -12941,11 +10706,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "foo"
-                        },
+                        id = new IdentifierNode(default, "foo"),
                         fbody = new Node
                         {
                             type = NodeType.BlockStatement,
@@ -12957,8 +10718,8 @@ namespace AcornSharp.Cli
                                     expression = new Node
                                     {
                                         type = NodeType.MetaProperty,
-                                        meta = new Node {type = NodeType.Identifier, name = "new"},
-                                        property = new Node {type = NodeType.Identifier, name = "target"}
+                                        meta = new IdentifierNode(default, "new"),
+                                        property = new IdentifierNode(default, "target")
                                     }
                                 }
                             }
@@ -12981,11 +10742,7 @@ namespace AcornSharp.Cli
                     {
                         declaration = new Node
                         {
-                            id = new Node
-                            {
-                                name = "foo",
-                                type = NodeType.Identifier
-                            },
+                            id = new IdentifierNode(default, "foo"),
                             generator = false,
                             bexpression = false,
                             @params = new List<Node>(),
@@ -13072,14 +10829,7 @@ namespace AcornSharp.Cli
                                 start = 4,
                                 end = 13,
                                 loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 13, 13)),
-                                id = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    start = 4,
-                                    end = 9,
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 9, 9)),
-                                    name = "await"
-                                },
+                                id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 9, 9)), "await"),
                                 init = new Node
                                 {
                                     type = NodeType.Literal,
@@ -13183,13 +10933,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 37,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 9,
-                            end = 12,
-                            name = "foo"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
                         generator = false,
                         bexpression = false,
                         @params = new List<Node>(),
@@ -13220,21 +10964,9 @@ namespace AcornSharp.Cli
                                                 method = false,
                                                 shorthand = true,
                                                 computed = false,
-                                                key = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    start = 25,
-                                                    end = 34,
-                                                    name = "arguments"
-                                                },
+                                                key = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 34, 34)), "arguments"),
                                                 kind = "init",
-                                                value = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    start = 25,
-                                                    end = 34,
-                                                    name = "arguments"
-                                                }
+                                                value = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 34, 34)), "arguments")
                                             }
                                         }
                                     }
@@ -13258,13 +10990,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 32,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 9,
-                            end = 12,
-                            name = "foo"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
                         generator = false,
                         bexpression = false,
                         @params = new List<Node>(),
@@ -13295,21 +11021,9 @@ namespace AcornSharp.Cli
                                                 method = false,
                                                 shorthand = true,
                                                 computed = false,
-                                                key = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    start = 25,
-                                                    end = 29,
-                                                    name = "eval"
-                                                },
+                                                key = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 29, 29)), "eval"),
                                                 kind = "init",
-                                                value = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    start = 25,
-                                                    end = 29,
-                                                    name = "eval"
-                                                }
+                                                value = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 29, 29)), "eval")
                                             }
                                         }
                                     }
@@ -13333,13 +11047,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 51,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 9,
-                            end = 12,
-                            name = "foo"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
                         generator = false,
                         bexpression = false,
                         @params = new List<Node>(),
@@ -13384,21 +11092,9 @@ namespace AcornSharp.Cli
                                                 method = false,
                                                 shorthand = true,
                                                 computed = false,
-                                                key = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    start = 39,
-                                                    end = 48,
-                                                    name = "arguments"
-                                                },
+                                                key = new IdentifierNode(new SourceLocation(new Position(1, 39, 39), new Position(1, 48, 48)), "arguments"),
                                                 kind = "init",
-                                                value = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    start = 39,
-                                                    end = 48,
-                                                    name = "arguments"
-                                                }
+                                                value = new IdentifierNode(new SourceLocation(new Position(1, 39, 39), new Position(1, 48, 48)), "arguments")
                                             }
                                         }
                                     }
@@ -13422,13 +11118,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 46,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 9,
-                            end = 12,
-                            name = "foo"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
                         generator = false,
                         bexpression = false,
                         @params = new List<Node>(),
@@ -13473,21 +11163,9 @@ namespace AcornSharp.Cli
                                                 method = false,
                                                 shorthand = true,
                                                 computed = false,
-                                                key = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    start = 39,
-                                                    end = 43,
-                                                    name = "eval"
-                                                },
+                                                key = new IdentifierNode(new SourceLocation(new Position(1, 39, 39), new Position(1, 43, 43)), "eval"),
                                                 kind = "init",
-                                                value = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    start = 39,
-                                                    end = 43,
-                                                    name = "eval"
-                                                }
+                                                value = new IdentifierNode(new SourceLocation(new Position(1, 39, 39), new Position(1, 43, 43)), "eval")
                                             }
                                         }
                                     }
@@ -13511,13 +11189,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 33,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 9,
-                            end = 12,
-                            name = "foo"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
                         generator = false,
                         bexpression = false,
                         @params = new List<Node>(),
@@ -13548,21 +11220,9 @@ namespace AcornSharp.Cli
                                                 method = false,
                                                 shorthand = true,
                                                 computed = false,
-                                                key = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    start = 25,
-                                                    end = 30,
-                                                    name = "yield"
-                                                },
+                                                key = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 30, 30)), "yield"),
                                                 kind = "init",
-                                                value = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    start = 25,
-                                                    end = 30,
-                                                    name = "yield"
-                                                }
+                                                value = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 30, 30)), "yield")
                                             }
                                         }
                                     }
@@ -13598,13 +11258,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 47,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 10,
-                            end = 13,
-                            name = "foo"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13)), "foo"),
                         generator = true,
                         bexpression = false,
                         @params = new List<Node>
@@ -13614,13 +11268,7 @@ namespace AcornSharp.Cli
                                 type = NodeType.AssignmentPattern,
                                 start = 14,
                                 end = 42,
-                                left = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    start = 14,
-                                    end = 15,
-                                    name = "a"
-                                },
+                                left = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a"),
                                 right = new Node
                                 {
                                     type = NodeType.FunctionExpression,
@@ -13631,13 +11279,7 @@ namespace AcornSharp.Cli
                                     bexpression = false,
                                     @params = new List<Node>
                                     {
-                                        new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            start = 28,
-                                            end = 29,
-                                            name = "b"
-                                        }
+                                        new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29)), "b")
                                     },
                                     fbody = new Node
                                     {
@@ -13657,13 +11299,7 @@ namespace AcornSharp.Cli
                                                     start = 33,
                                                     end = 40,
                                                     @delegate = false,
-                                                    argument = new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        start = 39,
-                                                        end = 40,
-                                                        name = "b"
-                                                    }
+                                                    argument = new IdentifierNode(new SourceLocation(new Position(1, 39, 39), new Position(1, 40, 40)), "b")
                                                 }
                                             }
                                         }
@@ -13697,13 +11333,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 20,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 10,
-                            end = 15,
-                            name = "yield"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 15, 15)), "yield"),
                         generator = true,
                         bexpression = false,
                         @params = new List<Node>(),
@@ -13746,13 +11376,7 @@ namespace AcornSharp.Cli
                                     method = true,
                                     shorthand = false,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        start = 3,
-                                        end = 8,
-                                        name = "yield"
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 8, 8)), "yield"),
                                     kind = "init",
                                     value = new Node
                                     {
@@ -13791,13 +11415,7 @@ namespace AcornSharp.Cli
                         type = NodeType.ClassDeclaration,
                         start = 0,
                         end = 21,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 6,
-                            end = 7,
-                            name = "A"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
@@ -13812,13 +11430,7 @@ namespace AcornSharp.Cli
                                     start = 9,
                                     end = 20,
                                     computed = false,
-                                    key = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        start = 10,
-                                        end = 15,
-                                        name = "yield"
-                                    },
+                                    key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 15, 15)), "yield"),
                                     @static = false,
                                     kind = "method",
                                     value = new Node
@@ -13871,13 +11483,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 49,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 10,
-                            end = 13,
-                            name = "foo"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13)), "foo"),
                         generator = true,
                         bexpression = false,
                         @params = new List<Node>
@@ -13887,25 +11493,13 @@ namespace AcornSharp.Cli
                                 type = NodeType.AssignmentPattern,
                                 start = 14,
                                 end = 45,
-                                left = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    start = 14,
-                                    end = 15,
-                                    name = "a"
-                                },
+                                left = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a"),
                                 right = new Node
                                 {
                                     type = NodeType.FunctionExpression,
                                     start = 18,
                                     end = 45,
-                                    id = new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        start = 28,
-                                        end = 31,
-                                        name = "foo"
-                                    },
+                                    id = new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 31, 31)), "foo"),
                                     generator = true,
                                     bexpression = false,
                                     @params = new List<Node>(),
@@ -13927,13 +11521,7 @@ namespace AcornSharp.Cli
                                                     start = 36,
                                                     end = 43,
                                                     @delegate = false,
-                                                    argument = new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        start = 42,
-                                                        end = 43,
-                                                        name = "b"
-                                                    }
+                                                    argument = new IdentifierNode(new SourceLocation(new Position(1, 42, 42), new Position(1, 43, 43)), "b")
                                                 }
                                             }
                                         }
@@ -13965,13 +11553,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 42,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 10,
-                            end = 13,
-                            name = "foo"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13)), "foo"),
                         generator = true,
                         bexpression = false,
                         @params = new List<Node>
@@ -13981,13 +11563,7 @@ namespace AcornSharp.Cli
                                 type = NodeType.AssignmentPattern,
                                 start = 14,
                                 end = 38,
-                                left = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    start = 14,
-                                    end = 15,
-                                    name = "a"
-                                },
+                                left = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a"),
                                 right = new Node
                                 {
                                     type = NodeType.ObjectExpression,
@@ -14003,13 +11579,7 @@ namespace AcornSharp.Cli
                                             method = true,
                                             shorthand = false,
                                             computed = false,
-                                            key = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                start = 20,
-                                                end = 23,
-                                                name = "bar"
-                                            },
+                                            key = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 23, 23)), "bar"),
                                             kind = "init",
                                             value = new Node
                                             {
@@ -14038,13 +11608,7 @@ namespace AcornSharp.Cli
                                                                 start = 28,
                                                                 end = 35,
                                                                 @delegate = false,
-                                                                argument = new Node
-                                                                {
-                                                                    type = NodeType.Identifier,
-                                                                    start = 34,
-                                                                    end = 35,
-                                                                    name = "b"
-                                                                }
+                                                                argument = new IdentifierNode(new SourceLocation(new Position(1, 34, 34), new Position(1, 35, 35)), "b")
                                                             }
                                                         }
                                                     }
@@ -14079,13 +11643,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 48,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 10,
-                            end = 13,
-                            name = "foo"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13)), "foo"),
                         generator = true,
                         bexpression = false,
                         @params = new List<Node>
@@ -14095,13 +11653,7 @@ namespace AcornSharp.Cli
                                 type = NodeType.AssignmentPattern,
                                 start = 14,
                                 end = 44,
-                                left = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    start = 14,
-                                    end = 15,
-                                    name = "a"
-                                },
+                                left = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a"),
                                 right = new Node
                                 {
                                     type = NodeType.ClassExpression,
@@ -14122,13 +11674,7 @@ namespace AcornSharp.Cli
                                                 start = 25,
                                                 end = 43,
                                                 computed = false,
-                                                key = new Node
-                                                {
-                                                    type = NodeType.Identifier,
-                                                    start = 26,
-                                                    end = 29,
-                                                    name = "bar"
-                                                },
+                                                key = new IdentifierNode(new SourceLocation(new Position(1, 26, 26), new Position(1, 29, 29)), "bar"),
                                                 @static = false,
                                                 kind = "method",
                                                 value = new Node
@@ -14158,13 +11704,7 @@ namespace AcornSharp.Cli
                                                                     start = 34,
                                                                     end = 41,
                                                                     @delegate = false,
-                                                                    argument = new Node
-                                                                    {
-                                                                        type = NodeType.Identifier,
-                                                                        start = 40,
-                                                                        end = 41,
-                                                                        name = "b"
-                                                                    }
+                                                                    argument = new IdentifierNode(new SourceLocation(new Position(1, 40, 40), new Position(1, 41, 41)), "b")
                                                                 }
                                                             }
                                                         }
@@ -14201,13 +11741,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 34,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 10,
-                            end = 14,
-                            name = "wrap"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 14, 14)), "wrap"),
                         generator = true,
                         bexpression = false,
                         @params = new List<Node>(),
@@ -14229,26 +11763,14 @@ namespace AcornSharp.Cli
                                         start = 20,
                                         end = 31,
                                         @operator = "=",
-                                        left = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            start = 20,
-                                            end = 21,
-                                            name = "a"
-                                        },
+                                        left = new IdentifierNode(new SourceLocation(new Position(2, 1, 20), new Position(2, 2, 21)), "a"),
                                         right = new Node
                                         {
                                             type = NodeType.YieldExpression,
                                             start = 24,
                                             end = 31,
                                             @delegate = false,
-                                            argument = new Node
-                                            {
-                                                type = NodeType.Identifier,
-                                                start = 30,
-                                                end = 31,
-                                                name = "b"
-                                            }
+                                            argument = new IdentifierNode(new SourceLocation(new Position(2, 11, 30), new Position(2, 12, 31)), "b")
                                         }
                                     }
                                 }
@@ -14273,13 +11795,7 @@ namespace AcornSharp.Cli
                         type = NodeType.FunctionDeclaration,
                         start = 0,
                         end = 42,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            start = 10,
-                            end = 14,
-                            name = "wrap"
-                        },
+                        id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 14, 14)), "wrap"),
                         @params = new List<Node>(),
                         generator = true,
                         bexpression = false,
@@ -14316,51 +11832,27 @@ namespace AcornSharp.Cli
                                                     method = false,
                                                     shorthand = true,
                                                     computed = false,
-                                                    key = new Node
-                                                    {
-                                                        type = NodeType.Identifier,
-                                                        start = 21,
-                                                        end = 22,
-                                                        name = "a"
-                                                    },
+                                                    key = new IdentifierNode(new SourceLocation(new Position(2, 2, 21), new Position(2, 3, 22)), "a"),
                                                     kind = "init",
                                                     value = new Node
                                                     {
                                                         type = NodeType.AssignmentPattern,
                                                         start = 21,
                                                         end = 32,
-                                                        left = new Node
-                                                        {
-                                                            type = NodeType.Identifier,
-                                                            start = 21,
-                                                            end = 22,
-                                                            name = "a"
-                                                        },
+                                                        left = new IdentifierNode(new SourceLocation(new Position(2, 2, 21), new Position(2, 3, 22)), "a"),
                                                         right = new Node
                                                         {
                                                             type = NodeType.YieldExpression,
                                                             start = 25,
                                                             end = 32,
                                                             @delegate = false,
-                                                            argument = new Node
-                                                            {
-                                                                type = NodeType.Identifier,
-                                                                start = 31,
-                                                                end = 32,
-                                                                name = "b"
-                                                            }
+                                                            argument = new IdentifierNode(new SourceLocation(new Position(2, 12, 31), new Position(2, 13, 32)), "b")
                                                         }
                                                     }
                                                 }
                                             }
                                         },
-                                        right = new Node
-                                        {
-                                            type = NodeType.Identifier,
-                                            start = 36,
-                                            end = 39,
-                                            name = "obj"
-                                        }
+                                        right = new IdentifierNode(new SourceLocation(new Position(2, 17, 36), new Position(2, 20, 39)), "obj")
                                     }
                                 }
                             }
@@ -14381,11 +11873,7 @@ namespace AcornSharp.Cli
                         declaration = new Node
                         {
                             type = NodeType.ClassDeclaration,
-                            id = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "Foo"
-                            },
+                            id = new IdentifierNode(default, "Foo"),
                             superClass = null,
                             fbody = new Node
                             {
@@ -14402,11 +11890,7 @@ namespace AcornSharp.Cli
                             type = NodeType.UpdateExpression,
                             @operator = "++",
                             prefix = true,
-                            argument = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "x"
-                            }
+                            argument = new IdentifierNode(default, "x")
                         }
                     }
                 },
@@ -14421,11 +11905,7 @@ namespace AcornSharp.Cli
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        id = new Node
-                        {
-                            type = NodeType.Identifier,
-                            name = "f"
-                        },
+                        id = new IdentifierNode(default, "f"),
                         fbody = new Node
                         {
                             type = NodeType.BlockStatement,

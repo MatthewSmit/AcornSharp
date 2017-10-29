@@ -27,7 +27,7 @@ namespace AcornSharp
                 value = p.value;
                 start = p.start.Index;
                 end = p.end.Index;
-                loc = new SourceLocation(p, p.start, p.end);
+                loc = new SourceLocation(p.start, p.end, p.sourceFile);
                 range = (p.start.Index, p.end.Index);
             }
         }
@@ -629,7 +629,10 @@ namespace AcornSharp
             if (ch == 123)
             {
                 // '{'
-                if (Options.ecmaVersion < 6) unexpected();
+                if (Options.ecmaVersion < 6)
+                {
+                    raise(start, "Unexpected token");
+                }
                 var codePos = pos = pos.Increment(1);
                 code = readHexChar(input.IndexOf("}", pos.Index, StringComparison.Ordinal) - pos.Index);
                 pos = pos.Increment(1);

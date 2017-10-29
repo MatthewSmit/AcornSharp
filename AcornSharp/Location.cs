@@ -1,4 +1,6 @@
-﻿namespace AcornSharp
+﻿using JetBrains.Annotations;
+
+namespace AcornSharp
 {
     public sealed partial class Parser
     {
@@ -7,6 +9,7 @@
         // the location of the error, attaches the position to the end
         // of the error message, and then raises a `SyntaxError` with that
         // message.
+        [ContractAnnotation("=> halt")]
         private static void raise(Position position, string message)
         {
             message += " (" + position.Line + ":" + position.Column + ")";

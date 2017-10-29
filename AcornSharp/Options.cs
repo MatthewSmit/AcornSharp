@@ -62,9 +62,6 @@ namespace AcornSharp
         // When `locations` is on, you can pass this to record the source
         // file in every node's `loc` object.
         public string sourceFile = null;
-        // This value, if given, is stored in every node, whether
-        // `locations` is on or off.
-        public string directSourceFile = null;
         // When enabled, parenthesized expressions are represented by
         // (non-standard) ParenthesizedExpression nodes
         public bool preserveParens = false;

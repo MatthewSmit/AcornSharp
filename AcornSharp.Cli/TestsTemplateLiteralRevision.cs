@@ -95,13 +95,7 @@ namespace AcornSharp.Cli
                             end = 17,
                             expressions = new List<Node>
                             {
-                                new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    start = 6,
-                                    end = 9,
-                                    name = "bar"
-                                }
+                                new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 9, 9)), "bar")
                             },
                             quasis = new List<Node>
                             {
@@ -145,13 +139,7 @@ namespace AcornSharp.Cli
                             type = NodeType.TaggedTemplateExpression,
                             start = 0,
                             end = 11,
-                            tag = new Node
-                            {
-                                type = NodeType.Identifier,
-                                start = 0,
-                                end = 3,
-                                name = "foo"
-                            },
+                            tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
@@ -193,13 +181,7 @@ namespace AcornSharp.Cli
                             type = NodeType.TaggedTemplateExpression,
                             start = 0,
                             end = 20,
-                            tag = new Node
-                            {
-                                type = NodeType.Identifier,
-                                start = 0,
-                                end = 3,
-                                name = "foo"
-                            },
+                            tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
@@ -207,13 +189,7 @@ namespace AcornSharp.Cli
                                 end = 20,
                                 expressions = new List<Node>
                                 {
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        start = 9,
-                                        end = 12,
-                                        name = "bar"
-                                    }
+                                    new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "bar")
                                 },
                                 quasis = new List<Node>
                                 {
@@ -271,13 +247,7 @@ namespace AcornSharp.Cli
                             type = NodeType.TaggedTemplateExpression,
                             start = 0,
                             end = 13,
-                            tag = new Node
-                            {
-                                type = NodeType.Identifier,
-                                start = 0,
-                                end = 3,
-                                name = "foo"
-                            },
+                            tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
@@ -319,13 +289,7 @@ namespace AcornSharp.Cli
                             type = NodeType.TaggedTemplateExpression,
                             start = 0,
                             end = 22,
-                            tag = new Node
-                            {
-                                type = NodeType.Identifier,
-                                start = 0,
-                                end = 3,
-                                name = "foo"
-                            },
+                            tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
@@ -333,13 +297,7 @@ namespace AcornSharp.Cli
                                 end = 22,
                                 expressions = new List<Node>
                                 {
-                                    new Node
-                                    {
-                                        type = NodeType.Identifier,
-                                        start = 9,
-                                        end = 12,
-                                        name = "bar"
-                                    }
+                                    new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "bar")
                                 },
                                 quasis = new List<Node>
                                 {
@@ -384,13 +342,7 @@ namespace AcornSharp.Cli
                             type = NodeType.TaggedTemplateExpression,
                             start = 0,
                             end = 7,
-                            tag = new Node
-                            {
-                                type = NodeType.Identifier,
-                                start = 0,
-                                end = 3,
-                                name = "foo"
-                            },
+                            tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
@@ -432,13 +384,7 @@ namespace AcornSharp.Cli
                             type = NodeType.TaggedTemplateExpression,
                             start = 0,
                             end = 8,
-                            tag = new Node
-                            {
-                                type = NodeType.Identifier,
-                                start = 0,
-                                end = 3,
-                                name = "foo"
-                            },
+                            tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
@@ -480,13 +426,7 @@ namespace AcornSharp.Cli
                             type = NodeType.TaggedTemplateExpression,
                             start = 0,
                             end = 13,
-                            tag = new Node
-                            {
-                                type = NodeType.Identifier,
-                                start = 0,
-                                end = 3,
-                                name = "foo"
-                            },
+                            tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
@@ -528,13 +468,7 @@ namespace AcornSharp.Cli
                             type = NodeType.TaggedTemplateExpression,
                             start = 0,
                             end = 14,
-                            tag = new Node
-                            {
-                                type = NodeType.Identifier,
-                                start = 0,
-                                end = 3,
-                                name = "foo"
-                            },
+                            tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
@@ -576,13 +510,7 @@ namespace AcornSharp.Cli
                             type = NodeType.TaggedTemplateExpression,
                             start = 0,
                             end = 15,
-                            tag = new Node
-                            {
-                                type = NodeType.Identifier,
-                                start = 0,
-                                end = 3,
-                                name = "foo"
-                            },
+                            tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,

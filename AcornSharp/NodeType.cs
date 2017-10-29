@@ -4,7 +4,7 @@
     {
         Unknown,
         ParenthesizedExpression,
-        Identifier,
+//        Identifier,
         MemberExpression,
         ClassDeclaration,
         VariableDeclaration,

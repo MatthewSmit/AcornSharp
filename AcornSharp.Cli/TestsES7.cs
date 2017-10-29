@@ -18,12 +18,7 @@ namespace AcornSharp.Cli
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "**=",
-                            left = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "x",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-                            },
+                            left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new Node
                             {
                                 type = NodeType.Literal,
@@ -54,19 +49,9 @@ namespace AcornSharp.Cli
                         expression = new Node
                         {
                             type = NodeType.BinaryExpression,
-                            left = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "x",
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-                            },
+                            left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             @operator = "**",
-                            right = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "y",
-                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
-                            },
+                            right = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y"),
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                         },
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
@@ -187,11 +172,7 @@ namespace AcornSharp.Cli
                                 type = NodeType.UnaryExpression,
                                 @operator = "-",
                                 prefix = true,
-                                argument = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "a"
-                                }
+                                argument = new IdentifierNode(default, "a")
                             },
                             @operator = "*",
                             right = new Node
@@ -229,11 +210,7 @@ namespace AcornSharp.Cli
                                 }
                             },
                             @operator = "**",
-                            right = new Node
-                            {
-                                type = NodeType.Identifier,
-                                name = "y"
-                            }
+                            right = new IdentifierNode(default, "y")
                         }
                     }
                 }
@@ -258,11 +235,7 @@ namespace AcornSharp.Cli
                                 type = NodeType.UpdateExpression,
                                 @operator = "++",
                                 prefix = true,
-                                argument = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "a"
-                                }
+                                argument = new IdentifierNode(default, "a")
                             },
                             @operator = "**",
                             right = new Node
@@ -293,11 +266,7 @@ namespace AcornSharp.Cli
                                 type = NodeType.UpdateExpression,
                                 @operator = "--",
                                 prefix = false,
-                                argument = new Node
-                                {
-                                    type = NodeType.Identifier,
-                                    name = "a"
-                                }
+                                argument = new IdentifierNode(default, "a")
                             },
                             @operator = "**",
                             right = new Node

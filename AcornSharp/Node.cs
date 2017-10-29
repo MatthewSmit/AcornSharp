@@ -1,22 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using JetBrains.Annotations;
 
 namespace AcornSharp
 {
+    [SuppressMessage("ReSharper", "ParameterHidesMember")]
     public sealed partial class Parser
     {
+        [NotNull]
         private Node startNode()
         {
             return new Node(this, start);
         }
 
+        [NotNull]
         public Node startNodeAt(Position pos)
         {
             return new Node(this, pos);
         }
 
         // Finish an AST node, adding `type` and `end` properties.
-        private static Node finishNodeAt(Node node, NodeType type, Position pos)
+        [NotNull]
+        private static Node finishNodeAt([NotNull] Node node, NodeType type, Position pos)
         {
             node.type = type;
             node.end = pos.Index;
@@ -25,7 +31,8 @@ namespace AcornSharp
             return node;
         }
 
-        private Node finishNode(Node node, NodeType type)
+        [NotNull]
+        private Node finishNode([NotNull] Node node, NodeType type)
         {
             return finishNodeAt(node, type, lastTokEnd);
         }
@@ -43,7 +50,6 @@ namespace AcornSharp
         public Node left;
         public string @operator;
         public Node right;
-        public string name;
         public string raw;
         public IList<Node> elements;
         public IList<Node> properties;
@@ -68,7 +74,7 @@ namespace AcornSharp
         public IList<Node> expressions;
         public bool prefix;
         public Node update;
-        public Node label;
+        public IdentifierNode label;
         public Node block;
         public Node handler;
         public Node param;
@@ -76,7 +82,6 @@ namespace AcornSharp
         public (int, int) range;
         public int start;
         public int end;
-        public string sourceFile;
         public bool generator;
         public bool async;
         public bool @static;
@@ -92,10 +97,10 @@ namespace AcornSharp
         public IList<Node> specifiers;
         public bool tail;
         public bool method;
-        public Node local;
-        public Node exported;
+        public IdentifierNode local;
+        public IdentifierNode exported;
         public List<Node> quasis;
-        public Node imported;
+        public IdentifierNode imported;
         public bool shorthand;
         public string sourceType;
 
@@ -103,18 +108,34 @@ namespace AcornSharp
         {
         }
 
-        public Node(Parser parser, Position pos)
+        public Node(SourceLocation location)
         {
             type = NodeType.Unknown;
-            start = pos.Index;
-            end = 0;
-            loc = new SourceLocation(parser, pos);
-            if (parser.Options.directSourceFile != null)
-                sourceFile = parser.Options.directSourceFile;
-            range = (pos.Index, 0);
+            start = location.Start.Index;
+            end = location.End.Index;
+            loc = location;
+            range = (start, end);
         }
 
-        public bool TestEquals(Node other)
+        public Node([NotNull] Parser parser, Position start)
+        {
+            type = NodeType.Unknown;
+            this.start = start.Index;
+            end = 0;
+            loc = new SourceLocation(start, default, parser.sourceFile);
+            range = (start.Index, 0);
+        }
+
+        public Node([NotNull] Parser parser, Position start, Position end)
+        {
+            type = NodeType.Unknown;
+            this.start = start.Index;
+            this.end = end.Index;
+            loc = new SourceLocation(start, end, parser.sourceFile);
+            range = (start.Index, end.Index);
+        }
+
+        public virtual bool TestEquals([CanBeNull] Node other)
         {
             if (ReferenceEquals(null, other))
                 return false;
@@ -131,7 +152,6 @@ namespace AcornSharp
             if (left != null && !TestEquals(left, other.left)) return false;
             if (!string.Equals(@operator, other.@operator, StringComparison.Ordinal)) return false;
             if (right != null && !TestEquals(right, other.right)) return false;
-            if (!string.Equals(name, other.name, StringComparison.Ordinal)) return false;
             if (raw != null && !string.Equals(raw, other.raw, StringComparison.Ordinal)) return false;
             if (!TestEquals(elements, other.elements)) return false;
             if (!TestEquals(properties, other.properties)) return false;
@@ -164,7 +184,6 @@ namespace AcornSharp
             if (range.Item1 != 0 && range.Item2 != 0 && !range.Equals(other.range)) return false;
             if (start != 0 && start != other.start) return false;
             if (end != 0 && end != other.end) return false;
-            if (!string.Equals(sourceFile, other.sourceFile, StringComparison.Ordinal)) return false;
             if (generator && generator != other.generator) return false;
             if (async && async != other.async) return false;
             if (@static != other.@static) return false;
@@ -243,7 +262,7 @@ namespace AcornSharp
             return true;
         }
 
-        public bool Equals(Node other)
+        public virtual bool Equals([CanBeNull] Node other)
         {
             if (ReferenceEquals(null, other))
                 return false;
@@ -260,7 +279,6 @@ namespace AcornSharp
             if (!Equals(left, other.left)) return false;
             if (!string.Equals(@operator, other.@operator)) return false;
             if (!Equals(right, other.right)) return false;
-            if (!string.Equals(name, other.name)) return false;
             if (!string.Equals(raw, other.raw)) return false;
             if (!Equals(elements, other.elements)) return false;
             if (!Equals(properties, other.properties)) return false;
@@ -293,7 +311,6 @@ namespace AcornSharp
             if (!range.Equals(other.range)) return false;
             if (start != other.start) return false;
             if (end != other.end) return false;
-            if (!string.Equals(sourceFile, other.sourceFile)) return false;
             if (generator != other.generator) return false;
             if (async != other.async) return false;
             if (@static != other.@static) return false;
@@ -360,7 +377,6 @@ namespace AcornSharp
                 hashCode = (hashCode * 397) ^ (left != null ? left.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (@operator != null ? @operator.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (right != null ? right.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (name != null ? name.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (raw != null ? raw.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (elements != null ? elements.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (properties != null ? properties.GetHashCode() : 0);
@@ -393,7 +409,6 @@ namespace AcornSharp
                 hashCode = (hashCode * 397) ^ range.GetHashCode();
                 hashCode = (hashCode * 397) ^ start;
                 hashCode = (hashCode * 397) ^ end;
-                hashCode = (hashCode * 397) ^ (sourceFile != null ? sourceFile.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ generator.GetHashCode();
                 hashCode = (hashCode * 397) ^ async.GetHashCode();
                 hashCode = (hashCode * 397) ^ @static.GetHashCode();
@@ -419,14 +434,56 @@ namespace AcornSharp
             }
         }
 
-        public static bool operator ==(Node left, Node right)
+        public static bool operator ==([CanBeNull] Node left, [CanBeNull] Node right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(Node left, Node right)
+        public static bool operator !=([CanBeNull] Node left, [CanBeNull] Node right)
         {
             return !Equals(left, right);
+        }
+    }
+
+    public sealed class IdentifierNode : Node
+    {
+        public readonly string name;
+
+        public IdentifierNode([NotNull] Parser parser, Position start, Position end, string name) :
+            base(parser, start, end)
+        {
+            this.name = name;
+        }
+
+        public IdentifierNode(SourceLocation location, string name) :
+            base(location)
+        {
+            this.name = name;
+        }
+
+        public override bool TestEquals(Node other)
+        {
+            if (other is IdentifierNode realOther)
+            {
+                return base.TestEquals(other) &&
+                       (name == null || string.Equals(name, realOther.name, StringComparison.Ordinal));
+            }
+            return false;
+        }
+
+        public override bool Equals(Node other)
+        {
+            if (other is IdentifierNode realOther)
+            {
+                return base.Equals(other) &&
+                       string.Equals(name, realOther.name, StringComparison.Ordinal);
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return (base.GetHashCode() * 397) ^ name.GetHashCode();
         }
     }
 }

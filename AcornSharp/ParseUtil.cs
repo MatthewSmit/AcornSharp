@@ -52,7 +52,10 @@ namespace AcornSharp
         // Asserts that following token is given contextual keyword.
         private void expectContextual(string name)
         {
-            if (!eatContextual(name)) unexpected();
+            if (!eatContextual(name))
+            {
+                raise(start, "Unexpected token");
+            }
         }
 
         // Test whether a semicolon can be inserted at the current position.
@@ -81,7 +84,10 @@ namespace AcornSharp
         // pretend that there is a semicolon at this position.
         private void semicolon()
         {
-            if (!eat(TokenType.semi) && !insertSemicolon()) unexpected();
+            if (!eat(TokenType.semi) && !insertSemicolon())
+            {
+                raise(start, "Unexpected token");
+            }
         }
 
         private bool afterTrailingComma(TokenType tokType, bool notNext = false)
@@ -105,13 +111,9 @@ namespace AcornSharp
         private void expect(TokenType type)
         {
             if (!eat(type))
-                unexpected();
-        }
-
-        // Raise an unexpected token error.
-        private void unexpected(Position pos = default )
-        {
-            raise(pos.Line != 0 ? pos : start, "Unexpected token");
+            {
+                raise(start, "Unexpected token");
+            }
         }
 
         private sealed class DestructuringErrors
@@ -161,7 +163,7 @@ namespace AcornSharp
         {
             if (expr.type ==  NodeType.ParenthesizedExpression)
                 return isSimpleAssignTarget(expr.expression);
-            return expr.type == NodeType.Identifier || expr.type == NodeType.MemberExpression;
+            return expr is IdentifierNode || expr.type == NodeType.MemberExpression;
         }
     }
 }
