@@ -119,7 +119,8 @@ namespace AcornSharp
             var node = new BaseNode(this, start);
             next();
             node.argument = parseMaybeAssign(false, refDestructuringErrors);
-            finishNode(node, NodeType.SpreadElement);
+            node.type = NodeType.SpreadElement;
+            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
             return node;
         }
 
@@ -137,7 +138,8 @@ namespace AcornSharp
 
             node.argument = parseBindingAtom();
 
-            finishNode(node, NodeType.RestElement);
+            node.type = NodeType.RestElement;
+            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
             return node;
         }
 
@@ -154,7 +156,8 @@ namespace AcornSharp
                 var node = new BaseNode(this, start);
                 next();
                 node.elements = parseBindingList(TokenType.bracketR, true, true);
-                finishNode(node, NodeType.ArrayPattern);
+                node.type = NodeType.ArrayPattern;
+                node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
                 return node;
             }
             if (type == TokenType.braceL)
@@ -208,7 +211,8 @@ namespace AcornSharp
             var node = new BaseNode(this, startLoc);
             node.left = left;
             node.right = parseMaybeAssign();
-            finishNode(node, NodeType.AssignmentPattern);
+            node.type = NodeType.AssignmentPattern;
+            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
             return node;
         }
 

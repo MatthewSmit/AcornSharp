@@ -10116,17 +10116,14 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
-                    {
-                        type = NodeType.TryStatement,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)),
-                        block = new BaseNode(default)
+                    new TryStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)),
+                        new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 6, 6)),
                             body = new List<BaseNode>()
                         },
-                        handler = new BaseNode(default)
+                        new BaseNode(default)
                         {
                             type = NodeType.CatchClause,
                             loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 27, 27)),
@@ -10156,8 +10153,7 @@ namespace AcornSharp.Cli
                                 body = new List<BaseNode>()
                             }
                         },
-                        finalizer = null
-                    }
+                        null)
                 }
             }, new Options
             {

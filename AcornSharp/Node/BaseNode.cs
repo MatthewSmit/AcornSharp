@@ -41,10 +41,7 @@ namespace AcornSharp.Node
         public bool prefix;
         public BaseNode update;
         public IdentifierNode label;
-        public BaseNode block;
-        public BaseNode handler;
         public BaseNode param;
-        public BaseNode finalizer;
         public bool generator;
         public bool async;
         public bool @static;
@@ -127,10 +124,7 @@ namespace AcornSharp.Node
             if (prefix != other.prefix) return false;
             if (!TestEquals(update, other.update)) return false;
             if (!TestEquals(label, other.label)) return false;
-            if (!TestEquals(block, other.block)) return false;
-            if (!TestEquals(handler, other.handler)) return false;
             if (!TestEquals(param, other.param)) return false;
-            if (!TestEquals(finalizer, other.finalizer)) return false;
             if (generator && generator != other.generator) return false;
             if (async && async != other.async) return false;
             if (@static != other.@static) return false;
@@ -251,10 +245,7 @@ namespace AcornSharp.Node
             if (prefix != other.prefix) return false;
             if (!Equals(update, other.update)) return false;
             if (!Equals(label, other.label)) return false;
-            if (!Equals(block, other.block)) return false;
-            if (!Equals(handler, other.handler)) return false;
             if (!Equals(param, other.param)) return false;
-            if (!Equals(finalizer, other.finalizer)) return false;
             if (generator != other.generator) return false;
             if (async != other.async) return false;
             if (@static != other.@static) return false;
@@ -346,10 +337,7 @@ namespace AcornSharp.Node
                 hashCode = (hashCode * 397) ^ prefix.GetHashCode();
                 hashCode = (hashCode * 397) ^ (update != null ? update.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (label != null ? label.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (block != null ? block.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (handler != null ? handler.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (param != null ? param.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (finalizer != null ? finalizer.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ generator.GetHashCode();
                 hashCode = (hashCode * 397) ^ async.GetHashCode();
                 hashCode = (hashCode * 397) ^ @static.GetHashCode();

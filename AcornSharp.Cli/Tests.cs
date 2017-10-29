@@ -8109,16 +8109,14 @@ namespace AcornSharp.Cli
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
-                    {
-                        type = NodeType.TryStatement,
-                        block = new BaseNode(default)
+                    new TryStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
+                        new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>(),
                             loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
                         },
-                        handler = new BaseNode(default)
+                        new BaseNode(default)
                         {
                             type = NodeType.CatchClause,
                             param = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)), "e"),
@@ -8130,9 +8128,7 @@ namespace AcornSharp.Cli
                             },
                             loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 21, 21))
                         },
-                        finalizer = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21))
-                    }
+                        null)
                 },
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21))
             });
@@ -8142,16 +8138,14 @@ namespace AcornSharp.Cli
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
-                    {
-                        type = NodeType.TryStatement,
-                        block = new BaseNode(default)
+                    new TryStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24)),
+                        new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>(),
                             loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
                         },
-                        handler = new BaseNode(default)
+                        new BaseNode(default)
                         {
                             type = NodeType.CatchClause,
                             param = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 19, 19)), "eval"),
@@ -8163,9 +8157,7 @@ namespace AcornSharp.Cli
                             },
                             loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 24, 24))
                         },
-                        finalizer = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
-                    }
+                        null)
                 },
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
             });
@@ -8175,16 +8167,14 @@ namespace AcornSharp.Cli
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
-                    {
-                        type = NodeType.TryStatement,
-                        block = new BaseNode(default)
+                    new TryStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29)),
+                        new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>(),
                             loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
                         },
-                        handler = new BaseNode(default)
+                        new BaseNode(default)
                         {
                             type = NodeType.CatchClause,
                             param = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 24, 24)), "arguments"),
@@ -8196,9 +8186,7 @@ namespace AcornSharp.Cli
                             },
                             loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 29, 29))
                         },
-                        finalizer = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
-                    }
+                        null)
                 },
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
             });
@@ -8208,16 +8196,14 @@ namespace AcornSharp.Cli
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
+                    new TryStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28)),
                     new BaseNode(default)
-                    {
-                        type = NodeType.TryStatement,
-                        block = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>(),
                             loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
                         },
-                        handler = new BaseNode(default)
+                        new BaseNode(default)
                         {
                             type = NodeType.CatchClause,
                             param = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)), "e"),
@@ -8246,9 +8232,7 @@ namespace AcornSharp.Cli
                             },
                             loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 28, 28))
                         },
-                        finalizer = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
-                    }
+                        null)
                 },
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
             });
@@ -8258,17 +8242,15 @@ namespace AcornSharp.Cli
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
-                    {
-                        type = NodeType.TryStatement,
-                        block = new BaseNode(default)
+                    new TryStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34)),
+                        new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>(),
                             loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
                         },
-                        handler = null,
-                        finalizer = new BaseNode(default)
+                        null,
+                        new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>
@@ -8290,9 +8272,8 @@ namespace AcornSharp.Cli
                                 }
                             },
                             loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 34, 34))
-                        },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
-                    }
+                        }
+                    )
                 },
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
             });
@@ -8302,10 +8283,8 @@ namespace AcornSharp.Cli
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
-                    {
-                        type = NodeType.TryStatement,
-                        block = new BaseNode(default)
+                    new TryStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38)),
+                        new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>
@@ -8325,7 +8304,7 @@ namespace AcornSharp.Cli
                             },
                             loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 17, 17))
                         },
-                        handler = new BaseNode(default)
+                        new BaseNode(default)
                         {
                             type = NodeType.CatchClause,
                             param = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 26, 26)), "e"),
@@ -8354,9 +8333,7 @@ namespace AcornSharp.Cli
                             },
                             loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 38, 38))
                         },
-                        finalizer = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
-                    }
+                        null)
                 },
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
             });
@@ -8366,10 +8343,8 @@ namespace AcornSharp.Cli
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
-                    {
-                        type = NodeType.TryStatement,
-                        block = new BaseNode(default)
+                    new TryStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 65, 65)),
+                        new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>
@@ -8389,7 +8364,7 @@ namespace AcornSharp.Cli
                             },
                             loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 17, 17))
                         },
-                        handler = new BaseNode(default)
+                        new BaseNode(default)
                         {
                             type = NodeType.CatchClause,
                             param = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 26, 26)), "e"),
@@ -8418,7 +8393,7 @@ namespace AcornSharp.Cli
                             },
                             loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 38, 38))
                         },
-                        finalizer = new BaseNode(default)
+                        new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>
@@ -8440,9 +8415,7 @@ namespace AcornSharp.Cli
                                 }
                             },
                             loc = new SourceLocation(new Position(1, 47, 47), new Position(1, 65, 65))
-                        },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 65, 65))
-                    }
+                        })
                 },
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 65, 65))
             });

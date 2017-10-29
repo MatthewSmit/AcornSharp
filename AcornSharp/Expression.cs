@@ -148,7 +148,8 @@ namespace AcornSharp
                 while (eat(TokenType.comma)) expressions.Add(parseMaybeAssign(noIn, refDestructuringErrors));
                 var node = new BaseNode(this, start);
                 node.expressions = expressions;
-                finishNode(node, NodeType.SequenceExpression);
+                node.type = NodeType.SequenceExpression;
+                node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
                 return node;
             }
             return expr;
@@ -194,7 +195,8 @@ namespace AcornSharp
                 node.@operator = @operator;
                 node.left = leftNode;
                 node.right = right;
-                finishNode(node, NodeType.AssignmentExpression);
+                node.type = NodeType.AssignmentExpression;
+                node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
                 return node;
             }
             if (ownDestructuringErrors) checkExpressionErrors(refDestructuringErrors, true);
@@ -259,7 +261,8 @@ namespace AcornSharp
             node.left = left;
             node.@operator = op;
             node.right = right;
-            finishNode(node, logical ? NodeType.LogicalExpression : NodeType.BinaryExpression);
+            node.type = logical ? NodeType.LogicalExpression : NodeType.BinaryExpression;
+            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
             return node;
         }
 
@@ -287,7 +290,8 @@ namespace AcornSharp
                          node.argument is IdentifierNode)
                     raiseRecoverable(node.loc.Start, "Deleting local variable in strict mode");
                 else sawUnary = true;
-                finishNode(node, update ? NodeType.UpdateExpression : NodeType.UnaryExpression);
+                node.type = update ? NodeType.UpdateExpression : NodeType.UnaryExpression;
+                node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
                 expr = node;
             }
             else
@@ -302,7 +306,8 @@ namespace AcornSharp
                     node.argument = expr;
                     checkLVal(expr);
                     next();
-                    finishNode(node, NodeType.UpdateExpression);
+                    node.type = NodeType.UpdateExpression;
+                    node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
                     expr = node;
                 }
             }
@@ -363,7 +368,8 @@ namespace AcornSharp
                     var node = new BaseNode(this, startLoc);
                     node.callee = @base;
                     node.arguments = exprList;
-                    finishNode(node, NodeType.CallExpression);
+                    node.type = NodeType.CallExpression;
+                    node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
                     @base = node;
                 }
                 else if (type == TokenType.backQuote)
@@ -371,7 +377,8 @@ namespace AcornSharp
                     var node = new BaseNode(this, startLoc);
                     node.tag = @base;
                     node.quasi = parseTemplate(true);
-                    finishNode(node, NodeType.TaggedTemplateExpression);
+                    node.type = NodeType.TaggedTemplateExpression;
+                    node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
                     @base = node;
                 }
                 else
@@ -406,14 +413,16 @@ namespace AcornSharp
                 {
                     raise(start, "Unexpected token");
                 }
-                finishNode(node, NodeType.Super);
+                node.type = NodeType.Super;
+                node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
                 return node;
             }
             if (type == TokenType._this)
             {
                 node = new BaseNode(this, start);
                 next();
-                finishNode(node, NodeType.ThisExpression);
+                node.type = NodeType.ThisExpression;
+                node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
                 return node;
             }
             if (type == TokenType.name)
@@ -455,7 +464,8 @@ namespace AcornSharp
                 node.value = type == TokenType._null ? null : (object)(type == TokenType._true);
                 node.raw = TokenInformation.Types[type].Keyword;
                 next();
-                finishNode(node, NodeType.Literal);
+                node.type = NodeType.Literal;
+                node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
                 return node;
             }
             if (type == TokenType.parenL)
@@ -476,7 +486,8 @@ namespace AcornSharp
                 node = new BaseNode(this, start);
                 next();
                 node.elements = parseExprList(TokenType.bracketR, true, true, refDestructuringErrors);
-                finishNode(node, NodeType.ArrayExpression);
+                node.type = NodeType.ArrayExpression;
+                node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
                 return node;
             }
             if (type == TokenType.braceL)
@@ -512,7 +523,8 @@ namespace AcornSharp
             node.value = value;
             node.raw = input.Substring(start.Index, end.Index - start.Index);
             next();
-            finishNode(node, NodeType.Literal);
+            node.type = NodeType.Literal;
+            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
             return node;
         }
 
@@ -616,7 +628,8 @@ namespace AcornSharp
             {
                 var par = new BaseNode(this, startLoc);
                 par.expression = node;
-                finishNode(par, NodeType.ParenthesizedExpression);
+                par.type = NodeType.ParenthesizedExpression;
+                par.loc = new SourceLocation(par.loc.Start, lastTokEnd, par.loc.Source);
                 return par;
             }
             return node;
@@ -658,14 +671,16 @@ namespace AcornSharp
                     raiseRecoverable(node.property.loc.Start, "The only valid meta property for new is new.target");
                 if (!inFunction)
                     raiseRecoverable(node.loc.Start, "new.target can only be used in functions");
-                finishNode(node, NodeType.MetaProperty);
+                node.type = NodeType.MetaProperty;
+                node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
                 return node;
             }
             var startLoc = start;
             node.callee = parseSubscripts(parseExprAtom(), startLoc, true);
             if (eat(TokenType.parenL)) node.arguments = parseExprList(TokenType.parenR, Options.ecmaVersion >= 8, false);
             else node.arguments = new List<BaseNode>();
-            finishNode(node, NodeType.NewExpression);
+            node.type = NodeType.NewExpression;
+            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
             return node;
         }
 
@@ -690,7 +705,8 @@ namespace AcornSharp
             }
             next();
             elem.tail = type == TokenType.backQuote;
-            finishNode(elem, NodeType.TemplateElement);
+            elem.type = NodeType.TemplateElement;
+            elem.loc = new SourceLocation(elem.loc.Start, lastTokEnd, elem.loc.Source);
             return elem;
         }
 
@@ -710,7 +726,8 @@ namespace AcornSharp
                 node.quasis.Add(curElt = parseTemplateElement(ref isTagged));
             }
             next();
-            finishNode(node, NodeType.TemplateLiteral);
+            node.type = NodeType.TemplateLiteral;
+            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
             return node;
         }
 
@@ -766,10 +783,12 @@ namespace AcornSharp
                 }
                 parsePropertyValue(prop, isPattern, isGenerator, isAsync, startLoc, refDestructuringErrors);
                 checkPropClash(prop, propHash);
-                finishNode(prop, NodeType.Property);
+                prop.type = NodeType.Property;
+                prop.loc = new SourceLocation(prop.loc.Start, lastTokEnd, prop.loc.Source);
                 node.properties.Add(prop);
             }
-            finishNode(node, isPattern ? NodeType.ObjectPattern : NodeType.ObjectExpression);
+            node.type = isPattern ? NodeType.ObjectPattern : NodeType.ObjectExpression;
+            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
             return node;
         }
 
@@ -912,7 +931,8 @@ namespace AcornSharp
             yieldPos = oldYieldPos;
             awaitPos = oldAwaitPos;
             inFunction = oldInFunc;
-            finishNode(node, NodeType.FunctionExpression);
+            node.type = NodeType.FunctionExpression;
+            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
             return node;
         }
 
@@ -945,7 +965,8 @@ namespace AcornSharp
             yieldPos = oldYieldPos;
             awaitPos = oldAwaitPos;
             inFunction = oldInFunc;
-            finishNode(node, NodeType.ArrowFunctionExpression);
+            node.type = NodeType.ArrowFunctionExpression;
+            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
             return node;
         }
 
@@ -1125,7 +1146,8 @@ namespace AcornSharp
                 node.@delegate = eat(TokenType.star);
                 node.argument = parseMaybeAssign();
             }
-            finishNode(node, NodeType.YieldExpression);
+            node.type = NodeType.YieldExpression;
+            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
             return node;
         }
 
@@ -1137,7 +1159,8 @@ namespace AcornSharp
             var node = new BaseNode(this, start);
             next();
             node.argument = parseMaybeUnary(null, true);
-            finishNode(node, NodeType.AwaitExpression);
+            node.type = NodeType.AwaitExpression;
+            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
             return node;
         }
     }

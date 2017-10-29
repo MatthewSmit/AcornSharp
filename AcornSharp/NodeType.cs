@@ -30,7 +30,7 @@
         ThrowStatement,
         CatchClause,
 //        ConditionalExpression,
-        TryStatement,
+//        TryStatement,
         WhileStatement,
         WithStatement,
         EmptyStatement,
