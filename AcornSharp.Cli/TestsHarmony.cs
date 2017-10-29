@@ -49,15 +49,15 @@ namespace AcornSharp.Cli
 
             // ES6 Unicode Code Point Escape Sequence
 
-            Test("\"\\u{714E}\\u{8336}\"", new BaseNode
+            Test("\"\\u{714E}\\u{8336}\"", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = "煎茶",
@@ -73,15 +73,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("\"\\u{20BB7}\\u{91CE}\\u{5BB6}\"", new BaseNode
+            Test("\"\\u{20BB7}\\u{91CE}\\u{5BB6}\"", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = "𠮷野家",
@@ -99,15 +99,15 @@ namespace AcornSharp.Cli
 
             // ES6: Numeric Literal
 
-            Test("00", new BaseNode
+            Test("00", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = 0,
@@ -123,15 +123,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("0o0", new BaseNode
+            Test("0o0", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = 0,
@@ -147,25 +147,25 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("function test() {'use strict'; 0o0; }", new BaseNode
+            Test("function test() {'use strict'; 0o0; }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "test"),
                         @params = new List<BaseNode>(),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ExpressionStatement,
-                                    expression = new BaseNode
+                                    expression = new BaseNode(default)
                                     {
                                         type = NodeType.Literal,
                                         value = "use strict",
@@ -174,10 +174,10 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 30, 30))
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ExpressionStatement,
-                                    expression = new BaseNode
+                                    expression = new BaseNode(default)
                                     {
                                         type = NodeType.Literal,
                                         value = 0,
@@ -200,15 +200,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("0o2", new BaseNode
+            Test("0o2", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = 2,
@@ -224,15 +224,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("0o12", new BaseNode
+            Test("0o12", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = 10,
@@ -248,15 +248,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("0O0", new BaseNode
+            Test("0O0", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = 0,
@@ -272,25 +272,25 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("function test() {'use strict'; 0O0; }", new BaseNode
+            Test("function test() {'use strict'; 0O0; }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "test"),
                         @params = new List<BaseNode>(),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ExpressionStatement,
-                                    expression = new BaseNode
+                                    expression = new BaseNode(default)
                                     {
                                         type = NodeType.Literal,
                                         value = "use strict",
@@ -299,10 +299,10 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 30, 30))
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ExpressionStatement,
-                                    expression = new BaseNode
+                                    expression = new BaseNode(default)
                                     {
                                         type = NodeType.Literal,
                                         value = 0,
@@ -325,15 +325,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("0O2", new BaseNode
+            Test("0O2", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = 2,
@@ -349,15 +349,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("0O12", new BaseNode
+            Test("0O12", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = 10,
@@ -373,15 +373,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("0b0", new BaseNode
+            Test("0b0", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = 0,
@@ -397,15 +397,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("0b1", new BaseNode
+            Test("0b1", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = 1,
@@ -421,15 +421,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("0b10", new BaseNode
+            Test("0b10", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = 2,
@@ -445,15 +445,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("0B0", new BaseNode
+            Test("0B0", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = 0,
@@ -469,15 +469,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("0B1", new BaseNode
+            Test("0B1", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = 1,
@@ -493,15 +493,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("0B10", new BaseNode
+            Test("0B10", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = 2,
@@ -519,20 +519,20 @@ namespace AcornSharp.Cli
 
             // ES6 Template Strings
 
-            Test("`42`", new BaseNode
+            Test("`42`", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression =  new BaseNode
+                        expression =  new BaseNode(default)
                         {
                             type = NodeType.TemplateLiteral,
                             quasis = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.TemplateElement,
                                     value = new TemplateNode("42", "42"),
@@ -552,24 +552,24 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("raw`42`", new BaseNode
+            Test("raw`42`", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.TaggedTemplateExpression,
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "raw"),
-                            quasi = new BaseNode
+                            quasi = new BaseNode(default)
                             {
                                 type = NodeType.TemplateLiteral,
                                 quasis = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.TemplateElement,
                                         value = new TemplateNode("42", "42"),
@@ -591,31 +591,31 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("raw`hello ${name}`", new BaseNode
+            Test("raw`hello ${name}`", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.TaggedTemplateExpression,
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "raw"),
-                            quasi = new BaseNode
+                            quasi = new BaseNode(default)
                             {
                                 type = NodeType.TemplateLiteral,
                                 quasis = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.TemplateElement,
                                         value = new TemplateNode("hello ", "hello "),
                                         tail = false,
                                         loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 10, 10))
                                     },
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.TemplateElement,
                                         value = new TemplateNode("", ""),
@@ -640,20 +640,20 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("`$`", new BaseNode
+            Test("`$`", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.TemplateLiteral,
                             quasis = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.TemplateElement,
                                     value = new TemplateNode("$", "$"),
@@ -673,20 +673,20 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("`\\n\\r\\b\\v\\t\\f\\\n\\\r\n`", new BaseNode
+            Test("`\\n\\r\\b\\v\\t\\f\\\n\\\r\n`", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.TemplateLiteral,
                             quasis = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.TemplateElement,
                                     value = new TemplateNode("\\n\\r\\b\\v\\t\\f\\\n\\\n", "\n\r\b\u000b\t\f"),
@@ -706,20 +706,20 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("`\n\r\n\r`", new BaseNode
+            Test("`\n\r\n\r`", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.TemplateLiteral,
                             quasis = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.TemplateElement,
                                     value = new TemplateNode("\n\n\n", "\n\n\n"),
@@ -739,20 +739,20 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("`\\u{000042}\\u0042\\x42u0\\A`", new BaseNode
+            Test("`\\u{000042}\\u0042\\x42u0\\A`", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.TemplateLiteral,
                             quasis = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.TemplateElement,
                                     value = new TemplateNode("\\u{000042}\\u0042\\x42u0\\A", "BBBu0A"),
@@ -772,27 +772,27 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("new raw`42`", new BaseNode
+            Test("new raw`42`", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.NewExpression,
-                            callee = new BaseNode
+                            callee = new BaseNode(default)
                             {
                                 type = NodeType.TaggedTemplateExpression,
                                 tag = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)), "raw"),
-                                quasi = new BaseNode
+                                quasi = new BaseNode(default)
                                 {
                                     type = NodeType.TemplateLiteral,
                                     quasis = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.TemplateElement,
                                             value = new TemplateNode("42", "42"),
@@ -817,44 +817,44 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("`outer${{x: {y: 10}}}bar${`nested${function(){return 1;}}endnest`}end`", new BaseNode
+            Test("`outer${{x: {y: 10}}}bar${`nested${function(){return 1;}}endnest`}end`", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.TemplateLiteral,
                             expressions = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ObjectExpression,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             method = false,
                                             shorthand = false,
                                             computed = false,
                                             key = new IdentifierNode(default, "x"),
-                                            value = new BaseNode
+                                            value = new BaseNode(default)
                                             {
                                                 type = NodeType.ObjectExpression,
                                                 properties = new List<BaseNode>
                                                 {
-                                                    new BaseNode
+                                                    new BaseNode(default)
                                                     {
                                                         type = NodeType.Property,
                                                         method = false,
                                                         shorthand = false,
                                                         computed = false,
                                                         key = new IdentifierNode(default, "y"),
-                                                        value = new BaseNode
+                                                        value = new BaseNode(default)
                                                         {
                                                             type = NodeType.Literal,
                                                             value = 10,
@@ -868,26 +868,26 @@ namespace AcornSharp.Cli
                                         }
                                     }
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.TemplateLiteral,
                                     expressions = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.FunctionExpression,
                                             id = null,
                                             @params = new List<BaseNode>(),
                                             generator = false,
-                                            fbody = new BaseNode
+                                            fbody = new BaseNode(default)
                                             {
                                                 type = NodeType.BlockStatement,
                                                 body = new List<BaseNode>
                                                 {
-                                                    new BaseNode
+                                                    new BaseNode(default)
                                                     {
                                                         type = NodeType.ReturnStatement,
-                                                        argument = new BaseNode
+                                                        argument = new BaseNode(default)
                                                         {
                                                             type = NodeType.Literal,
                                                             value = 1,
@@ -901,13 +901,13 @@ namespace AcornSharp.Cli
                                     },
                                     quasis = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.TemplateElement,
                                             value = new TemplateNode("nested", "nested"),
                                             tail = false
                                         },
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.TemplateElement,
                                             value = new TemplateNode("endnest", "endnest"),
@@ -918,19 +918,19 @@ namespace AcornSharp.Cli
                             },
                             quasis = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.TemplateElement,
                                     value = new TemplateNode("outer", "outer"),
                                     tail = false
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.TemplateElement,
                                     value = new TemplateNode("bar", "bar"),
                                     tail = false
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.TemplateElement,
                                     value = new TemplateNode("end", "end"),
@@ -948,21 +948,21 @@ namespace AcornSharp.Cli
 
             // ES6: Switch Case Declaration
 
-            Test("switch (answer) { case 42: let t = 42; break; }", new BaseNode
+            Test("switch (answer) { case 42: let t = 42; break; }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.SwitchStatement,
                         discriminant = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 14, 14)), "answer"),
                         cases = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.SwitchCase,
-                                test = new BaseNode
+                                test = new BaseNode(default)
                                 {
                                     type = NodeType.Literal,
                                     value = 42,
@@ -971,16 +971,16 @@ namespace AcornSharp.Cli
                                 },
                                 sconsequent = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.VariableDeclaration,
                                         declarations = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.VariableDeclarator,
                                                 id = new IdentifierNode(new SourceLocation(new Position(1, 31, 31), new Position(1, 32, 32)), "t"),
-                                                init = new BaseNode
+                                                init = new BaseNode(default)
                                                 {
                                                     type = NodeType.Literal,
                                                     value = 42,
@@ -993,7 +993,7 @@ namespace AcornSharp.Cli
                                         kind = "let",
                                         loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 38, 38))
                                     },
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.BreakStatement,
                                         label = null,
@@ -1014,20 +1014,20 @@ namespace AcornSharp.Cli
 
             // ES6: Arrow Function
 
-            Test("() => \"test\"", new BaseNode
+            Test("() => \"test\"", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
                             @params = new List<BaseNode>(),
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 value = "test",
@@ -1047,15 +1047,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("e => \"test\"", new BaseNode
+            Test("e => \"test\"", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
@@ -1063,7 +1063,7 @@ namespace AcornSharp.Cli
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "e")
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 value = "test",
@@ -1083,15 +1083,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("(e) => \"test\"", new BaseNode
+            Test("(e) => \"test\"", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
@@ -1099,7 +1099,7 @@ namespace AcornSharp.Cli
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "e")
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 value = "test",
@@ -1119,15 +1119,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("(a, b) => \"test\"", new BaseNode
+            Test("(a, b) => \"test\"", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
@@ -1136,7 +1136,7 @@ namespace AcornSharp.Cli
                                 new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a"),
                                 new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "b")
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 value = "test",
@@ -1156,15 +1156,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("e => { 42; }", new BaseNode
+            Test("e => { 42; }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
@@ -1172,15 +1172,15 @@ namespace AcornSharp.Cli
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "e")
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 body = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.ExpressionStatement,
-                                        expression = new BaseNode
+                                        expression = new BaseNode(default)
                                         {
                                             type = NodeType.Literal,
                                             value = 42,
@@ -1205,15 +1205,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("e => ({ property: 42 })", new BaseNode
+            Test("e => ({ property: 42 })", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
@@ -1221,16 +1221,16 @@ namespace AcornSharp.Cli
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "e")
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.ObjectExpression,
                                 properties = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.Property,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 16, 16)), "property"),
-                                        value = new BaseNode
+                                        value = new BaseNode(default)
                                         {
                                             type = NodeType.Literal,
                                             value = 42,
@@ -1259,15 +1259,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("e => { label: 42 }", new BaseNode
+            Test("e => { label: 42 }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
@@ -1275,19 +1275,19 @@ namespace AcornSharp.Cli
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "e")
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 body = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.LabeledStatement,
                                         label = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 12, 12)), "label"),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.ExpressionStatement,
-                                            expression = new BaseNode
+                                            expression = new BaseNode(default)
                                             {
                                                 type = NodeType.Literal,
                                                 value = 42,
@@ -1314,15 +1314,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("(a, b) => { 42; }", new BaseNode
+            Test("(a, b) => { 42; }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
@@ -1331,15 +1331,15 @@ namespace AcornSharp.Cli
                                 new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a"),
                                 new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "b")
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 body = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.ExpressionStatement,
-                                        expression = new BaseNode
+                                        expression = new BaseNode(default)
                                         {
                                             type = NodeType.Literal,
                                             value = 42,
@@ -1364,21 +1364,21 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("([a, , b]) => 42", new BaseNode
+            Test("([a, , b]) => 42", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
                             @params = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ArrayPattern,
                                     elements = new List<BaseNode>
@@ -1390,7 +1390,7 @@ namespace AcornSharp.Cli
                                     loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 9, 9))
                                 }
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 value = 42,
@@ -1416,24 +1416,24 @@ namespace AcornSharp.Cli
             testFail("a => {}()", "Unexpected token (1:7)", new Options {ecmaVersion = 6});
             testFail("console.log(typeof () => {});", "Unexpected token (1:20)", new Options {ecmaVersion = 6});
 
-            Test("(() => {})()", new BaseNode
+            Test("(() => {})()", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.CallExpression,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12)),
-                            callee = new BaseNode
+                            callee = new BaseNode(default)
                             {
                                 type = NodeType.ArrowFunctionExpression,
                                 id = null,
                                 @params = new List<BaseNode>(),
-                                fbody = new BaseNode
+                                fbody = new BaseNode(default)
                                 {
                                     type = NodeType.BlockStatement,
                                     body = new List<BaseNode>(),
@@ -1453,24 +1453,24 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("((() => {}))()", new BaseNode
+            Test("((() => {}))()", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.CallExpression,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
-                            callee = new BaseNode
+                            callee = new BaseNode(default)
                             {
                                 type = NodeType.ArrowFunctionExpression,
                                 id = null,
                                 @params = new List<BaseNode>(),
-                                fbody = new BaseNode
+                                fbody = new BaseNode(default)
                                 {
                                     type = NodeType.BlockStatement,
                                     body = new List<BaseNode>(),
@@ -1491,25 +1491,25 @@ namespace AcornSharp.Cli
             });
 
 
-            Test("(x=1) => x * x", new BaseNode
+            Test("(x=1) => x * x", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
                             @params = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.AssignmentPattern,
                                     left = new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "x"),
-                                    right = new BaseNode
+                                    right = new BaseNode(default)
                                     {
                                         type = NodeType.Literal,
                                         value = 1,
@@ -1519,7 +1519,7 @@ namespace AcornSharp.Cli
                                     loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 4, 4))
                                 }
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BinaryExpression,
                                 @operator = "*",
@@ -1540,15 +1540,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("eval => 42", new BaseNode
+            Test("eval => 42", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
@@ -1556,7 +1556,7 @@ namespace AcornSharp.Cli
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4)), "eval")
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 value = 42,
@@ -1576,15 +1576,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("arguments => 42", new BaseNode
+            Test("arguments => 42", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
@@ -1592,7 +1592,7 @@ namespace AcornSharp.Cli
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)), "arguments")
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 value = 42,
@@ -1612,15 +1612,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("(a) => 00", new BaseNode
+            Test("(a) => 00", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
@@ -1628,7 +1628,7 @@ namespace AcornSharp.Cli
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a")
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 value = 0,
@@ -1648,15 +1648,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("(eval, a) => 42", new BaseNode
+            Test("(eval, a) => 42", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
@@ -1665,7 +1665,7 @@ namespace AcornSharp.Cli
                                 new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 5, 5)), "eval"),
                                 new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a")
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 value = 42,
@@ -1685,25 +1685,25 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("(eval = 10) => 42", new BaseNode
+            Test("(eval = 10) => 42", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
                             @params = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.AssignmentPattern,
                                     left = new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 5, 5)), "eval"),
-                                    right = new BaseNode
+                                    right = new BaseNode(default)
                                     {
                                         type = NodeType.Literal,
                                         value = 10,
@@ -1713,7 +1713,7 @@ namespace AcornSharp.Cli
                                     loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 10, 10))
                                 }
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 value = 42,
@@ -1733,26 +1733,26 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("(eval, a = 10) => 42", new BaseNode
+            Test("(eval, a = 10) => 42", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
                             @params = new List<BaseNode>
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 5, 5)), "eval"),
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.AssignmentPattern,
                                     left = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a"),
-                                    right = new BaseNode
+                                    right = new BaseNode(default)
                                     {
                                         type = NodeType.Literal,
                                         value = 10,
@@ -1762,7 +1762,7 @@ namespace AcornSharp.Cli
                                     loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 13, 13))
                                 }
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 value = 42,
@@ -1782,15 +1782,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("(x => x)", new BaseNode
+            Test("(x => x)", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
@@ -1812,15 +1812,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("x => y => 42", new BaseNode
+            Test("x => y => 42", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
@@ -1828,7 +1828,7 @@ namespace AcornSharp.Cli
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x")
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.ArrowFunctionExpression,
                                 id = null,
@@ -1836,7 +1836,7 @@ namespace AcornSharp.Cli
                                 {
                                     new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y")
                                 },
-                                fbody = new BaseNode
+                                fbody = new BaseNode(default)
                                 {
                                     type = NodeType.Literal,
                                     value = 42,
@@ -1860,15 +1860,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("(x) => ((y, z) => (x, y, z))", new BaseNode
+            Test("(x) => ((y, z) => (x, y, z))", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
@@ -1876,7 +1876,7 @@ namespace AcornSharp.Cli
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "x")
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.ArrowFunctionExpression,
                                 id = null,
@@ -1885,7 +1885,7 @@ namespace AcornSharp.Cli
                                     new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "y"),
                                     new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "z")
                                 },
-                                fbody = new BaseNode
+                                fbody = new BaseNode(default)
                                 {
                                     type = NodeType.SequenceExpression,
                                     expressions = new List<BaseNode>
@@ -1913,26 +1913,26 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("foo(() => {})", new BaseNode
+            Test("foo(() => {})", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.CallExpression,
                             callee = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             arguments = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ArrowFunctionExpression,
                                     id = null,
                                     @params = new List<BaseNode>(),
-                                    fbody = new BaseNode
+                                    fbody = new BaseNode(default)
                                     {
                                         type = NodeType.BlockStatement,
                                         body = new List<BaseNode>(),
@@ -1954,21 +1954,21 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("foo((x, y) => {})", new BaseNode
+            Test("foo((x, y) => {})", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.CallExpression,
                             callee = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             arguments = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ArrowFunctionExpression,
                                     id = null,
@@ -1977,7 +1977,7 @@ namespace AcornSharp.Cli
                                         new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "x"),
                                         new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "y")
                                     },
-                                    fbody = new BaseNode
+                                    fbody = new BaseNode(default)
                                     {
                                         type = NodeType.BlockStatement,
                                         body = new List<BaseNode>(),
@@ -2001,34 +2001,34 @@ namespace AcornSharp.Cli
 
             // ES6: Method Definition
 
-            Test("x = { method() { } }", new BaseNode
+            Test("x = { method() { } }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            right = new BaseNode
+                            right = new BaseNode(default)
                             {
                                 type = NodeType.ObjectExpression,
                                 properties = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.Property,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 12, 12)), "method"),
-                                        value = new BaseNode
+                                        value = new BaseNode(default)
                                         {
                                             type = NodeType.FunctionExpression,
                                             id = null,
                                             @params = new List<BaseNode>(),
-                                            fbody = new BaseNode
+                                            fbody = new BaseNode(default)
                                             {
                                                 type = NodeType.BlockStatement,
                                                 body = new List<BaseNode>(),
@@ -2058,29 +2058,29 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("x = { method(test) { } }", new BaseNode
+            Test("x = { method(test) { } }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            right = new BaseNode
+                            right = new BaseNode(default)
                             {
                                 type = NodeType.ObjectExpression,
                                 properties = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.Property,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 12, 12)), "method"),
-                                        value = new BaseNode
+                                        value = new BaseNode(default)
                                         {
                                             type = NodeType.FunctionExpression,
                                             id = null,
@@ -2088,7 +2088,7 @@ namespace AcornSharp.Cli
                                             {
                                                 new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 17, 17)), "test")
                                             },
-                                            fbody = new BaseNode
+                                            fbody = new BaseNode(default)
                                             {
                                                 type = NodeType.BlockStatement,
                                                 body = new List<BaseNode>(),
@@ -2118,40 +2118,40 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("x = { 'method'() { } }", new BaseNode
+            Test("x = { 'method'() { } }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            right = new BaseNode
+                            right = new BaseNode(default)
                             {
                                 type = NodeType.ObjectExpression,
                                 properties = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.Property,
-                                        key = new BaseNode
+                                        key = new BaseNode(default)
                                         {
                                             type = NodeType.Literal,
                                             value = "method",
                                             raw = "'method'",
                                             loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 14, 14))
                                         },
-                                        value = new BaseNode
+                                        value = new BaseNode(default)
                                         {
                                             type = NodeType.FunctionExpression,
                                             id = null,
                                             @params = new List<BaseNode>(),
-                                            fbody = new BaseNode
+                                            fbody = new BaseNode(default)
                                             {
                                                 type = NodeType.BlockStatement,
                                                 body = new List<BaseNode>(),
@@ -2181,34 +2181,34 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("x = { get() { } }", new BaseNode
+            Test("x = { get() { } }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            right = new BaseNode
+                            right = new BaseNode(default)
                             {
                                 type = NodeType.ObjectExpression,
                                 properties = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.Property,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 9, 9)), "get"),
-                                        value = new BaseNode
+                                        value = new BaseNode(default)
                                         {
                                             type = NodeType.FunctionExpression,
                                             id = null,
                                             @params = new List<BaseNode>(),
-                                            fbody = new BaseNode
+                                            fbody = new BaseNode(default)
                                             {
                                                 type = NodeType.BlockStatement,
                                                 body = new List<BaseNode>(),
@@ -2238,34 +2238,34 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("x = { set() { } }", new BaseNode
+            Test("x = { set() { } }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            right = new BaseNode
+                            right = new BaseNode(default)
                             {
                                 type = NodeType.ObjectExpression,
                                 properties = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.Property,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 9, 9)), "set"),
-                                        value = new BaseNode
+                                        value = new BaseNode(default)
                                         {
                                             type = NodeType.FunctionExpression,
                                             id = null,
                                             @params = new List<BaseNode>(),
-                                            fbody = new BaseNode
+                                            fbody = new BaseNode(default)
                                             {
                                                 type = NodeType.BlockStatement,
                                                 body = new List<BaseNode>(),
@@ -2297,25 +2297,25 @@ namespace AcornSharp.Cli
 
             // Harmony: Object Literal Property Value Shorthand
 
-            Test("x = { y, z }", new BaseNode
+            Test("x = { y, z }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            right = new BaseNode
+                            right = new BaseNode(default)
                             {
                                 type = NodeType.ObjectExpression,
                                 properties = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.Property,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "y"),
@@ -2326,7 +2326,7 @@ namespace AcornSharp.Cli
                                         computed = false,
                                         loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
                                     },
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.Property,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "z"),
@@ -2353,19 +2353,19 @@ namespace AcornSharp.Cli
 
             // Harmony: Destructuring
 
-            Test("[a, b] = [b, a]", new BaseNode
+            Test("[a, b] = [b, a]", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
-                            left = new BaseNode
+                            left = new BaseNode(default)
                             {
                                 type = NodeType.ArrayPattern,
                                 elements = new List<BaseNode>
@@ -2375,7 +2375,7 @@ namespace AcornSharp.Cli
                                 },
                                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                             },
-                            right = new BaseNode
+                            right = new BaseNode(default)
                             {
                                 type = NodeType.ArrayExpression,
                                 elements = new List<BaseNode>
@@ -2396,24 +2396,24 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("({ responseText: text } = res)", new BaseNode
+            Test("({ responseText: text } = res)", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
-                            left = new BaseNode
+                            left = new BaseNode(default)
                             {
                                 type = NodeType.ObjectPattern,
                                 properties = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.Property,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 15, 15)), "responseText"),
@@ -2439,25 +2439,25 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("const {a} = {}", new BaseNode
+            Test("const {a} = {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectPattern,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a"),
@@ -2471,7 +2471,7 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 9, 9))
                                 },
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectExpression,
                                     properties = new List<BaseNode>(),
@@ -2490,20 +2490,20 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("const [a] = []", new BaseNode
+            Test("const [a] = []", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ArrayPattern,
                                     elements = new List<BaseNode>
@@ -2512,7 +2512,7 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 9, 9))
                                 },
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.ArrayExpression,
                                     elements = new List<BaseNode> { },
@@ -2531,25 +2531,25 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("let {a} = {}", new BaseNode
+            Test("let {a} = {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectPattern,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a"),
@@ -2563,7 +2563,7 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
                                 },
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectExpression,
                                     properties = new List<BaseNode>(),
@@ -2582,20 +2582,20 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("let [a] = []", new BaseNode
+            Test("let [a] = []", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ArrayPattern,
                                     elements = new List<BaseNode>
@@ -2604,7 +2604,7 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
                                 },
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.ArrayExpression,
                                     elements = new List<BaseNode> { },
@@ -2623,25 +2623,25 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("var {a} = {}", new BaseNode
+            Test("var {a} = {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectPattern,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a"),
@@ -2655,7 +2655,7 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
                                 },
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectExpression,
                                     properties = new List<BaseNode>(),
@@ -2674,20 +2674,20 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("var [a] = []", new BaseNode
+            Test("var [a] = []", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ArrayPattern,
                                     elements = new List<BaseNode>
@@ -2696,7 +2696,7 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
                                 },
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.ArrayExpression,
                                     elements = new List<BaseNode> { },
@@ -2715,25 +2715,25 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("const {a:b} = {}", new BaseNode
+            Test("const {a:b} = {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectPattern,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a"),
@@ -2747,7 +2747,7 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 11, 11))
                                 },
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectExpression,
                                     properties = new List<BaseNode>(),
@@ -2766,25 +2766,25 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("let {a:b} = {}", new BaseNode
+            Test("let {a:b} = {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectPattern,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a"),
@@ -2798,7 +2798,7 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 9, 9))
                                 },
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectExpression,
                                     properties = new List<BaseNode>(),
@@ -2817,26 +2817,26 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("var {a:b} = {}", new BaseNode
+            Test("var {a:b} = {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 sourceType = "script",
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectPattern,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a"),
@@ -2850,7 +2850,7 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 9, 9))
                                 },
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectExpression,
                                     properties = new List<BaseNode>(),
@@ -2871,21 +2871,21 @@ namespace AcornSharp.Cli
 
             // Harmony: Modules
 
-            Test("export var document", new BaseNode
+            Test("export var document", new BaseNode(default)
             {
                 type = NodeType.Program,
                 sourceType = "module",
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportNamedDeclaration,
-                        declaration = new BaseNode
+                        declaration = new BaseNode(default)
                         {
                             type = NodeType.VariableDeclaration,
                             declarations = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.VariableDeclarator,
                                     id = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19)), "document"),
@@ -2908,24 +2908,24 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            Test("export var document = { }", new BaseNode
+            Test("export var document = { }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportNamedDeclaration,
-                        declaration = new BaseNode
+                        declaration = new BaseNode(default)
                         {
                             type = NodeType.VariableDeclaration,
                             declarations = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.VariableDeclarator,
                                     id = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19)), "document"),
-                                    init = new BaseNode
+                                    init = new BaseNode(default)
                                     {
                                         type = NodeType.ObjectExpression,
                                         properties = new List<BaseNode>(),
@@ -2951,20 +2951,20 @@ namespace AcornSharp.Cli
 
             testFail("export var await", "The keyword 'await' is reserved (1:11)", new Options {ecmaVersion = 6, sourceType = "module"});
 
-            Test("export let document", new BaseNode
+            Test("export let document", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportNamedDeclaration,
-                        declaration = new BaseNode
+                        declaration = new BaseNode(default)
                         {
                             type = NodeType.VariableDeclaration,
                             declarations = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.VariableDeclarator,
                                     id = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19)), "document"),
@@ -2987,24 +2987,24 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            Test("export let document = { }", new BaseNode
+            Test("export let document = { }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportNamedDeclaration,
-                        declaration = new BaseNode
+                        declaration = new BaseNode(default)
                         {
                             type = NodeType.VariableDeclaration,
                             declarations = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.VariableDeclarator,
                                     id = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19)), "document"),
-                                    init = new BaseNode
+                                    init = new BaseNode(default)
                                     {
                                         type = NodeType.ObjectExpression,
                                         properties = new List<BaseNode>(),
@@ -3028,24 +3028,24 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            Test("export const document = { }", new BaseNode
+            Test("export const document = { }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportNamedDeclaration,
-                        declaration = new BaseNode
+                        declaration = new BaseNode(default)
                         {
                             type = NodeType.VariableDeclaration,
                             declarations = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.VariableDeclarator,
                                     id = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 21, 21)), "document"),
-                                    init = new BaseNode
+                                    init = new BaseNode(default)
                                     {
                                         type = NodeType.ObjectExpression,
                                         properties = new List<BaseNode>(),
@@ -3069,20 +3069,20 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            Test("export function parse() { }", new BaseNode
+            Test("export function parse() { }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportNamedDeclaration,
-                        declaration = new BaseNode
+                        declaration = new BaseNode(default)
                         {
                             type = NodeType.FunctionDeclaration,
                             id = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 21, 21)), "parse"),
                             @params = new List<BaseNode>(),
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 body = new List<BaseNode>(),
@@ -3104,20 +3104,20 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            Test("export class Class {}", new BaseNode
+            Test("export class Class {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportNamedDeclaration,
-                        declaration = new BaseNode
+                        declaration = new BaseNode(default)
                         {
                             type = NodeType.ClassDeclaration,
                             id = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 18, 18)), "Class"),
                             superClass = null,
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.ClassBody,
                                 body = new List<BaseNode>(),
@@ -3140,15 +3140,15 @@ namespace AcornSharp.Cli
             testFail("export new Foo();", "Unexpected token (1:7)", new Options {ecmaVersion = 6, sourceType = "module"});
             testFail("export typeof foo;", "Unexpected token (1:7)", new Options {ecmaVersion = 6, sourceType = "module"});
 
-            Test("export default 42", new BaseNode
+            Test("export default 42", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportDefaultDeclaration,
-                        declaration = new BaseNode
+                        declaration = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = 42,
@@ -3165,17 +3165,17 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            Test("export default function () {}", new BaseNode
+            Test("export default function () {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportDefaultDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29)),
-                        declaration = new BaseNode
+                        declaration = new BaseNode(default)
                         {
                             type = NodeType.FunctionDeclaration,
                             loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 29, 29)),
@@ -3183,7 +3183,7 @@ namespace AcornSharp.Cli
                             generator = false,
                             bexpression = false,
                             @params = new List<BaseNode>(),
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 29, 29)),
@@ -3194,17 +3194,17 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6, sourceType = "module"});
 
-            Test("export default function f() {}", new BaseNode
+            Test("export default function f() {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportDefaultDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30)),
-                        declaration = new BaseNode
+                        declaration = new BaseNode(default)
                         {
                             type = NodeType.FunctionDeclaration,
                             loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 30, 30)),
@@ -3212,7 +3212,7 @@ namespace AcornSharp.Cli
                             generator = false,
                             bexpression = false,
                             @params = new List<BaseNode>(),
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 30, 30)),
@@ -3223,23 +3223,23 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6, sourceType = "module"});
 
-            Test("export default class {}", new BaseNode
+            Test("export default class {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportDefaultDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
-                        declaration = new BaseNode
+                        declaration = new BaseNode(default)
                         {
                             type = NodeType.ClassDeclaration,
                             loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 23, 23)),
                             id = null,
                             superClass = null,
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.ClassBody,
                                 loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 23, 23)),
@@ -3250,23 +3250,23 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6, sourceType = "module"});
 
-            Test("export default class A {}", new BaseNode
+            Test("export default class A {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportDefaultDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25)),
-                        declaration = new BaseNode
+                        declaration = new BaseNode(default)
                         {
                             type = NodeType.ClassDeclaration,
                             loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 25, 25)),
                             id = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22)), "A"),
                             superClass = null,
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.ClassBody,
                                 loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 25, 25)),
@@ -3277,20 +3277,20 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6, sourceType = "module"});
 
-            Test("export default (class{});", new BaseNode
+            Test("export default (class{});", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportDefaultDeclaration,
-                        declaration = new BaseNode
+                        declaration = new BaseNode(default)
                         {
                             type = NodeType.ClassExpression,
                             id = null,
                             superClass = null,
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.ClassBody,
                                 body = new List<BaseNode>()
@@ -3302,15 +3302,15 @@ namespace AcornSharp.Cli
 
             testFail("export *", "Unexpected token (1:8)", new Options {ecmaVersion = 6, sourceType = "module"});
 
-            Test("export * from \"crypto\"", new BaseNode
+            Test("export * from \"crypto\"", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportAllDeclaration,
-                        source = new BaseNode
+                        source = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = "crypto",
@@ -3327,18 +3327,18 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            Test("export { encrypt }", new BaseNode
+            Test("export { encrypt }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportNamedDeclaration,
                         declaration = null,
                         specifiers = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ExportSpecifier,
                                 exported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
@@ -3357,25 +3357,25 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            Test("export { encrypt, decrypt }", new BaseNode
+            Test("export { encrypt, decrypt }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportNamedDeclaration,
                         declaration = null,
                         specifiers = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ExportSpecifier,
                                 exported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
                             },
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ExportSpecifier,
                                 exported = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25)), "decrypt"),
@@ -3394,18 +3394,18 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            Test("export { encrypt as default }", new BaseNode
+            Test("export { encrypt as default }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportNamedDeclaration,
                         declaration = null,
                         specifiers = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ExportSpecifier,
                                 exported = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 27, 27)), "default"),
@@ -3424,25 +3424,25 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            Test("export { encrypt, decrypt as dec }", new BaseNode
+            Test("export { encrypt, decrypt as dec }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportNamedDeclaration,
                         declaration = null,
                         specifiers = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ExportSpecifier,
                                 exported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
                             },
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ExportSpecifier,
                                 exported = new IdentifierNode(new SourceLocation(new Position(1, 29, 29), new Position(1, 32, 32)), "dec"),
@@ -3461,18 +3461,18 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            Test("export { default } from \"other\"", new BaseNode
+            Test("export { default } from \"other\"", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportNamedDeclaration,
                         declaration = null,
                         specifiers = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ExportSpecifier,
                                 exported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "default"),
@@ -3480,7 +3480,7 @@ namespace AcornSharp.Cli
                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
                             }
                         },
-                        source = new BaseNode
+                        source = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 31, 31)),
@@ -3502,16 +3502,16 @@ namespace AcornSharp.Cli
             testFail("export { default as foo }", "Unexpected keyword 'default' (1:9)", new Options {ecmaVersion = 6, sourceType = "module"});
             testFail("export { if as foo }", "Unexpected keyword 'if' (1:9)", new Options {ecmaVersion = 6, sourceType = "module"});
 
-            Test("import \"jquery\"", new BaseNode
+            Test("import \"jquery\"", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ImportDeclaration,
                         specifiers = new List<BaseNode>(),
-                        source = new BaseNode
+                        source = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = "jquery",
@@ -3528,24 +3528,24 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            Test("import $ from \"jquery\"", new BaseNode
+            Test("import $ from \"jquery\"", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ImportDeclaration,
                         specifiers = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ImportDefaultSpecifier,
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "$"),
                                 loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
                             }
                         },
-                        source = new BaseNode
+                        source = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = "jquery",
@@ -3562,24 +3562,24 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            Test("import { encrypt, decrypt } from \"crypto\"", new BaseNode
+            Test("import { encrypt, decrypt } from \"crypto\"", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ImportDeclaration,
                         specifiers = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ImportSpecifier,
                                 imported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
                             },
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ImportSpecifier,
                                 imported = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25)), "decrypt"),
@@ -3587,7 +3587,7 @@ namespace AcornSharp.Cli
                                 loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25))
                             }
                         },
-                        source = new BaseNode
+                        source = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = "crypto",
@@ -3604,17 +3604,17 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            Test("import { encrypt as enc } from \"crypto\"", new BaseNode
+            Test("import { encrypt as enc } from \"crypto\"", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ImportDeclaration,
                         specifiers = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ImportSpecifier,
                                 imported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
@@ -3622,7 +3622,7 @@ namespace AcornSharp.Cli
                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 23, 23))
                             }
                         },
-                        source = new BaseNode
+                        source = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = "crypto",
@@ -3639,32 +3639,32 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            Test("import crypto, { decrypt, encrypt as enc } from \"crypto\"", new BaseNode
+            Test("import crypto, { decrypt, encrypt as enc } from \"crypto\"", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 56, 56)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ImportDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 56, 56)),
                         specifiers = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ImportDefaultSpecifier,
                                 loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 13, 13)),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 13, 13)), "crypto")
                             },
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ImportSpecifier,
                                 loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 24, 24)),
                                 imported = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 24, 24)), "decrypt"),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 24, 24)), "decrypt")
                             },
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ImportSpecifier,
                                 loc = new SourceLocation(new Position(1, 26, 26), new Position(1, 40, 40)),
@@ -3672,7 +3672,7 @@ namespace AcornSharp.Cli
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 37, 37), new Position(1, 40, 40)), "enc")
                             }
                         },
-                        source = new BaseNode
+                        source = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             loc = new SourceLocation(new Position(1, 48, 48), new Position(1, 56, 56)),
@@ -3689,17 +3689,17 @@ namespace AcornSharp.Cli
 
             testFail("import default from \"foo\"", "Unexpected token (1:7)", new Options {ecmaVersion = 6, sourceType = "module"});
 
-            Test("import { null as nil } from \"bar\"", new BaseNode
+            Test("import { null as nil } from \"bar\"", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ImportDeclaration,
                         specifiers = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ImportSpecifier,
                                 imported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "null"),
@@ -3707,7 +3707,7 @@ namespace AcornSharp.Cli
                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 20, 20))
                             }
                         },
-                        source = new BaseNode
+                        source = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = "bar",
@@ -3724,26 +3724,26 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            Test("import * as crypto from \"crypto\"", new BaseNode
+            Test("import * as crypto from \"crypto\"", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ImportDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32)),
                         specifiers = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ImportNamespaceSpecifier,
                                 loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 18, 18)),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 18, 18)), "crypto")
                             }
                         },
-                        source = new BaseNode
+                        source = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 32, 32)),
@@ -3768,28 +3768,28 @@ namespace AcornSharp.Cli
 
             // Harmony: Yield Expression
 
-            Test("(function* () { yield v })", new BaseNode
+            Test("(function* () { yield v })", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.FunctionExpression,
                             id = null,
                             @params = new List<BaseNode>(),
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 body = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.ExpressionStatement,
-                                        expression = new BaseNode
+                                        expression = new BaseNode(default)
                                         {
                                             type = NodeType.YieldExpression,
                                             argument = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23)), "v"),
@@ -3815,28 +3815,28 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            Test("(function* () { yield\nv })", new BaseNode
+            Test("(function* () { yield\nv })", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.FunctionExpression,
                             id = null,
                             @params = new List<BaseNode>(),
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 body = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.ExpressionStatement,
-                                        expression = new BaseNode
+                                        expression = new BaseNode(default)
                                         {
                                             type = NodeType.YieldExpression,
                                             argument = null,
@@ -3845,7 +3845,7 @@ namespace AcornSharp.Cli
                                         },
                                         loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 21, 21))
                                     },
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.ExpressionStatement,
                                         expression = new IdentifierNode(new SourceLocation(new Position(2, 0, 22), new Position(2, 1, 23)), "v"),
@@ -3868,28 +3868,28 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             });
 
-            Test("(function* () { yield *v })", new BaseNode
+            Test("(function* () { yield *v })", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.FunctionExpression,
                             id = null,
                             @params = new List<BaseNode>(),
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 body = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.ExpressionStatement,
-                                        expression = new BaseNode
+                                        expression = new BaseNode(default)
                                         {
                                             type = NodeType.YieldExpression,
                                             argument = new IdentifierNode(new SourceLocation(new Position(1, 23, 23), new Position(1, 24, 24)), "v"),
@@ -3914,25 +3914,25 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("function* test () { yield *v }", new BaseNode
+            Test("function* test () { yield *v }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 14, 14)), "test"),
                         @params = new List<BaseNode>(),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ExpressionStatement,
-                                    expression = new BaseNode
+                                    expression = new BaseNode(default)
                                     {
                                         type = NodeType.YieldExpression,
                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 27, 27), new Position(1, 28, 28)), "v"),
@@ -3955,43 +3955,43 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("var x = { *test () { yield *v } };", new BaseNode
+            Test("var x = { *test () { yield *v } };", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
                                 id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "x"),
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectExpression,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 15, 15)), "test"),
-                                            value = new BaseNode
+                                            value = new BaseNode(default)
                                             {
                                                 type = NodeType.FunctionExpression,
                                                 id = null,
                                                 @params = new List<BaseNode>(),
-                                                fbody = new BaseNode
+                                                fbody = new BaseNode(default)
                                                 {
                                                     type = NodeType.BlockStatement,
                                                     body = new List<BaseNode>
                                                     {
-                                                        new BaseNode
+                                                        new BaseNode(default)
                                                         {
                                                             type = NodeType.ExpressionStatement,
-                                                            expression = new BaseNode
+                                                            expression = new BaseNode(default)
                                                             {
                                                                 type = NodeType.YieldExpression,
                                                                 argument = new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29)), "v"),
@@ -4029,23 +4029,23 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("function* foo() { console.log(yield); }", new BaseNode
+            Test("function* foo() { console.log(yield); }", new BaseNode(default)
             {
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         id = new IdentifierNode(default, "foo"),
                         generator = true,
                         bexpression = false,
                         @params = new List<BaseNode>(),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
-                                    expression = new BaseNode
+                                    expression = new BaseNode(default)
                                     {
                                         callee = new MemberExpressionNode(default,
                                             new IdentifierNode(default, "console"),
@@ -4053,7 +4053,7 @@ namespace AcornSharp.Cli
                                             false),
                                         arguments = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 @delegate = false,
                                                 argument = null,
@@ -4074,17 +4074,17 @@ namespace AcornSharp.Cli
                 type = NodeType.Program
             }, new Options {ecmaVersion = 6});
 
-            Test("function* t() {}", new BaseNode
+            Test("function* t() {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "t"),
                         @params = new List<BaseNode>(),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>(),
@@ -4101,34 +4101,34 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("(function* () { yield yield 10 })", new BaseNode
+            Test("(function* () { yield yield 10 })", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.FunctionExpression,
                             id = null,
                             @params = new List<BaseNode>(),
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 body = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.ExpressionStatement,
-                                        expression = new BaseNode
+                                        expression = new BaseNode(default)
                                         {
                                             type = NodeType.YieldExpression,
-                                            argument = new BaseNode
+                                            argument = new BaseNode(default)
                                             {
                                                 type = NodeType.YieldExpression,
-                                                argument = new BaseNode
+                                                argument = new BaseNode(default)
                                                 {
                                                     type = NodeType.Literal,
                                                     value = 10,
@@ -4164,20 +4164,20 @@ namespace AcornSharp.Cli
 
             // Harmony: Iterators
 
-            Test("for(x of list) process(x);", new BaseNode
+            Test("for(x of list) process(x);", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ForOfStatement,
                         left = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "x"),
                         right = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "list"),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ExpressionStatement,
-                            expression = new BaseNode
+                            expression = new BaseNode(default)
                             {
                                 type = NodeType.CallExpression,
                                 callee = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 22, 22)), "process"),
@@ -4198,20 +4198,20 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("for (var x of list) process(x);", new BaseNode
+            Test("for (var x of list) process(x);", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ForOfStatement,
-                        left = new BaseNode
+                        left = new BaseNode(default)
                         {
                             type = NodeType.VariableDeclaration,
                             declarations = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.VariableDeclarator,
                                     id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "x"),
@@ -4223,10 +4223,10 @@ namespace AcornSharp.Cli
                             loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 10, 10))
                         },
                         right = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 18, 18)), "list"),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ExpressionStatement,
-                            expression = new BaseNode
+                            expression = new BaseNode(default)
                             {
                                 type = NodeType.CallExpression,
                                 callee = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 27, 27)), "process"),
@@ -4247,24 +4247,24 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("for (var x = 42 of list) process(x);", new BaseNode
+            Test("for (var x = 42 of list) process(x);", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ForOfStatement,
-                        left = new BaseNode
+                        left = new BaseNode(default)
                         {
                             type = NodeType.VariableDeclaration,
                             declarations = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.VariableDeclarator,
                                     id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "x"),
-                                    init = new BaseNode
+                                    init = new BaseNode(default)
                                     {
                                         type = NodeType.Literal,
                                         value = 42,
@@ -4278,10 +4278,10 @@ namespace AcornSharp.Cli
                             loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 15, 15))
                         },
                         right = new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 23, 23)), "list"),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ExpressionStatement,
-                            expression = new BaseNode
+                            expression = new BaseNode(default)
                             {
                                 type = NodeType.CallExpression,
                                 callee = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 32, 32)), "process"),
@@ -4302,20 +4302,20 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("for (let x of list) process(x);", new BaseNode
+            Test("for (let x of list) process(x);", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ForOfStatement,
-                        left = new BaseNode
+                        left = new BaseNode(default)
                         {
                             type = NodeType.VariableDeclaration,
                             declarations = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.VariableDeclarator,
                                     id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "x"),
@@ -4327,10 +4327,10 @@ namespace AcornSharp.Cli
                             loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 10, 10))
                         },
                         right = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 18, 18)), "list"),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ExpressionStatement,
-                            expression = new BaseNode
+                            expression = new BaseNode(default)
                             {
                                 type = NodeType.CallExpression,
                                 callee = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 27, 27)), "process"),
@@ -4353,25 +4353,25 @@ namespace AcornSharp.Cli
 
             // Harmony: Class (strawman)
 
-            Test("var A = class extends B {}", new BaseNode
+            Test("var A = class extends B {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
                                 id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "A"),
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.ClassExpression,
                                     superClass = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23)), "B"),
-                                    fbody = new BaseNode
+                                    fbody = new BaseNode(default)
                                     {
                                         type = NodeType.ClassBody,
                                         body = new List<BaseNode>(),
@@ -4392,21 +4392,21 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A extends class B extends C {} {}", new BaseNode
+            Test("class A extends class B extends C {} {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
-                        superClass = new BaseNode
+                        superClass = new BaseNode(default)
                         {
                             type = NodeType.ClassExpression,
                             id = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23)), "B"),
                             superClass = new IdentifierNode(new SourceLocation(new Position(1, 32, 32), new Position(1, 33, 33)), "C"),
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.ClassBody,
                                 body = new List<BaseNode>(),
@@ -4414,7 +4414,7 @@ namespace AcornSharp.Cli
                             },
                             loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 36, 36))
                         },
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>(),
@@ -4429,32 +4429,32 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A {get() {}}", new BaseNode
+            Test("class A {get() {}}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "get"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -4480,32 +4480,32 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A { static get() {}}", new BaseNode
+            Test("class A { static get() {}}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20)), "get"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -4531,32 +4531,32 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A extends B {get foo() {}}", new BaseNode
+            Test("class A extends B {get foo() {}}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17)), "B"),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 23, 23), new Position(1, 26, 26)), "foo"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -4582,32 +4582,32 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A extends B { static get foo() {}}", new BaseNode
+            Test("class A extends B { static get foo() {}}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17)), "B"),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 31, 31), new Position(1, 34, 34)), "foo"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -4633,27 +4633,27 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A {set a(v) {}}", new BaseNode
+            Test("class A {set a(v) {}}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "a"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
@@ -4661,7 +4661,7 @@ namespace AcornSharp.Cli
                                         {
                                             new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)), "v")
                                         },
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -4687,27 +4687,27 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A { static set a(v) {}}", new BaseNode
+            Test("class A { static set a(v) {}}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22)), "a"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
@@ -4715,7 +4715,7 @@ namespace AcornSharp.Cli
                                         {
                                             new IdentifierNode(new SourceLocation(new Position(1, 23, 23), new Position(1, 24, 24)), "v")
                                         },
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -4741,27 +4741,27 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A {set(v) {};}", new BaseNode
+            Test("class A {set(v) {};}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "set"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
@@ -4769,7 +4769,7 @@ namespace AcornSharp.Cli
                                         {
                                             new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "v")
                                         },
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -4795,27 +4795,27 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A { static set(v) {};}", new BaseNode
+            Test("class A { static set(v) {};}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20)), "set"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
@@ -4823,7 +4823,7 @@ namespace AcornSharp.Cli
                                         {
                                             new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22)), "v")
                                         },
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -4849,27 +4849,27 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A {*gen(v) { yield v; }}", new BaseNode
+            Test("class A {*gen(v) { yield v; }}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13)), "gen"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
@@ -4877,15 +4877,15 @@ namespace AcornSharp.Cli
                                         {
                                             new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "v")
                                         },
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>
                                             {
-                                                new BaseNode
+                                                new BaseNode(default)
                                                 {
                                                     type = NodeType.ExpressionStatement,
-                                                    expression = new BaseNode
+                                                    expression = new BaseNode(default)
                                                     {
                                                         type = NodeType.YieldExpression,
                                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 26, 26)), "v"),
@@ -4917,27 +4917,27 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A { static *gen(v) { yield v; }}", new BaseNode
+            Test("class A { static *gen(v) { yield v; }}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 21, 21)), "gen"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
@@ -4945,15 +4945,15 @@ namespace AcornSharp.Cli
                                         {
                                             new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23)), "v")
                                         },
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>
                                             {
-                                                new BaseNode
+                                                new BaseNode(default)
                                                 {
                                                     type = NodeType.ExpressionStatement,
-                                                    expression = new BaseNode
+                                                    expression = new BaseNode(default)
                                                     {
                                                         type = NodeType.YieldExpression,
                                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 33, 33), new Position(1, 34, 34)), "v"),
@@ -4985,15 +4985,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("\"use strict\"; (class A {constructor() { super() }})", new BaseNode
+            Test("\"use strict\"; (class A {constructor() { super() }})", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = "use strict",
@@ -5002,41 +5002,41 @@ namespace AcornSharp.Cli
                         },
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
                     },
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ClassExpression,
                             id = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22)), "A"),
                             superClass = null,
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.ClassBody,
                                 body = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.MethodDefinition,
                                         computed = false,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 24, 24), new Position(1, 35, 35)), "constructor"),
-                                        value = new BaseNode
+                                        value = new BaseNode(default)
                                         {
                                             type = NodeType.FunctionExpression,
                                             id = null,
                                             @params = new List<BaseNode>(),
-                                            fbody = new BaseNode
+                                            fbody = new BaseNode(default)
                                             {
                                                 type = NodeType.BlockStatement,
                                                 body = new List<BaseNode>
                                                 {
-                                                    new BaseNode
+                                                    new BaseNode(default)
                                                     {
                                                         type = NodeType.ExpressionStatement,
-                                                        expression = new BaseNode
+                                                        expression = new BaseNode(default)
                                                         {
                                                             type = NodeType.CallExpression,
-                                                            callee = new BaseNode
+                                                            callee = new BaseNode(default)
                                                             {
                                                                 type = NodeType.Super,
                                                                 loc = new SourceLocation(new Position(1, 40, 40), new Position(1, 45, 45))
@@ -5071,36 +5071,36 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A {'constructor'() {}}", new BaseNode
+            Test("class A {'constructor'() {}}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id =  new IdentifierNode(default, "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
-                                    key =  new BaseNode{type = NodeType.Literal, value = "constructor"},
+                                    key =  new BaseNode(default){type = NodeType.Literal, value = "constructor"},
                                     @static = false,
                                     kind = "constructor",
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         generator = false,
                                         bexpression = false,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>()
@@ -5119,32 +5119,32 @@ namespace AcornSharp.Cli
 
             testFail("class A { *constructor() {} }", "Constructor can't be a generator (1:11)", new Options {ecmaVersion = 6});
 
-            Test("class A {static foo() {}}", new BaseNode
+            Test("class A {static foo() {}}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 19, 19)), "foo"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -5170,32 +5170,32 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A {foo() {} static bar() {}}", new BaseNode
+            Test("class A {foo() {} static bar() {}}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -5209,17 +5209,17 @@ namespace AcornSharp.Cli
                                     @static = false,
                                     loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 17, 17))
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 28, 28)), "bar"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -5245,15 +5245,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("\"use strict\"; (class A { static constructor() { super() }})", new BaseNode
+            Test("\"use strict\"; (class A { static constructor() { super() }})", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = "use strict",
@@ -5262,41 +5262,41 @@ namespace AcornSharp.Cli
                         },
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
                     },
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ClassExpression,
                             id = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22)), "A"),
                             superClass = null,
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.ClassBody,
                                 body = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.MethodDefinition,
                                         computed = false,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 32, 32), new Position(1, 43, 43)), "constructor"),
-                                        value = new BaseNode
+                                        value = new BaseNode(default)
                                         {
                                             type = NodeType.FunctionExpression,
                                             id = null,
                                             @params = new List<BaseNode>(),
-                                            fbody = new BaseNode
+                                            fbody = new BaseNode(default)
                                             {
                                                 type = NodeType.BlockStatement,
                                                 body = new List<BaseNode>
                                                 {
-                                                    new BaseNode
+                                                    new BaseNode(default)
                                                     {
                                                         type = NodeType.ExpressionStatement,
-                                                        expression = new BaseNode
+                                                        expression = new BaseNode(default)
                                                         {
                                                             type = NodeType.CallExpression,
-                                                            callee = new BaseNode
+                                                            callee = new BaseNode(default)
                                                             {
                                                                 type = NodeType.Super,
                                                                 loc = new SourceLocation(new Position(1, 48, 48), new Position(1, 53, 53))
@@ -5331,32 +5331,32 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A { foo() {} bar() {}}", new BaseNode
+            Test("class A { foo() {} bar() {}}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13)), "foo"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -5370,17 +5370,17 @@ namespace AcornSharp.Cli
                                     @static = false,
                                     loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 18, 18))
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 22, 22)), "bar"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -5406,32 +5406,32 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A { get foo() {} set foo(v) {}}", new BaseNode
+            Test("class A { get foo() {} set foo(v) {}}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 17, 17)), "foo"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -5445,12 +5445,12 @@ namespace AcornSharp.Cli
                                     @static = false,
                                     loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 22, 22))
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 27, 27), new Position(1, 30, 30)), "foo"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
@@ -5458,7 +5458,7 @@ namespace AcornSharp.Cli
                                         {
                                             new IdentifierNode(new SourceLocation(new Position(1, 31, 31), new Position(1, 32, 32)), "v")
                                         },
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -5484,32 +5484,32 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A { static get foo() {} get foo() {}}", new BaseNode
+            Test("class A { static get foo() {} get foo() {}}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 24, 24)), "foo"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -5523,17 +5523,17 @@ namespace AcornSharp.Cli
                                     @static = true,
                                     loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 29, 29))
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 34, 34), new Position(1, 37, 37)), "foo"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -5559,32 +5559,32 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A { static get foo() {} static get bar() {} }", new BaseNode
+            Test("class A { static get foo() {} static get bar() {} }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 24, 24)), "foo"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -5598,17 +5598,17 @@ namespace AcornSharp.Cli
                                     @static = true,
                                     loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 29, 29))
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 41, 41), new Position(1, 44, 44)), "bar"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -5634,32 +5634,32 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A { static get foo() {} static set foo(v) {} get foo() {} set foo(v) {}}", new BaseNode
+            Test("class A { static get foo() {} static set foo(v) {} get foo() {} set foo(v) {}}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 24, 24)), "foo"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -5673,12 +5673,12 @@ namespace AcornSharp.Cli
                                     @static = true,
                                     loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 29, 29))
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 41, 41), new Position(1, 44, 44)), "foo"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
@@ -5686,7 +5686,7 @@ namespace AcornSharp.Cli
                                         {
                                             new IdentifierNode(new SourceLocation(new Position(1, 45, 45), new Position(1, 46, 46)), "v")
                                         },
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -5700,17 +5700,17 @@ namespace AcornSharp.Cli
                                     @static = true,
                                     loc = new SourceLocation(new Position(1, 30, 30), new Position(1, 50, 50))
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 55, 55), new Position(1, 58, 58)), "foo"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -5724,12 +5724,12 @@ namespace AcornSharp.Cli
                                     @static = false,
                                     loc = new SourceLocation(new Position(1, 51, 51), new Position(1, 63, 63))
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 68, 68), new Position(1, 71, 71)), "foo"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
@@ -5737,7 +5737,7 @@ namespace AcornSharp.Cli
                                         {
                                             new IdentifierNode(new SourceLocation(new Position(1, 72, 72), new Position(1, 73, 73)), "v")
                                         },
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -5764,25 +5764,25 @@ namespace AcornSharp.Cli
             });
 
 
-            Test("class A { static [foo]() {} }", new BaseNode
+            Test("class A { static [foo]() {} }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 29, 29)),
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 27, 27)),
@@ -5790,14 +5790,14 @@ namespace AcornSharp.Cli
                                     computed = true,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 21, 21)), "foo"),
                                     kind = "method",
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 27, 27)),
                                         id = null,
                                         @params = new List<BaseNode>(),
                                         generator = false,
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 27, 27)),
@@ -5815,25 +5815,25 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A { static get [foo]() {} }", new BaseNode
+            Test("class A { static get [foo]() {} }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 33, 33)),
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 31, 31)),
@@ -5841,14 +5841,14 @@ namespace AcornSharp.Cli
                                     computed = true,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 25, 25)), "foo"),
                                     kind = "get",
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         loc = new SourceLocation(new Position(1, 26, 26), new Position(1, 31, 31)),
                                         id = null,
                                         @params = new List<BaseNode>(),
                                         generator = false,
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             loc = new SourceLocation(new Position(1, 29, 29), new Position(1, 31, 31)),
@@ -5866,27 +5866,27 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A { set foo(v) {} get foo() {} }", new BaseNode
+            Test("class A { set foo(v) {} get foo() {} }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 17, 17)), "foo"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
@@ -5894,7 +5894,7 @@ namespace AcornSharp.Cli
                                         {
                                             new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19)), "v")
                                         },
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -5908,17 +5908,17 @@ namespace AcornSharp.Cli
                                     @static = false,
                                     loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 23, 23))
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 31, 31)), "foo"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -5944,25 +5944,25 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A { foo() {} get foo() {} }", new BaseNode
+            Test("class A { foo() {} get foo() {} }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 33, 33)),
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 18, 18)),
@@ -5970,14 +5970,14 @@ namespace AcornSharp.Cli
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13)), "foo"),
                                     kind = "method",
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 18, 18)),
                                         id = null,
                                         @params = new List<BaseNode>(),
                                         generator = false,
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 18, 18)),
@@ -5986,7 +5986,7 @@ namespace AcornSharp.Cli
                                         bexpression = false
                                     }
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 31, 31)),
@@ -5994,14 +5994,14 @@ namespace AcornSharp.Cli
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 23, 23), new Position(1, 26, 26)), "foo"),
                                     kind = "get",
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         loc = new SourceLocation(new Position(1, 26, 26), new Position(1, 31, 31)),
                                         id = null,
                                         @params = new List<BaseNode>(),
                                         generator = false,
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             loc = new SourceLocation(new Position(1, 29, 29), new Position(1, 31, 31)),
@@ -6019,19 +6019,19 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class Semicolon { ; }", new BaseNode
+            Test("class Semicolon { ; }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 15, 15)), "Semicolon"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 21, 21)),
@@ -6046,24 +6046,24 @@ namespace AcornSharp.Cli
 
             // ES6: Computed Properties
 
-            Test("({[x]: 10})", new BaseNode
+            Test("({[x]: 10})", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ObjectExpression,
                             properties = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.Property,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "x"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.Literal,
                                         value = 10,
@@ -6088,34 +6088,34 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("({[\"x\" + \"y\"]: 10})", new BaseNode
+            Test("({[\"x\" + \"y\"]: 10})", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ObjectExpression,
                             properties = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.Property,
-                                    key = new BaseNode
+                                    key = new BaseNode(default)
                                     {
                                         type = NodeType.BinaryExpression,
                                         @operator = "+",
-                                        left = new BaseNode
+                                        left = new BaseNode(default)
                                         {
                                             type = NodeType.Literal,
                                             value = "x",
                                             raw = "\"x\"",
                                             loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 6, 6))
                                         },
-                                        right = new BaseNode
+                                        right = new BaseNode(default)
                                         {
                                             type = NodeType.Literal,
                                             value = "y",
@@ -6124,7 +6124,7 @@ namespace AcornSharp.Cli
                                         },
                                         loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 12, 12))
                                     },
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.Literal,
                                         value = 10,
@@ -6149,29 +6149,29 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("({[x]: function() {}})", new BaseNode
+            Test("({[x]: function() {}})", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ObjectExpression,
                             properties = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.Property,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "x"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -6199,24 +6199,24 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("({[x]: 10, y: 20})", new BaseNode
+            Test("({[x]: 10, y: 20})", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ObjectExpression,
                             properties = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.Property,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "x"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.Literal,
                                         value = 10,
@@ -6229,11 +6229,11 @@ namespace AcornSharp.Cli
                                     computed = true,
                                     loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 9, 9))
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.Property,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "y"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.Literal,
                                         value = 20,
@@ -6258,29 +6258,29 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("({get [x]() {}, set [x](v) {}})", new BaseNode
+            Test("({get [x]() {}, set [x](v) {}})", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ObjectExpression,
                             properties = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.Property,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "x"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -6296,11 +6296,11 @@ namespace AcornSharp.Cli
                                     computed = true,
                                     loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 14, 14))
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.Property,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22)), "x"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
@@ -6308,7 +6308,7 @@ namespace AcornSharp.Cli
                                         {
                                             new IdentifierNode(new SourceLocation(new Position(1, 24, 24), new Position(1, 25, 25)), "v")
                                         },
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -6336,29 +6336,29 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("({[x]() {}})", new BaseNode
+            Test("({[x]() {}})", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ObjectExpression,
                             properties = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.Property,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "x"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -6386,25 +6386,25 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("var {[x]: y} = {y}", new BaseNode
+            Test("var {[x]: y} = {y}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectPattern,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "x"),
@@ -6418,12 +6418,12 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12))
                                 },
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectExpression,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17)), "y"),
@@ -6450,23 +6450,23 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("function f({[x]: y}) {}", new BaseNode
+            Test("function f({[x]: y}) {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "f"),
                         @params = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ObjectPattern,
                                 properties = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.Property,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "x"),
@@ -6481,7 +6481,7 @@ namespace AcornSharp.Cli
                                 loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
                             }
                         },
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>(),
@@ -6498,43 +6498,43 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("var x = {*[test]() { yield *v; }}", new BaseNode
+            Test("var x = {*[test]() { yield *v; }}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
                                 id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "x"),
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectExpression,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 15, 15)), "test"),
-                                            value = new BaseNode
+                                            value = new BaseNode(default)
                                             {
                                                 type = NodeType.FunctionExpression,
                                                 id = null,
                                                 @params = new List<BaseNode>(),
-                                                fbody = new BaseNode
+                                                fbody = new BaseNode(default)
                                                 {
                                                     type = NodeType.BlockStatement,
                                                     body = new List<BaseNode>
                                                     {
-                                                        new BaseNode
+                                                        new BaseNode(default)
                                                         {
                                                             type = NodeType.ExpressionStatement,
-                                                            expression = new BaseNode
+                                                            expression = new BaseNode(default)
                                                             {
                                                                 type = NodeType.YieldExpression,
                                                                 argument = new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29)), "v"),
@@ -6572,25 +6572,25 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("class A {[x]() {}}", new BaseNode
+            Test("class A {[x]() {}}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 18, 18)),
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 17, 17)),
@@ -6598,14 +6598,14 @@ namespace AcornSharp.Cli
                                     computed = true,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "x"),
                                     kind = "method",
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 17, 17)),
                                         id = null,
                                         @params = new List<BaseNode>(),
                                         generator = false,
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17)),
@@ -6627,21 +6627,21 @@ namespace AcornSharp.Cli
 
             // ES6: Default parameters
 
-            Test("function f([x] = [1]) {}", new BaseNode
+            Test("function f([x] = [1]) {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "f"),
                         @params = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.AssignmentPattern,
-                                left = new BaseNode
+                                left = new BaseNode(default)
                                 {
                                     type = NodeType.ArrayPattern,
                                     elements = new List<BaseNode>
@@ -6650,12 +6650,12 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 14, 14))
                                 },
-                                right = new BaseNode
+                                right = new BaseNode(default)
                                 {
                                     type = NodeType.ArrayExpression,
                                     elements = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Literal,
                                             value = 1,
@@ -6668,7 +6668,7 @@ namespace AcornSharp.Cli
                                 loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 20, 20))
                             }
                         },
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>(),
@@ -6685,21 +6685,21 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("function f([x] = [1]) { 'use strict' }", new BaseNode
+            Test("function f([x] = [1]) { 'use strict' }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "f"),
                         @params = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.AssignmentPattern,
-                                left = new BaseNode
+                                left = new BaseNode(default)
                                 {
                                     type = NodeType.ArrayPattern,
                                     elements = new List<BaseNode>
@@ -6708,12 +6708,12 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 14, 14))
                                 },
-                                right = new BaseNode
+                                right = new BaseNode(default)
                                 {
                                     type = NodeType.ArrayExpression,
                                     elements = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Literal,
                                             value = 1,
@@ -6726,16 +6726,16 @@ namespace AcornSharp.Cli
                                 loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 20, 20))
                             }
                         },
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 36, 36)),
-                                    expression = new BaseNode
+                                    expression = new BaseNode(default)
                                     {
                                         type = NodeType.Literal,
                                         loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 36, 36)),
@@ -6757,26 +6757,26 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("function f({x} = {x: 10}) {}", new BaseNode
+            Test("function f({x} = {x: 10}) {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "f"),
                         @params = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.AssignmentPattern,
-                                left = new BaseNode
+                                left = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectPattern,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "x"),
@@ -6790,16 +6790,16 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 14, 14))
                                 },
-                                right = new BaseNode
+                                right = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectExpression,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19)), "x"),
-                                            value = new BaseNode
+                                            value = new BaseNode(default)
                                             {
                                                 type = NodeType.Literal,
                                                 value = 10,
@@ -6818,7 +6818,7 @@ namespace AcornSharp.Cli
                                 loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 24, 24))
                             }
                         },
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>(),
@@ -6835,34 +6835,34 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("f = function({x} = {x: 10}) {}", new BaseNode
+            Test("f = function({x} = {x: 10}) {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "f"),
-                            right = new BaseNode
+                            right = new BaseNode(default)
                             {
                                 type = NodeType.FunctionExpression,
                                 id = null,
                                 @params = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.AssignmentPattern,
-                                        left = new BaseNode
+                                        left = new BaseNode(default)
                                         {
                                             type = NodeType.ObjectPattern,
                                             properties = new List<BaseNode>
                                             {
-                                                new BaseNode
+                                                new BaseNode(default)
                                                 {
                                                     type = NodeType.Property,
                                                     key = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "x"),
@@ -6876,16 +6876,16 @@ namespace AcornSharp.Cli
                                             },
                                             loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 16, 16))
                                         },
-                                        right = new BaseNode
+                                        right = new BaseNode(default)
                                         {
                                             type = NodeType.ObjectExpression,
                                             properties = new List<BaseNode>
                                             {
-                                                new BaseNode
+                                                new BaseNode(default)
                                                 {
                                                     type = NodeType.Property,
                                                     key = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 21, 21)), "x"),
-                                                    value = new BaseNode
+                                                    value = new BaseNode(default)
                                                     {
                                                         type = NodeType.Literal,
                                                         value = 10,
@@ -6904,7 +6904,7 @@ namespace AcornSharp.Cli
                                         loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 26, 26))
                                     }
                                 },
-                                fbody = new BaseNode
+                                fbody = new BaseNode(default)
                                 {
                                     type = NodeType.BlockStatement,
                                     body = new List<BaseNode>(),
@@ -6925,38 +6925,38 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("({f: function({x} = {x: 10}) {}})", new BaseNode
+            Test("({f: function({x} = {x: 10}) {}})", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ObjectExpression,
                             properties = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.Property,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), "f"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.AssignmentPattern,
-                                                left = new BaseNode
+                                                left = new BaseNode(default)
                                                 {
                                                     type = NodeType.ObjectPattern,
                                                     properties = new List<BaseNode>
                                                     {
-                                                        new BaseNode
+                                                        new BaseNode(default)
                                                         {
                                                             type = NodeType.Property,
                                                             key = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)), "x"),
@@ -6970,16 +6970,16 @@ namespace AcornSharp.Cli
                                                     },
                                                     loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 17, 17))
                                                 },
-                                                right = new BaseNode
+                                                right = new BaseNode(default)
                                                 {
                                                     type = NodeType.ObjectExpression,
                                                     properties = new List<BaseNode>
                                                     {
-                                                        new BaseNode
+                                                        new BaseNode(default)
                                                         {
                                                             type = NodeType.Property,
                                                             key = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22)), "x"),
-                                                            value = new BaseNode
+                                                            value = new BaseNode(default)
                                                             {
                                                                 type = NodeType.Literal,
                                                                 value = 10,
@@ -6998,7 +6998,7 @@ namespace AcornSharp.Cli
                                                 loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 27, 27))
                                             }
                                         },
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -7026,38 +7026,38 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("({f({x} = {x: 10}) {}})", new BaseNode
+            Test("({f({x} = {x: 10}) {}})", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ObjectExpression,
                             properties = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.Property,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), "f"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.AssignmentPattern,
-                                                left = new BaseNode
+                                                left = new BaseNode(default)
                                                 {
                                                     type = NodeType.ObjectPattern,
                                                     properties = new List<BaseNode>
                                                     {
-                                                        new BaseNode
+                                                        new BaseNode(default)
                                                         {
                                                             type = NodeType.Property,
                                                             key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "x"),
@@ -7071,16 +7071,16 @@ namespace AcornSharp.Cli
                                                     },
                                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
                                                 },
-                                                right = new BaseNode
+                                                right = new BaseNode(default)
                                                 {
                                                     type = NodeType.ObjectExpression,
                                                     properties = new List<BaseNode>
                                                     {
-                                                        new BaseNode
+                                                        new BaseNode(default)
                                                         {
                                                             type = NodeType.Property,
                                                             key = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "x"),
-                                                            value = new BaseNode
+                                                            value = new BaseNode(default)
                                                             {
                                                                 type = NodeType.Literal,
                                                                 value = 10,
@@ -7099,7 +7099,7 @@ namespace AcornSharp.Cli
                                                 loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 17, 17))
                                             }
                                         },
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -7127,43 +7127,43 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("(class {f({x} = {x: 10}) {}})", new BaseNode
+            Test("(class {f({x} = {x: 10}) {}})", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ClassExpression,
                             superClass = null,
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.ClassBody,
                                 body = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.MethodDefinition,
                                         computed = false,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "f"),
-                                        value = new BaseNode
+                                        value = new BaseNode(default)
                                         {
                                             type = NodeType.FunctionExpression,
                                             id = null,
                                             @params = new List<BaseNode>
                                             {
-                                                new BaseNode
+                                                new BaseNode(default)
                                                 {
                                                     type = NodeType.AssignmentPattern,
-                                                    left = new BaseNode
+                                                    left = new BaseNode(default)
                                                     {
                                                         type = NodeType.ObjectPattern,
                                                         properties = new List<BaseNode>
                                                         {
-                                                            new BaseNode
+                                                            new BaseNode(default)
                                                             {
                                                                 type = NodeType.Property,
                                                                 key = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "x"),
@@ -7177,16 +7177,16 @@ namespace AcornSharp.Cli
                                                         },
                                                         loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13))
                                                     },
-                                                    right = new BaseNode
+                                                    right = new BaseNode(default)
                                                     {
                                                         type = NodeType.ObjectExpression,
                                                         properties = new List<BaseNode>
                                                         {
-                                                            new BaseNode
+                                                            new BaseNode(default)
                                                             {
                                                                 type = NodeType.Property,
                                                                 key = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18)), "x"),
-                                                                value = new BaseNode
+                                                                value = new BaseNode(default)
                                                                 {
                                                                     type = NodeType.Literal,
                                                                     value = 10,
@@ -7205,7 +7205,7 @@ namespace AcornSharp.Cli
                                                     loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 23, 23))
                                                 }
                                             },
-                                            fbody = new BaseNode
+                                            fbody = new BaseNode(default)
                                             {
                                                 type = NodeType.BlockStatement,
                                                 body = new List<BaseNode>(),
@@ -7233,29 +7233,29 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("(({x} = {x: 10}) => {})", new BaseNode
+            Test("(({x} = {x: 10}) => {})", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
                             @params = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.AssignmentPattern,
-                                    left = new BaseNode
+                                    left = new BaseNode(default)
                                     {
                                         type = NodeType.ObjectPattern,
                                         properties = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.Property,
                                                 key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "x"),
@@ -7269,16 +7269,16 @@ namespace AcornSharp.Cli
                                         },
                                         loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 5, 5))
                                     },
-                                    right = new BaseNode
+                                    right = new BaseNode(default)
                                     {
                                         type = NodeType.ObjectExpression,
                                         properties = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.Property,
                                                 key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "x"),
-                                                value = new BaseNode
+                                                value = new BaseNode(default)
                                                 {
                                                     type = NodeType.Literal,
                                                     value = 10,
@@ -7297,7 +7297,7 @@ namespace AcornSharp.Cli
                                     loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 15, 15))
                                 }
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 body = new List<BaseNode>(),
@@ -7316,30 +7316,30 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("x = function(y = 1) {}", new BaseNode
+            Test("x = function(y = 1) {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            right = new BaseNode
+                            right = new BaseNode(default)
                             {
                                 type = NodeType.FunctionExpression,
                                 id = null,
                                 @params = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.AssignmentPattern,
                                         left = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "y"),
-                                        right = new BaseNode
+                                        right = new BaseNode(default)
                                         {
                                             type = NodeType.Literal,
                                             value = 1,
@@ -7349,7 +7349,7 @@ namespace AcornSharp.Cli
                                         loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 18, 18))
                                     }
                                 },
-                                fbody = new BaseNode
+                                fbody = new BaseNode(default)
                                 {
                                     type = NodeType.BlockStatement,
                                     body = new List<BaseNode>(),
@@ -7370,22 +7370,22 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("function f(a = 1) {}", new BaseNode
+            Test("function f(a = 1) {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "f"),
                         @params = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.AssignmentPattern,
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "a"),
-                                right = new BaseNode
+                                right = new BaseNode(default)
                                 {
                                     type = NodeType.Literal,
                                     value = 1,
@@ -7395,7 +7395,7 @@ namespace AcornSharp.Cli
                                 loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 16, 16))
                             }
                         },
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>(),
@@ -7412,39 +7412,39 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("x = { f: function(a=1) {} }", new BaseNode
+            Test("x = { f: function(a=1) {} }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            right = new BaseNode
+                            right = new BaseNode(default)
                             {
                                 type = NodeType.ObjectExpression,
                                 properties = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.Property,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "f"),
-                                        value = new BaseNode
+                                        value = new BaseNode(default)
                                         {
                                             type = NodeType.FunctionExpression,
                                             id = null,
                                             @params = new List<BaseNode>
                                             {
-                                                new BaseNode
+                                                new BaseNode(default)
                                                 {
                                                     type = NodeType.AssignmentPattern,
                                                     left = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19)), "a"),
-                                                    right = new BaseNode
+                                                    right = new BaseNode(default)
                                                     {
                                                         type = NodeType.Literal,
                                                         value = 1,
@@ -7454,7 +7454,7 @@ namespace AcornSharp.Cli
                                                     loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 21, 21))
                                                 }
                                             },
-                                            fbody = new BaseNode
+                                            fbody = new BaseNode(default)
                                             {
                                                 type = NodeType.BlockStatement,
                                                 body = new List<BaseNode>(),
@@ -7484,39 +7484,39 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("x = { f(a=1) {} }", new BaseNode
+            Test("x = { f(a=1) {} }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            right = new BaseNode
+                            right = new BaseNode(default)
                             {
                                 type = NodeType.ObjectExpression,
                                 properties = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.Property,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "f"),
-                                        value = new BaseNode
+                                        value = new BaseNode(default)
                                         {
                                             type = NodeType.FunctionExpression,
                                             id = null,
                                             @params = new List<BaseNode>
                                             {
-                                                new BaseNode
+                                                new BaseNode(default)
                                                 {
                                                     type = NodeType.AssignmentPattern,
                                                     left = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "a"),
-                                                    right = new BaseNode
+                                                    right = new BaseNode(default)
                                                     {
                                                         type = NodeType.Literal,
                                                         value = 1,
@@ -7526,7 +7526,7 @@ namespace AcornSharp.Cli
                                                     loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 11, 11))
                                                 }
                                             },
-                                            fbody = new BaseNode
+                                            fbody = new BaseNode(default)
                                             {
                                                 type = NodeType.BlockStatement,
                                                 body = new List<BaseNode>(),
@@ -7558,25 +7558,25 @@ namespace AcornSharp.Cli
 
             // ES6: Rest parameters
 
-            Test("function f(a, ...b) {}", new BaseNode
+            Test("function f(a, ...b) {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "f"),
                         @params = new List<BaseNode>
                         {
                             new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "a"),
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.RestElement,
                                 argument = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18)), "b")
                             }
                         },
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>(),
@@ -7595,18 +7595,18 @@ namespace AcornSharp.Cli
 
             // ES6: Destructured Parameters
 
-            Test("function x([ a, b ]){}", new BaseNode
+            Test("function x([ a, b ]){}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "x"),
                         @params = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ArrayPattern,
                                 elements = new List<BaseNode>
@@ -7617,7 +7617,7 @@ namespace AcornSharp.Cli
                                 loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
                             }
                         },
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>(),
@@ -7634,23 +7634,23 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("function x({ a, b }){}", new BaseNode
+            Test("function x({ a, b }){}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "x"),
                         @params = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ObjectPattern,
                                 properties = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.Property,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "a"),
@@ -7661,7 +7661,7 @@ namespace AcornSharp.Cli
                                         computed = false,
                                         loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14))
                                     },
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.Property,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17)), "b"),
@@ -7676,7 +7676,7 @@ namespace AcornSharp.Cli
                                 loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
                             }
                         },
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>(),
@@ -7697,21 +7697,21 @@ namespace AcornSharp.Cli
 
             testFail("function x({ a: { w, x }, b: [y, z] }, ...[a, b, c]){}", "Unexpected token (1:42)", new Options {ecmaVersion = 6});
 
-            Test("(function x([ a, b ]){})", new BaseNode
+            Test("(function x([ a, b ]){})", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.FunctionExpression,
                             id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "x"),
                             @params = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ArrayPattern,
                                     elements = new List<BaseNode>
@@ -7722,7 +7722,7 @@ namespace AcornSharp.Cli
                                     loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 20, 20))
                                 }
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 body = new List<BaseNode>(),
@@ -7741,26 +7741,26 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("(function x({ a, b }){})", new BaseNode
+            Test("(function x({ a, b }){})", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.FunctionExpression,
                             id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "x"),
                             @params = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ObjectPattern,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a"),
@@ -7771,7 +7771,7 @@ namespace AcornSharp.Cli
                                             computed = false,
                                             loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15))
                                         },
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18)), "b"),
@@ -7786,7 +7786,7 @@ namespace AcornSharp.Cli
                                     loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 20, 20))
                                 }
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 body = new List<BaseNode>(),
@@ -7811,30 +7811,30 @@ namespace AcornSharp.Cli
 
             testFail("(function x({ a: { w, x }, b: [y, z] }, ...[a, b, c]){})", "Unexpected token (1:43)", new Options {ecmaVersion = 6});
 
-            Test("({ x([ a, b ]){} })", new BaseNode
+            Test("({ x([ a, b ]){} })", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ObjectExpression,
                             properties = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.Property,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "x"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.ArrayPattern,
                                                 elements = new List<BaseNode>
@@ -7845,7 +7845,7 @@ namespace AcornSharp.Cli
                                                 loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 13, 13))
                                             }
                                         },
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -7873,33 +7873,33 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("({ x(...[ a, b ]){} })", new BaseNode
+            Test("({ x(...[ a, b ]){} })", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ObjectExpression,
                             properties = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.Property,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "x"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.RestElement,
-                                                argument = new BaseNode
+                                                argument = new BaseNode(default)
                                                 {
                                                     type = NodeType.ArrayPattern,
                                                     elements = new List<BaseNode>
@@ -7911,7 +7911,7 @@ namespace AcornSharp.Cli
                                                 }
                                             }
                                         },
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -7939,44 +7939,44 @@ namespace AcornSharp.Cli
                 ecmaVersion = 7
             });
 
-            Test("({ x({ a: { w, x }, b: [y, z] }, ...[a, b, c]){} })", new BaseNode
+            Test("({ x({ a: { w, x }, b: [y, z] }, ...[a, b, c]){} })", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ObjectExpression,
                             properties = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.Property,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "x"),
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         id = null,
                                         @params = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.ObjectPattern,
                                                 properties = new List<BaseNode>
                                                 {
-                                                    new BaseNode
+                                                    new BaseNode(default)
                                                     {
                                                         type = NodeType.Property,
                                                         key = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a"),
-                                                        value = new BaseNode
+                                                        value = new BaseNode(default)
                                                         {
                                                             type = NodeType.ObjectPattern,
                                                             properties = new List<BaseNode>
                                                             {
-                                                                new BaseNode
+                                                                new BaseNode(default)
                                                                 {
                                                                     type = NodeType.Property,
                                                                     key = new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "w"),
@@ -7987,7 +7987,7 @@ namespace AcornSharp.Cli
                                                                     computed = false,
                                                                     loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13))
                                                                 },
-                                                                new BaseNode
+                                                                new BaseNode(default)
                                                                 {
                                                                     type = NodeType.Property,
                                                                     key = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)), "x"),
@@ -8007,11 +8007,11 @@ namespace AcornSharp.Cli
                                                         computed = false,
                                                         loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 18, 18))
                                                     },
-                                                    new BaseNode
+                                                    new BaseNode(default)
                                                     {
                                                         type = NodeType.Property,
                                                         key = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 21, 21)), "b"),
-                                                        value = new BaseNode
+                                                        value = new BaseNode(default)
                                                         {
                                                             type = NodeType.ArrayPattern,
                                                             elements = new List<BaseNode>
@@ -8030,10 +8030,10 @@ namespace AcornSharp.Cli
                                                 },
                                                 loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 31, 31))
                                             },
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.RestElement,
-                                                argument = new BaseNode
+                                                argument = new BaseNode(default)
                                                 {
                                                     type = NodeType.ArrayPattern,
                                                     elements = new List<BaseNode>
@@ -8046,7 +8046,7 @@ namespace AcornSharp.Cli
                                                 }
                                             }
                                         },
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             body = new List<BaseNode>(),
@@ -8074,27 +8074,27 @@ namespace AcornSharp.Cli
                 ecmaVersion = 7
             });
 
-            Test("(...a) => {}", new BaseNode
+            Test("(...a) => {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
                             @params = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.RestElement,
                                     argument = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "a")
                                 }
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 body = new List<BaseNode>(),
@@ -8113,28 +8113,28 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("(a, ...b) => {}", new BaseNode
+            Test("(a, ...b) => {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
                             @params = new List<BaseNode>
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a"),
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.RestElement,
                                     argument = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "b")
                                 }
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 body = new List<BaseNode>(),
@@ -8153,26 +8153,26 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("({ a }) => {}", new BaseNode
+            Test("({ a }) => {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
                             @params = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ObjectPattern,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "a"),
@@ -8187,7 +8187,7 @@ namespace AcornSharp.Cli
                                     loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 6, 6))
                                 }
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 body = new List<BaseNode>(),
@@ -8206,26 +8206,26 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("({ a }, ...b) => {}", new BaseNode
+            Test("({ a }, ...b) => {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
                             @params = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ObjectPattern,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "a"),
@@ -8239,13 +8239,13 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 6, 6))
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.RestElement,
                                     argument = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "b")
                                 }
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 body = new List<BaseNode>(),
@@ -8268,30 +8268,30 @@ namespace AcornSharp.Cli
 
             testFail("(a, ...[b]) => {}", "Unexpected token (1:7)", new Options {ecmaVersion = 6});
 
-            Test("({ a: [a, b] }, ...c) => {}", new BaseNode
+            Test("({ a: [a, b] }, ...c) => {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
                             @params = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ObjectPattern,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "a"),
-                                            value = new BaseNode
+                                            value = new BaseNode(default)
                                             {
                                                 type = NodeType.ArrayPattern,
                                                 elements = new List<BaseNode>
@@ -8310,13 +8310,13 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 14, 14))
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.RestElement,
                                     argument = new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 20, 20)), "c")
                                 }
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 body = new List<BaseNode>(),
@@ -8335,26 +8335,26 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("({ a: b, c }, [d, e], ...f) => {}", new BaseNode
+            Test("({ a: b, c }, [d, e], ...f) => {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
                             @params = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ObjectPattern,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "a"),
@@ -8365,7 +8365,7 @@ namespace AcornSharp.Cli
                                             computed = false,
                                             loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 7, 7))
                                         },
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "c"),
@@ -8379,7 +8379,7 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 12, 12))
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ArrayPattern,
                                     elements = new List<BaseNode>
@@ -8389,13 +8389,13 @@ namespace AcornSharp.Cli
                                     },
                                     loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 20, 20))
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.RestElement,
                                     argument = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 26, 26)), "f")
                                 }
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 body = new List<BaseNode>(),
@@ -8416,24 +8416,24 @@ namespace AcornSharp.Cli
 
             // ES6: SpreadElement
 
-            Test("[...a] = b", new BaseNode
+            Test("[...a] = b", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
-                            left = new BaseNode
+                            left = new BaseNode(default)
                             {
                                 type = NodeType.ArrayPattern,
                                 elements = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.RestElement,
                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "a"),
@@ -8454,25 +8454,25 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("[a, ...b] = c", new BaseNode
+            Test("[a, ...b] = c", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
-                            left = new BaseNode
+                            left = new BaseNode(default)
                             {
                                 type = NodeType.ArrayPattern,
                                 elements = new List<BaseNode>
                                 {
                                     new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a"),
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.RestElement,
                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "b"),
@@ -8493,29 +8493,29 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("[{ a, b }, ...c] = d", new BaseNode
+            Test("[{ a, b }, ...c] = d", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
-                            left = new BaseNode
+                            left = new BaseNode(default)
                             {
                                 type = NodeType.ArrayPattern,
                                 elements = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.ObjectPattern,
                                         properties = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.Property,
                                                 key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)), "a"),
@@ -8526,7 +8526,7 @@ namespace AcornSharp.Cli
                                                 computed = false,
                                                 loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
                                             },
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.Property,
                                                 key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "b"),
@@ -8540,7 +8540,7 @@ namespace AcornSharp.Cli
                                         },
                                         loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 9, 9))
                                     },
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.RestElement,
                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "c"),
@@ -8561,28 +8561,28 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("[a, ...[b, c]] = d", new BaseNode
+            Test("[a, ...[b, c]] = d", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.AssignmentExpression,
                             @operator = "=",
-                            left = new BaseNode
+                            left = new BaseNode(default)
                             {
                                 type = NodeType.ArrayPattern,
                                 elements = new List<BaseNode>
                                 {
                                     new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a"),
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.RestElement,
-                                        argument = new BaseNode
+                                        argument = new BaseNode(default)
                                         {
                                             type = NodeType.ArrayPattern,
                                             elements = new List<BaseNode>
@@ -8609,25 +8609,25 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("var [...a] = b", new BaseNode
+            Test("var [...a] = b", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ArrayPattern,
                                     elements = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.RestElement,
                                             argument = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "a"),
@@ -8650,26 +8650,26 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("var [a, ...b] = c", new BaseNode
+            Test("var [a, ...b] = c", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ArrayPattern,
                                     elements = new List<BaseNode>
                                     {
                                         new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a"),
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.RestElement,
                                             argument = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "b"),
@@ -8692,30 +8692,30 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("var [{ a, b }, ...c] = d", new BaseNode
+            Test("var [{ a, b }, ...c] = d", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ArrayPattern,
                                     elements = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.ObjectPattern,
                                             properties = new List<BaseNode>
                                             {
-                                                new BaseNode
+                                                new BaseNode(default)
                                                 {
                                                     type = NodeType.Property,
                                                     key = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a"),
@@ -8726,7 +8726,7 @@ namespace AcornSharp.Cli
                                                     computed = false,
                                                     loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
                                                 },
-                                                new BaseNode
+                                                new BaseNode(default)
                                                 {
                                                     type = NodeType.Property,
                                                     key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "b"),
@@ -8740,7 +8740,7 @@ namespace AcornSharp.Cli
                                             },
                                             loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 13, 13))
                                         },
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.RestElement,
                                             argument = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19)), "c"),
@@ -8763,29 +8763,29 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("var [a, ...[b, c]] = d", new BaseNode
+            Test("var [a, ...[b, c]] = d", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ArrayPattern,
                                     elements = new List<BaseNode>
                                     {
                                         new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a"),
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.RestElement,
-                                            argument = new BaseNode
+                                            argument = new BaseNode(default)
                                             {
                                                 type = NodeType.ArrayPattern,
                                                 elements = new List<BaseNode>
@@ -8814,21 +8814,21 @@ namespace AcornSharp.Cli
                 ecmaVersion = 7
             });
 
-            Test("func(...a)", new BaseNode
+            Test("func(...a)", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.CallExpression,
                             callee = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4)), "func"),
                             arguments = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.SpreadElement,
                                     argument = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "a"),
@@ -8846,22 +8846,22 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("func(a, ...b)", new BaseNode
+            Test("func(a, ...b)", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.CallExpression,
                             callee = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4)), "func"),
                             arguments = new List<BaseNode>
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a"),
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.SpreadElement,
                                     argument = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "b"),
@@ -8879,24 +8879,24 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("func(...a, b)", new BaseNode
+            Test("func(...a, b)", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.CallExpression,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                             callee = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4)), "func"),
                             arguments = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.SpreadElement,
                                     loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 9, 9)),
@@ -8912,15 +8912,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("/[a-z]/u", new BaseNode
+            Test("/[a-z]/u", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             regex = new RegexNode
@@ -8937,15 +8937,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("/[\\uD834\\uDF06-\\uD834\\uDF08a-z]/u", new BaseNode
+            Test("/[\\uD834\\uDF06-\\uD834\\uDF08a-z]/u", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             regex = new RegexNode
@@ -8962,23 +8962,23 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("do {} while (false) foo();", new BaseNode
+            Test("do {} while (false) foo();", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.DoWhileStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 5, 5)),
                             body = new List<BaseNode>()
                         },
-                        test = new BaseNode
+                        test = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 18, 18)),
@@ -8986,11 +8986,11 @@ namespace AcornSharp.Cli
                             raw = "false"
                         }
                     },
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 26, 26)),
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.CallExpression,
                             loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 25, 25)),
@@ -9135,20 +9135,20 @@ namespace AcornSharp.Cli
             testFail("({this} = x)", "Unexpected keyword 'this' (1:2)", new Options {ecmaVersion = 6});
             testFail("var x = {this}", "Unexpected keyword 'this' (1:9)", new Options {ecmaVersion = 6});
 
-            Test("yield* 10", new BaseNode
+            Test("yield* 10", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.BinaryExpression,
                             @operator = "*",
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)), "yield"),
-                            right = new BaseNode
+                            right = new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 value = 10,
@@ -9166,15 +9166,15 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("e => yield* 10", new BaseNode
+            Test("e => yield* 10", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             id = null,
@@ -9182,12 +9182,12 @@ namespace AcornSharp.Cli
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "e")
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BinaryExpression,
                                 @operator = "*",
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 10, 10)), "yield"),
-                                right = new BaseNode
+                                right = new BaseNode(default)
                                 {
                                     type = NodeType.Literal,
                                     value = 10,
@@ -9211,33 +9211,33 @@ namespace AcornSharp.Cli
 
             testFail("(function () { yield 10 })", "Unexpected token (1:21)", new Options {ecmaVersion = 6});
 
-            Test("(function () { yield* 10 })", new BaseNode
+            Test("(function () { yield* 10 })", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.FunctionExpression,
                             id = null,
                             @params = new List<BaseNode>(),
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 body = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.ExpressionStatement,
-                                        expression = new BaseNode
+                                        expression = new BaseNode(default)
                                         {
                                             type = NodeType.BinaryExpression,
                                             @operator = "*",
                                             left = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 20, 20)), "yield"),
-                                            right = new BaseNode
+                                            right = new BaseNode(default)
                                             {
                                                 type = NodeType.Literal,
                                                 value = 10,
@@ -9264,20 +9264,20 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("let + 1", new BaseNode
+            Test("let + 1", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.BinaryExpression,
                             left = new IdentifierNode(default, "let"),
                             @operator = "+",
-                            right = new BaseNode
+                            right = new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 value = 1,
@@ -9288,21 +9288,21 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("var let = 1", new BaseNode
+            Test("var let = 1", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
                                 id = new IdentifierNode(default, "let"),
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.Literal,
                                     value = 1,
@@ -9317,21 +9317,21 @@ namespace AcornSharp.Cli
 
             testFail("'use strict'; let + 1", "The keyword 'let' is reserved (1:14)", new Options {ecmaVersion = 6});
 
-            Test("var yield = 2", new BaseNode
+            Test("var yield = 2", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
                                 id = new IdentifierNode(default, "yield"),
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.Literal,
                                     value = 2,
@@ -9386,7 +9386,7 @@ namespace AcornSharp.Cli
 
             testFail("(...[ 5 ]) => {}", "Unexpected token (1:6)", new Options {ecmaVersion = 7});
 
-            Test("[...{ a }] = b", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("[...{ a }] = b", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
             testFail("[...a, b] = c", "Comma is not permitted after the rest element (1:5)", new Options {ecmaVersion = 6});
 
@@ -9413,28 +9413,28 @@ namespace AcornSharp.Cli
             /* Regression tests */
 
             // # https://github.com/ternjs/acorn/issues/127
-            Test("doSmth(`${x} + ${y} = ${x + y}`)", new BaseNode
+            Test("doSmth(`${x} + ${y} = ${x + y}`)", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.CallExpression,
                             callee = new IdentifierNode(default, "doSmth"),
                             arguments = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.TemplateLiteral,
                                     expressions = new List<BaseNode>
                                     {
                                         new IdentifierNode(default, "x"),
                                         new IdentifierNode(default, "y"),
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.BinaryExpression,
                                             left = new IdentifierNode(default, "x"),
@@ -9444,25 +9444,25 @@ namespace AcornSharp.Cli
                                     },
                                     quasis = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.TemplateElement,
                                             value = new TemplateNode("", ""),
                                             tail = false
                                         },
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.TemplateElement,
                                             value = new TemplateNode(" + ", " + "),
                                             tail = false
                                         },
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.TemplateElement,
                                             value = new TemplateNode(" = ", " = "),
                                             tail = false
                                         },
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.TemplateElement,
                                             value = new TemplateNode("", ""),
@@ -9477,23 +9477,23 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 6});
 
             // # https://github.com/ternjs/acorn/issues/129
-            Test("function normal(x, y = 10) {}", new BaseNode
+            Test("function normal(x, y = 10) {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         id = new IdentifierNode(default, "normal"),
                         @params = new List<BaseNode>
                         {
                             new IdentifierNode(default, "x"),
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.AssignmentPattern,
                                 left = new IdentifierNode(default, "y"),
-                                right = new BaseNode
+                                right = new BaseNode(default)
                                 {
                                     type = NodeType.Literal,
                                     value = 10,
@@ -9502,7 +9502,7 @@ namespace AcornSharp.Cli
                             }
                         },
                         generator = false,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>()
@@ -9513,15 +9513,15 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 6});
 
             // test preserveParens option with arrow functions
-            Test("() => 42", new BaseNode
+            Test("() => 42", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression
                         }
@@ -9530,28 +9530,28 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 6, preserveParens = true});
 
             // https://github.com/ternjs/acorn/issues/161
-            Test("import foo, * as bar from 'baz';", new BaseNode
+            Test("import foo, * as bar from 'baz';", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ImportDeclaration,
                         specifiers = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ImportDefaultSpecifier,
                                 local = new IdentifierNode(default, "foo")
                             },
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.ImportNamespaceSpecifier,
                                 local = new IdentifierNode(default, "bar")
                             }
                         },
-                        source = new BaseNode
+                        source = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = "baz",
@@ -9562,20 +9562,20 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 6, sourceType = "module"});
 
             // https://github.com/ternjs/acorn/issues/173
-            Test("`{${x}}`, `}`", new BaseNode
+            Test("`{${x}}`, `}`", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.SequenceExpression,
                             expressions = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.TemplateLiteral,
                                     expressions = new List<BaseNode>
@@ -9584,13 +9584,13 @@ namespace AcornSharp.Cli
                                     },
                                     quasis = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.TemplateElement,
                                             value = new TemplateNode("{", "{"),
                                             tail = false
                                         },
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.TemplateElement,
                                             value = new TemplateNode("}", "}"),
@@ -9598,13 +9598,13 @@ namespace AcornSharp.Cli
                                         }
                                     }
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.TemplateLiteral,
                                     expressions = new List<BaseNode>(),
                                     quasis = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.TemplateElement,
                                             value = new TemplateNode("}", "}"),
@@ -9619,25 +9619,25 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 6});
 
             // https://github.com/ternjs/acorn/issues/186
-            Test("var {get} = obj;", new BaseNode
+            Test("var {get} = obj;", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectPattern,
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             method = false,
@@ -9659,29 +9659,29 @@ namespace AcornSharp.Cli
 
             // Destructuring defaults (https://github.com/ternjs/acorn/issues/181)
 
-            Test("var {propName: localVar = defaultValue} = obj", new BaseNode
+            Test("var {propName: localVar = defaultValue} = obj", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 45, 45)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 45, 45)),
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
                                 loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 45, 45)),
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectPattern,
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 39, 39)),
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 38, 38)),
@@ -9689,7 +9689,7 @@ namespace AcornSharp.Cli
                                             shorthand = false,
                                             computed = false,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 13, 13)), "propName"),
-                                            value = new BaseNode
+                                            value = new BaseNode(default)
                                             {
                                                 type = NodeType.AssignmentPattern,
                                                 loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 38, 38)),
@@ -9711,29 +9711,29 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("var {propName = defaultValue} = obj", new BaseNode
+            Test("var {propName = defaultValue} = obj", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
                                 loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 35, 35)),
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectPattern,
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 29, 29)),
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 28, 28)),
@@ -9742,7 +9742,7 @@ namespace AcornSharp.Cli
                                             computed = false,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 13, 13)), "propName"),
                                             kind = "init",
-                                            value = new BaseNode
+                                            value = new BaseNode(default)
                                             {
                                                 type = NodeType.AssignmentPattern,
                                                 loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 28, 28)),
@@ -9763,29 +9763,29 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("var {get = defaultValue} = obj", new BaseNode
+            Test("var {get = defaultValue} = obj", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30)),
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
                                 loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 30, 30)),
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectPattern,
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 24, 24)),
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 23, 23)),
@@ -9794,7 +9794,7 @@ namespace AcornSharp.Cli
                                             computed = false,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 8, 8)), "get"),
                                             kind = "init",
-                                            value = new BaseNode
+                                            value = new BaseNode(default)
                                             {
                                                 type = NodeType.AssignmentPattern,
                                                 loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 23, 23)),
@@ -9815,29 +9815,29 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("var [localVar = defaultValue] = obj", new BaseNode
+            Test("var [localVar = defaultValue] = obj", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
                                 loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 35, 35)),
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     type = NodeType.ArrayPattern,
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 29, 29)),
                                     elements = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.AssignmentPattern,
                                             loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 28, 28)),
@@ -9857,28 +9857,28 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("({x = 0} = obj)", new BaseNode
+            Test("({x = 0} = obj)", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.AssignmentExpression,
                             loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 14, 14)),
                             @operator = "=",
-                            left = new BaseNode
+                            left = new BaseNode(default)
                             {
                                 type = NodeType.ObjectPattern,
                                 loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 8, 8)),
                                 properties = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.Property,
                                         loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)),
@@ -9887,12 +9887,12 @@ namespace AcornSharp.Cli
                                         computed = false,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), "x"),
                                         kind = "init",
-                                        value = new BaseNode
+                                        value = new BaseNode(default)
                                         {
                                             type = NodeType.AssignmentPattern,
                                             loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)),
                                             left = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), "x"),
-                                            right = new BaseNode
+                                            right = new BaseNode(default)
                                             {
                                                 type = NodeType.Literal,
                                                 loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)),
@@ -9911,17 +9911,17 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("({x = 0}) => x", new BaseNode
+            Test("({x = 0}) => x", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
@@ -9930,13 +9930,13 @@ namespace AcornSharp.Cli
                             bexpression = true,
                             @params = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ObjectPattern,
                                     loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 8, 8)),
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)),
@@ -9945,12 +9945,12 @@ namespace AcornSharp.Cli
                                             computed = false,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), "x"),
                                             kind = "init",
-                                            value = new BaseNode
+                                            value = new BaseNode(default)
                                             {
                                                 type = NodeType.AssignmentPattern,
                                                 loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)),
                                                 left = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), "x"),
-                                                right = new BaseNode
+                                                right = new BaseNode(default)
                                                 {
                                                     type = NodeType.Literal,
                                                     loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)),
@@ -9970,35 +9970,35 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("[a, {b: {c = 1}}] = arr", new BaseNode
+            Test("[a, {b: {c = 1}}] = arr", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.AssignmentExpression,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
                             @operator = "=",
-                            left = new BaseNode
+                            left = new BaseNode(default)
                             {
                                 type = NodeType.ArrayPattern,
                                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
                                 elements = new List<BaseNode>
                                 {
                                     new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a"),
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.ObjectPattern,
                                         loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 16, 16)),
                                         properties = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.Property,
                                                 loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 15, 15)),
@@ -10006,13 +10006,13 @@ namespace AcornSharp.Cli
                                                 shorthand = false,
                                                 computed = false,
                                                 key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "b"),
-                                                value = new BaseNode
+                                                value = new BaseNode(default)
                                                 {
                                                     type = NodeType.ObjectPattern,
                                                     loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 15, 15)),
                                                     properties = new List<BaseNode>
                                                     {
-                                                        new BaseNode
+                                                        new BaseNode(default)
                                                         {
                                                             type = NodeType.Property,
                                                             loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 14, 14)),
@@ -10021,12 +10021,12 @@ namespace AcornSharp.Cli
                                                             computed = false,
                                                             key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "c"),
                                                             kind = "init",
-                                                            value = new BaseNode
+                                                            value = new BaseNode(default)
                                                             {
                                                                 type = NodeType.AssignmentPattern,
                                                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 14, 14)),
                                                                 left = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "c"),
-                                                                right = new BaseNode
+                                                                right = new BaseNode(default)
                                                                 {
                                                                     type = NodeType.Literal,
                                                                     loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)),
@@ -10051,23 +10051,23 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("for ({x = 0} in arr);", new BaseNode
+            Test("for ({x = 0} in arr);", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ForInStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
-                        left = new BaseNode
+                        left = new BaseNode(default)
                         {
                             type = NodeType.ObjectPattern,
                             loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 12, 12)),
                             properties = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.Property,
                                     loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 11, 11)),
@@ -10076,12 +10076,12 @@ namespace AcornSharp.Cli
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "x"),
                                     kind = "init",
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.AssignmentPattern,
                                         loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 11, 11)),
                                         left = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "x"),
-                                        right = new BaseNode
+                                        right = new BaseNode(default)
                                         {
                                             type = NodeType.Literal,
                                             loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)),
@@ -10092,7 +10092,7 @@ namespace AcornSharp.Cli
                             }
                         },
                         right = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 19, 19)), "arr"),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.EmptyStatement,
                             loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 21, 21))
@@ -10110,33 +10110,33 @@ namespace AcornSharp.Cli
 
             // https://github.com/ternjs/acorn/issues/191
 
-            Test("try {} catch ({message}) {}", new BaseNode
+            Test("try {} catch ({message}) {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.TryStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)),
-                        block = new BaseNode
+                        block = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 6, 6)),
                             body = new List<BaseNode>()
                         },
-                        handler = new BaseNode
+                        handler = new BaseNode(default)
                         {
                             type = NodeType.CatchClause,
                             loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 27, 27)),
-                            param = new BaseNode
+                            param = new BaseNode(default)
                             {
                                 type = NodeType.ObjectPattern,
                                 loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 23, 23)),
                                 properties = new List<BaseNode>
                                 {
-                                    new BaseNode
+                                    new BaseNode(default)
                                     {
                                         type = NodeType.Property,
                                         loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 22, 22)),
@@ -10149,7 +10149,7 @@ namespace AcornSharp.Cli
                                     }
                                 }
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.BlockStatement,
                                 loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 27, 27)),
@@ -10166,25 +10166,25 @@ namespace AcornSharp.Cli
 
             // https://github.com/ternjs/acorn/issues/192
 
-            Test("class A { static() {} }", new BaseNode
+            Test("class A { static() {} }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 23, 23)),
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 21, 21)),
@@ -10192,14 +10192,14 @@ namespace AcornSharp.Cli
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 16, 16)), "static"),
                                     @static = false,
                                     kind = "method",
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 21, 21)),
                                         id = null,
                                         @params = new List<BaseNode>(),
                                         generator = false,
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 21, 21)),
@@ -10219,20 +10219,20 @@ namespace AcornSharp.Cli
 
             // https://github.com/ternjs/acorn/issues/213
 
-            Test("for (const x of list) process(x);", new BaseNode
+            Test("for (const x of list) process(x);", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ForOfStatement,
-                        left = new BaseNode
+                        left = new BaseNode(default)
                         {
                             type = NodeType.VariableDeclaration,
                             declarations = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.VariableDeclarator,
                                     id = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "x"),
@@ -10244,10 +10244,10 @@ namespace AcornSharp.Cli
                             loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 12, 12))
                         },
                         right = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 20, 20)), "list"),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ExpressionStatement,
-                            expression = new BaseNode
+                            expression = new BaseNode(default)
                             {
                                 type = NodeType.CallExpression,
                                 callee = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 29, 29)), "process"),
@@ -10265,25 +10265,25 @@ namespace AcornSharp.Cli
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
             }, new Options {ecmaVersion = 6});
 
-            Test("class A { *static() {} }", new BaseNode
+            Test("class A { *static() {} }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 24, 24)),
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 22, 22)),
@@ -10291,14 +10291,14 @@ namespace AcornSharp.Cli
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 17, 17)), "static"),
                                     @static = false,
                                     kind = "method",
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 22, 22)),
                                         id = null,
                                         @params = new List<BaseNode>(),
                                         generator = true,
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 22, 22)),
@@ -10316,29 +10316,29 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("`${/\\d/.exec('1')[0]}`", new BaseNode
+            Test("`${/\\d/.exec('1')[0]}`", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.TemplateLiteral,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
                             expressions = new List<BaseNode>
                             {
                                 new MemberExpressionNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 20, 20)),
-                                new BaseNode
+                                new BaseNode(default)
                                     {
                                         type = NodeType.CallExpression,
                                         loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 17, 17)),
                                         callee = new MemberExpressionNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 12, 12)),
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.Literal,
                                                 loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 7, 7)),
@@ -10353,7 +10353,7 @@ namespace AcornSharp.Cli
                                             false),
                                         arguments = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.Literal,
                                                 loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 16, 16)),
@@ -10362,7 +10362,7 @@ namespace AcornSharp.Cli
                                             }
                                         }
                                     },
-                                new BaseNode
+                                new BaseNode(default)
                                     {
                                         type = NodeType.Literal,
                                         loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19)),
@@ -10373,14 +10373,14 @@ namespace AcornSharp.Cli
                             },
                             quasis = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.TemplateElement,
                                     loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 1, 1)),
                                     value = new TemplateNode("", ""),
                                     tail = false
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.TemplateElement,
                                     loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 21, 21)),
@@ -10396,24 +10396,24 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("var _𐒦 = 10;", new BaseNode
+            Test("var _𐒦 = 10;", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
                                 loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12)),
                                 id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)), "_𐒦"),
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.Literal,
                                     loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12)),
@@ -10427,24 +10427,24 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("var 𫠝_ = 10;", new BaseNode
+            Test("var 𫠝_ = 10;", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
                                 loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12)),
                                 id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)), "𫠝_"),
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.Literal,
                                     loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12)),
@@ -10458,24 +10458,24 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("var _\\u{104A6} = 10;", new BaseNode
+            Test("var _\\u{104A6} = 10;", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
                                 loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 19, 19)),
                                 id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 14, 14)), "_𐒦"),
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.Literal,
                                     loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 19, 19)),
@@ -10489,20 +10489,20 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("let [x,] = [1]", new BaseNode
+            Test("let [x,] = [1]", new BaseNode(default)
             {
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 14, 14)),
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 8, 8)),
                                     elements = new List<BaseNode>
@@ -10511,12 +10511,12 @@ namespace AcornSharp.Cli
                                     },
                                     type = NodeType.ArrayPattern
                                 },
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 14, 14)),
                                     elements = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)),
                                             value = 1,
@@ -10536,25 +10536,25 @@ namespace AcornSharp.Cli
                 type = NodeType.Program
             }, new Options {ecmaVersion = 6});
 
-            Test("let {x} = y", new BaseNode
+            Test("let {x} = y", new BaseNode(default)
             {
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)),
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 11, 11)),
-                                id = new BaseNode
+                                id = new BaseNode(default)
                                 {
                                     loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)),
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)),
                                             method = false,
@@ -10579,21 +10579,21 @@ namespace AcornSharp.Cli
                 type = NodeType.Program
             }, new Options {ecmaVersion = 6});
 
-            Test("[x,,] = 1", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("[x,,] = 1", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("for (var [name, value] in obj) {}", new BaseNode
+            Test("for (var [name, value] in obj) {}", new BaseNode(default)
             {
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
-                        left = new BaseNode
+                        left = new BaseNode(default)
                         {
                             declarations = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
-                                    id = new BaseNode
+                                    id = new BaseNode(default)
                                     {
                                         elements = new List<BaseNode>
                                         {
@@ -10610,7 +10610,7 @@ namespace AcornSharp.Cli
                             type = NodeType.VariableDeclaration
                         },
                         right = new IdentifierNode(default, "obj"),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             body = new List<BaseNode>(),
                             type = NodeType.BlockStatement
@@ -10639,24 +10639,24 @@ namespace AcornSharp.Cli
 
             testFail("function* y({yield}) {}", "Can not use 'yield' as identifier inside a generator (1:13)", new Options {ecmaVersion = 6});
 
-            Test("function foo() { new.target; }", new BaseNode
+            Test("function foo() { new.target; }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         id = new IdentifierNode(default, "foo"),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ExpressionStatement,
-                                    expression = new BaseNode
+                                    expression = new BaseNode(default)
                                     {
                                         type = NodeType.MetaProperty,
                                         meta = new IdentifierNode(default, "new"),
@@ -10675,19 +10675,19 @@ namespace AcornSharp.Cli
             testFail("new.prop", "The only valid meta property for new is new.target (1:4)", new Options {ecmaVersion = 6});
             testFail("new.target", "new.target can only be used in functions (1:0)", new Options {ecmaVersion = 6});
 
-            Test("export default function foo() {} false", new BaseNode
+            Test("export default function foo() {} false", new BaseNode(default)
             {
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
-                        declaration = new BaseNode
+                        declaration = new BaseNode(default)
                         {
                             id = new IdentifierNode(default, "foo"),
                             generator = false,
                             bexpression = false,
                             @params = new List<BaseNode>(),
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 body = new List<BaseNode>(),
                                 type = NodeType.BlockStatement
@@ -10696,9 +10696,9 @@ namespace AcornSharp.Cli
                         },
                         type = NodeType.ExportDefaultDeclaration
                     },
-                    new BaseNode
+                    new BaseNode(default)
                     {
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             value = false,
                             raw = "false",
@@ -10741,31 +10741,31 @@ namespace AcornSharp.Cli
 
             testFail("({ __proto__: 1, __proto__: 2 })", "Redefinition of __proto__ property (1:17)", new Options {ecmaVersion = 6});
             testFail("({ '__proto__': 1, __proto__: 2 })", "Redefinition of __proto__ property (1:19)", new Options {ecmaVersion = 6});
-            Test("({ ['__proto__']: 1, __proto__: 2 })", new BaseNode { }, new Options {ecmaVersion = 6});
-            Test("({ __proto__() { return 1 }, __proto__: 2 })", new BaseNode { }, new Options {ecmaVersion = 6});
-            Test("({ get __proto__() { return 1 }, __proto__: 2 })", new BaseNode { }, new Options {ecmaVersion = 6});
-            Test("({ __proto__, __proto__: 2 })", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("({ ['__proto__']: 1, __proto__: 2 })", new BaseNode(default) { }, new Options {ecmaVersion = 6});
+            Test("({ __proto__() { return 1 }, __proto__: 2 })", new BaseNode(default) { }, new Options {ecmaVersion = 6});
+            Test("({ get __proto__() { return 1 }, __proto__: 2 })", new BaseNode(default) { }, new Options {ecmaVersion = 6});
+            Test("({ __proto__, __proto__: 2 })", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("export default /foo/", new BaseNode { }, new Options {ecmaVersion = 6, sourceType = "module"});
+            Test("export default /foo/", new BaseNode(default) { }, new Options {ecmaVersion = 6, sourceType = "module"});
 
-            Test("var await = 0", new BaseNode
+            Test("var await = 0", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.VariableDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                         declarations = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.VariableDeclarator,
                                 loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 13, 13)),
                                 id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 9, 9)), "await"),
-                                init = new BaseNode
+                                init = new BaseNode(default)
                                 {
                                     type = NodeType.Literal,
                                     loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)),
@@ -10794,15 +10794,15 @@ namespace AcornSharp.Cli
 
             // https://github.com/ternjs/acorn/issues/363
 
-            Test("/[a-z]/gimuy", new BaseNode
+            Test("/[a-z]/gimuy", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             regex = new RegexNode
@@ -10822,26 +10822,26 @@ namespace AcornSharp.Cli
             testFail("export let [{x = 2}] = a; export {x}", "Duplicate export 'x' (1:34)", new Options {ecmaVersion = 6, sourceType = "module"});
             testFail("export default 100; export default 3", "Duplicate export 'default' (1:27)", new Options {ecmaVersion = 6, sourceType = "module"});
 
-            Test("(([,]) => 0)", new BaseNode
+            Test("(([,]) => 0)", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ArrowFunctionExpression,
                             @params = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ArrayPattern,
                                     elements = new List<BaseNode> {null}
                                 }
                             },
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 value = 0,
@@ -10854,13 +10854,13 @@ namespace AcornSharp.Cli
 
             // 'eval' and 'arguments' are not reserved word, but those can not be a BindingIdentifier.
 
-            Test("function foo() { return {arguments} }", new BaseNode
+            Test("function foo() { return {arguments} }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37)),
@@ -10868,23 +10868,23 @@ namespace AcornSharp.Cli
                         generator = false,
                         bexpression = false,
                         @params = new List<BaseNode>(),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 37, 37)),
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ReturnStatement,
                                     loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 35, 35)),
-                                    argument = new BaseNode
+                                    argument = new BaseNode(default)
                                     {
                                         type = NodeType.ObjectExpression,
                                         loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 35, 35)),
                                         properties = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.Property,
                                                 loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 34, 34)),
@@ -10905,13 +10905,13 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 6});
 
-            Test("function foo() { return {eval} }", new BaseNode
+            Test("function foo() { return {eval} }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32)),
@@ -10919,23 +10919,23 @@ namespace AcornSharp.Cli
                         generator = false,
                         bexpression = false,
                         @params = new List<BaseNode>(),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 32, 32)),
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ReturnStatement,
                                     loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 30, 30)),
-                                    argument = new BaseNode
+                                    argument = new BaseNode(default)
                                     {
                                         type = NodeType.ObjectExpression,
                                         loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 30, 30)),
                                         properties = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.Property,
                                                 loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 29, 29)),
@@ -10956,13 +10956,13 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 6});
 
-            Test("function foo() { 'use strict'; return {arguments} }", new BaseNode
+            Test("function foo() { 'use strict'; return {arguments} }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 51, 51)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 51, 51)),
@@ -10970,17 +10970,17 @@ namespace AcornSharp.Cli
                         generator = false,
                         bexpression = false,
                         @params = new List<BaseNode>(),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 51, 51)),
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 30, 30)),
-                                    expression = new BaseNode
+                                    expression = new BaseNode(default)
                                     {
                                         type = NodeType.Literal,
                                         loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 29, 29)),
@@ -10988,17 +10988,17 @@ namespace AcornSharp.Cli
                                         raw = "'use strict'"
                                     }
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ReturnStatement,
                                     loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 49, 49)),
-                                    argument = new BaseNode
+                                    argument = new BaseNode(default)
                                     {
                                         type = NodeType.ObjectExpression,
                                         loc = new SourceLocation(new Position(1, 38, 38), new Position(1, 49, 49)),
                                         properties = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.Property,
                                                 loc = new SourceLocation(new Position(1, 39, 39), new Position(1, 48, 48)),
@@ -11019,13 +11019,13 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 6});
 
-            Test("function foo() { 'use strict'; return {eval} }", new BaseNode
+            Test("function foo() { 'use strict'; return {eval} }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 46, 46)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 46, 46)),
@@ -11033,17 +11033,17 @@ namespace AcornSharp.Cli
                         generator = false,
                         bexpression = false,
                         @params = new List<BaseNode>(),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 46, 46)),
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 30, 30)),
-                                    expression = new BaseNode
+                                    expression = new BaseNode(default)
                                     {
                                         type = NodeType.Literal,
                                         loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 29, 29)),
@@ -11051,17 +11051,17 @@ namespace AcornSharp.Cli
                                         raw = "'use strict'"
                                     }
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ReturnStatement,
                                     loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 44, 44)),
-                                    argument = new BaseNode
+                                    argument = new BaseNode(default)
                                     {
                                         type = NodeType.ObjectExpression,
                                         loc = new SourceLocation(new Position(1, 38, 38), new Position(1, 44, 44)),
                                         properties = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.Property,
                                                 loc = new SourceLocation(new Position(1, 39, 39), new Position(1, 43, 43)),
@@ -11082,13 +11082,13 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 6});
 
-            Test("function foo() { return {yield} }", new BaseNode
+            Test("function foo() { return {yield} }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
@@ -11096,23 +11096,23 @@ namespace AcornSharp.Cli
                         generator = false,
                         bexpression = false,
                         @params = new List<BaseNode>(),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 33, 33)),
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ReturnStatement,
                                     loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 31, 31)),
-                                    argument = new BaseNode
+                                    argument = new BaseNode(default)
                                     {
                                         type = NodeType.ObjectExpression,
                                         loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 31, 31)),
                                         properties = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.Property,
                                                 loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 30, 30)),
@@ -11145,13 +11145,13 @@ namespace AcornSharp.Cli
             testFail("function* wrap() { return (a = 1 + (yield)) => a }", "Yield expression cannot be a default value (1:36)", new Options {ecmaVersion = 6});
 
             // can use yield expressions in parameters if it's inside of a nested generator.
-            Test("function* foo(a = function*(b) { yield b }) { }", new BaseNode
+            Test("function* foo(a = function*(b) { yield b }) { }", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 47, 47)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 47, 47)),
@@ -11160,12 +11160,12 @@ namespace AcornSharp.Cli
                         bexpression = false,
                         @params = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.AssignmentPattern,
                                 loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 42, 42)),
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a"),
-                                right = new BaseNode
+                                right = new BaseNode(default)
                                 {
                                     type = NodeType.FunctionExpression,
                                     loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 42, 42)),
@@ -11176,17 +11176,17 @@ namespace AcornSharp.Cli
                                     {
                                         new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29)), "b")
                                     },
-                                    fbody = new BaseNode
+                                    fbody = new BaseNode(default)
                                     {
                                         type = NodeType.BlockStatement,
                                         loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 42, 42)),
                                         body = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.ExpressionStatement,
                                                 loc = new SourceLocation(new Position(1, 33, 33), new Position(1, 40, 40)),
-                                                expression = new BaseNode
+                                                expression = new BaseNode(default)
                                                 {
                                                     type = NodeType.YieldExpression,
                                                     loc = new SourceLocation(new Position(1, 33, 33), new Position(1, 40, 40)),
@@ -11199,7 +11199,7 @@ namespace AcornSharp.Cli
                                 }
                             }
                         },
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 44, 44), new Position(1, 47, 47)),
@@ -11212,13 +11212,13 @@ namespace AcornSharp.Cli
 
             // 'yield' as function names.
 
-            Test("function* yield() {}", new BaseNode
+            Test("function* yield() {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
@@ -11226,7 +11226,7 @@ namespace AcornSharp.Cli
                         generator = true,
                         bexpression = false,
                         @params = new List<BaseNode>(),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 20, 20)),
@@ -11237,23 +11237,23 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 6});
 
-            Test("({*yield() {}})", new BaseNode
+            Test("({*yield() {}})", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.ObjectExpression,
                             loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 14, 14)),
                             properties = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.Property,
                                     loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 13, 13)),
@@ -11262,7 +11262,7 @@ namespace AcornSharp.Cli
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 8, 8)), "yield"),
                                     kind = "init",
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 13, 13)),
@@ -11270,7 +11270,7 @@ namespace AcornSharp.Cli
                                         generator = true,
                                         bexpression = false,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 13, 13)),
@@ -11285,25 +11285,25 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 6});
 
-            Test("class A {*yield() {}}", new BaseNode
+            Test("class A {*yield() {}}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ClassDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.ClassBody,
                             loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 21, 21)),
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.MethodDefinition,
                                     loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 20, 20)),
@@ -11311,7 +11311,7 @@ namespace AcornSharp.Cli
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 15, 15)), "yield"),
                                     @static = false,
                                     kind = "method",
-                                    value = new BaseNode
+                                    value = new BaseNode(default)
                                     {
                                         type = NodeType.FunctionExpression,
                                         loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 20, 20)),
@@ -11319,7 +11319,7 @@ namespace AcornSharp.Cli
                                         generator = true,
                                         bexpression = false,
                                         @params = new List<BaseNode>(),
-                                        fbody = new BaseNode
+                                        fbody = new BaseNode(default)
                                         {
                                             type = NodeType.BlockStatement,
                                             loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 20, 20)),
@@ -11336,8 +11336,8 @@ namespace AcornSharp.Cli
 
             testFail("(function* yield() {})", "Can not use 'yield' as identifier inside a generator (1:11)", new Options {ecmaVersion = 6});
             testFail("function* wrap() {\nfunction* yield() {}\n}", "Can not use 'yield' as identifier inside a generator (2:10)", new Options {ecmaVersion = 6});
-            Test("function* wrap() {\n({*yield() {}})\n}", new BaseNode { }, new Options {ecmaVersion = 6});
-            Test("function* wrap() {\nclass A {*yield() {}}\n}", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("function* wrap() {\n({*yield() {}})\n}", new BaseNode(default) { }, new Options {ecmaVersion = 6});
+            Test("function* wrap() {\nclass A {*yield() {}}\n}", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
             // Forbid yield expressions in default parameters:
             testFail("function* foo(a = yield b) {}", "Yield expression cannot be a default value (1:18)", new Options {ecmaVersion = 6});
@@ -11347,13 +11347,13 @@ namespace AcornSharp.Cli
             testFail("function* foo(a = class extends (yield b) {}) {}", "Yield expression cannot be a default value (1:33)", new Options {ecmaVersion = 6});
 
             // Allow yield expressions inside functions in default parameters:
-            Test("function* foo(a = function* foo() { yield b }) {}", new BaseNode
+            Test("function* foo(a = function* foo() { yield b }) {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 49, 49)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 49, 49)),
@@ -11362,12 +11362,12 @@ namespace AcornSharp.Cli
                         bexpression = false,
                         @params = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.AssignmentPattern,
                                 loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 45, 45)),
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a"),
-                                right = new BaseNode
+                                right = new BaseNode(default)
                                 {
                                     type = NodeType.FunctionExpression,
                                     loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 45, 45)),
@@ -11375,17 +11375,17 @@ namespace AcornSharp.Cli
                                     generator = true,
                                     bexpression = false,
                                     @params = new List<BaseNode>(),
-                                    fbody = new BaseNode
+                                    fbody = new BaseNode(default)
                                     {
                                         type = NodeType.BlockStatement,
                                         loc = new SourceLocation(new Position(1, 34, 34), new Position(1, 45, 45)),
                                         body = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.ExpressionStatement,
                                                 loc = new SourceLocation(new Position(1, 36, 36), new Position(1, 43, 43)),
-                                                expression = new BaseNode
+                                                expression = new BaseNode(default)
                                                 {
                                                     type = NodeType.YieldExpression,
                                                     loc = new SourceLocation(new Position(1, 36, 36), new Position(1, 43, 43)),
@@ -11398,7 +11398,7 @@ namespace AcornSharp.Cli
                                 }
                             }
                         },
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 47, 47), new Position(1, 49, 49)),
@@ -11409,13 +11409,13 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 6});
 
-            Test("function* foo(a = {*bar() { yield b }}) {}", new BaseNode
+            Test("function* foo(a = {*bar() { yield b }}) {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 42, 42)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 42, 42)),
@@ -11424,18 +11424,18 @@ namespace AcornSharp.Cli
                         bexpression = false,
                         @params = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.AssignmentPattern,
                                 loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 38, 38)),
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a"),
-                                right = new BaseNode
+                                right = new BaseNode(default)
                                 {
                                     type = NodeType.ObjectExpression,
                                     loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 38, 38)),
                                     properties = new List<BaseNode>
                                     {
-                                        new BaseNode
+                                        new BaseNode(default)
                                         {
                                             type = NodeType.Property,
                                             loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 37, 37)),
@@ -11444,7 +11444,7 @@ namespace AcornSharp.Cli
                                             computed = false,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 23, 23)), "bar"),
                                             kind = "init",
-                                            value = new BaseNode
+                                            value = new BaseNode(default)
                                             {
                                                 type = NodeType.FunctionExpression,
                                                 loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 37, 37)),
@@ -11452,17 +11452,17 @@ namespace AcornSharp.Cli
                                                 generator = true,
                                                 bexpression = false,
                                                 @params = new List<BaseNode>(),
-                                                fbody = new BaseNode
+                                                fbody = new BaseNode(default)
                                                 {
                                                     type = NodeType.BlockStatement,
                                                     loc = new SourceLocation(new Position(1, 26, 26), new Position(1, 37, 37)),
                                                     body = new List<BaseNode>
                                                     {
-                                                        new BaseNode
+                                                        new BaseNode(default)
                                                         {
                                                             type = NodeType.ExpressionStatement,
                                                             loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 35, 35)),
-                                                            expression = new BaseNode
+                                                            expression = new BaseNode(default)
                                                             {
                                                                 type = NodeType.YieldExpression,
                                                                 loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 35, 35)),
@@ -11478,7 +11478,7 @@ namespace AcornSharp.Cli
                                 }
                             }
                         },
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 40, 40), new Position(1, 42, 42)),
@@ -11489,13 +11489,13 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 6});
 
-            Test("function* foo(a = class {*bar() { yield b }}) {}", new BaseNode
+            Test("function* foo(a = class {*bar() { yield b }}) {}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 48, 48)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 48, 48)),
@@ -11504,24 +11504,24 @@ namespace AcornSharp.Cli
                         bexpression = false,
                         @params = new List<BaseNode>
                         {
-                            new BaseNode
+                            new BaseNode(default)
                             {
                                 type = NodeType.AssignmentPattern,
                                 loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 44, 44)),
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a"),
-                                right = new BaseNode
+                                right = new BaseNode(default)
                                 {
                                     type = NodeType.ClassExpression,
                                     loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 44, 44)),
                                     id = null,
                                     superClass = null,
-                                    fbody = new BaseNode
+                                    fbody = new BaseNode(default)
                                     {
                                         type = NodeType.ClassBody,
                                         loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 44, 44)),
                                         body = new List<BaseNode>
                                         {
-                                            new BaseNode
+                                            new BaseNode(default)
                                             {
                                                 type = NodeType.MethodDefinition,
                                                 loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 43, 43)),
@@ -11529,7 +11529,7 @@ namespace AcornSharp.Cli
                                                 key = new IdentifierNode(new SourceLocation(new Position(1, 26, 26), new Position(1, 29, 29)), "bar"),
                                                 @static = false,
                                                 kind = "method",
-                                                value = new BaseNode
+                                                value = new BaseNode(default)
                                                 {
                                                     type = NodeType.FunctionExpression,
                                                     loc = new SourceLocation(new Position(1, 29, 29), new Position(1, 43, 43)),
@@ -11537,17 +11537,17 @@ namespace AcornSharp.Cli
                                                     generator = true,
                                                     bexpression = false,
                                                     @params = new List<BaseNode>(),
-                                                    fbody = new BaseNode
+                                                    fbody = new BaseNode(default)
                                                     {
                                                         type = NodeType.BlockStatement,
                                                         loc = new SourceLocation(new Position(1, 32, 32), new Position(1, 43, 43)),
                                                         body = new List<BaseNode>
                                                         {
-                                                            new BaseNode
+                                                            new BaseNode(default)
                                                             {
                                                                 type = NodeType.ExpressionStatement,
                                                                 loc = new SourceLocation(new Position(1, 34, 34), new Position(1, 41, 41)),
-                                                                expression = new BaseNode
+                                                                expression = new BaseNode(default)
                                                                 {
                                                                     type = NodeType.YieldExpression,
                                                                     loc = new SourceLocation(new Position(1, 34, 34), new Position(1, 41, 41)),
@@ -11564,7 +11564,7 @@ namespace AcornSharp.Cli
                                 }
                             }
                         },
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 46, 46), new Position(1, 48, 48)),
@@ -11576,13 +11576,13 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 6});
 
             // Distinguish ParenthesizedExpression or ArrowFunctionExpression
-            Test("function* wrap() {\n(a = yield b)\n}", new BaseNode
+            Test("function* wrap() {\n(a = yield b)\n}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 34)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 34)),
@@ -11590,23 +11590,23 @@ namespace AcornSharp.Cli
                         generator = true,
                         bexpression = false,
                         @params = new List<BaseNode>(),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 17, 17), new Position(3, 1, 34)),
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(2, 0, 19), new Position(2, 13, 32)),
-                                    expression = new BaseNode
+                                    expression = new BaseNode(default)
                                     {
                                         type = NodeType.AssignmentExpression,
                                         loc = new SourceLocation(new Position(2, 1, 20), new Position(2, 12, 31)),
                                         @operator = "=",
                                         left = new IdentifierNode(new SourceLocation(new Position(2, 1, 20), new Position(2, 2, 21)), "a"),
-                                        right = new BaseNode
+                                        right = new BaseNode(default)
                                         {
                                             type = NodeType.YieldExpression,
                                             loc = new SourceLocation(new Position(2, 5, 24), new Position(2, 12, 31)),
@@ -11624,13 +11624,13 @@ namespace AcornSharp.Cli
 
             testFail("function* wrap() {\n(a = yield b) => a\n}", "Yield expression cannot be a default value (2:5)", new Options {ecmaVersion = 6});
 
-            Test("function* wrap() {\n({a = yield b} = obj)\n}", new BaseNode
+            Test("function* wrap() {\n({a = yield b} = obj)\n}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 42)),
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 42)),
@@ -11638,28 +11638,28 @@ namespace AcornSharp.Cli
                         @params = new List<BaseNode>(),
                         generator = true,
                         bexpression = false,
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 17, 17), new Position(3, 1, 42)),
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(2, 0, 19), new Position(2, 21, 40)),
-                                    expression = new BaseNode
+                                    expression = new BaseNode(default)
                                     {
                                         type = NodeType.AssignmentExpression,
                                         loc = new SourceLocation(new Position(2, 1, 20), new Position(2, 20, 39)),
                                         @operator = "=",
-                                        left = new BaseNode
+                                        left = new BaseNode(default)
                                         {
                                             type = NodeType.ObjectPattern,
                                             loc = new SourceLocation(new Position(2, 1, 20), new Position(2, 14, 33)),
                                             properties = new List<BaseNode>
                                             {
-                                                new BaseNode
+                                                new BaseNode(default)
                                                 {
                                                     type = NodeType.Property,
                                                     loc = new SourceLocation(new Position(2, 2, 21), new Position(2, 13, 32)),
@@ -11668,12 +11668,12 @@ namespace AcornSharp.Cli
                                                     computed = false,
                                                     key = new IdentifierNode(new SourceLocation(new Position(2, 2, 21), new Position(2, 3, 22)), "a"),
                                                     kind = "init",
-                                                    value = new BaseNode
+                                                    value = new BaseNode(default)
                                                     {
                                                         type = NodeType.AssignmentPattern,
                                                         loc = new SourceLocation(new Position(2, 2, 21), new Position(2, 13, 32)),
                                                         left = new IdentifierNode(new SourceLocation(new Position(2, 2, 21), new Position(2, 3, 22)), "a"),
-                                                        right = new BaseNode
+                                                        right = new BaseNode(default)
                                                         {
                                                             type = NodeType.YieldExpression,
                                                             loc = new SourceLocation(new Position(2, 6, 25), new Position(2, 13, 32)),
@@ -11694,30 +11694,30 @@ namespace AcornSharp.Cli
                 sourceType = "script"
             }, new Options {ecmaVersion = 6});
 
-            Test("export default class Foo {}++x", new BaseNode
+            Test("export default class Foo {}++x", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExportDefaultDeclaration,
-                        declaration = new BaseNode
+                        declaration = new BaseNode(default)
                         {
                             type = NodeType.ClassDeclaration,
                             id = new IdentifierNode(default, "Foo"),
                             superClass = null,
-                            fbody = new BaseNode
+                            fbody = new BaseNode(default)
                             {
                                 type = NodeType.ClassBody,
                                 body = new List<BaseNode>()
                             }
                         }
                     },
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.UpdateExpression,
                             @operator = "++",
@@ -11729,38 +11729,38 @@ namespace AcornSharp.Cli
                 sourceType = "module"
             }, new Options {ecmaVersion = 6, sourceType = "module"});
 
-            Test("function *f() { yield\n{}/1/g\n}", new BaseNode
+            Test("function *f() { yield\n{}/1/g\n}", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.FunctionDeclaration,
                         id = new IdentifierNode(default, "f"),
-                        fbody = new BaseNode
+                        fbody = new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>
                             {
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ExpressionStatement,
-                                    expression = new BaseNode
+                                    expression = new BaseNode(default)
                                     {
                                         type = NodeType.YieldExpression,
                                         argument = null
                                     }
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.BlockStatement,
                                     body = new List<BaseNode>()
                                 },
-                                new BaseNode
+                                new BaseNode(default)
                                 {
                                     type = NodeType.ExpressionStatement,
-                                    expression = new BaseNode
+                                    expression = new BaseNode(default)
                                     {
                                         type = NodeType.Literal,
                                         raw = "/1/g",
@@ -11777,7 +11777,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("class B extends A { foo(a = super.foo()) { return a }}", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("class B extends A { foo(a = super.foo()) { return a }}", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
             testFail("function* wrap() {\n({a = yield b} = obj) => a\n}", "Yield expression cannot be a default value (2:6)", new Options {ecmaVersion = 6});
 
@@ -11785,10 +11785,10 @@ namespace AcornSharp.Cli
             testFail("({*foo: 1})", "Unexpected token (1:6)", new Options {ecmaVersion = 6});
 
             Test("export { x as y } from './y.js';\nexport { x as z } from './z.js';",
-                new BaseNode { }, new Options {sourceType = "module", ecmaVersion = 6});
+                new BaseNode(default) { }, new Options {sourceType = "module", ecmaVersion = 6});
 
             Test("export { default as y } from './y.js';\nexport default 42;",
-                new BaseNode { }, new Options {sourceType = "module", ecmaVersion = 6});
+                new BaseNode(default) { }, new Options {sourceType = "module", ecmaVersion = 6});
 
             testFail("export { default} from './y.js';\nexport default 42;", "Duplicate export 'default' (2:7)", new Options {sourceType = "module", ecmaVersion = 6});
 
@@ -11798,9 +11798,9 @@ namespace AcornSharp.Cli
 
             testFail("({x, y}) = {}", "Parenthesized pattern (1:0)", new Options {ecmaVersion = 6});
 
-            Test("[x, (y), {z, u: (v)}] = foo", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("[x, (y), {z, u: (v)}] = foo", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("export default function(x) {};", new BaseNode {body = new List<BaseNode> {new BaseNode { }, new BaseNode { }}}, new Options {ecmaVersion = 6, sourceType = "module"});
+            Test("export default function(x) {};", new BaseNode(default) {body = new List<BaseNode> {new BaseNode(default) { }, new BaseNode(default) { }}}, new Options {ecmaVersion = 6, sourceType = "module"});
 
             testFail("var foo = 1; let foo = 1;", "Identifier 'foo' has already been declared (1:17)", new Options {ecmaVersion = 6});
 
@@ -11868,77 +11868,77 @@ namespace AcornSharp.Cli
 
             testFail("try {} catch (foo) { let foo = 1; }", "Identifier 'foo' has already been declared (1:25)", new Options {ecmaVersion = 6});
 
-            Test("var foo = 1; var foo = 1;", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("var foo = 1; var foo = 1;", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("if (x) var foo = 1; var foo = 1;", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("if (x) var foo = 1; var foo = 1;", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("function x() { var foo = 1; } let foo = 1;", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("function x() { var foo = 1; } let foo = 1;", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("function foo() { let foo = 1; }", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("function foo() { let foo = 1; }", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("var foo = 1; { let foo = 1; }", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("var foo = 1; { let foo = 1; }", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("{ let foo = 1; { let foo = 2; } }", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("{ let foo = 1; { let foo = 2; } }", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("var foo; try {} catch (_) { let foo; }", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("var foo; try {} catch (_) { let foo; }", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("let x = 1; function foo(x) {}", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("let x = 1; function foo(x) {}", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("for (let i = 0;;); for (let i = 0;;);", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("for (let i = 0;;); for (let i = 0;;);", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("for (const foo of bar); for (const foo of bar);", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("for (const foo of bar); for (const foo of bar);", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("for (const foo in bar); for (const foo in bar);", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("for (const foo in bar); for (const foo in bar);", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("for (let foo in bar) { let foo = 1; }", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("for (let foo in bar) { let foo = 1; }", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("for (let foo of bar) { let foo = 1; }", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("for (let foo of bar) { let foo = 1; }", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("class Foo { method(foo) {} method2() { let foo; } }", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("class Foo { method(foo) {} method2() { let foo; } }", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("() => { let foo; }; foo => {}", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("() => { let foo; }; foo => {}", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("() => { let foo; }; () => { let foo; }", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("() => { let foo; }; () => { let foo; }", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("switch(x) { case 1: let foo = 1; } let foo = 1;", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("switch(x) { case 1: let foo = 1; } let foo = 1;", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("'use strict'; function foo() { let foo = 1; }", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("'use strict'; function foo() { let foo = 1; }", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("let foo = 1; function x() { var foo = 1; }", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("let foo = 1; function x() { var foo = 1; }", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("[...foo, bar = 1]", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("[...foo, bar = 1]", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("for (var a of /b/) {}", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("for (var a of /b/) {}", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("for (var {a} of /b/) {}", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("for (var {a} of /b/) {}", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("for (let {a} of /b/) {}", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("for (let {a} of /b/) {}", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("function* bar() { yield /re/ }", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("function* bar() { yield /re/ }", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("function* bar() { yield class {} }", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("function* bar() { yield class {} }", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("() => {}\n/re/", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("() => {}\n/re/", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("(() => {}) + 2", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("(() => {}) + 2", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
             testFail("(x) => {} + 2", "Unexpected token (1:10)", new Options {ecmaVersion = 6});
 
-            Test("function *f1() { function g() { return yield / 1 } }", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("function *f1() { function g() { return yield / 1 } }", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("class Foo {} /regexp/", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("class Foo {} /regexp/", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("(class Foo {} / 2)", new BaseNode { }, new Options {ecmaVersion = 6});
+            Test("(class Foo {} / 2)", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
-            Test("1 <!--b", new BaseNode
+            Test("1 <!--b", new BaseNode(default)
             {
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode
+                    new BaseNode(default)
                     {
                         type = NodeType.ExpressionStatement,
-                        expression = new BaseNode
+                        expression = new BaseNode(default)
                         {
                             type = NodeType.BinaryExpression,
                             @operator = "<"
@@ -11951,9 +11951,9 @@ namespace AcornSharp.Cli
             testFail("class A extends B { constructor() { super; } }", "Unexpected token (1:41)", new Options {ecmaVersion = 6});
             testFail("class A extends B { constructor() { (super)() } }", "Unexpected token (1:42)", new Options {ecmaVersion = 6});
             testFail("class A extends B { foo() { (super).foo } }", "Unexpected token (1:34)", new Options {ecmaVersion = 6});
-            Test("({super: 1})", new BaseNode { }, new Options {ecmaVersion = 6});
-            Test("import {super as a} from 'a'", new BaseNode { }, new Options {ecmaVersion = 6, sourceType = "module"});
-            Test("export {a as super}", new BaseNode { }, new Options {ecmaVersion = 6, sourceType = "module"});
+            Test("({super: 1})", new BaseNode(default) { }, new Options {ecmaVersion = 6});
+            Test("import {super as a} from 'a'", new BaseNode(default) { }, new Options {ecmaVersion = 6, sourceType = "module"});
+            Test("export {a as super}", new BaseNode(default) { }, new Options {ecmaVersion = 6, sourceType = "module"});
         }
     }
 }

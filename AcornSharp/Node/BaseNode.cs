@@ -67,10 +67,6 @@ namespace AcornSharp.Node
         public bool shorthand;
         public string sourceType;
 
-        public BaseNode()
-        {
-        }
-
         public BaseNode(SourceLocation location)
         {
             type = NodeType.Unknown;
