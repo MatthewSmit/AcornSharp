@@ -148,7 +148,8 @@ namespace AcornSharp
                 while (eat(TokenType.comma)) expressions.Add(parseMaybeAssign(noIn, refDestructuringErrors));
                 var node = new BaseNode(this, start);
                 node.expressions = expressions;
-                return finishNode(node, NodeType.SequenceExpression);
+                finishNode(node, NodeType.SequenceExpression);
+                return node;
             }
             return expr;
         }
@@ -193,7 +194,8 @@ namespace AcornSharp
                 node.@operator = @operator;
                 node.left = leftNode;
                 node.right = right;
-                return finishNode(node, NodeType.AssignmentExpression);
+                finishNode(node, NodeType.AssignmentExpression);
+                return node;
             }
             if (ownDestructuringErrors) checkExpressionErrors(refDestructuringErrors, true);
             if (oldParenAssign.Line > 0) refDestructuringErrors.parenthesizedAssign = oldParenAssign;
@@ -257,7 +259,8 @@ namespace AcornSharp
             node.left = left;
             node.@operator = op;
             node.right = right;
-            return finishNode(node, logical ? NodeType.LogicalExpression : NodeType.BinaryExpression);
+            finishNode(node, logical ? NodeType.LogicalExpression : NodeType.BinaryExpression);
+            return node;
         }
 
         // Parse unary operators, both prefix and postfix.
@@ -284,7 +287,8 @@ namespace AcornSharp
                          node.argument is IdentifierNode)
                     raiseRecoverable(node.loc.Start, "Deleting local variable in strict mode");
                 else sawUnary = true;
-                expr = finishNode(node, update ? NodeType.UpdateExpression : NodeType.UnaryExpression);
+                finishNode(node, update ? NodeType.UpdateExpression : NodeType.UnaryExpression);
+                expr = node;
             }
             else
             {
@@ -298,7 +302,8 @@ namespace AcornSharp
                     node.argument = expr;
                     checkLVal(expr);
                     next();
-                    expr = finishNode(node, NodeType.UpdateExpression);
+                    finishNode(node, NodeType.UpdateExpression);
+                    expr = node;
                 }
             }
 
@@ -358,14 +363,16 @@ namespace AcornSharp
                     var node = new BaseNode(this, startLoc);
                     node.callee = @base;
                     node.arguments = exprList;
-                    @base = finishNode(node, NodeType.CallExpression);
+                    finishNode(node, NodeType.CallExpression);
+                    @base = node;
                 }
                 else if (type == TokenType.backQuote)
                 {
                     var node = new BaseNode(this, startLoc);
                     node.tag = @base;
                     node.quasi = parseTemplate(true);
-                    @base = finishNode(node, NodeType.TaggedTemplateExpression);
+                    finishNode(node, NodeType.TaggedTemplateExpression);
+                    @base = node;
                 }
                 else
                 {
@@ -399,13 +406,15 @@ namespace AcornSharp
                 {
                     raise(start, "Unexpected token");
                 }
-                return finishNode(node, NodeType.Super);
+                finishNode(node, NodeType.Super);
+                return node;
             }
             if (type == TokenType._this)
             {
                 node = new BaseNode(this, start);
                 next();
-                return finishNode(node, NodeType.ThisExpression);
+                finishNode(node, NodeType.ThisExpression);
+                return node;
             }
             if (type == TokenType.name)
             {
@@ -446,7 +455,8 @@ namespace AcornSharp
                 node.value = type == TokenType._null ? null : (object)(type == TokenType._true);
                 node.raw = TokenInformation.Types[type].Keyword;
                 next();
-                return finishNode(node, NodeType.Literal);
+                finishNode(node, NodeType.Literal);
+                return node;
             }
             if (type == TokenType.parenL)
             {
@@ -466,7 +476,8 @@ namespace AcornSharp
                 node = new BaseNode(this, start);
                 next();
                 node.elements = parseExprList(TokenType.bracketR, true, true, refDestructuringErrors);
-                return finishNode(node, NodeType.ArrayExpression);
+                finishNode(node, NodeType.ArrayExpression);
+                return node;
             }
             if (type == TokenType.braceL)
             {
@@ -501,7 +512,8 @@ namespace AcornSharp
             node.value = value;
             node.raw = input.Substring(start.Index, end.Index - start.Index);
             next();
-            return finishNode(node, NodeType.Literal);
+            finishNode(node, NodeType.Literal);
+            return node;
         }
 
         private BaseNode parseParenExpression()
@@ -515,7 +527,7 @@ namespace AcornSharp
         private BaseNode parseParenAndDistinguishExpression(bool canBeArrow)
         {
             var startLoc = start;
-            BaseNode val;
+            BaseNode node;
             var allowTrailingComma = Options.ecmaVersion >= 8;
             if (Options.ecmaVersion >= 6)
             {
@@ -585,27 +597,29 @@ namespace AcornSharp
 
                 if (exprList.Count > 1)
                 {
-                    val = new BaseNode(this, innerStartLoc);
-                    val.expressions = exprList;
-                    finishNodeAt(val, NodeType.SequenceExpression, innerEndLoc);
+                    node = new BaseNode(this, innerStartLoc);
+                    node.expressions = exprList;
+                    node.type = NodeType.SequenceExpression;
+                    node.loc = new SourceLocation(node.loc.Start, innerEndLoc, node.loc.Source);
                 }
                 else
                 {
-                    val = exprList[0];
+                    node = exprList[0];
                 }
             }
             else
             {
-                val = parseParenExpression();
+                node = parseParenExpression();
             }
 
             if (Options.preserveParens)
             {
                 var par = new BaseNode(this, startLoc);
-                par.expression = val;
-                return finishNode(par, NodeType.ParenthesizedExpression);
+                par.expression = node;
+                finishNode(par, NodeType.ParenthesizedExpression);
+                return par;
             }
-            return val;
+            return node;
         }
 
         private static BaseNode parseParenItem(BaseNode item)
@@ -644,13 +658,15 @@ namespace AcornSharp
                     raiseRecoverable(node.property.loc.Start, "The only valid meta property for new is new.target");
                 if (!inFunction)
                     raiseRecoverable(node.loc.Start, "new.target can only be used in functions");
-                return finishNode(node, NodeType.MetaProperty);
+                finishNode(node, NodeType.MetaProperty);
+                return node;
             }
             var startLoc = start;
             node.callee = parseSubscripts(parseExprAtom(), startLoc, true);
             if (eat(TokenType.parenL)) node.arguments = parseExprList(TokenType.parenR, Options.ecmaVersion >= 8, false);
             else node.arguments = new List<BaseNode>();
-            return finishNode(node, NodeType.NewExpression);
+            finishNode(node, NodeType.NewExpression);
+            return node;
         }
 
         private static readonly Regex templateRawRegex = new Regex("\r\n?");
@@ -674,7 +690,8 @@ namespace AcornSharp
             }
             next();
             elem.tail = type == TokenType.backQuote;
-            return finishNode(elem, NodeType.TemplateElement);
+            finishNode(elem, NodeType.TemplateElement);
+            return elem;
         }
 
         [NotNull]
@@ -693,7 +710,8 @@ namespace AcornSharp
                 node.quasis.Add(curElt = parseTemplateElement(ref isTagged));
             }
             next();
-            return finishNode(node, NodeType.TemplateLiteral);
+            finishNode(node, NodeType.TemplateLiteral);
+            return node;
         }
 
         // Parse an object literal or binding pattern.
@@ -748,9 +766,11 @@ namespace AcornSharp
                 }
                 parsePropertyValue(prop, isPattern, isGenerator, isAsync, startLoc, refDestructuringErrors);
                 checkPropClash(prop, propHash);
-                node.properties.Add(finishNode(prop, NodeType.Property));
+                finishNode(prop, NodeType.Property);
+                node.properties.Add(prop);
             }
-            return finishNode(node, isPattern ? NodeType.ObjectPattern : NodeType.ObjectExpression);
+            finishNode(node, isPattern ? NodeType.ObjectPattern : NodeType.ObjectExpression);
+            return node;
         }
 
         private void parsePropertyValue([NotNull] BaseNode prop, bool isPattern, bool isGenerator, bool isAsync, Position startLoc, [CanBeNull] DestructuringErrors refDestructuringErrors)
@@ -892,7 +912,8 @@ namespace AcornSharp
             yieldPos = oldYieldPos;
             awaitPos = oldAwaitPos;
             inFunction = oldInFunc;
-            return finishNode(node, NodeType.FunctionExpression);
+            finishNode(node, NodeType.FunctionExpression);
+            return node;
         }
 
         // Parse arrow function expression with given parameters.
@@ -924,7 +945,8 @@ namespace AcornSharp
             yieldPos = oldYieldPos;
             awaitPos = oldAwaitPos;
             inFunction = oldInFunc;
-            return finishNode(node, NodeType.ArrowFunctionExpression);
+            finishNode(node, NodeType.ArrowFunctionExpression);
+            return node;
         }
 
         // Parse function body and check parameters.
@@ -1103,7 +1125,8 @@ namespace AcornSharp
                 node.@delegate = eat(TokenType.star);
                 node.argument = parseMaybeAssign();
             }
-            return finishNode(node, NodeType.YieldExpression);
+            finishNode(node, NodeType.YieldExpression);
+            return node;
         }
 
         [NotNull]
@@ -1114,7 +1137,8 @@ namespace AcornSharp
             var node = new BaseNode(this, start);
             next();
             node.argument = parseMaybeUnary(null, true);
-            return finishNode(node, NodeType.AwaitExpression);
+            finishNode(node, NodeType.AwaitExpression);
+            return node;
         }
     }
 }

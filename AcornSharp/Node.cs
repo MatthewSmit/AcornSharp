@@ -7,19 +7,10 @@ namespace AcornSharp
     [SuppressMessage("ReSharper", "ParameterHidesMember")]
     public sealed partial class Parser
     {
-        // Finish an AST node, adding `type` and `end` properties.
-        [NotNull]
-        private static BaseNode finishNodeAt([NotNull] BaseNode node, NodeType type, Position pos)
+        private void finishNode([NotNull] BaseNode node, NodeType type)
         {
             node.type = type;
-            node.loc = new SourceLocation(node.loc.Start, pos, node.loc.Source);
-            return node;
-        }
-
-        [NotNull]
-        private BaseNode finishNode([NotNull] BaseNode node, NodeType type)
-        {
-            return finishNodeAt(node, type, lastTokEnd);
+            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
         }
     }
 }

@@ -30,7 +30,8 @@ namespace AcornSharp
             {
                 node.sourceType = Options.sourceType;
             }
-            return finishNode(node, NodeType.Program);
+            finishNode(node, NodeType.Program);
+            return node;
         }
 
         private bool isLet()
@@ -190,7 +191,8 @@ namespace AcornSharp
                 }
             }
             if (i == labels.Count) raise(node.loc.Start, "Unsyntactic " + keyword);
-            return finishNode(node, isBreak ? NodeType.BreakStatement : NodeType.ContinueStatement);
+            finishNode(node, isBreak ? NodeType.BreakStatement : NodeType.ContinueStatement);
+            return node;
         }
 
         private BaseNode parseDebuggerStatement(Position nodeStart)
@@ -198,7 +200,8 @@ namespace AcornSharp
             next();
             semicolon();
             var node = new BaseNode(this, nodeStart);
-            return finishNode(node, NodeType.DebuggerStatement);
+            finishNode(node, NodeType.DebuggerStatement);
+            return node;
         }
 
         private BaseNode parseDoStatement(Position nodeStart)
@@ -214,7 +217,8 @@ namespace AcornSharp
                 eat(TokenType.semi);
             else
                 semicolon();
-            return finishNode(node, NodeType.DoWhileStatement);
+            finishNode(node, NodeType.DoWhileStatement);
+            return node;
         }
 
         // Disambiguating between a `for` and a `for`/`in` or `for`/`of`
@@ -279,7 +283,8 @@ namespace AcornSharp
             // allow function declarations in branches, but only in non-strict mode
             node.consequent = parseStatement(!strict && isFunction());
             node.alternate = eat(TokenType._else) ? parseStatement(!strict && isFunction()) : null;
-            return finishNode(node, NodeType.IfStatement);
+            finishNode(node, NodeType.IfStatement);
+            return node;
         }
 
         private BaseNode parseReturnStatement(Position nodeStart)
@@ -299,7 +304,8 @@ namespace AcornSharp
                 node.argument = parseExpression();
                 semicolon();
             }
-            return finishNode(node, NodeType.ReturnStatement);
+            finishNode(node, NodeType.ReturnStatement);
+            return node;
         }
 
         private BaseNode parseSwitchStatement(Position nodeStart)
@@ -351,7 +357,8 @@ namespace AcornSharp
             if (cur != null) finishNode(cur, NodeType.SwitchCase);
             next(); // Closing brace
             labels.Pop();
-            return finishNode(node, NodeType.SwitchStatement);
+            finishNode(node, NodeType.SwitchStatement);
+            return node;
         }
 
         private BaseNode parseThrowStatement(Position nodeStart)
@@ -362,7 +369,8 @@ namespace AcornSharp
             var node = new BaseNode(this, nodeStart);
             node.argument = parseExpression();
             semicolon();
-            return finishNode(node, NodeType.ThrowStatement);
+            finishNode(node, NodeType.ThrowStatement);
+            return node;
         }
 
         private BaseNode parseTryStatement(Position nodeStart)
@@ -385,12 +393,14 @@ namespace AcornSharp
                 var clause = new BaseNode(this, start);
                 clause.param = param;
                 clause.fbody = body;
-                node.handler = finishNode(clause, NodeType.CatchClause);
+                finishNode(clause, NodeType.CatchClause);
+                node.handler = clause;
             }
             node.finalizer = eat(TokenType._finally) ? parseBlock() : null;
             if (node.handler == null && node.finalizer == null)
                 raise(node.loc.Start, "Missing catch or finally clause");
-            return finishNode(node, NodeType.TryStatement);
+            finishNode(node, NodeType.TryStatement);
+            return node;
         }
 
         private BaseNode parseVarStatement(Position nodeStart, string kind)
@@ -399,7 +409,8 @@ namespace AcornSharp
             var node = new BaseNode(this, nodeStart);
             parseVar(node, false, kind);
             semicolon();
-            return finishNode(node, NodeType.VariableDeclaration);
+            finishNode(node, NodeType.VariableDeclaration);
+            return node;
         }
 
         private BaseNode parseWhileStatement(Position nodeStart)
@@ -410,7 +421,8 @@ namespace AcornSharp
             labels.Add(loopLabel);
             node.fbody = parseStatement(false);
             labels.Pop();
-            return finishNode(node, NodeType.WhileStatement);
+            finishNode(node, NodeType.WhileStatement);
+            return node;
         }
 
         private BaseNode parseWithStatement(Position nodeStart)
@@ -420,14 +432,16 @@ namespace AcornSharp
             var node = new BaseNode(this, nodeStart);
             node.@object = parseParenExpression();
             node.fbody = parseStatement(false);
-            return finishNode(node, NodeType.WithStatement);
+            finishNode(node, NodeType.WithStatement);
+            return node;
         }
 
         private BaseNode parseEmptyStatement(Position nodeStart)
         {
             next();
             var node = new BaseNode(this, nodeStart);
-            return finishNode(node, NodeType.EmptyStatement);
+            finishNode(node, NodeType.EmptyStatement);
+            return node;
         }
 
         private BaseNode parseLabeledStatement(Position nodeStart, string maybeName, IdentifierNode expr)
@@ -457,7 +471,8 @@ namespace AcornSharp
                 raiseRecoverable(node.fbody.loc.Start, "Invalid labelled declaration");
             labels.Pop();
             node.label = expr;
-            return finishNode(node, NodeType.LabeledStatement);
+            finishNode(node, NodeType.LabeledStatement);
+            return node;
         }
 
         private BaseNode parseExpressionStatement(Position nodeStart, BaseNode expr)
@@ -465,7 +480,8 @@ namespace AcornSharp
             var node = new BaseNode(this, nodeStart);
             node.expression = expr;
             semicolon();
-            return finishNode(node, NodeType.ExpressionStatement);
+            finishNode(node, NodeType.ExpressionStatement);
+            return node;
         }
 
         // Parse a semicolon-enclosed block of statements, handling `"use
@@ -491,7 +507,8 @@ namespace AcornSharp
             }
             var node = new BaseNode(this, start);
             node.body = body;
-            return finishNode(node, NodeType.BlockStatement);
+            finishNode(node, NodeType.BlockStatement);
+            return node;
         }
 
         // Parse a regular `for` loop. The disambiguation code in
@@ -508,7 +525,8 @@ namespace AcornSharp
             exitLexicalScope();
             node.fbody = parseStatement(false);
             labels.Pop();
-            return finishNode(node, NodeType.ForStatement);
+            finishNode(node, NodeType.ForStatement);
+            return node;
         }
 
         // Parse a `for`/`in` and `for`/`of` loop, which are almost
@@ -523,7 +541,8 @@ namespace AcornSharp
             exitLexicalScope();
             node.fbody = parseStatement(false);
             labels.Pop();
-            return finishNode(node, type);
+            finishNode(node, type);
+            return node;
         }
 
         // Parse a list of variable declarations.
@@ -552,7 +571,8 @@ namespace AcornSharp
                 {
                     decl.init = null;
                 }
-                node.declarations.Add(finishNode(decl, NodeType.VariableDeclarator));
+                finishNode(decl, NodeType.VariableDeclarator);
+                node.declarations.Add(decl);
                 if (!eat(TokenType.comma)) break;
             }
             return node;
@@ -606,7 +626,8 @@ namespace AcornSharp
             yieldPos = oldYieldPos;
             awaitPos = oldAwaitPos;
             inFunction = oldInFunc;
-            return finishNode(node, isStatement != null ? NodeType.FunctionDeclaration : NodeType.FunctionExpression);
+            finishNode(node, isStatement != null ? NodeType.FunctionDeclaration : NodeType.FunctionExpression);
+            return node;
         }
 
         private void parseFunctionParams(BaseNode node)
@@ -696,14 +717,17 @@ namespace AcornSharp
                     }
                 }
             }
-            node.fbody = finishNode(classBody, NodeType.ClassBody);
-            return finishNode(node, isStatement != null ? NodeType.ClassDeclaration : NodeType.ClassExpression);
+            finishNode(classBody, NodeType.ClassBody);
+            node.fbody = classBody;
+            finishNode(node, isStatement != null ? NodeType.ClassDeclaration : NodeType.ClassExpression);
+            return node;
         }
 
         private void parseClassMethod(BaseNode classBody, BaseNode method, bool isGenerator, bool isAsync)
         {
             method.value = parseMethod(isGenerator, isAsync);
-            classBody.body.Add(finishNode(method, NodeType.MethodDefinition));
+            finishNode(method, NodeType.MethodDefinition);
+            classBody.body.Add(method);
         }
 
         private void parseClassId(BaseNode node, string isStatement)
@@ -740,7 +764,8 @@ namespace AcornSharp
                     raise(start, "Unexpected token");
                 }
                 semicolon();
-                return finishNode(node, NodeType.ExportAllDeclaration);
+                finishNode(node, NodeType.ExportAllDeclaration);
+                return node;
             }
             if (eat(TokenType._default))
             {
@@ -763,7 +788,8 @@ namespace AcornSharp
                     node.declaration = parseMaybeAssign();
                     semicolon();
                 }
-                return finishNode(node, NodeType.ExportDefaultDeclaration);
+                finishNode(node, NodeType.ExportDefaultDeclaration);
+                return node;
             }
             // export var|const|let|function|class ...
             if (shouldParseExportStatement())
@@ -801,7 +827,8 @@ namespace AcornSharp
                 }
                 semicolon();
             }
-            return finishNode(node, NodeType.ExportNamedDeclaration);
+            finishNode(node, NodeType.ExportNamedDeclaration);
+            return node;
         }
 
         private static void checkExport(IDictionary<string, bool> exports, string name, Position pos)
@@ -881,7 +908,8 @@ namespace AcornSharp
                 node.local = parseIdent(true);
                 node.exported = eatContextual("as") ? parseIdent(true) : node.local;
                 checkExport(exports, node.exported.name, node.exported.loc.Start);
-                nodes.Add(finishNode(node, NodeType.ExportSpecifier));
+                finishNode(node, NodeType.ExportSpecifier);
+                nodes.Add(node);
             }
             return nodes;
         }
@@ -908,7 +936,8 @@ namespace AcornSharp
                 }
             }
             semicolon();
-            return finishNode(node, NodeType.ImportDeclaration);
+            finishNode(node, NodeType.ImportDeclaration);
+            return node;
         }
 
         // Parses a comma-separated list of module imports.
@@ -922,7 +951,8 @@ namespace AcornSharp
                 var node = new BaseNode(this, start);
                 node.local = parseIdent();
                 checkLVal(node.local, "let");
-                nodes.Add(finishNode(node, NodeType.ImportDefaultSpecifier));
+                finishNode(node, NodeType.ImportDefaultSpecifier);
+                nodes.Add(node);
                 if (!eat(TokenType.comma)) return nodes;
             }
             if (type == TokenType.star)
@@ -932,7 +962,8 @@ namespace AcornSharp
                 expectContextual("as");
                 node.local = parseIdent();
                 checkLVal(node.local, "let");
-                nodes.Add(finishNode(node, NodeType.ImportNamespaceSpecifier));
+                finishNode(node, NodeType.ImportNamespaceSpecifier);
+                nodes.Add(node);
                 return nodes;
             }
             expect(TokenType.braceL);
@@ -957,7 +988,8 @@ namespace AcornSharp
                     node.local = node.imported;
                 }
                 checkLVal(node.local, "let");
-                nodes.Add(finishNode(node, NodeType.ImportSpecifier));
+                finishNode(node, NodeType.ImportSpecifier);
+                nodes.Add(node);
             }
             return nodes;
         }

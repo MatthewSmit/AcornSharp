@@ -119,7 +119,8 @@ namespace AcornSharp
             var node = new BaseNode(this, start);
             next();
             node.argument = parseMaybeAssign(false, refDestructuringErrors);
-            return finishNode(node, NodeType.SpreadElement);
+            finishNode(node, NodeType.SpreadElement);
+            return node;
         }
 
         [NotNull]
@@ -136,7 +137,8 @@ namespace AcornSharp
 
             node.argument = parseBindingAtom();
 
-            return finishNode(node, NodeType.RestElement);
+            finishNode(node, NodeType.RestElement);
+            return node;
         }
 
         // Parses lvalue (assignable) atom.
@@ -152,7 +154,8 @@ namespace AcornSharp
                 var node = new BaseNode(this, start);
                 next();
                 node.elements = parseBindingList(TokenType.bracketR, true, true);
-                return finishNode(node, NodeType.ArrayPattern);
+                finishNode(node, NodeType.ArrayPattern);
+                return node;
             }
             if (type == TokenType.braceL)
             {
@@ -205,7 +208,8 @@ namespace AcornSharp
             var node = new BaseNode(this, startLoc);
             node.left = left;
             node.right = parseMaybeAssign();
-            return finishNode(node, NodeType.AssignmentPattern);
+            finishNode(node, NodeType.AssignmentPattern);
+            return node;
         }
 
         // Verify that a node is an lval — something that can be assigned
