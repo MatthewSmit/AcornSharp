@@ -13,15 +13,13 @@ namespace AcornSharp.Cli
             Test("function foo() { }", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 18,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        start = 0,
-                        end = 18,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
                         generator = false,
                         bexpression = false,
@@ -30,8 +28,7 @@ namespace AcornSharp.Cli
                         fbody = new Node
                         {
                             type = NodeType.BlockStatement,
-                            start = 15,
-                            end = 18,
+                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18)),
                             body = new List<Node>()
                         }
                     }
@@ -43,15 +40,13 @@ namespace AcornSharp.Cli
             Test("async function foo() { }", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 24,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        start = 0,
-                        end = 24,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18)), "foo"),
                         generator = false,
                         bexpression = false,
@@ -60,8 +55,7 @@ namespace AcornSharp.Cli
                         fbody = new Node
                         {
                             type = NodeType.BlockStatement,
-                            start = 21,
-                            end = 24,
+                            loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 24, 24)),
                             body = new List<Node>()
                         }
                     }
@@ -73,22 +67,19 @@ namespace AcornSharp.Cli
             Test("async\nfunction foo() { }", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 24,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(2, 18, 24)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 5,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)),
                         expression = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)), "async")
                     },
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        start = 6,
-                        end = 24,
+                        loc = new SourceLocation(new Position(2, 0, 6), new Position(2, 18, 24)),
                         id = new IdentifierNode(new SourceLocation(new Position(2, 9, 15), new Position(2, 12, 18)), "foo"),
                         generator = false,
                         bexpression = false,
@@ -97,8 +88,7 @@ namespace AcornSharp.Cli
                         fbody = new Node
                         {
                             type = NodeType.BlockStatement,
-                            start = 21,
-                            end = 24,
+                            loc = new SourceLocation(new Position(2, 15, 21), new Position(2, 18, 24)),
                             body = new List<Node>()
                         }
                     }
@@ -110,20 +100,17 @@ namespace AcornSharp.Cli
             Test("export async function foo() { }", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 31,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExportNamedDeclaration,
-                        start = 0,
-                        end = 31,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31)),
                         declaration = new Node
                         {
                             type = NodeType.FunctionDeclaration,
-                            start = 7,
-                            end = 31,
+                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 31, 31)),
                             id = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 25, 25)), "foo"),
                             generator = false,
                             bexpression = false,
@@ -132,8 +119,7 @@ namespace AcornSharp.Cli
                             fbody = new Node
                             {
                                 type = NodeType.BlockStatement,
-                                start = 28,
-                                end = 31,
+                                loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 31, 31)),
                                 body = new List<Node>()
                             }
                         },
@@ -148,20 +134,17 @@ namespace AcornSharp.Cli
             Test("export default async function() { }", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 35,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExportDefaultDeclaration,
-                        start = 0,
-                        end = 35,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
                         declaration = new Node
                         {
                             type = NodeType.FunctionDeclaration,
-                            start = 15,
-                            end = 35,
+                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 35, 35)),
                             id = null,
                             generator = false,
                             bexpression = false,
@@ -170,8 +153,7 @@ namespace AcornSharp.Cli
                             fbody = new Node
                             {
                                 type = NodeType.BlockStatement,
-                                start = 32,
-                                end = 35,
+                                loc = new SourceLocation(new Position(1, 32, 32), new Position(1, 35, 35)),
                                 body = new List<Node>()
                             }
                         }
@@ -187,15 +169,13 @@ namespace AcornSharp.Cli
             Test("async function await() { }", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 26,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        start = 0,
-                        end = 26,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 20, 20)), "await"),
                         generator = false,
                         bexpression = false,
@@ -204,8 +184,7 @@ namespace AcornSharp.Cli
                         fbody = new Node
                         {
                             type = NodeType.BlockStatement,
-                            start = 23,
-                            end = 26,
+                            loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 26, 26)),
                             body = new List<Node>()
                         }
                     }
@@ -225,20 +204,17 @@ namespace AcornSharp.Cli
             Test("(function foo() { })", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 20,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 20,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
                         expression = new Node
                         {
                             type = NodeType.FunctionExpression,
-                            start = 1,
-                            end = 19,
+                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 19, 19)),
                             id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13)), "foo"),
                             generator = false,
                             bexpression = false,
@@ -247,8 +223,7 @@ namespace AcornSharp.Cli
                             fbody = new Node
                             {
                                 type = NodeType.BlockStatement,
-                                start = 16,
-                                end = 19,
+                                loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 19, 19)),
                                 body = new List<Node>()
                             }
                         }
@@ -261,20 +236,17 @@ namespace AcornSharp.Cli
             Test("(async function foo() { })", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 26,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 26,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26)),
                         expression = new Node
                         {
                             type = NodeType.FunctionExpression,
-                            start = 1,
-                            end = 25,
+                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 25, 25)),
                             id = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 19, 19)), "foo"),
                             generator = false,
                             bexpression = false,
@@ -283,8 +255,7 @@ namespace AcornSharp.Cli
                             fbody = new Node
                             {
                                 type = NodeType.BlockStatement,
-                                start = 22,
-                                end = 25,
+                                loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 25, 25)),
                                 body = new List<Node>()
                             }
                         }
@@ -303,20 +274,17 @@ namespace AcornSharp.Cli
             Test("export default (async function() { })", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 37,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExportDefaultDeclaration,
-                        start = 0,
-                        end = 37,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37)),
                         declaration = new Node
                         {
                             type = NodeType.FunctionExpression,
-                            start = 16,
-                            end = 36,
+                            loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 36, 36)),
                             id = null,
                             generator = false,
                             bexpression = false,
@@ -325,8 +293,7 @@ namespace AcornSharp.Cli
                             fbody = new Node
                             {
                                 type = NodeType.BlockStatement,
-                                start = 33,
-                                end = 36,
+                                loc = new SourceLocation(new Position(1, 33, 33), new Position(1, 36, 36)),
                                 body = new List<Node>()
                             }
                         }
@@ -347,20 +314,17 @@ namespace AcornSharp.Cli
             Test("a => a", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 6,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 6,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6)),
                         expression = new Node
                         {
                             type = NodeType.ArrowFunctionExpression,
-                            start = 0,
-                            end = 6,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6)),
                             id = null,
                             generator = false,
                             bexpression = true,
@@ -379,20 +343,17 @@ namespace AcornSharp.Cli
             Test("(a) => a", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 8,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 8,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)),
                         expression = new Node
                         {
                             type = NodeType.ArrowFunctionExpression,
-                            start = 0,
-                            end = 8,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)),
                             id = null,
                             generator = false,
                             bexpression = true,
@@ -412,20 +373,17 @@ namespace AcornSharp.Cli
             Test("async a => a", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 12,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 12,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12)),
                         expression = new Node
                         {
                             type = NodeType.ArrowFunctionExpression,
-                            start = 0,
-                            end = 12,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12)),
                             id = null,
                             generator = false,
                             bexpression = true,
@@ -444,20 +402,17 @@ namespace AcornSharp.Cli
             Test("async () => a", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 13,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 13,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                         expression = new Node
                         {
                             type = NodeType.ArrowFunctionExpression,
-                            start = 0,
-                            end = 13,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                             id = null,
                             generator = false,
                             bexpression = true,
@@ -473,20 +428,17 @@ namespace AcornSharp.Cli
             Test("async (a, b) => a", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 17,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 17,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
                         expression = new Node
                         {
                             type = NodeType.ArrowFunctionExpression,
-                            start = 0,
-                            end = 17,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
                             id = null,
                             generator = false,
                             bexpression = true,
@@ -507,20 +459,17 @@ namespace AcornSharp.Cli
             Test("async ({a = b}) => a", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 20,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 20,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
                         expression = new Node
                         {
                             type = NodeType.ArrowFunctionExpression,
-                            start = 0,
-                            end = 20,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
                             id = null,
                             generator = false,
                             bexpression = true,
@@ -530,15 +479,13 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.ObjectPattern,
-                                    start = 7,
-                                    end = 14,
+                                    loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 14, 14)),
                                     properties = new List<Node>
                                     {
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            start = 8,
-                                            end = 13,
+                                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 13, 13)),
                                             method = false,
                                             shorthand = true,
                                             computed = false,
@@ -547,8 +494,7 @@ namespace AcornSharp.Cli
                                             value = new Node
                                             {
                                                 type = NodeType.AssignmentPattern,
-                                                start = 8,
-                                                end = 13,
+                                                loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 13, 13)),
                                                 left = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "a"),
                                                 right = new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "b")
                                             }
@@ -570,20 +516,17 @@ namespace AcornSharp.Cli
             Test("async ({a: b = c}) => a", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 23,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 23,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
                         expression = new Node
                         {
                             type = NodeType.ArrowFunctionExpression,
-                            start = 0,
-                            end = 23,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
                             id = null,
                             generator = false,
                             bexpression = true,
@@ -593,15 +536,13 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.ObjectPattern,
-                                    start = 7,
-                                    end = 17,
+                                    loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 17, 17)),
                                     properties = new List<Node>
                                     {
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            start = 8,
-                                            end = 16,
+                                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 16, 16)),
                                             method = false,
                                             shorthand = false,
                                             computed = false,
@@ -609,8 +550,7 @@ namespace AcornSharp.Cli
                                             value = new Node
                                             {
                                                 type = NodeType.AssignmentPattern,
-                                                start = 11,
-                                                end = 16,
+                                                loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 16, 16)),
                                                 left = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "b"),
                                                 right = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)), "c")
                                             },
@@ -629,35 +569,30 @@ namespace AcornSharp.Cli
             Test("async ({a: b = c})", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 18,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 18,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
                         expression = new Node
                         {
                             type = NodeType.CallExpression,
-                            start = 0,
-                            end = 18,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
                             callee = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)), "async"),
                             arguments = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.ObjectExpression,
-                                    start = 7,
-                                    end = 17,
+                                    loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 17, 17)),
                                     properties = new List<Node>
                                     {
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            start = 8,
-                                            end = 16,
+                                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 16, 16)),
                                             method = false,
                                             shorthand = false,
                                             computed = false,
@@ -665,8 +600,7 @@ namespace AcornSharp.Cli
                                             value = new Node
                                             {
                                                 type = NodeType.AssignmentExpression,
-                                                start = 11,
-                                                end = 16,
+                                                loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 16, 16)),
                                                 @operator = "=",
                                                 left = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "b"),
                                                 right = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)), "c")
@@ -686,27 +620,23 @@ namespace AcornSharp.Cli
             Test("async\na => a", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 12,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 12)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 5,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)),
                         expression = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)), "async")
                     },
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 6,
-                        end = 12,
+                        loc = new SourceLocation(new Position(2, 0, 6), new Position(2, 6, 12)),
                         expression = new Node
                         {
                             type = NodeType.ArrowFunctionExpression,
-                            start = 6,
-                            end = 12,
+                            loc = new SourceLocation(new Position(2, 0, 6), new Position(2, 6, 12)),
                             id = null,
                             generator = false,
                             bexpression = true,
@@ -733,20 +663,17 @@ namespace AcornSharp.Cli
             Test("async (await)", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 13,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 13,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                         expression = new Node
                         {
                             type = NodeType.CallExpression,
-                            start = 0,
-                            end = 13,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                             callee = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)), "async"),
                             arguments = new List<Node>
                             {
@@ -769,20 +696,17 @@ namespace AcornSharp.Cli
             Test("async yield => 1", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 16,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 16,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16)),
                         expression = new Node
                         {
                             type = NodeType.ArrowFunctionExpression,
-                            start = 0,
-                            end = 16,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16)),
                             id = null,
                             generator = false,
                             bexpression = true,
@@ -794,8 +718,7 @@ namespace AcornSharp.Cli
                             fbody = new Node
                             {
                                 type = NodeType.Literal,
-                                start = 15,
-                                end = 16,
+                                loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)),
                                 value = 1,
                                 raw = "1"
                             }
@@ -812,27 +735,23 @@ namespace AcornSharp.Cli
             Test("({foo() { }})", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 13,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 13,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                         expression = new Node
                         {
                             type = NodeType.ObjectExpression,
-                            start = 1,
-                            end = 12,
+                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 12, 12)),
                             properties = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.Property,
-                                    start = 2,
-                                    end = 11,
+                                    loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 11, 11)),
                                     method = true,
                                     shorthand = false,
                                     computed = false,
@@ -841,8 +760,7 @@ namespace AcornSharp.Cli
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
-                                        start = 5,
-                                        end = 11,
+                                        loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 11, 11)),
                                         id = null,
                                         generator = false,
                                         bexpression = false,
@@ -851,8 +769,7 @@ namespace AcornSharp.Cli
                                         fbody = new Node
                                         {
                                             type = NodeType.BlockStatement,
-                                            start = 8,
-                                            end = 11,
+                                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 11, 11)),
                                             body = new List<Node>()
                                         }
                                     }
@@ -868,27 +785,23 @@ namespace AcornSharp.Cli
             Test("({async foo() { }})", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 19,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 19,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
                         expression = new Node
                         {
                             type = NodeType.ObjectExpression,
-                            start = 1,
-                            end = 18,
+                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 18, 18)),
                             properties = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.Property,
-                                    start = 2,
-                                    end = 17,
+                                    loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 17, 17)),
                                     method = true,
                                     shorthand = false,
                                     computed = false,
@@ -897,8 +810,7 @@ namespace AcornSharp.Cli
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
-                                        start = 11,
-                                        end = 17,
+                                        loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 17, 17)),
                                         id = null,
                                         generator = false,
                                         bexpression = false,
@@ -907,8 +819,7 @@ namespace AcornSharp.Cli
                                         fbody = new Node
                                         {
                                             type = NodeType.BlockStatement,
-                                            start = 14,
-                                            end = 17,
+                                            loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 17, 17)),
                                             body = new List<Node>()
                                         }
                                     }
@@ -924,27 +835,23 @@ namespace AcornSharp.Cli
             Test("({async() { }})", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 15,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 15,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
                         expression = new Node
                         {
                             type = NodeType.ObjectExpression,
-                            start = 1,
-                            end = 14,
+                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 14, 14)),
                             properties = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.Property,
-                                    start = 2,
-                                    end = 13,
+                                    loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 13, 13)),
                                     method = true,
                                     shorthand = false,
                                     computed = false,
@@ -953,8 +860,7 @@ namespace AcornSharp.Cli
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
-                                        start = 7,
-                                        end = 13,
+                                        loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 13, 13)),
                                         id = null,
                                         generator = false,
                                         bexpression = false,
@@ -963,8 +869,7 @@ namespace AcornSharp.Cli
                                         fbody = new Node
                                         {
                                             type = NodeType.BlockStatement,
-                                            start = 10,
-                                            end = 13,
+                                            loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13)),
                                             body = new List<Node>()
                                         }
                                     }
@@ -988,27 +893,23 @@ namespace AcornSharp.Cli
             Test("({async await() { }})", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 21,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 21,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
                         expression = new Node
                         {
                             type = NodeType.ObjectExpression,
-                            start = 1,
-                            end = 20,
+                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 20, 20)),
                             properties = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.Property,
-                                    start = 2,
-                                    end = 19,
+                                    loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 19, 19)),
                                     method = true,
                                     shorthand = false,
                                     computed = false,
@@ -1017,8 +918,7 @@ namespace AcornSharp.Cli
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
-                                        start = 13,
-                                        end = 19,
+                                        loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 19, 19)),
                                         id = null,
                                         generator = false,
                                         bexpression = false,
@@ -1027,8 +927,7 @@ namespace AcornSharp.Cli
                                         fbody = new Node
                                         {
                                             type = NodeType.BlockStatement,
-                                            start = 16,
-                                            end = 19,
+                                            loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 19, 19)),
                                             body = new List<Node>()
                                         }
                                     }
@@ -1056,29 +955,25 @@ namespace AcornSharp.Cli
             Test("class A {foo() { }}", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 19,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        start = 0,
-                        end = 19,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
                             type = NodeType.ClassBody,
-                            start = 8,
-                            end = 19,
+                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 19, 19)),
                             body = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.MethodDefinition,
-                                    start = 9,
-                                    end = 18,
+                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 18, 18)),
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
                                     @static = false,
@@ -1086,8 +981,7 @@ namespace AcornSharp.Cli
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
-                                        start = 12,
-                                        end = 18,
+                                        loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 18, 18)),
                                         id = null,
                                         generator = false,
                                         bexpression = false,
@@ -1096,8 +990,7 @@ namespace AcornSharp.Cli
                                         fbody = new Node
                                         {
                                             type = NodeType.BlockStatement,
-                                            start = 15,
-                                            end = 18,
+                                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18)),
                                             body = new List<Node>()
                                         }
                                     }
@@ -1113,29 +1006,25 @@ namespace AcornSharp.Cli
             Test("class A {async foo() { }}", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 25,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        start = 0,
-                        end = 25,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
                             type = NodeType.ClassBody,
-                            start = 8,
-                            end = 25,
+                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 25, 25)),
                             body = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.MethodDefinition,
-                                    start = 9,
-                                    end = 24,
+                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 24, 24)),
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18)), "foo"),
                                     @static = false,
@@ -1143,8 +1032,7 @@ namespace AcornSharp.Cli
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
-                                        start = 18,
-                                        end = 24,
+                                        loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 24, 24)),
                                         id = null,
                                         generator = false,
                                         bexpression = false,
@@ -1153,8 +1041,7 @@ namespace AcornSharp.Cli
                                         fbody = new Node
                                         {
                                             type = NodeType.BlockStatement,
-                                            start = 21,
-                                            end = 24,
+                                            loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 24, 24)),
                                             body = new List<Node>()
                                         }
                                     }
@@ -1169,29 +1056,25 @@ namespace AcornSharp.Cli
             Test("class A {static async foo() { }}", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 32,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        start = 0,
-                        end = 32,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
                             type = NodeType.ClassBody,
-                            start = 8,
-                            end = 32,
+                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 32, 32)),
                             body = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.MethodDefinition,
-                                    start = 9,
-                                    end = 31,
+                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 31, 31)),
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 25, 25)), "foo"),
                                     @static = true,
@@ -1199,8 +1082,7 @@ namespace AcornSharp.Cli
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
-                                        start = 25,
-                                        end = 31,
+                                        loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 31, 31)),
                                         id = null,
                                         generator = false,
                                         bexpression = false,
@@ -1209,8 +1091,7 @@ namespace AcornSharp.Cli
                                         fbody = new Node
                                         {
                                             type = NodeType.BlockStatement,
-                                            start = 28,
-                                            end = 31,
+                                            loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 31, 31)),
                                             body = new List<Node>()
                                         }
                                     }
@@ -1226,29 +1107,25 @@ namespace AcornSharp.Cli
             Test("class A {async() { }}", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 21,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        start = 0,
-                        end = 21,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
                             type = NodeType.ClassBody,
-                            start = 8,
-                            end = 21,
+                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 21, 21)),
                             body = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.MethodDefinition,
-                                    start = 9,
-                                    end = 20,
+                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 20, 20)),
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 14, 14)), "async"),
                                     @static = false,
@@ -1256,8 +1133,7 @@ namespace AcornSharp.Cli
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
-                                        start = 14,
-                                        end = 20,
+                                        loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 20, 20)),
                                         id = null,
                                         generator = false,
                                         bexpression = false,
@@ -1266,8 +1142,7 @@ namespace AcornSharp.Cli
                                         fbody = new Node
                                         {
                                             type = NodeType.BlockStatement,
-                                            start = 17,
-                                            end = 20,
+                                            loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20)),
                                             body = new List<Node>()
                                         }
                                     }
@@ -1282,29 +1157,25 @@ namespace AcornSharp.Cli
             Test("class A {static async() { }}", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 28,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        start = 0,
-                        end = 28,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
                             type = NodeType.ClassBody,
-                            start = 8,
-                            end = 28,
+                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 28, 28)),
                             body = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.MethodDefinition,
-                                    start = 9,
-                                    end = 27,
+                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 27, 27)),
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 21, 21)), "async"),
                                     @static = true,
@@ -1312,8 +1183,7 @@ namespace AcornSharp.Cli
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
-                                        start = 21,
-                                        end = 27,
+                                        loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 27, 27)),
                                         id = null,
                                         generator = false,
                                         bexpression = false,
@@ -1322,8 +1192,7 @@ namespace AcornSharp.Cli
                                         fbody = new Node
                                         {
                                             type = NodeType.BlockStatement,
-                                            start = 24,
-                                            end = 27,
+                                            loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 27, 27)),
                                             body = new List<Node>()
                                         }
                                     }
@@ -1338,29 +1207,25 @@ namespace AcornSharp.Cli
             Test("class A {*async() { }}", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 22,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        start = 0,
-                        end = 22,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
                             type = NodeType.ClassBody,
-                            start = 8,
-                            end = 22,
+                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 22, 22)),
                             body = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.MethodDefinition,
-                                    start = 9,
-                                    end = 21,
+                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 21, 21)),
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 15, 15)), "async"),
                                     @static = false,
@@ -1368,8 +1233,7 @@ namespace AcornSharp.Cli
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
-                                        start = 15,
-                                        end = 21,
+                                        loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 21, 21)),
                                         id = null,
                                         generator = true,
                                         bexpression = false,
@@ -1378,8 +1242,7 @@ namespace AcornSharp.Cli
                                         fbody = new Node
                                         {
                                             type = NodeType.BlockStatement,
-                                            start = 18,
-                                            end = 21,
+                                            loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 21, 21)),
                                             body = new List<Node>()
                                         }
                                     }
@@ -1394,29 +1257,25 @@ namespace AcornSharp.Cli
             Test("class A {static* async() { }}", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 29,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        start = 0,
-                        end = 29,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
                             type = NodeType.ClassBody,
-                            start = 8,
-                            end = 29,
+                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 29, 29)),
                             body = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.MethodDefinition,
-                                    start = 9,
-                                    end = 28,
+                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 28, 28)),
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 22, 22)), "async"),
                                     @static = true,
@@ -1424,8 +1283,7 @@ namespace AcornSharp.Cli
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
-                                        start = 22,
-                                        end = 28,
+                                        loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 28, 28)),
                                         id = null,
                                         generator = true,
                                         bexpression = false,
@@ -1434,8 +1292,7 @@ namespace AcornSharp.Cli
                                         fbody = new Node
                                         {
                                             type = NodeType.BlockStatement,
-                                            start = 25,
-                                            end = 28,
+                                            loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 28, 28)),
                                             body = new List<Node>()
                                         }
                                     }
@@ -1464,29 +1321,25 @@ namespace AcornSharp.Cli
             Test("class A {async await() { }}", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 27,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        start = 0,
-                        end = 27,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
                             type = NodeType.ClassBody,
-                            start = 8,
-                            end = 27,
+                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 27, 27)),
                             body = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.MethodDefinition,
-                                    start = 9,
-                                    end = 26,
+                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 26, 26)),
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 20, 20)), "await"),
                                     @static = false,
@@ -1494,8 +1347,7 @@ namespace AcornSharp.Cli
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
-                                        start = 20,
-                                        end = 26,
+                                        loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 26, 26)),
                                         id = null,
                                         generator = false,
                                         bexpression = false,
@@ -1504,8 +1356,7 @@ namespace AcornSharp.Cli
                                         fbody = new Node
                                         {
                                             type = NodeType.BlockStatement,
-                                            start = 23,
-                                            end = 26,
+                                            loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 26, 26)),
                                             body = new List<Node>()
                                         }
                                     }
@@ -1520,29 +1371,25 @@ namespace AcornSharp.Cli
             Test("class A {static async await() { }}", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 34,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ClassDeclaration,
-                        start = 0,
-                        end = 34,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new Node
                         {
                             type = NodeType.ClassBody,
-                            start = 8,
-                            end = 34,
+                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 34, 34)),
                             body = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.MethodDefinition,
-                                    start = 9,
-                                    end = 33,
+                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 33, 33)),
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 27, 27)), "await"),
                                     @static = true,
@@ -1550,8 +1397,7 @@ namespace AcornSharp.Cli
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
-                                        start = 27,
-                                        end = 33,
+                                        loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 33, 33)),
                                         id = null,
                                         generator = false,
                                         bexpression = false,
@@ -1560,8 +1406,7 @@ namespace AcornSharp.Cli
                                         fbody = new Node
                                         {
                                             type = NodeType.BlockStatement,
-                                            start = 30,
-                                            end = 33,
+                                            loc = new SourceLocation(new Position(1, 30, 30), new Position(1, 33, 33)),
                                             body = new List<Node>()
                                         }
                                     }
@@ -1585,15 +1430,13 @@ namespace AcornSharp.Cli
             Test("await", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 5,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 5,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)),
                         expression = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)), "await")
                     }
                 },
@@ -1611,15 +1454,13 @@ namespace AcornSharp.Cli
             Test("async function foo(a, b) { await a }", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 36,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 36, 36)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        start = 0,
-                        end = 36,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 36, 36)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18)), "foo"),
                         generator = false,
                         bexpression = false,
@@ -1632,20 +1473,17 @@ namespace AcornSharp.Cli
                         fbody = new Node
                         {
                             type = NodeType.BlockStatement,
-                            start = 25,
-                            end = 36,
+                            loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 36, 36)),
                             body = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.ExpressionStatement,
-                                    start = 27,
-                                    end = 34,
+                                    loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 34, 34)),
                                     expression = new Node
                                     {
                                         type = NodeType.AwaitExpression,
-                                        start = 27,
-                                        end = 34,
+                                        loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 34, 34)),
                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 33, 33), new Position(1, 34, 34)), "a")
                                     }
                                 }
@@ -1659,20 +1497,17 @@ namespace AcornSharp.Cli
             Test("(async function foo(a) { await a })", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 35,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 35,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
                         expression = new Node
                         {
                             type = NodeType.FunctionExpression,
-                            start = 1,
-                            end = 34,
+                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 34, 34)),
                             id =  new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 19, 19)), "foo"),
                             generator = false,
                             bexpression = false,
@@ -1684,20 +1519,17 @@ namespace AcornSharp.Cli
                             fbody = new Node
                             {
                                 type = NodeType.BlockStatement,
-                                start = 23,
-                                end = 34,
+                                loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 34, 34)),
                                 body = new List<Node>
                                 {
                                     new Node
                                     {
                                         type = NodeType.ExpressionStatement,
-                                        start = 25,
-                                        end = 32,
+                                        loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 32, 32)),
                                         expression = new Node
                                         {
                                             type = NodeType.AwaitExpression,
-                                            start = 25,
-                                            end = 32,
+                                            loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 32, 32)),
                                             argument = new IdentifierNode(new SourceLocation(new Position(1, 31, 31), new Position(1, 32, 32)), "a")
                                         }
                                     }
@@ -1712,20 +1544,17 @@ namespace AcornSharp.Cli
             Test("(async (a) => await a)", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 22,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 22,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
                         expression = new Node
                         {
                             type = NodeType.ArrowFunctionExpression,
-                            start = 1,
-                            end = 21,
+                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 21, 21)),
                             id = null,
                             generator = false,
                             bexpression = true,
@@ -1737,8 +1566,7 @@ namespace AcornSharp.Cli
                             fbody = new Node
                             {
                                 type = NodeType.AwaitExpression,
-                                start = 14,
-                                end = 21,
+                                loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 21, 21)),
                                 argument = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 21, 21)), "a")
                             }
                         }
@@ -1750,27 +1578,23 @@ namespace AcornSharp.Cli
             Test("({async foo(a) { await a }})", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 28,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 28,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28)),
                         expression = new Node
                         {
                             type = NodeType.ObjectExpression,
-                            start = 1,
-                            end = 27,
+                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 27, 27)),
                             properties = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.Property,
-                                    start = 2,
-                                    end = 26,
+                                    loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 26, 26)),
                                     method = true,
                                     shorthand = false,
                                     computed = false,
@@ -1779,8 +1603,7 @@ namespace AcornSharp.Cli
                                     value = new Node
                                     {
                                         type = NodeType.FunctionExpression,
-                                        start = 11,
-                                        end = 26,
+                                        loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 26, 26)),
                                         id = null,
                                         generator = false,
                                         bexpression = false,
@@ -1792,20 +1615,17 @@ namespace AcornSharp.Cli
                                         fbody = new Node
                                         {
                                             type = NodeType.BlockStatement,
-                                            start = 15,
-                                            end = 26,
+                                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 26, 26)),
                                             body = new List<Node>
                                             {
                                                 new Node
                                                 {
                                                     type = NodeType.ExpressionStatement,
-                                                    start = 17,
-                                                    end = 24,
+                                                    loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 24, 24)),
                                                     expression = new Node
                                                     {
                                                         type = NodeType.AwaitExpression,
-                                                        start = 17,
-                                                        end = 24,
+                                                        loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 24, 24)),
                                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 23, 23), new Position(1, 24, 24)), "a")
                                                     }
                                                 }
@@ -1823,34 +1643,29 @@ namespace AcornSharp.Cli
             Test("(class {async foo(a) { await a }})", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 34,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 34,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34)),
                         expression = new Node
                         {
                             type = NodeType.ClassExpression,
-                            start = 1,
-                            end = 33,
+                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 33, 33)),
                             id = null,
                             superClass = null,
                             fbody = new Node
                             {
                                 type = NodeType.ClassBody,
-                                start = 7,
-                                end = 33,
+                                loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 33, 33)),
                                 body = new List<Node>
                                 {
                                     new Node
                                     {
                                         type = NodeType.MethodDefinition,
-                                        start = 8,
-                                        end = 32,
+                                        loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 32, 32)),
                                         computed = false,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 17, 17)), "foo"),
                                         @static = false,
@@ -1858,8 +1673,7 @@ namespace AcornSharp.Cli
                                         value = new Node
                                         {
                                             type = NodeType.FunctionExpression,
-                                            start = 17,
-                                            end = 32,
+                                            loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 32, 32)),
                                             id = null,
                                             generator = false,
                                             bexpression = false,
@@ -1871,20 +1685,17 @@ namespace AcornSharp.Cli
                                             fbody = new Node
                                             {
                                                 type = NodeType.BlockStatement,
-                                                start = 21,
-                                                end = 32,
+                                                loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 32, 32)),
                                                 body = new List<Node>
                                                 {
                                                     new Node
                                                     {
                                                         type = NodeType.ExpressionStatement,
-                                                        start = 23,
-                                                        end = 30,
+                                                        loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 30, 30)),
                                                         expression = new Node
                                                         {
                                                             type = NodeType.AwaitExpression,
-                                                            start = 23,
-                                                            end = 30,
+                                                            loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 30, 30)),
                                                             argument = new IdentifierNode(new SourceLocation(new Position(1, 29, 29), new Position(1, 30, 30)), "a")
                                                         }
                                                     }
@@ -1904,15 +1715,13 @@ namespace AcornSharp.Cli
             Test("async function foo(a, b) { await a + await b }", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 46,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 46, 46)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        start = 0,
-                        end = 46,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 46, 46)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18)), "foo"),
                         generator = false,
                         bexpression = false,
@@ -1925,33 +1734,28 @@ namespace AcornSharp.Cli
                         fbody = new Node
                         {
                             type = NodeType.BlockStatement,
-                            start = 25,
-                            end = 46,
+                            loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 46, 46)),
                             body = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.ExpressionStatement,
-                                    start = 27,
-                                    end = 44,
+                                    loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 44, 44)),
                                     expression = new Node
                                     {
                                         type = NodeType.BinaryExpression,
-                                        start = 27,
-                                        end = 44,
+                                        loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 44, 44)),
                                         left = new Node
                                         {
                                             type = NodeType.AwaitExpression,
-                                            start = 27,
-                                            end = 34,
+                                            loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 34, 34)),
                                             argument = new IdentifierNode(new SourceLocation(new Position(1, 33, 33), new Position(1, 34, 34)), "a")
                                         },
                                         @operator = "+",
                                         right = new Node
                                         {
                                             type = NodeType.AwaitExpression,
-                                            start = 37,
-                                            end = 44,
+                                            loc = new SourceLocation(new Position(1, 37, 37), new Position(1, 44, 44)),
                                             argument = new IdentifierNode(new SourceLocation(new Position(1, 43, 43), new Position(1, 44, 44)), "b")
                                         }
                                     }
@@ -1967,15 +1771,13 @@ namespace AcornSharp.Cli
             Test("function foo() { await + 1 }", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 28,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        start = 0,
-                        end = 28,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
                         generator = false,
                         bexpression = false,
@@ -1984,27 +1786,23 @@ namespace AcornSharp.Cli
                         fbody = new Node
                         {
                             type = NodeType.BlockStatement,
-                            start = 15,
-                            end = 28,
+                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 28, 28)),
                             body = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.ExpressionStatement,
-                                    start = 17,
-                                    end = 26,
+                                    loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 26, 26)),
                                     expression = new Node
                                     {
                                         type = NodeType.BinaryExpression,
-                                        start = 17,
-                                        end = 26,
+                                        loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 26, 26)),
                                         left = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 22, 22)), "await"),
                                         @operator = "+",
                                         right = new Node
                                         {
                                             type = NodeType.Literal,
-                                            start = 25,
-                                            end = 26,
+                                            loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 26, 26)),
                                             value = 1,
                                             raw = "1"
                                         }
@@ -2021,15 +1819,13 @@ namespace AcornSharp.Cli
             Test("async function foo() { await + 1 }", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 34,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        start = 0,
-                        end = 34,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18)), "foo"),
                         generator = false,
                         bexpression = false,
@@ -2038,32 +1834,27 @@ namespace AcornSharp.Cli
                         fbody = new Node
                         {
                             type = NodeType.BlockStatement,
-                            start = 21,
-                            end = 34,
+                            loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 34, 34)),
                             body = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.ExpressionStatement,
-                                    start = 23,
-                                    end = 32,
+                                    loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 32, 32)),
                                     expression = new Node
                                     {
                                         type = NodeType.AwaitExpression,
-                                        start = 23,
-                                        end = 32,
+                                        loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 32, 32)),
                                         argument = new Node
                                         {
                                             type = NodeType.UnaryExpression,
-                                            start = 29,
-                                            end = 32,
+                                            loc = new SourceLocation(new Position(1, 29, 29), new Position(1, 32, 32)),
                                             @operator = "+",
                                             prefix = true,
                                             argument = new Node
                                             {
                                                 type = NodeType.Literal,
-                                                start = 31,
-                                                end = 32,
+                                                loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 32, 32)),
                                                 value = 1,
                                                 raw = "1"
                                             }
@@ -2097,15 +1888,13 @@ namespace AcornSharp.Cli
             Test("async function foo(a = async function foo() { await b }) {}", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 59,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 59, 59)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        start = 0,
-                        end = 59,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 59, 59)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18)), "foo"),
                         generator = false,
                         bexpression = false,
@@ -2115,14 +1904,12 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.AssignmentPattern,
-                                start = 19,
-                                end = 55,
+                                loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 55, 55)),
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 20, 20)), "a"),
                                 right = new Node
                                 {
                                     type = NodeType.FunctionExpression,
-                                    start = 23,
-                                    end = 55,
+                                    loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 55, 55)),
                                     id =  new IdentifierNode(new SourceLocation(new Position(1, 38, 38), new Position(1, 41, 41)), "foo"),
                                     generator = false,
                                     bexpression = false,
@@ -2131,20 +1918,17 @@ namespace AcornSharp.Cli
                                     fbody = new Node
                                     {
                                         type = NodeType.BlockStatement,
-                                        start = 44,
-                                        end = 55,
+                                        loc = new SourceLocation(new Position(1, 44, 44), new Position(1, 55, 55)),
                                         body = new List<Node>
                                         {
                                             new Node
                                             {
                                                 type = NodeType.ExpressionStatement,
-                                                start = 46,
-                                                end = 53,
+                                                loc = new SourceLocation(new Position(1, 46, 46), new Position(1, 53, 53)),
                                                 expression = new Node
                                                 {
                                                     type = NodeType.AwaitExpression,
-                                                    start = 46,
-                                                    end = 53,
+                                                    loc = new SourceLocation(new Position(1, 46, 46), new Position(1, 53, 53)),
                                                     argument = new IdentifierNode(new SourceLocation(new Position(1, 52, 52), new Position(1, 53, 53)), "b")
                                                 }
                                             }
@@ -2156,8 +1940,7 @@ namespace AcornSharp.Cli
                         fbody = new Node
                         {
                             type = NodeType.BlockStatement,
-                            start = 57,
-                            end = 59,
+                            loc = new SourceLocation(new Position(1, 57, 57), new Position(1, 59, 59)),
                             body = new List<Node>()
                         }
                     }
@@ -2168,15 +1951,13 @@ namespace AcornSharp.Cli
             Test("async function foo(a = async () => await b) {}", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 46,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 46, 46)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        start = 0,
-                        end = 46,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 46, 46)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18)), "foo"),
                         generator = false,
                         bexpression = false,
@@ -2186,14 +1967,12 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.AssignmentPattern,
-                                start = 19,
-                                end = 42,
+                                loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 42, 42)),
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 20, 20)), "a"),
                                 right = new Node
                                 {
                                     type = NodeType.ArrowFunctionExpression,
-                                    start = 23,
-                                    end = 42,
+                                    loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 42, 42)),
                                     id = null,
                                     generator = false,
                                     bexpression = true,
@@ -2202,8 +1981,7 @@ namespace AcornSharp.Cli
                                     fbody = new Node
                                     {
                                         type = NodeType.AwaitExpression,
-                                        start = 35,
-                                        end = 42,
+                                        loc = new SourceLocation(new Position(1, 35, 35), new Position(1, 42, 42)),
                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 41, 41), new Position(1, 42, 42)), "b")
                                     }
                                 }
@@ -2212,8 +1990,7 @@ namespace AcornSharp.Cli
                         fbody = new Node
                         {
                             type = NodeType.BlockStatement,
-                            start = 44,
-                            end = 46,
+                            loc = new SourceLocation(new Position(1, 44, 44), new Position(1, 46, 46)),
                             body = new List<Node>()
                         }
                     }
@@ -2224,15 +2001,13 @@ namespace AcornSharp.Cli
             Test("async function foo(a = {async bar() { await b }}) {}", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 52,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 52, 52)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        start = 0,
-                        end = 52,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 52, 52)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18)), "foo"),
                         generator = false,
                         bexpression = false,
@@ -2242,21 +2017,18 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.AssignmentPattern,
-                                start = 19,
-                                end = 48,
+                                loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 48, 48)),
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 20, 20)), "a"),
                                 right = new Node
                                 {
                                     type = NodeType.ObjectExpression,
-                                    start = 23,
-                                    end = 48,
+                                    loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 48, 48)),
                                     properties = new List<Node>
                                     {
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            start = 24,
-                                            end = 47,
+                                            loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 47, 47)),
                                             method = true,
                                             shorthand = false,
                                             computed = false,
@@ -2265,8 +2037,7 @@ namespace AcornSharp.Cli
                                             value = new Node
                                             {
                                                 type = NodeType.FunctionExpression,
-                                                start = 33,
-                                                end = 47,
+                                                loc = new SourceLocation(new Position(1, 33, 33), new Position(1, 47, 47)),
                                                 id = null,
                                                 generator = false,
                                                 bexpression = false,
@@ -2275,20 +2046,17 @@ namespace AcornSharp.Cli
                                                 fbody = new Node
                                                 {
                                                     type = NodeType.BlockStatement,
-                                                    start = 36,
-                                                    end = 47,
+                                                    loc = new SourceLocation(new Position(1, 36, 36), new Position(1, 47, 47)),
                                                     body = new List<Node>
                                                     {
                                                         new Node
                                                         {
                                                             type = NodeType.ExpressionStatement,
-                                                            start = 38,
-                                                            end = 45,
+                                                            loc = new SourceLocation(new Position(1, 38, 38), new Position(1, 45, 45)),
                                                             expression = new Node
                                                             {
                                                                 type = NodeType.AwaitExpression,
-                                                                start = 38,
-                                                                end = 45,
+                                                                loc = new SourceLocation(new Position(1, 38, 38), new Position(1, 45, 45)),
                                                                 argument = new IdentifierNode(new SourceLocation(new Position(1, 44, 44), new Position(1, 45, 45)), "b")
                                                             }
                                                         }
@@ -2303,8 +2071,7 @@ namespace AcornSharp.Cli
                         fbody = new Node
                         {
                             type = NodeType.BlockStatement,
-                            start = 50,
-                            end = 52,
+                            loc = new SourceLocation(new Position(1, 50, 50), new Position(1, 52, 52)),
                             body = new List<Node>()
                         }
                     }
@@ -2315,15 +2082,13 @@ namespace AcornSharp.Cli
             Test("async function foo(a = class {async bar() { await b }}) {}", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 58,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 58, 58)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        start = 0,
-                        end = 58,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 58, 58)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18)), "foo"),
                         generator = false,
                         bexpression = false,
@@ -2333,28 +2098,24 @@ namespace AcornSharp.Cli
                             new Node
                             {
                                 type = NodeType.AssignmentPattern,
-                                start = 19,
-                                end = 54,
+                                loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 54, 54)),
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 20, 20)), "a"),
                                 right = new Node
                                 {
                                     type = NodeType.ClassExpression,
-                                    start = 23,
-                                    end = 54,
+                                    loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 54, 54)),
                                     id = null,
                                     superClass = null,
                                     fbody = new Node
                                     {
                                         type = NodeType.ClassBody,
-                                        start = 29,
-                                        end = 54,
+                                        loc = new SourceLocation(new Position(1, 29, 29), new Position(1, 54, 54)),
                                         body = new List<Node>
                                         {
                                             new Node
                                             {
                                                 type = NodeType.MethodDefinition,
-                                                start = 30,
-                                                end = 53,
+                                                loc = new SourceLocation(new Position(1, 30, 30), new Position(1, 53, 53)),
                                                 computed = false,
                                                 key = new IdentifierNode(new SourceLocation(new Position(1, 36, 36), new Position(1, 39, 39)), "bar"),
                                                 @static = false,
@@ -2362,8 +2123,7 @@ namespace AcornSharp.Cli
                                                 value = new Node
                                                 {
                                                     type = NodeType.FunctionExpression,
-                                                    start = 39,
-                                                    end = 53,
+                                                    loc = new SourceLocation(new Position(1, 39, 39), new Position(1, 53, 53)),
                                                     id = null,
                                                     generator = false,
                                                     bexpression = false,
@@ -2372,20 +2132,17 @@ namespace AcornSharp.Cli
                                                     fbody = new Node
                                                     {
                                                         type = NodeType.BlockStatement,
-                                                        start = 42,
-                                                        end = 53,
+                                                        loc = new SourceLocation(new Position(1, 42, 42), new Position(1, 53, 53)),
                                                         body = new List<Node>
                                                         {
                                                             new Node
                                                             {
                                                                 type = NodeType.ExpressionStatement,
-                                                                start = 44,
-                                                                end = 51,
+                                                                loc = new SourceLocation(new Position(1, 44, 44), new Position(1, 51, 51)),
                                                                 expression = new Node
                                                                 {
                                                                     type = NodeType.AwaitExpression,
-                                                                    start = 44,
-                                                                    end = 51,
+                                                                    loc = new SourceLocation(new Position(1, 44, 44), new Position(1, 51, 51)),
                                                                     argument = new IdentifierNode(new SourceLocation(new Position(1, 50, 50), new Position(1, 51, 51)), "b")
                                                                 }
                                                             }
@@ -2401,8 +2158,7 @@ namespace AcornSharp.Cli
                         fbody = new Node
                         {
                             type = NodeType.BlockStatement,
-                            start = 56,
-                            end = 58,
+                            loc = new SourceLocation(new Position(1, 56, 56), new Position(1, 58, 58)),
                             body = new List<Node>()
                         }
                     }
@@ -2414,15 +2170,13 @@ namespace AcornSharp.Cli
             Test("async function wrap() {\n(a = await b)\n}", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 39,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 39)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        start = 0,
-                        end = 39,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 39)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 19, 19)), "wrap"),
                         generator = false,
                         bexpression = false,
@@ -2431,27 +2185,23 @@ namespace AcornSharp.Cli
                         fbody = new Node
                         {
                             type = NodeType.BlockStatement,
-                            start = 22,
-                            end = 39,
+                            loc = new SourceLocation(new Position(1, 22, 22), new Position(3, 1, 39)),
                             body = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.ExpressionStatement,
-                                    start = 24,
-                                    end = 37,
+                                    loc = new SourceLocation(new Position(2, 0, 24), new Position(2, 13, 37)),
                                     expression = new Node
                                     {
                                         type = NodeType.AssignmentExpression,
-                                        start = 25,
-                                        end = 36,
+                                        loc = new SourceLocation(new Position(2, 1, 25), new Position(2, 12, 36)),
                                         @operator = "=",
                                         left = new IdentifierNode(new SourceLocation(new Position(2, 1, 25), new Position(2, 2, 26)), "a"),
                                         right = new Node
                                         {
                                             type = NodeType.AwaitExpression,
-                                            start = 29,
-                                            end = 36,
+                                            loc = new SourceLocation(new Position(2, 5, 29), new Position(2, 12, 36)),
                                             argument = new IdentifierNode(new SourceLocation(new Position(2, 11, 35), new Position(2, 12, 36)), "b")
                                         }
                                     }
@@ -2467,15 +2217,13 @@ namespace AcornSharp.Cli
             Test("async function wrap() {\n({a = await b} = obj)\n}", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 47,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 47)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        start = 0,
-                        end = 47,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 47)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 19, 19)), "wrap"),
                         generator = false,
                         bexpression = false,
@@ -2484,33 +2232,28 @@ namespace AcornSharp.Cli
                         fbody = new Node
                         {
                             type = NodeType.BlockStatement,
-                            start = 22,
-                            end = 47,
+                            loc = new SourceLocation(new Position(1, 22, 22), new Position(3, 1, 47)),
                             body = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.ExpressionStatement,
-                                    start = 24,
-                                    end = 45,
+                                    loc = new SourceLocation(new Position(2, 0, 24), new Position(2, 21, 45)),
                                     expression = new Node
                                     {
                                         type = NodeType.AssignmentExpression,
-                                        start = 25,
-                                        end = 44,
+                                        loc = new SourceLocation(new Position(2, 1, 25), new Position(2, 20, 44)),
                                         @operator = "=",
                                         left = new Node
                                         {
                                             type = NodeType.ObjectPattern,
-                                            start = 25,
-                                            end = 38,
+                                            loc = new SourceLocation(new Position(2, 1, 25), new Position(2, 14, 38)),
                                             properties = new List<Node>
                                             {
                                                 new Node
                                                 {
                                                     type = NodeType.Property,
-                                                    start = 26,
-                                                    end = 37,
+                                                    loc = new SourceLocation(new Position(2, 2, 26), new Position(2, 13, 37)),
                                                     method = false,
                                                     shorthand = true,
                                                     computed = false,
@@ -2519,14 +2262,12 @@ namespace AcornSharp.Cli
                                                     value = new Node
                                                     {
                                                         type = NodeType.AssignmentPattern,
-                                                        start = 26,
-                                                        end = 37,
+                                                        loc = new SourceLocation(new Position(2, 2, 26), new Position(2, 13, 37)),
                                                         left = new IdentifierNode(new SourceLocation(new Position(2, 2, 26), new Position(2, 3, 27)), "a"),
                                                         right = new Node
                                                         {
                                                             type = NodeType.AwaitExpression,
-                                                            start = 30,
-                                                            end = 37,
+                                                            loc = new SourceLocation(new Position(2, 6, 30), new Position(2, 13, 37)),
                                                             argument = new IdentifierNode(new SourceLocation(new Position(2, 12, 36), new Position(2, 13, 37)), "b")
                                                         }
                                                     }
@@ -2547,15 +2288,13 @@ namespace AcornSharp.Cli
             Test("function* wrap() {\nasync(a = yield b)\n}", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 39,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 39)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.FunctionDeclaration,
-                        start = 0,
-                        end = 39,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 39)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 14, 14)), "wrap"),
                         @params = new List<Node>(),
                         generator = true,
@@ -2564,35 +2303,30 @@ namespace AcornSharp.Cli
                         fbody = new Node
                         {
                             type = NodeType.BlockStatement,
-                            start = 17,
-                            end = 39,
+                            loc = new SourceLocation(new Position(1, 17, 17), new Position(3, 1, 39)),
                             body = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.ExpressionStatement,
-                                    start = 19,
-                                    end = 37,
+                                    loc = new SourceLocation(new Position(2, 0, 19), new Position(2, 18, 37)),
                                     expression = new Node
                                     {
                                         type = NodeType.CallExpression,
-                                        start = 19,
-                                        end = 37,
+                                        loc = new SourceLocation(new Position(2, 0, 19), new Position(2, 18, 37)),
                                         callee = new IdentifierNode(new SourceLocation(new Position(2, 0, 19), new Position(2, 5, 24)), "async"),
                                         arguments = new List<Node>
                                         {
                                             new Node
                                             {
                                                 type = NodeType.AssignmentExpression,
-                                                start = 25,
-                                                end = 36,
+                                                loc = new SourceLocation(new Position(2, 6, 25), new Position(2, 17, 36)),
                                                 @operator = "=",
                                                 left = new IdentifierNode(new SourceLocation(new Position(2, 6, 25), new Position(2, 7, 26)), "a"),
                                                 right = new Node
                                                 {
                                                     type = NodeType.YieldExpression,
-                                                    start = 29,
-                                                    end = 36,
+                                                    loc = new SourceLocation(new Position(2, 10, 29), new Position(2, 17, 36)),
                                                     @delegate = false,
                                                     argument = new IdentifierNode(new SourceLocation(new Position(2, 16, 35), new Position(2, 17, 36)), "b")
                                                 }
@@ -2612,47 +2346,40 @@ namespace AcornSharp.Cli
             Test("f = ({ w = counter(), x = counter(), y = counter(), z = counter() } = { w: null, x: 0, y: false, z: '' }) => {}", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 111,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 111, 111)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 111,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 111, 111)),
                         expression = new Node
                         {
                             type = NodeType.AssignmentExpression,
-                            start = 0,
-                            end = 111,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 111, 111)),
                             @operator = "=",
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "f"),
                             right = new Node
                             {
                                 type = NodeType.ArrowFunctionExpression,
-                                start = 4,
-                                end = 111,
+                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 111, 111)),
                                 id = null,
                                 @params = new List<Node>
                                 {
                                     new Node
                                     {
                                         type = NodeType.AssignmentPattern,
-                                        start = 5,
-                                        end = 104,
+                                        loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 104, 104)),
                                         left = new Node
                                         {
                                             type = NodeType.ObjectPattern,
-                                            start = 5,
-                                            end = 67,
+                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 67, 67)),
                                             properties = new List<Node>
                                             {
                                                 new Node
                                                 {
                                                     type = NodeType.Property,
-                                                    start = 7,
-                                                    end = 20,
+                                                    loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 20, 20)),
                                                     method = false,
                                                     shorthand = true,
                                                     computed = false,
@@ -2661,14 +2388,12 @@ namespace AcornSharp.Cli
                                                     value = new Node
                                                     {
                                                         type = NodeType.AssignmentPattern,
-                                                        start = 7,
-                                                        end = 20,
+                                                        loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 20, 20)),
                                                         left = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "w"),
                                                         right = new Node
                                                         {
                                                             type = NodeType.CallExpression,
-                                                            start = 11,
-                                                            end = 20,
+                                                            loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 20, 20)),
                                                             callee = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 18, 18)), "counter"),
                                                             arguments = new List<Node>()
                                                         }
@@ -2677,8 +2402,7 @@ namespace AcornSharp.Cli
                                                 new Node
                                                 {
                                                     type = NodeType.Property,
-                                                    start = 22,
-                                                    end = 35,
+                                                    loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 35, 35)),
                                                     method = false,
                                                     shorthand = true,
                                                     computed = false,
@@ -2687,14 +2411,12 @@ namespace AcornSharp.Cli
                                                     value = new Node
                                                     {
                                                         type = NodeType.AssignmentPattern,
-                                                        start = 22,
-                                                        end = 35,
+                                                        loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 35, 35)),
                                                         left = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23)), "x"),
                                                         right = new Node
                                                         {
                                                             type = NodeType.CallExpression,
-                                                            start = 26,
-                                                            end = 35,
+                                                            loc = new SourceLocation(new Position(1, 26, 26), new Position(1, 35, 35)),
                                                             callee = new IdentifierNode(new SourceLocation(new Position(1, 26, 26), new Position(1, 33, 33)), "counter"),
                                                             arguments = new List<Node>()
                                                         }
@@ -2703,8 +2425,7 @@ namespace AcornSharp.Cli
                                                 new Node
                                                 {
                                                     type = NodeType.Property,
-                                                    start = 37,
-                                                    end = 50,
+                                                    loc = new SourceLocation(new Position(1, 37, 37), new Position(1, 50, 50)),
                                                     method = false,
                                                     shorthand = true,
                                                     computed = false,
@@ -2713,14 +2434,12 @@ namespace AcornSharp.Cli
                                                     value = new Node
                                                     {
                                                         type = NodeType.AssignmentPattern,
-                                                        start = 37,
-                                                        end = 50,
+                                                        loc = new SourceLocation(new Position(1, 37, 37), new Position(1, 50, 50)),
                                                         left = new IdentifierNode(new SourceLocation(new Position(1, 37, 37), new Position(1, 38, 38)), "y"),
                                                         right = new Node
                                                         {
                                                             type = NodeType.CallExpression,
-                                                            start = 41,
-                                                            end = 50,
+                                                            loc = new SourceLocation(new Position(1, 41, 41), new Position(1, 50, 50)),
                                                             callee = new IdentifierNode(new SourceLocation(new Position(1, 41, 41), new Position(1, 48, 48)), "counter"),
                                                             arguments = new List<Node>()
                                                         }
@@ -2729,8 +2448,7 @@ namespace AcornSharp.Cli
                                                 new Node
                                                 {
                                                     type = NodeType.Property,
-                                                    start = 52,
-                                                    end = 65,
+                                                    loc = new SourceLocation(new Position(1, 52, 52), new Position(1, 65, 65)),
                                                     method = false,
                                                     shorthand = true,
                                                     computed = false,
@@ -2739,14 +2457,12 @@ namespace AcornSharp.Cli
                                                     value = new Node
                                                     {
                                                         type = NodeType.AssignmentPattern,
-                                                        start = 52,
-                                                        end = 65,
+                                                        loc = new SourceLocation(new Position(1, 52, 52), new Position(1, 65, 65)),
                                                         left = new IdentifierNode(new SourceLocation(new Position(1, 52, 52), new Position(1, 53, 53)), "z"),
                                                         right = new Node
                                                         {
                                                             type = NodeType.CallExpression,
-                                                            start = 56,
-                                                            end = 65,
+                                                            loc = new SourceLocation(new Position(1, 56, 56), new Position(1, 65, 65)),
                                                             callee = new IdentifierNode(new SourceLocation(new Position(1, 56, 56), new Position(1, 63, 63)), "counter"),
                                                             arguments = new List<Node>()
                                                         }
@@ -2757,15 +2473,13 @@ namespace AcornSharp.Cli
                                         right = new Node
                                         {
                                             type = NodeType.ObjectExpression,
-                                            start = 70,
-                                            end = 104,
+                                            loc = new SourceLocation(new Position(1, 70, 70), new Position(1, 104, 104)),
                                             properties = new List<Node>
                                             {
                                                 new Node
                                                 {
                                                     type = NodeType.Property,
-                                                    start = 72,
-                                                    end = 79,
+                                                    loc = new SourceLocation(new Position(1, 72, 72), new Position(1, 79, 79)),
                                                     method = false,
                                                     shorthand = false,
                                                     computed = false,
@@ -2774,8 +2488,7 @@ namespace AcornSharp.Cli
                                                     value = new Node
                                                     {
                                                         type = NodeType.Literal,
-                                                        start = 75,
-                                                        end = 79,
+                                                        loc = new SourceLocation(new Position(1, 75, 75), new Position(1, 79, 79)),
                                                         value = null,
                                                         raw = "null"
                                                     }
@@ -2783,8 +2496,7 @@ namespace AcornSharp.Cli
                                                 new Node
                                                 {
                                                     type = NodeType.Property,
-                                                    start = 81,
-                                                    end = 85,
+                                                    loc = new SourceLocation(new Position(1, 81, 81), new Position(1, 85, 85)),
                                                     method = false,
                                                     shorthand = false,
                                                     computed = false,
@@ -2793,8 +2505,7 @@ namespace AcornSharp.Cli
                                                     value = new Node
                                                     {
                                                         type = NodeType.Literal,
-                                                        start = 84,
-                                                        end = 85,
+                                                        loc = new SourceLocation(new Position(1, 84, 84), new Position(1, 85, 85)),
                                                         value = 0,
                                                         raw = "0"
                                                     }
@@ -2802,8 +2513,7 @@ namespace AcornSharp.Cli
                                                 new Node
                                                 {
                                                     type = NodeType.Property,
-                                                    start = 87,
-                                                    end = 95,
+                                                    loc = new SourceLocation(new Position(1, 87, 87), new Position(1, 95, 95)),
                                                     method = false,
                                                     shorthand = false,
                                                     computed = false,
@@ -2812,8 +2522,7 @@ namespace AcornSharp.Cli
                                                     value = new Node
                                                     {
                                                         type = NodeType.Literal,
-                                                        start = 90,
-                                                        end = 95,
+                                                        loc = new SourceLocation(new Position(1, 90, 90), new Position(1, 95, 95)),
                                                         value = false,
                                                         raw = "false"
                                                     }
@@ -2821,8 +2530,7 @@ namespace AcornSharp.Cli
                                                 new Node
                                                 {
                                                     type = NodeType.Property,
-                                                    start = 97,
-                                                    end = 102,
+                                                    loc = new SourceLocation(new Position(1, 97, 97), new Position(1, 102, 102)),
                                                     method = false,
                                                     shorthand = false,
                                                     computed = false,
@@ -2831,8 +2539,7 @@ namespace AcornSharp.Cli
                                                     value = new Node
                                                     {
                                                         type = NodeType.Literal,
-                                                        start = 100,
-                                                        end = 102,
+                                                        loc = new SourceLocation(new Position(1, 100, 100), new Position(1, 102, 102)),
                                                         value = "",
                                                         raw = "''"
                                                     }
@@ -2847,8 +2554,7 @@ namespace AcornSharp.Cli
                                 fbody = new Node
                                 {
                                     type = NodeType.BlockStatement,
-                                    start = 109,
-                                    end = 111,
+                                    loc = new SourceLocation(new Position(1, 109, 109), new Position(1, 111, 111)),
                                     body = new List<Node>()
                                 }
                             }
@@ -2916,27 +2622,23 @@ namespace AcornSharp.Cli
             Test("({async})", new Node
                 {
                     type = NodeType.Program,
-                    start = 0,
-                    end = 9,
+                    loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)),
                     body = new List<Node>
                     {
                         new Node
                         {
                             type = NodeType.ExpressionStatement,
-                            start = 0,
-                            end = 9,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)),
                             expression = new Node
                             {
                                 type = NodeType.ObjectExpression,
-                                start = 1,
-                                end = 8,
+                                loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 8, 8)),
                                 properties = new List<Node>
                                 {
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        start = 2,
-                                        end = 7,
+                                        loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)),
                                         method = false,
                                         shorthand = true,
                                         computed = false,
@@ -2956,27 +2658,23 @@ namespace AcornSharp.Cli
             Test("({async, foo})", new Node
                 {
                     type = NodeType.Program,
-                    start = 0,
-                    end = 14,
+                    loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
                     body = new List<Node>
                     {
                         new Node
                         {
                             type = NodeType.ExpressionStatement,
-                            start = 0,
-                            end = 14,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
                             expression = new Node
                             {
                                 type = NodeType.ObjectExpression,
-                                start = 1,
-                                end = 13,
+                                loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 13, 13)),
                                 properties = new List<Node>
                                 {
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        start = 2,
-                                        end = 7,
+                                        loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)),
                                         method = false,
                                         shorthand = true,
                                         computed = false,
@@ -2987,8 +2685,7 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        start = 9,
-                                        end = 12,
+                                        loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)),
                                         method = false,
                                         shorthand = true,
                                         computed = false,
@@ -3008,33 +2705,28 @@ namespace AcornSharp.Cli
             Test("({async = 0} = {})", new Node
                 {
                     type = NodeType.Program,
-                    start = 0,
-                    end = 18,
+                    loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
                     body = new List<Node>
                     {
                         new Node
                         {
                             type = NodeType.ExpressionStatement,
-                            start = 0,
-                            end = 18,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
                             expression = new Node
                             {
                                 type = NodeType.AssignmentExpression,
-                                start = 1,
-                                end = 17,
+                                loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 17, 17)),
                                 @operator = "=",
                                 left = new Node
                                 {
                                     type = NodeType.ObjectPattern,
-                                    start = 1,
-                                    end = 12,
+                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 12, 12)),
                                     properties = new List<Node>
                                     {
                                         new Node
                                         {
                                             type = NodeType.Property,
-                                            start = 2,
-                                            end = 11,
+                                            loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 11, 11)),
                                             method = false,
                                             shorthand = true,
                                             computed = false,
@@ -3043,14 +2735,12 @@ namespace AcornSharp.Cli
                                             value = new Node
                                             {
                                                 type = NodeType.AssignmentPattern,
-                                                start = 2,
-                                                end = 11,
+                                                loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 11, 11)),
                                                 left = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)), "async"),
                                                 right = new Node
                                                 {
                                                     type = NodeType.Literal,
-                                                    start = 10,
-                                                    end = 11,
+                                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)),
                                                     value = 0,
                                                     raw = "0"
                                                 }
@@ -3061,8 +2751,7 @@ namespace AcornSharp.Cli
                                 right = new Node
                                 {
                                     type = NodeType.ObjectExpression,
-                                    start = 15,
-                                    end = 17,
+                                    loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17)),
                                     properties = new List<Node>()
                                 }
                             }
@@ -3077,35 +2766,30 @@ namespace AcornSharp.Cli
             Test("({async \"foo\"(){}})", new Node
                 {
                     type = NodeType.Program,
-                    start = 0,
-                    end = 19,
+                    loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
                     body = new List<Node>
                     {
                         new Node
                         {
                             type = NodeType.ExpressionStatement,
-                            start = 0,
-                            end = 19,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
                             expression = new Node
                             {
                                 type = NodeType.ObjectExpression,
-                                start = 1,
-                                end = 18,
+                                loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 18, 18)),
                                 properties = new List<Node>
                                 {
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        start = 2,
-                                        end = 17,
+                                        loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 17, 17)),
                                         method = true,
                                         shorthand = false,
                                         computed = false,
                                         key = new Node
                                         {
                                             type = NodeType.Literal,
-                                            start = 8,
-                                            end = 13,
+                                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 13, 13)),
                                             value = "foo",
                                             raw = "\"foo\""
                                         },
@@ -3113,8 +2797,7 @@ namespace AcornSharp.Cli
                                         value = new Node
                                         {
                                             type = NodeType.FunctionExpression,
-                                            start = 13,
-                                            end = 17,
+                                            loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 17, 17)),
                                             id = null,
                                             generator = false,
                                             bexpression = false,
@@ -3123,8 +2806,7 @@ namespace AcornSharp.Cli
                                             fbody = new Node
                                             {
                                                 type = NodeType.BlockStatement,
-                                                start = 15,
-                                                end = 17,
+                                                loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17)),
                                                 body = new List<Node>()
                                             }
                                         }
@@ -3141,35 +2823,30 @@ namespace AcornSharp.Cli
             Test("({async 'foo'(){}})", new Node
                 {
                     type = NodeType.Program,
-                    start = 0,
-                    end = 19,
+                    loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
                     body = new List<Node>
                     {
                         new Node
                         {
                             type = NodeType.ExpressionStatement,
-                            start = 0,
-                            end = 19,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
                             expression = new Node
                             {
                                 type = NodeType.ObjectExpression,
-                                start = 1,
-                                end = 18,
+                                loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 18, 18)),
                                 properties = new List<Node>
                                 {
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        start = 2,
-                                        end = 17,
+                                        loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 17, 17)),
                                         method = true,
                                         shorthand = false,
                                         computed = false,
                                         key = new Node
                                         {
                                             type = NodeType.Literal,
-                                            start = 8,
-                                            end = 13,
+                                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 13, 13)),
                                             value = "foo",
                                             raw = "'foo'"
                                         },
@@ -3177,8 +2854,7 @@ namespace AcornSharp.Cli
                                         value = new Node
                                         {
                                             type = NodeType.FunctionExpression,
-                                            start = 13,
-                                            end = 17,
+                                            loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 17, 17)),
                                             id = null,
                                             generator = false,
                                             bexpression = false,
@@ -3187,8 +2863,7 @@ namespace AcornSharp.Cli
                                             fbody = new Node
                                             {
                                                 type = NodeType.BlockStatement,
-                                                start = 15,
-                                                end = 17,
+                                                loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17)),
                                                 body = new List<Node>()
                                             }
                                         }
@@ -3205,35 +2880,30 @@ namespace AcornSharp.Cli
             Test("({async 100(){}})", new Node
                 {
                     type = NodeType.Program,
-                    start = 0,
-                    end = 17,
+                    loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
                     body = new List<Node>
                     {
                         new Node
                         {
                             type = NodeType.ExpressionStatement,
-                            start = 0,
-                            end = 17,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
                             expression = new Node
                             {
                                 type = NodeType.ObjectExpression,
-                                start = 1,
-                                end = 16,
+                                loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 16, 16)),
                                 properties = new List<Node>
                                 {
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        start = 2,
-                                        end = 15,
+                                        loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 15, 15)),
                                         method = true,
                                         shorthand = false,
                                         computed = false,
                                         key = new Node
                                         {
                                             type = NodeType.Literal,
-                                            start = 8,
-                                            end = 11,
+                                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 11, 11)),
                                             value = 100,
                                             raw = "100"
                                         },
@@ -3241,8 +2911,7 @@ namespace AcornSharp.Cli
                                         value = new Node
                                         {
                                             type = NodeType.FunctionExpression,
-                                            start = 11,
-                                            end = 15,
+                                            loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 15, 15)),
                                             id = null,
                                             generator = false,
                                             bexpression = false,
@@ -3251,8 +2920,7 @@ namespace AcornSharp.Cli
                                             fbody = new Node
                                             {
                                                 type = NodeType.BlockStatement,
-                                                start = 13,
-                                                end = 15,
+                                                loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 15, 15)),
                                                 body = new List<Node>()
                                             }
                                         }
@@ -3269,27 +2937,23 @@ namespace AcornSharp.Cli
             Test("({async [foo](){}})", new Node
                 {
                     type = NodeType.Program,
-                    start = 0,
-                    end = 19,
+                    loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
                     body = new List<Node>
                     {
                         new Node
                         {
                             type = NodeType.ExpressionStatement,
-                            start = 0,
-                            end = 19,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
                             expression = new Node
                             {
                                 type = NodeType.ObjectExpression,
-                                start = 1,
-                                end = 18,
+                                loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 18, 18)),
                                 properties = new List<Node>
                                 {
                                     new Node
                                     {
                                         type = NodeType.Property,
-                                        start = 2,
-                                        end = 17,
+                                        loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 17, 17)),
                                         method = true,
                                         shorthand = false,
                                         computed = true,
@@ -3298,8 +2962,7 @@ namespace AcornSharp.Cli
                                         value = new Node
                                         {
                                             type = NodeType.FunctionExpression,
-                                            start = 13,
-                                            end = 17,
+                                            loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 17, 17)),
                                             id = null,
                                             generator = false,
                                             bexpression = false,
@@ -3308,8 +2971,7 @@ namespace AcornSharp.Cli
                                             fbody = new Node
                                             {
                                                 type = NodeType.BlockStatement,
-                                                start = 15,
-                                                end = 17,
+                                                loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17)),
                                                 body = new List<Node>()
                                             }
                                         }

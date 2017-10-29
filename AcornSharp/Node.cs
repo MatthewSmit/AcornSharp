@@ -25,9 +25,7 @@ namespace AcornSharp
         private static Node finishNodeAt([NotNull] Node node, NodeType type, Position pos)
         {
             node.type = type;
-            node.end = pos.Index;
             node.loc = new SourceLocation(node.loc.Start, pos, node.loc.Source);
-            node.range = (node.range.Item1, pos.Index);
             return node;
         }
 
@@ -79,9 +77,6 @@ namespace AcornSharp
         public Node handler;
         public Node param;
         public Node finalizer;
-        public (int, int) range;
-        public int start;
-        public int end;
         public bool generator;
         public bool async;
         public bool @static;
@@ -111,28 +106,19 @@ namespace AcornSharp
         public Node(SourceLocation location)
         {
             type = NodeType.Unknown;
-            start = location.Start.Index;
-            end = location.End.Index;
             loc = location;
-            range = (start, end);
         }
 
         public Node([NotNull] Parser parser, Position start)
         {
             type = NodeType.Unknown;
-            this.start = start.Index;
-            end = 0;
             loc = new SourceLocation(start, default, parser.sourceFile);
-            range = (start.Index, 0);
         }
 
         public Node([NotNull] Parser parser, Position start, Position end)
         {
             type = NodeType.Unknown;
-            this.start = start.Index;
-            this.end = end.Index;
             loc = new SourceLocation(start, end, parser.sourceFile);
-            range = (start.Index, end.Index);
         }
 
         public virtual bool TestEquals([CanBeNull] Node other)
@@ -181,9 +167,6 @@ namespace AcornSharp
             if (!TestEquals(handler, other.handler)) return false;
             if (!TestEquals(param, other.param)) return false;
             if (!TestEquals(finalizer, other.finalizer)) return false;
-            if (range.Item1 != 0 && range.Item2 != 0 && !range.Equals(other.range)) return false;
-            if (start != 0 && start != other.start) return false;
-            if (end != 0 && end != other.end) return false;
             if (generator && generator != other.generator) return false;
             if (async && async != other.async) return false;
             if (@static != other.@static) return false;
@@ -308,9 +291,6 @@ namespace AcornSharp
             if (!Equals(handler, other.handler)) return false;
             if (!Equals(param, other.param)) return false;
             if (!Equals(finalizer, other.finalizer)) return false;
-            if (!range.Equals(other.range)) return false;
-            if (start != other.start) return false;
-            if (end != other.end) return false;
             if (generator != other.generator) return false;
             if (async != other.async) return false;
             if (@static != other.@static) return false;
@@ -406,9 +386,6 @@ namespace AcornSharp
                 hashCode = (hashCode * 397) ^ (handler != null ? handler.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (param != null ? param.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (finalizer != null ? finalizer.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ range.GetHashCode();
-                hashCode = (hashCode * 397) ^ start;
-                hashCode = (hashCode * 397) ^ end;
                 hashCode = (hashCode * 397) ^ generator.GetHashCode();
                 hashCode = (hashCode * 397) ^ async.GetHashCode();
                 hashCode = (hashCode * 397) ^ @static.GetHashCode();

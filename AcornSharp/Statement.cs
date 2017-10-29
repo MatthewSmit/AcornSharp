@@ -423,7 +423,7 @@ namespace AcornSharp
             for (var i = labels.Count - 1; i >= 0; i--)
             {
                 var label = labels[i];
-                if (label.statementStart == node.start)
+                if (label.statementStart == node.loc.Start.Index)
                 {
                     label.statementStart = start.Index;
                     label.kind = kind;
@@ -952,7 +952,7 @@ namespace AcornSharp
                    statement.expression.type == NodeType.Literal &&
                    statement.expression.value is string &&
                    // Reject parenthesized strings.
-                   (input[statement.start] == '\"' || input[statement.start] == '\'');
+                   (input[statement.loc.Start.Index] == '\"' || input[statement.loc.Start.Index] == '\'');
         }
     }
 }

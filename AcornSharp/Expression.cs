@@ -220,7 +220,7 @@ namespace AcornSharp
             var startLoc = start;
             var expr = parseMaybeUnary(refDestructuringErrors, false);
             if (checkExpressionErrors(refDestructuringErrors)) return expr;
-            return expr.start == startLoc.Index && expr.type == NodeType.ArrowFunctionExpression ? expr : parseExprOp(expr, startLoc, -1, noIn);
+            return expr.loc.Start.Index == startLoc.Index && expr.type == NodeType.ArrowFunctionExpression ? expr : parseExprOp(expr, startLoc, -1, noIn);
         }
 
         // Parse binary operators with the operator precedence parsing
@@ -322,7 +322,7 @@ namespace AcornSharp
         private Node parseSubscripts(Node @base, Position startLoc, bool noCalls = false)
         {
             var maybeAsyncArrow = Options.ecmaVersion >= 8 && @base is IdentifierNode identifierNode && identifierNode.name == "async" &&
-                                  lastTokEnd.Index == @base.end && !canInsertSemicolon();
+                                  lastTokEnd.Index == @base.loc.End.Index && !canInsertSemicolon();
             for (;;)
             {
                 bool computed;

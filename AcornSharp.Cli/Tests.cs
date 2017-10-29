@@ -11326,25 +11326,25 @@ namespace AcornSharp.Cli
                                     {
                                         type = NodeType.Literal,
                                         value = 0,
-                                        range = (14, 15)
+                                        loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15))
                                     },
-                                    range = (10, 15)
+                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 15, 15))
                                 }
                             },
                             kind = "const",
-                            range = (4, 15)
+                            loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 15, 15))
                         },
                         test = null,
                         update = null,
                         fbody = new Node
                         {
                             type = NodeType.EmptyStatement,
-                            range = (18, 19)
+                            loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19))
                         },
-                        range = (0, 19)
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
                     }
                 },
-                range = (0, 19)
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
             }, new Options {ecmaVersion = 6});
 
             testFail("for(x of a);", "Unexpected token (1:6)");

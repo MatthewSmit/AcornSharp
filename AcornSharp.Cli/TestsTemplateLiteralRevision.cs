@@ -9,28 +9,24 @@ namespace AcornSharp.Cli
             Test("`foo`", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 5,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 5,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)),
                         expression = new Node
                         {
                             type = NodeType.TemplateLiteral,
-                            start = 0,
-                            end = 5,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)),
                             expressions = new List<Node>(),
                             quasis = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.TemplateElement,
-                                    start = 1,
-                                    end = 4,
+                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 4, 4)),
                                     value = new TemplateNode("foo", "foo"),
                                     tail = true
                                 }
@@ -44,28 +40,24 @@ namespace AcornSharp.Cli
             Test("`foo\\u25a0`", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 11,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 11,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)),
                         expression = new Node
                         {
                             type = NodeType.TemplateLiteral,
-                            start = 0,
-                            end = 11,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)),
                             expressions = new List<Node>(),
                             quasis = new List<Node>
                             {
                                 new Node
                                 {
                                     type = NodeType.TemplateElement,
-                                    start = 1,
-                                    end = 10,
+                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 10, 10)),
                                     value = new TemplateNode("foo\\u25a0", "foo■"),
                                     tail = true
                                 }
@@ -79,20 +71,17 @@ namespace AcornSharp.Cli
             Test("`foo${bar}\\u25a0`", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 17,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 17,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
                         expression = new Node
                         {
                             type = NodeType.TemplateLiteral,
-                            start = 0,
-                            end = 17,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
                             expressions = new List<Node>
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 9, 9)), "bar")
@@ -102,16 +91,14 @@ namespace AcornSharp.Cli
                                 new Node
                                 {
                                     type = NodeType.TemplateElement,
-                                    start = 1,
-                                    end = 4,
+                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 4, 4)),
                                     value = new TemplateNode("foo", "foo"),
                                     tail = false
                                 },
                                 new Node
                                 {
                                     type = NodeType.TemplateElement,
-                                    start = 10,
-                                    end = 16,
+                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 16, 16)),
                                     value = new TemplateNode("\\u25a0", "■"),
                                     tail = true
                                 }
@@ -125,34 +112,29 @@ namespace AcornSharp.Cli
             Test("foo`\\u25a0`", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 11,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 11,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)),
                         expression = new Node
                         {
                             type = NodeType.TaggedTemplateExpression,
-                            start = 0,
-                            end = 11,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)),
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
-                                start = 3,
-                                end = 11,
+                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 11, 11)),
                                 expressions = new List<Node>(),
                                 quasis = new List<Node>
                                 {
                                     new Node
                                     {
                                         type = NodeType.TemplateElement,
-                                        start = 4,
-                                        end = 10,
+                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 10, 10)),
                                         value = new TemplateNode("\\u25a0", "■"),
                                         tail = true
                                     }
@@ -167,26 +149,22 @@ namespace AcornSharp.Cli
             Test("foo`foo${bar}\\u25a0`", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 20,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 20,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
                         expression = new Node
                         {
                             type = NodeType.TaggedTemplateExpression,
-                            start = 0,
-                            end = 20,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
-                                start = 3,
-                                end = 20,
+                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 20, 20)),
                                 expressions = new List<Node>
                                 {
                                     new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "bar")
@@ -196,16 +174,14 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.TemplateElement,
-                                        start = 4,
-                                        end = 7,
+                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)),
                                         value = new TemplateNode("foo", "foo"),
                                         tail = false
                                     },
                                     new Node
                                     {
                                         type = NodeType.TemplateElement,
-                                        start = 13,
-                                        end = 19,
+                                        loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 19, 19)),
                                         value = new TemplateNode("\\u25a0", "■"),
                                         tail = true
                                     }
@@ -233,34 +209,29 @@ namespace AcornSharp.Cli
             Test("foo`\\unicode`", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 13,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 13,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                         expression = new Node
                         {
                             type = NodeType.TaggedTemplateExpression,
-                            start = 0,
-                            end = 13,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
-                                start = 3,
-                                end = 13,
+                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 13, 13)),
                                 expressions = new List<Node>(),
                                 quasis = new List<Node>
                                 {
                                     new Node
                                     {
                                         type = NodeType.TemplateElement,
-                                        start = 4,
-                                        end = 12,
+                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12)),
                                         value = new TemplateNode("\\unicode", null),
                                         tail = true
                                     }
@@ -275,26 +246,22 @@ namespace AcornSharp.Cli
             Test("foo`foo${bar}\\unicode`", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 22,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 22,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
                         expression = new Node
                         {
                             type = NodeType.TaggedTemplateExpression,
-                            start = 0,
-                            end = 22,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
-                                start = 3,
-                                end = 22,
+                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 22, 22)),
                                 expressions = new List<Node>
                                 {
                                     new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "bar")
@@ -304,16 +271,14 @@ namespace AcornSharp.Cli
                                     new Node
                                     {
                                         type = NodeType.TemplateElement,
-                                        start = 4,
-                                        end = 7,
+                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)),
                                         value = new TemplateNode("foo", "foo"),
                                         tail = false
                                     },
                                     new Node
                                     {
                                         type = NodeType.TemplateElement,
-                                        start = 13,
-                                        end = 21,
+                                        loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 21, 21)),
                                         value = new TemplateNode("\\unicode", null),
                                         tail = true
                                     }
@@ -328,34 +293,29 @@ namespace AcornSharp.Cli
             Test("foo`\\u`", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 7,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 7,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7)),
                         expression = new Node
                         {
                             type = NodeType.TaggedTemplateExpression,
-                            start = 0,
-                            end = 7,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7)),
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
-                                start = 3,
-                                end = 7,
+                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 7, 7)),
                                 expressions = new List<Node>(),
                                 quasis = new List<Node>
                                 {
                                     new Node
                                     {
                                         type = NodeType.TemplateElement,
-                                        start = 4,
-                                        end = 6,
+                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 6, 6)),
                                         value = new TemplateNode("\\u", null),
                                         tail = true
                                     }
@@ -370,34 +330,29 @@ namespace AcornSharp.Cli
             Test("foo`\\u{`", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 8,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 8,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)),
                         expression = new Node
                         {
                             type = NodeType.TaggedTemplateExpression,
-                            start = 0,
-                            end = 8,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)),
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
-                                start = 3,
-                                end = 8,
+                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 8, 8)),
                                 expressions = new List<Node>(),
                                 quasis = new List<Node>
                                 {
                                     new Node
                                     {
                                         type = NodeType.TemplateElement,
-                                        start = 4,
-                                        end = 7,
+                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)),
                                         value = new TemplateNode("\\u{", null),
                                         tail = true
                                     }
@@ -412,34 +367,29 @@ namespace AcornSharp.Cli
             Test("foo`\\u{abcdx`", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 13,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 13,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                         expression = new Node
                         {
                             type = NodeType.TaggedTemplateExpression,
-                            start = 0,
-                            end = 13,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
-                                start = 3,
-                                end = 13,
+                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 13, 13)),
                                 expressions = new List<Node>(),
                                 quasis = new List<Node>
                                 {
                                     new Node
                                     {
                                         type = NodeType.TemplateElement,
-                                        start = 4,
-                                        end = 12,
+                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12)),
                                         value = new TemplateNode("\\u{abcdx", null),
                                         tail = true
                                     }
@@ -454,34 +404,29 @@ namespace AcornSharp.Cli
             Test("foo`\\u{abcdx}`", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 14,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 14,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
                         expression = new Node
                         {
                             type = NodeType.TaggedTemplateExpression,
-                            start = 0,
-                            end = 14,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
-                                start = 3,
-                                end = 14,
+                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 14, 14)),
                                 expressions = new List<Node>(),
                                 quasis = new List<Node>
                                 {
                                     new Node
                                     {
                                         type = NodeType.TemplateElement,
-                                        start = 4,
-                                        end = 13,
+                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 13, 13)),
                                         value = new TemplateNode("\\u{abcdx}", null),
                                         tail = true
                                     }
@@ -496,34 +441,29 @@ namespace AcornSharp.Cli
             Test("foo`\\unicode\\\\`", new Node
             {
                 type = NodeType.Program,
-                start = 0,
-                end = 15,
+                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
                 body = new List<Node>
                 {
                     new Node
                     {
                         type = NodeType.ExpressionStatement,
-                        start = 0,
-                        end = 15,
+                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
                         expression = new Node
                         {
                             type = NodeType.TaggedTemplateExpression,
-                            start = 0,
-                            end = 15,
+                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             quasi = new Node
                             {
                                 type = NodeType.TemplateLiteral,
-                                start = 3,
-                                end = 15,
+                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 15, 15)),
                                 expressions = new List<Node>(),
                                 quasis = new List<Node>
                                 {
                                     new Node
                                     {
                                         type = NodeType.TemplateElement,
-                                        start = 4,
-                                        end = 14,
+                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 14, 14)),
                                         value = new TemplateNode("\\unicode\\\\", null),
                                         tail = true
                                     }
