@@ -116,7 +116,7 @@ namespace AcornSharp
         [NotNull]
         private BaseNode parseSpread(DestructuringErrors refDestructuringErrors)
         {
-            var node = startNode();
+            var node = new BaseNode(this, start);
             next();
             node.argument = parseMaybeAssign(false, refDestructuringErrors);
             return finishNode(node, NodeType.SpreadElement);
@@ -125,7 +125,7 @@ namespace AcornSharp
         [NotNull]
         private BaseNode parseRestBinding()
         {
-            var node = startNode();
+            var node = new BaseNode(this, start);
             next();
 
             // RestElement inside of a function parameter must be an identifier
@@ -149,7 +149,7 @@ namespace AcornSharp
             }
             if (type == TokenType.bracketL)
             {
-                var node = startNode();
+                var node = new BaseNode(this, start);
                 next();
                 node.elements = parseBindingList(TokenType.bracketR, true, true);
                 return finishNode(node, NodeType.ArrayPattern);
@@ -202,7 +202,7 @@ namespace AcornSharp
         {
             left = left ?? parseBindingAtom();
             if (Options.ecmaVersion < 6 || !eat(TokenType.eq)) return left;
-            var node = startNodeAt(startLoc);
+            var node = new BaseNode(this, startLoc);
             node.left = left;
             node.right = parseMaybeAssign();
             return finishNode(node, NodeType.AssignmentPattern);

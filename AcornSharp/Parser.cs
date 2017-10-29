@@ -134,7 +134,7 @@ namespace AcornSharp
 
         public BaseNode Parse()
         {
-            var node = Options.program ?? startNode();
+            var node = Options.program ?? new BaseNode(this, start);
             nextToken();
             return parseTopLevel(node);
         }

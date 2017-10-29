@@ -74,7 +74,7 @@ namespace AcornSharp
         private BaseNode parseStatement(bool declaration, bool topLevel = false, IDictionary<string, bool> exports = null)
         {
             var starttype = type;
-            var node = startNode();
+            var node = new BaseNode(this, start);
             string kind = null;
 
             if (isLet())
@@ -232,7 +232,7 @@ namespace AcornSharp
             BaseNode init;
             if (type == TokenType._var || type == TokenType._const || isLet)
             {
-                init = startNode();
+                init = new BaseNode(this, start);
                 var kind = isLet ? "let" : (string)value;
                 next();
                 parseVar(init, true, kind);
@@ -315,7 +315,7 @@ namespace AcornSharp
                 {
                     var isCase = type == TokenType._case;
                     if (cur != null) finishNode(cur, NodeType.SwitchCase);
-                    node.cases.Add(cur = startNode());
+                    node.cases.Add(cur = new BaseNode(this, start));
                     cur.sconsequent = new List<BaseNode>();
                     next();
                     if (isCase)
@@ -363,15 +363,18 @@ namespace AcornSharp
             node.handler = null;
             if (type == TokenType._catch)
             {
-                var clause = startNode();
+                var start = this.start;
                 next();
                 expect(TokenType.parenL);
-                clause.param = parseBindingAtom();
+                var param = parseBindingAtom();
                 enterLexicalScope();
-                checkLVal(clause.param, "let");
+                checkLVal(param, "let");
                 expect(TokenType.parenR);
-                clause.fbody = parseBlock(false);
+                var body = parseBlock(false);
                 exitLexicalScope();
+                var clause = new BaseNode(this, start);
+                clause.param = param;
+                clause.fbody = body;
                 node.handler = finishNode(clause, NodeType.CatchClause);
             }
             node.finalizer = eat(TokenType._finally) ? parseBlock() : null;
@@ -436,7 +439,7 @@ namespace AcornSharp
             if (node.fbody.type == NodeType.ClassDeclaration ||
                 node.fbody.type == NodeType.VariableDeclaration && node.fbody.kind != "var" ||
                 node.fbody.type == NodeType.FunctionDeclaration && (strict || node.fbody.generator))
-                raiseRecoverable(node.fbody.loc.Start, "Invalid labeled declaration");
+                raiseRecoverable(node.fbody.loc.Start, "Invalid labelled declaration");
             labels.Pop();
             node.label = expr;
             return finishNode(node, NodeType.LabeledStatement);
@@ -454,8 +457,8 @@ namespace AcornSharp
         // function bodies).
         private BaseNode parseBlock(bool createNewLexicalScope = true)
         {
-            var node = startNode();
-            node.body = new List<BaseNode>();
+            var start = this.start;
+            var body = new List<BaseNode>();
             expect(TokenType.braceL);
             if (createNewLexicalScope)
             {
@@ -464,12 +467,14 @@ namespace AcornSharp
             while (!eat(TokenType.braceR))
             {
                 var stmt = parseStatement(true);
-                node.body.Add(stmt);
+                body.Add(stmt);
             }
             if (createNewLexicalScope)
             {
                 exitLexicalScope();
             }
+            var node = new BaseNode(this, start);
+            node.body = body;
             return finishNode(node, NodeType.BlockStatement);
         }
 
@@ -512,7 +517,8 @@ namespace AcornSharp
             node.kind = kind;
             for (;;)
             {
-                var decl = startNode();
+                var start = this.start;
+                var decl = new BaseNode(this, start);
                 parseVarId(decl, kind);
                 if (eat(TokenType.eq))
                 {
@@ -520,7 +526,7 @@ namespace AcornSharp
                 }
                 else if (kind == "const" && !(type == TokenType._in || Options.ecmaVersion >= 6 && isContextual("of")))
                 {
-                    raise(start, "Unexpected token");
+                    raise(this.start, "Unexpected token");
                 }
                 else if (!(decl.id is IdentifierNode) && !(isFor && (type == TokenType._in || isContextual("of"))))
                 {
@@ -602,14 +608,14 @@ namespace AcornSharp
 
             parseClassId(node, isStatement);
             parseClassSuper(node);
-            var classBody = startNode();
+            var classBody = new BaseNode(this, start);
             var hadConstructor = false;
             classBody.body = new List<BaseNode>();
             expect(TokenType.braceL);
             while (!eat(TokenType.braceR))
             {
                 if (eat(TokenType.semi)) continue;
-                var method = startNode();
+                var method = new BaseNode(this, start);
                 var isGenerator = eat(TokenType.star);
                 var isAsync = false;
                 var isMaybeStatic = type == TokenType.name && (string)value == "static";
@@ -725,14 +731,14 @@ namespace AcornSharp
                 var isAsync = false;
                 if (type == TokenType._function || (isAsync = isAsyncFunction()))
                 {
-                    var fNode = startNode();
+                    var fNode = new BaseNode(this, start);
                     next();
                     if (isAsync) next();
                     node.declaration = parseFunction(fNode, "nullableID", false, isAsync);
                 }
                 else if (type == TokenType._class)
                 {
-                    var cNode = startNode();
+                    var cNode = new BaseNode(this, start);
                     node.declaration = parseClass(cNode, "nullableID");
                 }
                 else
@@ -854,7 +860,7 @@ namespace AcornSharp
                 }
                 else first = false;
 
-                var node = startNode();
+                var node = new BaseNode(this, start);
                 node.local = parseIdent(true);
                 node.exported = eatContextual("as") ? parseIdent(true) : node.local;
                 checkExport(exports, node.exported.name, node.exported.loc.Start);
@@ -895,7 +901,7 @@ namespace AcornSharp
             if (type == TokenType.name)
             {
                 // import defaultObj, { x, y as z } from '...'
-                var node = startNode();
+                var node = new BaseNode(this, start);
                 node.local = parseIdent();
                 checkLVal(node.local, "let");
                 nodes.Add(finishNode(node, NodeType.ImportDefaultSpecifier));
@@ -903,7 +909,7 @@ namespace AcornSharp
             }
             if (type == TokenType.star)
             {
-                var node = startNode();
+                var node = new BaseNode(this, start);
                 next();
                 expectContextual("as");
                 node.local = parseIdent();
@@ -921,7 +927,7 @@ namespace AcornSharp
                 }
                 else first = false;
 
-                var node = startNode();
+                var node = new BaseNode(this, start);
                 node.imported = parseIdent(true);
                 if (eatContextual("as"))
                 {

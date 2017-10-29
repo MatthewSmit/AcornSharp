@@ -144,7 +144,7 @@ namespace AcornSharp
             var expr = parseMaybeAssign(noIn, refDestructuringErrors);
             if (type == TokenType.comma)
             {
-                var node = startNodeAt(start);
+                var node = new BaseNode(this, start);
                 node.expressions = new List<BaseNode> {expr};
                 while (eat(TokenType.comma)) node.expressions.Add(parseMaybeAssign(noIn, refDestructuringErrors));
                 return finishNode(node, NodeType.SequenceExpression);
@@ -182,7 +182,7 @@ namespace AcornSharp
             {
                 checkPatternErrors(refDestructuringErrors, true);
                 if (!ownDestructuringErrors) refDestructuringErrors.Reset();
-                var node = startNodeAt(startLoc);
+                var node = new BaseNode(this, startLoc);
                 node.@operator = (string)value;
                 node.left = type == TokenType.eq ? toAssignable(left) : left;
                 refDestructuringErrors.shorthandAssign = default; // reset because shorthand default was used correctly
@@ -205,7 +205,7 @@ namespace AcornSharp
             if (checkExpressionErrors(refDestructuringErrors)) return expr;
             if (eat(TokenType.question))
             {
-                var node = startNodeAt(startLoc);
+                var node = new BaseNode(this, startLoc);
                 node.test = expr;
                 node.consequent = parseMaybeAssign();
                 expect(TokenType.colon);
@@ -251,7 +251,7 @@ namespace AcornSharp
         [NotNull]
         private BaseNode buildBinary(Position startLoc, BaseNode left, BaseNode right, string op, bool logical)
         {
-            var node = startNodeAt(startLoc);
+            var node = new BaseNode(this, startLoc);
             node.left = left;
             node.@operator = op;
             node.right = right;
@@ -270,7 +270,7 @@ namespace AcornSharp
             }
             else if (TokenInformation.Types[type].Prefix)
             {
-                var node = startNode();
+                var node = new BaseNode(this, start);
                 var update = type == TokenType.incDec;
                 node.@operator = (string)value;
                 node.prefix = true;
@@ -290,7 +290,7 @@ namespace AcornSharp
                 if (checkExpressionErrors(refDestructuringErrors)) return expr;
                 while (TokenInformation.Types[type].Postfix && !canInsertSemicolon())
                 {
-                    var node = startNodeAt(startLoc);
+                    var node = new BaseNode(this, startLoc);
                     node.@operator = (string)value;
                     node.prefix = false;
                     node.argument = expr;
@@ -348,19 +348,19 @@ namespace AcornSharp
                         checkYieldAwaitInDefaultParams();
                         yieldPos = oldYieldPos;
                         awaitPos = oldAwaitPos;
-                        return parseArrowExpression(startNodeAt(startLoc), exprList, true);
+                        return parseArrowExpression(new BaseNode(this, startLoc), exprList, true);
                     }
                     checkExpressionErrors(refDestructuringErrors, true);
                     yieldPos = oldYieldPos.Line != 0 ? oldYieldPos : yieldPos;
                     awaitPos = oldAwaitPos.Line != 0 ? oldAwaitPos : awaitPos;
-                    var node = startNodeAt(startLoc);
+                    var node = new BaseNode(this, startLoc);
                     node.callee = @base;
                     node.arguments = exprList;
                     @base = finishNode(node, NodeType.CallExpression);
                 }
                 else if (type == TokenType.backQuote)
                 {
-                    var node = startNodeAt(startLoc);
+                    var node = new BaseNode(this, startLoc);
                     node.tag = @base;
                     node.quasi = parseTemplate(true);
                     @base = finishNode(node, NodeType.TaggedTemplateExpression);
@@ -384,7 +384,7 @@ namespace AcornSharp
             {
                 if (!inFunction)
                     raise(start, "'super' outside of function or class");
-                node = startNode();
+                node = new BaseNode(this, start);
                 next();
 
                 // The `super` keyword can appear at below:
@@ -401,7 +401,7 @@ namespace AcornSharp
             }
             if (type == TokenType._this)
             {
-                node = startNode();
+                node = new BaseNode(this, start);
                 next();
                 return finishNode(node, NodeType.ThisExpression);
             }
@@ -410,11 +410,11 @@ namespace AcornSharp
                 var startLoc = start;
                 var id = parseIdent(type != TokenType.name);
                 if (Options.ecmaVersion >= 8 && id.name == "async" && !canInsertSemicolon() && eat(TokenType._function))
-                    return parseFunction(startNodeAt(startLoc), null, false, true);
+                    return parseFunction(new BaseNode(this, startLoc), null, false, true);
                 if (canBeArrow && !canInsertSemicolon())
                 {
                     if (eat(TokenType.arrow))
-                        return parseArrowExpression(startNodeAt(startLoc), new BaseNode[] {id});
+                        return parseArrowExpression(new BaseNode(this, startLoc), new BaseNode[] {id});
                     if (Options.ecmaVersion >= 8 && id.name == "async" && type == TokenType.name)
                     {
                         id = parseIdent();
@@ -422,7 +422,7 @@ namespace AcornSharp
                         {
                             raise(start, "Unexpected token");
                         }
-                        return parseArrowExpression(startNodeAt(startLoc), new BaseNode[] {id}, true);
+                        return parseArrowExpression(new BaseNode(this, startLoc), new BaseNode[] {id}, true);
                     }
                 }
                 return id;
@@ -440,7 +440,7 @@ namespace AcornSharp
             }
             if (type == TokenType._null || type == TokenType._true || type == TokenType._false)
             {
-                node = startNode();
+                node = new BaseNode(this, start);
                 node.value = type == TokenType._null ? null : (object)(type == TokenType._true);
                 node.raw = TokenInformation.Types[type].Keyword;
                 next();
@@ -461,7 +461,7 @@ namespace AcornSharp
             }
             if (type == TokenType.bracketL)
             {
-                node = startNode();
+                node = new BaseNode(this, start);
                 next();
                 node.elements = parseExprList(TokenType.bracketR, true, true, refDestructuringErrors);
                 return finishNode(node, NodeType.ArrayExpression);
@@ -472,13 +472,13 @@ namespace AcornSharp
             }
             if (type == TokenType._function)
             {
-                node = startNode();
+                node = new BaseNode(this, start);
                 next();
                 return parseFunction(node, null);
             }
             if (type == TokenType._class)
             {
-                return parseClass(startNode(), null);
+                return parseClass(new BaseNode(this, start), null);
             }
             if (type == TokenType._new)
             {
@@ -495,7 +495,7 @@ namespace AcornSharp
         [NotNull]
         private BaseNode parseLiteral(object value)
         {
-            var node = startNode();
+            var node = new BaseNode(this, start);
             node.value = value;
             node.raw = input.Substring(start.Index, end.Index - start.Index);
             next();
@@ -583,7 +583,7 @@ namespace AcornSharp
 
                 if (exprList.Count > 1)
                 {
-                    val = startNodeAt(innerStartLoc);
+                    val = new BaseNode(this, innerStartLoc);
                     val.expressions = exprList;
                     finishNodeAt(val, NodeType.SequenceExpression, innerEndLoc);
                 }
@@ -599,7 +599,7 @@ namespace AcornSharp
 
             if (Options.preserveParens)
             {
-                var par = startNodeAt(startLoc);
+                var par = new BaseNode(this, startLoc);
                 par.expression = val;
                 return finishNode(par, NodeType.ParenthesizedExpression);
             }
@@ -619,7 +619,7 @@ namespace AcornSharp
         [NotNull]
         private BaseNode parseParenArrowList(Position startLoc, [NotNull] IList<BaseNode> exprList)
         {
-            return parseArrowExpression(startNodeAt(startLoc), exprList);
+            return parseArrowExpression(new BaseNode(this, startLoc), exprList);
         }
 
         // New's precedence is slightly tricky. It must allow its argument to
@@ -631,7 +631,7 @@ namespace AcornSharp
         [NotNull]
         private BaseNode parseNew()
         {
-            var node = startNode();
+            var node = new BaseNode(this, start);
             var meta = parseIdent(true);
             if (Options.ecmaVersion >= 6 && eat(TokenType.dot))
             {
@@ -657,7 +657,7 @@ namespace AcornSharp
         [NotNull]
         private BaseNode parseTemplateElement(ref bool isTagged)
         {
-            var elem = startNode();
+            var elem = new BaseNode(this, start);
             if (type == TokenType.invalidTemplate)
             {
                 if (!isTagged)
@@ -678,7 +678,7 @@ namespace AcornSharp
         [NotNull]
         private BaseNode parseTemplate(bool isTagged = false)
         {
-            var node = startNode();
+            var node = new BaseNode(this, start);
             next();
             node.expressions = new List<BaseNode>();
             var curElt = parseTemplateElement(ref isTagged);
@@ -705,7 +705,7 @@ namespace AcornSharp
         [NotNull]
         private BaseNode parseObj(bool isPattern, [CanBeNull] DestructuringErrors refDestructuringErrors = null)
         {
-            var node = startNode();
+            var node = new BaseNode(this, start);
             var first = true;
             var propHash = new Dictionary<string, Property>();
             node.properties = new List<BaseNode>();
@@ -719,7 +719,7 @@ namespace AcornSharp
                 }
                 else first = false;
 
-                var prop = startNode();
+                var prop = new BaseNode(this, start);
                 var isGenerator = false;
                 bool isAsync;
                 Position startLoc = default;
@@ -860,7 +860,7 @@ namespace AcornSharp
         [NotNull]
         private BaseNode parseMethod(bool isGenerator, bool isAsync = false)
         {
-            var node = startNode();
+            var node = new BaseNode(this, start);
             var oldInGen = inGenerator;
             var oldInAsync = inAsync;
             var oldYieldPos = yieldPos;
@@ -1089,7 +1089,7 @@ namespace AcornSharp
         {
             if (yieldPos.Line == 0) yieldPos = start;
 
-            var node = startNode();
+            var node = new BaseNode(this, start);
             next();
             if (type == TokenType.semi || canInsertSemicolon() || type != TokenType.star && !TokenInformation.Types[type].StartsExpression)
             {
@@ -1109,7 +1109,7 @@ namespace AcornSharp
         {
             if (awaitPos.Line == 0) awaitPos = start;
 
-            var node = startNode();
+            var node = new BaseNode(this, start);
             next();
             node.argument = parseMaybeUnary(null, true);
             return finishNode(node, NodeType.AwaitExpression);

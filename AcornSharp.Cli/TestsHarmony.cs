@@ -11792,9 +11792,9 @@ namespace AcornSharp.Cli
 
             testFail("export { default} from './y.js';\nexport default 42;", "Duplicate export 'default' (2:7)", new Options {sourceType = "module", ecmaVersion = 6});
 
-            testFail("foo: class X {}", "Invalid labeled declaration (1:5)", new Options {ecmaVersion = 6});
+            testFail("foo: class X {}", "Invalid labelled declaration (1:5)", new Options {ecmaVersion = 6});
 
-            testFail("'use strict'; bar: function x() {}", "Invalid labeled declaration (1:19)", new Options {ecmaVersion = 6});
+            testFail("'use strict'; bar: function x() {}", "Invalid labelled declaration (1:19)", new Options {ecmaVersion = 6});
 
             testFail("({x, y}) = {}", "Parenthesized pattern (1:0)", new Options {ecmaVersion = 6});
 
