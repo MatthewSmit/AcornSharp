@@ -480,7 +480,7 @@ namespace AcornSharp
             }
             if (type == TokenType._class)
             {
-                return parseClass(new BaseNode(this, start), null);
+                return parseClass(start, null);
             }
             if (type == TokenType._new)
             {
