@@ -5,7 +5,7 @@
         Unknown,
         ParenthesizedExpression,
 //        Identifier,
-        MemberExpression,
+//        MemberExpression,
         ClassDeclaration,
         VariableDeclaration,
         FunctionDeclaration,

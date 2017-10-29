@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AcornSharp.Node;
 
 namespace AcornSharp.Cli
 {
@@ -10,13 +11,13 @@ namespace AcornSharp.Cli
             // No directives
             //------------------------------------------------------------------------
 
-            Test("foo", new Node
+            Test("foo", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)),
@@ -26,27 +27,27 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("function wrap() { foo }", new Node
+            Test("function wrap() { foo }", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                         generator = false,
                         bexpression = false,
-                        @params = new List<Node>(),
-                        fbody = new Node
+                        @params = new List<BaseNode>(),
+                        fbody = new BaseNode
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 23, 23)),
-                            body = new List<Node>
+                            body = new List<BaseNode>
                             {
-                                new Node
+                                new BaseNode
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 21, 21)),
@@ -59,37 +60,37 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("!function wrap() { foo }", new Node
+            Test("!function wrap() { foo }", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.UnaryExpression,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24)),
                             @operator = "!",
                             prefix = true,
-                            argument = new Node
+                            argument = new BaseNode
                             {
                                 type = NodeType.FunctionExpression,
                                 loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 24, 24)),
                                 id =  new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 14, 14)), "wrap"),
                                 generator = false,
                                 bexpression = false,
-                                @params = new List<Node>(),
-                                fbody = new Node
+                                @params = new List<BaseNode>(),
+                                fbody = new BaseNode
                                 {
                                     type = NodeType.BlockStatement,
                                     loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 24, 24)),
-                                    body = new List<Node>
+                                    body = new List<BaseNode>
                                     {
-                                        new Node
+                                        new BaseNode
                                         {
                                             type = NodeType.ExpressionStatement,
                                             loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 22, 22)),
@@ -105,31 +106,31 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("() => { foo }", new Node
+            Test("() => { foo }", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.ArrowFunctionExpression,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                             id = null,
                             generator = false,
                             bexpression = false,
-                            @params = new List<Node>(),
-                            fbody = new Node
+                            @params = new List<BaseNode>(),
+                            fbody = new BaseNode
                             {
                                 type = NodeType.BlockStatement,
                                 loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 13, 13)),
-                                body = new List<Node>
+                                body = new List<BaseNode>
                                 {
-                                    new Node
+                                    new BaseNode
                                     {
                                         type = NodeType.ExpressionStatement,
                                         loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 11, 11)),
@@ -144,17 +145,17 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("100", new Node
+            Test("100", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.Literal,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)),
@@ -166,21 +167,21 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("\"use strict\" + 1", new Node
+            Test("\"use strict\" + 1", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.BinaryExpression,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16)),
-                            left = new Node
+                            left = new BaseNode
                             {
                                 type = NodeType.Literal,
                                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12)),
@@ -188,7 +189,7 @@ namespace AcornSharp.Cli
                                 raw = "\"use strict\""
                             },
                             @operator = "+",
-                            right = new Node
+                            right = new BaseNode
                             {
                                 type = NodeType.Literal,
                                 loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)),
@@ -205,17 +206,17 @@ namespace AcornSharp.Cli
             // One directive
             //------------------------------------------------------------------------
 
-            Test("\"use strict\"\n foo", new Node
+            Test("\"use strict\"\n foo", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(2, 4, 17)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.Literal,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12)),
@@ -224,7 +225,7 @@ namespace AcornSharp.Cli
                         },
                         directive = "use strict"
                     },
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(2, 1, 14), new Position(2, 4, 17)),
@@ -234,17 +235,17 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("'use strict'; foo", new Node
+            Test("'use strict'; foo", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.Literal,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12)),
@@ -253,7 +254,7 @@ namespace AcornSharp.Cli
                         },
                         directive = "use strict"
                     },
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 17, 17)),
@@ -263,31 +264,31 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("function wrap() { \"use strict\"\n foo }", new Node
+            Test("function wrap() { \"use strict\"\n foo }", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 37)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 37)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                         generator = false,
                         bexpression = false,
-                        @params = new List<Node>(),
-                        fbody = new Node
+                        @params = new List<BaseNode>(),
+                        fbody = new BaseNode
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 16, 16), new Position(2, 6, 37)),
-                            body = new List<Node>
+                            body = new List<BaseNode>
                             {
-                                new Node
+                                new BaseNode
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 30, 30)),
-                                    expression = new Node
+                                    expression = new BaseNode
                                     {
                                         type = NodeType.Literal,
                                         loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 30, 30)),
@@ -296,7 +297,7 @@ namespace AcornSharp.Cli
                                     },
                                     directive = "use strict"
                                 },
-                                new Node
+                                new BaseNode
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(2, 1, 32), new Position(2, 4, 35)),
@@ -309,41 +310,41 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("!function wrap() { \"use strict\"\n foo }", new Node
+            Test("!function wrap() { \"use strict\"\n foo }", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 38)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 38)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.UnaryExpression,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 38)),
                             @operator = "!",
                             prefix = true,
-                            argument = new Node
+                            argument = new BaseNode
                             {
                                 type = NodeType.FunctionExpression,
                                 loc = new SourceLocation(new Position(1, 1, 1), new Position(2, 6, 38)),
                                 id =  new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 14, 14)), "wrap"),
                                 generator = false,
                                 bexpression = false,
-                                @params = new List<Node>(),
-                                fbody = new Node
+                                @params = new List<BaseNode>(),
+                                fbody = new BaseNode
                                 {
                                     type = NodeType.BlockStatement,
                                     loc = new SourceLocation(new Position(1, 17, 17), new Position(2, 6, 38)),
-                                    body = new List<Node>
+                                    body = new List<BaseNode>
                                     {
-                                        new Node
+                                        new BaseNode
                                         {
                                             type = NodeType.ExpressionStatement,
                                             loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 31, 31)),
-                                            expression = new Node
+                                            expression = new BaseNode
                                             {
                                                 type = NodeType.Literal,
                                                 loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 31, 31)),
@@ -352,7 +353,7 @@ namespace AcornSharp.Cli
                                             },
                                             directive = "use strict"
                                         },
-                                        new Node
+                                        new BaseNode
                                         {
                                             type = NodeType.ExpressionStatement,
                                             loc = new SourceLocation(new Position(2, 1, 33), new Position(2, 4, 36)),
@@ -368,35 +369,35 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("() => { \"use strict\"\n foo }", new Node
+            Test("() => { \"use strict\"\n foo }", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 27)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 27)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.ArrowFunctionExpression,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 27)),
                             id = null,
                             generator = false,
                             bexpression = false,
-                            @params = new List<Node>(),
-                            fbody = new Node
+                            @params = new List<BaseNode>(),
+                            fbody = new BaseNode
                             {
                                 type = NodeType.BlockStatement,
                                 loc = new SourceLocation(new Position(1, 6, 6), new Position(2, 6, 27)),
-                                body = new List<Node>
+                                body = new List<BaseNode>
                                 {
-                                    new Node
+                                    new BaseNode
                                     {
                                         type = NodeType.ExpressionStatement,
                                         loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 20, 20)),
-                                        expression = new Node
+                                        expression = new BaseNode
                                         {
                                             type = NodeType.Literal,
                                             loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 20, 20)),
@@ -405,7 +406,7 @@ namespace AcornSharp.Cli
                                         },
                                         directive = "use strict"
                                     },
-                                    new Node
+                                    new BaseNode
                                     {
                                         type = NodeType.ExpressionStatement,
                                         loc = new SourceLocation(new Position(2, 1, 22), new Position(2, 4, 25)),
@@ -420,25 +421,25 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("() => \"use strict\"", new Node
+            Test("() => \"use strict\"", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.ArrowFunctionExpression,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
                             id = null,
                             generator = false,
                             bexpression = true,
-                            @params = new List<Node>(),
-                            fbody = new Node
+                            @params = new List<BaseNode>(),
+                            fbody = new BaseNode
                             {
                                 type = NodeType.Literal,
                                 loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 18, 18)),
@@ -451,23 +452,23 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("({ wrap() { \"use strict\"; foo } })", new Node
+            Test("({ wrap() { \"use strict\"; foo } })", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.ObjectExpression,
                             loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 33, 33)),
-                            properties = new List<Node>
+                            properties = new List<BaseNode>
                             {
-                                new Node
+                                new BaseNode
                                 {
                                     type = NodeType.Property,
                                     loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 31, 31)),
@@ -476,25 +477,25 @@ namespace AcornSharp.Cli
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 7, 7)), "wrap"),
                                     kind = "init",
-                                    value = new Node
+                                    value = new BaseNode
                                     {
                                         type = NodeType.FunctionExpression,
                                         loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 31, 31)),
                                         id = null,
                                         generator = false,
                                         bexpression = false,
-                                        @params = new List<Node>(),
-                                        fbody = new Node
+                                        @params = new List<BaseNode>(),
+                                        fbody = new BaseNode
                                         {
                                             type = NodeType.BlockStatement,
                                             loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 31, 31)),
-                                            body = new List<Node>
+                                            body = new List<BaseNode>
                                             {
-                                                new Node
+                                                new BaseNode
                                                 {
                                                     type = NodeType.ExpressionStatement,
                                                     loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 25, 25)),
-                                                    expression = new Node
+                                                    expression = new BaseNode
                                                     {
                                                         type = NodeType.Literal,
                                                         loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 24, 24)),
@@ -503,7 +504,7 @@ namespace AcornSharp.Cli
                                                     },
                                                     directive = "use strict"
                                                 },
-                                                new Node
+                                                new BaseNode
                                                 {
                                                     type = NodeType.ExpressionStatement,
                                                     loc = new SourceLocation(new Position(1, 26, 26), new Position(1, 29, 29)),
@@ -521,29 +522,29 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("(class { wrap() { \"use strict\"; foo } })", new Node
+            Test("(class { wrap() { \"use strict\"; foo } })", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 40, 40)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 40, 40)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.ClassExpression,
                             loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 39, 39)),
                             id = null,
                             superClass = null,
-                            fbody = new Node
+                            fbody = new BaseNode
                             {
                                 type = NodeType.ClassBody,
                                 loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 39, 39)),
-                                body = new List<Node>
+                                body = new List<BaseNode>
                                 {
-                                    new Node
+                                    new BaseNode
                                     {
                                         type = NodeType.MethodDefinition,
                                         loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 37, 37)),
@@ -551,25 +552,25 @@ namespace AcornSharp.Cli
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                                         @static = false,
                                         kind = "method",
-                                        value = new Node
+                                        value = new BaseNode
                                         {
                                             type = NodeType.FunctionExpression,
                                             loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 37, 37)),
                                             id = null,
                                             generator = false,
                                             bexpression = false,
-                                            @params = new List<Node>(),
-                                            fbody = new Node
+                                            @params = new List<BaseNode>(),
+                                            fbody = new BaseNode
                                             {
                                                 type = NodeType.BlockStatement,
                                                 loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 37, 37)),
-                                                body = new List<Node>
+                                                body = new List<BaseNode>
                                                 {
-                                                    new Node
+                                                    new BaseNode
                                                     {
                                                         type = NodeType.ExpressionStatement,
                                                         loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 31, 31)),
-                                                        expression = new Node
+                                                        expression = new BaseNode
                                                         {
                                                             type = NodeType.Literal,
                                                             loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 30, 30)),
@@ -578,7 +579,7 @@ namespace AcornSharp.Cli
                                                         },
                                                         directive = "use strict"
                                                     },
-                                                    new Node
+                                                    new BaseNode
                                                     {
                                                         type = NodeType.ExpressionStatement,
                                                         loc = new SourceLocation(new Position(1, 32, 32), new Position(1, 35, 35)),
@@ -598,17 +599,17 @@ namespace AcornSharp.Cli
             }, new Options {ecmaVersion = 6});
 
             // Should not decode escape sequence.
-            Test("\"\\u0075se strict\"", new Node
+            Test("\"\\u0075se strict\"", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.Literal,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
@@ -624,17 +625,17 @@ namespace AcornSharp.Cli
             // Two or more directives.
             //------------------------------------------------------------------------
 
-            Test("\"use asm\"; \"use strict\"; foo", new Node
+            Test("\"use asm\"; \"use strict\"; foo", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.Literal,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)),
@@ -643,11 +644,11 @@ namespace AcornSharp.Cli
                         },
                         directive = "use asm"
                     },
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 24, 24)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.Literal,
                             loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 23, 23)),
@@ -656,7 +657,7 @@ namespace AcornSharp.Cli
                         },
                         directive = "use strict"
                     },
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 28, 28)),
@@ -666,31 +667,31 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("function wrap() { \"use asm\"; \"use strict\"; foo }", new Node
+            Test("function wrap() { \"use asm\"; \"use strict\"; foo }", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 48, 48)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 48, 48)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                         generator = false,
                         bexpression = false,
-                        @params = new List<Node>(),
-                        fbody = new Node
+                        @params = new List<BaseNode>(),
+                        fbody = new BaseNode
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 48, 48)),
-                            body = new List<Node>
+                            body = new List<BaseNode>
                             {
-                                new Node
+                                new BaseNode
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 28, 28)),
-                                    expression = new Node
+                                    expression = new BaseNode
                                     {
                                         type = NodeType.Literal,
                                         loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 27, 27)),
@@ -699,11 +700,11 @@ namespace AcornSharp.Cli
                                     },
                                     directive = "use asm"
                                 },
-                                new Node
+                                new BaseNode
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(1, 29, 29), new Position(1, 42, 42)),
-                                    expression = new Node
+                                    expression = new BaseNode
                                     {
                                         type = NodeType.Literal,
                                         loc = new SourceLocation(new Position(1, 29, 29), new Position(1, 41, 41)),
@@ -712,7 +713,7 @@ namespace AcornSharp.Cli
                                     },
                                     directive = "use strict"
                                 },
-                                new Node
+                                new BaseNode
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(1, 43, 43), new Position(1, 46, 46)),
@@ -729,17 +730,17 @@ namespace AcornSharp.Cli
             // One string after other expressions.
             //------------------------------------------------------------------------
 
-            Test("\"use strict\"; foo; \"use asm\"", new Node
+            Test("\"use strict\"; foo; \"use asm\"", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.Literal,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12)),
@@ -748,18 +749,18 @@ namespace AcornSharp.Cli
                         },
                         directive = "use strict"
                     },
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 18, 18)),
                         expression = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 17, 17)), "foo"),
                         directive = null // check this property does not exist.
                     },
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 28, 28)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.Literal,
                             loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 28, 28)),
@@ -771,31 +772,31 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("function wrap() { \"use asm\"; foo; \"use strict\" }", new Node
+            Test("function wrap() { \"use asm\"; foo; \"use strict\" }", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 48, 48)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 48, 48)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                         generator = false,
                         bexpression = false,
-                        @params = new List<Node>(),
-                        fbody = new Node
+                        @params = new List<BaseNode>(),
+                        fbody = new BaseNode
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 48, 48)),
-                            body = new List<Node>
+                            body = new List<BaseNode>
                             {
-                                new Node
+                                new BaseNode
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 28, 28)),
-                                    expression = new Node
+                                    expression = new BaseNode
                                     {
                                         type = NodeType.Literal,
                                         loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 27, 27)),
@@ -804,18 +805,18 @@ namespace AcornSharp.Cli
                                     },
                                     directive = "use asm"
                                 },
-                                new Node
+                                new BaseNode
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(1, 29, 29), new Position(1, 33, 33)),
                                     expression = new IdentifierNode(new SourceLocation(new Position(1, 29, 29), new Position(1, 32, 32)), "foo"),
                                     directive = null // check this property does not exist.
                                 },
-                                new Node
+                                new BaseNode
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(1, 34, 34), new Position(1, 46, 46)),
-                                    expression = new Node
+                                    expression = new BaseNode
                                     {
                                         type = NodeType.Literal,
                                         loc = new SourceLocation(new Position(1, 34, 34), new Position(1, 46, 46)),
@@ -834,23 +835,23 @@ namespace AcornSharp.Cli
             // One string in a block.
             //------------------------------------------------------------------------
 
-            Test("{ \"use strict\"; }", new Node
+            Test("{ \"use strict\"; }", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.BlockStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
-                        body = new List<Node>
+                        body = new List<BaseNode>
                         {
-                            new Node
+                            new BaseNode
                             {
                                 type = NodeType.ExpressionStatement,
                                 loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 15, 15)),
-                                expression = new Node
+                                expression = new BaseNode
                                 {
                                     type = NodeType.Literal,
                                     loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 14, 14)),
@@ -864,37 +865,37 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("function wrap() { { \"use strict\" } foo }", new Node
+            Test("function wrap() { { \"use strict\" } foo }", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 40, 40)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 40, 40)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                         generator = false,
                         bexpression = false,
-                        @params = new List<Node>(),
-                        fbody = new Node
+                        @params = new List<BaseNode>(),
+                        fbody = new BaseNode
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 40, 40)),
-                            body = new List<Node>
+                            body = new List<BaseNode>
                             {
-                                new Node
+                                new BaseNode
                                 {
                                     type = NodeType.BlockStatement,
                                     loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 34, 34)),
-                                    body = new List<Node>
+                                    body = new List<BaseNode>
                                     {
-                                        new Node
+                                        new BaseNode
                                         {
                                             type = NodeType.ExpressionStatement,
                                             loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 32, 32)),
-                                            expression = new Node
+                                            expression = new BaseNode
                                             {
                                                 type = NodeType.Literal,
                                                 loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 32, 32)),
@@ -905,7 +906,7 @@ namespace AcornSharp.Cli
                                         }
                                     }
                                 },
-                                new Node
+                                new BaseNode
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(1, 35, 35), new Position(1, 38, 38)),
@@ -922,17 +923,17 @@ namespace AcornSharp.Cli
             // One string with parentheses.
             //------------------------------------------------------------------------
 
-            Test("(\"use strict\"); foo", new Node
+            Test("(\"use strict\"); foo", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.Literal,
                             loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 13, 13)),
@@ -941,7 +942,7 @@ namespace AcornSharp.Cli
                         },
                         directive = null // check this property does not exist.
                     },
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 19, 19)),
@@ -951,31 +952,31 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("function wrap() { (\"use strict\"); foo }", new Node
+            Test("function wrap() { (\"use strict\"); foo }", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 39, 39)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 39, 39)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                         generator = false,
                         bexpression = false,
-                        @params = new List<Node>(),
-                        fbody = new Node
+                        @params = new List<BaseNode>(),
+                        fbody = new BaseNode
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 39, 39)),
-                            body = new List<Node>
+                            body = new List<BaseNode>
                             {
-                                new Node
+                                new BaseNode
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 33, 33)),
-                                    expression = new Node
+                                    expression = new BaseNode
                                     {
                                         type = NodeType.Literal,
                                         loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 31, 31)),
@@ -984,7 +985,7 @@ namespace AcornSharp.Cli
                                     },
                                     directive = null // check this property does not exist.
                                 },
-                                new Node
+                                new BaseNode
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(1, 34, 34), new Position(1, 37, 37)),
@@ -1001,31 +1002,31 @@ namespace AcornSharp.Cli
             // Complex cases such as the function in a default parameter.
             //------------------------------------------------------------------------
 
-            Test("function a() { \"use strict\" } \"use strict\"; foo", new Node
+            Test("function a() { \"use strict\" } \"use strict\"; foo", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 47, 47)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "a"),
                         generator = false,
                         bexpression = false,
-                        @params = new List<Node>(),
-                        fbody = new Node
+                        @params = new List<BaseNode>(),
+                        fbody = new BaseNode
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 29, 29)),
-                            body = new List<Node>
+                            body = new List<BaseNode>
                             {
-                                new Node
+                                new BaseNode
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 27, 27)),
-                                    expression = new Node
+                                    expression = new BaseNode
                                     {
                                         type = NodeType.Literal,
                                         loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 27, 27)),
@@ -1037,11 +1038,11 @@ namespace AcornSharp.Cli
                             }
                         }
                     },
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 30, 30), new Position(1, 43, 43)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.Literal,
                             loc = new SourceLocation(new Position(1, 30, 30), new Position(1, 42, 42)),
@@ -1050,7 +1051,7 @@ namespace AcornSharp.Cli
                         },
                         directive = null // check this property does not exist.
                     },
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 44, 44), new Position(1, 47, 47)),
@@ -1060,45 +1061,45 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("function a(a = function() { \"use strict\"; foo }) { \"use strict\" }", new Node
+            Test("function a(a = function() { \"use strict\"; foo }) { \"use strict\" }", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 65, 65)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.FunctionDeclaration,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 65, 65)),
                         id =  new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "a"),
                         generator = false,
                         bexpression = false,
-                        @params = new List<Node>
+                        @params = new List<BaseNode>
                         {
-                            new Node
+                            new BaseNode
                             {
                                 type = NodeType.AssignmentPattern,
                                 loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 47, 47)),
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "a"),
-                                right = new Node
+                                right = new BaseNode
                                 {
                                     type = NodeType.FunctionExpression,
                                     loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 47, 47)),
                                     id = null,
                                     generator = false,
                                     bexpression = false,
-                                    @params = new List<Node>(),
-                                    fbody = new Node
+                                    @params = new List<BaseNode>(),
+                                    fbody = new BaseNode
                                     {
                                         type = NodeType.BlockStatement,
                                         loc = new SourceLocation(new Position(1, 26, 26), new Position(1, 47, 47)),
-                                        body = new List<Node>
+                                        body = new List<BaseNode>
                                         {
-                                            new Node
+                                            new BaseNode
                                             {
                                                 type = NodeType.ExpressionStatement,
                                                 loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 41, 41)),
-                                                expression = new Node
+                                                expression = new BaseNode
                                                 {
                                                     type = NodeType.Literal,
                                                     loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 40, 40)),
@@ -1107,7 +1108,7 @@ namespace AcornSharp.Cli
                                                 },
                                                 directive = "use strict"
                                             },
-                                            new Node
+                                            new BaseNode
                                             {
                                                 type = NodeType.ExpressionStatement,
                                                 loc = new SourceLocation(new Position(1, 42, 42), new Position(1, 45, 45)),
@@ -1119,17 +1120,17 @@ namespace AcornSharp.Cli
                                 }
                             }
                         },
-                        fbody = new Node
+                        fbody = new BaseNode
                         {
                             type = NodeType.BlockStatement,
                             loc = new SourceLocation(new Position(1, 49, 49), new Position(1, 65, 65)),
-                            body = new List<Node>
+                            body = new List<BaseNode>
                             {
-                                new Node
+                                new BaseNode
                                 {
                                     type = NodeType.ExpressionStatement,
                                     loc = new SourceLocation(new Position(1, 51, 51), new Position(1, 63, 63)),
-                                    expression = new Node
+                                    expression = new BaseNode
                                     {
                                         type = NodeType.Literal,
                                         loc = new SourceLocation(new Position(1, 51, 51), new Position(1, 63, 63)),
@@ -1144,49 +1145,49 @@ namespace AcornSharp.Cli
                 }
             }, new Options {ecmaVersion = 6});
 
-            Test("(a = () => { \"use strict\"; foo }) => { \"use strict\" }", new Node
+            Test("(a = () => { \"use strict\"; foo }) => { \"use strict\" }", new BaseNode
             {
                 type = NodeType.Program,
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 53, 53)),
-                body = new List<Node>
+                body = new List<BaseNode>
                 {
-                    new Node
+                    new BaseNode
                     {
                         type = NodeType.ExpressionStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 53, 53)),
-                        expression = new Node
+                        expression = new BaseNode
                         {
                             type = NodeType.ArrowFunctionExpression,
                             loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 53, 53)),
                             id = null,
                             generator = false,
                             bexpression = false,
-                            @params = new List<Node>
+                            @params = new List<BaseNode>
                             {
-                                new Node
+                                new BaseNode
                                 {
                                     type = NodeType.AssignmentPattern,
                                     loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 32, 32)),
                                     left = new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a"),
-                                    right = new Node
+                                    right = new BaseNode
                                     {
                                         type = NodeType.ArrowFunctionExpression,
                                         loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 32, 32)),
                                         id = null,
                                         generator = false,
                                         bexpression = false,
-                                        @params = new List<Node>(),
-                                        fbody = new Node
+                                        @params = new List<BaseNode>(),
+                                        fbody = new BaseNode
                                         {
                                             type = NodeType.BlockStatement,
                                             loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 32, 32)),
-                                            body = new List<Node>
+                                            body = new List<BaseNode>
                                             {
-                                                new Node
+                                                new BaseNode
                                                 {
                                                     type = NodeType.ExpressionStatement,
                                                     loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 26, 26)),
-                                                    expression = new Node
+                                                    expression = new BaseNode
                                                     {
                                                         type = NodeType.Literal,
                                                         loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 25, 25)),
@@ -1195,7 +1196,7 @@ namespace AcornSharp.Cli
                                                     },
                                                     directive = "use strict"
                                                 },
-                                                new Node
+                                                new BaseNode
                                                 {
                                                     type = NodeType.ExpressionStatement,
                                                     loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 30, 30)),
@@ -1207,17 +1208,17 @@ namespace AcornSharp.Cli
                                     }
                                 }
                             },
-                            fbody = new Node
+                            fbody = new BaseNode
                             {
                                 type = NodeType.BlockStatement,
                                 loc = new SourceLocation(new Position(1, 37, 37), new Position(1, 53, 53)),
-                                body = new List<Node>
+                                body = new List<BaseNode>
                                 {
-                                    new Node
+                                    new BaseNode
                                     {
                                         type = NodeType.ExpressionStatement,
                                         loc = new SourceLocation(new Position(1, 39, 39), new Position(1, 51, 51)),
-                                        expression = new Node
+                                        expression = new BaseNode
                                         {
                                             type = NodeType.Literal,
                                             loc = new SourceLocation(new Position(1, 39, 39), new Position(1, 51, 51)),

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
+using AcornSharp.Node;
 
 namespace AcornSharp
 {
@@ -159,11 +160,11 @@ namespace AcornSharp
                 raise(awaitPos, "Await expression cannot be a default value");
         }
 
-        private static bool isSimpleAssignTarget(Node expr)
+        private static bool isSimpleAssignTarget(BaseNode expr)
         {
             if (expr.type ==  NodeType.ParenthesizedExpression)
                 return isSimpleAssignTarget(expr.expression);
-            return expr is IdentifierNode || expr.type == NodeType.MemberExpression;
+            return expr is IdentifierNode || expr is MemberExpressionNode;
         }
     }
 }

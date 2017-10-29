@@ -4,42 +4,18 @@ using System.Text.RegularExpressions;
 
 namespace AcornSharp
 {
+    // Object type used to represent tokens. Note that normally, tokens
+    // simply exist as properties on the parser object. This is only
+    // used for the onToken callback and the external tokenizer.
+
     [SuppressMessage("ReSharper", "LocalVariableHidesMember")]
     [SuppressMessage("ReSharper", "ParameterHidesMember")]
     public sealed partial class Parser
     {
-        // Object type used to represent tokens. Note that normally, tokens
-        // simply exist as properties on the parser object. This is only
-        // used for the onToken callback and the external tokenizer.
-
-        private sealed class Token
-        {
-            private TokenType type;
-            private object value;
-            private int start;
-            private int end;
-            private SourceLocation loc;
-            private (int, int) range;
-
-            public Token(Parser p)
-            {
-                type = p.type;
-                value = p.value;
-                start = p.start.Index;
-                end = p.end.Index;
-                loc = new SourceLocation(p.start, p.end, p.sourceFile);
-                range = (p.start.Index, p.end.Index);
-            }
-        }
-
         // Move to the next token
         private void next()
         {
-            if (Options.onToken != null)
-            {
-//                this.options.onToken(new Token(this))
-                throw new NotImplementedException();
-            }
+            Options.onToken?.Invoke(new Token(type, value, new SourceLocation(start, end, sourceFile)));
 
             lastTokEnd = end;
             lastTokStart = start;
@@ -49,7 +25,7 @@ namespace AcornSharp
         private Token getToken()
         {
             next();
-            return new Token(this);
+            return new Token(type, value, new SourceLocation(start, end, sourceFile));
         }
 
         // If we're in an ES6 environment, make parsers iterable
@@ -114,7 +90,6 @@ namespace AcornSharp
 
         private void skipBlockComment()
         {
-            var startLoc = Options.onComment != null;
             var start = pos;
             pos = pos.Increment(2);
             var end = input.IndexOf("*/", pos.Index, StringComparison.Ordinal);
@@ -131,13 +106,12 @@ namespace AcornSharp
                 pos = new Position(pos.Line + 1, pos.Index - lineStart, pos.Index);
                 lastIndex = lineStart;
             }
-            Options.onComment?.Invoke(true, input.Substring(start.Index + 2, end - (start.Index + 2)), start.Index, pos.Index, startLoc, curPosition());
+            Options.onComment?.Invoke(true, input.Substring(start.Index + 2, end - (start.Index + 2)), new SourceLocation(start, curPosition(), sourceFile));
         }
 
         private void skipLineComment(int startSkip)
         {
             var start = pos;
-            var startLoc = Options.onComment != null;
             pos = pos.Increment(startSkip);
             var ch = input.Get(pos.Index);
             while (pos.Index < input.Length && !isNewLine(ch))
@@ -145,7 +119,7 @@ namespace AcornSharp
                 pos = pos.Increment(1);
                 ch = input.Get(pos.Index);
             }
-            Options.onComment?.Invoke(false, input.Substring(start.Index + startSkip, pos.Index - (start.Index + startSkip)), start.Index, pos.Index, startLoc, curPosition());
+            Options.onComment?.Invoke(false, input.Substring(start.Index + startSkip, pos.Index - (start.Index + startSkip)), new SourceLocation(start, curPosition(), sourceFile));
         }
 
         // Called at the start of the parse and after every token. Skips
@@ -570,7 +544,6 @@ namespace AcornSharp
             if (!val.HasValue)
             {
                 raise(start.Increment(2), "Expected number in radix " + radix);
-                return;
             }
             if (isIdentifierStart(fullCharCodeAtPos())) raise(pos, "Identifier directly after number");
             finishToken(TokenType.num, val.Value);
@@ -607,13 +580,12 @@ namespace AcornSharp
             if (isIdentifierStart(fullCharCodeAtPos())) raise(pos, "Identifier directly after number");
 
             var str = input.Substring(start.Index, pos - start);
-            object val;
+            object val = null;
             if (isFloat) val = double.Parse(str);
             else if (!octal || str.Length == 1) val = parseInt(str, 10);
             else if (strict)
             {
                 raise(start, "Invalid number");
-                return;
             }
             else if (Regex.IsMatch(str, "[89]")) val = parseInt(str, 10);
             else val = parseInt(str, 8);

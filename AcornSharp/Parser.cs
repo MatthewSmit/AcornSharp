@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using AcornSharp.Node;
 
 namespace AcornSharp
 {
@@ -29,10 +30,10 @@ namespace AcornSharp
         private bool inAsync;
         private bool inGenerator;
         private bool inFunction;
-        private TokenType type;
-        private object value;
-        private Position start;
-        private Position end;
+        internal TokenType type;
+        internal object value;
+        internal Position start;
+        internal Position end;
         private Position lastTokStart;
         private Position lastTokEnd;
         private bool exprAllowed;
@@ -131,7 +132,7 @@ namespace AcornSharp
             enterFunctionScope();
         }
 
-        public Node Parse()
+        public BaseNode Parse()
         {
             var node = Options.program ?? startNode();
             nextToken();

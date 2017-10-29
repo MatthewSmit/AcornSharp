@@ -1,4 +1,5 @@
 ﻿using System;
+using AcornSharp.Node;
 
 namespace AcornSharp
 {
@@ -41,7 +42,7 @@ namespace AcornSharp
         // format as tokens returned from `tokenizer().getToken()`. Note
         // that you are not allowed to call the parser from the
         // callback—that will corrupt its internal state.
-        public object onToken = null;
+        public Action<Token> onToken;
         // A function can be passed as `onComment` option, which will
         // cause Acorn to call that function with `(block, text, start,
         // end)` parameters whenever a comment is skipped. `block` is a
@@ -52,21 +53,19 @@ namespace AcornSharp
         // passed, the full `{line, column}` locations of the start and
         // end of the comments. Note that you are not allowed to call the
         // parser from the callback—that will corrupt its internal state.
-        public Action<bool, string, int, int, bool, Position> onComment = null;
+        public Action<bool, string, SourceLocation> onComment;
         // It is possible to parse multiple files into a single AST by
         // passing the tree produced by parsing the first file as
         // `program` option in subsequent parses. This will add the
         // toplevel forms of the parsed file to the `Program` (top) node
         // of an existing parse tree.
-        public Node program = null;
+        public BaseNode program = null;
         // When `locations` is on, you can pass this to record the source
         // file in every node's `loc` object.
         public string sourceFile = null;
         // When enabled, parenthesized expressions are represented by
         // (non-standard) ParenthesizedExpression nodes
         public bool preserveParens = false;
-
-        public bool loose;
 
         public static Options getOptions(Options options)
         {
@@ -78,13 +77,6 @@ namespace AcornSharp
 
             if (options.allowReserved == null)
                 options.allowReserved = options.ecmaVersion < 5;
-
-            //  if (isArray(options.onToken)) {
-            //    let tokens = options.onToken
-            //    options.onToken = (token) => tokens.push(token)
-            //  }
-            //  if (isArray(options.onComment))
-            //    options.onComment = pushComment(options, options.onComment)
 
             return options;
         }
