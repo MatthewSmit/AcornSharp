@@ -24,10 +24,8 @@ namespace AcornSharp.Node
         public BaseNode fbody;
         public BaseNode argument;
         public BaseNode test;
-        public BaseNode consequent;
         public BaseNode callee;
         public IList<BaseNode> arguments;
-        public BaseNode alternate;
         public BaseNode discriminant;
         public IList<BaseNode> cases;
         public IList<BaseNode> declarations;
@@ -107,10 +105,8 @@ namespace AcornSharp.Node
             if (fbody != null && !TestEquals(fbody, other.fbody)) return false;
             if (!TestEquals(argument, other.argument)) return false;
             if (test != null && !TestEquals(test, other.test)) return false;
-            if (!TestEquals(consequent, other.consequent)) return false;
             if (!TestEquals(callee, other.callee)) return false;
             if (argument != null && !TestEquals(arguments, other.arguments)) return false;
-            if (!TestEquals(alternate, other.alternate)) return false;
             if (!TestEquals(discriminant, other.discriminant)) return false;
             if (!TestEquals(cases, other.cases)) return false;
             if (!TestEquals(declarations, other.declarations)) return false;
@@ -228,10 +224,8 @@ namespace AcornSharp.Node
             if (!Equals(fbody, other.fbody)) return false;
             if (!Equals(argument, other.argument)) return false;
             if (!Equals(test, other.test)) return false;
-            if (!Equals(consequent, other.consequent)) return false;
             if (!Equals(callee, other.callee)) return false;
             if (!Equals(arguments, other.arguments)) return false;
-            if (!Equals(alternate, other.alternate)) return false;
             if (!Equals(discriminant, other.discriminant)) return false;
             if (!Equals(cases, other.cases)) return false;
             if (!Equals(declarations, other.declarations)) return false;
@@ -320,10 +314,8 @@ namespace AcornSharp.Node
                 hashCode = (hashCode * 397) ^ (fbody != null ? fbody.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (argument != null ? argument.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (test != null ? test.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (consequent != null ? consequent.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (callee != null ? callee.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (arguments != null ? arguments.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (alternate != null ? alternate.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (discriminant != null ? discriminant.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (cases != null ? cases.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (declarations != null ? declarations.GetHashCode() : 0);

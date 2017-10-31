@@ -200,14 +200,11 @@ namespace AcornSharp
         }
 
         [NotNull]
-        private BaseNode parseDebuggerStatement(Position nodeStart)
+        private DebuggerStatementNode parseDebuggerStatement(Position nodeStart)
         {
             next();
             semicolon();
-            var node = new BaseNode(this, nodeStart);
-            node.type = NodeType.DebuggerStatement;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+            return new DebuggerStatementNode(this, nodeStart, lastTokEnd);
         }
 
         [NotNull]

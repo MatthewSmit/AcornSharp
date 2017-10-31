@@ -21,7 +21,7 @@
         BreakStatement,
         AssignmentExpression,
         ContinueStatement,
-        DebuggerStatement,
+//        DebuggerStatement,
         DoWhileStatement,
 //        IfStatement,
         ReturnStatement,

@@ -8401,11 +8401,7 @@ namespace AcornSharp.Cli
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
-                    {
-                        type = NodeType.DebuggerStatement,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-                    }
+                    new DebuggerStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)))
                 },
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
             });
