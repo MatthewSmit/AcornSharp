@@ -23,7 +23,7 @@
         ContinueStatement,
         DebuggerStatement,
         DoWhileStatement,
-        IfStatement,
+//        IfStatement,
         ReturnStatement,
         SwitchCase,
         SwitchStatement,

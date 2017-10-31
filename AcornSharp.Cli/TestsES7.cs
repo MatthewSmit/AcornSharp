@@ -291,15 +291,13 @@ namespace AcornSharp.Cli
                     type = NodeType.Program,
                     body = new List<BaseNode>
                     {
-                        new BaseNode(default)
-                        {
-                            type = NodeType.IfStatement,
-                            consequent = new BaseNode(default)
+                        new IfStatementNode(default,
+                            null,
+                            new BaseNode(default)
                             {
                                 type = NodeType.FunctionDeclaration
                             },
-                            alternate = null
-                        }
+                            null)
                     }
                 },
                 new Options {ecmaVersion = 7}
@@ -310,18 +308,16 @@ namespace AcornSharp.Cli
                     type = NodeType.Program,
                     body = new List<BaseNode>
                     {
-                        new BaseNode(default)
-                        {
-                            type = NodeType.IfStatement,
-                            consequent = new BaseNode(default)
+                        new IfStatementNode(default,
+                            null,
+                            new BaseNode(default)
                             {
                                 type = NodeType.FunctionDeclaration
                             },
-                            alternate = new BaseNode(default)
+                            new BaseNode(default)
                             {
                                 type = NodeType.FunctionDeclaration
-                            }
-                        }
+                            })
                     }
                 },
                 new Options {ecmaVersion = 7}

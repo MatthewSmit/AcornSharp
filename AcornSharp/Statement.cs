@@ -285,17 +285,14 @@ namespace AcornSharp
         }
 
         [NotNull]
-        private BaseNode parseIfStatement(Position nodeStart)
+        private IfStatementNode parseIfStatement(Position nodeStart)
         {
             next();
-            var node = new BaseNode(this, nodeStart);
-            node.test = parseParenExpression();
+            var test = parseParenExpression();
             // allow function declarations in branches, but only in non-strict mode
-            node.consequent = parseStatement(!strict && isFunction());
-            node.alternate = eat(TokenType._else) ? parseStatement(!strict && isFunction()) : null;
-            node.type = NodeType.IfStatement;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+            var consequent = parseStatement(!strict && isFunction());
+            var alternate = eat(TokenType._else) ? parseStatement(!strict && isFunction()) : null;
+            return new IfStatementNode(this, nodeStart, lastTokEnd, test, consequent, alternate);
         }
 
         [NotNull]

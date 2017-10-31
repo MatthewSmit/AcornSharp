@@ -2279,11 +2279,9 @@ namespace AcornSharp.Cli
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
-                    {
-                        type = NodeType.IfStatement,
-                        test = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "x"),
-                        consequent = new BaseNode(default)
+                    new IfStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(2, 11, 36)), 
+                        new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "x"),
+                        new BaseNode(default)
                         {
                             type = NodeType.BlockStatement,
                             body = new List<BaseNode>
@@ -2303,9 +2301,7 @@ namespace AcornSharp.Cli
                             },
                             loc = new SourceLocation(new Position(1, 7, 7), new Position(2, 11, 36))
                         },
-                        alternate = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(2, 11, 36))
-                    }
+                        null)
                 },
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(2, 11, 36))
             });
@@ -6356,11 +6352,9 @@ namespace AcornSharp.Cli
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
-                    {
-                        type = NodeType.IfStatement,
-                        test = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 11, 11)), "morning"),
-                        consequent = new BaseNode(default)
+                    new IfStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26)),
+                        new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 11, 11)), "morning"),
+                        new BaseNode(default)
                         {
                             type = NodeType.ExpressionStatement,
                             expression = new BaseNode(default)
@@ -6372,9 +6366,7 @@ namespace AcornSharp.Cli
                             },
                             loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 26, 26))
                         },
-                        alternate = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
-                    }
+                        null)
                 },
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
             });
@@ -6384,11 +6376,9 @@ namespace AcornSharp.Cli
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
-                    {
-                        type = NodeType.IfStatement,
-                        test = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 11, 11)), "morning"),
-                        consequent = new BaseNode(default)
+                    new IfStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)),
+                        new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 11, 11)), "morning"),
+                        new BaseNode(default)
                         {
                             type = NodeType.ExpressionStatement,
                             expression = new BaseNode(default)
@@ -6406,9 +6396,7 @@ namespace AcornSharp.Cli
                             },
                             loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 27, 27))
                         },
-                        alternate = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
-                    }
+                        null)
                 },
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
             });
@@ -6418,11 +6406,9 @@ namespace AcornSharp.Cli
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
-                    {
-                        type = NodeType.IfStatement,
-                        test = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 11, 11)), "morning"),
-                        consequent = new BaseNode(default)
+                    new IfStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
+                        new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 11, 11)), "morning"),
+                        new BaseNode(default)
                         {
                             type = NodeType.VariableDeclaration,
                             declarations = new List<BaseNode>
@@ -6443,9 +6429,7 @@ namespace AcornSharp.Cli
                             kind = "var",
                             loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 23, 23))
                         },
-                        alternate = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
-                    }
+                        null)
                 },
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
             });
@@ -6455,11 +6439,9 @@ namespace AcornSharp.Cli
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
-                    {
-                        type = NodeType.IfStatement,
-                        test = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 11, 11)), "morning"),
-                        consequent = new BaseNode(default)
+                    new IfStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)),
+                        new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 11, 11)), "morning"),
+                        new BaseNode(default)
                         {
                             type = NodeType.FunctionDeclaration,
                             id = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23)), "a"),
@@ -6472,9 +6454,7 @@ namespace AcornSharp.Cli
                             },
                             loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 27, 27))
                         },
-                        alternate = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
-                    }
+                        null)
                 },
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
             });
@@ -6484,11 +6464,9 @@ namespace AcornSharp.Cli
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
-                    {
-                        type = NodeType.IfStatement,
-                        test = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 11, 11)), "morning"),
-                        consequent = new BaseNode(default)
+                    new IfStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 42, 42)),
+                        new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 11, 11)), "morning"),
+                        new BaseNode(default)
                         {
                             type = NodeType.ExpressionStatement,
                             expression = new BaseNode(default)
@@ -6500,7 +6478,7 @@ namespace AcornSharp.Cli
                             },
                             loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 27, 27))
                         },
-                        alternate = new BaseNode(default)
+                        new BaseNode(default)
                         {
                             type = NodeType.ExpressionStatement,
                             expression = new BaseNode(default)
@@ -6511,9 +6489,7 @@ namespace AcornSharp.Cli
                                 loc = new SourceLocation(new Position(1, 33, 33), new Position(1, 42, 42))
                             },
                             loc = new SourceLocation(new Position(1, 33, 33), new Position(1, 42, 42))
-                        },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 42, 42))
-                    }
+                        })
                 },
                 loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 42, 42))
             });
@@ -9649,24 +9625,20 @@ namespace AcornSharp.Cli
                     {
                         type = NodeType.LabeledStatement,
                         loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25)),
-                        fbody = new BaseNode(default)
-                        {
-                            type = NodeType.IfStatement,
-                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 25, 25)),
-                            test = new BaseNode(default)
+                        fbody = new IfStatementNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 25, 25)),
+                            new BaseNode(default)
                             {
                                 type = NodeType.Literal,
                                 loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)),
                                 value = true
                             },
-                            consequent = new BaseNode(default)
+                            new BaseNode(default)
                             {
                                 type = NodeType.BreakStatement,
                                 loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 25, 25)),
                                 label = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 24, 24)), "foo")
                             },
-                            alternate = null
-                        },
+                            null),
                         label = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo")
                     }
                 }
@@ -9866,16 +9838,14 @@ namespace AcornSharp.Cli
                 type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
-                    {
-                        type = NodeType.IfStatement,
-                        test = new BaseNode(default)
+                    new IfStatementNode(default,
+                        new BaseNode(default)
                         {
                             type = NodeType.Literal,
                             value = 1,
                             raw = "1"
                         },
-                        consequent = new BaseNode(default)
+                        new BaseNode(default)
                         {
                             type = NodeType.ExpressionStatement,
                             expression = new BaseNode(default)
@@ -9884,8 +9854,7 @@ namespace AcornSharp.Cli
                                 raw = "/  foo/"
                             }
                         },
-                        alternate = null
-                    }
+                        null)
                 }
             });
 
