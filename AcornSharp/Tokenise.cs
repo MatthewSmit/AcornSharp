@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 
@@ -10,7 +12,7 @@ namespace AcornSharp
 
     [SuppressMessage("ReSharper", "LocalVariableHidesMember")]
     [SuppressMessage("ReSharper", "ParameterHidesMember")]
-    public sealed partial class Parser
+    public sealed partial class Parser : IEnumerable<Token>
     {
         // Move to the next token
         private void next()
@@ -28,19 +30,20 @@ namespace AcornSharp
             return new Token(type, value, new SourceLocation(start, end, sourceFile));
         }
 
-        // If we're in an ES6 environment, make parsers iterable
-        //if (typeof Symbol !== "undefined")
-        //  pp[Symbol.iterator] = function() {
-        //    return {
-        //      next: () => {
-        //        let token = this.getToken()
-        //        return {
-        //          done: token.type === tt.eof,
-        //          value: token
-        //        }
-        //      }
-        //    }
-        //  }
+        public IEnumerator<Token> GetEnumerator()
+        {
+            Token token;
+            do
+            {
+                token = getToken();
+                yield return token;
+            } while (token.Type != TokenType.EOF);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
         // Toggle strict mode. Re-reads the next number or string to please
         // pedantic tests (`"use strict"; 010;` should fail).
@@ -51,7 +54,7 @@ namespace AcornSharp
 
         // Read a single token, updating the parser object's token-related
         // properties.
-        private void nextToken()
+        internal void nextToken()
         {
             var curContext = this.curContext();
             if (curContext == null || curContext.PreserveSpace != true) skipSpace();
@@ -59,7 +62,7 @@ namespace AcornSharp
             start = curPosition();
             if (pos.Index >= input.Length)
             {
-                finishToken(TokenType.eof);
+                finishToken(TokenType.EOF);
                 return;
             }
 

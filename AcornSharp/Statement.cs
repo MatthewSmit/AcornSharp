@@ -20,7 +20,7 @@ namespace AcornSharp
         {
             var exports = new Dictionary<string, bool>();
             if (node.body == null) node.body = new List<BaseNode>();
-            while (type != TokenType.eof)
+            while (type != TokenType.EOF)
             {
                 var stmt = parseStatement(true, true, exports);
                 node.body.Add(stmt);

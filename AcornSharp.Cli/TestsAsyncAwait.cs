@@ -2312,7 +2312,8 @@ namespace AcornSharp.Cli
                             type = NodeType.IfStatement,
                             consequent = new BaseNode(default)
                             {
-                                type = NodeType.FunctionDeclaration
+                                type = NodeType.FunctionDeclaration,
+                                async = true
                             },
                             alternate = null
                         }

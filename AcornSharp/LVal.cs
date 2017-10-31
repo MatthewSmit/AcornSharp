@@ -144,29 +144,26 @@ namespace AcornSharp
         }
 
         // Parses lvalue (assignable) atom.
+        [NotNull]
         private BaseNode parseBindingAtom()
         {
-            if (Options.ecmaVersion < 6) return parseIdent();
-            if (type == TokenType.name)
+            if (Options.ecmaVersion >= 6)
             {
-                return parseIdent();
-            }
-            if (type == TokenType.bracketL)
-            {
-                var node = new BaseNode(this, start);
-                next();
-                node.elements = parseBindingList(TokenType.bracketR, true, true);
-                node.type = NodeType.ArrayPattern;
-                node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-                return node;
-            }
-            if (type == TokenType.braceL)
-            {
-                return parseObj(true);
-            }
+                switch (type)
+                {
+                    case TokenType.bracketL:
+                        var node = new BaseNode(this, start);
+                        next();
+                        node.elements = parseBindingList(TokenType.bracketR, true, true);
+                        node.type = NodeType.ArrayPattern;
+                        node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
+                        return node;
 
-            raise(start, "Unexpected token");
-            return null;
+                    case TokenType.braceL:
+                        return parseObj(true);
+                }
+            }
+            return parseIdent();
         }
 
         [NotNull]

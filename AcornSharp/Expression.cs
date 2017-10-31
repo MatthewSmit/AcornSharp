@@ -138,7 +138,7 @@ namespace AcornSharp
         // and object pattern might appear (so it's possible to raise
         // delayed syntax error at correct position).
 
-        private BaseNode parseExpression(bool noIn = false, [CanBeNull] DestructuringErrors refDestructuringErrors = null)
+        internal BaseNode parseExpression(bool noIn = false, [CanBeNull] DestructuringErrors refDestructuringErrors = null)
         {
             var start = this.start;
             var expr = parseMaybeAssign(noIn, refDestructuringErrors);
@@ -731,7 +731,6 @@ namespace AcornSharp
             return node;
         }
 
-        // Parse an object literal or binding pattern.
         private bool isAsyncProp([NotNull] BaseNode prop)
         {
             return !prop.computed && prop.key is IdentifierNode identifierNode && identifierNode.name == "async" &&
@@ -739,6 +738,7 @@ namespace AcornSharp
                    !lineBreak.IsMatch(input.Substring(lastTokEnd.Index, start.Index - lastTokEnd.Index));
         }
 
+        // Parse an object literal or binding pattern.
         [NotNull]
         private BaseNode parseObj(bool isPattern, [CanBeNull] DestructuringErrors refDestructuringErrors = null)
         {
@@ -756,40 +756,47 @@ namespace AcornSharp
                 }
                 else first = false;
 
-                var prop = new BaseNode(this, start);
-                var isGenerator = false;
-                bool isAsync;
-                Position startLoc = default;
-                if (Options.ecmaVersion >= 6)
-                {
-                    prop.method = false;
-                    prop.shorthand = false;
-                    if (isPattern || refDestructuringErrors != null)
-                    {
-                        startLoc = start;
-                    }
-                    if (!isPattern)
-                        isGenerator = eat(TokenType.star);
-                }
-                parsePropertyName(prop);
-                if (!isPattern && Options.ecmaVersion >= 8 && !isGenerator && isAsyncProp(prop))
-                {
-                    isAsync = true;
-                    parsePropertyName(prop);
-                }
-                else
-                {
-                    isAsync = false;
-                }
-                parsePropertyValue(prop, isPattern, isGenerator, isAsync, startLoc, refDestructuringErrors);
+                var prop = parseProperty(isPattern, refDestructuringErrors);
                 checkPropClash(prop, propHash);
-                prop.type = NodeType.Property;
-                prop.loc = new SourceLocation(prop.loc.Start, lastTokEnd, prop.loc.Source);
                 node.properties.Add(prop);
             }
             node.type = isPattern ? NodeType.ObjectPattern : NodeType.ObjectExpression;
             node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
             return node;
+        }
+
+        [NotNull]
+        private BaseNode parseProperty(bool isPattern, [CanBeNull] DestructuringErrors refDestructuringErrors)
+        {
+            var isGenerator = false;
+            bool isAsync;
+            Position startLoc = default;
+            var prop = new BaseNode(this, start);
+            if (Options.ecmaVersion >= 6)
+            {
+                prop.method = false;
+                prop.shorthand = false;
+                if (isPattern || refDestructuringErrors != null)
+                {
+                    startLoc = start;
+                }
+                if (!isPattern)
+                    isGenerator = eat(TokenType.star);
+            }
+            parsePropertyName(prop);
+            if (!isPattern && Options.ecmaVersion >= 8 && !isGenerator && isAsyncProp(prop))
+            {
+                isAsync = true;
+                parsePropertyName(prop);
+            }
+            else
+            {
+                isAsync = false;
+            }
+            parsePropertyValue(prop, isPattern, isGenerator, isAsync, startLoc, refDestructuringErrors);
+            prop.type = NodeType.Property;
+            prop.loc = new SourceLocation(prop.loc.Start, lastTokEnd, prop.loc.Source);
+            return prop;
         }
 
         private void parsePropertyValue([NotNull] BaseNode prop, bool isPattern, bool isGenerator, bool isAsync, Position startLoc, [CanBeNull] DestructuringErrors refDestructuringErrors)
@@ -1077,9 +1084,6 @@ namespace AcornSharp
             return elts;
         }
 
-        // Parse the next token as an identifier. If `liberal` is true (used
-        // when parsing properties), it will also convert keywords into
-        // identifiers.
         private void checkUnreserved(Position start, Position end, string name)
         {
             if (inGenerator && name == "yield")
@@ -1095,6 +1099,9 @@ namespace AcornSharp
                 raiseRecoverable(start, $"The keyword '{name}' is reserved");
         }
 
+        // Parse the next token as an identifier. If `liberal` is true (used
+        // when parsing properties), it will also convert keywords into
+        // identifiers.
         [NotNull]
         private IdentifierNode parseIdent(bool liberal = false)
         {
@@ -1113,7 +1120,9 @@ namespace AcornSharp
                 // To fix https://github.com/ternjs/acorn/issues/575
                 // `class` and `function` keywords push new context into this.context.
                 // But there is no chance to pop the context if the keyword is consumed as an identifier such as a property name.
-                if (name == "class" || name == "function")
+                // If the previous token is a dot, this does not apply because the context-managing code already ignored the keyword
+                if ((name == "class" || name == "function") &&
+                    (lastTokEnd.Index != lastTokStart.Index + 1 || input.Get(lastTokStart.Index) != 46))
                 {
                     context.Pop();
                 }

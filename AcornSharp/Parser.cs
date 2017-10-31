@@ -94,7 +94,7 @@ namespace AcornSharp
 
             // Properties of the current token:
             // Its type
-            type = TokenType.eof;
+            type = TokenType.EOF;
             // For tokens that include more information than their type, the value
             value = null;
             // Its start and end

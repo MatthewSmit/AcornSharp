@@ -62,7 +62,7 @@ namespace AcornSharp
         // Test whether a semicolon can be inserted at the current position.
         private bool canInsertSemicolon()
         {
-            return type == TokenType.eof ||
+            return type == TokenType.EOF ||
                    type == TokenType.braceR ||
                    lineBreak.IsMatch(input.Substring(lastTokEnd.Index, start.Index - lastTokEnd.Index));
         }
@@ -117,7 +117,7 @@ namespace AcornSharp
             }
         }
 
-        private sealed class DestructuringErrors
+        internal sealed class DestructuringErrors
         {
             public Position shorthandAssign;
             public Position trailingComma;

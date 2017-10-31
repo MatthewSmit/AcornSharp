@@ -9068,13 +9068,13 @@ namespace AcornSharp.Cli
 
             testFail("function a() { \"use strict\"; ({ b(t, t) { } }); }", "Argument name clash (1:37)", new Options {ecmaVersion = 6});
 
-            testFail("var super", "Unexpected token (1:4)", new Options {ecmaVersion = 6});
+            testFail("var super", "Unexpected keyword 'super' (1:4)", new Options {ecmaVersion = 6});
 
-            testFail("var default", "Unexpected token (1:4)", new Options {ecmaVersion = 6});
+            testFail("var default", "Unexpected keyword 'default' (1:4)", new Options {ecmaVersion = 6});
 
             testFail("let default", "Unexpected token (1:4)", new Options {ecmaVersion = 6});
 
-            testFail("const default", "Unexpected token (1:6)", new Options {ecmaVersion = 6});
+            testFail("const default", "Unexpected keyword 'default' (1:6)", new Options {ecmaVersion = 6});
 
             testFail("\"use strict\"; ({ v: eval } = obj)", "Assigning to eval in strict mode (1:20)", new Options {ecmaVersion = 6});
 
@@ -9126,10 +9126,10 @@ namespace AcornSharp.Cli
 
             testFail("void { [1, 2]: 3 };", "Unexpected token (1:9)", new Options {ecmaVersion = 6});
 
-            testFail("let [this] = [10]", "Unexpected token (1:5)", new Options {ecmaVersion = 6});
+            testFail("let [this] = [10]", "Unexpected keyword 'this' (1:5)", new Options {ecmaVersion = 6});
             testFail("let {this} = x", "Unexpected keyword 'this' (1:5)", new Options {ecmaVersion = 6});
-            testFail("let [function] = [10]", "Unexpected token (1:5)", new Options {ecmaVersion = 6});
-            testFail("let [function] = x", "Unexpected token (1:5)", new Options {ecmaVersion = 6});
+            testFail("let [function] = [10]", "Unexpected keyword 'function' (1:5)", new Options {ecmaVersion = 6});
+            testFail("let [function] = x", "Unexpected keyword 'function' (1:5)", new Options {ecmaVersion = 6});
             testFail("([function] = [10])", "Unexpected token (1:10)", new Options {ecmaVersion = 6});
             testFail("([this] = [10])", "Assigning to rvalue (1:2)", new Options {ecmaVersion = 6});
             testFail("({this} = x)", "Unexpected keyword 'this' (1:2)", new Options {ecmaVersion = 6});
@@ -9523,7 +9523,8 @@ namespace AcornSharp.Cli
                         type = NodeType.ExpressionStatement,
                         expression = new BaseNode(default)
                         {
-                            type = NodeType.ArrowFunctionExpression
+                            type = NodeType.ArrowFunctionExpression,
+                            bexpression = true
                         }
                     }
                 }
@@ -10842,7 +10843,8 @@ namespace AcornSharp.Cli
                                 type = NodeType.Literal,
                                 value = 0,
                                 raw = "0"
-                            }
+                            },
+                            bexpression = true
                         }
                     }
                 }
@@ -11745,7 +11747,8 @@ namespace AcornSharp.Cli
                                     expression = new BaseNode(default)
                                     {
                                         type = NodeType.YieldExpression,
-                                        argument = null
+                                        argument = null,
+                                        @delegate= false
                                     }
                                 },
                                 new BaseNode(default)
@@ -11768,7 +11771,8 @@ namespace AcornSharp.Cli
                                     }
                                 }
                             }
-                        }
+                        },
+                        generator = true
                     }
                 }
             }, new Options {ecmaVersion = 6});
@@ -11950,6 +11954,25 @@ namespace AcornSharp.Cli
             Test("({super: 1})", new BaseNode(default) { }, new Options {ecmaVersion = 6});
             Test("import {super as a} from 'a'", new BaseNode(default) { }, new Options {ecmaVersion = 6, sourceType = "module"});
             Test("export {a as super}", new BaseNode(default) { }, new Options {ecmaVersion = 6, sourceType = "module"});
+            Test("let instanceof Foo", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)))
+            {
+                type = NodeType.Program,
+                body = new List<BaseNode>
+                {
+                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)))
+                    {
+                        type = NodeType.ExpressionStatement,
+                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)))
+                        {
+                            type = NodeType.BinaryExpression,
+                            left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "let"),
+                            @operator = "instanceof",
+                            right = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18)), "Foo")
+                        }
+                    }
+                },
+                sourceType = "script"
+            }, new Options {ecmaVersion = 6});
         }
     }
 }

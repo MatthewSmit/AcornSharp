@@ -136,7 +136,7 @@ namespace AcornSharp
                 {TokenType.regexp, regexp},
                 {TokenType.@string, @string},
                 {TokenType.name, name},
-                {TokenType.eof, eof},
+                {TokenType.EOF, eof},
 
                 // Punctuation token types.
                 {TokenType.bracketL, bracketL},

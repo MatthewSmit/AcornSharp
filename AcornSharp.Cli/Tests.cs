@@ -11550,6 +11550,7 @@ namespace AcornSharp.Cli
             Test("'use strict'; let foo = function foo() {}", new BaseNode(default) { }, new Options {ecmaVersion = 6});
 
             Test("/**/ --> comment\n", new BaseNode(default) { });
+            Test("x.class++", new BaseNode(default) { });
         }
     }
 }

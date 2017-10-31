@@ -23,7 +23,7 @@ namespace AcornSharp
             // `tt.name`.
             if (prevType == TokenType._return || prevType == TokenType.name && exprAllowed)
                 return lineBreak.IsMatch(input.Substring(lastTokEnd.Index, start.Index - lastTokEnd.Index));
-            if (prevType == TokenType._else || prevType == TokenType.semi || prevType == TokenType.eof || prevType == TokenType.parenR || prevType == TokenType.arrow)
+            if (prevType == TokenType._else || prevType == TokenType.semi || prevType == TokenType.EOF || prevType == TokenType.parenR || prevType == TokenType.arrow)
                 return true;
             if (prevType == TokenType.braceL)
                 return parent == TokContext.b_stat;

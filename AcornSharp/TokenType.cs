@@ -22,11 +22,11 @@
     // continue jumps to that label.
     public enum TokenType
     {
+        EOF,
         num,
         regexp,
         @string,
         name,
-        eof,
 
         bracketL,
 
