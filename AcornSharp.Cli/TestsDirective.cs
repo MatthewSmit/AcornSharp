@@ -31,7 +31,7 @@ namespace AcornSharp.Cli
                     {
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                         generator = false,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>(),
                         fbody = new BlockStatementNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 23, 23)))
                         {
@@ -62,7 +62,7 @@ namespace AcornSharp.Cli
                             {
                                 id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 14, 14)), "wrap"),
                                 generator = false,
-                                bexpression = false,
+                                expression = false,
                                 parameters = new List<BaseNode>(),
                                 fbody = new BlockStatementNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 24, 24)))
                                 {
@@ -92,7 +92,7 @@ namespace AcornSharp.Cli
                         {
                             id = null,
                             generator = false,
-                            bexpression = false,
+                            expression = false,
                             parameters = new List<BaseNode>(),
                             fbody = new BlockStatementNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 13, 13)))
                             {
@@ -206,7 +206,7 @@ namespace AcornSharp.Cli
                     {
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                         generator = false,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>(),
                         fbody = new BlockStatementNode(new SourceLocation(new Position(1, 16, 16), new Position(2, 6, 37)))
                         {
@@ -246,7 +246,7 @@ namespace AcornSharp.Cli
                             {
                                 id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 14, 14)), "wrap"),
                                 generator = false,
-                                bexpression = false,
+                                expression = false,
                                 parameters = new List<BaseNode>(),
                                 fbody = new BlockStatementNode(new SourceLocation(new Position(1, 17, 17), new Position(2, 6, 38)))
                                 {
@@ -285,7 +285,7 @@ namespace AcornSharp.Cli
                         {
                             id = null,
                             generator = false,
-                            bexpression = false,
+                            expression = false,
                             parameters = new List<BaseNode>(),
                             fbody = new BlockStatementNode(new SourceLocation(new Position(1, 6, 6), new Position(2, 6, 27)))
                             {
@@ -323,7 +323,7 @@ namespace AcornSharp.Cli
                         {
                             id = null,
                             generator = false,
-                            bexpression = true,
+                            expression = true,
                             parameters = new List<BaseNode>(),
                             fbody = new LiteralNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 18, 18)))
                             {
@@ -344,7 +344,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new ObjectExpressionNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 33, 33)))
                         {
-                            properties = new List<BaseNode>
+                            properties = new List<PropertyNode>
                             {
                                 new PropertyNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 31, 31)))
                                 {
@@ -357,7 +357,7 @@ namespace AcornSharp.Cli
                                     {
                                         id = null,
                                         generator = false,
-                                        bexpression = false,
+                                        expression = false,
                                         parameters = new List<BaseNode>(),
                                         fbody = new BlockStatementNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 31, 31)))
                                         {
@@ -412,7 +412,7 @@ namespace AcornSharp.Cli
                                         {
                                             id = null,
                                             generator = false,
-                                            bexpression = false,
+                                            expression = false,
                                             parameters = new List<BaseNode>(),
                                             fbody = new BlockStatementNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 37, 37)))
                                             {
@@ -503,7 +503,7 @@ namespace AcornSharp.Cli
                     {
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                         generator = false,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>(),
                         fbody = new BlockStatementNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 48, 48)))
                         {
@@ -580,7 +580,7 @@ namespace AcornSharp.Cli
                     {
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                         generator = false,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>(),
                         fbody = new BlockStatementNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 48, 48)))
                         {
@@ -649,7 +649,7 @@ namespace AcornSharp.Cli
                     {
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                         generator = false,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>(),
                         fbody = new BlockStatementNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 40, 40)))
                         {
@@ -714,7 +714,7 @@ namespace AcornSharp.Cli
                     {
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "wrap"),
                         generator = false,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>(),
                         fbody = new BlockStatementNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 39, 39)))
                         {
@@ -752,7 +752,7 @@ namespace AcornSharp.Cli
                     {
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "a"),
                         generator = false,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>(),
                         fbody = new BlockStatementNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 29, 29)))
                         {
@@ -795,7 +795,7 @@ namespace AcornSharp.Cli
                     {
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "a"),
                         generator = false,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>
                         {
                             new AssignmentPatternNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 47, 47)))
@@ -805,7 +805,7 @@ namespace AcornSharp.Cli
                                 {
                                     id = null,
                                     generator = false,
-                                    bexpression = false,
+                                    expression = false,
                                     parameters = new List<BaseNode>(),
                                     fbody = new BlockStatementNode(new SourceLocation(new Position(1, 26, 26), new Position(1, 47, 47)))
                                     {
@@ -859,7 +859,7 @@ namespace AcornSharp.Cli
                         {
                             id = null,
                             generator = false,
-                            bexpression = false,
+                            expression = false,
                             parameters = new List<BaseNode>
                             {
                                 new AssignmentPatternNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 32, 32)))
@@ -869,7 +869,7 @@ namespace AcornSharp.Cli
                                     {
                                         id = null,
                                         generator = false,
-                                        bexpression = false,
+                                        expression = false,
                                         parameters = new List<BaseNode>(),
                                         fbody = new BlockStatementNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 32, 32)))
                                         {

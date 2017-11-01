@@ -6,7 +6,6 @@ namespace AcornSharp
     {
         public string pattern;
         public string flags;
-        public object value;
 
         public bool Equals(RegexNode other)
         {

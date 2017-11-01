@@ -59,12 +59,12 @@ namespace AcornSharp.Cli
                         {
                             value = "煎茶",
                             raw = "\"\\u{714E}\\u{8336}\"",
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
             }, new Options
             {
                 ecmaVersion = 6
@@ -80,12 +80,12 @@ namespace AcornSharp.Cli
                         {
                             value = "𠮷野家",
                             raw = "\"\\u{20BB7}\\u{91CE}\\u{5BB6}\"",
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
             }, new Options
             {
                 ecmaVersion = 6
@@ -103,12 +103,12 @@ namespace AcornSharp.Cli
                         {
                             value = 0,
                             raw = "00",
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
             }, new Options
             {
                 ecmaVersion = 6
@@ -124,12 +124,12 @@ namespace AcornSharp.Cli
                         {
                             value = 0,
                             raw = "0o0",
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
             }, new Options
             {
                 ecmaVersion = 6
@@ -153,9 +153,9 @@ namespace AcornSharp.Cli
                                     {
                                         value = "use strict",
                                         raw = "'use strict'",
-                                        loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 29, 29))
+                                        location = new SourceLocation(new Position(1, 17, 17), new Position(1, 29, 29))
                                     },
-                                    loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 30, 30))
+                                    location = new SourceLocation(new Position(1, 17, 17), new Position(1, 30, 30))
                                 },
                                 new ExpressionStatementNode(default)
                                 {
@@ -163,19 +163,19 @@ namespace AcornSharp.Cli
                                     {
                                         value = 0,
                                         raw = "0o0",
-                                        loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 34, 34))
+                                        location = new SourceLocation(new Position(1, 31, 31), new Position(1, 34, 34))
                                     },
-                                    loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 35, 35))
+                                    location = new SourceLocation(new Position(1, 31, 31), new Position(1, 35, 35))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 37, 37))
+                            location = new SourceLocation(new Position(1, 16, 16), new Position(1, 37, 37))
                         },
                         generator = false,
-                        bexpression = false,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37))
+                        expression = false,
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37))
             }, new Options
             {
                 ecmaVersion = 6
@@ -191,12 +191,12 @@ namespace AcornSharp.Cli
                         {
                             value = 2,
                             raw = "0o2",
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
             }, new Options
             {
                 ecmaVersion = 6
@@ -212,12 +212,12 @@ namespace AcornSharp.Cli
                         {
                             value = 10,
                             raw = "0o12",
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
             }, new Options
             {
                 ecmaVersion = 6
@@ -233,12 +233,12 @@ namespace AcornSharp.Cli
                         {
                             value = 0,
                             raw = "0O0",
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
             }, new Options
             {
                 ecmaVersion = 6
@@ -262,9 +262,9 @@ namespace AcornSharp.Cli
                                     {
                                         value = "use strict",
                                         raw = "'use strict'",
-                                        loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 29, 29))
+                                        location = new SourceLocation(new Position(1, 17, 17), new Position(1, 29, 29))
                                     },
-                                    loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 30, 30))
+                                    location = new SourceLocation(new Position(1, 17, 17), new Position(1, 30, 30))
                                 },
                                 new ExpressionStatementNode(default)
                                 {
@@ -272,19 +272,19 @@ namespace AcornSharp.Cli
                                     {
                                         value = 0,
                                         raw = "0O0",
-                                        loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 34, 34))
+                                        location = new SourceLocation(new Position(1, 31, 31), new Position(1, 34, 34))
                                     },
-                                    loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 35, 35))
+                                    location = new SourceLocation(new Position(1, 31, 31), new Position(1, 35, 35))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 37, 37))
+                            location = new SourceLocation(new Position(1, 16, 16), new Position(1, 37, 37))
                         },
                         generator = false,
-                        bexpression = false,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37))
+                        expression = false,
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37))
             }, new Options
             {
                 ecmaVersion = 6
@@ -300,12 +300,12 @@ namespace AcornSharp.Cli
                         {
                             value = 2,
                             raw = "0O2",
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
             }, new Options
             {
                 ecmaVersion = 6
@@ -321,12 +321,12 @@ namespace AcornSharp.Cli
                         {
                             value = 10,
                             raw = "0O12",
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
             }, new Options
             {
                 ecmaVersion = 6
@@ -342,12 +342,12 @@ namespace AcornSharp.Cli
                         {
                             value = 0,
                             raw = "0b0",
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
             }, new Options
             {
                 ecmaVersion = 6
@@ -363,12 +363,12 @@ namespace AcornSharp.Cli
                         {
                             value = 1,
                             raw = "0b1",
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
             }, new Options
             {
                 ecmaVersion = 6
@@ -384,12 +384,12 @@ namespace AcornSharp.Cli
                         {
                             value = 2,
                             raw = "0b10",
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
             }, new Options
             {
                 ecmaVersion = 6
@@ -405,12 +405,12 @@ namespace AcornSharp.Cli
                         {
                             value = 0,
                             raw = "0B0",
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
             }, new Options
             {
                 ecmaVersion = 6
@@ -426,12 +426,12 @@ namespace AcornSharp.Cli
                         {
                             value = 1,
                             raw = "0B1",
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
             }, new Options
             {
                 ecmaVersion = 6
@@ -447,12 +447,12 @@ namespace AcornSharp.Cli
                         {
                             value = 2,
                             raw = "0B10",
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
             }, new Options
             {
                 ecmaVersion = 6
@@ -474,16 +474,16 @@ namespace AcornSharp.Cli
                                 {
                                     value = new TemplateNode("42", "42"),
                                     tail = true,
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 3, 3))
+                                    location = new SourceLocation(new Position(1, 1, 1), new Position(1, 3, 3))
                                 }
                             },
                             expressions = new List<BaseNode>(),
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
             }, new Options
             {
                 ecmaVersion = 6
@@ -506,18 +506,18 @@ namespace AcornSharp.Cli
                                     {
                                         value = new TemplateNode("42", "42"),
                                         tail = true,
-                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 6, 6))
+                                        location = new SourceLocation(new Position(1, 4, 4), new Position(1, 6, 6))
                                     }
                                 },
                                 expressions = new List<BaseNode>(),
-                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 7, 7))
+                                location = new SourceLocation(new Position(1, 3, 3), new Position(1, 7, 7))
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
             }, new Options
             {
                 ecmaVersion = 6
@@ -540,27 +540,27 @@ namespace AcornSharp.Cli
                                     {
                                         value = new TemplateNode("hello ", "hello "),
                                         tail = false,
-                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 10, 10))
+                                        location = new SourceLocation(new Position(1, 4, 4), new Position(1, 10, 10))
                                     },
                                     new TemplateElementNode(default)
                                     {
                                         value = new TemplateNode("", ""),
                                         tail = true,
-                                        loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 17, 17))
+                                        location = new SourceLocation(new Position(1, 17, 17), new Position(1, 17, 17))
                                     }
                                 },
                                 expressions = new List<BaseNode>
                                 {
                                     new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 16, 16)), "name")
                                 },
-                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 18, 18))
+                                location = new SourceLocation(new Position(1, 3, 3), new Position(1, 18, 18))
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
             }, new Options
             {
                 ecmaVersion = 6
@@ -580,16 +580,16 @@ namespace AcornSharp.Cli
                                 {
                                     value = new TemplateNode("$", "$"),
                                     tail = true,
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2))
+                                    location = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2))
                                 }
                             },
                             expressions = new List<BaseNode>(),
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
             }, new Options
             {
                 ecmaVersion = 6
@@ -609,16 +609,16 @@ namespace AcornSharp.Cli
                                 {
                                     value = new TemplateNode("\\n\\r\\b\\v\\t\\f\\\n\\\n", "\n\r\b\u000b\t\f"),
                                     tail = true,
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(3, 0, 18))
+                                    location = new SourceLocation(new Position(1, 1, 1), new Position(3, 0, 18))
                                 }
                             },
                             expressions = new List<BaseNode>(),
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 19))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 19))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 19))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 19))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 19))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 19))
             }, new Options
             {
                 ecmaVersion = 6
@@ -638,16 +638,16 @@ namespace AcornSharp.Cli
                                 {
                                     value = new TemplateNode("\n\n\n", "\n\n\n"),
                                     tail = true,
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(4, 0, 5))
+                                    location = new SourceLocation(new Position(1, 1, 1), new Position(4, 0, 5))
                                 }
                             },
                             expressions = new List<BaseNode>(),
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(4, 1, 6))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(4, 1, 6))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(4, 1, 6))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(4, 1, 6))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(4, 1, 6))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(4, 1, 6))
             }, new Options
             {
                 ecmaVersion = 6
@@ -667,16 +667,16 @@ namespace AcornSharp.Cli
                                 {
                                     value = new TemplateNode("\\u{000042}\\u0042\\x42u0\\A", "BBBu0A"),
                                     tail = true,
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 25, 25))
+                                    location = new SourceLocation(new Position(1, 1, 1), new Position(1, 25, 25))
                                 }
                             },
                             expressions = new List<BaseNode>(),
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
             }, new Options
             {
                 ecmaVersion = 6
@@ -701,21 +701,21 @@ namespace AcornSharp.Cli
                                         {
                                             value = new TemplateNode("42", "42"),
                                             tail = true,
-                                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 10, 10))
+                                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 10, 10))
                                         }
                                     },
                                     expressions = new List<BaseNode>(),
-                                    loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 11, 11))
+                                    location = new SourceLocation(new Position(1, 7, 7), new Position(1, 11, 11))
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 11, 11))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 11, 11))
                             },
                             arguments = new List<BaseNode>(),
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
             }, new Options
             {
                 ecmaVersion = 6
@@ -733,7 +733,7 @@ namespace AcornSharp.Cli
                             {
                                 new ObjectExpressionNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -743,7 +743,7 @@ namespace AcornSharp.Cli
                                             key = new IdentifierNode(default, "x"),
                                             value = new ObjectExpressionNode(default)
                                             {
-                                                properties = new List<BaseNode>
+                                                properties = new List<PropertyNode>
                                                 {
                                                     new PropertyNode(default)
                                                     {
@@ -787,7 +787,7 @@ namespace AcornSharp.Cli
                                                     }
                                                 }
                                             },
-                                            bexpression = false
+                                            expression = false
                                         }
                                     },
                                     quasis = new List<BaseNode>
@@ -849,7 +849,7 @@ namespace AcornSharp.Cli
                                 {
                                     value = 42,
                                     raw = "42",
-                                    loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 25, 25))
+                                    location = new SourceLocation(new Position(1, 23, 23), new Position(1, 25, 25))
                                 },
                                 sconsequent = new List<BaseNode>
                                 {
@@ -864,27 +864,27 @@ namespace AcornSharp.Cli
                                                 {
                                                     value = 42,
                                                     raw = "42",
-                                                    loc = new SourceLocation(new Position(1, 35, 35), new Position(1, 37, 37))
+                                                    location = new SourceLocation(new Position(1, 35, 35), new Position(1, 37, 37))
                                                 },
-                                                loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 37, 37))
+                                                location = new SourceLocation(new Position(1, 31, 31), new Position(1, 37, 37))
                                             }
                                         },
                                         vkind = VariableKind.Let,
-                                        loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 38, 38))
+                                        location = new SourceLocation(new Position(1, 27, 27), new Position(1, 38, 38))
                                     },
                                     new BreakStatementNode(default)
                                     {
                                         label = null,
-                                        loc = new SourceLocation(new Position(1, 39, 39), new Position(1, 45, 45))
+                                        location = new SourceLocation(new Position(1, 39, 39), new Position(1, 45, 45))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 45, 45))
+                                location = new SourceLocation(new Position(1, 18, 18), new Position(1, 45, 45))
                             }
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 47, 47))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 47, 47))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 47, 47))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 47, 47))
             }, new Options
             {
                 ecmaVersion = 6
@@ -906,16 +906,16 @@ namespace AcornSharp.Cli
                             {
                                 value = "test",
                                 raw = "\"test\"",
-                                loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 12, 12))
+                                location = new SourceLocation(new Position(1, 6, 6), new Position(1, 12, 12))
                             },
                             generator = false,
-                            bexpression = true,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                            expression = true,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
             }, new Options
             {
                 ecmaVersion = 6
@@ -938,16 +938,16 @@ namespace AcornSharp.Cli
                             {
                                 value = "test",
                                 raw = "\"test\"",
-                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 11, 11))
+                                location = new SourceLocation(new Position(1, 5, 5), new Position(1, 11, 11))
                             },
                             generator = false,
-                            bexpression = true,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
+                            expression = true,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
             }, new Options
             {
                 ecmaVersion = 6
@@ -970,16 +970,16 @@ namespace AcornSharp.Cli
                             {
                                 value = "test",
                                 raw = "\"test\"",
-                                loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 13, 13))
+                                location = new SourceLocation(new Position(1, 7, 7), new Position(1, 13, 13))
                             },
                             generator = false,
-                            bexpression = true,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
+                            expression = true,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1003,16 +1003,16 @@ namespace AcornSharp.Cli
                             {
                                 value = "test",
                                 raw = "\"test\"",
-                                loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 16, 16))
+                                location = new SourceLocation(new Position(1, 10, 10), new Position(1, 16, 16))
                             },
                             generator = false,
-                            bexpression = true,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
+                            expression = true,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1041,21 +1041,21 @@ namespace AcornSharp.Cli
                                         {
                                             value = 42,
                                             raw = "42",
-                                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 9, 9))
+                                            location = new SourceLocation(new Position(1, 7, 7), new Position(1, 9, 9))
                                         },
-                                        loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 10, 10))
+                                        location = new SourceLocation(new Position(1, 7, 7), new Position(1, 10, 10))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 12, 12))
+                                location = new SourceLocation(new Position(1, 5, 5), new Position(1, 12, 12))
                             },
                             generator = false,
-                            bexpression = false,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                            expression = false,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1076,7 +1076,7 @@ namespace AcornSharp.Cli
                             },
                             fbody = new ObjectExpressionNode(default)
                             {
-                                properties = new List<BaseNode>
+                                properties = new List<PropertyNode>
                                 {
                                     new PropertyNode(default)
                                     {
@@ -1085,25 +1085,25 @@ namespace AcornSharp.Cli
                                         {
                                             value = 42,
                                             raw = "42",
-                                            loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 20, 20))
+                                            location = new SourceLocation(new Position(1, 18, 18), new Position(1, 20, 20))
                                         },
                                         pkind = PropertyKind.Initialise,
                                         method = false,
                                         shorthand = false,
                                         computed = false,
-                                        loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 20, 20))
+                                        location = new SourceLocation(new Position(1, 8, 8), new Position(1, 20, 20))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 22, 22))
+                                location = new SourceLocation(new Position(1, 6, 6), new Position(1, 22, 22))
                             },
                             generator = false,
-                            bexpression = true,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
+                            expression = true,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1135,23 +1135,23 @@ namespace AcornSharp.Cli
                                             {
                                                 value = 42,
                                                 raw = "42",
-                                                loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 16, 16))
+                                                location = new SourceLocation(new Position(1, 14, 14), new Position(1, 16, 16))
                                             },
-                                            loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 16, 16))
+                                            location = new SourceLocation(new Position(1, 14, 14), new Position(1, 16, 16))
                                         },
-                                        loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 16, 16))
+                                        location = new SourceLocation(new Position(1, 7, 7), new Position(1, 16, 16))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 18, 18))
+                                location = new SourceLocation(new Position(1, 5, 5), new Position(1, 18, 18))
                             },
                             generator = false,
-                            bexpression = false,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                            expression = false,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1181,21 +1181,21 @@ namespace AcornSharp.Cli
                                         {
                                             value = 42,
                                             raw = "42",
-                                            loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 14, 14))
+                                            location = new SourceLocation(new Position(1, 12, 12), new Position(1, 14, 14))
                                         },
-                                        loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 15, 15))
+                                        location = new SourceLocation(new Position(1, 12, 12), new Position(1, 15, 15))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 17, 17))
+                                location = new SourceLocation(new Position(1, 10, 10), new Position(1, 17, 17))
                             },
                             generator = false,
-                            bexpression = false,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                            expression = false,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1220,23 +1220,23 @@ namespace AcornSharp.Cli
                                         null,
                                         new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "b")
                                     },
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 9, 9))
+                                    location = new SourceLocation(new Position(1, 1, 1), new Position(1, 9, 9))
                                 }
                             },
                             fbody = new LiteralNode(default)
                             {
                                 value = 42,
                                 raw = "42",
-                                loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 16, 16))
+                                location = new SourceLocation(new Position(1, 14, 14), new Position(1, 16, 16))
                             },
                             generator = false,
-                            bexpression = true,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
+                            expression = true,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1256,7 +1256,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new CallExpressionNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12)),
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12)),
                             callee = new ArrowFunctionExpressionNode(default)
                             {
                                 id = null,
@@ -1264,17 +1264,17 @@ namespace AcornSharp.Cli
                                 fbody = new BlockStatementNode(default)
                                 {
                                     body = new List<BaseNode>(),
-                                    loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 9, 9))
+                                    location = new SourceLocation(new Position(1, 7, 7), new Position(1, 9, 9))
                                 },
                                 generator = false,
-                                bexpression = false,
-                                loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 9, 9))
+                                expression = false,
+                                location = new SourceLocation(new Position(1, 1, 1), new Position(1, 9, 9))
                             }
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1288,7 +1288,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new CallExpressionNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
                             callee = new ArrowFunctionExpressionNode(default)
                             {
                                 id = null,
@@ -1296,17 +1296,17 @@ namespace AcornSharp.Cli
                                 fbody = new BlockStatementNode(default)
                                 {
                                     body = new List<BaseNode>(),
-                                    loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 10, 10))
+                                    location = new SourceLocation(new Position(1, 8, 8), new Position(1, 10, 10))
                                 },
                                 generator = false,
-                                bexpression = false,
-                                loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 10, 10))
+                                expression = false,
+                                location = new SourceLocation(new Position(1, 2, 2), new Position(1, 10, 10))
                             }
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1331,9 +1331,9 @@ namespace AcornSharp.Cli
                                     {
                                         value = 1,
                                         raw = "1",
-                                        loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
+                                        location = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
                                     },
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 4, 4))
+                                    location = new SourceLocation(new Position(1, 1, 1), new Position(1, 4, 4))
                                 }
                             },
                             fbody = new BinaryExpressionNode(default)
@@ -1341,16 +1341,16 @@ namespace AcornSharp.Cli
                                 @operator = "*",
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "x"),
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "x"),
-                                loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 14, 14))
+                                location = new SourceLocation(new Position(1, 9, 9), new Position(1, 14, 14))
                             },
                             generator = false,
-                            bexpression = true,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                            expression = true,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1373,16 +1373,16 @@ namespace AcornSharp.Cli
                             {
                                 value = 42,
                                 raw = "42",
-                                loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 10, 10))
+                                location = new SourceLocation(new Position(1, 8, 8), new Position(1, 10, 10))
                             },
                             generator = false,
-                            bexpression = true,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
+                            expression = true,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1405,16 +1405,16 @@ namespace AcornSharp.Cli
                             {
                                 value = 42,
                                 raw = "42",
-                                loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 15, 15))
+                                location = new SourceLocation(new Position(1, 13, 13), new Position(1, 15, 15))
                             },
                             generator = false,
-                            bexpression = true,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
+                            expression = true,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1437,16 +1437,16 @@ namespace AcornSharp.Cli
                             {
                                 value = 0,
                                 raw = "00",
-                                loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 9, 9))
+                                location = new SourceLocation(new Position(1, 7, 7), new Position(1, 9, 9))
                             },
                             generator = false,
-                            bexpression = true,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
+                            expression = true,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1470,16 +1470,16 @@ namespace AcornSharp.Cli
                             {
                                 value = 42,
                                 raw = "42",
-                                loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 15, 15))
+                                location = new SourceLocation(new Position(1, 13, 13), new Position(1, 15, 15))
                             },
                             generator = false,
-                            bexpression = true,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
+                            expression = true,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1503,25 +1503,25 @@ namespace AcornSharp.Cli
                                     {
                                         value = 10,
                                         raw = "10",
-                                        loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 10, 10))
+                                        location = new SourceLocation(new Position(1, 8, 8), new Position(1, 10, 10))
                                     },
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 10, 10))
+                                    location = new SourceLocation(new Position(1, 1, 1), new Position(1, 10, 10))
                                 }
                             },
                             fbody = new LiteralNode(default)
                             {
                                 value = 42,
                                 raw = "42",
-                                loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17))
+                                location = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17))
                             },
                             generator = false,
-                            bexpression = true,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                            expression = true,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1546,25 +1546,25 @@ namespace AcornSharp.Cli
                                     {
                                         value = 10,
                                         raw = "10",
-                                        loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 13, 13))
+                                        location = new SourceLocation(new Position(1, 11, 11), new Position(1, 13, 13))
                                     },
-                                    loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 13, 13))
+                                    location = new SourceLocation(new Position(1, 7, 7), new Position(1, 13, 13))
                                 }
                             },
                             fbody = new LiteralNode(default)
                             {
                                 value = 42,
                                 raw = "42",
-                                loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 20, 20))
+                                location = new SourceLocation(new Position(1, 18, 18), new Position(1, 20, 20))
                             },
                             generator = false,
-                            bexpression = true,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
+                            expression = true,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1585,13 +1585,13 @@ namespace AcornSharp.Cli
                             },
                             fbody = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "x"),
                             generator = false,
-                            bexpression = true,
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 7, 7))
+                            expression = true,
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 7, 7))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1621,20 +1621,20 @@ namespace AcornSharp.Cli
                                 {
                                     value = 42,
                                     raw = "42",
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12))
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12))
                                 },
                                 generator = false,
-                                bexpression = true,
-                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 12, 12))
+                                expression = true,
+                                location = new SourceLocation(new Position(1, 5, 5), new Position(1, 12, 12))
                             },
                             generator = false,
-                            bexpression = true,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                            expression = true,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1669,20 +1669,20 @@ namespace AcornSharp.Cli
                                         new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23)), "y"),
                                         new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 26, 26)), "z")
                                     },
-                                    loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 26, 26))
+                                    location = new SourceLocation(new Position(1, 19, 19), new Position(1, 26, 26))
                                 },
                                 generator = false,
-                                bexpression = true,
-                                loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 27, 27))
+                                expression = true,
+                                location = new SourceLocation(new Position(1, 8, 8), new Position(1, 27, 27))
                             },
                             generator = false,
-                            bexpression = true,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
+                            expression = true,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1706,19 +1706,19 @@ namespace AcornSharp.Cli
                                     fbody = new BlockStatementNode(default)
                                     {
                                         body = new List<BaseNode>(),
-                                        loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12))
+                                        location = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12))
                                     },
                                     generator = false,
-                                    bexpression = false,
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12))
+                                    expression = false,
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1746,19 +1746,19 @@ namespace AcornSharp.Cli
                                     fbody = new BlockStatementNode(default)
                                     {
                                         body = new List<BaseNode>(),
-                                        loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 16, 16))
+                                        location = new SourceLocation(new Position(1, 14, 14), new Position(1, 16, 16))
                                     },
                                     generator = false,
-                                    bexpression = false,
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 16, 16))
+                                    expression = false,
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 16, 16))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1778,7 +1778,7 @@ namespace AcornSharp.Cli
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
-                                properties = new List<BaseNode>
+                                properties = new List<PropertyNode>
                                 {
                                     new PropertyNode(default)
                                     {
@@ -1790,27 +1790,27 @@ namespace AcornSharp.Cli
                                             fbody = new BlockStatementNode(default)
                                             {
                                                 body = new List<BaseNode>(),
-                                                loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18))
+                                                location = new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18))
                                             },
                                             generator = false,
-                                            bexpression = false,
-                                            loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 18, 18))
+                                            expression = false,
+                                            location = new SourceLocation(new Position(1, 12, 12), new Position(1, 18, 18))
                                         },
                                         pkind = PropertyKind.Initialise,
                                         method = true,
                                         shorthand = false,
                                         computed = false,
-                                        loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 18, 18))
+                                        location = new SourceLocation(new Position(1, 6, 6), new Position(1, 18, 18))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 20, 20))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 20, 20))
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1828,7 +1828,7 @@ namespace AcornSharp.Cli
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
-                                properties = new List<BaseNode>
+                                properties = new List<PropertyNode>
                                 {
                                     new PropertyNode(default)
                                     {
@@ -1843,27 +1843,27 @@ namespace AcornSharp.Cli
                                             fbody = new BlockStatementNode(default)
                                             {
                                                 body = new List<BaseNode>(),
-                                                loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 22, 22))
+                                                location = new SourceLocation(new Position(1, 19, 19), new Position(1, 22, 22))
                                             },
                                             generator = false,
-                                            bexpression = false,
-                                            loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 22, 22))
+                                            expression = false,
+                                            location = new SourceLocation(new Position(1, 12, 12), new Position(1, 22, 22))
                                         },
                                         pkind = PropertyKind.Initialise,
                                         method = true,
                                         shorthand = false,
                                         computed = false,
-                                        loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 22, 22))
+                                        location = new SourceLocation(new Position(1, 6, 6), new Position(1, 22, 22))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 24, 24))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 24, 24))
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1881,7 +1881,7 @@ namespace AcornSharp.Cli
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
-                                properties = new List<BaseNode>
+                                properties = new List<PropertyNode>
                                 {
                                     new PropertyNode(default)
                                     {
@@ -1889,7 +1889,7 @@ namespace AcornSharp.Cli
                                         {
                                             value = "method",
                                             raw = "'method'",
-                                            loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 14, 14))
+                                            location = new SourceLocation(new Position(1, 6, 6), new Position(1, 14, 14))
                                         },
                                         value = new FunctionExpressionNode(default)
                                         {
@@ -1898,27 +1898,27 @@ namespace AcornSharp.Cli
                                             fbody = new BlockStatementNode(default)
                                             {
                                                 body = new List<BaseNode>(),
-                                                loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20))
+                                                location = new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20))
                                             },
                                             generator = false,
-                                            bexpression = false,
-                                            loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 20, 20))
+                                            expression = false,
+                                            location = new SourceLocation(new Position(1, 14, 14), new Position(1, 20, 20))
                                         },
                                         pkind = PropertyKind.Initialise,
                                         method = true,
                                         shorthand = false,
                                         computed = false,
-                                        loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 20, 20))
+                                        location = new SourceLocation(new Position(1, 6, 6), new Position(1, 20, 20))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 22, 22))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 22, 22))
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1936,7 +1936,7 @@ namespace AcornSharp.Cli
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
-                                properties = new List<BaseNode>
+                                properties = new List<PropertyNode>
                                 {
                                     new PropertyNode(default)
                                     {
@@ -1948,27 +1948,27 @@ namespace AcornSharp.Cli
                                             fbody = new BlockStatementNode(default)
                                             {
                                                 body = new List<BaseNode>(),
-                                                loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 15, 15))
+                                                location = new SourceLocation(new Position(1, 12, 12), new Position(1, 15, 15))
                                             },
                                             generator = false,
-                                            bexpression = false,
-                                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 15, 15))
+                                            expression = false,
+                                            location = new SourceLocation(new Position(1, 9, 9), new Position(1, 15, 15))
                                         },
                                         pkind = PropertyKind.Initialise,
                                         method = true,
                                         shorthand = false,
                                         computed = false,
-                                        loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 15, 15))
+                                        location = new SourceLocation(new Position(1, 6, 6), new Position(1, 15, 15))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 17, 17))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 17, 17))
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
             }, new Options
             {
                 ecmaVersion = 6
@@ -1986,7 +1986,7 @@ namespace AcornSharp.Cli
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
-                                properties = new List<BaseNode>
+                                properties = new List<PropertyNode>
                                 {
                                     new PropertyNode(default)
                                     {
@@ -1998,27 +1998,27 @@ namespace AcornSharp.Cli
                                             fbody = new BlockStatementNode(default)
                                             {
                                                 body = new List<BaseNode>(),
-                                                loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 15, 15))
+                                                location = new SourceLocation(new Position(1, 12, 12), new Position(1, 15, 15))
                                             },
                                             generator = false,
-                                            bexpression = false,
-                                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 15, 15))
+                                            expression = false,
+                                            location = new SourceLocation(new Position(1, 9, 9), new Position(1, 15, 15))
                                         },
                                         pkind = PropertyKind.Initialise,
                                         method = true,
                                         shorthand = false,
                                         computed = false,
-                                        loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 15, 15))
+                                        location = new SourceLocation(new Position(1, 6, 6), new Position(1, 15, 15))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 17, 17))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 17, 17))
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
             }, new Options
             {
                 ecmaVersion = 6
@@ -2038,7 +2038,7 @@ namespace AcornSharp.Cli
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
-                                properties = new List<BaseNode>
+                                properties = new List<PropertyNode>
                                 {
                                     new PropertyNode(default)
                                     {
@@ -2048,7 +2048,7 @@ namespace AcornSharp.Cli
                                         method = false,
                                         shorthand = true,
                                         computed = false,
-                                        loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
+                                        location = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
                                     },
                                     new PropertyNode(default)
                                     {
@@ -2058,17 +2058,17 @@ namespace AcornSharp.Cli
                                         method = false,
                                         shorthand = true,
                                         computed = false,
-                                        loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
+                                        location = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12))
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
             }, new Options
             {
                 ecmaVersion = 6
@@ -2092,7 +2092,7 @@ namespace AcornSharp.Cli
                                     new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a"),
                                     new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "b")
                                 },
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
+                                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                             },
                             right = new ArrayExpressionNode(default)
                             {
@@ -2101,14 +2101,14 @@ namespace AcornSharp.Cli
                                     new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "b"),
                                     new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "a")
                                 },
-                                loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 15, 15))
+                                location = new SourceLocation(new Position(1, 9, 9), new Position(1, 15, 15))
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
             }, new Options
             {
                 ecmaVersion = 6
@@ -2125,7 +2125,7 @@ namespace AcornSharp.Cli
                             @operator = "=",
                             left = new ObjectPatternNode(default)
                             {
-                                properties = new List<BaseNode>
+                                properties = new List<PropertyNode>
                                 {
                                     new PropertyNode(default)
                                     {
@@ -2135,18 +2135,18 @@ namespace AcornSharp.Cli
                                         method = false,
                                         shorthand = false,
                                         computed = false,
-                                        loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 21, 21))
+                                        location = new SourceLocation(new Position(1, 3, 3), new Position(1, 21, 21))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 23, 23))
+                                location = new SourceLocation(new Position(1, 1, 1), new Position(1, 23, 23))
                             },
                             right = new IdentifierNode(new SourceLocation(new Position(1, 26, 26), new Position(1, 29, 29)), "res"),
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 29, 29))
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 29, 29))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
             }, new Options
             {
                 ecmaVersion = 6
@@ -2164,7 +2164,7 @@ namespace AcornSharp.Cli
                             {
                                 id = new ObjectPatternNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -2174,24 +2174,24 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = true,
                                             computed = false,
-                                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
+                                            location = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 9, 9))
+                                    location = new SourceLocation(new Position(1, 6, 6), new Position(1, 9, 9))
                                 },
                                 init = new ObjectExpressionNode(default)
                                 {
-                                    properties = new List<BaseNode>(),
-                                    loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 14, 14))
+                                    properties = new List<PropertyNode>(),
+                                    location = new SourceLocation(new Position(1, 12, 12), new Position(1, 14, 14))
                                 },
-                                loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 14, 14))
+                                location = new SourceLocation(new Position(1, 6, 6), new Position(1, 14, 14))
                             }
                         },
                         vkind = VariableKind.Const,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
             }, new Options
             {
                 ecmaVersion = 6
@@ -2213,21 +2213,21 @@ namespace AcornSharp.Cli
                                     {
                                         new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a")
                                     },
-                                    loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 9, 9))
+                                    location = new SourceLocation(new Position(1, 6, 6), new Position(1, 9, 9))
                                 },
                                 init = new ArrayExpressionNode(default)
                                 {
                                     elements = new List<BaseNode> { },
-                                    loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 14, 14))
+                                    location = new SourceLocation(new Position(1, 12, 12), new Position(1, 14, 14))
                                 },
-                                loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 14, 14))
+                                location = new SourceLocation(new Position(1, 6, 6), new Position(1, 14, 14))
                             }
                         },
                         vkind = VariableKind.Const,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
             }, new Options
             {
                 ecmaVersion = 6
@@ -2245,7 +2245,7 @@ namespace AcornSharp.Cli
                             {
                                 id = new ObjectPatternNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -2255,24 +2255,24 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = true,
                                             computed = false,
-                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
+                                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
                                 },
                                 init = new ObjectExpressionNode(default)
                                 {
-                                    properties = new List<BaseNode>(),
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12))
+                                    properties = new List<PropertyNode>(),
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12))
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12))
                             }
                         },
                         vkind = VariableKind.Let,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
             }, new Options
             {
                 ecmaVersion = 6
@@ -2294,21 +2294,21 @@ namespace AcornSharp.Cli
                                     {
                                         new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a")
                                     },
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
                                 },
                                 init = new ArrayExpressionNode(default)
                                 {
                                     elements = new List<BaseNode> { },
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12))
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12))
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12))
                             }
                         },
                         vkind = VariableKind.Let,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
             }, new Options
             {
                 ecmaVersion = 6
@@ -2326,7 +2326,7 @@ namespace AcornSharp.Cli
                             {
                                 id = new ObjectPatternNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -2336,24 +2336,24 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = true,
                                             computed = false,
-                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
+                                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
                                 },
                                 init = new ObjectExpressionNode(default)
                                 {
-                                    properties = new List<BaseNode>(),
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12))
+                                    properties = new List<PropertyNode>(),
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12))
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12))
                             }
                         },
                         vkind = VariableKind.Var,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
             }, new Options
             {
                 ecmaVersion = 6
@@ -2375,21 +2375,21 @@ namespace AcornSharp.Cli
                                     {
                                         new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "a")
                                     },
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
                                 },
                                 init = new ArrayExpressionNode(default)
                                 {
                                     elements = new List<BaseNode> { },
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12))
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12))
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12))
                             }
                         },
                         vkind = VariableKind.Var,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
             }, new Options
             {
                 ecmaVersion = 6
@@ -2407,7 +2407,7 @@ namespace AcornSharp.Cli
                             {
                                 id = new ObjectPatternNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -2417,24 +2417,24 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = false,
                                             computed = false,
-                                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 10, 10))
+                                            location = new SourceLocation(new Position(1, 7, 7), new Position(1, 10, 10))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 11, 11))
+                                    location = new SourceLocation(new Position(1, 6, 6), new Position(1, 11, 11))
                                 },
                                 init = new ObjectExpressionNode(default)
                                 {
-                                    properties = new List<BaseNode>(),
-                                    loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 16, 16))
+                                    properties = new List<PropertyNode>(),
+                                    location = new SourceLocation(new Position(1, 14, 14), new Position(1, 16, 16))
                                 },
-                                loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 16, 16))
+                                location = new SourceLocation(new Position(1, 6, 6), new Position(1, 16, 16))
                             }
                         },
                         vkind = VariableKind.Const,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
             }, new Options
             {
                 ecmaVersion = 6
@@ -2452,7 +2452,7 @@ namespace AcornSharp.Cli
                             {
                                 id = new ObjectPatternNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -2462,24 +2462,24 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = false,
                                             computed = false,
-                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 8, 8))
+                                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 8, 8))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 9, 9))
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 9, 9))
                                 },
                                 init = new ObjectExpressionNode(default)
                                 {
-                                    properties = new List<BaseNode>(),
-                                    loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 14, 14))
+                                    properties = new List<PropertyNode>(),
+                                    location = new SourceLocation(new Position(1, 12, 12), new Position(1, 14, 14))
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 14, 14))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 14, 14))
                             }
                         },
                         vkind = VariableKind.Let,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
             }, new Options
             {
                 ecmaVersion = 6
@@ -2497,7 +2497,7 @@ namespace AcornSharp.Cli
                             {
                                 id = new ObjectPatternNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -2507,24 +2507,24 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = false,
                                             computed = false,
-                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 8, 8))
+                                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 8, 8))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 9, 9))
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 9, 9))
                                 },
                                 init = new ObjectExpressionNode(default)
                                 {
-                                    properties = new List<BaseNode>(),
-                                    loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 14, 14))
+                                    properties = new List<PropertyNode>(),
+                                    location = new SourceLocation(new Position(1, 12, 12), new Position(1, 14, 14))
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 14, 14))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 14, 14))
                             }
                         },
                         vkind = VariableKind.Var,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
             }, new Options
             {
                 ecmaVersion = 6
@@ -2547,18 +2547,18 @@ namespace AcornSharp.Cli
                                 {
                                     id = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19)), "document"),
                                     init = null,
-                                    loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
+                                    location = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
                                 }
                             },
                             vkind = VariableKind.Var,
-                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 19, 19))
+                            location = new SourceLocation(new Position(1, 7, 7), new Position(1, 19, 19))
                         },
                         specifiers = new List<BaseNode>(),
                         source = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -2580,21 +2580,21 @@ namespace AcornSharp.Cli
                                     id = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19)), "document"),
                                     init = new ObjectExpressionNode(default)
                                     {
-                                        properties = new List<BaseNode>(),
-                                        loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 25, 25))
+                                        properties = new List<PropertyNode>(),
+                                        location = new SourceLocation(new Position(1, 22, 22), new Position(1, 25, 25))
                                     },
-                                    loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 25, 25))
+                                    location = new SourceLocation(new Position(1, 11, 11), new Position(1, 25, 25))
                                 }
                             },
                             vkind = VariableKind.Var,
-                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 25, 25))
+                            location = new SourceLocation(new Position(1, 7, 7), new Position(1, 25, 25))
                         },
                         specifiers = new List<BaseNode>(),
                         source = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -2617,18 +2617,18 @@ namespace AcornSharp.Cli
                                 {
                                     id = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19)), "document"),
                                     init = null,
-                                    loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
+                                    location = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
                                 }
                             },
                             vkind = VariableKind.Let,
-                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 19, 19))
+                            location = new SourceLocation(new Position(1, 7, 7), new Position(1, 19, 19))
                         },
                         specifiers = new List<BaseNode>(),
                         source = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -2650,21 +2650,21 @@ namespace AcornSharp.Cli
                                     id = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19)), "document"),
                                     init = new ObjectExpressionNode(default)
                                     {
-                                        properties = new List<BaseNode>(),
-                                        loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 25, 25))
+                                        properties = new List<PropertyNode>(),
+                                        location = new SourceLocation(new Position(1, 22, 22), new Position(1, 25, 25))
                                     },
-                                    loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 25, 25))
+                                    location = new SourceLocation(new Position(1, 11, 11), new Position(1, 25, 25))
                                 }
                             },
                             vkind = VariableKind.Let,
-                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 25, 25))
+                            location = new SourceLocation(new Position(1, 7, 7), new Position(1, 25, 25))
                         },
                         specifiers = new List<BaseNode>(),
                         source = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -2686,21 +2686,21 @@ namespace AcornSharp.Cli
                                     id = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 21, 21)), "document"),
                                     init = new ObjectExpressionNode(default)
                                     {
-                                        properties = new List<BaseNode>(),
-                                        loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 27, 27))
+                                        properties = new List<PropertyNode>(),
+                                        location = new SourceLocation(new Position(1, 24, 24), new Position(1, 27, 27))
                                     },
-                                    loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 27, 27))
+                                    location = new SourceLocation(new Position(1, 13, 13), new Position(1, 27, 27))
                                 }
                             },
                             vkind = VariableKind.Const,
-                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 27, 27))
+                            location = new SourceLocation(new Position(1, 7, 7), new Position(1, 27, 27))
                         },
                         specifiers = new List<BaseNode>(),
                         source = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -2720,18 +2720,18 @@ namespace AcornSharp.Cli
                             fbody = new BlockStatementNode(default)
                             {
                                 body = new List<BaseNode>(),
-                                loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 27, 27))
+                                location = new SourceLocation(new Position(1, 24, 24), new Position(1, 27, 27))
                             },
                             generator = false,
-                            bexpression = false,
-                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 27, 27))
+                            expression = false,
+                            location = new SourceLocation(new Position(1, 7, 7), new Position(1, 27, 27))
                         },
                         specifiers = new List<BaseNode>(),
                         source = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -2751,16 +2751,16 @@ namespace AcornSharp.Cli
                             fbody = new ClassBodyNode(default)
                             {
                                 body = new List<BaseNode>(),
-                                loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 21, 21))
+                                location = new SourceLocation(new Position(1, 19, 19), new Position(1, 21, 21))
                             },
-                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 21, 21))
+                            location = new SourceLocation(new Position(1, 7, 7), new Position(1, 21, 21))
                         },
                         specifiers = new List<BaseNode>(),
                         source = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -2780,12 +2780,12 @@ namespace AcornSharp.Cli
                         {
                             value = 42,
                             raw = "42",
-                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17))
+                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -2794,22 +2794,22 @@ namespace AcornSharp.Cli
 
             Test("export default function () {}", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29)),
                 body = new List<BaseNode>
                 {
                     new ExportDefaultDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29)),
                         declaration = new FunctionDeclarationNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 29, 29)),
+                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 29, 29)),
                             id = null,
                             generator = false,
-                            bexpression = false,
+                            expression = false,
                             parameters = new List<BaseNode>(),
                             fbody = new BlockStatementNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 29, 29)),
+                                location = new SourceLocation(new Position(1, 27, 27), new Position(1, 29, 29)),
                                 body = new List<BaseNode>()
                             }
                         }
@@ -2819,22 +2819,22 @@ namespace AcornSharp.Cli
 
             Test("export default function f() {}", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30)),
                 body = new List<BaseNode>
                 {
                     new ExportDefaultDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30)),
                         declaration = new FunctionDeclarationNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 30, 30)),
+                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 30, 30)),
                             id = new IdentifierNode(new SourceLocation(new Position(1, 24, 24), new Position(1, 25, 25)), "f"),
                             generator = false,
-                            bexpression = false,
+                            expression = false,
                             parameters = new List<BaseNode>(),
                             fbody = new BlockStatementNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 30, 30)),
+                                location = new SourceLocation(new Position(1, 28, 28), new Position(1, 30, 30)),
                                 body = new List<BaseNode>()
                             }
                         }
@@ -2844,20 +2844,20 @@ namespace AcornSharp.Cli
 
             Test("export default class {}", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
                 body = new List<BaseNode>
                 {
                     new ExportDefaultDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
                         declaration = new ClassDeclarationNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 23, 23)),
+                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 23, 23)),
                             id = null,
                             superClass = null,
                             fbody = new ClassBodyNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 23, 23)),
+                                location = new SourceLocation(new Position(1, 21, 21), new Position(1, 23, 23)),
                                 body = new List<BaseNode>()
                             }
                         }
@@ -2867,20 +2867,20 @@ namespace AcornSharp.Cli
 
             Test("export default class A {}", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25)),
                 body = new List<BaseNode>
                 {
                     new ExportDefaultDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25)),
                         declaration = new ClassDeclarationNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 25, 25)),
+                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 25, 25)),
                             id = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22)), "A"),
                             superClass = null,
                             fbody = new ClassBodyNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 25, 25)),
+                                location = new SourceLocation(new Position(1, 23, 23), new Position(1, 25, 25)),
                                 body = new List<BaseNode>()
                             }
                         }
@@ -2919,12 +2919,12 @@ namespace AcornSharp.Cli
                         {
                             value = "crypto",
                             raw = "\"crypto\"",
-                            loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 22, 22))
+                            location = new SourceLocation(new Position(1, 14, 14), new Position(1, 22, 22))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -2944,14 +2944,14 @@ namespace AcornSharp.Cli
                             {
                                 exported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
-                                loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
+                                location = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
                             }
                         },
                         source = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -2971,20 +2971,20 @@ namespace AcornSharp.Cli
                             {
                                 exported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
-                                loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
+                                location = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
                             },
                             new ExportSpecifierNode(default)
                             {
                                 exported = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25)), "decrypt"),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25)), "decrypt"),
-                                loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25))
+                                location = new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25))
                             }
                         },
                         source = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -3004,14 +3004,14 @@ namespace AcornSharp.Cli
                             {
                                 exported = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 27, 27)), "default"),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
-                                loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 27, 27))
+                                location = new SourceLocation(new Position(1, 9, 9), new Position(1, 27, 27))
                             }
                         },
                         source = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -3031,20 +3031,20 @@ namespace AcornSharp.Cli
                             {
                                 exported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
-                                loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
+                                location = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
                             },
                             new ExportSpecifierNode(default)
                             {
                                 exported = new IdentifierNode(new SourceLocation(new Position(1, 29, 29), new Position(1, 32, 32)), "dec"),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25)), "decrypt"),
-                                loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 32, 32))
+                                location = new SourceLocation(new Position(1, 18, 18), new Position(1, 32, 32))
                             }
                         },
                         source = null,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -3064,19 +3064,19 @@ namespace AcornSharp.Cli
                             {
                                 exported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "default"),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "default"),
-                                loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
+                                location = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
                             }
                         },
                         source = new LiteralNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 31, 31)),
+                            location = new SourceLocation(new Position(1, 24, 24), new Position(1, 31, 31)),
                             value = "other",
                             raw = "\"other\""
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -3099,12 +3099,12 @@ namespace AcornSharp.Cli
                         {
                             value = "jquery",
                             raw = "\"jquery\"",
-                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 15, 15))
+                            location = new SourceLocation(new Position(1, 7, 7), new Position(1, 15, 15))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -3122,19 +3122,19 @@ namespace AcornSharp.Cli
                             new ImportDefaultSpecifierNode(default)
                             {
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "$"),
-                                loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
+                                location = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
                             }
                         },
                         source = new LiteralNode(default)
                         {
                             value = "jquery",
                             raw = "\"jquery\"",
-                            loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 22, 22))
+                            location = new SourceLocation(new Position(1, 14, 14), new Position(1, 22, 22))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -3153,25 +3153,25 @@ namespace AcornSharp.Cli
                             {
                                 imported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
-                                loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
+                                location = new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16))
                             },
                             new ImportSpecifierNode(default)
                             {
                                 imported = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25)), "decrypt"),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25)), "decrypt"),
-                                loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25))
+                                location = new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25))
                             }
                         },
                         source = new LiteralNode(default)
                         {
                             value = "crypto",
                             raw = "\"crypto\"",
-                            loc = new SourceLocation(new Position(1, 33, 33), new Position(1, 41, 41))
+                            location = new SourceLocation(new Position(1, 33, 33), new Position(1, 41, 41))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 41, 41))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 41, 41))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 41, 41))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 41, 41))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -3190,19 +3190,19 @@ namespace AcornSharp.Cli
                             {
                                 imported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 16, 16)), "encrypt"),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 23, 23)), "enc"),
-                                loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 23, 23))
+                                location = new SourceLocation(new Position(1, 9, 9), new Position(1, 23, 23))
                             }
                         },
                         source = new LiteralNode(default)
                         {
                             value = "crypto",
                             raw = "\"crypto\"",
-                            loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 39, 39))
+                            location = new SourceLocation(new Position(1, 31, 31), new Position(1, 39, 39))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 39, 39))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 39, 39))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 39, 39))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 39, 39))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -3211,35 +3211,35 @@ namespace AcornSharp.Cli
 
             Test("import crypto, { decrypt, encrypt as enc } from \"crypto\"", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 56, 56)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 56, 56)),
                 body = new List<BaseNode>
                 {
                     new ImportDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 56, 56)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 56, 56)),
                         specifiers = new List<BaseNode>
                         {
                             new ImportDefaultSpecifierNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 13, 13)),
+                                location = new SourceLocation(new Position(1, 7, 7), new Position(1, 13, 13)),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 13, 13)), "crypto")
                             },
                             new ImportSpecifierNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 24, 24)),
+                                location = new SourceLocation(new Position(1, 17, 17), new Position(1, 24, 24)),
                                 imported = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 24, 24)), "decrypt"),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 24, 24)), "decrypt")
                             },
                             new ImportSpecifierNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 26, 26), new Position(1, 40, 40)),
+                                location = new SourceLocation(new Position(1, 26, 26), new Position(1, 40, 40)),
                                 imported = new IdentifierNode(new SourceLocation(new Position(1, 26, 26), new Position(1, 33, 33)), "encrypt"),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 37, 37), new Position(1, 40, 40)), "enc")
                             }
                         },
                         source = new LiteralNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 48, 48), new Position(1, 56, 56)),
+                            location = new SourceLocation(new Position(1, 48, 48), new Position(1, 56, 56)),
                             value = "crypto",
                             raw = "\"crypto\""
                         }
@@ -3265,19 +3265,19 @@ namespace AcornSharp.Cli
                             {
                                 imported = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 13, 13)), "null"),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20)), "nil"),
-                                loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 20, 20))
+                                location = new SourceLocation(new Position(1, 9, 9), new Position(1, 20, 20))
                             }
                         },
                         source = new LiteralNode(default)
                         {
                             value = "bar",
                             raw = "\"bar\"",
-                            loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 33, 33))
+                            location = new SourceLocation(new Position(1, 28, 28), new Position(1, 33, 33))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -3286,23 +3286,23 @@ namespace AcornSharp.Cli
 
             Test("import * as crypto from \"crypto\"", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32)),
                 body = new List<BaseNode>
                 {
                     new ImportDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32)),
                         specifiers = new List<BaseNode>
                         {
                             new ImportNamespaceSpecifierNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 18, 18)),
+                                location = new SourceLocation(new Position(1, 7, 7), new Position(1, 18, 18)),
                                 local = new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 18, 18)), "crypto")
                             }
                         },
                         source = new LiteralNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 32, 32)),
+                            location = new SourceLocation(new Position(1, 24, 24), new Position(1, 32, 32)),
                             value = "crypto",
                             raw = "\"crypto\""
                         }
@@ -3344,21 +3344,21 @@ namespace AcornSharp.Cli
                                         {
                                             argument = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23)), "v"),
                                             @delegate = false,
-                                            loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 23, 23))
+                                            location = new SourceLocation(new Position(1, 16, 16), new Position(1, 23, 23))
                                         },
-                                        loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 23, 23))
+                                        location = new SourceLocation(new Position(1, 16, 16), new Position(1, 23, 23))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 25, 25))
+                                location = new SourceLocation(new Position(1, 14, 14), new Position(1, 25, 25))
                             },
                             generator = true,
-                            bexpression = false,
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 25, 25))
+                            expression = false,
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 25, 25))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -3385,26 +3385,26 @@ namespace AcornSharp.Cli
                                         {
                                             argument = null,
                                             @delegate = false,
-                                            loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 21, 21))
+                                            location = new SourceLocation(new Position(1, 16, 16), new Position(1, 21, 21))
                                         },
-                                        loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 21, 21))
+                                        location = new SourceLocation(new Position(1, 16, 16), new Position(1, 21, 21))
                                     },
                                     new ExpressionStatementNode(default)
                                     {
                                         expression = new IdentifierNode(new SourceLocation(new Position(2, 0, 22), new Position(2, 1, 23)), "v"),
-                                        loc = new SourceLocation(new Position(2, 0, 22), new Position(2, 1, 23))
+                                        location = new SourceLocation(new Position(2, 0, 22), new Position(2, 1, 23))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 14, 14), new Position(2, 3, 25))
+                                location = new SourceLocation(new Position(1, 14, 14), new Position(2, 3, 25))
                             },
                             generator = true,
-                            bexpression = false,
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(2, 3, 25))
+                            expression = false,
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(2, 3, 25))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(2, 4, 26))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(2, 4, 26))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(2, 4, 26))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(2, 4, 26))
             }, new Options
             {
                 ecmaVersion = 6,
@@ -3431,21 +3431,21 @@ namespace AcornSharp.Cli
                                         {
                                             argument = new IdentifierNode(new SourceLocation(new Position(1, 23, 23), new Position(1, 24, 24)), "v"),
                                             @delegate = true,
-                                            loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 24, 24))
+                                            location = new SourceLocation(new Position(1, 16, 16), new Position(1, 24, 24))
                                         },
-                                        loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 24, 24))
+                                        location = new SourceLocation(new Position(1, 16, 16), new Position(1, 24, 24))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 26, 26))
+                                location = new SourceLocation(new Position(1, 14, 14), new Position(1, 26, 26))
                             },
                             generator = true,
-                            bexpression = false,
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 26, 26))
+                            expression = false,
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 26, 26))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
             }, new Options
             {
                 ecmaVersion = 6
@@ -3469,19 +3469,19 @@ namespace AcornSharp.Cli
                                     {
                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 27, 27), new Position(1, 28, 28)), "v"),
                                         @delegate = true,
-                                        loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 28, 28))
+                                        location = new SourceLocation(new Position(1, 20, 20), new Position(1, 28, 28))
                                     },
-                                    loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 28, 28))
+                                    location = new SourceLocation(new Position(1, 20, 20), new Position(1, 28, 28))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 30, 30))
+                            location = new SourceLocation(new Position(1, 18, 18), new Position(1, 30, 30))
                         },
                         generator = true,
-                        bexpression = false,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
+                        expression = false,
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
             }, new Options
             {
                 ecmaVersion = 6
@@ -3500,7 +3500,7 @@ namespace AcornSharp.Cli
                                 id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "x"),
                                 init = new ObjectExpressionNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -3519,34 +3519,34 @@ namespace AcornSharp.Cli
                                                             {
                                                                 argument = new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29)), "v"),
                                                                 @delegate = true,
-                                                                loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 29, 29))
+                                                                location = new SourceLocation(new Position(1, 21, 21), new Position(1, 29, 29))
                                                             },
-                                                            loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 29, 29))
+                                                            location = new SourceLocation(new Position(1, 21, 21), new Position(1, 29, 29))
                                                         }
                                                     },
-                                                    loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 31, 31))
+                                                    location = new SourceLocation(new Position(1, 19, 19), new Position(1, 31, 31))
                                                 },
                                                 generator = true,
-                                                bexpression = false,
-                                                loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 31, 31))
+                                                expression = false,
+                                                location = new SourceLocation(new Position(1, 16, 16), new Position(1, 31, 31))
                                             },
                                             pkind = PropertyKind.Initialise,
                                             method = true,
                                             shorthand = false,
                                             computed = false,
-                                            loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 31, 31))
+                                            location = new SourceLocation(new Position(1, 10, 10), new Position(1, 31, 31))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 33, 33))
+                                    location = new SourceLocation(new Position(1, 8, 8), new Position(1, 33, 33))
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 33, 33))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 33, 33))
                             }
                         },
                         vkind = VariableKind.Var,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
             }, new Options
             {
                 ecmaVersion = 6
@@ -3560,7 +3560,7 @@ namespace AcornSharp.Cli
                     {
                         id = new IdentifierNode(default, "foo"),
                         generator = true,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>(),
                         fbody = new BlockStatementNode(default)
                         {
@@ -3601,14 +3601,14 @@ namespace AcornSharp.Cli
                         fbody = new BlockStatementNode(default)
                         {
                             body = new List<BaseNode>(),
-                            loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 16, 16))
+                            location = new SourceLocation(new Position(1, 14, 14), new Position(1, 16, 16))
                         },
                         generator = true,
-                        bexpression = false,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
+                        expression = false,
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
             }, new Options
             {
                 ecmaVersion = 6
@@ -3638,27 +3638,27 @@ namespace AcornSharp.Cli
                                                 {
                                                     value = 10,
                                                     raw = "10",
-                                                    loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 30, 30))
+                                                    location = new SourceLocation(new Position(1, 28, 28), new Position(1, 30, 30))
                                                 },
                                                 @delegate = false,
-                                                loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 30, 30))
+                                                location = new SourceLocation(new Position(1, 22, 22), new Position(1, 30, 30))
                                             },
                                             @delegate = false,
-                                            loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 30, 30))
+                                            location = new SourceLocation(new Position(1, 16, 16), new Position(1, 30, 30))
                                         },
-                                        loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 30, 30))
+                                        location = new SourceLocation(new Position(1, 16, 16), new Position(1, 30, 30))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 32, 32))
+                                location = new SourceLocation(new Position(1, 14, 14), new Position(1, 32, 32))
                             },
                             generator = true,
-                            bexpression = false,
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 32, 32))
+                            expression = false,
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 32, 32))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
             }, new Options
             {
                 ecmaVersion = 6
@@ -3686,14 +3686,14 @@ namespace AcornSharp.Cli
                                 {
                                     new IdentifierNode(new SourceLocation(new Position(1, 23, 23), new Position(1, 24, 24)), "x")
                                 },
-                                loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 25, 25))
+                                location = new SourceLocation(new Position(1, 15, 15), new Position(1, 25, 25))
                             },
-                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 26, 26))
+                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 26, 26))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
             }, new Options
             {
                 ecmaVersion = 6
@@ -3713,11 +3713,11 @@ namespace AcornSharp.Cli
                                 {
                                     id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "x"),
                                     init = null,
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
+                                    location = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
                                 }
                             },
                             vkind = VariableKind.Var,
-                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 10, 10))
+                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 10, 10))
                         },
                         right = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 18, 18)), "list"),
                         fbody = new ExpressionStatementNode(default)
@@ -3729,14 +3729,14 @@ namespace AcornSharp.Cli
                                 {
                                     new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29)), "x")
                                 },
-                                loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 30, 30))
+                                location = new SourceLocation(new Position(1, 20, 20), new Position(1, 30, 30))
                             },
-                            loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 31, 31))
+                            location = new SourceLocation(new Position(1, 20, 20), new Position(1, 31, 31))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
             }, new Options
             {
                 ecmaVersion = 6
@@ -3759,13 +3759,13 @@ namespace AcornSharp.Cli
                                     {
                                         value = 42,
                                         raw = "42",
-                                        loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 15, 15))
+                                        location = new SourceLocation(new Position(1, 13, 13), new Position(1, 15, 15))
                                     },
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 15, 15))
+                                    location = new SourceLocation(new Position(1, 9, 9), new Position(1, 15, 15))
                                 }
                             },
                             vkind = VariableKind.Var,
-                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 15, 15))
+                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 15, 15))
                         },
                         right = new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 23, 23)), "list"),
                         fbody = new ExpressionStatementNode(default)
@@ -3777,14 +3777,14 @@ namespace AcornSharp.Cli
                                 {
                                     new IdentifierNode(new SourceLocation(new Position(1, 33, 33), new Position(1, 34, 34)), "x")
                                 },
-                                loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 35, 35))
+                                location = new SourceLocation(new Position(1, 25, 25), new Position(1, 35, 35))
                             },
-                            loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 36, 36))
+                            location = new SourceLocation(new Position(1, 25, 25), new Position(1, 36, 36))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 36, 36))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 36, 36))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 36, 36))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 36, 36))
             }, new Options
             {
                 ecmaVersion = 6
@@ -3804,11 +3804,11 @@ namespace AcornSharp.Cli
                                 {
                                     id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "x"),
                                     init = null,
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
+                                    location = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
                                 }
                             },
                             vkind = VariableKind.Let,
-                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 10, 10))
+                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 10, 10))
                         },
                         right = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 18, 18)), "list"),
                         fbody = new ExpressionStatementNode(default)
@@ -3820,14 +3820,14 @@ namespace AcornSharp.Cli
                                 {
                                     new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29)), "x")
                                 },
-                                loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 30, 30))
+                                location = new SourceLocation(new Position(1, 20, 20), new Position(1, 30, 30))
                             },
-                            loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 31, 31))
+                            location = new SourceLocation(new Position(1, 20, 20), new Position(1, 31, 31))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
             }, new Options
             {
                 ecmaVersion = 6
@@ -3852,18 +3852,18 @@ namespace AcornSharp.Cli
                                     fbody = new ClassBodyNode(default)
                                     {
                                         body = new List<BaseNode>(),
-                                        loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 26, 26))
+                                        location = new SourceLocation(new Position(1, 24, 24), new Position(1, 26, 26))
                                     },
-                                    loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 26, 26))
+                                    location = new SourceLocation(new Position(1, 8, 8), new Position(1, 26, 26))
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 26, 26))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 26, 26))
                             }
                         },
                         vkind = VariableKind.Var,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
             }, new Options
             {
                 ecmaVersion = 6
@@ -3883,19 +3883,19 @@ namespace AcornSharp.Cli
                             fbody = new ClassBodyNode(default)
                             {
                                 body = new List<BaseNode>(),
-                                loc = new SourceLocation(new Position(1, 34, 34), new Position(1, 36, 36))
+                                location = new SourceLocation(new Position(1, 34, 34), new Position(1, 36, 36))
                             },
-                            loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 36, 36))
+                            location = new SourceLocation(new Position(1, 16, 16), new Position(1, 36, 36))
                         },
                         fbody = new ClassBodyNode(default)
                         {
                             body = new List<BaseNode>(),
-                            loc = new SourceLocation(new Position(1, 37, 37), new Position(1, 39, 39))
+                            location = new SourceLocation(new Position(1, 37, 37), new Position(1, 39, 39))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 39, 39))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 39, 39))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 39, 39))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 39, 39))
             }, new Options
             {
                 ecmaVersion = 6
@@ -3924,23 +3924,23 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17))
+                                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 17, 17))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 12, 12), new Position(1, 17, 17))
                                     },
                                     pkind = PropertyKind.Method,
                                     @static = false,
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 17, 17))
+                                    location = new SourceLocation(new Position(1, 9, 9), new Position(1, 17, 17))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 18, 18))
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 18, 18))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
             }, new Options
             {
                 ecmaVersion = 6
@@ -3969,23 +3969,23 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 25, 25))
+                                            location = new SourceLocation(new Position(1, 23, 23), new Position(1, 25, 25))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 25, 25))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 20, 20), new Position(1, 25, 25))
                                     },
                                     pkind = PropertyKind.Method,
                                     @static = true,
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 25, 25))
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 25, 25))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 26, 26))
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 26, 26))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
             }, new Options
             {
                 ecmaVersion = 6
@@ -4014,23 +4014,23 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 29, 29), new Position(1, 31, 31))
+                                            location = new SourceLocation(new Position(1, 29, 29), new Position(1, 31, 31))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 26, 26), new Position(1, 31, 31))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 26, 26), new Position(1, 31, 31))
                                     },
                                     pkind = PropertyKind.Get,
                                     @static = false,
-                                    loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 31, 31))
+                                    location = new SourceLocation(new Position(1, 19, 19), new Position(1, 31, 31))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 32, 32))
+                            location = new SourceLocation(new Position(1, 18, 18), new Position(1, 32, 32))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32))
             }, new Options
             {
                 ecmaVersion = 6
@@ -4059,23 +4059,23 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 37, 37), new Position(1, 39, 39))
+                                            location = new SourceLocation(new Position(1, 37, 37), new Position(1, 39, 39))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 34, 34), new Position(1, 39, 39))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 34, 34), new Position(1, 39, 39))
                                     },
                                     pkind = PropertyKind.Get,
                                     @static = true,
-                                    loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 39, 39))
+                                    location = new SourceLocation(new Position(1, 20, 20), new Position(1, 39, 39))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 40, 40))
+                            location = new SourceLocation(new Position(1, 18, 18), new Position(1, 40, 40))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 40, 40))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 40, 40))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 40, 40))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 40, 40))
             }, new Options
             {
                 ecmaVersion = 6
@@ -4107,23 +4107,23 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 20, 20))
+                                            location = new SourceLocation(new Position(1, 18, 18), new Position(1, 20, 20))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 20, 20))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 14, 14), new Position(1, 20, 20))
                                     },
                                     pkind = PropertyKind.Set,
                                     @static = false,
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 20, 20))
+                                    location = new SourceLocation(new Position(1, 9, 9), new Position(1, 20, 20))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 21, 21))
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 21, 21))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21))
             }, new Options
             {
                 ecmaVersion = 6
@@ -4155,23 +4155,23 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 26, 26), new Position(1, 28, 28))
+                                            location = new SourceLocation(new Position(1, 26, 26), new Position(1, 28, 28))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 28, 28))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 22, 22), new Position(1, 28, 28))
                                     },
                                     pkind = PropertyKind.Set,
                                     @static = true,
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 28, 28))
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 28, 28))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 29, 29))
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 29, 29))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
             }, new Options
             {
                 ecmaVersion = 6
@@ -4203,23 +4203,23 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 18, 18))
+                                            location = new SourceLocation(new Position(1, 16, 16), new Position(1, 18, 18))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 18, 18))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 12, 12), new Position(1, 18, 18))
                                     },
                                     pkind = PropertyKind.Method,
                                     @static = false,
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 18, 18))
+                                    location = new SourceLocation(new Position(1, 9, 9), new Position(1, 18, 18))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 20, 20))
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 20, 20))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
             }, new Options
             {
                 ecmaVersion = 6
@@ -4251,23 +4251,23 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 26, 26))
+                                            location = new SourceLocation(new Position(1, 24, 24), new Position(1, 26, 26))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 26, 26))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 20, 20), new Position(1, 26, 26))
                                     },
                                     pkind = PropertyKind.Method,
                                     @static = true,
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 26, 26))
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 26, 26))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 28, 28))
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 28, 28))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
             }, new Options
             {
                 ecmaVersion = 6
@@ -4306,28 +4306,28 @@ namespace AcornSharp.Cli
                                                     {
                                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 26, 26)), "v"),
                                                         @delegate = false,
-                                                        loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 26, 26))
+                                                        location = new SourceLocation(new Position(1, 19, 19), new Position(1, 26, 26))
                                                     },
-                                                    loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 27, 27))
+                                                    location = new SourceLocation(new Position(1, 19, 19), new Position(1, 27, 27))
                                                 }
                                             },
-                                            loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 29, 29))
+                                            location = new SourceLocation(new Position(1, 17, 17), new Position(1, 29, 29))
                                         },
                                         generator = true,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 29, 29))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 13, 13), new Position(1, 29, 29))
                                     },
                                     pkind = PropertyKind.Method,
                                     @static = false,
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 29, 29))
+                                    location = new SourceLocation(new Position(1, 9, 9), new Position(1, 29, 29))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 30, 30))
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 30, 30))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
             }, new Options
             {
                 ecmaVersion = 6
@@ -4366,28 +4366,28 @@ namespace AcornSharp.Cli
                                                     {
                                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 33, 33), new Position(1, 34, 34)), "v"),
                                                         @delegate = false,
-                                                        loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 34, 34))
+                                                        location = new SourceLocation(new Position(1, 27, 27), new Position(1, 34, 34))
                                                     },
-                                                    loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 35, 35))
+                                                    location = new SourceLocation(new Position(1, 27, 27), new Position(1, 35, 35))
                                                 }
                                             },
-                                            loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 37, 37))
+                                            location = new SourceLocation(new Position(1, 25, 25), new Position(1, 37, 37))
                                         },
                                         generator = true,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 37, 37))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 21, 21), new Position(1, 37, 37))
                                     },
                                     pkind = PropertyKind.Method,
                                     @static = true,
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 37, 37))
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 37, 37))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 38, 38))
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 38, 38))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
             }, new Options
             {
                 ecmaVersion = 6
@@ -4403,9 +4403,9 @@ namespace AcornSharp.Cli
                         {
                             value = "use strict",
                             raw = "\"use strict\"",
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
                     },
                     new ExpressionStatementNode(default)
                     {
@@ -4435,33 +4435,33 @@ namespace AcornSharp.Cli
                                                         {
                                                             callee = new SuperNode(default)
                                                             {
-                                                                loc = new SourceLocation(new Position(1, 40, 40), new Position(1, 45, 45))
+                                                                location = new SourceLocation(new Position(1, 40, 40), new Position(1, 45, 45))
                                                             },
                                                             arguments = new List<BaseNode>(),
-                                                            loc = new SourceLocation(new Position(1, 40, 40), new Position(1, 47, 47))
+                                                            location = new SourceLocation(new Position(1, 40, 40), new Position(1, 47, 47))
                                                         },
-                                                        loc = new SourceLocation(new Position(1, 40, 40), new Position(1, 47, 47))
+                                                        location = new SourceLocation(new Position(1, 40, 40), new Position(1, 47, 47))
                                                     }
                                                 },
-                                                loc = new SourceLocation(new Position(1, 38, 38), new Position(1, 49, 49))
+                                                location = new SourceLocation(new Position(1, 38, 38), new Position(1, 49, 49))
                                             },
                                             generator = false,
-                                            bexpression = false,
-                                            loc = new SourceLocation(new Position(1, 35, 35), new Position(1, 49, 49))
+                                            expression = false,
+                                            location = new SourceLocation(new Position(1, 35, 35), new Position(1, 49, 49))
                                         },
                                         pkind = PropertyKind.Constructor,
                                         @static = false,
-                                        loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 49, 49))
+                                        location = new SourceLocation(new Position(1, 24, 24), new Position(1, 49, 49))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 50, 50))
+                                location = new SourceLocation(new Position(1, 23, 23), new Position(1, 50, 50))
                             },
-                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 50, 50))
+                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 50, 50))
                         },
-                        loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 51, 51))
+                        location = new SourceLocation(new Position(1, 14, 14), new Position(1, 51, 51))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 51, 51))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 51, 51))
             }, new Options
             {
                 ecmaVersion = 6
@@ -4492,7 +4492,7 @@ namespace AcornSharp.Cli
                                     {
                                         id = null,
                                         generator = false,
-                                        bexpression = false,
+                                        expression = false,
                                         parameters = new List<BaseNode>(),
                                         fbody = new BlockStatementNode(default)
                                         {
@@ -4535,23 +4535,23 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 24, 24))
+                                            location = new SourceLocation(new Position(1, 22, 22), new Position(1, 24, 24))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 24, 24))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 19, 19), new Position(1, 24, 24))
                                     },
                                     pkind = PropertyKind.Method,
                                     @static = true,
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 24, 24))
+                                    location = new SourceLocation(new Position(1, 9, 9), new Position(1, 24, 24))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 25, 25))
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 25, 25))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25))
             }, new Options
             {
                 ecmaVersion = 6
@@ -4580,15 +4580,15 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17))
+                                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 17, 17))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 12, 12), new Position(1, 17, 17))
                                     },
                                     pkind = PropertyKind.Method,
                                     @static = false,
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 17, 17))
+                                    location = new SourceLocation(new Position(1, 9, 9), new Position(1, 17, 17))
                                 },
                                 new MethodDefinitionNode(default)
                                 {
@@ -4601,23 +4601,23 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 33, 33))
+                                            location = new SourceLocation(new Position(1, 31, 31), new Position(1, 33, 33))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 33, 33))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 28, 28), new Position(1, 33, 33))
                                     },
                                     pkind = PropertyKind.Method,
                                     @static = true,
-                                    loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 33, 33))
+                                    location = new SourceLocation(new Position(1, 18, 18), new Position(1, 33, 33))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 34, 34))
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 34, 34))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
             }, new Options
             {
                 ecmaVersion = 6
@@ -4633,9 +4633,9 @@ namespace AcornSharp.Cli
                         {
                             value = "use strict",
                             raw = "\"use strict\"",
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
                     },
                     new ExpressionStatementNode(default)
                     {
@@ -4665,33 +4665,33 @@ namespace AcornSharp.Cli
                                                         {
                                                             callee = new SuperNode(default)
                                                             {
-                                                                loc = new SourceLocation(new Position(1, 48, 48), new Position(1, 53, 53))
+                                                                location = new SourceLocation(new Position(1, 48, 48), new Position(1, 53, 53))
                                                             },
                                                             arguments = new List<BaseNode>(),
-                                                            loc = new SourceLocation(new Position(1, 48, 48), new Position(1, 55, 55))
+                                                            location = new SourceLocation(new Position(1, 48, 48), new Position(1, 55, 55))
                                                         },
-                                                        loc = new SourceLocation(new Position(1, 48, 48), new Position(1, 55, 55))
+                                                        location = new SourceLocation(new Position(1, 48, 48), new Position(1, 55, 55))
                                                     }
                                                 },
-                                                loc = new SourceLocation(new Position(1, 46, 46), new Position(1, 57, 57))
+                                                location = new SourceLocation(new Position(1, 46, 46), new Position(1, 57, 57))
                                             },
                                             generator = false,
-                                            bexpression = false,
-                                            loc = new SourceLocation(new Position(1, 43, 43), new Position(1, 57, 57))
+                                            expression = false,
+                                            location = new SourceLocation(new Position(1, 43, 43), new Position(1, 57, 57))
                                         },
                                         pkind = PropertyKind.Method,
                                         @static = true,
-                                        loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 57, 57))
+                                        location = new SourceLocation(new Position(1, 25, 25), new Position(1, 57, 57))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 58, 58))
+                                location = new SourceLocation(new Position(1, 23, 23), new Position(1, 58, 58))
                             },
-                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 58, 58))
+                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 58, 58))
                         },
-                        loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 59, 59))
+                        location = new SourceLocation(new Position(1, 14, 14), new Position(1, 59, 59))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 59, 59))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 59, 59))
             }, new Options
             {
                 ecmaVersion = 6
@@ -4720,15 +4720,15 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 18, 18))
+                                            location = new SourceLocation(new Position(1, 16, 16), new Position(1, 18, 18))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 18, 18))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 13, 13), new Position(1, 18, 18))
                                     },
                                     pkind = PropertyKind.Method,
                                     @static = false,
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 18, 18))
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 18, 18))
                                 },
                                 new MethodDefinitionNode(default)
                                 {
@@ -4741,23 +4741,23 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 27, 27))
+                                            location = new SourceLocation(new Position(1, 25, 25), new Position(1, 27, 27))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 27, 27))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 22, 22), new Position(1, 27, 27))
                                     },
                                     pkind = PropertyKind.Method,
                                     @static = false,
-                                    loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 27, 27))
+                                    location = new SourceLocation(new Position(1, 19, 19), new Position(1, 27, 27))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 28, 28))
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 28, 28))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
             }, new Options
             {
                 ecmaVersion = 6
@@ -4786,15 +4786,15 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 22, 22))
+                                            location = new SourceLocation(new Position(1, 20, 20), new Position(1, 22, 22))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 22, 22))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 17, 17), new Position(1, 22, 22))
                                     },
                                     pkind = PropertyKind.Get,
                                     @static = false,
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 22, 22))
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 22, 22))
                                 },
                                 new MethodDefinitionNode(default)
                                 {
@@ -4810,23 +4810,23 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 34, 34), new Position(1, 36, 36))
+                                            location = new SourceLocation(new Position(1, 34, 34), new Position(1, 36, 36))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 30, 30), new Position(1, 36, 36))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 30, 30), new Position(1, 36, 36))
                                     },
                                     pkind = PropertyKind.Set,
                                     @static = false,
-                                    loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 36, 36))
+                                    location = new SourceLocation(new Position(1, 23, 23), new Position(1, 36, 36))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 37, 37))
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 37, 37))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37))
             }, new Options
             {
                 ecmaVersion = 6
@@ -4855,15 +4855,15 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 29, 29))
+                                            location = new SourceLocation(new Position(1, 27, 27), new Position(1, 29, 29))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 29, 29))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 24, 24), new Position(1, 29, 29))
                                     },
                                     pkind = PropertyKind.Get,
                                     @static = true,
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 29, 29))
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 29, 29))
                                 },
                                 new MethodDefinitionNode(default)
                                 {
@@ -4876,23 +4876,23 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 40, 40), new Position(1, 42, 42))
+                                            location = new SourceLocation(new Position(1, 40, 40), new Position(1, 42, 42))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 37, 37), new Position(1, 42, 42))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 37, 37), new Position(1, 42, 42))
                                     },
                                     pkind = PropertyKind.Get,
                                     @static = false,
-                                    loc = new SourceLocation(new Position(1, 30, 30), new Position(1, 42, 42))
+                                    location = new SourceLocation(new Position(1, 30, 30), new Position(1, 42, 42))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 43, 43))
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 43, 43))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 43, 43))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 43, 43))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 43, 43))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 43, 43))
             }, new Options
             {
                 ecmaVersion = 6
@@ -4921,15 +4921,15 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 29, 29))
+                                            location = new SourceLocation(new Position(1, 27, 27), new Position(1, 29, 29))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 29, 29))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 24, 24), new Position(1, 29, 29))
                                     },
                                     pkind = PropertyKind.Get,
                                     @static = true,
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 29, 29))
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 29, 29))
                                 },
                                 new MethodDefinitionNode(default)
                                 {
@@ -4942,23 +4942,23 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 47, 47), new Position(1, 49, 49))
+                                            location = new SourceLocation(new Position(1, 47, 47), new Position(1, 49, 49))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 44, 44), new Position(1, 49, 49))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 44, 44), new Position(1, 49, 49))
                                     },
                                     pkind = PropertyKind.Get,
                                     @static = true,
-                                    loc = new SourceLocation(new Position(1, 30, 30), new Position(1, 49, 49))
+                                    location = new SourceLocation(new Position(1, 30, 30), new Position(1, 49, 49))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 51, 51))
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 51, 51))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 51, 51))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 51, 51))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 51, 51))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 51, 51))
             }, new Options
             {
                 ecmaVersion = 6
@@ -4987,15 +4987,15 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 29, 29))
+                                            location = new SourceLocation(new Position(1, 27, 27), new Position(1, 29, 29))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 29, 29))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 24, 24), new Position(1, 29, 29))
                                     },
                                     pkind = PropertyKind.Get,
                                     @static = true,
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 29, 29))
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 29, 29))
                                 },
                                 new MethodDefinitionNode(default)
                                 {
@@ -5011,15 +5011,15 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 48, 48), new Position(1, 50, 50))
+                                            location = new SourceLocation(new Position(1, 48, 48), new Position(1, 50, 50))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 44, 44), new Position(1, 50, 50))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 44, 44), new Position(1, 50, 50))
                                     },
                                     pkind = PropertyKind.Set,
                                     @static = true,
-                                    loc = new SourceLocation(new Position(1, 30, 30), new Position(1, 50, 50))
+                                    location = new SourceLocation(new Position(1, 30, 30), new Position(1, 50, 50))
                                 },
                                 new MethodDefinitionNode(default)
                                 {
@@ -5032,15 +5032,15 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 61, 61), new Position(1, 63, 63))
+                                            location = new SourceLocation(new Position(1, 61, 61), new Position(1, 63, 63))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 58, 58), new Position(1, 63, 63))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 58, 58), new Position(1, 63, 63))
                                     },
                                     pkind = PropertyKind.Get,
                                     @static = false,
-                                    loc = new SourceLocation(new Position(1, 51, 51), new Position(1, 63, 63))
+                                    location = new SourceLocation(new Position(1, 51, 51), new Position(1, 63, 63))
                                 },
                                 new MethodDefinitionNode(default)
                                 {
@@ -5056,23 +5056,23 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 75, 75), new Position(1, 77, 77))
+                                            location = new SourceLocation(new Position(1, 75, 75), new Position(1, 77, 77))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 71, 71), new Position(1, 77, 77))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 71, 71), new Position(1, 77, 77))
                                     },
                                     pkind = PropertyKind.Set,
                                     @static = false,
-                                    loc = new SourceLocation(new Position(1, 64, 64), new Position(1, 77, 77))
+                                    location = new SourceLocation(new Position(1, 64, 64), new Position(1, 77, 77))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 78, 78))
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 78, 78))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 78, 78))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 78, 78))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 78, 78))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 78, 78))
             }, new Options
             {
                 ecmaVersion = 6
@@ -5081,38 +5081,38 @@ namespace AcornSharp.Cli
 
             Test("class A { static [foo]() {} }", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29)),
                 body = new List<BaseNode>
                 {
                     new ClassDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new ClassBodyNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 29, 29)),
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 29, 29)),
                             body = new List<BaseNode>
                             {
                                 new MethodDefinitionNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 27, 27)),
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 27, 27)),
                                     @static = true,
                                     computed = true,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 21, 21)), "foo"),
                                     pkind = PropertyKind.Method,
                                     value = new FunctionExpressionNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 27, 27)),
+                                        location = new SourceLocation(new Position(1, 22, 22), new Position(1, 27, 27)),
                                         id = null,
                                         parameters = new List<BaseNode>(),
                                         generator = false,
                                         fbody = new BlockStatementNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 27, 27)),
+                                            location = new SourceLocation(new Position(1, 25, 25), new Position(1, 27, 27)),
                                             body = new List<BaseNode>()
                                         },
-                                        bexpression = false
+                                        expression = false
                                     }
                                 }
                             }
@@ -5126,38 +5126,38 @@ namespace AcornSharp.Cli
 
             Test("class A { static get [foo]() {} }", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
                 body = new List<BaseNode>
                 {
                     new ClassDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new ClassBodyNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 33, 33)),
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 33, 33)),
                             body = new List<BaseNode>
                             {
                                 new MethodDefinitionNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 31, 31)),
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 31, 31)),
                                     @static = true,
                                     computed = true,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 25, 25)), "foo"),
                                     pkind = PropertyKind.Get,
                                     value = new FunctionExpressionNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 26, 26), new Position(1, 31, 31)),
+                                        location = new SourceLocation(new Position(1, 26, 26), new Position(1, 31, 31)),
                                         id = null,
                                         parameters = new List<BaseNode>(),
                                         generator = false,
                                         fbody = new BlockStatementNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 29, 29), new Position(1, 31, 31)),
+                                            location = new SourceLocation(new Position(1, 29, 29), new Position(1, 31, 31)),
                                             body = new List<BaseNode>()
                                         },
-                                        bexpression = false
+                                        expression = false
                                     }
                                 }
                             }
@@ -5195,15 +5195,15 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 23, 23))
+                                            location = new SourceLocation(new Position(1, 21, 21), new Position(1, 23, 23))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 23, 23))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 17, 17), new Position(1, 23, 23))
                                     },
                                     pkind = PropertyKind.Set,
                                     @static = false,
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 23, 23))
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 23, 23))
                                 },
                                 new MethodDefinitionNode(default)
                                 {
@@ -5216,23 +5216,23 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 34, 34), new Position(1, 36, 36))
+                                            location = new SourceLocation(new Position(1, 34, 34), new Position(1, 36, 36))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 36, 36))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 31, 31), new Position(1, 36, 36))
                                     },
                                     pkind = PropertyKind.Get,
                                     @static = false,
-                                    loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 36, 36))
+                                    location = new SourceLocation(new Position(1, 24, 24), new Position(1, 36, 36))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 38, 38))
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 38, 38))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
             }, new Options
             {
                 ecmaVersion = 6
@@ -5240,59 +5240,59 @@ namespace AcornSharp.Cli
 
             Test("class A { foo() {} get foo() {} }", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
                 body = new List<BaseNode>
                 {
                     new ClassDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new ClassBodyNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 33, 33)),
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 33, 33)),
                             body = new List<BaseNode>
                             {
                                 new MethodDefinitionNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 18, 18)),
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 18, 18)),
                                     @static = false,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13)), "foo"),
                                     pkind = PropertyKind.Method,
                                     value = new FunctionExpressionNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 18, 18)),
+                                        location = new SourceLocation(new Position(1, 13, 13), new Position(1, 18, 18)),
                                         id = null,
                                         parameters = new List<BaseNode>(),
                                         generator = false,
                                         fbody = new BlockStatementNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 18, 18)),
+                                            location = new SourceLocation(new Position(1, 16, 16), new Position(1, 18, 18)),
                                             body = new List<BaseNode>()
                                         },
-                                        bexpression = false
+                                        expression = false
                                     }
                                 },
                                 new MethodDefinitionNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 31, 31)),
+                                    location = new SourceLocation(new Position(1, 19, 19), new Position(1, 31, 31)),
                                     @static = false,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 23, 23), new Position(1, 26, 26)), "foo"),
                                     pkind = PropertyKind.Get,
                                     value = new FunctionExpressionNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 26, 26), new Position(1, 31, 31)),
+                                        location = new SourceLocation(new Position(1, 26, 26), new Position(1, 31, 31)),
                                         id = null,
                                         parameters = new List<BaseNode>(),
                                         generator = false,
                                         fbody = new BlockStatementNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 29, 29), new Position(1, 31, 31)),
+                                            location = new SourceLocation(new Position(1, 29, 29), new Position(1, 31, 31)),
                                             body = new List<BaseNode>()
                                         },
-                                        bexpression = false
+                                        expression = false
                                     }
                                 }
                             }
@@ -5306,17 +5306,17 @@ namespace AcornSharp.Cli
 
             Test("class Semicolon { ; }", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
                 body = new List<BaseNode>
                 {
                     new ClassDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 15, 15)), "Semicolon"),
                         superClass = null,
                         fbody = new ClassBodyNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 21, 21)),
+                            location = new SourceLocation(new Position(1, 16, 16), new Position(1, 21, 21)),
                             body = new List<BaseNode>()
                         }
                     }
@@ -5336,7 +5336,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new ObjectExpressionNode(default)
                         {
-                            properties = new List<BaseNode>
+                            properties = new List<PropertyNode>
                             {
                                 new PropertyNode(default)
                                 {
@@ -5345,21 +5345,21 @@ namespace AcornSharp.Cli
                                     {
                                         value = 10,
                                         raw = "10",
-                                        loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 9, 9))
+                                        location = new SourceLocation(new Position(1, 7, 7), new Position(1, 9, 9))
                                     },
                                     pkind = PropertyKind.Initialise,
                                     method = false,
                                     shorthand = false,
                                     computed = true,
-                                    loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 9, 9))
+                                    location = new SourceLocation(new Position(1, 2, 2), new Position(1, 9, 9))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 10, 10))
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 10, 10))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
             }, new Options
             {
                 ecmaVersion = 6
@@ -5373,7 +5373,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new ObjectExpressionNode(default)
                         {
-                            properties = new List<BaseNode>
+                            properties = new List<PropertyNode>
                             {
                                 new PropertyNode(default)
                                 {
@@ -5384,35 +5384,35 @@ namespace AcornSharp.Cli
                                         {
                                             value = "x",
                                             raw = "\"x\"",
-                                            loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 6, 6))
+                                            location = new SourceLocation(new Position(1, 3, 3), new Position(1, 6, 6))
                                         },
                                         right = new LiteralNode(default)
                                         {
                                             value = "y",
                                             raw = "\"y\"",
-                                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12))
+                                            location = new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12))
                                         },
-                                        loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 12, 12))
+                                        location = new SourceLocation(new Position(1, 3, 3), new Position(1, 12, 12))
                                     },
                                     value = new LiteralNode(default)
                                     {
                                         value = 10,
                                         raw = "10",
-                                        loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17))
+                                        location = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17))
                                     },
                                     pkind = PropertyKind.Initialise,
                                     method = false,
                                     shorthand = false,
                                     computed = true,
-                                    loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 17, 17))
+                                    location = new SourceLocation(new Position(1, 2, 2), new Position(1, 17, 17))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 18, 18))
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 18, 18))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
             }, new Options
             {
                 ecmaVersion = 6
@@ -5426,7 +5426,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new ObjectExpressionNode(default)
                         {
-                            properties = new List<BaseNode>
+                            properties = new List<PropertyNode>
                             {
                                 new PropertyNode(default)
                                 {
@@ -5438,25 +5438,25 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 20, 20))
+                                            location = new SourceLocation(new Position(1, 18, 18), new Position(1, 20, 20))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 20, 20))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 7, 7), new Position(1, 20, 20))
                                     },
                                     pkind = PropertyKind.Initialise,
                                     method = false,
                                     shorthand = false,
                                     computed = true,
-                                    loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 20, 20))
+                                    location = new SourceLocation(new Position(1, 2, 2), new Position(1, 20, 20))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 21, 21))
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 21, 21))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
             }, new Options
             {
                 ecmaVersion = 6
@@ -5470,7 +5470,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new ObjectExpressionNode(default)
                         {
-                            properties = new List<BaseNode>
+                            properties = new List<PropertyNode>
                             {
                                 new PropertyNode(default)
                                 {
@@ -5479,13 +5479,13 @@ namespace AcornSharp.Cli
                                     {
                                         value = 10,
                                         raw = "10",
-                                        loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 9, 9))
+                                        location = new SourceLocation(new Position(1, 7, 7), new Position(1, 9, 9))
                                     },
                                     pkind = PropertyKind.Initialise,
                                     method = false,
                                     shorthand = false,
                                     computed = true,
-                                    loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 9, 9))
+                                    location = new SourceLocation(new Position(1, 2, 2), new Position(1, 9, 9))
                                 },
                                 new PropertyNode(default)
                                 {
@@ -5494,21 +5494,21 @@ namespace AcornSharp.Cli
                                     {
                                         value = 20,
                                         raw = "20",
-                                        loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 16, 16))
+                                        location = new SourceLocation(new Position(1, 14, 14), new Position(1, 16, 16))
                                     },
                                     pkind = PropertyKind.Initialise,
                                     method = false,
                                     shorthand = false,
                                     computed = false,
-                                    loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 16, 16))
+                                    location = new SourceLocation(new Position(1, 11, 11), new Position(1, 16, 16))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 17, 17))
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 17, 17))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
             }, new Options
             {
                 ecmaVersion = 6
@@ -5522,7 +5522,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new ObjectExpressionNode(default)
                         {
-                            properties = new List<BaseNode>
+                            properties = new List<PropertyNode>
                             {
                                 new PropertyNode(default)
                                 {
@@ -5534,17 +5534,17 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 14, 14))
+                                            location = new SourceLocation(new Position(1, 12, 12), new Position(1, 14, 14))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 14, 14))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 9, 9), new Position(1, 14, 14))
                                     },
                                     pkind = PropertyKind.Get,
                                     method = false,
                                     shorthand = false,
                                     computed = true,
-                                    loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 14, 14))
+                                    location = new SourceLocation(new Position(1, 2, 2), new Position(1, 14, 14))
                                 },
                                 new PropertyNode(default)
                                 {
@@ -5559,25 +5559,25 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 27, 27), new Position(1, 29, 29))
+                                            location = new SourceLocation(new Position(1, 27, 27), new Position(1, 29, 29))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 29, 29))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 23, 23), new Position(1, 29, 29))
                                     },
                                     pkind = PropertyKind.Set,
                                     method = false,
                                     shorthand = false,
                                     computed = true,
-                                    loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 29, 29))
+                                    location = new SourceLocation(new Position(1, 16, 16), new Position(1, 29, 29))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 30, 30))
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 30, 30))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
             }, new Options
             {
                 ecmaVersion = 6
@@ -5591,7 +5591,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new ObjectExpressionNode(default)
                         {
-                            properties = new List<BaseNode>
+                            properties = new List<PropertyNode>
                             {
                                 new PropertyNode(default)
                                 {
@@ -5603,25 +5603,25 @@ namespace AcornSharp.Cli
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 10, 10))
+                                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 10, 10))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 10, 10))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 5, 5), new Position(1, 10, 10))
                                     },
                                     pkind = PropertyKind.Initialise,
                                     method = true,
                                     shorthand = false,
                                     computed = true,
-                                    loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 10, 10))
+                                    location = new SourceLocation(new Position(1, 2, 2), new Position(1, 10, 10))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 11, 11))
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 11, 11))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
             }, new Options
             {
                 ecmaVersion = 6
@@ -5639,7 +5639,7 @@ namespace AcornSharp.Cli
                             {
                                 id = new ObjectPatternNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -5649,14 +5649,14 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = false,
                                             computed = true,
-                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 11, 11))
+                                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 11, 11))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12))
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12))
                                 },
                                 init = new ObjectExpressionNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -5666,19 +5666,19 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = true,
                                             computed = false,
-                                            loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17))
+                                            location = new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18))
+                                    location = new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18))
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 18, 18))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 18, 18))
                             }
                         },
                         vkind = VariableKind.Var,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
             }, new Options
             {
                 ecmaVersion = 6
@@ -5695,7 +5695,7 @@ namespace AcornSharp.Cli
                         {
                             new ObjectPatternNode(default)
                             {
-                                properties = new List<BaseNode>
+                                properties = new List<PropertyNode>
                                 {
                                     new PropertyNode(default)
                                     {
@@ -5705,23 +5705,23 @@ namespace AcornSharp.Cli
                                         method = false,
                                         shorthand = false,
                                         computed = true,
-                                        loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 18, 18))
+                                        location = new SourceLocation(new Position(1, 12, 12), new Position(1, 18, 18))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
+                                location = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
                             }
                         },
                         fbody = new BlockStatementNode(default)
                         {
                             body = new List<BaseNode>(),
-                            loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 23, 23))
+                            location = new SourceLocation(new Position(1, 21, 21), new Position(1, 23, 23))
                         },
                         generator = false,
-                        bexpression = false,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
+                        expression = false,
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
             }, new Options
             {
                 ecmaVersion = 6
@@ -5740,7 +5740,7 @@ namespace AcornSharp.Cli
                                 id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "x"),
                                 init = new ObjectExpressionNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -5759,34 +5759,34 @@ namespace AcornSharp.Cli
                                                             {
                                                                 argument = new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29)), "v"),
                                                                 @delegate = true,
-                                                                loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 29, 29))
+                                                                location = new SourceLocation(new Position(1, 21, 21), new Position(1, 29, 29))
                                                             },
-                                                            loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 30, 30))
+                                                            location = new SourceLocation(new Position(1, 21, 21), new Position(1, 30, 30))
                                                         }
                                                     },
-                                                    loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 32, 32))
+                                                    location = new SourceLocation(new Position(1, 19, 19), new Position(1, 32, 32))
                                                 },
                                                 generator = true,
-                                                bexpression = false,
-                                                loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 32, 32))
+                                                expression = false,
+                                                location = new SourceLocation(new Position(1, 16, 16), new Position(1, 32, 32))
                                             },
                                             pkind = PropertyKind.Initialise,
                                             method = true,
                                             shorthand = false,
                                             computed = true,
-                                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 32, 32))
+                                            location = new SourceLocation(new Position(1, 9, 9), new Position(1, 32, 32))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 33, 33))
+                                    location = new SourceLocation(new Position(1, 8, 8), new Position(1, 33, 33))
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 33, 33))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 33, 33))
                             }
                         },
                         vkind = VariableKind.Var,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
             }, new Options
             {
                 ecmaVersion = 6
@@ -5794,38 +5794,38 @@ namespace AcornSharp.Cli
 
             Test("class A {[x]() {}}", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
                 body = new List<BaseNode>
                 {
                     new ClassDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new ClassBodyNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 18, 18)),
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 18, 18)),
                             body = new List<BaseNode>
                             {
                                 new MethodDefinitionNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 17, 17)),
+                                    location = new SourceLocation(new Position(1, 9, 9), new Position(1, 17, 17)),
                                     @static = false,
                                     computed = true,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "x"),
                                     pkind = PropertyKind.Method,
                                     value = new FunctionExpressionNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 17, 17)),
+                                        location = new SourceLocation(new Position(1, 12, 12), new Position(1, 17, 17)),
                                         id = null,
                                         parameters = new List<BaseNode>(),
                                         generator = false,
                                         fbody = new BlockStatementNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17)),
+                                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17)),
                                             body = new List<BaseNode>()
                                         },
-                                        bexpression = false
+                                        expression = false
                                     }
                                 }
                             }
@@ -5858,7 +5858,7 @@ namespace AcornSharp.Cli
                                     {
                                         new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "x")
                                     },
-                                    loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 14, 14))
+                                    location = new SourceLocation(new Position(1, 11, 11), new Position(1, 14, 14))
                                 },
                                 right = new ArrayExpressionNode(default)
                                 {
@@ -5868,25 +5868,25 @@ namespace AcornSharp.Cli
                                         {
                                             value = 1,
                                             raw = "1",
-                                            loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19))
+                                            location = new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20))
+                                    location = new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20))
                                 },
-                                loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 20, 20))
+                                location = new SourceLocation(new Position(1, 11, 11), new Position(1, 20, 20))
                             }
                         },
                         fbody = new BlockStatementNode(default)
                         {
                             body = new List<BaseNode>(),
-                            loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 24, 24))
+                            location = new SourceLocation(new Position(1, 22, 22), new Position(1, 24, 24))
                         },
                         generator = false,
-                        bexpression = false,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
+                        expression = false,
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
             }, new Options
             {
                 ecmaVersion = 6
@@ -5909,7 +5909,7 @@ namespace AcornSharp.Cli
                                     {
                                         new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "x")
                                     },
-                                    loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 14, 14))
+                                    location = new SourceLocation(new Position(1, 11, 11), new Position(1, 14, 14))
                                 },
                                 right = new ArrayExpressionNode(default)
                                 {
@@ -5919,12 +5919,12 @@ namespace AcornSharp.Cli
                                         {
                                             value = 1,
                                             raw = "1",
-                                            loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19))
+                                            location = new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20))
+                                    location = new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20))
                                 },
-                                loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 20, 20))
+                                location = new SourceLocation(new Position(1, 11, 11), new Position(1, 20, 20))
                             }
                         },
                         fbody = new BlockStatementNode(default)
@@ -5933,23 +5933,23 @@ namespace AcornSharp.Cli
                             {
                                 new ExpressionStatementNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 36, 36)),
+                                    location = new SourceLocation(new Position(1, 24, 24), new Position(1, 36, 36)),
                                     expression = new LiteralNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 36, 36)),
+                                        location = new SourceLocation(new Position(1, 24, 24), new Position(1, 36, 36)),
                                         value = "use strict",
                                         raw = "'use strict'"
                                     }
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 38, 38))
+                            location = new SourceLocation(new Position(1, 22, 22), new Position(1, 38, 38))
                         },
                         generator = false,
-                        bexpression = false,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
+                        expression = false,
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
             }, new Options
             {
                 ecmaVersion = 6
@@ -5968,7 +5968,7 @@ namespace AcornSharp.Cli
                             {
                                 left = new ObjectPatternNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -5978,14 +5978,14 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = true,
                                             computed = false,
-                                            loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13))
+                                            location = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 14, 14))
+                                    location = new SourceLocation(new Position(1, 11, 11), new Position(1, 14, 14))
                                 },
                                 right = new ObjectExpressionNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -5994,31 +5994,31 @@ namespace AcornSharp.Cli
                                             {
                                                 value = 10,
                                                 raw = "10",
-                                                loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 23, 23))
+                                                location = new SourceLocation(new Position(1, 21, 21), new Position(1, 23, 23))
                                             },
                                             pkind = PropertyKind.Initialise,
                                             method = false,
                                             shorthand = false,
                                             computed = false,
-                                            loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 23, 23))
+                                            location = new SourceLocation(new Position(1, 18, 18), new Position(1, 23, 23))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 24, 24))
+                                    location = new SourceLocation(new Position(1, 17, 17), new Position(1, 24, 24))
                                 },
-                                loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 24, 24))
+                                location = new SourceLocation(new Position(1, 11, 11), new Position(1, 24, 24))
                             }
                         },
                         fbody = new BlockStatementNode(default)
                         {
                             body = new List<BaseNode>(),
-                            loc = new SourceLocation(new Position(1, 26, 26), new Position(1, 28, 28))
+                            location = new SourceLocation(new Position(1, 26, 26), new Position(1, 28, 28))
                         },
                         generator = false,
-                        bexpression = false,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
+                        expression = false,
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
             }, new Options
             {
                 ecmaVersion = 6
@@ -6043,7 +6043,7 @@ namespace AcornSharp.Cli
                                     {
                                         left = new ObjectPatternNode(default)
                                         {
-                                            properties = new List<BaseNode>
+                                            properties = new List<PropertyNode>
                                             {
                                                 new PropertyNode(default)
                                                 {
@@ -6053,14 +6053,14 @@ namespace AcornSharp.Cli
                                                     method = false,
                                                     shorthand = true,
                                                     computed = false,
-                                                    loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15))
+                                                    location = new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15))
                                                 }
                                             },
-                                            loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 16, 16))
+                                            location = new SourceLocation(new Position(1, 13, 13), new Position(1, 16, 16))
                                         },
                                         right = new ObjectExpressionNode(default)
                                         {
-                                            properties = new List<BaseNode>
+                                            properties = new List<PropertyNode>
                                             {
                                                 new PropertyNode(default)
                                                 {
@@ -6069,35 +6069,35 @@ namespace AcornSharp.Cli
                                                     {
                                                         value = 10,
                                                         raw = "10",
-                                                        loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 25, 25))
+                                                        location = new SourceLocation(new Position(1, 23, 23), new Position(1, 25, 25))
                                                     },
                                                     pkind = PropertyKind.Initialise,
                                                     method = false,
                                                     shorthand = false,
                                                     computed = false,
-                                                    loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 25, 25))
+                                                    location = new SourceLocation(new Position(1, 20, 20), new Position(1, 25, 25))
                                                 }
                                             },
-                                            loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 26, 26))
+                                            location = new SourceLocation(new Position(1, 19, 19), new Position(1, 26, 26))
                                         },
-                                        loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 26, 26))
+                                        location = new SourceLocation(new Position(1, 13, 13), new Position(1, 26, 26))
                                     }
                                 },
                                 fbody = new BlockStatementNode(default)
                                 {
                                     body = new List<BaseNode>(),
-                                    loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 30, 30))
+                                    location = new SourceLocation(new Position(1, 28, 28), new Position(1, 30, 30))
                                 },
                                 generator = false,
-                                bexpression = false,
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 30, 30))
+                                expression = false,
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 30, 30))
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
             }, new Options
             {
                 ecmaVersion = 6
@@ -6111,7 +6111,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new ObjectExpressionNode(default)
                         {
-                            properties = new List<BaseNode>
+                            properties = new List<PropertyNode>
                             {
                                 new PropertyNode(default)
                                 {
@@ -6125,7 +6125,7 @@ namespace AcornSharp.Cli
                                             {
                                                 left = new ObjectPatternNode(default)
                                                 {
-                                                    properties = new List<BaseNode>
+                                                    properties = new List<PropertyNode>
                                                     {
                                                         new PropertyNode(default)
                                                         {
@@ -6135,14 +6135,14 @@ namespace AcornSharp.Cli
                                                             method = false,
                                                             shorthand = true,
                                                             computed = false,
-                                                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16))
+                                                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16))
                                                         }
                                                     },
-                                                    loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 17, 17))
+                                                    location = new SourceLocation(new Position(1, 14, 14), new Position(1, 17, 17))
                                                 },
                                                 right = new ObjectExpressionNode(default)
                                                 {
-                                                    properties = new List<BaseNode>
+                                                    properties = new List<PropertyNode>
                                                     {
                                                         new PropertyNode(default)
                                                         {
@@ -6151,42 +6151,42 @@ namespace AcornSharp.Cli
                                                             {
                                                                 value = 10,
                                                                 raw = "10",
-                                                                loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 26, 26))
+                                                                location = new SourceLocation(new Position(1, 24, 24), new Position(1, 26, 26))
                                                             },
                                                             pkind = PropertyKind.Initialise,
                                                             method = false,
                                                             shorthand = false,
                                                             computed = false,
-                                                            loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 26, 26))
+                                                            location = new SourceLocation(new Position(1, 21, 21), new Position(1, 26, 26))
                                                         }
                                                     },
-                                                    loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 27, 27))
+                                                    location = new SourceLocation(new Position(1, 20, 20), new Position(1, 27, 27))
                                                 },
-                                                loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 27, 27))
+                                                location = new SourceLocation(new Position(1, 14, 14), new Position(1, 27, 27))
                                             }
                                         },
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 29, 29), new Position(1, 31, 31))
+                                            location = new SourceLocation(new Position(1, 29, 29), new Position(1, 31, 31))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 31, 31))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 5, 5), new Position(1, 31, 31))
                                     },
                                     pkind = PropertyKind.Initialise,
                                     method = false,
                                     shorthand = false,
                                     computed = false,
-                                    loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 31, 31))
+                                    location = new SourceLocation(new Position(1, 2, 2), new Position(1, 31, 31))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 32, 32))
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 32, 32))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
             }, new Options
             {
                 ecmaVersion = 6
@@ -6200,7 +6200,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new ObjectExpressionNode(default)
                         {
-                            properties = new List<BaseNode>
+                            properties = new List<PropertyNode>
                             {
                                 new PropertyNode(default)
                                 {
@@ -6214,7 +6214,7 @@ namespace AcornSharp.Cli
                                             {
                                                 left = new ObjectPatternNode(default)
                                                 {
-                                                    properties = new List<BaseNode>
+                                                    properties = new List<PropertyNode>
                                                     {
                                                         new PropertyNode(default)
                                                         {
@@ -6224,14 +6224,14 @@ namespace AcornSharp.Cli
                                                             method = false,
                                                             shorthand = true,
                                                             computed = false,
-                                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
+                                                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6))
                                                         }
                                                     },
-                                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
+                                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7))
                                                 },
                                                 right = new ObjectExpressionNode(default)
                                                 {
-                                                    properties = new List<BaseNode>
+                                                    properties = new List<PropertyNode>
                                                     {
                                                         new PropertyNode(default)
                                                         {
@@ -6240,42 +6240,42 @@ namespace AcornSharp.Cli
                                                             {
                                                                 value = 10,
                                                                 raw = "10",
-                                                                loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 16, 16))
+                                                                location = new SourceLocation(new Position(1, 14, 14), new Position(1, 16, 16))
                                                             },
                                                             pkind = PropertyKind.Initialise,
                                                             method = false,
                                                             shorthand = false,
                                                             computed = false,
-                                                            loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 16, 16))
+                                                            location = new SourceLocation(new Position(1, 11, 11), new Position(1, 16, 16))
                                                         }
                                                     },
-                                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 17, 17))
+                                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 17, 17))
                                                 },
-                                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 17, 17))
+                                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 17, 17))
                                             }
                                         },
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 21, 21))
+                                            location = new SourceLocation(new Position(1, 19, 19), new Position(1, 21, 21))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 21, 21))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 3, 3), new Position(1, 21, 21))
                                     },
                                     pkind = PropertyKind.Initialise,
                                     method = true,
                                     shorthand = false,
                                     computed = false,
-                                    loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 21, 21))
+                                    location = new SourceLocation(new Position(1, 2, 2), new Position(1, 21, 21))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 22, 22))
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 22, 22))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
             }, new Options
             {
                 ecmaVersion = 6
@@ -6307,7 +6307,7 @@ namespace AcornSharp.Cli
                                                 {
                                                     left = new ObjectPatternNode(default)
                                                     {
-                                                        properties = new List<BaseNode>
+                                                        properties = new List<PropertyNode>
                                                         {
                                                             new PropertyNode(default)
                                                             {
@@ -6317,14 +6317,14 @@ namespace AcornSharp.Cli
                                                                 method = false,
                                                                 shorthand = true,
                                                                 computed = false,
-                                                                loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12))
+                                                                location = new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12))
                                                             }
                                                         },
-                                                        loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13))
+                                                        location = new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13))
                                                     },
                                                     right = new ObjectExpressionNode(default)
                                                     {
-                                                        properties = new List<BaseNode>
+                                                        properties = new List<PropertyNode>
                                                         {
                                                             new PropertyNode(default)
                                                             {
@@ -6333,42 +6333,42 @@ namespace AcornSharp.Cli
                                                                 {
                                                                     value = 10,
                                                                     raw = "10",
-                                                                    loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 22, 22))
+                                                                    location = new SourceLocation(new Position(1, 20, 20), new Position(1, 22, 22))
                                                                 },
                                                                 pkind = PropertyKind.Initialise,
                                                                 method = false,
                                                                 shorthand = false,
                                                                 computed = false,
-                                                                loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 22, 22))
+                                                                location = new SourceLocation(new Position(1, 17, 17), new Position(1, 22, 22))
                                                             }
                                                         },
-                                                        loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 23, 23))
+                                                        location = new SourceLocation(new Position(1, 16, 16), new Position(1, 23, 23))
                                                     },
-                                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 23, 23))
+                                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 23, 23))
                                                 }
                                             },
                                             fbody = new BlockStatementNode(default)
                                             {
                                                 body = new List<BaseNode>(),
-                                                loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 27, 27))
+                                                location = new SourceLocation(new Position(1, 25, 25), new Position(1, 27, 27))
                                             },
                                             generator = false,
-                                            bexpression = false,
-                                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 27, 27))
+                                            expression = false,
+                                            location = new SourceLocation(new Position(1, 9, 9), new Position(1, 27, 27))
                                         },
                                         pkind = PropertyKind.Method,
                                         @static = false,
-                                        loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 27, 27))
+                                        location = new SourceLocation(new Position(1, 8, 8), new Position(1, 27, 27))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 28, 28))
+                                location = new SourceLocation(new Position(1, 7, 7), new Position(1, 28, 28))
                             },
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 28, 28))
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 28, 28))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
             }, new Options
             {
                 ecmaVersion = 6
@@ -6389,7 +6389,7 @@ namespace AcornSharp.Cli
                                 {
                                     left = new ObjectPatternNode(default)
                                     {
-                                        properties = new List<BaseNode>
+                                        properties = new List<PropertyNode>
                                         {
                                             new PropertyNode(default)
                                             {
@@ -6399,14 +6399,14 @@ namespace AcornSharp.Cli
                                                 method = false,
                                                 shorthand = true,
                                                 computed = false,
-                                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
+                                                location = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
                                             }
                                         },
-                                        loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 5, 5))
+                                        location = new SourceLocation(new Position(1, 2, 2), new Position(1, 5, 5))
                                     },
                                     right = new ObjectExpressionNode(default)
                                     {
-                                        properties = new List<BaseNode>
+                                        properties = new List<PropertyNode>
                                         {
                                             new PropertyNode(default)
                                             {
@@ -6415,33 +6415,33 @@ namespace AcornSharp.Cli
                                                 {
                                                     value = 10,
                                                     raw = "10",
-                                                    loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 14, 14))
+                                                    location = new SourceLocation(new Position(1, 12, 12), new Position(1, 14, 14))
                                                 },
                                                 pkind = PropertyKind.Initialise,
                                                 method = false,
                                                 shorthand = false,
                                                 computed = false,
-                                                loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 14, 14))
+                                                location = new SourceLocation(new Position(1, 9, 9), new Position(1, 14, 14))
                                             }
                                         },
-                                        loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 15, 15))
+                                        location = new SourceLocation(new Position(1, 8, 8), new Position(1, 15, 15))
                                     },
-                                    loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 15, 15))
+                                    location = new SourceLocation(new Position(1, 2, 2), new Position(1, 15, 15))
                                 }
                             },
                             fbody = new BlockStatementNode(default)
                             {
                                 body = new List<BaseNode>(),
-                                loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 22, 22))
+                                location = new SourceLocation(new Position(1, 20, 20), new Position(1, 22, 22))
                             },
                             generator = false,
-                            bexpression = false,
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 22, 22))
+                            expression = false,
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 22, 22))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
             }, new Options
             {
                 ecmaVersion = 6
@@ -6469,26 +6469,26 @@ namespace AcornSharp.Cli
                                         {
                                             value = 1,
                                             raw = "1",
-                                            loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18))
+                                            location = new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18))
                                         },
-                                        loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 18, 18))
+                                        location = new SourceLocation(new Position(1, 13, 13), new Position(1, 18, 18))
                                     }
                                 },
                                 fbody = new BlockStatementNode(default)
                                 {
                                     body = new List<BaseNode>(),
-                                    loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 22, 22))
+                                    location = new SourceLocation(new Position(1, 20, 20), new Position(1, 22, 22))
                                 },
                                 generator = false,
-                                bexpression = false,
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 22, 22))
+                                expression = false,
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 22, 22))
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
             }, new Options
             {
                 ecmaVersion = 6
@@ -6510,22 +6510,22 @@ namespace AcornSharp.Cli
                                 {
                                     value = 1,
                                     raw = "1",
-                                    loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16))
+                                    location = new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16))
                                 },
-                                loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 16, 16))
+                                location = new SourceLocation(new Position(1, 11, 11), new Position(1, 16, 16))
                             }
                         },
                         fbody = new BlockStatementNode(default)
                         {
                             body = new List<BaseNode>(),
-                            loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 20, 20))
+                            location = new SourceLocation(new Position(1, 18, 18), new Position(1, 20, 20))
                         },
                         generator = false,
-                        bexpression = false,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
+                        expression = false,
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
             }, new Options
             {
                 ecmaVersion = 6
@@ -6543,7 +6543,7 @@ namespace AcornSharp.Cli
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
-                                properties = new List<BaseNode>
+                                properties = new List<PropertyNode>
                                 {
                                     new PropertyNode(default)
                                     {
@@ -6560,35 +6560,35 @@ namespace AcornSharp.Cli
                                                     {
                                                         value = 1,
                                                         raw = "1",
-                                                        loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 21, 21))
+                                                        location = new SourceLocation(new Position(1, 20, 20), new Position(1, 21, 21))
                                                     },
-                                                    loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 21, 21))
+                                                    location = new SourceLocation(new Position(1, 18, 18), new Position(1, 21, 21))
                                                 }
                                             },
                                             fbody = new BlockStatementNode(default)
                                             {
                                                 body = new List<BaseNode>(),
-                                                loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 25, 25))
+                                                location = new SourceLocation(new Position(1, 23, 23), new Position(1, 25, 25))
                                             },
                                             generator = false,
-                                            bexpression = false,
-                                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 25, 25))
+                                            expression = false,
+                                            location = new SourceLocation(new Position(1, 9, 9), new Position(1, 25, 25))
                                         },
                                         pkind = PropertyKind.Initialise,
                                         method = false,
                                         shorthand = false,
                                         computed = false,
-                                        loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 25, 25))
+                                        location = new SourceLocation(new Position(1, 6, 6), new Position(1, 25, 25))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 27, 27))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 27, 27))
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
             }, new Options
             {
                 ecmaVersion = 6
@@ -6606,7 +6606,7 @@ namespace AcornSharp.Cli
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
-                                properties = new List<BaseNode>
+                                properties = new List<PropertyNode>
                                 {
                                     new PropertyNode(default)
                                     {
@@ -6623,35 +6623,35 @@ namespace AcornSharp.Cli
                                                     {
                                                         value = 1,
                                                         raw = "1",
-                                                        loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11))
+                                                        location = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11))
                                                     },
-                                                    loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 11, 11))
+                                                    location = new SourceLocation(new Position(1, 8, 8), new Position(1, 11, 11))
                                                 }
                                             },
                                             fbody = new BlockStatementNode(default)
                                             {
                                                 body = new List<BaseNode>(),
-                                                loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 15, 15))
+                                                location = new SourceLocation(new Position(1, 13, 13), new Position(1, 15, 15))
                                             },
                                             generator = false,
-                                            bexpression = false,
-                                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 15, 15))
+                                            expression = false,
+                                            location = new SourceLocation(new Position(1, 7, 7), new Position(1, 15, 15))
                                         },
                                         pkind = PropertyKind.Initialise,
                                         method = true,
                                         shorthand = false,
                                         computed = false,
-                                        loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 15, 15))
+                                        location = new SourceLocation(new Position(1, 6, 6), new Position(1, 15, 15))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 17, 17))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 17, 17))
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
             }, new Options
             {
                 ecmaVersion = 6
@@ -6677,14 +6677,14 @@ namespace AcornSharp.Cli
                         fbody = new BlockStatementNode(default)
                         {
                             body = new List<BaseNode>(),
-                            loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 22, 22))
+                            location = new SourceLocation(new Position(1, 20, 20), new Position(1, 22, 22))
                         },
                         generator = false,
-                        bexpression = false,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                        expression = false,
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
             }, new Options
             {
                 ecmaVersion = 6
@@ -6708,20 +6708,20 @@ namespace AcornSharp.Cli
                                     new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "a"),
                                     new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17)), "b")
                                 },
-                                loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
+                                location = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
                             }
                         },
                         fbody = new BlockStatementNode(default)
                         {
                             body = new List<BaseNode>(),
-                            loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 22, 22))
+                            location = new SourceLocation(new Position(1, 20, 20), new Position(1, 22, 22))
                         },
                         generator = false,
-                        bexpression = false,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                        expression = false,
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
             }, new Options
             {
                 ecmaVersion = 6
@@ -6738,7 +6738,7 @@ namespace AcornSharp.Cli
                         {
                             new ObjectPatternNode(default)
                             {
-                                properties = new List<BaseNode>
+                                properties = new List<PropertyNode>
                                 {
                                     new PropertyNode(default)
                                     {
@@ -6748,7 +6748,7 @@ namespace AcornSharp.Cli
                                         method = false,
                                         shorthand = true,
                                         computed = false,
-                                        loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14))
+                                        location = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14))
                                     },
                                     new PropertyNode(default)
                                     {
@@ -6758,23 +6758,23 @@ namespace AcornSharp.Cli
                                         method = false,
                                         shorthand = true,
                                         computed = false,
-                                        loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17))
+                                        location = new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
+                                location = new SourceLocation(new Position(1, 11, 11), new Position(1, 19, 19))
                             }
                         },
                         fbody = new BlockStatementNode(default)
                         {
                             body = new List<BaseNode>(),
-                            loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 22, 22))
+                            location = new SourceLocation(new Position(1, 20, 20), new Position(1, 22, 22))
                         },
                         generator = false,
-                        bexpression = false,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                        expression = false,
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
             }, new Options
             {
                 ecmaVersion = 6
@@ -6802,22 +6802,22 @@ namespace AcornSharp.Cli
                                         new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a"),
                                         new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18)), "b")
                                     },
-                                    loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 20, 20))
+                                    location = new SourceLocation(new Position(1, 12, 12), new Position(1, 20, 20))
                                 }
                             },
                             fbody = new BlockStatementNode(default)
                             {
                                 body = new List<BaseNode>(),
-                                loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 23, 23))
+                                location = new SourceLocation(new Position(1, 21, 21), new Position(1, 23, 23))
                             },
                             generator = false,
-                            bexpression = false,
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 23, 23))
+                            expression = false,
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 23, 23))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
             }, new Options
             {
                 ecmaVersion = 6
@@ -6836,7 +6836,7 @@ namespace AcornSharp.Cli
                             {
                                 new ObjectPatternNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -6846,7 +6846,7 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = true,
                                             computed = false,
-                                            loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15))
+                                            location = new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15))
                                         },
                                         new PropertyNode(default)
                                         {
@@ -6856,25 +6856,25 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = true,
                                             computed = false,
-                                            loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18))
+                                            location = new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 20, 20))
+                                    location = new SourceLocation(new Position(1, 12, 12), new Position(1, 20, 20))
                                 }
                             },
                             fbody = new BlockStatementNode(default)
                             {
                                 body = new List<BaseNode>(),
-                                loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 23, 23))
+                                location = new SourceLocation(new Position(1, 21, 21), new Position(1, 23, 23))
                             },
                             generator = false,
-                            bexpression = false,
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 23, 23))
+                            expression = false,
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 23, 23))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
             }, new Options
             {
                 ecmaVersion = 6
@@ -6894,7 +6894,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new ObjectExpressionNode(default)
                         {
-                            properties = new List<BaseNode>
+                            properties = new List<PropertyNode>
                             {
                                 new PropertyNode(default)
                                 {
@@ -6911,31 +6911,31 @@ namespace AcornSharp.Cli
                                                     new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a"),
                                                     new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "b")
                                                 },
-                                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 13, 13))
+                                                location = new SourceLocation(new Position(1, 5, 5), new Position(1, 13, 13))
                                             }
                                         },
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 16, 16))
+                                            location = new SourceLocation(new Position(1, 14, 14), new Position(1, 16, 16))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 16, 16))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 4, 4), new Position(1, 16, 16))
                                     },
                                     pkind = PropertyKind.Initialise,
                                     method = true,
                                     shorthand = false,
                                     computed = false,
-                                    loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 16, 16))
+                                    location = new SourceLocation(new Position(1, 3, 3), new Position(1, 16, 16))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 18, 18))
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 18, 18))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
             }, new Options
             {
                 ecmaVersion = 6
@@ -6949,7 +6949,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new ObjectExpressionNode(default)
                         {
-                            properties = new List<BaseNode>
+                            properties = new List<PropertyNode>
                             {
                                 new PropertyNode(default)
                                 {
@@ -6968,32 +6968,32 @@ namespace AcornSharp.Cli
                                                         new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "a"),
                                                         new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "b")
                                                     },
-                                                    loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 16, 16))
+                                                    location = new SourceLocation(new Position(1, 8, 8), new Position(1, 16, 16))
                                                 }
                                             }
                                         },
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 19, 19))
+                                            location = new SourceLocation(new Position(1, 17, 17), new Position(1, 19, 19))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 19, 19))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 4, 4), new Position(1, 19, 19))
                                     },
                                     pkind = PropertyKind.Initialise,
                                     method = true,
                                     shorthand = false,
                                     computed = false,
-                                    loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 19, 19))
+                                    location = new SourceLocation(new Position(1, 3, 3), new Position(1, 19, 19))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 21, 21))
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 21, 21))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
             }, new Options
             {
                 ecmaVersion = 7
@@ -7007,7 +7007,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new ObjectExpressionNode(default)
                         {
-                            properties = new List<BaseNode>
+                            properties = new List<PropertyNode>
                             {
                                 new PropertyNode(default)
                                 {
@@ -7019,14 +7019,14 @@ namespace AcornSharp.Cli
                                         {
                                             new ObjectPatternNode(default)
                                             {
-                                                properties = new List<BaseNode>
+                                                properties = new List<PropertyNode>
                                                 {
                                                     new PropertyNode(default)
                                                     {
                                                         key = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a"),
                                                         value = new ObjectPatternNode(default)
                                                         {
-                                                            properties = new List<BaseNode>
+                                                            properties = new List<PropertyNode>
                                                             {
                                                                 new PropertyNode(default)
                                                                 {
@@ -7036,7 +7036,7 @@ namespace AcornSharp.Cli
                                                                     method = false,
                                                                     shorthand = true,
                                                                     computed = false,
-                                                                    loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13))
+                                                                    location = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13))
                                                                 },
                                                                 new PropertyNode(default)
                                                                 {
@@ -7046,16 +7046,16 @@ namespace AcornSharp.Cli
                                                                     method = false,
                                                                     shorthand = true,
                                                                     computed = false,
-                                                                    loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16))
+                                                                    location = new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16))
                                                                 }
                                                             },
-                                                            loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 18, 18))
+                                                            location = new SourceLocation(new Position(1, 10, 10), new Position(1, 18, 18))
                                                         },
                                                         pkind = PropertyKind.Initialise,
                                                         method = false,
                                                         shorthand = false,
                                                         computed = false,
-                                                        loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 18, 18))
+                                                        location = new SourceLocation(new Position(1, 7, 7), new Position(1, 18, 18))
                                                     },
                                                     new PropertyNode(default)
                                                     {
@@ -7067,16 +7067,16 @@ namespace AcornSharp.Cli
                                                                 new IdentifierNode(new SourceLocation(new Position(1, 24, 24), new Position(1, 25, 25)), "y"),
                                                                 new IdentifierNode(new SourceLocation(new Position(1, 27, 27), new Position(1, 28, 28)), "z")
                                                             },
-                                                            loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 29, 29))
+                                                            location = new SourceLocation(new Position(1, 23, 23), new Position(1, 29, 29))
                                                         },
                                                         pkind = PropertyKind.Initialise,
                                                         method = false,
                                                         shorthand = false,
                                                         computed = false,
-                                                        loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 29, 29))
+                                                        location = new SourceLocation(new Position(1, 20, 20), new Position(1, 29, 29))
                                                     }
                                                 },
-                                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 31, 31))
+                                                location = new SourceLocation(new Position(1, 5, 5), new Position(1, 31, 31))
                                             },
                                             new RestElementNode(default)
                                             {
@@ -7088,32 +7088,32 @@ namespace AcornSharp.Cli
                                                         new IdentifierNode(new SourceLocation(new Position(1, 40, 40), new Position(1, 41, 41)), "b"),
                                                         new IdentifierNode(new SourceLocation(new Position(1, 43, 43), new Position(1, 44, 44)), "c")
                                                     },
-                                                    loc = new SourceLocation(new Position(1, 36, 36), new Position(1, 45, 45))
+                                                    location = new SourceLocation(new Position(1, 36, 36), new Position(1, 45, 45))
                                                 }
                                             }
                                         },
                                         fbody = new BlockStatementNode(default)
                                         {
                                             body = new List<BaseNode>(),
-                                            loc = new SourceLocation(new Position(1, 46, 46), new Position(1, 48, 48))
+                                            location = new SourceLocation(new Position(1, 46, 46), new Position(1, 48, 48))
                                         },
                                         generator = false,
-                                        bexpression = false,
-                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 48, 48))
+                                        expression = false,
+                                        location = new SourceLocation(new Position(1, 4, 4), new Position(1, 48, 48))
                                     },
                                     pkind = PropertyKind.Initialise,
                                     method = true,
                                     shorthand = false,
                                     computed = false,
-                                    loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 48, 48))
+                                    location = new SourceLocation(new Position(1, 3, 3), new Position(1, 48, 48))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 50, 50))
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 50, 50))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 51, 51))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 51, 51))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 51, 51))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 51, 51))
             }, new Options
             {
                 ecmaVersion = 7
@@ -7138,16 +7138,16 @@ namespace AcornSharp.Cli
                             fbody = new BlockStatementNode(default)
                             {
                                 body = new List<BaseNode>(),
-                                loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12))
+                                location = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12))
                             },
                             generator = false,
-                            bexpression = false,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                            expression = false,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
             }, new Options
             {
                 ecmaVersion = 6
@@ -7173,16 +7173,16 @@ namespace AcornSharp.Cli
                             fbody = new BlockStatementNode(default)
                             {
                                 body = new List<BaseNode>(),
-                                loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 15, 15))
+                                location = new SourceLocation(new Position(1, 13, 13), new Position(1, 15, 15))
                             },
                             generator = false,
-                            bexpression = false,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
+                            expression = false,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
             }, new Options
             {
                 ecmaVersion = 6
@@ -7201,7 +7201,7 @@ namespace AcornSharp.Cli
                             {
                                 new ObjectPatternNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -7211,25 +7211,25 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = true,
                                             computed = false,
-                                            loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
+                                            location = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 6, 6))
+                                    location = new SourceLocation(new Position(1, 1, 1), new Position(1, 6, 6))
                                 }
                             },
                             fbody = new BlockStatementNode(default)
                             {
                                 body = new List<BaseNode>(),
-                                loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 13, 13))
+                                location = new SourceLocation(new Position(1, 11, 11), new Position(1, 13, 13))
                             },
                             generator = false,
-                            bexpression = false,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
+                            expression = false,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
             }, new Options
             {
                 ecmaVersion = 6
@@ -7248,7 +7248,7 @@ namespace AcornSharp.Cli
                             {
                                 new ObjectPatternNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -7258,10 +7258,10 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = true,
                                             computed = false,
-                                            loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
+                                            location = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 6, 6))
+                                    location = new SourceLocation(new Position(1, 1, 1), new Position(1, 6, 6))
                                 },
                                 new RestElementNode(default)
                                 {
@@ -7271,16 +7271,16 @@ namespace AcornSharp.Cli
                             fbody = new BlockStatementNode(default)
                             {
                                 body = new List<BaseNode>(),
-                                loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 19, 19))
+                                location = new SourceLocation(new Position(1, 17, 17), new Position(1, 19, 19))
                             },
                             generator = false,
-                            bexpression = false,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
+                            expression = false,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
             }, new Options
             {
                 ecmaVersion = 6
@@ -7303,7 +7303,7 @@ namespace AcornSharp.Cli
                             {
                                 new ObjectPatternNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -7315,16 +7315,16 @@ namespace AcornSharp.Cli
                                                     new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a"),
                                                     new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "b")
                                                 },
-                                                loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 12, 12))
+                                                location = new SourceLocation(new Position(1, 6, 6), new Position(1, 12, 12))
                                             },
                                             pkind = PropertyKind.Initialise,
                                             method = false,
                                             shorthand = false,
                                             computed = false,
-                                            loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 12, 12))
+                                            location = new SourceLocation(new Position(1, 3, 3), new Position(1, 12, 12))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 14, 14))
+                                    location = new SourceLocation(new Position(1, 1, 1), new Position(1, 14, 14))
                                 },
                                 new RestElementNode(default)
                                 {
@@ -7334,16 +7334,16 @@ namespace AcornSharp.Cli
                             fbody = new BlockStatementNode(default)
                             {
                                 body = new List<BaseNode>(),
-                                loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 27, 27))
+                                location = new SourceLocation(new Position(1, 25, 25), new Position(1, 27, 27))
                             },
                             generator = false,
-                            bexpression = false,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                            expression = false,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
             }, new Options
             {
                 ecmaVersion = 6
@@ -7362,7 +7362,7 @@ namespace AcornSharp.Cli
                             {
                                 new ObjectPatternNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -7372,7 +7372,7 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = false,
                                             computed = false,
-                                            loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 7, 7))
+                                            location = new SourceLocation(new Position(1, 3, 3), new Position(1, 7, 7))
                                         },
                                         new PropertyNode(default)
                                         {
@@ -7382,10 +7382,10 @@ namespace AcornSharp.Cli
                                             method = false,
                                             shorthand = true,
                                             computed = false,
-                                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
+                                            location = new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 12, 12))
+                                    location = new SourceLocation(new Position(1, 1, 1), new Position(1, 12, 12))
                                 },
                                 new ArrayPatternNode(default)
                                 {
@@ -7394,7 +7394,7 @@ namespace AcornSharp.Cli
                                         new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)), "d"),
                                         new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19)), "e")
                                     },
-                                    loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 20, 20))
+                                    location = new SourceLocation(new Position(1, 14, 14), new Position(1, 20, 20))
                                 },
                                 new RestElementNode(default)
                                 {
@@ -7404,16 +7404,16 @@ namespace AcornSharp.Cli
                             fbody = new BlockStatementNode(default)
                             {
                                 body = new List<BaseNode>(),
-                                loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 33, 33))
+                                location = new SourceLocation(new Position(1, 31, 31), new Position(1, 33, 33))
                             },
                             generator = false,
-                            bexpression = false,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
+                            expression = false,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
             }, new Options
             {
                 ecmaVersion = 6
@@ -7437,18 +7437,18 @@ namespace AcornSharp.Cli
                                     new RestElementNode(default)
                                     {
                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "a"),
-                                        loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 5, 5))
+                                        location = new SourceLocation(new Position(1, 1, 1), new Position(1, 5, 5))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
+                                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                             },
                             right = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "b"),
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
             }, new Options
             {
                 ecmaVersion = 6
@@ -7471,18 +7471,18 @@ namespace AcornSharp.Cli
                                     new RestElementNode(default)
                                     {
                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "b"),
-                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 8, 8))
+                                        location = new SourceLocation(new Position(1, 4, 4), new Position(1, 8, 8))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
+                                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                             },
                             right = new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "c"),
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
             }, new Options
             {
                 ecmaVersion = 6
@@ -7503,7 +7503,7 @@ namespace AcornSharp.Cli
                                 {
                                     new ObjectPatternNode(default)
                                     {
-                                        properties = new List<BaseNode>
+                                        properties = new List<PropertyNode>
                                         {
                                             new PropertyNode(default)
                                             {
@@ -7513,7 +7513,7 @@ namespace AcornSharp.Cli
                                                 method = false,
                                                 shorthand = true,
                                                 computed = false,
-                                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
+                                                location = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4))
                                             },
                                             new PropertyNode(default)
                                             {
@@ -7523,26 +7523,26 @@ namespace AcornSharp.Cli
                                                 method = false,
                                                 shorthand = true,
                                                 computed = false,
-                                                loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
+                                                location = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7))
                                             }
                                         },
-                                        loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 9, 9))
+                                        location = new SourceLocation(new Position(1, 1, 1), new Position(1, 9, 9))
                                     },
                                     new RestElementNode(default)
                                     {
                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "c"),
-                                        loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 15, 15))
+                                        location = new SourceLocation(new Position(1, 11, 11), new Position(1, 15, 15))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
+                                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
                             },
                             right = new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 20, 20)), "d"),
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
             }, new Options
             {
                 ecmaVersion = 6
@@ -7571,20 +7571,20 @@ namespace AcornSharp.Cli
                                                 new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "b"),
                                                 new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "c")
                                             },
-                                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 13, 13))
+                                            location = new SourceLocation(new Position(1, 7, 7), new Position(1, 13, 13))
                                         },
-                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 13, 13))
+                                        location = new SourceLocation(new Position(1, 4, 4), new Position(1, 13, 13))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
                             },
                             right = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18)), "d"),
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
             }, new Options
             {
                 ecmaVersion = 6
@@ -7607,20 +7607,20 @@ namespace AcornSharp.Cli
                                         new RestElementNode(default)
                                         {
                                             argument = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "a"),
-                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 9, 9))
+                                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 9, 9))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 10, 10))
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 10, 10))
                                 },
                                 init = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "b"),
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 14, 14))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 14, 14))
                             }
                         },
                         vkind = VariableKind.Var,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
             }, new Options
             {
                 ecmaVersion = 6
@@ -7644,20 +7644,20 @@ namespace AcornSharp.Cli
                                         new RestElementNode(default)
                                         {
                                             argument = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "b"),
-                                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 12, 12))
+                                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 12, 12))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 13, 13))
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 13, 13))
                                 },
                                 init = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 17, 17)), "c"),
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 17, 17))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 17, 17))
                             }
                         },
                         vkind = VariableKind.Var,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
             }, new Options
             {
                 ecmaVersion = 6
@@ -7679,7 +7679,7 @@ namespace AcornSharp.Cli
                                     {
                                         new ObjectPatternNode(default)
                                         {
-                                            properties = new List<BaseNode>
+                                            properties = new List<PropertyNode>
                                             {
                                                 new PropertyNode(default)
                                                 {
@@ -7689,7 +7689,7 @@ namespace AcornSharp.Cli
                                                     method = false,
                                                     shorthand = true,
                                                     computed = false,
-                                                    loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
+                                                    location = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8))
                                                 },
                                                 new PropertyNode(default)
                                                 {
@@ -7699,28 +7699,28 @@ namespace AcornSharp.Cli
                                                     method = false,
                                                     shorthand = true,
                                                     computed = false,
-                                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11))
+                                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11))
                                                 }
                                             },
-                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 13, 13))
+                                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 13, 13))
                                         },
                                         new RestElementNode(default)
                                         {
                                             argument = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19)), "c"),
-                                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 19, 19))
+                                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 19, 19))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 20, 20))
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 20, 20))
                                 },
                                 init = new IdentifierNode(new SourceLocation(new Position(1, 23, 23), new Position(1, 24, 24)), "d"),
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 24, 24))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 24, 24))
                             }
                         },
                         vkind = VariableKind.Var,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
             }, new Options
             {
                 ecmaVersion = 6
@@ -7750,22 +7750,22 @@ namespace AcornSharp.Cli
                                                     new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "b"),
                                                     new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)), "c")
                                                 },
-                                                loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 17, 17))
+                                                location = new SourceLocation(new Position(1, 11, 11), new Position(1, 17, 17))
                                             },
-                                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 17, 17))
+                                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 17, 17))
                                         }
                                     },
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 18, 18))
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 18, 18))
                                 },
                                 init = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 22, 22)), "d"),
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 22, 22))
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 22, 22))
                             }
                         },
                         vkind = VariableKind.Var,
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
             }, new Options
             {
                 ecmaVersion = 7
@@ -7785,15 +7785,15 @@ namespace AcornSharp.Cli
                                 new SpreadElementNode(default)
                                 {
                                     argument = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "a"),
-                                    loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 9, 9))
+                                    location = new SourceLocation(new Position(1, 5, 5), new Position(1, 9, 9))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
             }, new Options
             {
                 ecmaVersion = 6
@@ -7814,15 +7814,15 @@ namespace AcornSharp.Cli
                                 new SpreadElementNode(default)
                                 {
                                     argument = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "b"),
-                                    loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 12, 12))
+                                    location = new SourceLocation(new Position(1, 8, 8), new Position(1, 12, 12))
                                 }
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
             }, new Options
             {
                 ecmaVersion = 6
@@ -7830,21 +7830,21 @@ namespace AcornSharp.Cli
 
             Test("func(...a, b)", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                 body = new List<BaseNode>
                 {
                     new ExpressionStatementNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                         expression = new CallExpressionNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                             callee = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4)), "func"),
                             arguments = new List<BaseNode>
                             {
                                 new SpreadElementNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 9, 9)),
+                                    location = new SourceLocation(new Position(1, 5, 5), new Position(1, 9, 9)),
                                     argument = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "a")
                                 },
                                 new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "b")
@@ -7870,7 +7870,7 @@ namespace AcornSharp.Cli
                                 pattern = "[a-z]",
                                 flags = "u"
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
                         }
                     }
                 }
@@ -7892,7 +7892,7 @@ namespace AcornSharp.Cli
                                 pattern = "[\\uD834\\uDF06-\\uD834\\uDF08a-z]",
                                 flags = "u"
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
                         }
                     }
                 }
@@ -7903,30 +7903,30 @@ namespace AcornSharp.Cli
 
             Test("do {} while (false) foo();", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26)),
                 body = new List<BaseNode>
                 {
                     new DoWhileStatementNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
                         fbody = new BlockStatementNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 5, 5)),
+                            location = new SourceLocation(new Position(1, 3, 3), new Position(1, 5, 5)),
                             body = new List<BaseNode>()
                         },
                         test = new LiteralNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 18, 18)),
+                            location = new SourceLocation(new Position(1, 13, 13), new Position(1, 18, 18)),
                             value = false,
                             raw = "false"
                         }
                     },
                     new ExpressionStatementNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 26, 26)),
+                        location = new SourceLocation(new Position(1, 20, 20), new Position(1, 26, 26)),
                         expression = new CallExpressionNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 25, 25)),
+                            location = new SourceLocation(new Position(1, 20, 20), new Position(1, 25, 25)),
                             callee = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 23, 23)), "foo"),
                             arguments = new List<BaseNode>()
                         }
@@ -8082,14 +8082,14 @@ namespace AcornSharp.Cli
                             {
                                 value = 10,
                                 raw = "10",
-                                loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 9, 9))
+                                location = new SourceLocation(new Position(1, 7, 7), new Position(1, 9, 9))
                             },
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
             }, new Options
             {
                 ecmaVersion = 6
@@ -8116,18 +8116,18 @@ namespace AcornSharp.Cli
                                 {
                                     value = 10,
                                     raw = "10",
-                                    loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 14, 14))
+                                    location = new SourceLocation(new Position(1, 12, 12), new Position(1, 14, 14))
                                 },
-                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 14, 14))
+                                location = new SourceLocation(new Position(1, 5, 5), new Position(1, 14, 14))
                             },
                             generator = false,
-                            bexpression = true,
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                            expression = true,
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
             }, new Options
             {
                 ecmaVersion = 6
@@ -8159,23 +8159,23 @@ namespace AcornSharp.Cli
                                             {
                                                 value = 10,
                                                 raw = "10",
-                                                loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 24, 24))
+                                                location = new SourceLocation(new Position(1, 22, 22), new Position(1, 24, 24))
                                             },
-                                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 24, 24))
+                                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 24, 24))
                                         },
-                                        loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 24, 24))
+                                        location = new SourceLocation(new Position(1, 15, 15), new Position(1, 24, 24))
                                     }
                                 },
-                                loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 26, 26))
+                                location = new SourceLocation(new Position(1, 13, 13), new Position(1, 26, 26))
                             },
                             generator = false,
-                            bexpression = false,
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 26, 26))
+                            expression = false,
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 26, 26))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
             }, new Options
             {
                 ecmaVersion = 6
@@ -8398,7 +8398,7 @@ namespace AcornSharp.Cli
                         {
                             body = new List<BaseNode>()
                         },
-                        bexpression = false
+                        expression = false
                     }
                 }
             }, new Options {ecmaVersion = 6});
@@ -8412,7 +8412,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new ArrowFunctionExpressionNode(default)
                         {
-                            bexpression = true
+                            expression = true
                         }
                     }
                 }
@@ -8507,7 +8507,7 @@ namespace AcornSharp.Cli
                             {
                                 id = new ObjectPatternNode(default)
                                 {
-                                    properties = new List<BaseNode>
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
@@ -8532,32 +8532,32 @@ namespace AcornSharp.Cli
 
             Test("var {propName: localVar = defaultValue} = obj", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 45, 45)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 45, 45)),
                 body = new List<BaseNode>
                 {
                     new VariableDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 45, 45)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 45, 45)),
                         declarations = new List<BaseNode>
                         {
                             new VariableDeclaratorNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 45, 45)),
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 45, 45)),
                                 id = new ObjectPatternNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 39, 39)),
-                                    properties = new List<BaseNode>
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 39, 39)),
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 38, 38)),
+                                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 38, 38)),
                                             method = false,
                                             shorthand = false,
                                             computed = false,
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 13, 13)), "propName"),
                                             value = new AssignmentPatternNode(default)
                                             {
-                                                loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 38, 38)),
+                                                location = new SourceLocation(new Position(1, 15, 15), new Position(1, 38, 38)),
                                                 left = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 23, 23)), "localVar"),
                                                 right = new IdentifierNode(new SourceLocation(new Position(1, 26, 26), new Position(1, 38, 38)), "defaultValue")
                                             },
@@ -8578,25 +8578,25 @@ namespace AcornSharp.Cli
 
             Test("var {propName = defaultValue} = obj", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
                 body = new List<BaseNode>
                 {
                     new VariableDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
                         declarations = new List<BaseNode>
                         {
                             new VariableDeclaratorNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 35, 35)),
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 35, 35)),
                                 id = new ObjectPatternNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 29, 29)),
-                                    properties = new List<BaseNode>
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 29, 29)),
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 28, 28)),
+                                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 28, 28)),
                                             method = false,
                                             shorthand = true,
                                             computed = false,
@@ -8604,7 +8604,7 @@ namespace AcornSharp.Cli
                                             pkind = PropertyKind.Initialise,
                                             value = new AssignmentPatternNode(default)
                                             {
-                                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 28, 28)),
+                                                location = new SourceLocation(new Position(1, 5, 5), new Position(1, 28, 28)),
                                                 left = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 13, 13)), "propName"),
                                                 right = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 28, 28)), "defaultValue")
                                             }
@@ -8624,25 +8624,25 @@ namespace AcornSharp.Cli
 
             Test("var {get = defaultValue} = obj", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30)),
                 body = new List<BaseNode>
                 {
                     new VariableDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30)),
                         declarations = new List<BaseNode>
                         {
                             new VariableDeclaratorNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 30, 30)),
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 30, 30)),
                                 id = new ObjectPatternNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 24, 24)),
-                                    properties = new List<BaseNode>
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 24, 24)),
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 23, 23)),
+                                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 23, 23)),
                                             method = false,
                                             shorthand = true,
                                             computed = false,
@@ -8650,7 +8650,7 @@ namespace AcornSharp.Cli
                                             pkind = PropertyKind.Initialise,
                                             value = new AssignmentPatternNode(default)
                                             {
-                                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 23, 23)),
+                                                location = new SourceLocation(new Position(1, 5, 5), new Position(1, 23, 23)),
                                                 left = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 8, 8)), "get"),
                                                 right = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 23, 23)), "defaultValue")
                                             }
@@ -8670,25 +8670,25 @@ namespace AcornSharp.Cli
 
             Test("var [localVar = defaultValue] = obj", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
                 body = new List<BaseNode>
                 {
                     new VariableDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
                         declarations = new List<BaseNode>
                         {
                             new VariableDeclaratorNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 35, 35)),
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 35, 35)),
                                 id = new ArrayPatternNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 29, 29)),
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 29, 29)),
                                     elements = new List<BaseNode>
                                     {
                                         new AssignmentPatternNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 28, 28)),
+                                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 28, 28)),
                                             left = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 13, 13)), "localVar"),
                                             right = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 28, 28)), "defaultValue")
                                         }
@@ -8707,24 +8707,24 @@ namespace AcornSharp.Cli
 
             Test("({x = 0} = obj)", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
                 body = new List<BaseNode>
                 {
                     new ExpressionStatementNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
                         expression = new AssignmentExpressionNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 14, 14)),
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 14, 14)),
                             @operator = "=",
                             left = new ObjectPatternNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 8, 8)),
-                                properties = new List<BaseNode>
+                                location = new SourceLocation(new Position(1, 1, 1), new Position(1, 8, 8)),
+                                properties = new List<PropertyNode>
                                 {
                                     new PropertyNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)),
+                                        location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)),
                                         method = false,
                                         shorthand = true,
                                         computed = false,
@@ -8732,11 +8732,11 @@ namespace AcornSharp.Cli
                                         pkind = PropertyKind.Initialise,
                                         value = new AssignmentPatternNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)),
+                                            location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)),
                                             left = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), "x"),
                                             right = new LiteralNode(default)
                                             {
-                                                loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)),
+                                                location = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)),
                                                 value = 0
                                             }
                                         }
@@ -8754,28 +8754,28 @@ namespace AcornSharp.Cli
 
             Test("({x = 0}) => x", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
                 body = new List<BaseNode>
                 {
                     new ExpressionStatementNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
                         expression = new ArrowFunctionExpressionNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
                             id = null,
                             generator = false,
-                            bexpression = true,
+                            expression = true,
                             parameters = new List<BaseNode>
                             {
                                 new ObjectPatternNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 8, 8)),
-                                    properties = new List<BaseNode>
+                                    location = new SourceLocation(new Position(1, 1, 1), new Position(1, 8, 8)),
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)),
+                                            location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)),
                                             method = false,
                                             shorthand = true,
                                             computed = false,
@@ -8783,11 +8783,11 @@ namespace AcornSharp.Cli
                                             pkind = PropertyKind.Initialise,
                                             value = new AssignmentPatternNode(default)
                                             {
-                                                loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)),
+                                                location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)),
                                                 left = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), "x"),
                                                 right = new LiteralNode(default)
                                                 {
-                                                    loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)),
+                                                    location = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)),
                                                     value = 0
                                                 }
                                             }
@@ -8806,42 +8806,42 @@ namespace AcornSharp.Cli
 
             Test("[a, {b: {c = 1}}] = arr", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
                 body = new List<BaseNode>
                 {
                     new ExpressionStatementNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
                         expression = new AssignmentExpressionNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
                             @operator = "=",
                             left = new ArrayPatternNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
+                                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
                                 elements = new List<BaseNode>
                                 {
                                     new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a"),
                                     new ObjectPatternNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 16, 16)),
-                                        properties = new List<BaseNode>
+                                        location = new SourceLocation(new Position(1, 4, 4), new Position(1, 16, 16)),
+                                        properties = new List<PropertyNode>
                                         {
                                             new PropertyNode(default)
                                             {
-                                                loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 15, 15)),
+                                                location = new SourceLocation(new Position(1, 5, 5), new Position(1, 15, 15)),
                                                 method = false,
                                                 shorthand = false,
                                                 computed = false,
                                                 key = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "b"),
                                                 value = new ObjectPatternNode(default)
                                                 {
-                                                    loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 15, 15)),
-                                                    properties = new List<BaseNode>
+                                                    location = new SourceLocation(new Position(1, 8, 8), new Position(1, 15, 15)),
+                                                    properties = new List<PropertyNode>
                                                     {
                                                         new PropertyNode(default)
                                                         {
-                                                            loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 14, 14)),
+                                                            location = new SourceLocation(new Position(1, 9, 9), new Position(1, 14, 14)),
                                                             method = false,
                                                             shorthand = true,
                                                             computed = false,
@@ -8849,11 +8849,11 @@ namespace AcornSharp.Cli
                                                             pkind = PropertyKind.Initialise,
                                                             value = new AssignmentPatternNode(default)
                                                             {
-                                                                loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 14, 14)),
+                                                                location = new SourceLocation(new Position(1, 9, 9), new Position(1, 14, 14)),
                                                                 left = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "c"),
                                                                 right = new LiteralNode(default)
                                                                 {
-                                                                    loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)),
+                                                                    location = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)),
                                                                     value = 1
                                                                 }
                                                             }
@@ -8877,20 +8877,20 @@ namespace AcornSharp.Cli
 
             Test("for ({x = 0} in arr);", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
                 body = new List<BaseNode>
                 {
                     new ForInStatementNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
                         left = new ObjectPatternNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 12, 12)),
-                            properties = new List<BaseNode>
+                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 12, 12)),
+                            properties = new List<PropertyNode>
                             {
                                 new PropertyNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 11, 11)),
+                                    location = new SourceLocation(new Position(1, 6, 6), new Position(1, 11, 11)),
                                     method = false,
                                     shorthand = true,
                                     computed = false,
@@ -8898,11 +8898,11 @@ namespace AcornSharp.Cli
                                     pkind = PropertyKind.Initialise,
                                     value = new AssignmentPatternNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 6, 6), new Position(1, 11, 11)),
+                                        location = new SourceLocation(new Position(1, 6, 6), new Position(1, 11, 11)),
                                         left = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "x"),
                                         right = new LiteralNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)),
+                                            location = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)),
                                             value = 0
                                         }
                                     }
@@ -8912,7 +8912,7 @@ namespace AcornSharp.Cli
                         right = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 19, 19)), "arr"),
                         fbody = new EmptyStatementNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 21, 21))
+                            location = new SourceLocation(new Position(1, 20, 20), new Position(1, 21, 21))
                         }
                     }
                 }
@@ -8929,26 +8929,26 @@ namespace AcornSharp.Cli
 
             Test("try {} catch ({message}) {}", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)),
                 body = new List<BaseNode>
                 {
                     new TryStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)),
                         new BlockStatementNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 6, 6)),
+                            location = new SourceLocation(new Position(1, 4, 4), new Position(1, 6, 6)),
                             body = new List<BaseNode>()
                         },
                         new CatchClauseNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 7, 7), new Position(1, 27, 27)),
+                            location = new SourceLocation(new Position(1, 7, 7), new Position(1, 27, 27)),
                             param = new ObjectPatternNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 23, 23)),
-                                properties = new List<BaseNode>
+                                location = new SourceLocation(new Position(1, 14, 14), new Position(1, 23, 23)),
+                                properties = new List<PropertyNode>
                                 {
                                     new PropertyNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 22, 22)),
+                                        location = new SourceLocation(new Position(1, 15, 15), new Position(1, 22, 22)),
                                         method = false,
                                         shorthand = true,
                                         computed = false,
@@ -8960,7 +8960,7 @@ namespace AcornSharp.Cli
                             },
                             fbody = new BlockStatementNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 27, 27)),
+                                location = new SourceLocation(new Position(1, 25, 25), new Position(1, 27, 27)),
                                 body = new List<BaseNode>()
                             }
                         },
@@ -8975,38 +8975,38 @@ namespace AcornSharp.Cli
 
             Test("class A { static() {} }", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
                 body = new List<BaseNode>
                 {
                     new ClassDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new ClassBodyNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 23, 23)),
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 23, 23)),
                             body = new List<BaseNode>
                             {
                                 new MethodDefinitionNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 21, 21)),
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 21, 21)),
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 16, 16)), "static"),
                                     @static = false,
                                     pkind = PropertyKind.Method,
                                     value = new FunctionExpressionNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 16, 16), new Position(1, 21, 21)),
+                                        location = new SourceLocation(new Position(1, 16, 16), new Position(1, 21, 21)),
                                         id = null,
                                         parameters = new List<BaseNode>(),
                                         generator = false,
                                         fbody = new BlockStatementNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 21, 21)),
+                                            location = new SourceLocation(new Position(1, 19, 19), new Position(1, 21, 21)),
                                             body = new List<BaseNode>()
                                         },
-                                        bexpression = false
+                                        expression = false
                                     }
                                 }
                             }
@@ -9034,11 +9034,11 @@ namespace AcornSharp.Cli
                                 {
                                     id = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "x"),
                                     init = null,
-                                    loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12))
+                                    location = new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12))
                                 }
                             },
                             vkind = VariableKind.Const,
-                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 12, 12))
+                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 12, 12))
                         },
                         right = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 20, 20)), "list"),
                         fbody = new ExpressionStatementNode(default)
@@ -9050,50 +9050,50 @@ namespace AcornSharp.Cli
                                 {
                                     new IdentifierNode(new SourceLocation(new Position(1, 30, 30), new Position(1, 31, 31)), "x")
                                 },
-                                loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 32, 32))
+                                location = new SourceLocation(new Position(1, 22, 22), new Position(1, 32, 32))
                             },
-                            loc = new SourceLocation(new Position(1, 22, 22), new Position(1, 33, 33))
+                            location = new SourceLocation(new Position(1, 22, 22), new Position(1, 33, 33))
                         },
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
                     }
                 },
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
             }, new Options {ecmaVersion = 6});
 
             Test("class A { *static() {} }", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24)),
                 body = new List<BaseNode>
                 {
                     new ClassDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new ClassBodyNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 24, 24)),
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 24, 24)),
                             body = new List<BaseNode>
                             {
                                 new MethodDefinitionNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 22, 22)),
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 22, 22)),
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 17, 17)), "static"),
                                     @static = false,
                                     pkind = PropertyKind.Method,
                                     value = new FunctionExpressionNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 22, 22)),
+                                        location = new SourceLocation(new Position(1, 17, 17), new Position(1, 22, 22)),
                                         id = null,
                                         parameters = new List<BaseNode>(),
                                         generator = true,
                                         fbody = new BlockStatementNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 20, 20), new Position(1, 22, 22)),
+                                            location = new SourceLocation(new Position(1, 20, 20), new Position(1, 22, 22)),
                                             body = new List<BaseNode>()
                                         },
-                                        bexpression = false
+                                        expression = false
                                     }
                                 }
                             }
@@ -9107,25 +9107,25 @@ namespace AcornSharp.Cli
 
             Test("`${/\\d/.exec('1')[0]}`", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
                 body = new List<BaseNode>
                 {
                     new ExpressionStatementNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
                         expression = new TemplateLiteralNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
                             expressions = new List<BaseNode>
                             {
                                 new MemberExpressionNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 20, 20)),
                                     new CallExpressionNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 17, 17)),
+                                        location = new SourceLocation(new Position(1, 3, 3), new Position(1, 17, 17)),
                                         callee = new MemberExpressionNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 12, 12)),
                                             new LiteralNode(default)
                                             {
-                                                loc = new SourceLocation(new Position(1, 3, 3), new Position(1, 7, 7)),
+                                                location = new SourceLocation(new Position(1, 3, 3), new Position(1, 7, 7)),
                                                 regex = new RegexNode
                                                 {
                                                     pattern = "\\d",
@@ -9139,7 +9139,7 @@ namespace AcornSharp.Cli
                                         {
                                             new LiteralNode(default)
                                             {
-                                                loc = new SourceLocation(new Position(1, 13, 13), new Position(1, 16, 16)),
+                                                location = new SourceLocation(new Position(1, 13, 13), new Position(1, 16, 16)),
                                                 value = "1",
                                                 raw = "'1'"
                                             }
@@ -9147,7 +9147,7 @@ namespace AcornSharp.Cli
                                     },
                                     new LiteralNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19)),
+                                        location = new SourceLocation(new Position(1, 18, 18), new Position(1, 19, 19)),
                                         value = 0,
                                         raw = "0"
                                     },
@@ -9157,13 +9157,13 @@ namespace AcornSharp.Cli
                             {
                                 new TemplateElementNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 1, 1)),
+                                    location = new SourceLocation(new Position(1, 1, 1), new Position(1, 1, 1)),
                                     value = new TemplateNode("", ""),
                                     tail = false
                                 },
                                 new TemplateElementNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 21, 21), new Position(1, 21, 21)),
+                                    location = new SourceLocation(new Position(1, 21, 21), new Position(1, 21, 21)),
                                     value = new TemplateNode("", ""),
                                     tail = true
                                 }
@@ -9178,21 +9178,21 @@ namespace AcornSharp.Cli
 
             Test("var _𐒦 = 10;", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                 body = new List<BaseNode>
                 {
                     new VariableDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                         declarations = new List<BaseNode>
                         {
                             new VariableDeclaratorNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12)),
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12)),
                                 id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)), "_𐒦"),
                                 init = new LiteralNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12)),
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12)),
                                     value = 10,
                                     raw = "10"
                                 }
@@ -9205,21 +9205,21 @@ namespace AcornSharp.Cli
 
             Test("var 𫠝_ = 10;", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                 body = new List<BaseNode>
                 {
                     new VariableDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                         declarations = new List<BaseNode>
                         {
                             new VariableDeclaratorNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12)),
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12)),
                                 id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)), "𫠝_"),
                                 init = new LiteralNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12)),
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12)),
                                     value = 10,
                                     raw = "10"
                                 }
@@ -9232,21 +9232,21 @@ namespace AcornSharp.Cli
 
             Test("var _\\u{104A6} = 10;", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
                 body = new List<BaseNode>
                 {
                     new VariableDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
                         declarations = new List<BaseNode>
                         {
                             new VariableDeclaratorNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 19, 19)),
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 19, 19)),
                                 id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 14, 14)), "_𐒦"),
                                 init = new LiteralNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 19, 19)),
+                                    location = new SourceLocation(new Position(1, 17, 17), new Position(1, 19, 19)),
                                     value = 10,
                                     raw = "10"
                                 }
@@ -9259,20 +9259,20 @@ namespace AcornSharp.Cli
 
             Test("let [x,] = [1]", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
                 body = new List<BaseNode>
                 {
                     new VariableDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
                         declarations = new List<BaseNode>
                         {
                             new VariableDeclaratorNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 14, 14)),
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 14, 14)),
                                 id = new ArrayPatternNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 8, 8)),
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 8, 8)),
                                     elements = new List<BaseNode>
                                     {
                                         new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "x")
@@ -9280,12 +9280,12 @@ namespace AcornSharp.Cli
                                 },
                                 init = new ArrayExpressionNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 14, 14)),
+                                    location = new SourceLocation(new Position(1, 11, 11), new Position(1, 14, 14)),
                                     elements = new List<BaseNode>
                                     {
                                         new LiteralNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)),
+                                            location = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)),
                                             value = 1,
                                             raw = "1"
                                         }
@@ -9300,25 +9300,25 @@ namespace AcornSharp.Cli
 
             Test("let {x} = y", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)),
                 body = new List<BaseNode>
                 {
                     new VariableDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)),
                         declarations = new List<BaseNode>
                         {
                             new VariableDeclaratorNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 11, 11)),
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 11, 11)),
                                 id = new ObjectPatternNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)),
-                                    properties = new List<BaseNode>
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)),
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)),
+                                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)),
                                             method = false,
                                             shorthand = true,
                                             computed = false,
@@ -9411,7 +9411,7 @@ namespace AcornSharp.Cli
                             }
                         },
                         generator = false,
-                        bexpression = false
+                        expression = false
                     }
                 }
             }, new Options {ecmaVersion = 6});
@@ -9430,7 +9430,7 @@ namespace AcornSharp.Cli
                         {
                             id = new IdentifierNode(default, "foo"),
                             generator = false,
-                            bexpression = false,
+                            expression = false,
                             parameters = new List<BaseNode>(),
                             fbody = new BlockStatementNode(default)
                             {
@@ -9488,21 +9488,21 @@ namespace AcornSharp.Cli
 
             Test("var await = 0", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                 body = new List<BaseNode>
                 {
                     new VariableDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
                         declarations = new List<BaseNode>
                         {
                             new VariableDeclaratorNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 4, 4), new Position(1, 13, 13)),
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 13, 13)),
                                 id = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 9, 9)), "await"),
                                 init = new LiteralNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)),
+                                    location = new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)),
                                     value = 0,
                                     raw = "0"
                                 }
@@ -9572,7 +9572,7 @@ namespace AcornSharp.Cli
                                 value = 0,
                                 raw = "0"
                             },
-                            bexpression = true
+                            expression = true
                         }
                     }
                 }
@@ -9582,32 +9582,32 @@ namespace AcornSharp.Cli
 
             Test("function foo() { return {arguments} }", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37)),
                 body = new List<BaseNode>
                 {
                     new FunctionDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
                         generator = false,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>(),
                         fbody = new BlockStatementNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 37, 37)),
+                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 37, 37)),
                             body = new List<BaseNode>
                             {
                                 new ReturnStatementNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 35, 35)),
+                                    location = new SourceLocation(new Position(1, 17, 17), new Position(1, 35, 35)),
                                     argument = new ObjectExpressionNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 35, 35)),
-                                        properties = new List<BaseNode>
+                                        location = new SourceLocation(new Position(1, 24, 24), new Position(1, 35, 35)),
+                                        properties = new List<PropertyNode>
                                         {
                                             new PropertyNode(default)
                                             {
-                                                loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 34, 34)),
+                                                location = new SourceLocation(new Position(1, 25, 25), new Position(1, 34, 34)),
                                                 method = false,
                                                 shorthand = true,
                                                 computed = false,
@@ -9626,32 +9626,32 @@ namespace AcornSharp.Cli
 
             Test("function foo() { return {eval} }", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32)),
                 body = new List<BaseNode>
                 {
                     new FunctionDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
                         generator = false,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>(),
                         fbody = new BlockStatementNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 32, 32)),
+                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 32, 32)),
                             body = new List<BaseNode>
                             {
                                 new ReturnStatementNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 30, 30)),
+                                    location = new SourceLocation(new Position(1, 17, 17), new Position(1, 30, 30)),
                                     argument = new ObjectExpressionNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 30, 30)),
-                                        properties = new List<BaseNode>
+                                        location = new SourceLocation(new Position(1, 24, 24), new Position(1, 30, 30)),
+                                        properties = new List<PropertyNode>
                                         {
                                             new PropertyNode(default)
                                             {
-                                                loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 29, 29)),
+                                                location = new SourceLocation(new Position(1, 25, 25), new Position(1, 29, 29)),
                                                 method = false,
                                                 shorthand = true,
                                                 computed = false,
@@ -9670,42 +9670,42 @@ namespace AcornSharp.Cli
 
             Test("function foo() { 'use strict'; return {arguments} }", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 51, 51)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 51, 51)),
                 body = new List<BaseNode>
                 {
                     new FunctionDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 51, 51)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 51, 51)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
                         generator = false,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>(),
                         fbody = new BlockStatementNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 51, 51)),
+                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 51, 51)),
                             body = new List<BaseNode>
                             {
                                 new ExpressionStatementNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 30, 30)),
+                                    location = new SourceLocation(new Position(1, 17, 17), new Position(1, 30, 30)),
                                     expression = new LiteralNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 29, 29)),
+                                        location = new SourceLocation(new Position(1, 17, 17), new Position(1, 29, 29)),
                                         value = "use strict",
                                         raw = "'use strict'"
                                     }
                                 },
                                 new ReturnStatementNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 49, 49)),
+                                    location = new SourceLocation(new Position(1, 31, 31), new Position(1, 49, 49)),
                                     argument = new ObjectExpressionNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 38, 38), new Position(1, 49, 49)),
-                                        properties = new List<BaseNode>
+                                        location = new SourceLocation(new Position(1, 38, 38), new Position(1, 49, 49)),
+                                        properties = new List<PropertyNode>
                                         {
                                             new PropertyNode(default)
                                             {
-                                                loc = new SourceLocation(new Position(1, 39, 39), new Position(1, 48, 48)),
+                                                location = new SourceLocation(new Position(1, 39, 39), new Position(1, 48, 48)),
                                                 method = false,
                                                 shorthand = true,
                                                 computed = false,
@@ -9724,42 +9724,42 @@ namespace AcornSharp.Cli
 
             Test("function foo() { 'use strict'; return {eval} }", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 46, 46)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 46, 46)),
                 body = new List<BaseNode>
                 {
                     new FunctionDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 46, 46)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 46, 46)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
                         generator = false,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>(),
                         fbody = new BlockStatementNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 46, 46)),
+                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 46, 46)),
                             body = new List<BaseNode>
                             {
                                 new ExpressionStatementNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 30, 30)),
+                                    location = new SourceLocation(new Position(1, 17, 17), new Position(1, 30, 30)),
                                     expression = new LiteralNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 29, 29)),
+                                        location = new SourceLocation(new Position(1, 17, 17), new Position(1, 29, 29)),
                                         value = "use strict",
                                         raw = "'use strict'"
                                     }
                                 },
                                 new ReturnStatementNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 44, 44)),
+                                    location = new SourceLocation(new Position(1, 31, 31), new Position(1, 44, 44)),
                                     argument = new ObjectExpressionNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 38, 38), new Position(1, 44, 44)),
-                                        properties = new List<BaseNode>
+                                        location = new SourceLocation(new Position(1, 38, 38), new Position(1, 44, 44)),
+                                        properties = new List<PropertyNode>
                                         {
                                             new PropertyNode(default)
                                             {
-                                                loc = new SourceLocation(new Position(1, 39, 39), new Position(1, 43, 43)),
+                                                location = new SourceLocation(new Position(1, 39, 39), new Position(1, 43, 43)),
                                                 method = false,
                                                 shorthand = true,
                                                 computed = false,
@@ -9778,32 +9778,32 @@ namespace AcornSharp.Cli
 
             Test("function foo() { return {yield} }", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
                 body = new List<BaseNode>
                 {
                     new FunctionDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
                         generator = false,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>(),
                         fbody = new BlockStatementNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 33, 33)),
+                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 33, 33)),
                             body = new List<BaseNode>
                             {
                                 new ReturnStatementNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 17, 17), new Position(1, 31, 31)),
+                                    location = new SourceLocation(new Position(1, 17, 17), new Position(1, 31, 31)),
                                     argument = new ObjectExpressionNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 31, 31)),
-                                        properties = new List<BaseNode>
+                                        location = new SourceLocation(new Position(1, 24, 24), new Position(1, 31, 31)),
+                                        properties = new List<PropertyNode>
                                         {
                                             new PropertyNode(default)
                                             {
-                                                loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 30, 30)),
+                                                location = new SourceLocation(new Position(1, 25, 25), new Position(1, 30, 30)),
                                                 method = false,
                                                 shorthand = true,
                                                 computed = false,
@@ -9834,42 +9834,42 @@ namespace AcornSharp.Cli
             // can use yield expressions in parameters if it's inside of a nested generator.
             Test("function* foo(a = function*(b) { yield b }) { }", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 47, 47)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 47, 47)),
                 body = new List<BaseNode>
                 {
                     new FunctionDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 47, 47)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 47, 47)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13)), "foo"),
                         generator = true,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>
                         {
                             new AssignmentPatternNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 42, 42)),
+                                location = new SourceLocation(new Position(1, 14, 14), new Position(1, 42, 42)),
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a"),
                                 right = new FunctionExpressionNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 42, 42)),
+                                    location = new SourceLocation(new Position(1, 18, 18), new Position(1, 42, 42)),
                                     id = null,
                                     generator = true,
-                                    bexpression = false,
+                                    expression = false,
                                     parameters = new List<BaseNode>
                                     {
                                         new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29)), "b")
                                     },
                                     fbody = new BlockStatementNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 31, 31), new Position(1, 42, 42)),
+                                        location = new SourceLocation(new Position(1, 31, 31), new Position(1, 42, 42)),
                                         body = new List<BaseNode>
                                         {
                                             new ExpressionStatementNode(default)
                                             {
-                                                loc = new SourceLocation(new Position(1, 33, 33), new Position(1, 40, 40)),
+                                                location = new SourceLocation(new Position(1, 33, 33), new Position(1, 40, 40)),
                                                 expression = new YieldExpressionNode(default)
                                                 {
-                                                    loc = new SourceLocation(new Position(1, 33, 33), new Position(1, 40, 40)),
+                                                    location = new SourceLocation(new Position(1, 33, 33), new Position(1, 40, 40)),
                                                     @delegate = false,
                                                     argument = new IdentifierNode(new SourceLocation(new Position(1, 39, 39), new Position(1, 40, 40)), "b")
                                                 }
@@ -9881,7 +9881,7 @@ namespace AcornSharp.Cli
                         },
                         fbody = new BlockStatementNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 44, 44), new Position(1, 47, 47)),
+                            location = new SourceLocation(new Position(1, 44, 44), new Position(1, 47, 47)),
                             body = new List<BaseNode>()
                         }
                     }
@@ -9892,19 +9892,19 @@ namespace AcornSharp.Cli
 
             Test("function* yield() {}", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
                 body = new List<BaseNode>
                 {
                     new FunctionDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 15, 15)), "yield"),
                         generator = true,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>(),
                         fbody = new BlockStatementNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 20, 20)),
+                            location = new SourceLocation(new Position(1, 18, 18), new Position(1, 20, 20)),
                             body = new List<BaseNode>()
                         }
                     }
@@ -9913,20 +9913,20 @@ namespace AcornSharp.Cli
 
             Test("({*yield() {}})", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
                 body = new List<BaseNode>
                 {
                     new ExpressionStatementNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
                         expression = new ObjectExpressionNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 1, 1), new Position(1, 14, 14)),
-                            properties = new List<BaseNode>
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 14, 14)),
+                            properties = new List<PropertyNode>
                             {
                                 new PropertyNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 2, 2), new Position(1, 13, 13)),
+                                    location = new SourceLocation(new Position(1, 2, 2), new Position(1, 13, 13)),
                                     method = true,
                                     shorthand = false,
                                     computed = false,
@@ -9934,14 +9934,14 @@ namespace AcornSharp.Cli
                                     pkind = PropertyKind.Initialise,
                                     value = new FunctionExpressionNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 13, 13)),
+                                        location = new SourceLocation(new Position(1, 8, 8), new Position(1, 13, 13)),
                                         id = null,
                                         generator = true,
-                                        bexpression = false,
+                                        expression = false,
                                         parameters = new List<BaseNode>(),
                                         fbody = new BlockStatementNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 11, 11), new Position(1, 13, 13)),
+                                            location = new SourceLocation(new Position(1, 11, 11), new Position(1, 13, 13)),
                                             body = new List<BaseNode>()
                                         }
                                     }
@@ -9954,36 +9954,36 @@ namespace AcornSharp.Cli
 
             Test("class A {*yield() {}}", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
                 body = new List<BaseNode>
                 {
                     new ClassDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
                         fbody = new ClassBodyNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 8, 8), new Position(1, 21, 21)),
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 21, 21)),
                             body = new List<BaseNode>
                             {
                                 new MethodDefinitionNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 9, 9), new Position(1, 20, 20)),
+                                    location = new SourceLocation(new Position(1, 9, 9), new Position(1, 20, 20)),
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 15, 15)), "yield"),
                                     @static = false,
                                     pkind = PropertyKind.Method,
                                     value = new FunctionExpressionNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 15, 15), new Position(1, 20, 20)),
+                                        location = new SourceLocation(new Position(1, 15, 15), new Position(1, 20, 20)),
                                         id = null,
                                         generator = true,
-                                        bexpression = false,
+                                        expression = false,
                                         parameters = new List<BaseNode>(),
                                         fbody = new BlockStatementNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 20, 20)),
+                                            location = new SourceLocation(new Position(1, 18, 18), new Position(1, 20, 20)),
                                             body = new List<BaseNode>()
                                         }
                                     }
@@ -10009,39 +10009,39 @@ namespace AcornSharp.Cli
             // Allow yield expressions inside functions in default parameters:
             Test("function* foo(a = function* foo() { yield b }) {}", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 49, 49)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 49, 49)),
                 body = new List<BaseNode>
                 {
                     new FunctionDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 49, 49)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 49, 49)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13)), "foo"),
                         generator = true,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>
                         {
                             new AssignmentPatternNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 45, 45)),
+                                location = new SourceLocation(new Position(1, 14, 14), new Position(1, 45, 45)),
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a"),
                                 right = new FunctionExpressionNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 45, 45)),
+                                    location = new SourceLocation(new Position(1, 18, 18), new Position(1, 45, 45)),
                                     id = new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 31, 31)), "foo"),
                                     generator = true,
-                                    bexpression = false,
+                                    expression = false,
                                     parameters = new List<BaseNode>(),
                                     fbody = new BlockStatementNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 34, 34), new Position(1, 45, 45)),
+                                        location = new SourceLocation(new Position(1, 34, 34), new Position(1, 45, 45)),
                                         body = new List<BaseNode>
                                         {
                                             new ExpressionStatementNode(default)
                                             {
-                                                loc = new SourceLocation(new Position(1, 36, 36), new Position(1, 43, 43)),
+                                                location = new SourceLocation(new Position(1, 36, 36), new Position(1, 43, 43)),
                                                 expression = new YieldExpressionNode(default)
                                                 {
-                                                    loc = new SourceLocation(new Position(1, 36, 36), new Position(1, 43, 43)),
+                                                    location = new SourceLocation(new Position(1, 36, 36), new Position(1, 43, 43)),
                                                     @delegate = false,
                                                     argument = new IdentifierNode(new SourceLocation(new Position(1, 42, 42), new Position(1, 43, 43)), "b")
                                                 }
@@ -10053,7 +10053,7 @@ namespace AcornSharp.Cli
                         },
                         fbody = new BlockStatementNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 47, 47), new Position(1, 49, 49)),
+                            location = new SourceLocation(new Position(1, 47, 47), new Position(1, 49, 49)),
                             body = new List<BaseNode>()
                         }
                     }
@@ -10062,29 +10062,29 @@ namespace AcornSharp.Cli
 
             Test("function* foo(a = {*bar() { yield b }}) {}", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 42, 42)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 42, 42)),
                 body = new List<BaseNode>
                 {
                     new FunctionDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 42, 42)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 42, 42)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13)), "foo"),
                         generator = true,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>
                         {
                             new AssignmentPatternNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 38, 38)),
+                                location = new SourceLocation(new Position(1, 14, 14), new Position(1, 38, 38)),
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a"),
                                 right = new ObjectExpressionNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 38, 38)),
-                                    properties = new List<BaseNode>
+                                    location = new SourceLocation(new Position(1, 18, 18), new Position(1, 38, 38)),
+                                    properties = new List<PropertyNode>
                                     {
                                         new PropertyNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(1, 19, 19), new Position(1, 37, 37)),
+                                            location = new SourceLocation(new Position(1, 19, 19), new Position(1, 37, 37)),
                                             method = true,
                                             shorthand = false,
                                             computed = false,
@@ -10092,22 +10092,22 @@ namespace AcornSharp.Cli
                                             pkind = PropertyKind.Initialise,
                                             value = new FunctionExpressionNode(default)
                                             {
-                                                loc = new SourceLocation(new Position(1, 23, 23), new Position(1, 37, 37)),
+                                                location = new SourceLocation(new Position(1, 23, 23), new Position(1, 37, 37)),
                                                 id = null,
                                                 generator = true,
-                                                bexpression = false,
+                                                expression = false,
                                                 parameters = new List<BaseNode>(),
                                                 fbody = new BlockStatementNode(default)
                                                 {
-                                                    loc = new SourceLocation(new Position(1, 26, 26), new Position(1, 37, 37)),
+                                                    location = new SourceLocation(new Position(1, 26, 26), new Position(1, 37, 37)),
                                                     body = new List<BaseNode>
                                                     {
                                                         new ExpressionStatementNode(default)
                                                         {
-                                                            loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 35, 35)),
+                                                            location = new SourceLocation(new Position(1, 28, 28), new Position(1, 35, 35)),
                                                             expression = new YieldExpressionNode(default)
                                                             {
-                                                                loc = new SourceLocation(new Position(1, 28, 28), new Position(1, 35, 35)),
+                                                                location = new SourceLocation(new Position(1, 28, 28), new Position(1, 35, 35)),
                                                                 @delegate = false,
                                                                 argument = new IdentifierNode(new SourceLocation(new Position(1, 34, 34), new Position(1, 35, 35)), "b")
                                                             }
@@ -10122,7 +10122,7 @@ namespace AcornSharp.Cli
                         },
                         fbody = new BlockStatementNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 40, 40), new Position(1, 42, 42)),
+                            location = new SourceLocation(new Position(1, 40, 40), new Position(1, 42, 42)),
                             body = new List<BaseNode>()
                         }
                     }
@@ -10131,56 +10131,56 @@ namespace AcornSharp.Cli
 
             Test("function* foo(a = class {*bar() { yield b }}) {}", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 48, 48)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 48, 48)),
                 body = new List<BaseNode>
                 {
                     new FunctionDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(1, 48, 48)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 48, 48)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13)), "foo"),
                         generator = true,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>
                         {
                             new AssignmentPatternNode(default)
                             {
-                                loc = new SourceLocation(new Position(1, 14, 14), new Position(1, 44, 44)),
+                                location = new SourceLocation(new Position(1, 14, 14), new Position(1, 44, 44)),
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a"),
                                 right = new ClassExpressionNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(1, 18, 18), new Position(1, 44, 44)),
+                                    location = new SourceLocation(new Position(1, 18, 18), new Position(1, 44, 44)),
                                     id = null,
                                     superClass = null,
                                     fbody = new ClassBodyNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(1, 24, 24), new Position(1, 44, 44)),
+                                        location = new SourceLocation(new Position(1, 24, 24), new Position(1, 44, 44)),
                                         body = new List<BaseNode>
                                         {
                                             new MethodDefinitionNode(default)
                                             {
-                                                loc = new SourceLocation(new Position(1, 25, 25), new Position(1, 43, 43)),
+                                                location = new SourceLocation(new Position(1, 25, 25), new Position(1, 43, 43)),
                                                 computed = false,
                                                 key = new IdentifierNode(new SourceLocation(new Position(1, 26, 26), new Position(1, 29, 29)), "bar"),
                                                 @static = false,
                                                 pkind = PropertyKind.Method,
                                                 value = new FunctionExpressionNode(default)
                                                 {
-                                                    loc = new SourceLocation(new Position(1, 29, 29), new Position(1, 43, 43)),
+                                                    location = new SourceLocation(new Position(1, 29, 29), new Position(1, 43, 43)),
                                                     id = null,
                                                     generator = true,
-                                                    bexpression = false,
+                                                    expression = false,
                                                     parameters = new List<BaseNode>(),
                                                     fbody = new BlockStatementNode(default)
                                                     {
-                                                        loc = new SourceLocation(new Position(1, 32, 32), new Position(1, 43, 43)),
+                                                        location = new SourceLocation(new Position(1, 32, 32), new Position(1, 43, 43)),
                                                         body = new List<BaseNode>
                                                         {
                                                             new ExpressionStatementNode(default)
                                                             {
-                                                                loc = new SourceLocation(new Position(1, 34, 34), new Position(1, 41, 41)),
+                                                                location = new SourceLocation(new Position(1, 34, 34), new Position(1, 41, 41)),
                                                                 expression = new YieldExpressionNode(default)
                                                                 {
-                                                                    loc = new SourceLocation(new Position(1, 34, 34), new Position(1, 41, 41)),
+                                                                    location = new SourceLocation(new Position(1, 34, 34), new Position(1, 41, 41)),
                                                                     @delegate = false,
                                                                     argument = new IdentifierNode(new SourceLocation(new Position(1, 40, 40), new Position(1, 41, 41)), "b")
                                                                 }
@@ -10196,7 +10196,7 @@ namespace AcornSharp.Cli
                         },
                         fbody = new BlockStatementNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 46, 46), new Position(1, 48, 48)),
+                            location = new SourceLocation(new Position(1, 46, 46), new Position(1, 48, 48)),
                             body = new List<BaseNode>()
                         }
                     }
@@ -10206,32 +10206,32 @@ namespace AcornSharp.Cli
             // Distinguish ParenthesizedExpression or ArrowFunctionExpression
             Test("function* wrap() {\n(a = yield b)\n}", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 34)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 34)),
                 body = new List<BaseNode>
                 {
                     new FunctionDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 34)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 34)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 14, 14)), "wrap"),
                         generator = true,
-                        bexpression = false,
+                        expression = false,
                         parameters = new List<BaseNode>(),
                         fbody = new BlockStatementNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 17, 17), new Position(3, 1, 34)),
+                            location = new SourceLocation(new Position(1, 17, 17), new Position(3, 1, 34)),
                             body = new List<BaseNode>
                             {
                                 new ExpressionStatementNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(2, 0, 19), new Position(2, 13, 32)),
+                                    location = new SourceLocation(new Position(2, 0, 19), new Position(2, 13, 32)),
                                     expression = new AssignmentExpressionNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(2, 1, 20), new Position(2, 12, 31)),
+                                        location = new SourceLocation(new Position(2, 1, 20), new Position(2, 12, 31)),
                                         @operator = "=",
                                         left = new IdentifierNode(new SourceLocation(new Position(2, 1, 20), new Position(2, 2, 21)), "a"),
                                         right = new YieldExpressionNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(2, 5, 24), new Position(2, 12, 31)),
+                                            location = new SourceLocation(new Position(2, 5, 24), new Position(2, 12, 31)),
                                             @delegate = false,
                                             argument = new IdentifierNode(new SourceLocation(new Position(2, 11, 30), new Position(2, 12, 31)), "b")
                                         }
@@ -10247,36 +10247,36 @@ namespace AcornSharp.Cli
 
             Test("function* wrap() {\n({a = yield b} = obj)\n}", new ProgramNode(default)
             {
-                loc = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 42)),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 42)),
                 body = new List<BaseNode>
                 {
                     new FunctionDeclarationNode(default)
                     {
-                        loc = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 42)),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 42)),
                         id = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 14, 14)), "wrap"),
                         parameters = new List<BaseNode>(),
                         generator = true,
-                        bexpression = false,
+                        expression = false,
                         fbody = new BlockStatementNode(default)
                         {
-                            loc = new SourceLocation(new Position(1, 17, 17), new Position(3, 1, 42)),
+                            location = new SourceLocation(new Position(1, 17, 17), new Position(3, 1, 42)),
                             body = new List<BaseNode>
                             {
                                 new ExpressionStatementNode(default)
                                 {
-                                    loc = new SourceLocation(new Position(2, 0, 19), new Position(2, 21, 40)),
+                                    location = new SourceLocation(new Position(2, 0, 19), new Position(2, 21, 40)),
                                     expression = new AssignmentExpressionNode(default)
                                     {
-                                        loc = new SourceLocation(new Position(2, 1, 20), new Position(2, 20, 39)),
+                                        location = new SourceLocation(new Position(2, 1, 20), new Position(2, 20, 39)),
                                         @operator = "=",
                                         left = new ObjectPatternNode(default)
                                         {
-                                            loc = new SourceLocation(new Position(2, 1, 20), new Position(2, 14, 33)),
-                                            properties = new List<BaseNode>
+                                            location = new SourceLocation(new Position(2, 1, 20), new Position(2, 14, 33)),
+                                            properties = new List<PropertyNode>
                                             {
                                                 new PropertyNode(default)
                                                 {
-                                                    loc = new SourceLocation(new Position(2, 2, 21), new Position(2, 13, 32)),
+                                                    location = new SourceLocation(new Position(2, 2, 21), new Position(2, 13, 32)),
                                                     method = false,
                                                     shorthand = true,
                                                     computed = false,
@@ -10284,11 +10284,11 @@ namespace AcornSharp.Cli
                                                     pkind = PropertyKind.Initialise,
                                                     value = new AssignmentPatternNode(default)
                                                     {
-                                                        loc = new SourceLocation(new Position(2, 2, 21), new Position(2, 13, 32)),
+                                                        location = new SourceLocation(new Position(2, 2, 21), new Position(2, 13, 32)),
                                                         left = new IdentifierNode(new SourceLocation(new Position(2, 2, 21), new Position(2, 3, 22)), "a"),
                                                         right = new YieldExpressionNode(default)
                                                         {
-                                                            loc = new SourceLocation(new Position(2, 6, 25), new Position(2, 13, 32)),
+                                                            location = new SourceLocation(new Position(2, 6, 25), new Position(2, 13, 32)),
                                                             @delegate = false,
                                                             argument = new IdentifierNode(new SourceLocation(new Position(2, 12, 31), new Position(2, 13, 32)), "b")
                                                         }

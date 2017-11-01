@@ -6,18 +6,12 @@ namespace AcornSharp.Node
 {
     public abstract class BaseNode : IEquatable<BaseNode>
     {
-        public IList<BaseNode> body;
-        public BaseNode expression;
-        public bool bexpression;
-        public SourceLocation loc;
-        public object value;
+        public SourceLocation location;
         public RegexNode regex;
-        public BaseNode left;
         public string @operator;
-        public BaseNode right;
         public string raw;
         public IList<BaseNode> elements;
-        public IList<BaseNode> properties;
+        public IList<PropertyNode> properties;
         public BaseNode id;
         public IList<BaseNode> parameters;
         public BaseNode fbody;
@@ -63,17 +57,17 @@ namespace AcornSharp.Node
 
         public BaseNode(SourceLocation location)
         {
-            loc = location;
+            this.location = location;
         }
 
         public BaseNode([NotNull] Parser parser, Position start)
         {
-            loc = new SourceLocation(start, default, parser.sourceFile);
+            location = new SourceLocation(start, default, parser.sourceFile);
         }
 
         public BaseNode([NotNull] Parser parser, Position start, Position end)
         {
-            loc = new SourceLocation(start, end, parser.sourceFile);
+            location = new SourceLocation(start, end, parser.sourceFile);
         }
 
         public virtual bool TestEquals([CanBeNull] BaseNode other)
@@ -83,15 +77,9 @@ namespace AcornSharp.Node
             if (ReferenceEquals(this, other))
                 return true;
 
-            if (body != null && !TestEquals(body, other.body)) return false;
-            if (!TestEquals(expression, other.expression)) return false;
-            if (bexpression && bexpression != other.bexpression) return false;
-            if (loc.Start.Line > 0 && !Equals(loc, other.loc)) return false;
-            if (value != null && !TestEquals(value, other.value)) return false;
+            if (location.Start.Line > 0 && !Equals(location, other.location)) return false;
             if (regex != null && !Equals(regex, other.regex)) return false;
-            if (left != null && !TestEquals(left, other.left)) return false;
             if (!string.Equals(@operator, other.@operator, StringComparison.Ordinal)) return false;
-            if (right != null && !TestEquals(right, other.right)) return false;
             if (raw != null && !string.Equals(raw, other.raw, StringComparison.Ordinal)) return false;
             if (!TestEquals(elements, other.elements)) return false;
             if (!TestEquals(properties, other.properties)) return false;
@@ -169,7 +157,8 @@ namespace AcornSharp.Node
             return lhs.TestEquals(rhs);
         }
 
-        internal static bool TestEquals(IList<BaseNode> lhs, IList<BaseNode> rhs)
+        internal static bool TestEquals<T>(IList<T> lhs, IList<T> rhs)
+            where T : BaseNode
         {
             if (ReferenceEquals(lhs, rhs))
                 return true;
@@ -201,15 +190,9 @@ namespace AcornSharp.Node
             if (ReferenceEquals(this, other))
                 return true;
 
-            if (!Equals(body, other.body)) return false;
-            if (!Equals(expression, other.expression)) return false;
-            if (bexpression != other.bexpression) return false;
-            if (!Equals(loc, other.loc)) return false;
-            if (!Equals(value, other.value)) return false;
+            if (!Equals(location, other.location)) return false;
             if (!Equals(regex, other.regex)) return false;
-            if (!Equals(left, other.left)) return false;
             if (!string.Equals(@operator, other.@operator)) return false;
-            if (!Equals(right, other.right)) return false;
             if (!string.Equals(raw, other.raw)) return false;
             if (!Equals(elements, other.elements)) return false;
             if (!Equals(properties, other.properties)) return false;
@@ -291,15 +274,9 @@ namespace AcornSharp.Node
             unchecked
             {
                 var hashCode = 0;
-                hashCode = (hashCode * 397) ^ (body != null ? body.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (expression != null ? expression.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ bexpression.GetHashCode();
-                hashCode = (hashCode * 397) ^ (loc != null ? loc.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (value != null ? value.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (location != null ? location.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (regex != null ? regex.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (left != null ? left.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (@operator != null ? @operator.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (right != null ? right.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (raw != null ? raw.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (elements != null ? elements.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (properties != null ? properties.GetHashCode() : 0);

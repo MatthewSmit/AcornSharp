@@ -27,7 +27,7 @@ namespace AcornSharp
             }
             adaptDirectivePrologue(node.body);
             next();
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
+            node.location = new SourceLocation(node.location.Start, lastTokEnd, node.location.Source);
         }
 
         private bool isLet()
@@ -514,7 +514,7 @@ namespace AcornSharp
             foreach (var label in labels)
             {
                 if (label.name == maybeName)
-                    raise(expr.loc.Start, "Label '" + maybeName + "' is already declared");
+                    raise(expr.location.Start, "Label '" + maybeName + "' is already declared");
             }
             var kind = TokenInformation.Types[type].IsLoop ? "loop" : type == TokenType._switch ? "switch" : null;
             for (var i = labels.Count - 1; i >= 0; i--)
@@ -532,7 +532,7 @@ namespace AcornSharp
             if (body is ClassDeclarationNode ||
                 body is VariableDeclarationNode && body.vkind != VariableKind.Var ||
                 body is FunctionDeclarationNode && (strict || body.generator))
-                raiseRecoverable(body.loc.Start, "Invalid labelled declaration");
+                raiseRecoverable(body.location.Start, "Invalid labelled declaration");
             labels.Pop();
 
             return new LabelledStatementNode(this, nodeStart, lastTokEnd)
@@ -556,7 +556,7 @@ namespace AcornSharp
         // strict"` declarations when `allowStrict` is true (used for
         // function bodies).
         [NotNull]
-        private BaseNode parseBlock(bool createNewLexicalScope = true)
+        private BlockStatementNode parseBlock(bool createNewLexicalScope = true)
         {
             var start = this.start;
             var body = new List<BaseNode>();
@@ -729,7 +729,7 @@ namespace AcornSharp
                     async = isAsync,
                     id = id,
                     fbody = body,
-                    bexpression = expression,
+                    expression = expression,
                     parameters = parameters
                 };
             }
@@ -739,7 +739,7 @@ namespace AcornSharp
                 async = isAsync,
                 id = id,
                 fbody = body,
-                bexpression = expression,
+                expression = expression,
                 parameters = parameters
             };
         }
@@ -802,12 +802,12 @@ namespace AcornSharp
                         (computed, key) = parsePropertyName();
                     }
                     if (!@static && (key is IdentifierNode identifierNode3 && identifierNode3.name == "constructor" ||
-                                            key is LiteralNode && (string)key.value == "constructor"))
+                                            key is LiteralNode literal && literal.value.ToString() == "constructor"))
                     {
-                        if (hadConstructor) raise(key.loc.Start, "Duplicate constructor in the same class");
-                        if (isGetSet) raise(key.loc.Start, "Constructor can't have get/set modifier");
-                        if (isGenerator) raise(key.loc.Start, "Constructor can't be a generator");
-                        if (isAsync) raise(key.loc.Start, "Constructor can't be an async method");
+                        if (hadConstructor) raise(key.location.Start, "Duplicate constructor in the same class");
+                        if (isGetSet) raise(key.location.Start, "Constructor can't have get/set modifier");
+                        if (isGenerator) raise(key.location.Start, "Constructor can't be a generator");
+                        if (isAsync) raise(key.location.Start, "Constructor can't be an async method");
                         kind = PropertyKind.Constructor;
                         hadConstructor = true;
                     }
@@ -819,7 +819,7 @@ namespace AcornSharp
                     var paramCount = kind == PropertyKind.Get ? 0 : 1;
                     if (methodValue.parameters.Count != paramCount)
                     {
-                        var start = methodValue.loc.Start;
+                        var start = methodValue.location.Start;
                         if (kind == PropertyKind.Get)
                             raiseRecoverable(start, "getter should have no params");
                         else
@@ -828,7 +828,7 @@ namespace AcornSharp
                     else
                     {
                         if (kind == PropertyKind.Set && methodValue.parameters[0] is RestElementNode)
-                            raiseRecoverable(methodValue.parameters[0].loc.Start, "Setter cannot use rest params");
+                            raiseRecoverable(methodValue.parameters[0].location.Start, "Setter cannot use rest params");
                     }
                 }
 
@@ -942,7 +942,7 @@ namespace AcornSharp
                     if (declaration is VariableDeclarationNode)
                         checkVariableExport(exports, declaration.declarations);
                     else
-                        checkExport(exports, ((IdentifierNode)declaration.id).name, declaration.id.loc.Start);
+                        checkExport(exports, ((IdentifierNode)declaration.id).name, declaration.id.location.Start);
                     specifiers = new List<BaseNode>();
                 }
                 else
@@ -963,7 +963,7 @@ namespace AcornSharp
                         // check for keywords used as local names
                         foreach (var spec in specifiers)
                         {
-                            checkUnreserved(spec.local.loc.Start, spec.local.loc.End, spec.local.name);
+                            checkUnreserved(spec.local.location.Start, spec.local.location.End, spec.local.name);
                         }
                     }
                     semicolon();
@@ -985,28 +985,28 @@ namespace AcornSharp
             exports[name] = true;
         }
 
-        private static void checkPatternExport(IDictionary<string, bool> exports, BaseNode pat)
+        private static void checkPatternExport(IDictionary<string, bool> exports, BaseNode pattern)
         {
-            switch (pat)
+            switch (pattern)
             {
                 case IdentifierNode identifierNode:
-                    checkExport(exports, identifierNode.name, pat.loc.Start);
+                    checkExport(exports, identifierNode.name, pattern.location.Start);
                     break;
                 case ObjectPatternNode _:
-                    foreach (var prop in pat.properties)
+                    foreach (var prop in pattern.properties)
                         checkPatternExport(exports, (BaseNode)prop.value);
                     break;
                 case ArrayPatternNode _:
-                    foreach (var elt in pat.elements)
+                    foreach (var elt in pattern.elements)
                     {
                         if (elt != null) checkPatternExport(exports, elt);
                     }
                     break;
-                case AssignmentPatternNode _:
-                    checkPatternExport(exports, pat.left);
+                case AssignmentPatternNode assignmentPattern:
+                    checkPatternExport(exports, assignmentPattern.left);
                     break;
-                case ParenthesisedExpressionNode _:
-                    checkPatternExport(exports, pat.expression);
+                case ParenthesisedExpressionNode parenthesisedExpressionNode:
+                    checkPatternExport(exports, parenthesisedExpressionNode.expression);
                     break;
             }
         }
@@ -1048,7 +1048,7 @@ namespace AcornSharp
                 var startLoc = start;
                 var local = parseIdent(true);
                 var exported = eatContextual("as") ? parseIdent(true) : local;
-                checkExport(exports, exported.name, exported.loc.Start);
+                checkExport(exports, exported.name, exported.location.Start);
                 var node = new ExportSpecifierNode(this, startLoc, lastTokEnd)
                 {
                     local = local,
@@ -1142,7 +1142,7 @@ namespace AcornSharp
                 }
                 else
                 {
-                    checkUnreserved(imported.loc.Start, imported.loc.End, imported.name);
+                    checkUnreserved(imported.location.Start, imported.location.End, imported.name);
                     local = imported;
                 }
                 checkLVal(local, true, VariableKind.Let);
@@ -1161,17 +1161,18 @@ namespace AcornSharp
         {
             for (var i = 0; i < statements.Count && isDirectiveCandidate(statements[i]); ++i)
             {
-                statements[i].directive = statements[i].expression.raw.Substring(1, statements[i].expression.raw.Length - 2);
+                var expressionStatement = (ExpressionStatementNode)statements[i];
+                expressionStatement.directive = expressionStatement.expression.raw.Substring(1, expressionStatement.expression.raw.Length - 2);
             }
         }
 
         private bool isDirectiveCandidate([NotNull] BaseNode statement)
         {
-            return statement is ExpressionStatementNode &&
-                   statement.expression is LiteralNode &&
-                   statement.expression.value is string &&
+            return statement is ExpressionStatementNode expressionStatementNode &&
+                   expressionStatementNode.expression is LiteralNode literal &&
+                   literal.value.IsString &&
                    // Reject parenthesized strings.
-                   (input[statement.loc.Start.Index] == '\"' || input[statement.loc.Start.Index] == '\'');
+                   (input[statement.location.Start.Index] == '\"' || input[statement.location.Start.Index] == '\'');
         }
     }
 }

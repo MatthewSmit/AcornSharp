@@ -22,7 +22,7 @@ namespace AcornSharp.Cli
                             new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "a")
                         },
                         generator = false,
-                        bexpression = false,
+                        expression = false,
                         async = false,
                         fbody = new BlockStatementNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20)))
                         {
@@ -46,7 +46,7 @@ namespace AcornSharp.Cli
                                 new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "a")
                             },
                             generator = false,
-                            bexpression = false,
+                            expression = false,
                             async = false,
                             fbody = new BlockStatementNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 17, 17)))
                             {
@@ -71,7 +71,7 @@ namespace AcornSharp.Cli
                                 new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a")
                             },
                             generator = false,
-                            bexpression = true,
+                            expression = true,
                             async = false,
                             fbody = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "a")
                         }
@@ -93,7 +93,7 @@ namespace AcornSharp.Cli
                                 new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a")
                             },
                             generator = false,
-                            bexpression = true,
+                            expression = true,
                             async = true,
                             fbody = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a")
                         }
@@ -109,7 +109,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new ObjectExpressionNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 13, 13)))
                         {
-                            properties = new List<BaseNode>
+                            properties = new List<PropertyNode>
                             {
                                 new PropertyNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 12, 12)))
                                 {
@@ -126,7 +126,7 @@ namespace AcornSharp.Cli
                                             new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "a")
                                         },
                                         generator = false,
-                                        bexpression = false,
+                                        expression = false,
                                         async = false,
                                         fbody = new BlockStatementNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12)))
                                         {
@@ -166,7 +166,7 @@ namespace AcornSharp.Cli
                                             new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "a")
                                         },
                                         generator = false,
-                                        bexpression = false,
+                                        expression = false,
                                         async = false,
                                         fbody = new BlockStatementNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 19, 19)))
                                         {
@@ -206,7 +206,7 @@ namespace AcornSharp.Cli
                                             new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 21, 21)), "a")
                                         },
                                         generator = false,
-                                        bexpression = false,
+                                        expression = false,
                                         async = false,
                                         fbody = new BlockStatementNode(new SourceLocation(new Position(1, 24, 24), new Position(1, 26, 26)))
                                         {
@@ -248,7 +248,7 @@ namespace AcornSharp.Cli
                                                 new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "a")
                                             },
                                             generator = false,
-                                            bexpression = false,
+                                            expression = false,
                                             async = false,
                                             fbody = new BlockStatementNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 18, 18)))
                                             {
@@ -291,7 +291,7 @@ namespace AcornSharp.Cli
                                                 new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 20, 20)), "a")
                                             },
                                             generator = false,
-                                            bexpression = false,
+                                            expression = false,
                                             async = false,
                                             fbody = new BlockStatementNode(new SourceLocation(new Position(1, 23, 23), new Position(1, 25, 25)))
                                             {
@@ -321,7 +321,7 @@ namespace AcornSharp.Cli
                                 new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29)), "a")
                             },
                             generator = false,
-                            bexpression = false,
+                            expression = false,
                             async = false,
                             fbody = new BlockStatementNode(new SourceLocation(new Position(1, 32, 32), new Position(1, 35, 35)))
                             {
@@ -347,7 +347,7 @@ namespace AcornSharp.Cli
                                 new IdentifierNode(new SourceLocation(new Position(1, 29, 29), new Position(1, 30, 30)), "a")
                             },
                             generator = false,
-                            bexpression = false,
+                            expression = false,
                             async = false,
                             fbody = new BlockStatementNode(new SourceLocation(new Position(1, 33, 33), new Position(1, 36, 36)))
                             {
@@ -373,7 +373,7 @@ namespace AcornSharp.Cli
                                 new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 21, 21)), "a")
                             },
                             generator = false,
-                            bexpression = false,
+                            expression = false,
                             async = false,
                             fbody = new BlockStatementNode(new SourceLocation(new Position(1, 24, 24), new Position(1, 27, 27)))
                             {

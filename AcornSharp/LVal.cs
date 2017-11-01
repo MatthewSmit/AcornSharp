@@ -10,7 +10,7 @@ namespace AcornSharp
     {
         // Convert existing expression atom to assignable pattern
         // if possible.
-        [ContractAnnotation("node:null => null; node:notnull=>notnull")]
+        [ContractAnnotation("node:notnull=>notnull")]
         private BaseNode toAssignable([CanBeNull] BaseNode node, bool isBinding = false)
         {
             if (Options.ecmaVersion >= 6 && node != null)
@@ -19,7 +19,7 @@ namespace AcornSharp
                 {
                     case IdentifierNode identifierNode:
                         if (inAsync && identifierNode.name == "await")
-                            raise(node.loc.Start, "Can not use 'await' as identifier inside an async function");
+                            raise(node.location.Start, "Can not use 'await' as identifier inside an async function");
                         break;
 
                     case MemberExpressionNode _:
@@ -31,39 +31,38 @@ namespace AcornSharp
                         break;
 
                     case ObjectExpressionNode _:
-                        node = new ObjectPatternNode(node.loc)
+                        node = new ObjectPatternNode(node.location)
                         {
                             properties = node.properties
                         };
                         foreach (var prop in node.properties)
                         {
-                            if (prop.pkind != PropertyKind.Initialise) raise(prop.key.loc.Start, "Object pattern can't contain getter or setter");
+                            if (prop.pkind != PropertyKind.Initialise) raise(prop.key.location.Start, "Object pattern can't contain getter or setter");
                             prop.value = toAssignable((BaseNode)prop.value, isBinding);
                         }
                         break;
 
                     case ArrayExpressionNode _:
-                        node = new ArrayPatternNode(node.loc)
+                        node = new ArrayPatternNode(node.location)
                         {
                             elements = node.elements
                         };
                         toAssignableList(node.elements, isBinding);
                         break;
 
-                    case AssignmentExpressionNode _:
-                        if (node.@operator == "=")
+                    case AssignmentExpressionNode assignmentExpression:
+                        if (assignmentExpression.@operator == "=")
                         {
-                            node = new AssignmentPatternNode(node.loc)
+                            node = new AssignmentPatternNode(node.location)
                             {
-                                left = node.left,
-                                right = node.right
+                                left = toAssignable(assignmentExpression.left, isBinding),
+                                right = assignmentExpression.right
                             };
-                            node.left = toAssignable(node.left, isBinding);
                             goto AssignmentPatternNode;
                         }
                         else
                         {
-                            raise(node.left.loc.End, "Only '=' operator can be used for specifying default value.");
+                            raise(assignmentExpression.left.location.End, "Only '=' operator can be used for specifying default value.");
                             break;
                         }
 
@@ -71,12 +70,12 @@ namespace AcornSharp
                         AssignmentPatternNode:
                         break;
 
-                    case ParenthesisedExpressionNode _:
-                        node.expression = toAssignable(node.expression, isBinding);
+                    case ParenthesisedExpressionNode parenthesisedExpressionNode:
+                        parenthesisedExpressionNode.expression = toAssignable(parenthesisedExpressionNode.expression, isBinding);
                         break;
 
                     default:
-                        raise(node.loc.Start, "Assigning to rvalue");
+                        raise(node.location.Start, "Assigning to rvalue");
                         break;
                 }
             }
@@ -97,7 +96,7 @@ namespace AcornSharp
                 }
                 else if (last != null && last is SpreadElementNode)
                 {
-                    exprList[end - 1] = last = new RestElementNode(last.loc)
+                    exprList[end - 1] = last = new RestElementNode(last.location)
                     {
                         argument = toAssignable(last.argument, isBinding)
                     };
@@ -106,7 +105,7 @@ namespace AcornSharp
 
                 if (Options.ecmaVersion == 6 && isBinding && last != null && last is RestElementNode && !(last.argument is IdentifierNode))
                 {
-                    raise(last.argument.loc.Start, "Unexpected token");
+                    raise(last.argument.location.Start, "Unexpected token");
                 }
             }
             for (var i = 0; i < end; i++)
@@ -234,11 +233,11 @@ namespace AcornSharp
             {
                 case IdentifierNode identifierNode:
                     if (strict && reservedWordsStrictBind.IsMatch(identifierNode.name))
-                        raiseRecoverable(expr.loc.Start, (isBinding ? "Binding " : "Assigning to ") + identifierNode.name + " in strict mode");
+                        raiseRecoverable(expr.location.Start, (isBinding ? "Binding " : "Assigning to ") + identifierNode.name + " in strict mode");
                     if (checkClashes != null)
                     {
                         if (checkClashes.Contains(identifierNode.name))
-                            raiseRecoverable(expr.loc.Start, "Argument name clash");
+                            raiseRecoverable(expr.location.Start, "Argument name clash");
                         checkClashes.Add(identifierNode.name);
                     }
                     if (bindingType != null && isBinding)
@@ -248,7 +247,7 @@ namespace AcornSharp
                             bindingType != VariableKind.Var && !canDeclareLexicalName(identifierNode.name)
                         )
                         {
-                            raiseRecoverable(expr.loc.Start, $"Identifier '{identifierNode.name}' has already been declared");
+                            raiseRecoverable(expr.location.Start, $"Identifier '{identifierNode.name}' has already been declared");
                         }
                         if (bindingType == VariableKind.Var)
                         {
@@ -261,7 +260,7 @@ namespace AcornSharp
                     }
                     break;
                 case MemberExpressionNode _:
-                    if (bindingType != null) raiseRecoverable(expr.loc.Start, "Binding" + " member expression");
+                    if (bindingType != null) raiseRecoverable(expr.location.Start, "Binding" + " member expression");
                     break;
                 case ObjectPatternNode _:
                     foreach (var prop in expr.properties)
@@ -273,17 +272,17 @@ namespace AcornSharp
                         if (elem != null) checkLVal(elem, isBinding, bindingType, checkClashes);
                     }
                     break;
-                case AssignmentPatternNode _:
-                    checkLVal(expr.left, isBinding, bindingType, checkClashes);
+                case AssignmentPatternNode assignmentPattern:
+                    checkLVal(assignmentPattern.left, isBinding, bindingType, checkClashes);
                     break;
                 case RestElementNode _:
                     checkLVal(expr.argument, isBinding, bindingType, checkClashes);
                     break;
-                case ParenthesisedExpressionNode _:
-                    checkLVal(expr.expression, isBinding, bindingType, checkClashes);
+                case ParenthesisedExpressionNode parenthesisedExpressionNode:
+                    checkLVal(parenthesisedExpressionNode.expression, isBinding, bindingType, checkClashes);
                     break;
                 default:
-                    raise(expr.loc.Start, (bindingType != null ? "Binding" : "Assigning to") + " rvalue");
+                    raise(expr.location.Start, (bindingType != null ? "Binding" : "Assigning to") + " rvalue");
                     break;
             }
         }

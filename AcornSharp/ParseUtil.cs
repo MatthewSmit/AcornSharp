@@ -163,8 +163,8 @@ namespace AcornSharp
 
         private static bool isSimpleAssignTarget(BaseNode expr)
         {
-            if (expr is ParenthesisedExpressionNode)
-                return isSimpleAssignTarget(expr.expression);
+            if (expr is ParenthesisedExpressionNode parenthesisedExpressionNode)
+                return isSimpleAssignTarget(parenthesisedExpressionNode.expression);
             return expr is IdentifierNode || expr is MemberExpressionNode;
         }
     }

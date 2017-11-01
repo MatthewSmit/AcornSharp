@@ -4,6 +4,9 @@ namespace AcornSharp.Node
 {
     public sealed class BinaryExpressionNode : BaseNode
     {
+        public BaseNode left;
+        public BaseNode right;
+
         public BinaryExpressionNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
@@ -19,6 +22,8 @@ namespace AcornSharp.Node
             if (other is BinaryExpressionNode realOther)
             {
                 if (!base.TestEquals(other)) return false;
+                if (left != null && !TestEquals(left, realOther.left)) return false;
+                if (right != null && !TestEquals(right, realOther.right)) return false;
                 return true;
             }
             return false;
@@ -29,6 +34,8 @@ namespace AcornSharp.Node
             if (other is BinaryExpressionNode realOther)
             {
                 if (!base.Equals(other)) return false;
+                if (!Equals(left, realOther.left)) return false;
+                if (!Equals(right, realOther.right)) return false;
                 return true;
             }
             return false;
@@ -37,6 +44,8 @@ namespace AcornSharp.Node
         public override int GetHashCode()
         {
             var hashCode = base.GetHashCode();
+            hashCode = (hashCode * 397) ^ (left != null ? left.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (right != null ? right.GetHashCode() : 0);
             return hashCode;
         }
     }

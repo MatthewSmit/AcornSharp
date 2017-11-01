@@ -4,6 +4,8 @@ namespace AcornSharp.Node
 {
     public sealed class LiteralNode : BaseNode
     {
+        public LiteralValue value;
+
         public LiteralNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
@@ -19,6 +21,7 @@ namespace AcornSharp.Node
             if (other is LiteralNode realOther)
             {
                 if (!base.TestEquals(other)) return false;
+                if (!value.IsNull && !TestEquals(value, realOther.value)) return false;
                 return true;
             }
             return false;
@@ -29,6 +32,7 @@ namespace AcornSharp.Node
             if (other is LiteralNode realOther)
             {
                 if (!base.Equals(other)) return false;
+                if (!Equals(value, realOther.value)) return false;
                 return true;
             }
             return false;
@@ -37,6 +41,7 @@ namespace AcornSharp.Node
         public override int GetHashCode()
         {
             var hashCode = base.GetHashCode();
+            hashCode = (hashCode * 397) ^ (value != null ? value.GetHashCode() : 0);
             return hashCode;
         }
     }
