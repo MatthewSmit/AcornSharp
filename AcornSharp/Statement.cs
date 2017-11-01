@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using AcornSharp.Node;
 using JetBrains.Annotations;
@@ -15,8 +16,7 @@ namespace AcornSharp
         // statements, and wraps them in a Program node.  Optionally takes a
         // `program` argument.  If present, the statements will be appended
         // to its body instead of creating a new node.
-        [NotNull]
-        private BaseNode parseTopLevel([NotNull] BaseNode node)
+        private void parseTopLevel([NotNull] ProgramNode node)
         {
             var exports = new Dictionary<string, bool>();
             if (node.body == null) node.body = new List<BaseNode>();
@@ -27,13 +27,7 @@ namespace AcornSharp
             }
             adaptDirectivePrologue(node.body);
             next();
-            if (Options.ecmaVersion >= 6)
-            {
-                node.sourceType = Options.sourceType;
-            }
-            node.type = NodeType.Program;
             node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
         }
 
         private bool isLet()
@@ -74,16 +68,17 @@ namespace AcornSharp
         // regular expression literal. This is to handle cases like
         // `if (foo) /blah/.exec(foo)`, where looking at the previous token
         // does not help.
+        [NotNull]
         private BaseNode parseStatement(bool declaration, bool topLevel = false, [CanBeNull] IDictionary<string, bool> exports = null)
         {
             var starttype = type;
             var start = this.start;
-            string kind = null;
+            VariableKind? kind = null;
 
             if (isLet())
             {
                 starttype = TokenType._var;
-                kind = "let";
+                kind = VariableKind.Let;
             }
 
             // Most types of statements are recognized by the keyword they
@@ -125,12 +120,12 @@ namespace AcornSharp
                     return parseTryStatement(start);
                 case TokenType._const:
                 case TokenType._var:
-                    kind = kind ?? (string)value;
-                    if (!declaration && kind != "var")
+                    var realKind = kind ?? ToVariableKind((string)value);
+                    if (!declaration && realKind != VariableKind.Var)
                     {
                         raise(start, "Unexpected token");
                     }
-                    return parseVarStatement(start, kind);
+                    return parseVarStatement(start, realKind);
                 case TokenType._while:
                     return parseWhileStatement(start);
                 case TokenType._with:
@@ -160,24 +155,41 @@ namespace AcornSharp
             var maybeName = value;
             var expr = parseExpression();
             if (starttype == TokenType.name && expr is IdentifierNode identifierNode && eat(TokenType.colon))
-                return parseLabeledStatement(start, (string)maybeName, identifierNode);
+                return parseLabelledStatement(start, (string)maybeName, identifierNode);
             return parseExpressionStatement(start, expr);
+        }
+
+        private static VariableKind ToVariableKind([NotNull] string s)
+        {
+            switch (s)
+            {
+                case "var":
+                    return VariableKind.Var;
+                case "let":
+                    return VariableKind.Let;
+                case "const":
+                    return VariableKind.Const;
+                default:
+                    throw new ArgumentException();
+            }
         }
 
         [NotNull]
         private BaseNode parseBreakContinueStatement(Position nodeStart, string keyword)
         {
-            var node = new BaseNode(this, nodeStart);
             var isBreak = keyword == "break";
+            IdentifierNode label = null;
             next();
-            if (eat(TokenType.semi) || insertSemicolon()) node.label = null;
+            if (eat(TokenType.semi) || insertSemicolon())
+            {
+            }
             else if (type != TokenType.name)
             {
                 raise(start, "Unexpected token");
             }
             else
             {
-                node.label = parseIdent();
+                label = parseIdent();
                 semicolon();
             }
 
@@ -187,16 +199,25 @@ namespace AcornSharp
             for (; i < labels.Count; ++i)
             {
                 var lab = labels[i];
-                if (node.label == null || lab.name == node.label.name)
+                if (label == null || lab.name == label.name)
                 {
                     if (lab.kind != null && (isBreak || lab.kind == "loop")) break;
-                    if (node.label != null && isBreak) break;
+                    if (label != null && isBreak) break;
                 }
             }
-            if (i == labels.Count) raise(node.loc.Start, "Unsyntactic " + keyword);
-            node.type = isBreak ? NodeType.BreakStatement : NodeType.ContinueStatement;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+            if (i == labels.Count) raise(nodeStart, "Unsyntactic " + keyword);
+
+            if (isBreak)
+            {
+                return new BreakStatementNode(this, nodeStart, lastTokEnd)
+                {
+                    label = label
+                };
+            }
+            return new ContinueStatementNode(this, nodeStart, lastTokEnd)
+            {
+                label = label
+            };
         }
 
         [NotNull]
@@ -208,22 +229,24 @@ namespace AcornSharp
         }
 
         [NotNull]
-        private BaseNode parseDoStatement(Position nodeStart)
+        private DoWhileStatementNode parseDoStatement(Position nodeStart)
         {
             next();
             labels.Add(loopLabel);
-            var node = new BaseNode(this, nodeStart);
-            node.fbody = parseStatement(false);
+            var fbody = parseStatement(false);
             labels.Pop();
             expect(TokenType._while);
-            node.test = parseParenExpression();
+            var test = parseParenExpression();
             if (Options.ecmaVersion >= 6)
                 eat(TokenType.semi);
             else
                 semicolon();
-            node.type = NodeType.DoWhileStatement;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+
+            return new DoWhileStatementNode(this, nodeStart, lastTokEnd)
+            {
+                fbody = fbody,
+                test = test
+            };
         }
 
         // Disambiguating between a `for` and a `for`/`in` or `for`/`of`
@@ -233,47 +256,50 @@ namespace AcornSharp
         // whether the next token is `in` or `of`. When there is no init
         // part (semicolon immediately after the opening parenthesis), it
         // is a regular `for` loop.
+        [NotNull]
         private BaseNode parseForStatement(Position nodeStart)
         {
             next();
             labels.Add(loopLabel);
             enterLexicalScope();
             expect(TokenType.parenL);
-            var node = new BaseNode(this, nodeStart);
-            if (type == TokenType.semi) return parseFor(node, null);
+            if (type == TokenType.semi) return parseFor(nodeStart, null);
             var isLet = this.isLet();
             BaseNode init;
             if (type == TokenType._var || type == TokenType._const || isLet)
             {
-                init = new BaseNode(this, start);
-                var kind = isLet ? "let" : (string)value;
+                var startLoc = start;
+                var kind = isLet ? VariableKind.Let : ToVariableKind((string)value);
                 next();
-                parseVar(init, true, kind);
-                init.type = NodeType.VariableDeclaration;
-                init.loc = new SourceLocation(init.loc.Start, lastTokEnd, init.loc.Source);
+                var declarations = parseVar(true, kind);
+                init = new VariableDeclarationNode(this, startLoc, lastTokEnd)
+                {
+                    declarations = declarations,
+                    vkind = kind
+                };
                 if ((type == TokenType._in || Options.ecmaVersion >= 6 && isContextual("of")) && init.declarations.Count == 1 &&
-                    !(kind != "var" && init.declarations[0].init != null))
-                    return parseForIn(node, init);
-                return parseFor(node, init);
+                    !(kind != VariableKind.Var && init.declarations[0].init != null))
+                    return parseForIn(nodeStart, init);
+                return parseFor(nodeStart, init);
             }
             var refDestructuringErrors = new DestructuringErrors();
             init = parseExpression(true, refDestructuringErrors);
             if (type == TokenType._in || Options.ecmaVersion >= 6 && isContextual("of"))
             {
-                toAssignable(init);
-                checkLVal(init);
+                init = toAssignable(init);
+                checkLVal(init, false, null);
                 checkPatternErrors(refDestructuringErrors, true);
-                return parseForIn(node, init);
+                return parseForIn(nodeStart, init);
             }
             checkExpressionErrors(refDestructuringErrors, true);
-            return parseFor(node, init);
+            return parseFor(nodeStart, init);
         }
 
+        [NotNull]
         private BaseNode parseFunctionStatement(Position nodeStart, bool isAsync)
         {
             next();
-            var node = new BaseNode(this, nodeStart);
-            return parseFunction(node, "true", false, isAsync);
+            return parseFunction(nodeStart, "true", false, isAsync);
         }
 
         private bool isFunction()
@@ -293,7 +319,7 @@ namespace AcornSharp
         }
 
         [NotNull]
-        private BaseNode parseReturnStatement(Position nodeStart)
+        private ReturnStatementNode parseReturnStatement(Position nodeStart)
         {
             if (!inFunction && !Options.allowReturnOutsideFunction)
                 raise(start, "'return' outside of function");
@@ -303,25 +329,24 @@ namespace AcornSharp
             // optional arguments, we eagerly look for a semicolon or the
             // possibility to insert one.
 
-            var node = new BaseNode(this, nodeStart);
-            if (eat(TokenType.semi) || insertSemicolon()) node.argument = null;
-            else
+            BaseNode argument = null;
+            if (!eat(TokenType.semi) && !insertSemicolon())
             {
-                node.argument = parseExpression();
+                argument = parseExpression();
                 semicolon();
             }
-            node.type = NodeType.ReturnStatement;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+            return new ReturnStatementNode(this, nodeStart, lastTokEnd)
+            {
+                argument = argument
+            };
         }
 
         [NotNull]
-        private BaseNode parseSwitchStatement(Position nodeStart)
+        private SwitchStatementNode parseSwitchStatement(Position nodeStart)
         {
             next();
-            var node = new BaseNode(this, nodeStart);
-            node.discriminant = parseParenExpression();
-            node.cases = new List<BaseNode>();
+            var discriminant = parseParenExpression();
+            var cases = new List<BaseNode>();
             expect(TokenType.braceL);
             labels.Add(switchLabel);
             enterLexicalScope();
@@ -330,66 +355,79 @@ namespace AcornSharp
             // nodes. `cur` is used to keep the node that we are currently
             // adding statements to.
 
-            BaseNode cur = null;
+            var startLoc = start;
+            IList<BaseNode> consequent = null;
+            BaseNode test = null;
             for (var sawDefault = false; type != TokenType.braceR;)
             {
                 if (type == TokenType._case || type == TokenType._default)
                 {
                     var isCase = type == TokenType._case;
-                    if (cur != null)
+                    if (consequent != null)
                     {
-                        cur.type = NodeType.SwitchCase;
-                        cur.loc = new SourceLocation(cur.loc.Start, lastTokEnd, cur.loc.Source);
+                        var current = new SwitchCaseNode(this, startLoc, lastTokEnd)
+                        {
+                            sconsequent = consequent,
+                            test = test
+                        };
+                        cases.Add(current);
                     }
-                    node.cases.Add(cur = new BaseNode(this, start));
-                    cur.sconsequent = new List<BaseNode>();
+
+                    startLoc = start;
+                    consequent = new List<BaseNode>();
                     next();
                     if (isCase)
                     {
-                        cur.test = parseExpression();
+                        test = parseExpression();
                     }
                     else
                     {
                         if (sawDefault) raiseRecoverable(lastTokStart, "Multiple default clauses");
                         sawDefault = true;
-                        cur.test = null;
+                        test = null;
                     }
                     expect(TokenType.colon);
                 }
                 else
                 {
-                    if (cur == null)
+                    if (consequent == null)
                     {
                         raise(start, "Unexpected token");
                     }
-                    cur.sconsequent.Add(parseStatement(true));
+                    consequent.Add(parseStatement(true));
                 }
             }
             exitLexicalScope();
-            if (cur != null)
+            if (consequent != null)
             {
-                cur.type = NodeType.SwitchCase;
-                cur.loc = new SourceLocation(cur.loc.Start, lastTokEnd, cur.loc.Source);
+                var current = new SwitchCaseNode(this, startLoc, lastTokEnd)
+                {
+                    sconsequent = consequent,
+                    test = test
+                };
+                cases.Add(current);
             }
             next(); // Closing brace
             labels.Pop();
-            node.type = NodeType.SwitchStatement;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+            return new SwitchStatementNode(this, nodeStart, lastTokEnd)
+            {
+                discriminant = discriminant,
+                cases = cases
+            };
         }
 
         [NotNull]
-        private BaseNode parseThrowStatement(Position nodeStart)
+        private ThrowStatementNode parseThrowStatement(Position nodeStart)
         {
             next();
             if (lineBreak.IsMatch(input.Substring(lastTokEnd.Index, start.Index - lastTokEnd.Index)))
                 raise(lastTokEnd, "Illegal newline after throw");
-            var node = new BaseNode(this, nodeStart);
-            node.argument = parseExpression();
+            var argument = parseExpression();
             semicolon();
-            node.type = NodeType.ThrowStatement;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+            return new ThrowStatementNode(this, nodeStart, lastTokEnd)
+            {
+                argument = argument
+            };
         }
 
         [NotNull]
@@ -405,16 +443,15 @@ namespace AcornSharp
                 expect(TokenType.parenL);
                 var param = parseBindingAtom();
                 enterLexicalScope();
-                checkLVal(param, "let");
+                checkLVal(param, true, VariableKind.Let);
                 expect(TokenType.parenR);
                 var body = parseBlock(false);
                 exitLexicalScope();
-                var clause = new BaseNode(this, start);
-                clause.param = param;
-                clause.fbody = body;
-                clause.type = NodeType.CatchClause;
-                clause.loc = new SourceLocation(clause.loc.Start, lastTokEnd, clause.loc.Source);
-                handler = clause;
+                handler = new CatchClauseNode(this, start, lastTokEnd)
+                {
+                    param = param,
+                    fbody = body
+                };
             }
             var finaliser = eat(TokenType._finally) ? parseBlock() : null;
             if (handler == null && finaliser == null)
@@ -423,56 +460,56 @@ namespace AcornSharp
         }
 
         [NotNull]
-        private BaseNode parseVarStatement(Position nodeStart, string kind)
+        private VariableDeclarationNode parseVarStatement(Position nodeStart, VariableKind kind)
         {
             next();
-            var node = new BaseNode(this, nodeStart);
-            parseVar(node, false, kind);
+            var declarations = parseVar(false, kind);
             semicolon();
-            node.type = NodeType.VariableDeclaration;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+            return new VariableDeclarationNode(this, nodeStart, lastTokEnd)
+            {
+                declarations = declarations,
+                vkind = kind
+            };
         }
 
         [NotNull]
-        private BaseNode parseWhileStatement(Position nodeStart)
+        private WhileStatementNode parseWhileStatement(Position nodeStart)
         {
             next();
-            var node = new BaseNode(this, nodeStart);
-            node.test = parseParenExpression();
+            var test = parseParenExpression();
             labels.Add(loopLabel);
-            node.fbody = parseStatement(false);
+            var fbody = parseStatement(false);
             labels.Pop();
-            node.type = NodeType.WhileStatement;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+            return new WhileStatementNode(this, nodeStart, lastTokEnd)
+            {
+                test = test,
+                fbody = fbody
+            };
         }
 
         [NotNull]
-        private BaseNode parseWithStatement(Position nodeStart)
+        private WithStatementNode parseWithStatement(Position nodeStart)
         {
             if (strict) raise(start, "'with' in strict mode");
             next();
-            var node = new BaseNode(this, nodeStart);
-            node.@object = parseParenExpression();
-            node.fbody = parseStatement(false);
-            node.type = NodeType.WithStatement;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+            var @object = parseParenExpression();
+            var fbody = parseStatement(false);
+            return new WithStatementNode(this, nodeStart, lastTokEnd)
+            {
+                @object = @object,
+                fbody = fbody
+            };
         }
 
         [NotNull]
-        private BaseNode parseEmptyStatement(Position nodeStart)
+        private EmptyStatementNode parseEmptyStatement(Position nodeStart)
         {
             next();
-            var node = new BaseNode(this, nodeStart);
-            node.type = NodeType.EmptyStatement;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+            return new EmptyStatementNode(this, nodeStart, lastTokEnd);
         }
 
         [NotNull]
-        private BaseNode parseLabeledStatement(Position nodeStart, string maybeName, IdentifierNode expr)
+        private BaseNode parseLabelledStatement(Position nodeStart, string maybeName, IdentifierNode expr)
         {
             foreach (var label in labels)
             {
@@ -480,11 +517,10 @@ namespace AcornSharp
                     raise(expr.loc.Start, "Label '" + maybeName + "' is already declared");
             }
             var kind = TokenInformation.Types[type].IsLoop ? "loop" : type == TokenType._switch ? "switch" : null;
-            var node = new BaseNode(this, nodeStart);
             for (var i = labels.Count - 1; i >= 0; i--)
             {
                 var label = labels[i];
-                if (label.statementStart == node.loc.Start.Index)
+                if (label.statementStart == nodeStart.Index)
                 {
                     label.statementStart = start.Index;
                     label.kind = kind;
@@ -492,27 +528,28 @@ namespace AcornSharp
                 else break;
             }
             labels.Add(new Label {name = maybeName, kind = kind, statementStart = start.Index });
-            node.fbody = parseStatement(true);
-            if (node.fbody.type == NodeType.ClassDeclaration ||
-                node.fbody.type == NodeType.VariableDeclaration && node.fbody.kind != "var" ||
-                node.fbody.type == NodeType.FunctionDeclaration && (strict || node.fbody.generator))
-                raiseRecoverable(node.fbody.loc.Start, "Invalid labelled declaration");
+            var body = parseStatement(true);
+            if (body is ClassDeclarationNode ||
+                body is VariableDeclarationNode && body.vkind != VariableKind.Var ||
+                body is FunctionDeclarationNode && (strict || body.generator))
+                raiseRecoverable(body.loc.Start, "Invalid labelled declaration");
             labels.Pop();
-            node.label = expr;
-            node.type = NodeType.LabeledStatement;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+
+            return new LabelledStatementNode(this, nodeStart, lastTokEnd)
+            {
+                fbody = body,
+                label = expr
+            };
         }
 
         [NotNull]
-        private BaseNode parseExpressionStatement(Position nodeStart, BaseNode expr)
+        private ExpressionStatementNode parseExpressionStatement(Position nodeStart, BaseNode expr)
         {
-            var node = new BaseNode(this, nodeStart);
-            node.expression = expr;
             semicolon();
-            node.type = NodeType.ExpressionStatement;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+            return new ExpressionStatementNode(this, nodeStart, lastTokEnd)
+            {
+                expression = expr
+            };
         }
 
         // Parse a semicolon-enclosed block of statements, handling `"use
@@ -537,108 +574,126 @@ namespace AcornSharp
             {
                 exitLexicalScope();
             }
-            var node = new BaseNode(this, start);
-            node.body = body;
-            node.type = NodeType.BlockStatement;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+            return new BlockStatementNode(this, start, lastTokEnd)
+            {
+                body = body
+            };
         }
 
         // Parse a regular `for` loop. The disambiguation code in
         // `parseStatement` will already have parsed the init statement or
         // expression.
         [NotNull]
-        private BaseNode parseFor([NotNull] BaseNode node, BaseNode init)
+        private BaseNode parseFor(Position nodeStart, BaseNode init)
         {
-            node.init = init;
             expect(TokenType.semi);
-            node.test = type == TokenType.semi ? null : parseExpression();
+            var test = type == TokenType.semi ? null : parseExpression();
             expect(TokenType.semi);
-            node.update = type == TokenType.parenR ? null : parseExpression();
+            var update = type == TokenType.parenR ? null : parseExpression();
             expect(TokenType.parenR);
             exitLexicalScope();
-            node.fbody = parseStatement(false);
+            var fbody = parseStatement(false);
             labels.Pop();
-            node.type = NodeType.ForStatement;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+            return new ForStatementNode(this, nodeStart, lastTokEnd)
+            {
+                init = init,
+                test = test,
+                update = update,
+                fbody = fbody
+            };
         }
 
         // Parse a `for`/`in` and `for`/`of` loop, which are almost
         // same from parser's perspective.
         [NotNull]
-        private BaseNode parseForIn([NotNull] BaseNode node, BaseNode init)
+        private BaseNode parseForIn(Position nodeStart, BaseNode init)
         {
-            var type = this.type == TokenType._in ? NodeType.ForInStatement : NodeType.ForOfStatement;
+            var isIn = type == TokenType._in;
             next();
-            node.left = init;
-            node.right = parseExpression();
+            var left = init;
+            var right = parseExpression();
             expect(TokenType.parenR);
             exitLexicalScope();
-            node.fbody = parseStatement(false);
+            var body = parseStatement(false);
             labels.Pop();
-            node.type = type;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+
+            if (isIn)
+            {
+                return new ForInStatementNode(this, nodeStart, lastTokEnd)
+                {
+                    left = left,
+                    right = right,
+                    fbody = body
+                };
+            }
+            return new ForOfStatementNode(this, nodeStart, lastTokEnd)
+            {
+                left = left,
+                right = right,
+                fbody = body
+            };
         }
 
         // Parse a list of variable declarations.
-        private BaseNode parseVar([NotNull] BaseNode node, bool isFor, string kind)
+        [NotNull]
+        private List<BaseNode> parseVar(bool isFor, VariableKind kind)
         {
-            node.declarations = new List<BaseNode>();
-            node.kind = kind;
+            var declarations = new List<BaseNode>();
             for (;;)
             {
                 var start = this.start;
-                var decl = new BaseNode(this, start);
-                parseVarId(decl, kind);
+                var id = parseVarId(kind);
+                BaseNode init = null;
                 if (eat(TokenType.eq))
                 {
-                    decl.init = parseMaybeAssign(isFor);
+                    init = parseMaybeAssign(isFor);
                 }
-                else if (kind == "const" && !(type == TokenType._in || Options.ecmaVersion >= 6 && isContextual("of")))
+                else if (kind == VariableKind.Const && !(type == TokenType._in || Options.ecmaVersion >= 6 && isContextual("of")))
                 {
                     raise(this.start, "Unexpected token");
                 }
-                else if (!(decl.id is IdentifierNode) && !(isFor && (type == TokenType._in || isContextual("of"))))
+                else if (!(id is IdentifierNode) && !(isFor && (type == TokenType._in || isContextual("of"))))
                 {
                     raise(lastTokEnd, "Complex binding patterns require an initialization value");
                 }
-                else
+                var decl = new VariableDeclaratorNode(this, start, lastTokEnd)
                 {
-                    decl.init = null;
-                }
-                decl.type = NodeType.VariableDeclarator;
-                decl.loc = new SourceLocation(decl.loc.Start, lastTokEnd, decl.loc.Source);
-                node.declarations.Add(decl);
+                    init = init,
+                    id = id,
+                    vkind = kind
+                };
+                declarations.Add(decl);
                 if (!eat(TokenType.comma)) break;
             }
-            return node;
+            return declarations;
         }
 
-        private void parseVarId([NotNull] BaseNode decl, string kind)
+        [NotNull]
+        private BaseNode parseVarId(VariableKind kind)
         {
-            decl.id = parseBindingAtom();
-            checkLVal(decl.id, kind);
+            var id = parseBindingAtom();
+            checkLVal(id, true, kind);
+            return id;
         }
 
         // Parse a function declaration or literal (depending on the
         // `isStatement` parameter).
         [NotNull]
-        private BaseNode parseFunction([NotNull] BaseNode node, string isStatement, bool allowExpressionBody = false, bool isAsync = false)
+        private BaseNode parseFunction(Position startLoc, [CanBeNull] string isStatement, bool allowExpressionBody = false, bool isAsync = false)
         {
-            initFunction(node);
+            var generator = false;
             if (Options.ecmaVersion >= 6 && !isAsync)
-                node.generator = eat(TokenType.star);
-            if (Options.ecmaVersion >= 8)
-                node.async = isAsync;
+                generator = eat(TokenType.star);
+            if (Options.ecmaVersion < 8 && isAsync)
+                throw new InvalidOperationException();
 
+            IdentifierNode id = null;
             if (isStatement != null)
             {
-                node.id = isStatement == "nullableID" && type != TokenType.name ? null : parseIdent();
-                if (node.id != null)
+                id = isStatement == "nullableID" && type != TokenType.name ? null : parseIdent();
+                if (id != null)
                 {
-                    checkLVal(node.id, "var");
+                    checkLVal(id, true, VariableKind.Var);
                 }
             }
 
@@ -647,237 +702,282 @@ namespace AcornSharp
             var oldYieldPos = yieldPos;
             var oldAwaitPos = awaitPos;
             var oldInFunc = inFunction;
-            inGenerator = node.generator;
-            inAsync = node.async;
+            inGenerator = generator;
+            inAsync = isAsync;
             yieldPos = default;
             awaitPos = default;
             inFunction = true;
             enterFunctionScope();
 
             if (isStatement == null)
-                node.id = type == TokenType.name ? parseIdent() : null;
+                id = type == TokenType.name ? parseIdent() : null;
 
-            parseFunctionParams(node);
-            parseFunctionBody(node, allowExpressionBody);
+            var parameters = parseFunctionParams();
+            var (body, expression) = parseFunctionBody(parameters, startLoc, id, allowExpressionBody);
 
             inGenerator = oldInGen;
             inAsync = oldInAsync;
             yieldPos = oldYieldPos;
             awaitPos = oldAwaitPos;
             inFunction = oldInFunc;
-            node.type = isStatement != null ? NodeType.FunctionDeclaration : NodeType.FunctionExpression;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+
+            if (isStatement != null)
+            {
+                return new FunctionDeclarationNode(this, startLoc, lastTokEnd)
+                {
+                    generator = generator,
+                    async = isAsync,
+                    id = id,
+                    fbody = body,
+                    bexpression = expression,
+                    parameters = parameters
+                };
+            }
+            return new FunctionExpressionNode(this, startLoc, lastTokEnd)
+            {
+                generator = generator,
+                async = isAsync,
+                id = id,
+                fbody = body,
+                bexpression = expression,
+                parameters = parameters
+            };
         }
 
-        private void parseFunctionParams(BaseNode node)
+        [NotNull]
+        private IList<BaseNode> parseFunctionParams()
         {
             expect(TokenType.parenL);
-            node.@params = parseBindingList(TokenType.parenR, false, Options.ecmaVersion >= 8);
+            var parameters = parseBindingList(TokenType.parenR, false, Options.ecmaVersion >= 8);
             checkYieldAwaitInDefaultParams();
+            return parameters;
         }
 
         // Parse a class declaration or literal (depending on the
         // `isStatement` parameter).
-        private BaseNode parseClass(Position nodeStart, string isStatement)
+        [NotNull]
+        private BaseNode parseClass(Position nodeStart, [CanBeNull] string isStatement)
         {
             next();
 
-            var node = new BaseNode(this, nodeStart);
-            parseClassId(node, isStatement);
-            parseClassSuper(node);
-            var classBody = new BaseNode(this, start);
+            var id = parseClassId(isStatement);
+            var superClass = parseClassSuper();
+            var classBodyStart = start;
             var hadConstructor = false;
-            classBody.body = new List<BaseNode>();
+            var body = new List<BaseNode>();
             expect(TokenType.braceL);
             while (!eat(TokenType.braceR))
             {
                 if (eat(TokenType.semi)) continue;
-                var method = new BaseNode(this, start);
+                var methodStart = start;
                 var isGenerator = eat(TokenType.star);
                 var isAsync = false;
                 var isMaybeStatic = type == TokenType.name && (string)value == "static";
-                parsePropertyName(method);
-                method.@static = isMaybeStatic && type != TokenType.parenL;
-                if (method.@static)
+                var (computed, key) = parsePropertyName();
+                var @static = isMaybeStatic && type != TokenType.parenL;
+                if (@static)
                 {
                     if (isGenerator)
                     {
                         raise(start, "Unexpected token");
                     }
                     isGenerator = eat(TokenType.star);
-                    parsePropertyName(method);
+                    (computed, key) = parsePropertyName();
                 }
-                if (Options.ecmaVersion >= 8 && !isGenerator && !method.computed &&
-                    method.key is IdentifierNode identifierNode && identifierNode.name == "async" && type != TokenType.parenL &&
+                if (Options.ecmaVersion >= 8 && !isGenerator && !computed &&
+                    key is IdentifierNode identifierNode && identifierNode.name == "async" && type != TokenType.parenL &&
                     !canInsertSemicolon())
                 {
                     isAsync = true;
-                    parsePropertyName(method);
+                    (computed, key) = parsePropertyName();
                 }
-                method.kind = "method";
+                var kind = PropertyKind.Method;
                 var isGetSet = false;
-                if (!method.computed)
+                if (!computed)
                 {
-                    var key = method.key;
                     if (!isGenerator && !isAsync && key is IdentifierNode identifierNode2 && type != TokenType.parenL && (identifierNode2.name == "get" || identifierNode2.name == "set"))
                     {
                         isGetSet = true;
-                        method.kind = identifierNode2.name;
-                        key = parsePropertyName(method);
+                        kind = identifierNode2.name == "get" ? PropertyKind.Get : PropertyKind.Set;
+                        (computed, key) = parsePropertyName();
                     }
-                    if (!method.@static && (key is IdentifierNode identifierNode3 && identifierNode3.name == "constructor" ||
-                                            key.type == NodeType.Literal && (string)key.value == "constructor"))
+                    if (!@static && (key is IdentifierNode identifierNode3 && identifierNode3.name == "constructor" ||
+                                            key is LiteralNode && (string)key.value == "constructor"))
                     {
                         if (hadConstructor) raise(key.loc.Start, "Duplicate constructor in the same class");
                         if (isGetSet) raise(key.loc.Start, "Constructor can't have get/set modifier");
                         if (isGenerator) raise(key.loc.Start, "Constructor can't be a generator");
                         if (isAsync) raise(key.loc.Start, "Constructor can't be an async method");
-                        method.kind = "constructor";
+                        kind = PropertyKind.Constructor;
                         hadConstructor = true;
                     }
                 }
-                parseClassMethod(classBody, method, isGenerator, isAsync);
+                var methodValue = parseMethod(isGenerator, isAsync);
+
                 if (isGetSet)
                 {
-                    var paramCount = method.kind == "get" ? 0 : 1;
-                    var value = (BaseNode)method.value;
-                    if (value.@params.Count != paramCount)
+                    var paramCount = kind == PropertyKind.Get ? 0 : 1;
+                    if (methodValue.parameters.Count != paramCount)
                     {
-                        var start = value.loc.Start;
-                        if (method.kind == "get")
+                        var start = methodValue.loc.Start;
+                        if (kind == PropertyKind.Get)
                             raiseRecoverable(start, "getter should have no params");
                         else
                             raiseRecoverable(start, "setter should have exactly one param");
                     }
                     else
                     {
-                        if (method.kind == "set" && value.@params[0].type == NodeType.RestElement)
-                            raiseRecoverable(value.@params[0].loc.Start, "Setter cannot use rest params");
+                        if (kind == PropertyKind.Set && methodValue.parameters[0] is RestElementNode)
+                            raiseRecoverable(methodValue.parameters[0].loc.Start, "Setter cannot use rest params");
                     }
                 }
+
+                var method = new MethodDefinitionNode(this, methodStart, lastTokEnd)
+                {
+                    computed = computed,
+                    key = key,
+                    @static = @static,
+                    pkind = kind,
+                    value = methodValue
+                };
+                body.Add(method);
             }
-            classBody.type = NodeType.ClassBody;
-            classBody.loc = new SourceLocation(classBody.loc.Start, lastTokEnd, classBody.loc.Source);
-            node.fbody = classBody;
-            node.type = isStatement != null ? NodeType.ClassDeclaration : NodeType.ClassExpression;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+            var classBody = new ClassBodyNode(this, classBodyStart, lastTokEnd)
+            {
+                body = body
+            };
+
+            if (isStatement != null)
+            {
+                return new ClassDeclarationNode(this, nodeStart, lastTokEnd)
+                {
+                    id = id,
+                    fbody = classBody,
+                    superClass = superClass
+                };
+            }
+            return new ClassExpressionNode(this, nodeStart, lastTokEnd)
+            {
+                id = id,
+                fbody = classBody,
+                superClass = superClass
+            };
         }
 
-        private void parseClassMethod(BaseNode classBody, BaseNode method, bool isGenerator, bool isAsync)
-        {
-            method.value = parseMethod(isGenerator, isAsync);
-            method.type = NodeType.MethodDefinition;
-            method.loc = new SourceLocation(method.loc.Start, lastTokEnd, method.loc.Source);
-            classBody.body.Add(method);
-        }
-
-        private void parseClassId(BaseNode node, string isStatement)
+        [CanBeNull]
+        private IdentifierNode parseClassId(string isStatement)
         {
             if (type == TokenType.name)
-                node.id = parseIdent();
-            else
+                return parseIdent();
+            if (isStatement == "true")
             {
-                if (isStatement == "true")
-                {
-                    raise(start, "Unexpected token");
-                }
-                else node.id = null;
+                raise(start, "Unexpected token");
             }
+            return null;
         }
 
-        private void parseClassSuper(BaseNode node)
+        [CanBeNull]
+        private BaseNode parseClassSuper()
         {
-            node.superClass = eat(TokenType._extends) ? parseExprSubscripts() : null;
+            return eat(TokenType._extends) ? parseExprSubscripts() : null;
         }
 
         // Parses module export declaration.
+        [NotNull]
         private BaseNode parseExport(Position nodeStart, IDictionary<string, bool> exports)
         {
-            var node = new BaseNode(this, nodeStart);
             next();
             // export * from '...'
             if (eat(TokenType.star))
             {
                 expectContextual("from");
-                if (type == TokenType.@string) node.source = parseExprAtom();
+                BaseNode source = null;
+                if (type == TokenType.@string) source = parseExprAtom();
                 else
                 {
                     raise(start, "Unexpected token");
                 }
                 semicolon();
-                node.type = NodeType.ExportAllDeclaration;
-                node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-                return node;
+                return new ExportAllDeclarationNode(this, nodeStart, lastTokEnd)
+                {
+                    source = source
+                };
             }
             if (eat(TokenType._default))
             {
                 // export default ...
                 checkExport(exports, "default", lastTokStart);
                 var isAsync = false;
+                BaseNode declaration;
                 if (type == TokenType._function || (isAsync = isAsyncFunction()))
                 {
-                    var fNode = new BaseNode(this, start);
+                    var startLoc = start;
                     next();
                     if (isAsync) next();
-                    node.declaration = parseFunction(fNode, "nullableID", false, isAsync);
+                    declaration = parseFunction(startLoc, "nullableID", false, isAsync);
                 }
                 else if (type == TokenType._class)
                 {
-                    node.declaration = parseClass(start, "nullableID");
+                    declaration = parseClass(start, "nullableID");
                 }
                 else
                 {
-                    node.declaration = parseMaybeAssign();
+                    declaration = parseMaybeAssign();
                     semicolon();
                 }
-                node.type = NodeType.ExportDefaultDeclaration;
-                node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-                return node;
-            }
-            // export var|const|let|function|class ...
-            if (shouldParseExportStatement())
-            {
-                node.declaration = parseStatement(true);
-                if (node.declaration.type == NodeType.VariableDeclaration)
-                    checkVariableExport(exports, node.declaration.declarations);
-                else
-                    checkExport(exports, ((IdentifierNode)node.declaration.id).name, node.declaration.id.loc.Start);
-                node.specifiers = new List<BaseNode>();
-                node.source = null;
+                return new ExportDefaultDeclarationNode(this, nodeStart, lastTokEnd)
+                {
+                    declaration = declaration
+                };
             }
             else
             {
-                // export { x, y as z } [from '...']
-                node.declaration = null;
-                node.specifiers = parseExportSpecifiers(exports);
-                if (eatContextual("from"))
+                // export var|const|let|function|class ...
+                BaseNode declaration;
+                IList<BaseNode> specifiers;
+                BaseNode source = null;
+                if (shouldParseExportStatement())
                 {
-                    if (type == TokenType.@string) node.source = parseExprAtom();
+                    declaration = parseStatement(true);
+                    if (declaration is VariableDeclarationNode)
+                        checkVariableExport(exports, declaration.declarations);
                     else
-                    {
-                        raise(start, "Unexpected token");
-                    }
+                        checkExport(exports, ((IdentifierNode)declaration.id).name, declaration.id.loc.Start);
+                    specifiers = new List<BaseNode>();
                 }
                 else
                 {
-                    // check for keywords used as local names
-                    foreach (var spec in node.specifiers)
+                    // export { x, y as z } [from '...']
+                    declaration = null;
+                    specifiers = parseExportSpecifiers(exports);
+                    if (eatContextual("from"))
                     {
-                        checkUnreserved(spec.local.loc.Start, spec.local.loc.End, spec.local.name);
+                        if (type == TokenType.@string) source = parseExprAtom();
+                        else
+                        {
+                            raise(start, "Unexpected token");
+                        }
                     }
-
-                    node.source = null;
+                    else
+                    {
+                        // check for keywords used as local names
+                        foreach (var spec in specifiers)
+                        {
+                            checkUnreserved(spec.local.loc.Start, spec.local.loc.End, spec.local.name);
+                        }
+                    }
+                    semicolon();
                 }
-                semicolon();
+                return new ExportNamedDeclarationNode(this, nodeStart, lastTokEnd)
+                {
+                    declaration = declaration,
+                    specifiers = specifiers,
+                    source = source
+                };
             }
-            node.type = NodeType.ExportNamedDeclaration;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
         }
 
-        private static void checkExport(IDictionary<string, bool> exports, string name, Position pos)
+        private static void checkExport([CanBeNull] IDictionary<string, bool> exports, string name, Position pos)
         {
             if (exports == null) return;
             if (exports.ContainsKey(name))
@@ -892,32 +992,26 @@ namespace AcornSharp
                 case IdentifierNode identifierNode:
                     checkExport(exports, identifierNode.name, pat.loc.Start);
                     break;
-                default:
-                    if (pat.type == NodeType.ObjectPattern)
+                case ObjectPatternNode _:
+                    foreach (var prop in pat.properties)
+                        checkPatternExport(exports, (BaseNode)prop.value);
+                    break;
+                case ArrayPatternNode _:
+                    foreach (var elt in pat.elements)
                     {
-                        foreach (var prop in pat.properties)
-                            checkPatternExport(exports, (BaseNode)prop.value);
+                        if (elt != null) checkPatternExport(exports, elt);
                     }
-                    else if (pat.type == NodeType.ArrayPattern)
-                    {
-                        foreach (var elt in pat.elements)
-                        {
-                            if (elt != null) checkPatternExport(exports, elt);
-                        }
-                    }
-                    else if (pat.type == NodeType.AssignmentPattern)
-                    {
-                        checkPatternExport(exports, pat.left);
-                    }
-                    else if (pat.type == NodeType.ParenthesizedExpression)
-                    {
-                        checkPatternExport(exports, pat.expression);
-                    }
+                    break;
+                case AssignmentPatternNode _:
+                    checkPatternExport(exports, pat.left);
+                    break;
+                case ParenthesisedExpressionNode _:
+                    checkPatternExport(exports, pat.expression);
                     break;
             }
         }
 
-        private static void checkVariableExport(IDictionary<string, bool> exports, IEnumerable<BaseNode> decls)
+        private static void checkVariableExport([CanBeNull] IDictionary<string, bool> exports, IEnumerable<BaseNode> decls)
         {
             if (exports == null) return;
             foreach (var decl in decls)
@@ -935,6 +1029,7 @@ namespace AcornSharp
         }
 
         // Parses a comma-separated list of module exports.
+        [NotNull]
         private IList<BaseNode> parseExportSpecifiers(IDictionary<string, bool> exports)
         {
             var nodes = new List<BaseNode>();
@@ -950,45 +1045,53 @@ namespace AcornSharp
                 }
                 else first = false;
 
-                var node = new BaseNode(this, start);
-                node.local = parseIdent(true);
-                node.exported = eatContextual("as") ? parseIdent(true) : node.local;
-                checkExport(exports, node.exported.name, node.exported.loc.Start);
-                node.type = NodeType.ExportSpecifier;
-                node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
+                var startLoc = start;
+                var local = parseIdent(true);
+                var exported = eatContextual("as") ? parseIdent(true) : local;
+                checkExport(exports, exported.name, exported.loc.Start);
+                var node = new ExportSpecifierNode(this, startLoc, lastTokEnd)
+                {
+                    local = local,
+                    exported = exported
+                };
                 nodes.Add(node);
             }
             return nodes;
         }
 
         // Parses import declaration.
-        private BaseNode parseImport(Position nodeStart)
+        [NotNull]
+        private ImportDeclarationNode parseImport(Position nodeStart)
         {
-            var node = new BaseNode(this, nodeStart);
             next();
             // import '...'
+            IList<BaseNode> specifiers;
+            BaseNode source = null;
             if (type == TokenType.@string)
             {
-                node.specifiers = new List<BaseNode>();
-                node.source = parseExprAtom();
+                specifiers = new List<BaseNode>();
+                source = parseExprAtom();
             }
             else
             {
-                node.specifiers = parseImportSpecifiers();
+                specifiers = parseImportSpecifiers();
                 expectContextual("from");
-                if (type == TokenType.@string) node.source = parseExprAtom();
+                if (type == TokenType.@string) source = parseExprAtom();
                 else
                 {
                     raise(start, "Unexpected token");
                 }
             }
             semicolon();
-            node.type = NodeType.ImportDeclaration;
-            node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
-            return node;
+            return new ImportDeclarationNode(this, nodeStart, lastTokEnd)
+            {
+                specifiers = specifiers,
+                source = source
+            };
         }
 
         // Parses a comma-separated list of module imports.
+        [NotNull]
         private IList<BaseNode> parseImportSpecifiers()
         {
             var nodes = new List<BaseNode>();
@@ -996,23 +1099,27 @@ namespace AcornSharp
             if (type == TokenType.name)
             {
                 // import defaultObj, { x, y as z } from '...'
-                var node = new BaseNode(this, start);
-                node.local = parseIdent();
-                checkLVal(node.local, "let");
-                node.type = NodeType.ImportDefaultSpecifier;
-                node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
+                var startLoc = start;
+                var local = parseIdent();
+                checkLVal(local, true, VariableKind.Let);
+                var node = new ImportDefaultSpecifierNode(this, startLoc, lastTokEnd)
+                {
+                    local = local
+                };
                 nodes.Add(node);
                 if (!eat(TokenType.comma)) return nodes;
             }
             if (type == TokenType.star)
             {
-                var node = new BaseNode(this, start);
+                var startLoc = start;
                 next();
                 expectContextual("as");
-                node.local = parseIdent();
-                checkLVal(node.local, "let");
-                node.type = NodeType.ImportNamespaceSpecifier;
-                node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
+                var local = parseIdent();
+                checkLVal(local, true, VariableKind.Let);
+                var node = new ImportNamespaceSpecifierNode(this, startLoc, lastTokEnd)
+                {
+                    local = local
+                };
                 nodes.Add(node);
                 return nodes;
             }
@@ -1026,20 +1133,24 @@ namespace AcornSharp
                 }
                 else first = false;
 
-                var node = new BaseNode(this, start);
-                node.imported = parseIdent(true);
+                var startLoc = start;
+                var imported = parseIdent(true);
+                IdentifierNode local;
                 if (eatContextual("as"))
                 {
-                    node.local = parseIdent();
+                    local = parseIdent();
                 }
                 else
                 {
-                    checkUnreserved(node.imported.loc.Start, node.imported.loc.End, node.imported.name);
-                    node.local = node.imported;
+                    checkUnreserved(imported.loc.Start, imported.loc.End, imported.name);
+                    local = imported;
                 }
-                checkLVal(node.local, "let");
-                node.type = NodeType.ImportSpecifier;
-                node.loc = new SourceLocation(node.loc.Start, lastTokEnd, node.loc.Source);
+                checkLVal(local, true, VariableKind.Let);
+                var node = new ImportSpecifierNode(this, startLoc, lastTokEnd)
+                {
+                    imported = imported,
+                    local = local
+                };
                 nodes.Add(node);
             }
             return nodes;
@@ -1056,8 +1167,8 @@ namespace AcornSharp
 
         private bool isDirectiveCandidate([NotNull] BaseNode statement)
         {
-            return statement.type == NodeType.ExpressionStatement &&
-                   statement.expression.type == NodeType.Literal &&
+            return statement is ExpressionStatementNode &&
+                   statement.expression is LiteralNode &&
                    statement.expression.value is string &&
                    // Reject parenthesized strings.
                    (input[statement.loc.Start.Index] == '\"' || input[statement.loc.Start.Index] == '\'');

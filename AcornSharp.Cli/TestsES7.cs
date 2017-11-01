@@ -7,22 +7,18 @@ namespace AcornSharp.Cli
     {
         private static void TestsES7()
         {
-            Test("x **= 42", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)))
+            Test("x **= 42", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)))
+                        expression = new AssignmentExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)))
                         {
-                            type = NodeType.AssignmentExpression,
                             @operator = "**=",
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            right = new BaseNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 8, 8)))
+                            right = new LiteralNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 8, 8)))
                             {
-                                type = NodeType.Literal,
                                 value = 42
                             }
                         }
@@ -35,17 +31,14 @@ namespace AcornSharp.Cli
 
             testFail("x **= 42", "Unexpected token (1:3)", new Options {ecmaVersion = 6});
 
-            Test("x ** y", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6)))
+            Test("x ** y", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6)))
+                        expression = new BinaryExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6)))
                         {
-                            type = NodeType.BinaryExpression,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             @operator = "**",
                             right = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y")
@@ -60,36 +53,29 @@ namespace AcornSharp.Cli
             testFail("x ** y", "Unexpected token (1:3)", new Options {ecmaVersion = 6});
 
             // ** has highest precedence
-            Test("3 ** 5 * 1", new BaseNode(default)
+            Test("3 ** 5 * 1", new ProgramNode(default)
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
+                    new ExpressionStatementNode(default)
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(default)
+                        expression = new BinaryExpressionNode(default)
                         {
-                            type = NodeType.BinaryExpression,
                             @operator = "*",
-                            left = new BaseNode(default)
+                            left = new BinaryExpressionNode(default)
                             {
-                                type = NodeType.BinaryExpression,
                                 @operator = "**",
-                                left = new BaseNode(default)
+                                left = new LiteralNode(default)
                                 {
-                                    type = NodeType.Literal,
                                     value = 3
                                 },
-                                right = new BaseNode(default)
+                                right = new LiteralNode(default)
                                 {
-                                    type = NodeType.Literal,
                                     value = 5
                                 }
                             },
-                            right = new BaseNode(default)
+                            right = new LiteralNode(default)
                             {
-                                type = NodeType.Literal,
                                 value = 1
                             }
                         }
@@ -100,35 +86,28 @@ namespace AcornSharp.Cli
                 ecmaVersion = 7
             });
 
-            Test("3 % 5 ** 1", new BaseNode(default)
+            Test("3 % 5 ** 1", new ProgramNode(default)
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
+                    new ExpressionStatementNode(default)
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(default)
+                        expression = new BinaryExpressionNode(default)
                         {
-                            type = NodeType.BinaryExpression,
                             @operator = "%",
-                            left = new BaseNode(default)
+                            left = new LiteralNode(default)
                             {
-                                type = NodeType.Literal,
                                 value = 3
                             },
-                            right = new BaseNode(default)
+                            right = new BinaryExpressionNode(default)
                             {
-                                type = NodeType.BinaryExpression,
                                 @operator = "**",
-                                left = new BaseNode(default)
+                                left = new LiteralNode(default)
                                 {
-                                    type = NodeType.Literal,
                                     value = 5
                                 },
-                                right = new BaseNode(default)
+                                right = new LiteralNode(default)
                                 {
-                                    type = NodeType.Literal,
                                     value = 1
                                 }
                             }
@@ -150,56 +129,45 @@ namespace AcornSharp.Cli
             testFail("+2** 2;", "Unexpected token (1:2)", new Options {ecmaVersion = 7});
 
             // make sure base operand check doesn't affect other operators
-            Test("-a * 5", new BaseNode(default)
+            Test("-a * 5", new ProgramNode(default)
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
+                    new ExpressionStatementNode(default)
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(default)
+                        expression = new BinaryExpressionNode(default)
                         {
-                            type = NodeType.BinaryExpression,
-                            left = new BaseNode(default)
+                            left = new UnaryExpressionNode(default)
                             {
-                                type = NodeType.UnaryExpression,
                                 @operator = "-",
                                 prefix = true,
                                 argument = new IdentifierNode(default, "a")
                             },
                             @operator = "*",
-                            right = new BaseNode(default)
+                            right = new LiteralNode(default)
                             {
-                                type = NodeType.Literal,
                                 value = 5
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 6});
 
 
-            Test("(-5) ** y", new BaseNode(default)
+            Test("(-5) ** y", new ProgramNode(default)
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
+                    new ExpressionStatementNode(default)
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(default)
+                        expression = new BinaryExpressionNode(default)
                         {
-                            type = NodeType.BinaryExpression,
-                            left = new BaseNode(default)
+                            left = new UnaryExpressionNode(default)
                             {
-                                type = NodeType.UnaryExpression,
                                 @operator = "-",
                                 prefix = true,
-                                argument = new BaseNode(default)
+                                argument = new LiteralNode(default)
                                 {
-                                    type = NodeType.Literal,
                                     value = 5
                                 }
                             },
@@ -213,66 +181,54 @@ namespace AcornSharp.Cli
                 ecmaVersion = 7
             });
 
-            Test("++a ** 2", new BaseNode(default)
+            Test("++a ** 2", new ProgramNode(default)
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
+                    new ExpressionStatementNode(default)
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(default)
+                        expression = new BinaryExpressionNode(default)
                         {
-                            type = NodeType.BinaryExpression,
-                            left = new BaseNode(default)
+                            left = new UpdateExpressionNode(default)
                             {
-                                type = NodeType.UpdateExpression,
                                 @operator = "++",
                                 prefix = true,
                                 argument = new IdentifierNode(default, "a")
                             },
                             @operator = "**",
-                            right = new BaseNode(default)
+                            right = new LiteralNode(default)
                             {
-                                type = NodeType.Literal,
                                 value = 2,
                                 raw = "2"
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 7});
 
-            Test("a-- ** 2", new BaseNode(default)
+            Test("a-- ** 2", new ProgramNode(default)
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(default)
+                    new ExpressionStatementNode(default)
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(default)
+                        expression = new BinaryExpressionNode(default)
                         {
-                            type = NodeType.BinaryExpression,
-                            left = new BaseNode(default)
+                            left = new UpdateExpressionNode(default)
                             {
-                                type = NodeType.UpdateExpression,
                                 @operator = "--",
                                 prefix = false,
                                 argument = new IdentifierNode(default, "a")
                             },
                             @operator = "**",
-                            right = new BaseNode(default)
+                            right = new LiteralNode(default)
                             {
-                                type = NodeType.Literal,
                                 value = 2,
                                 raw = "2"
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 7});
 
             testFail("x %* y", "Unexpected token (1:3)", new Options {ecmaVersion = 7});
@@ -283,41 +239,30 @@ namespace AcornSharp.Cli
             testFail("(a=2) => { 'use strict'; }", "Illegal 'use strict' directive in function with non-simple parameter list (1:0)", new Options {ecmaVersion = 7});
             testFail("function foo({a}) { 'use strict'; }", "Illegal 'use strict' directive in function with non-simple parameter list (1:0)", new Options {ecmaVersion = 7});
             testFail("({a}) => { 'use strict'; }", "Illegal 'use strict' directive in function with non-simple parameter list (1:0)", new Options {ecmaVersion = 7});
-            Test("function foo(a) { 'use strict'; }", new BaseNode(default), new Options {ecmaVersion = 7});
+            Test("function foo(a) { 'use strict'; }", new ProgramNode(default), new Options {ecmaVersion = 7});
 
             // Tests for B.3.4 FunctionDeclarations in IfStatement Statement Clauses
-            Test("if (x) function f() {}", new BaseNode(default)
-            {
-                    type = NodeType.Program,
+            Test("if (x) function f() {}", new ProgramNode(default)
+                {
                     body = new List<BaseNode>
                     {
                         new IfStatementNode(default,
                             null,
-                            new BaseNode(default)
-                            {
-                                type = NodeType.FunctionDeclaration
-                            },
+                            new FunctionDeclarationNode(default),
                             null)
                     }
                 },
                 new Options {ecmaVersion = 7}
             );
 
-            Test("if (x) function f() { return 23; } else function f() { return 42; }", new BaseNode(default)
-            {
-                    type = NodeType.Program,
+            Test("if (x) function f() { return 23; } else function f() { return 42; }", new ProgramNode(default)
+                {
                     body = new List<BaseNode>
                     {
                         new IfStatementNode(default,
                             null,
-                            new BaseNode(default)
-                            {
-                                type = NodeType.FunctionDeclaration
-                            },
-                            new BaseNode(default)
-                            {
-                                type = NodeType.FunctionDeclaration
-                            })
+                            new FunctionDeclarationNode(default), 
+                            new FunctionDeclarationNode(default))
                     }
                 },
                 new Options {ecmaVersion = 7}

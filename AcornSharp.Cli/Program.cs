@@ -1,5 +1,6 @@
 ﻿using System;
 using AcornSharp.Node;
+using JetBrains.Annotations;
 
 namespace AcornSharp.Cli
 {
@@ -19,7 +20,7 @@ namespace AcornSharp.Cli
             Console.WriteLine("Tests run in " + duration + "ms");
         }
 
-        public static void Test(string code, BaseNode expectedAst, Options options = null)
+        public static void Test(string code, [NotNull] BaseNode expectedAst, Options options = null)
         {
             if (options == null)
                 options = new Options();
@@ -45,10 +46,7 @@ namespace AcornSharp.Cli
             }
             catch (SyntaxError e)
             {
-                if (error[0] == '~' ? e.Message.IndexOf(error.Substring(1), StringComparison.Ordinal) > -1 : e.Message == error)
-                {
-                }
-                else
+                if (error[0] == '~' ? e.Message.IndexOf(error.Substring(1), StringComparison.Ordinal) <= -1 : e.Message != error)
                 {
                     throw;
                 }

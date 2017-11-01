@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using AcornSharp.Node;
+using JetBrains.Annotations;
 
 namespace AcornSharp
 {
@@ -64,9 +65,9 @@ namespace AcornSharp
                 else
                     reserved = ecmascript6ReservedWords;
 
-                if (options.sourceType == "module") reserved += " await";
+                if (options.sourceType == SourceType.Module) reserved += " await";
             }
-            reservedWords = keywordRegexp(reserved);
+            reservedWords = keywordRegexp(reserved ?? "");
             var reservedStrict = (reserved != null ? reserved + " " : "") + strictReservedWords;
             reservedWordsStrict = keywordRegexp(reservedStrict);
             reservedWordsStrictBind = keywordRegexp(reservedStrict + " " + strictBindReservedWords);
@@ -110,7 +111,7 @@ namespace AcornSharp
             exprAllowed = true;
 
             // Figure out if it's a module code.
-            inModule = options.sourceType == "module";
+            inModule = options.sourceType == SourceType.Module;
             strict = inModule || strictDirective(pos.Index);
 
             // Used to signify the start of a potential arrow function
@@ -132,14 +133,22 @@ namespace AcornSharp
             enterFunctionScope();
         }
 
-        public BaseNode Parse()
+        [NotNull]
+        public ProgramNode Parse()
         {
-            var node = Options.program ?? new BaseNode(this, start);
+            var node = Options.program ?? new ProgramNode(this, start, lastTokEnd, Options.sourceType);
+            if (node.SourceType != Options.sourceType)
+                throw new InvalidOperationException();
+            if (Options.ecmaVersion < 6 && node.SourceType != SourceType.Script)
+                throw new InvalidOperationException();
+
             nextToken();
-            return parseTopLevel(node);
+            parseTopLevel(node);
+            return node;
         }
 
-        private static Regex keywordRegexp(string words)
+        [NotNull]
+        private static Regex keywordRegexp([NotNull] string words)
         {
             return new Regex("^(?:" + string.Join('|', words.Split(' ')) + ")$");
         }

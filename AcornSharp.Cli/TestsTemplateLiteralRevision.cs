@@ -7,117 +7,96 @@ namespace AcornSharp.Cli
     {
         private static void TestsTemplateLiteralRevision()
         {
-            Test("`foo`", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)))
+            Test("`foo`", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)))
+                        expression = new TemplateLiteralNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)))
                         {
-                            type = NodeType.TemplateLiteral,
                             expressions = new List<BaseNode>(),
                             quasis = new List<BaseNode>
                             {
-                                new BaseNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 4, 4)))
+                                new TemplateElementNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 4, 4)))
                                 {
-                                    type = NodeType.TemplateElement,
                                     value = new TemplateNode("foo", "foo"),
                                     tail = true
                                 }
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 9});
 
-            Test("`foo\\u25a0`", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)))
+            Test("`foo\\u25a0`", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)))
+                        expression = new TemplateLiteralNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)))
                         {
-                            type = NodeType.TemplateLiteral,
                             expressions = new List<BaseNode>(),
                             quasis = new List<BaseNode>
                             {
-                                new BaseNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 10, 10)))
+                                new TemplateElementNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 10, 10)))
                                 {
-                                    type = NodeType.TemplateElement,
                                     value = new TemplateNode("foo\\u25a0", "foo■"),
                                     tail = true
                                 }
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 9});
 
-            Test("`foo${bar}\\u25a0`", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)))
+            Test("`foo${bar}\\u25a0`", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)))
+                        expression = new TemplateLiteralNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)))
                         {
-                            type = NodeType.TemplateLiteral,
                             expressions = new List<BaseNode>
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 9, 9)), "bar")
                             },
                             quasis = new List<BaseNode>
                             {
-                                new BaseNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 4, 4)))
+                                new TemplateElementNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 4, 4)))
                                 {
-                                    type = NodeType.TemplateElement,
                                     value = new TemplateNode("foo", "foo"),
                                     tail = false
                                 },
-                                new BaseNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 16, 16)))
+                                new TemplateElementNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 16, 16)))
                                 {
-                                    type = NodeType.TemplateElement,
                                     value = new TemplateNode("\\u25a0", "■"),
                                     tail = true
                                 }
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 9});
 
-            Test("foo`\\u25a0`", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)))
+            Test("foo`\\u25a0`", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)))
+                        expression = new TaggedTemplateExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)))
                         {
-                            type = NodeType.TaggedTemplateExpression,
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
-                            quasi = new BaseNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 11, 11)))
+                            quasi = new TemplateLiteralNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 11, 11)))
                             {
-                                type = NodeType.TemplateLiteral,
                                 expressions = new List<BaseNode>(),
                                 quasis = new List<BaseNode>
                                 {
-                                    new BaseNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 10, 10)))
+                                    new TemplateElementNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 10, 10)))
                                     {
-                                        type = NodeType.TemplateElement,
                                         value = new TemplateNode("\\u25a0", "■"),
                                         tail = true
                                     }
@@ -125,40 +104,33 @@ namespace AcornSharp.Cli
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 9});
 
-            Test("foo`foo${bar}\\u25a0`", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)))
+            Test("foo`foo${bar}\\u25a0`", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)))
+                        expression = new TaggedTemplateExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)))
                         {
-                            type = NodeType.TaggedTemplateExpression,
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
-                            quasi = new BaseNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 20, 20)))
+                            quasi = new TemplateLiteralNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 20, 20)))
                             {
-                                type = NodeType.TemplateLiteral,
                                 expressions = new List<BaseNode>
                                 {
                                     new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "bar")
                                 },
                                 quasis = new List<BaseNode>
                                 {
-                                    new BaseNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)))
+                                    new TemplateElementNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)))
                                     {
-                                        type = NodeType.TemplateElement,
                                         value = new TemplateNode("foo", "foo"),
                                         tail = false
                                     },
-                                    new BaseNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 19, 19)))
+                                    new TemplateElementNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 19, 19)))
                                     {
-                                        type = NodeType.TemplateElement,
                                         value = new TemplateNode("\\u25a0", "■"),
                                         tail = true
                                     }
@@ -166,8 +138,7 @@ namespace AcornSharp.Cli
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 9});
 
             testFail("`\\unicode`", "Bad escape sequence in untagged template literal (1:1)", new Options {ecmaVersion = 9});
@@ -183,27 +154,22 @@ namespace AcornSharp.Cli
             testFail("foo`\\unicode", "Unterminated template (1:4)", new Options {ecmaVersion = 9});
             testFail("foo`\\unicode\\`", "Unterminated template (1:4)", new Options {ecmaVersion = 9});
 
-            Test("foo`\\unicode`", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)))
+            Test("foo`\\unicode`", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)))
+                        expression = new TaggedTemplateExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)))
                         {
-                            type = NodeType.TaggedTemplateExpression,
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
-                            quasi = new BaseNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 13, 13)))
+                            quasi = new TemplateLiteralNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 13, 13)))
                             {
-                                type = NodeType.TemplateLiteral,
                                 expressions = new List<BaseNode>(),
                                 quasis = new List<BaseNode>
                                 {
-                                    new BaseNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12)))
+                                    new TemplateElementNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12)))
                                     {
-                                        type = NodeType.TemplateElement,
                                         value = new TemplateNode("\\unicode", null),
                                         tail = true
                                     }
@@ -211,40 +177,33 @@ namespace AcornSharp.Cli
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 9});
 
-            Test("foo`foo${bar}\\unicode`", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)))
+            Test("foo`foo${bar}\\unicode`", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)))
+                        expression = new TaggedTemplateExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)))
                         {
-                            type = NodeType.TaggedTemplateExpression,
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
-                            quasi = new BaseNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 22, 22)))
+                            quasi = new TemplateLiteralNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 22, 22)))
                             {
-                                type = NodeType.TemplateLiteral,
                                 expressions = new List<BaseNode>
                                 {
                                     new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "bar")
                                 },
                                 quasis = new List<BaseNode>
                                 {
-                                    new BaseNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)))
+                                    new TemplateElementNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)))
                                     {
-                                        type = NodeType.TemplateElement,
                                         value = new TemplateNode("foo", "foo"),
                                         tail = false
                                     },
-                                    new BaseNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 21, 21)))
+                                    new TemplateElementNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 21, 21)))
                                     {
-                                        type = NodeType.TemplateElement,
                                         value = new TemplateNode("\\unicode", null),
                                         tail = true
                                     }
@@ -252,31 +211,25 @@ namespace AcornSharp.Cli
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 9});
 
-            Test("foo`\\u`", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7)))
+            Test("foo`\\u`", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7)))
+                        expression = new TaggedTemplateExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7)))
                         {
-                            type = NodeType.TaggedTemplateExpression,
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
-                            quasi = new BaseNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 7, 7)))
+                            quasi = new TemplateLiteralNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 7, 7)))
                             {
-                                type = NodeType.TemplateLiteral,
                                 expressions = new List<BaseNode>(),
                                 quasis = new List<BaseNode>
                                 {
-                                    new BaseNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 6, 6)))
+                                    new TemplateElementNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 6, 6)))
                                     {
-                                        type = NodeType.TemplateElement,
                                         value = new TemplateNode("\\u", null),
                                         tail = true
                                     }
@@ -284,31 +237,25 @@ namespace AcornSharp.Cli
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 9});
 
-            Test("foo`\\u{`", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)))
+            Test("foo`\\u{`", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)))
+                        expression = new TaggedTemplateExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)))
                         {
-                            type = NodeType.TaggedTemplateExpression,
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
-                            quasi = new BaseNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 8, 8)))
+                            quasi = new TemplateLiteralNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 8, 8)))
                             {
-                                type = NodeType.TemplateLiteral,
                                 expressions = new List<BaseNode>(),
                                 quasis = new List<BaseNode>
                                 {
-                                    new BaseNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)))
+                                    new TemplateElementNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)))
                                     {
-                                        type = NodeType.TemplateElement,
                                         value = new TemplateNode("\\u{", null),
                                         tail = true
                                     }
@@ -316,31 +263,25 @@ namespace AcornSharp.Cli
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 9});
 
-            Test("foo`\\u{abcdx`", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)))
+            Test("foo`\\u{abcdx`", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)))
+                        expression = new TaggedTemplateExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)))
                         {
-                            type = NodeType.TaggedTemplateExpression,
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
-                            quasi = new BaseNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 13, 13)))
+                            quasi = new TemplateLiteralNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 13, 13)))
                             {
-                                type = NodeType.TemplateLiteral,
                                 expressions = new List<BaseNode>(),
                                 quasis = new List<BaseNode>
                                 {
-                                    new BaseNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12)))
+                                    new TemplateElementNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12)))
                                     {
-                                        type = NodeType.TemplateElement,
                                         value = new TemplateNode("\\u{abcdx", null),
                                         tail = true
                                     }
@@ -348,31 +289,25 @@ namespace AcornSharp.Cli
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 9});
 
-            Test("foo`\\u{abcdx}`", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)))
+            Test("foo`\\u{abcdx}`", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)))
+                        expression = new TaggedTemplateExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)))
                         {
-                            type = NodeType.TaggedTemplateExpression,
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
-                            quasi = new BaseNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 14, 14)))
+                            quasi = new TemplateLiteralNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 14, 14)))
                             {
-                                type = NodeType.TemplateLiteral,
                                 expressions = new List<BaseNode>(),
                                 quasis = new List<BaseNode>
                                 {
-                                    new BaseNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 13, 13)))
+                                    new TemplateElementNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 13, 13)))
                                     {
-                                        type = NodeType.TemplateElement,
                                         value = new TemplateNode("\\u{abcdx}", null),
                                         tail = true
                                     }
@@ -380,31 +315,25 @@ namespace AcornSharp.Cli
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 9});
 
-            Test("foo`\\unicode\\\\`", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)))
+            Test("foo`\\unicode\\\\`", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)))
+                        expression = new TaggedTemplateExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)))
                         {
-                            type = NodeType.TaggedTemplateExpression,
                             tag = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
-                            quasi = new BaseNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 15, 15)))
+                            quasi = new TemplateLiteralNode(new SourceLocation(new Position(1, 3, 3), new Position(1, 15, 15)))
                             {
-                                type = NodeType.TemplateLiteral,
                                 expressions = new List<BaseNode>(),
                                 quasis = new List<BaseNode>
                                 {
-                                    new BaseNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 14, 14)))
+                                    new TemplateElementNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 14, 14)))
                                     {
-                                        type = NodeType.TemplateElement,
                                         value = new TemplateNode("\\unicode\\\\", null),
                                         tail = true
                                     }
@@ -412,14 +341,13 @@ namespace AcornSharp.Cli
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 9});
 
-            Test("`${ {class: 1} }`", new BaseNode(default), new Options {ecmaVersion = 9});
-            Test("`${ {delete: 1} }`", new BaseNode(default), new Options {ecmaVersion = 9});
-            Test("`${ {enum: 1} }`", new BaseNode(default), new Options {ecmaVersion = 9});
-            Test("`${ {function: 1} }`", new BaseNode(default), new Options {ecmaVersion = 9});
+            Test("`${ {class: 1} }`", new ProgramNode(default), new Options {ecmaVersion = 9});
+            Test("`${ {delete: 1} }`", new ProgramNode(default), new Options {ecmaVersion = 9});
+            Test("`${ {enum: 1} }`", new ProgramNode(default), new Options {ecmaVersion = 9});
+            Test("`${ {function: 1} }`", new ProgramNode(default), new Options {ecmaVersion = 9});
         }
     }
 }

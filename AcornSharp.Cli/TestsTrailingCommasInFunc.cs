@@ -10,75 +10,63 @@ namespace AcornSharp.Cli
             //------------------------------------------------------------------------------
             // allow
 
-            Test("function foo(a,) { }", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)))
+            Test("function foo(a,) { }", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)))
+                    new FunctionDeclarationNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)))
                     {
-                        type = NodeType.FunctionDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
-                        @params = new List<BaseNode>
+                        parameters = new List<BaseNode>
                         {
                             new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "a")
                         },
                         generator = false,
                         bexpression = false,
                         async = false,
-                        fbody = new BaseNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20)))
+                        fbody = new BlockStatementNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20)))
                         {
-                            type = NodeType.BlockStatement,
                             body = new List<BaseNode>()
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 8});
 
-            Test("(function(a,) { })", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)))
+            Test("(function(a,) { })", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 17, 17)))
+                        expression = new FunctionExpressionNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 17, 17)))
                         {
-                            type = NodeType.FunctionExpression,
                             id = null,
-                            @params = new List<BaseNode>
+                            parameters = new List<BaseNode>
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "a")
                             },
                             generator = false,
                             bexpression = false,
                             async = false,
-                            fbody = new BaseNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 17, 17)))
+                            fbody = new BlockStatementNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 17, 17)))
                             {
-                                type = NodeType.BlockStatement,
                                 body = new List<BaseNode>()
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 8});
 
-            Test("(a,) => a", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)))
+            Test("(a,) => a", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)))
+                        expression = new ArrowFunctionExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)))
                         {
-                            type = NodeType.ArrowFunctionExpression,
                             id = null,
-                            @params = new List<BaseNode>
+                            parameters = new List<BaseNode>
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "a")
                             },
@@ -88,23 +76,19 @@ namespace AcornSharp.Cli
                             fbody = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "a")
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 8});
 
-            Test("async (a,) => a", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)))
+            Test("async (a,) => a", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)))
+                        expression = new ArrowFunctionExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)))
                         {
-                            type = NodeType.ArrowFunctionExpression,
                             id = null,
-                            @params = new List<BaseNode>
+                            parameters = new List<BaseNode>
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a")
                             },
@@ -114,45 +98,38 @@ namespace AcornSharp.Cli
                             fbody = new IdentifierNode(new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)), "a")
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 8});
 
-            Test("({foo(a,) {}})", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)))
+            Test("({foo(a,) {}})", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 13, 13)))
+                        expression = new ObjectExpressionNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 13, 13)))
                         {
-                            type = NodeType.ObjectExpression,
                             properties = new List<BaseNode>
                             {
-                                new BaseNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 12, 12)))
+                                new PropertyNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 12, 12)))
                                 {
-                                    type = NodeType.Property,
                                     method = true,
                                     shorthand = false,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 5, 5)), "foo"),
-                                    kind = "init",
-                                    value = new BaseNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 12, 12)))
+                                    pkind = PropertyKind.Initialise,
+                                    value = new FunctionExpressionNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 12, 12)))
                                     {
-                                        type = NodeType.FunctionExpression,
                                         id = null,
-                                        @params = new List<BaseNode>
+                                        parameters = new List<BaseNode>
                                         {
                                             new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "a")
                                         },
                                         generator = false,
                                         bexpression = false,
                                         async = false,
-                                        fbody = new BaseNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12)))
+                                        fbody = new BlockStatementNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12)))
                                         {
-                                            type = NodeType.BlockStatement,
                                             body = new List<BaseNode>()
                                         }
                                     }
@@ -160,46 +137,39 @@ namespace AcornSharp.Cli
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 8});
 
-            Test("class A {foo(a,) {}}", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)))
+            Test("class A {foo(a,) {}}", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)))
+                    new ClassDeclarationNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)))
                     {
-                        type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 20, 20)))
+                        fbody = new ClassBodyNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 20, 20)))
                         {
-                            type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 19, 19)))
+                                new MethodDefinitionNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 19, 19)))
                                 {
-                                    type = NodeType.MethodDefinition,
                                     @static = false,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
-                                    kind = "method",
-                                    value = new BaseNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 19, 19)))
+                                    pkind = PropertyKind.Method,
+                                    value = new FunctionExpressionNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 19, 19)))
                                     {
-                                        type = NodeType.FunctionExpression,
                                         id = null,
-                                        @params = new List<BaseNode>
+                                        parameters = new List<BaseNode>
                                         {
                                             new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "a")
                                         },
                                         generator = false,
                                         bexpression = false,
                                         async = false,
-                                        fbody = new BaseNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 19, 19)))
+                                        fbody = new BlockStatementNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 19, 19)))
                                         {
-                                            type = NodeType.BlockStatement,
                                             body = new List<BaseNode>()
                                         }
                                     }
@@ -207,46 +177,39 @@ namespace AcornSharp.Cli
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 8});
 
-            Test("class A {static foo(a,) {}}", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)))
+            Test("class A {static foo(a,) {}}", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)))
+                    new ClassDeclarationNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)))
                     {
-                        type = NodeType.ClassDeclaration,
                         id = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "A"),
                         superClass = null,
-                        fbody = new BaseNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 27, 27)))
+                        fbody = new ClassBodyNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 27, 27)))
                         {
-                            type = NodeType.ClassBody,
                             body = new List<BaseNode>
                             {
-                                new BaseNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 26, 26)))
+                                new MethodDefinitionNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 26, 26)))
                                 {
-                                    type = NodeType.MethodDefinition,
                                     @static = true,
                                     computed = false,
                                     key = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 19, 19)), "foo"),
-                                    kind = "method",
-                                    value = new BaseNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 26, 26)))
+                                    pkind = PropertyKind.Method,
+                                    value = new FunctionExpressionNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 26, 26)))
                                     {
-                                        type = NodeType.FunctionExpression,
                                         id = null,
-                                        @params = new List<BaseNode>
+                                        parameters = new List<BaseNode>
                                         {
                                             new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 21, 21)), "a")
                                         },
                                         generator = false,
                                         bexpression = false,
                                         async = false,
-                                        fbody = new BaseNode(new SourceLocation(new Position(1, 24, 24), new Position(1, 26, 26)))
+                                        fbody = new BlockStatementNode(new SourceLocation(new Position(1, 24, 24), new Position(1, 26, 26)))
                                         {
-                                            type = NodeType.BlockStatement,
                                             body = new List<BaseNode>()
                                         }
                                     }
@@ -254,49 +217,41 @@ namespace AcornSharp.Cli
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 8});
 
-            Test("(class {foo(a,) {}})", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)))
+            Test("(class {foo(a,) {}})", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 19, 19)))
+                        expression = new ClassExpressionNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 19, 19)))
                         {
-                            type = NodeType.ClassExpression,
                             id = null,
                             superClass = null,
-                            fbody = new BaseNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 19, 19)))
+                            fbody = new ClassBodyNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 19, 19)))
                             {
-                                type = NodeType.ClassBody,
                                 body = new List<BaseNode>
                                 {
-                                    new BaseNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 18, 18)))
+                                    new MethodDefinitionNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 18, 18)))
                                     {
-                                        type = NodeType.MethodDefinition,
                                         @static = false,
                                         computed = false,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 11, 11)), "foo"),
-                                        kind = "method",
-                                        value = new BaseNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 18, 18)))
+                                        pkind = PropertyKind.Method,
+                                        value = new FunctionExpressionNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 18, 18)))
                                         {
-                                            type = NodeType.FunctionExpression,
                                             id = null,
-                                            @params = new List<BaseNode>
+                                            parameters = new List<BaseNode>
                                             {
                                                 new IdentifierNode(new SourceLocation(new Position(1, 12, 12), new Position(1, 13, 13)), "a")
                                             },
                                             generator = false,
                                             bexpression = false,
                                             async = false,
-                                            fbody = new BaseNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 18, 18)))
+                                            fbody = new BlockStatementNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 18, 18)))
                                             {
-                                                type = NodeType.BlockStatement,
                                                 body = new List<BaseNode>()
                                             }
                                         }
@@ -305,49 +260,41 @@ namespace AcornSharp.Cli
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 8});
 
-            Test("(class {static foo(a,) {}})", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)))
+            Test("(class {static foo(a,) {}})", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 26, 26)))
+                        expression = new ClassExpressionNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 26, 26)))
                         {
-                            type = NodeType.ClassExpression,
                             id = null,
                             superClass = null,
-                            fbody = new BaseNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 26, 26)))
+                            fbody = new ClassBodyNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 26, 26)))
                             {
-                                type = NodeType.ClassBody,
                                 body = new List<BaseNode>
                                 {
-                                    new BaseNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 25, 25)))
+                                    new MethodDefinitionNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 25, 25)))
                                     {
-                                        type = NodeType.MethodDefinition,
                                         @static = true,
                                         computed = false,
                                         key = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18)), "foo"),
-                                        kind = "method",
-                                        value = new BaseNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25)))
+                                        pkind = PropertyKind.Method,
+                                        value = new FunctionExpressionNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 25, 25)))
                                         {
-                                            type = NodeType.FunctionExpression,
                                             id = null,
-                                            @params = new List<BaseNode>
+                                            parameters = new List<BaseNode>
                                             {
                                                 new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 20, 20)), "a")
                                             },
                                             generator = false,
                                             bexpression = false,
                                             async = false,
-                                            fbody = new BaseNode(new SourceLocation(new Position(1, 23, 23), new Position(1, 25, 25)))
+                                            fbody = new BlockStatementNode(new SourceLocation(new Position(1, 23, 23), new Position(1, 25, 25)))
                                             {
-                                                type = NodeType.BlockStatement,
                                                 body = new List<BaseNode>()
                                             }
                                         }
@@ -356,113 +303,97 @@ namespace AcornSharp.Cli
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 8});
 
-            Test("export default function foo(a,) { }", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)))
+            Test("export default function foo(a,) { }", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
+                SourceType.Module)
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)))
+                    new ExportDefaultDeclarationNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)))
                     {
-                        type = NodeType.ExportDefaultDeclaration,
-                        declaration = new BaseNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 35, 35)))
+                        declaration = new FunctionDeclarationNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 35, 35)))
                         {
-                            type = NodeType.FunctionDeclaration,
                             id = new IdentifierNode(new SourceLocation(new Position(1, 24, 24), new Position(1, 27, 27)), "foo"),
-                            @params = new List<BaseNode>
+                            parameters = new List<BaseNode>
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 28, 28), new Position(1, 29, 29)), "a")
                             },
                             generator = false,
                             bexpression = false,
                             async = false,
-                            fbody = new BaseNode(new SourceLocation(new Position(1, 32, 32), new Position(1, 35, 35)))
+                            fbody = new BlockStatementNode(new SourceLocation(new Position(1, 32, 32), new Position(1, 35, 35)))
                             {
-                                type = NodeType.BlockStatement,
                                 body = new List<BaseNode>()
                             }
                         }
                     }
-                },
-                sourceType = "module"
-            }, new Options {ecmaVersion = 8, sourceType = "module"});
+                }
+            }, new Options {ecmaVersion = 8, sourceType = SourceType.Module});
 
-            Test("export default (function foo(a,) { })", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37)))
+            Test("export default (function foo(a,) { })", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37)),
+                SourceType.Module)
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37)))
+                    new ExportDefaultDeclarationNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37)))
                     {
-                        type = NodeType.ExportDefaultDeclaration,
-                        declaration = new BaseNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 36, 36)))
+                        declaration = new FunctionExpressionNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 36, 36)))
                         {
-                            type = NodeType.FunctionExpression,
                             id = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 28, 28)), "foo"),
-                            @params = new List<BaseNode>
+                            parameters = new List<BaseNode>
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 29, 29), new Position(1, 30, 30)), "a")
                             },
                             generator = false,
                             bexpression = false,
                             async = false,
-                            fbody = new BaseNode(new SourceLocation(new Position(1, 33, 33), new Position(1, 36, 36)))
+                            fbody = new BlockStatementNode(new SourceLocation(new Position(1, 33, 33), new Position(1, 36, 36)))
                             {
-                                type = NodeType.BlockStatement,
                                 body = new List<BaseNode>()
                             }
                         }
                     }
-                },
-                sourceType = "module"
-            }, new Options {ecmaVersion = 8, sourceType = "module"});
+                }
+            }, new Options {ecmaVersion = 8, sourceType = SourceType.Module});
 
-            Test("export function foo(a,) { }", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)))
+            Test("export function foo(a,) { }", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)),
+                SourceType.Module)
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)))
+                    new ExportNamedDeclarationNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)))
                     {
-                        type = NodeType.ExportNamedDeclaration,
-                        declaration = new BaseNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 27, 27)))
+                        declaration = new FunctionDeclarationNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 27, 27)))
                         {
-                            type = NodeType.FunctionDeclaration,
                             id = new IdentifierNode(new SourceLocation(new Position(1, 16, 16), new Position(1, 19, 19)), "foo"),
-                            @params = new List<BaseNode>
+                            parameters = new List<BaseNode>
                             {
                                 new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 21, 21)), "a")
                             },
                             generator = false,
                             bexpression = false,
                             async = false,
-                            fbody = new BaseNode(new SourceLocation(new Position(1, 24, 24), new Position(1, 27, 27)))
+                            fbody = new BlockStatementNode(new SourceLocation(new Position(1, 24, 24), new Position(1, 27, 27)))
                             {
-                                type = NodeType.BlockStatement,
                                 body = new List<BaseNode>()
                             }
                         },
                         specifiers = new List<BaseNode>(),
                         source = null
                     }
-                },
-                sourceType = "module"
-            }, new Options {ecmaVersion = 8, sourceType = "module"});
+                }
+            }, new Options {ecmaVersion = 8, sourceType = SourceType.Module});
 
-            Test("foo(a,)", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7)))
+            Test("foo(a,)", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7)))
+                        expression = new CallExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7)))
                         {
-                            type = NodeType.CallExpression,
                             callee = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             arguments = new List<BaseNode>
                             {
@@ -470,21 +401,17 @@ namespace AcornSharp.Cli
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 8});
 
-            Test("new foo(a,)", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)))
+            Test("new foo(a,)", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)))
+                        expression = new NewExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)))
                         {
-                            type = NodeType.NewExpression,
                             callee = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)), "foo"),
                             arguments = new List<BaseNode>
                             {
@@ -492,60 +419,49 @@ namespace AcornSharp.Cli
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 8});
 
-            Test("foo(...a,)", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10)))
+            Test("foo(...a,)", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10)))
+                        expression = new CallExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10)))
                         {
-                            type = NodeType.CallExpression,
                             callee = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "foo"),
                             arguments = new List<BaseNode>
                             {
-                                new BaseNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 8, 8)))
+                                new SpreadElementNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 8, 8)))
                                 {
-                                    type = NodeType.SpreadElement,
                                     argument = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "a")
                                 }
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 8});
 
-            Test("new foo(...a,)", new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)))
+            Test("new foo(...a,)", new ProgramNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)))
             {
-                type = NodeType.Program,
                 body = new List<BaseNode>
                 {
-                    new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)))
+                    new ExpressionStatementNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)))
                     {
-                        type = NodeType.ExpressionStatement,
-                        expression = new BaseNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)))
+                        expression = new NewExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)))
                         {
-                            type = NodeType.NewExpression,
                             callee = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 7, 7)), "foo"),
                             arguments = new List<BaseNode>
                             {
-                                new BaseNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 12, 12)))
+                                new SpreadElementNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 12, 12)))
                                 {
-                                    type = NodeType.SpreadElement,
                                     argument = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "a")
                                 }
                             }
                         }
                     }
-                },
-                sourceType = "script"
+                }
             }, new Options {ecmaVersion = 8});
 
             //------------------------------------------------------------------------------
@@ -560,9 +476,9 @@ namespace AcornSharp.Cli
             testFail("class A {static foo(a,) {}}", "Unexpected token (1:22)", new Options {ecmaVersion = 7});
             testFail("(class {foo(a,) {}})", "Unexpected token (1:14)", new Options {ecmaVersion = 7});
             testFail("(class {static foo(a,) {}})", "Unexpected token (1:21)", new Options {ecmaVersion = 7});
-            testFail("export default function foo(a,) { }", "Unexpected token (1:30)", new Options {ecmaVersion = 7, sourceType = "module"});
-            testFail("export default (function foo(a,) { })", "Unexpected token (1:31)", new Options {ecmaVersion = 7, sourceType = "module"});
-            testFail("export function foo(a,) { }", "Unexpected token (1:22)", new Options {ecmaVersion = 7, sourceType = "module"});
+            testFail("export default function foo(a,) { }", "Unexpected token (1:30)", new Options {ecmaVersion = 7, sourceType = SourceType.Module});
+            testFail("export default (function foo(a,) { })", "Unexpected token (1:31)", new Options {ecmaVersion = 7, sourceType = SourceType.Module});
+            testFail("export function foo(a,) { }", "Unexpected token (1:22)", new Options {ecmaVersion = 7, sourceType = SourceType.Module});
             testFail("foo(a,)", "Unexpected token (1:6)", new Options {ecmaVersion = 7});
             testFail("new foo(a,)", "Unexpected token (1:10)", new Options {ecmaVersion = 7});
 
@@ -578,9 +494,9 @@ namespace AcornSharp.Cli
             testFail("class A {static foo(...a,) {}}", "Comma is not permitted after the rest element (1:24)", new Options {ecmaVersion = 8});
             testFail("(class {foo(...a,) {}})", "Comma is not permitted after the rest element (1:16)", new Options {ecmaVersion = 8});
             testFail("(class {static foo(...a,) {}})", "Comma is not permitted after the rest element (1:23)", new Options {ecmaVersion = 8});
-            testFail("export default function foo(...a,) { }", "Comma is not permitted after the rest element (1:32)", new Options {ecmaVersion = 8, sourceType = "module"});
-            testFail("export default (function foo(...a,) { })", "Comma is not permitted after the rest element (1:33)", new Options {ecmaVersion = 8, sourceType = "module"});
-            testFail("export function foo(...a,) { }", "Comma is not permitted after the rest element (1:24)", new Options {ecmaVersion = 8, sourceType = "module"});
+            testFail("export default function foo(...a,) { }", "Comma is not permitted after the rest element (1:32)", new Options {ecmaVersion = 8, sourceType = SourceType.Module});
+            testFail("export default (function foo(...a,) { })", "Comma is not permitted after the rest element (1:33)", new Options {ecmaVersion = 8, sourceType = SourceType.Module});
+            testFail("export function foo(...a,) { }", "Comma is not permitted after the rest element (1:24)", new Options {ecmaVersion = 8, sourceType = SourceType.Module});
 
             //------------------------------------------------------------------------------
             // disallow empty
@@ -594,9 +510,9 @@ namespace AcornSharp.Cli
             testFail("class A {static foo(,) {}}", "Unexpected token (1:20)", new Options {ecmaVersion = 8});
             testFail("(class {foo(,) {}})", "Unexpected token (1:12)", new Options {ecmaVersion = 8});
             testFail("(class {static foo(,) {}})", "Unexpected token (1:19)", new Options {ecmaVersion = 8});
-            testFail("export default function foo(,) { }", "Unexpected token (1:28)", new Options {ecmaVersion = 8, sourceType = "module"});
-            testFail("export default (function foo(,) { })", "Unexpected token (1:29)", new Options {ecmaVersion = 8, sourceType = "module"});
-            testFail("export function foo(,) { }", "Unexpected token (1:20)", new Options {ecmaVersion = 8, sourceType = "module"});
+            testFail("export default function foo(,) { }", "Unexpected token (1:28)", new Options {ecmaVersion = 8, sourceType = SourceType.Module});
+            testFail("export default (function foo(,) { })", "Unexpected token (1:29)", new Options {ecmaVersion = 8, sourceType = SourceType.Module});
+            testFail("export function foo(,) { }", "Unexpected token (1:20)", new Options {ecmaVersion = 8, sourceType = SourceType.Module});
 
             //------------------------------------------------------------------------------
             // disallow in parens without arrow

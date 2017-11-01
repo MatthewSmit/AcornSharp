@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using AcornSharp.Node;
+using JetBrains.Annotations;
 
 namespace AcornSharp
 {
@@ -133,7 +134,7 @@ namespace AcornSharp
             }
         }
 
-        private static void checkPatternErrors(DestructuringErrors refDestructuringErrors, bool isAssign)
+        private static void checkPatternErrors([CanBeNull] DestructuringErrors refDestructuringErrors, bool isAssign)
         {
             if (refDestructuringErrors == null) return;
             if (refDestructuringErrors.trailingComma.Line > 0)
@@ -144,7 +145,7 @@ namespace AcornSharp
             if (parens.Line > 0) raiseRecoverable(parens, "Parenthesized pattern");
         }
 
-        private static bool checkExpressionErrors(DestructuringErrors refDestructuringErrors, bool andThrow = false)
+        private static bool checkExpressionErrors([CanBeNull] DestructuringErrors refDestructuringErrors, bool andThrow = false)
         {
             var pos = refDestructuringErrors?.shorthandAssign ?? default;
             if (!andThrow) return pos.Line > 0;
@@ -162,7 +163,7 @@ namespace AcornSharp
 
         private static bool isSimpleAssignTarget(BaseNode expr)
         {
-            if (expr.type ==  NodeType.ParenthesizedExpression)
+            if (expr is ParenthesisedExpressionNode)
                 return isSimpleAssignTarget(expr.expression);
             return expr is IdentifierNode || expr is MemberExpressionNode;
         }

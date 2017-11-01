@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using AcornSharp.Node;
 
 namespace AcornSharp
@@ -13,7 +13,7 @@ namespace AcornSharp
         // `sourceType` indicates the mode the code should be parsed in.
         // Can be either `"script"` or `"module"`. This influences global
         // strict mode and parsing of `import` and `export` declarations.
-        public string sourceType = "script";
+        public SourceType sourceType = SourceType.Script;
         // `onInsertedSemicolon` can be a callback that will be called
         // when a semicolon is automatically inserted. It will be passed
         // th position of the comma as an offset, and if `locations` is
@@ -59,7 +59,7 @@ namespace AcornSharp
         // `program` option in subsequent parses. This will add the
         // toplevel forms of the parsed file to the `Program` (top) node
         // of an existing parse tree.
-        public BaseNode program = null;
+        public ProgramNode program = null;
         // When `locations` is on, you can pass this to record the source
         // file in every node's `loc` object.
         public string sourceFile = null;

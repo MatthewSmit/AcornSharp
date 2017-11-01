@@ -1,12 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
 namespace AcornSharp.Node
 {
-    public class BaseNode : IEquatable<BaseNode>
+    public abstract class BaseNode : IEquatable<BaseNode>
     {
-        public NodeType type;
         public IList<BaseNode> body;
         public BaseNode expression;
         public bool bexpression;
@@ -20,7 +19,7 @@ namespace AcornSharp.Node
         public IList<BaseNode> elements;
         public IList<BaseNode> properties;
         public BaseNode id;
-        public IList<BaseNode> @params;
+        public IList<BaseNode> parameters;
         public BaseNode fbody;
         public BaseNode argument;
         public BaseNode test;
@@ -31,7 +30,8 @@ namespace AcornSharp.Node
         public IList<BaseNode> declarations;
         public IList<BaseNode> sconsequent;
         public BaseNode init;
-        public string kind;
+        public PropertyKind pkind;
+        public VariableKind vkind;
         public BaseNode @object;
         public BaseNode property;
         public bool computed;
@@ -60,23 +60,19 @@ namespace AcornSharp.Node
         public List<BaseNode> quasis;
         public IdentifierNode imported;
         public bool shorthand;
-        public string sourceType;
 
         public BaseNode(SourceLocation location)
         {
-            type = NodeType.Unknown;
             loc = location;
         }
 
         public BaseNode([NotNull] Parser parser, Position start)
         {
-            type = NodeType.Unknown;
             loc = new SourceLocation(start, default, parser.sourceFile);
         }
 
         public BaseNode([NotNull] Parser parser, Position start, Position end)
         {
-            type = NodeType.Unknown;
             loc = new SourceLocation(start, end, parser.sourceFile);
         }
 
@@ -87,7 +83,6 @@ namespace AcornSharp.Node
             if (ReferenceEquals(this, other))
                 return true;
 
-            if (type != NodeType.Unknown && type != other.type) return false;
             if (body != null && !TestEquals(body, other.body)) return false;
             if (!TestEquals(expression, other.expression)) return false;
             if (bexpression && bexpression != other.bexpression) return false;
@@ -101,7 +96,7 @@ namespace AcornSharp.Node
             if (!TestEquals(elements, other.elements)) return false;
             if (!TestEquals(properties, other.properties)) return false;
             if (id != null && !TestEquals(id, other.id)) return false;
-            if (@params != null && !TestEquals(@params, other.@params)) return false;
+            if (parameters != null && !TestEquals(parameters, other.parameters)) return false;
             if (fbody != null && !TestEquals(fbody, other.fbody)) return false;
             if (!TestEquals(argument, other.argument)) return false;
             if (test != null && !TestEquals(test, other.test)) return false;
@@ -112,7 +107,8 @@ namespace AcornSharp.Node
             if (!TestEquals(declarations, other.declarations)) return false;
             if (!TestEquals(sconsequent, other.sconsequent)) return false;
             if (!TestEquals(init, other.init)) return false;
-            if (!string.Equals(kind, other.kind, StringComparison.Ordinal)) return false;
+            if (pkind != PropertyKind.Initialise && !Equals(pkind, other.pkind)) return false;
+            if (vkind != VariableKind.Var && !Equals(vkind, other.vkind)) return false;
             if (!TestEquals(@object, other.@object)) return false;
             if (!TestEquals(property, other.property)) return false;
             if (computed != other.computed) return false;
@@ -141,7 +137,6 @@ namespace AcornSharp.Node
             if (!TestEquals(quasis, other.quasis)) return false;
             if (!TestEquals(imported, other.imported)) return false;
             if (shorthand != other.shorthand) return false;
-            if (sourceType != null && !string.Equals(sourceType, other.sourceType, StringComparison.Ordinal)) return false;
             return true;
         }
 
@@ -206,7 +201,6 @@ namespace AcornSharp.Node
             if (ReferenceEquals(this, other))
                 return true;
 
-            if (!Equals(type, other.type)) return false;
             if (!Equals(body, other.body)) return false;
             if (!Equals(expression, other.expression)) return false;
             if (bexpression != other.bexpression) return false;
@@ -220,7 +214,7 @@ namespace AcornSharp.Node
             if (!Equals(elements, other.elements)) return false;
             if (!Equals(properties, other.properties)) return false;
             if (!Equals(id, other.id)) return false;
-            if (!Equals(@params, other.@params)) return false;
+            if (!Equals(parameters, other.parameters)) return false;
             if (!Equals(fbody, other.fbody)) return false;
             if (!Equals(argument, other.argument)) return false;
             if (!Equals(test, other.test)) return false;
@@ -231,7 +225,8 @@ namespace AcornSharp.Node
             if (!Equals(declarations, other.declarations)) return false;
             if (!Equals(sconsequent, other.sconsequent)) return false;
             if (!Equals(init, other.init)) return false;
-            if (!string.Equals(kind, other.kind)) return false;
+            if (!Equals(pkind, other.pkind)) return false;
+            if (!Equals(vkind, other.vkind)) return false;
             if (!Equals(@object, other.@object)) return false;
             if (!Equals(property, other.property)) return false;
             if (computed != other.computed) return false;
@@ -260,7 +255,6 @@ namespace AcornSharp.Node
             if (!Equals(quasis, other.quasis)) return false;
             if (!Equals(imported, other.imported)) return false;
             if (shorthand != other.shorthand) return false;
-            if (!string.Equals(sourceType, other.sourceType)) return false;
             return true;
         }
 
@@ -296,7 +290,7 @@ namespace AcornSharp.Node
         {
             unchecked
             {
-                var hashCode = type.GetHashCode();
+                var hashCode = 0;
                 hashCode = (hashCode * 397) ^ (body != null ? body.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (expression != null ? expression.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ bexpression.GetHashCode();
@@ -310,7 +304,7 @@ namespace AcornSharp.Node
                 hashCode = (hashCode * 397) ^ (elements != null ? elements.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (properties != null ? properties.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (id != null ? id.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (@params != null ? @params.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (parameters != null ? parameters.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (fbody != null ? fbody.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (argument != null ? argument.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (test != null ? test.GetHashCode() : 0);
@@ -321,7 +315,8 @@ namespace AcornSharp.Node
                 hashCode = (hashCode * 397) ^ (declarations != null ? declarations.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (sconsequent != null ? sconsequent.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (init != null ? init.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (kind != null ? kind.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ pkind.GetHashCode();
+                hashCode = (hashCode * 397) ^ vkind.GetHashCode();
                 hashCode = (hashCode * 397) ^ (@object != null ? @object.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (property != null ? property.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ computed.GetHashCode();
@@ -350,7 +345,6 @@ namespace AcornSharp.Node
                 hashCode = (hashCode * 397) ^ (quasis != null ? quasis.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (imported != null ? imported.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ shorthand.GetHashCode();
-                hashCode = (hashCode * 397) ^ (sourceType != null ? sourceType.GetHashCode() : 0);
                 return hashCode;
             }
         }
