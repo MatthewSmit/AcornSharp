@@ -469,7 +469,7 @@ namespace AcornSharp.Cli
                                             key = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "a"),
                                             value = new AssignmentExpressionNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 16, 16)))
                                             {
-                                                @operator = "=",
+                                                @operator = Operator.Assignment,
                                                 left = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "b"),
                                                 right = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)), "c")
                                             },
@@ -1338,7 +1338,7 @@ namespace AcornSharp.Cli
                                         {
                                             argument = new IdentifierNode(new SourceLocation(new Position(1, 33, 33), new Position(1, 34, 34)), "a")
                                         },
-                                        @operator = "+",
+                                        @operator = Operator.Addition,
                                         right = new AwaitExpressionNode(new SourceLocation(new Position(1, 37, 37), new Position(1, 44, 44)))
                                         {
                                             argument = new IdentifierNode(new SourceLocation(new Position(1, 43, 43), new Position(1, 44, 44)), "b")
@@ -1372,7 +1372,7 @@ namespace AcornSharp.Cli
                                     expression = new BinaryExpressionNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 26, 26)))
                                     {
                                         left = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 22, 22)), "await"),
-                                        @operator = "+",
+                                        @operator = Operator.Addition,
                                         right = new LiteralNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 26, 26)))
                                         {
                                             value = 1,
@@ -1408,7 +1408,7 @@ namespace AcornSharp.Cli
                                     {
                                         argument = new UnaryExpressionNode(new SourceLocation(new Position(1, 29, 29), new Position(1, 32, 32)))
                                         {
-                                            @operator = "+",
+                                            @operator = Operator.Addition,
                                             prefix = true,
                                             argument = new LiteralNode(new SourceLocation(new Position(1, 31, 31), new Position(1, 32, 32)))
                                             {
@@ -1668,7 +1668,7 @@ namespace AcornSharp.Cli
                                 {
                                     expression = new AssignmentExpressionNode(new SourceLocation(new Position(2, 1, 25), new Position(2, 12, 36)))
                                     {
-                                        @operator = "=",
+                                        @operator = Operator.Assignment,
                                         left = new IdentifierNode(new SourceLocation(new Position(2, 1, 25), new Position(2, 2, 26)), "a"),
                                         right = new AwaitExpressionNode(new SourceLocation(new Position(2, 5, 29), new Position(2, 12, 36)))
                                         {
@@ -1702,7 +1702,7 @@ namespace AcornSharp.Cli
                                 {
                                     expression = new AssignmentExpressionNode(new SourceLocation(new Position(2, 1, 25), new Position(2, 20, 44)))
                                     {
-                                        @operator = "=",
+                                        @operator = Operator.Assignment,
                                         left = new ObjectPatternNode(new SourceLocation(new Position(2, 1, 25), new Position(2, 14, 38)))
                                         {
                                             properties = new List<PropertyNode>
@@ -1759,7 +1759,7 @@ namespace AcornSharp.Cli
                                         {
                                             new AssignmentExpressionNode(new SourceLocation(new Position(2, 6, 25), new Position(2, 17, 36)))
                                             {
-                                                @operator = "=",
+                                                @operator = Operator.Assignment,
                                                 left = new IdentifierNode(new SourceLocation(new Position(2, 6, 25), new Position(2, 7, 26)), "a"),
                                                 right = new YieldExpressionNode(new SourceLocation(new Position(2, 10, 29), new Position(2, 17, 36)))
                                                 {
@@ -1786,7 +1786,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 111, 111)))
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "f"),
                             right = new ArrowFunctionExpressionNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 111, 111)))
                             {
@@ -2060,7 +2060,7 @@ namespace AcornSharp.Cli
                         {
                             expression = new AssignmentExpressionNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 17, 17)))
                             {
-                                @operator = "=",
+                                @operator = Operator.Assignment,
                                 left = new ObjectPatternNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 12, 12)))
                                 {
                                     properties = new List<PropertyNode>

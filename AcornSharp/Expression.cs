@@ -184,7 +184,7 @@ namespace AcornSharp
             {
                 checkPatternErrors(refDestructuringErrors, true);
                 if (!ownDestructuringErrors) refDestructuringErrors.Reset();
-                var @operator = (string)value;
+                var @operator = stringToOperator((string)value);
                 var leftNode = type == TokenType.eq ? toAssignable(left) : left;
                 refDestructuringErrors.shorthandAssign = default; // reset because shorthand default was used correctly
                 checkLVal(leftNode, false, null);
@@ -201,6 +201,63 @@ namespace AcornSharp
             if (oldParenAssign.Line > 0) refDestructuringErrors.parenthesizedAssign = oldParenAssign;
             if (oldTrailingComma.Line > 0) refDestructuringErrors.trailingComma = oldTrailingComma;
             return left;
+        }
+
+        private static Operator stringToOperator([NotNull] string s)
+        {
+            switch (s)
+            {
+                case "+": return Operator.Addition;
+                case "-": return Operator.Subtraction;
+                case "*": return Operator.Multiplication;
+                case "/": return Operator.Division;
+                case "%": return Operator.Modulus;
+                case "**": return Operator.Power;
+                case "<<": return Operator.LeftShift;
+                case ">>": return Operator.RightShift;
+                case ">>>": return Operator.RightShiftUnsigned;
+                case "&": return Operator.BitwiseAnd;
+                case "|": return Operator.BitwiseOr;
+                case "^": return Operator.BitwiseXOr;
+
+                case "==": return Operator.Equals;
+                case "===": return Operator.StrictEquals;
+                case "!=": return Operator.NotEquals;
+                case "!==": return Operator.StrictNotEquals;
+                case "<": return Operator.LessThan;
+                case "<=": return Operator.LessEquals;
+                case ">": return Operator.GreaterThan;
+                case ">=": return Operator.GreaterEquals;
+                case "&&": return Operator.LogicalAnd;
+                case "||": return Operator.LogicalOr;
+
+                case "=": return Operator.Assignment;
+                case "+=": return Operator.AdditionAssignment;
+                case "-=": return Operator.SubtractionAssignment;
+                case "*=": return Operator.MultiplicationAssignment;
+                case "/=": return Operator.DivisionAssignment;
+                case "%=": return Operator.ModulusAssignment;
+                case "**=": return Operator.PowerAssignment;
+                case "<<=": return Operator.LeftShiftAssignment;
+                case ">>=": return Operator.RightShiftAssignment;
+                case ">>>=": return Operator.RightShiftUnsignedAssignment;
+                case "&=": return Operator.BitwiseAndAssignment;
+                case "|=": return Operator.BitwiseOrAssignment;
+                case "^=": return Operator.BitwiseXOrAssignment;
+
+                case "++": return Operator.Increment;
+                case "--": return Operator.Decrement;
+                case "~": return Operator.BitwiseNot;
+                case "!": return Operator.LogicalNot;
+                case "delete": return Operator.Delete;
+                case "in": return Operator.In;
+                case "instanceof": return Operator.InstanceOf;
+                case "void": return Operator.Void;
+                case "typeof": return Operator.TypeOf;
+
+                default:
+                    throw new ArgumentException();
+            }
         }
 
         // Parse a ternary conditional (`?:`) operator.
@@ -241,7 +298,7 @@ namespace AcornSharp
                 if (prec > minPrec)
                 {
                     var logical = type == TokenType.logicalOR || type == TokenType.logicalAND;
-                    var op = (string)value;
+                    var op = stringToOperator((string)value);
                     next();
                     var startLoc = start;
                     var right = parseExprOp(parseMaybeUnary(null, false), startLoc, prec, noIn);
@@ -253,7 +310,7 @@ namespace AcornSharp
         }
 
         [NotNull]
-        private BaseNode buildBinary(Position startLoc, BaseNode left, BaseNode right, string op, bool logical)
+        private BaseNode buildBinary(Position startLoc, BaseNode left, BaseNode right, Operator op, bool logical)
         {
             if (logical)
             {
@@ -286,12 +343,12 @@ namespace AcornSharp
             else if (TokenInformation.Types[type].Prefix)
             {
                 var update = type == TokenType.incDec;
-                var @operator = (string)value;
+                var @operator = stringToOperator((string)value);
                 next();
                 var argument = parseMaybeUnary(null, true);
                 checkExpressionErrors(refDestructuringErrors, true);
                 if (update) checkLVal(argument, false, null);
-                else if (strict && @operator == "delete" &&
+                else if (strict && @operator == Operator.Delete &&
                          argument is IdentifierNode)
                     raiseRecoverable(startLoc, "Deleting local variable in strict mode");
                 else sawUnary = true;
@@ -320,7 +377,7 @@ namespace AcornSharp
                 if (checkExpressionErrors(refDestructuringErrors)) return expr;
                 while (TokenInformation.Types[type].Postfix && !canInsertSemicolon())
                 {
-                    var @operator = (string)value;
+                    var @operator = stringToOperator((string)value);
                     checkLVal(expr, false, null);
                     next();
                     expr = new UpdateExpressionNode(this, startLoc, lastTokEnd)
@@ -333,7 +390,7 @@ namespace AcornSharp
             }
 
             if (!sawUnary && eat(TokenType.starstar))
-                return buildBinary(startLoc, expr, parseMaybeUnary(null, false), "**", false);
+                return buildBinary(startLoc, expr, parseMaybeUnary(null, false), Operator.Power, false);
             return expr;
         }
 

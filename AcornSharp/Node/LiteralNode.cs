@@ -5,6 +5,7 @@ namespace AcornSharp.Node
     public sealed class LiteralNode : BaseNode
     {
         public LiteralValue value;
+        public RegexNode regex;
 
         public LiteralNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
@@ -22,6 +23,7 @@ namespace AcornSharp.Node
             {
                 if (!base.TestEquals(other)) return false;
                 if (!value.IsNull && !TestEquals(value, realOther.value)) return false;
+                if (regex != null && !Equals(regex, realOther.regex)) return false;
                 return true;
             }
             return false;
@@ -33,6 +35,7 @@ namespace AcornSharp.Node
             {
                 if (!base.Equals(other)) return false;
                 if (!Equals(value, realOther.value)) return false;
+                if (!Equals(regex, realOther.regex)) return false;
                 return true;
             }
             return false;
@@ -42,6 +45,7 @@ namespace AcornSharp.Node
         {
             var hashCode = base.GetHashCode();
             hashCode = (hashCode * 397) ^ (value != null ? value.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (regex != null ? regex.GetHashCode() : 0);
             return hashCode;
         }
     }

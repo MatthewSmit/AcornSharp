@@ -56,7 +56,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UnaryExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24)))
                         {
-                            @operator = "!",
+                            @operator = Operator.LogicalNot,
                             prefix = true,
                             argument = new FunctionExpressionNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 24, 24)))
                             {
@@ -140,7 +140,7 @@ namespace AcornSharp.Cli
                                 value = "use strict",
                                 raw = "\"use strict\""
                             },
-                            @operator = "+",
+                            @operator = Operator.Addition,
                             right = new LiteralNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)))
                             {
                                 value = 1,
@@ -240,7 +240,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UnaryExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 38)))
                         {
-                            @operator = "!",
+                            @operator = Operator.LogicalNot,
                             prefix = true,
                             argument = new FunctionExpressionNode(new SourceLocation(new Position(1, 1, 1), new Position(2, 6, 38)))
                             {

@@ -108,7 +108,7 @@ namespace AcornSharp.Cli
                                     value = 1,
                                     location = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2))
                                 },
-                                @operator = "+",
+                                @operator = Operator.Addition,
                                 right = new LiteralNode(default)
                                 {
                                     value = 2,
@@ -116,7 +116,7 @@ namespace AcornSharp.Cli
                                 },
                                 location = new SourceLocation(new Position(1, 1, 1), new Position(1, 6, 6))
                             },
-                            @operator = "*",
+                            @operator = Operator.Multiplication,
                             right = new LiteralNode(default)
                             {
                                 value = 3,
@@ -147,7 +147,7 @@ namespace AcornSharp.Cli
                                         value = 1,
                                         location = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2))
                                     },
-                                    @operator = "+",
+                                    @operator = Operator.Addition,
                                     right = new LiteralNode(default)
                                     {
                                         value = 2,
@@ -157,7 +157,7 @@ namespace AcornSharp.Cli
                                 },
                                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
                             },
-                            @operator = "*",
+                            @operator = Operator.Multiplication,
                             right = new LiteralNode(default)
                             {
                                 value = 3,
@@ -184,7 +184,7 @@ namespace AcornSharp.Cli
                         {
                             expression = new AssignmentExpressionNode(default)
                             {
-                                @operator = "=",
+                                @operator = Operator.Assignment,
                                 left = new IdentifierNode(default, "x"),
                                 right = new LiteralNode(default)
                                 {
@@ -205,7 +205,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ArrayExpressionNode(default)
                             {
@@ -228,7 +228,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ArrayExpressionNode(default)
                             {
@@ -251,7 +251,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ArrayExpressionNode(default)
                             {
@@ -281,7 +281,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ArrayExpressionNode(default)
                             {
@@ -311,7 +311,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ArrayExpressionNode(default)
                             {
@@ -343,7 +343,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ArrayExpressionNode(default)
                             {
@@ -383,7 +383,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ArrayExpressionNode(default)
                             {
@@ -424,7 +424,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "日本語"),
                             right = new ArrayExpressionNode(default)
                             {
@@ -447,7 +447,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2)), "T‿"),
                             right = new ArrayExpressionNode(default)
                             {
@@ -470,7 +470,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2)), "T‌"),
                             right = new ArrayExpressionNode(default)
                             {
@@ -493,7 +493,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2)), "T‍"),
                             right = new ArrayExpressionNode(default)
                             {
@@ -516,7 +516,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2)), "ⅣⅡ"),
                             right = new ArrayExpressionNode(default)
                             {
@@ -539,7 +539,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2)), "ⅣⅡ"),
                             right = new ArrayExpressionNode(default)
                             {
@@ -562,7 +562,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -585,7 +585,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -608,7 +608,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -643,7 +643,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -678,7 +678,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -713,7 +713,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -748,7 +748,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -783,7 +783,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -822,7 +822,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -867,7 +867,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -915,7 +915,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -956,7 +956,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -997,7 +997,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -1038,7 +1038,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -1079,7 +1079,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -1120,7 +1120,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -1165,7 +1165,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -1210,7 +1210,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -1235,7 +1235,7 @@ namespace AcornSharp.Cli
                                                     {
                                                         expression = new AssignmentExpressionNode(default)
                                                         {
-                                                            @operator = "=",
+                                                            @operator = Operator.Assignment,
                                                             left = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 28, 28)), "m_width"),
                                                             right = new IdentifierNode(new SourceLocation(new Position(1, 31, 31), new Position(1, 32, 32)), "w"),
                                                             location = new SourceLocation(new Position(1, 21, 21), new Position(1, 32, 32))
@@ -1267,7 +1267,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -1292,7 +1292,7 @@ namespace AcornSharp.Cli
                                                     {
                                                         expression = new AssignmentExpressionNode(default)
                                                         {
-                                                            @operator = "=",
+                                                            @operator = Operator.Assignment,
                                                             left = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 22, 22)), "m_if"),
                                                             right = new IdentifierNode(new SourceLocation(new Position(1, 25, 25), new Position(1, 26, 26)), "w"),
                                                             location = new SourceLocation(new Position(1, 18, 18), new Position(1, 26, 26))
@@ -1324,7 +1324,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -1349,7 +1349,7 @@ namespace AcornSharp.Cli
                                                     {
                                                         expression = new AssignmentExpressionNode(default)
                                                         {
-                                                            @operator = "=",
+                                                            @operator = Operator.Assignment,
                                                             left = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 26, 26)), "m_true"),
                                                             right = new IdentifierNode(new SourceLocation(new Position(1, 29, 29), new Position(1, 30, 30)), "w"),
                                                             location = new SourceLocation(new Position(1, 20, 20), new Position(1, 30, 30))
@@ -1381,7 +1381,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -1406,7 +1406,7 @@ namespace AcornSharp.Cli
                                                     {
                                                         expression = new AssignmentExpressionNode(default)
                                                         {
-                                                            @operator = "=",
+                                                            @operator = Operator.Assignment,
                                                             left = new IdentifierNode(new SourceLocation(new Position(1, 21, 21), new Position(1, 28, 28)), "m_false"),
                                                             right = new IdentifierNode(new SourceLocation(new Position(1, 31, 31), new Position(1, 32, 32)), "w"),
                                                             location = new SourceLocation(new Position(1, 21, 21), new Position(1, 32, 32))
@@ -1438,7 +1438,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -1463,7 +1463,7 @@ namespace AcornSharp.Cli
                                                     {
                                                         expression = new AssignmentExpressionNode(default)
                                                         {
-                                                            @operator = "=",
+                                                            @operator = Operator.Assignment,
                                                             left = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 26, 26)), "m_null"),
                                                             right = new IdentifierNode(new SourceLocation(new Position(1, 29, 29), new Position(1, 30, 30)), "w"),
                                                             location = new SourceLocation(new Position(1, 20, 20), new Position(1, 30, 30))
@@ -1495,7 +1495,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -1524,7 +1524,7 @@ namespace AcornSharp.Cli
                                                     {
                                                         expression = new AssignmentExpressionNode(default)
                                                         {
-                                                            @operator = "=",
+                                                            @operator = Operator.Assignment,
                                                             left = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 28, 28)), "m_null"),
                                                             right = new IdentifierNode(new SourceLocation(new Position(1, 31, 31), new Position(1, 32, 32)), "w"),
                                                             location = new SourceLocation(new Position(1, 22, 22), new Position(1, 32, 32))
@@ -1556,7 +1556,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -1585,7 +1585,7 @@ namespace AcornSharp.Cli
                                                     {
                                                         expression = new AssignmentExpressionNode(default)
                                                         {
-                                                            @operator = "=",
+                                                            @operator = Operator.Assignment,
                                                             left = new IdentifierNode(new SourceLocation(new Position(1, 18, 18), new Position(1, 24, 24)), "m_null"),
                                                             right = new IdentifierNode(new SourceLocation(new Position(1, 27, 27), new Position(1, 28, 28)), "w"),
                                                             location = new SourceLocation(new Position(1, 18, 18), new Position(1, 28, 28))
@@ -1617,7 +1617,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -1652,7 +1652,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new ObjectExpressionNode(default)
                             {
@@ -3317,7 +3317,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UpdateExpressionNode(default)
                         {
-                            @operator = "++",
+                            @operator = Operator.Increment,
                             prefix = false,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
@@ -3336,7 +3336,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UpdateExpressionNode(default)
                         {
-                            @operator = "--",
+                            @operator = Operator.Decrement,
                             prefix = false,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
@@ -3355,7 +3355,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UpdateExpressionNode(default)
                         {
-                            @operator = "++",
+                            @operator = Operator.Increment,
                             prefix = false,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4)), "eval"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
@@ -3374,7 +3374,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UpdateExpressionNode(default)
                         {
-                            @operator = "--",
+                            @operator = Operator.Decrement,
                             prefix = false,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4)), "eval"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
@@ -3393,7 +3393,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UpdateExpressionNode(default)
                         {
-                            @operator = "++",
+                            @operator = Operator.Increment,
                             prefix = false,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)), "arguments"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
@@ -3412,7 +3412,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UpdateExpressionNode(default)
                         {
-                            @operator = "--",
+                            @operator = Operator.Decrement,
                             prefix = false,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)), "arguments"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
@@ -3431,7 +3431,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UpdateExpressionNode(default)
                         {
-                            @operator = "++",
+                            @operator = Operator.Increment,
                             prefix = true,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), "x"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
@@ -3450,7 +3450,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UpdateExpressionNode(default)
                         {
-                            @operator = "--",
+                            @operator = Operator.Decrement,
                             prefix = true,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), "x"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
@@ -3469,7 +3469,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UpdateExpressionNode(default)
                         {
-                            @operator = "++",
+                            @operator = Operator.Increment,
                             prefix = true,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 6, 6)), "eval"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
@@ -3488,7 +3488,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UpdateExpressionNode(default)
                         {
-                            @operator = "--",
+                            @operator = Operator.Decrement,
                             prefix = true,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 6, 6)), "eval"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
@@ -3507,7 +3507,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UpdateExpressionNode(default)
                         {
-                            @operator = "++",
+                            @operator = Operator.Increment,
                             prefix = true,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 11, 11)), "arguments"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
@@ -3526,7 +3526,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UpdateExpressionNode(default)
                         {
-                            @operator = "--",
+                            @operator = Operator.Decrement,
                             prefix = true,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 2, 2), new Position(1, 11, 11)), "arguments"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
@@ -3545,7 +3545,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UnaryExpressionNode(default)
                         {
-                            @operator = "+",
+                            @operator = Operator.Addition,
                             prefix = true,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "x"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
@@ -3564,7 +3564,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UnaryExpressionNode(default)
                         {
-                            @operator = "-",
+                            @operator = Operator.Subtraction,
                             prefix = true,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "x"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
@@ -3583,7 +3583,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UnaryExpressionNode(default)
                         {
-                            @operator = "~",
+                            @operator = Operator.BitwiseNot,
                             prefix = true,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "x"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
@@ -3602,7 +3602,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UnaryExpressionNode(default)
                         {
-                            @operator = "!",
+                            @operator = Operator.LogicalNot,
                             prefix = true,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), "x"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
@@ -3621,7 +3621,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UnaryExpressionNode(default)
                         {
-                            @operator = "void",
+                            @operator = Operator.Void,
                             prefix = true,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "x"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
@@ -3640,7 +3640,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UnaryExpressionNode(default)
                         {
-                            @operator = "delete",
+                            @operator = Operator.Delete,
                             prefix = true,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "x"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
@@ -3659,7 +3659,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new UnaryExpressionNode(default)
                         {
-                            @operator = "typeof",
+                            @operator = Operator.TypeOf,
                             prefix = true,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "x"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
@@ -3679,7 +3679,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "*",
+                            @operator = Operator.Multiplication,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                         },
@@ -3698,7 +3698,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "/",
+                            @operator = Operator.Division,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                         },
@@ -3717,7 +3717,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "%",
+                            @operator = Operator.Modulus,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                         },
@@ -3736,7 +3736,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "+",
+                            @operator = Operator.Addition,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                         },
@@ -3755,7 +3755,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "-",
+                            @operator = Operator.Subtraction,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                         },
@@ -3774,7 +3774,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "<<",
+                            @operator = Operator.LeftShift,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                         },
@@ -3793,7 +3793,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = ">>",
+                            @operator = Operator.RightShift,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                         },
@@ -3812,7 +3812,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = ">>>",
+                            @operator = Operator.RightShiftUnsigned,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
                         },
@@ -3831,7 +3831,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "<",
+                            @operator = Operator.LessThan,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                         },
@@ -3850,7 +3850,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = ">",
+                            @operator = Operator.GreaterThan,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                         },
@@ -3869,7 +3869,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "<=",
+                            @operator = Operator.LessEquals,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                         },
@@ -3888,7 +3888,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = ">=",
+                            @operator = Operator.GreaterEquals,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                         },
@@ -3907,7 +3907,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "in",
+                            @operator = Operator.In,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                         },
@@ -3926,7 +3926,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "instanceof",
+                            @operator = Operator.InstanceOf,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
                         },
@@ -3947,11 +3947,11 @@ namespace AcornSharp.Cli
                             left = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                                @operator = "<",
+                                @operator = Operator.LessThan,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                             },
-                            @operator = "<",
+                            @operator = Operator.LessThan,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "z"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                         },
@@ -3970,7 +3970,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "==",
+                            @operator = Operator.Equals,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                         },
@@ -3989,7 +3989,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "!=",
+                            @operator = Operator.NotEquals,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                         },
@@ -4008,7 +4008,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "===",
+                            @operator = Operator.StrictEquals,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
                         },
@@ -4027,7 +4027,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "!==",
+                            @operator = Operator.StrictNotEquals,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
                         },
@@ -4046,7 +4046,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "&",
+                            @operator = Operator.BitwiseAnd,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                         },
@@ -4065,7 +4065,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "^",
+                            @operator = Operator.BitwiseXOr,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                         },
@@ -4084,7 +4084,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "|",
+                            @operator = Operator.BitwiseOr,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                         },
@@ -4105,11 +4105,11 @@ namespace AcornSharp.Cli
                             left = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                                @operator = "+",
+                                @operator = Operator.Addition,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                             },
-                            @operator = "+",
+                            @operator = Operator.Addition,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "z"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                         },
@@ -4130,11 +4130,11 @@ namespace AcornSharp.Cli
                             left = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                                @operator = "-",
+                                @operator = Operator.Subtraction,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                             },
-                            @operator = "+",
+                            @operator = Operator.Addition,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "z"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                         },
@@ -4155,11 +4155,11 @@ namespace AcornSharp.Cli
                             left = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                                @operator = "+",
+                                @operator = Operator.Addition,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                             },
-                            @operator = "-",
+                            @operator = Operator.Subtraction,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "z"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                         },
@@ -4180,11 +4180,11 @@ namespace AcornSharp.Cli
                             left = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                                @operator = "-",
+                                @operator = Operator.Subtraction,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                             },
-                            @operator = "-",
+                            @operator = Operator.Subtraction,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "z"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                         },
@@ -4203,11 +4203,11 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "+",
+                            @operator = Operator.Addition,
                             right = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
-                                @operator = "*",
+                                @operator = Operator.Multiplication,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "z"),
                                 location = new SourceLocation(new Position(1, 4, 4), new Position(1, 9, 9))
                             },
@@ -4228,11 +4228,11 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "+",
+                            @operator = Operator.Addition,
                             right = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
-                                @operator = "/",
+                                @operator = Operator.Division,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "z"),
                                 location = new SourceLocation(new Position(1, 4, 4), new Position(1, 9, 9))
                             },
@@ -4253,11 +4253,11 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "-",
+                            @operator = Operator.Subtraction,
                             right = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
-                                @operator = "%",
+                                @operator = Operator.Modulus,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "z"),
                                 location = new SourceLocation(new Position(1, 4, 4), new Position(1, 9, 9))
                             },
@@ -4280,11 +4280,11 @@ namespace AcornSharp.Cli
                             left = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                                @operator = "*",
+                                @operator = Operator.Multiplication,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                             },
-                            @operator = "*",
+                            @operator = Operator.Multiplication,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "z"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                         },
@@ -4305,11 +4305,11 @@ namespace AcornSharp.Cli
                             left = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                                @operator = "*",
+                                @operator = Operator.Multiplication,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                             },
-                            @operator = "/",
+                            @operator = Operator.Division,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "z"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                         },
@@ -4330,11 +4330,11 @@ namespace AcornSharp.Cli
                             left = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                                @operator = "*",
+                                @operator = Operator.Multiplication,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                             },
-                            @operator = "%",
+                            @operator = Operator.Modulus,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "z"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                         },
@@ -4355,11 +4355,11 @@ namespace AcornSharp.Cli
                             left = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                                @operator = "%",
+                                @operator = Operator.Modulus,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                             },
-                            @operator = "*",
+                            @operator = Operator.Multiplication,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "z"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                         },
@@ -4380,11 +4380,11 @@ namespace AcornSharp.Cli
                             left = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                                @operator = "<<",
+                                @operator = Operator.LeftShift,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y"),
                                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                             },
-                            @operator = "<<",
+                            @operator = Operator.LeftShift,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "z"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
                         },
@@ -4405,11 +4405,11 @@ namespace AcornSharp.Cli
                             left = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                                @operator = "|",
+                                @operator = Operator.BitwiseOr,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                             },
-                            @operator = "|",
+                            @operator = Operator.BitwiseOr,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "z"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                         },
@@ -4430,11 +4430,11 @@ namespace AcornSharp.Cli
                             left = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                                @operator = "&",
+                                @operator = Operator.BitwiseAnd,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                             },
-                            @operator = "&",
+                            @operator = Operator.BitwiseAnd,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "z"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                         },
@@ -4455,11 +4455,11 @@ namespace AcornSharp.Cli
                             left = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                                @operator = "^",
+                                @operator = Operator.BitwiseXOr,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                             },
-                            @operator = "^",
+                            @operator = Operator.BitwiseXOr,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "z"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                         },
@@ -4480,11 +4480,11 @@ namespace AcornSharp.Cli
                             left = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                                @operator = "&",
+                                @operator = Operator.BitwiseAnd,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
                                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
                             },
-                            @operator = "|",
+                            @operator = Operator.BitwiseOr,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "z"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
                         },
@@ -4503,11 +4503,11 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "|",
+                            @operator = Operator.BitwiseOr,
                             right = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
-                                @operator = "^",
+                                @operator = Operator.BitwiseXOr,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "z"),
                                 location = new SourceLocation(new Position(1, 4, 4), new Position(1, 9, 9))
                             },
@@ -4528,11 +4528,11 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "|",
+                            @operator = Operator.BitwiseOr,
                             right = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "y"),
-                                @operator = "&",
+                                @operator = Operator.BitwiseAnd,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)), "z"),
                                 location = new SourceLocation(new Position(1, 4, 4), new Position(1, 9, 9))
                             },
@@ -4553,7 +4553,7 @@ namespace AcornSharp.Cli
                         expression = new LogicalExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "||",
+                            @operator = Operator.LogicalOr,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                         },
@@ -4572,7 +4572,7 @@ namespace AcornSharp.Cli
                         expression = new LogicalExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "&&",
+                            @operator = Operator.LogicalAnd,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                         },
@@ -4593,11 +4593,11 @@ namespace AcornSharp.Cli
                             left = new LogicalExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                                @operator = "||",
+                                @operator = Operator.LogicalOr,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y"),
                                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                             },
-                            @operator = "||",
+                            @operator = Operator.LogicalOr,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "z"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
                         },
@@ -4618,11 +4618,11 @@ namespace AcornSharp.Cli
                             left = new LogicalExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                                @operator = "&&",
+                                @operator = Operator.LogicalAnd,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y"),
                                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                             },
-                            @operator = "&&",
+                            @operator = Operator.LogicalAnd,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "z"),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
                         },
@@ -4641,11 +4641,11 @@ namespace AcornSharp.Cli
                         expression = new LogicalExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "||",
+                            @operator = Operator.LogicalOr,
                             right = new LogicalExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y"),
-                                @operator = "&&",
+                                @operator = Operator.LogicalAnd,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "z"),
                                 location = new SourceLocation(new Position(1, 5, 5), new Position(1, 11, 11))
                             },
@@ -4666,11 +4666,11 @@ namespace AcornSharp.Cli
                         expression = new LogicalExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "||",
+                            @operator = Operator.LogicalOr,
                             right = new BinaryExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y"),
-                                @operator = "^",
+                                @operator = Operator.BitwiseXOr,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 10, 10)), "z"),
                                 location = new SourceLocation(new Position(1, 5, 5), new Position(1, 10, 10))
                             },
@@ -4716,7 +4716,7 @@ namespace AcornSharp.Cli
                             new LogicalExpressionNode(default)
                             {
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                                @operator = "&&",
+                                @operator = Operator.LogicalAnd,
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y"),
                                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                             },
@@ -4744,7 +4744,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new LiteralNode(default)
                             {
@@ -4767,7 +4767,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4)), "eval"),
                             right = new LiteralNode(default)
                             {
@@ -4790,7 +4790,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)), "arguments"),
                             right = new LiteralNode(default)
                             {
@@ -4813,7 +4813,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "*=",
+                            @operator = Operator.MultiplicationAssignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new LiteralNode(default)
                             {
@@ -4836,7 +4836,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "/=",
+                            @operator = Operator.DivisionAssignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new LiteralNode(default)
                             {
@@ -4859,7 +4859,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "%=",
+                            @operator = Operator.ModulusAssignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new LiteralNode(default)
                             {
@@ -4882,7 +4882,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "+=",
+                            @operator = Operator.AdditionAssignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new LiteralNode(default)
                             {
@@ -4905,7 +4905,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "-=",
+                            @operator = Operator.SubtractionAssignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new LiteralNode(default)
                             {
@@ -4928,7 +4928,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "<<=",
+                            @operator = Operator.LeftShiftAssignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new LiteralNode(default)
                             {
@@ -4951,7 +4951,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = ">>=",
+                            @operator = Operator.RightShiftAssignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new LiteralNode(default)
                             {
@@ -4974,7 +4974,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = ">>>=",
+                            @operator = Operator.RightShiftUnsignedAssignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new LiteralNode(default)
                             {
@@ -4997,7 +4997,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "&=",
+                            @operator = Operator.BitwiseAndAssignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new LiteralNode(default)
                             {
@@ -5020,7 +5020,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "^=",
+                            @operator = Operator.BitwiseXOrAssignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new LiteralNode(default)
                             {
@@ -5043,7 +5043,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "|=",
+                            @operator = Operator.BitwiseOrAssignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new LiteralNode(default)
                             {
@@ -5648,7 +5648,7 @@ namespace AcornSharp.Cli
                                 {
                                     expression = new UpdateExpressionNode(default)
                                     {
-                                        @operator = "++",
+                                        @operator = Operator.Increment,
                                         prefix = false,
                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "x"),
                                         location = new SourceLocation(new Position(1, 5, 5), new Position(1, 8, 8))
@@ -5659,7 +5659,7 @@ namespace AcornSharp.Cli
                                 {
                                     expression = new UpdateExpressionNode(default)
                                     {
-                                        @operator = "--",
+                                        @operator = Operator.Decrement,
                                         prefix = false,
                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "y"),
                                         location = new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13))
@@ -5672,7 +5672,7 @@ namespace AcornSharp.Cli
                         test = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 24, 24), new Position(1, 25, 25)), "x"),
-                            @operator = "<",
+                            @operator = Operator.LessThan,
                             right = new LiteralNode(default)
                             {
                                 value = 10,
@@ -5760,7 +5760,7 @@ namespace AcornSharp.Cli
                         test = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), "x"),
-                            @operator = "<",
+                            @operator = Operator.LessThan,
                             right = new LiteralNode(default)
                             {
                                 value = 10,
@@ -5776,7 +5776,7 @@ namespace AcornSharp.Cli
                                 {
                                     expression = new UpdateExpressionNode(default)
                                     {
-                                        @operator = "++",
+                                        @operator = Operator.Increment,
                                         prefix = false,
                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18)), "x"),
                                         location = new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20))
@@ -5787,7 +5787,7 @@ namespace AcornSharp.Cli
                                 {
                                     expression = new UpdateExpressionNode(default)
                                     {
-                                        @operator = "--",
+                                        @operator = Operator.Decrement,
                                         prefix = false,
                                         argument = new IdentifierNode(new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23)), "y"),
                                         location = new SourceLocation(new Position(1, 22, 22), new Position(1, 25, 25))
@@ -5850,7 +5850,7 @@ namespace AcornSharp.Cli
                     {
                         init = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "x"),
                             right = new LiteralNode(default)
                             {
@@ -5961,7 +5961,7 @@ namespace AcornSharp.Cli
                     {
                         init = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "x"),
                             right = new LiteralNode(default)
                             {
@@ -5973,7 +5973,7 @@ namespace AcornSharp.Cli
                         test = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "x"),
-                            @operator = "<",
+                            @operator = Operator.LessThan,
                             right = new LiteralNode(default)
                             {
                                 value = 42,
@@ -6000,7 +6000,7 @@ namespace AcornSharp.Cli
                     {
                         init = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "x"),
                             right = new LiteralNode(default)
                             {
@@ -6012,7 +6012,7 @@ namespace AcornSharp.Cli
                         test = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "x"),
-                            @operator = "<",
+                            @operator = Operator.LessThan,
                             right = new LiteralNode(default)
                             {
                                 value = 42,
@@ -6022,7 +6022,7 @@ namespace AcornSharp.Cli
                         },
                         update = new UpdateExpressionNode(default)
                         {
-                            @operator = "++",
+                            @operator = Operator.Increment,
                             prefix = false,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 20, 20)), "x"),
                             location = new SourceLocation(new Position(1, 19, 19), new Position(1, 22, 22))
@@ -6045,7 +6045,7 @@ namespace AcornSharp.Cli
                     {
                         init = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 4, 4), new Position(1, 5, 5)), "x"),
                             right = new LiteralNode(default)
                             {
@@ -6057,7 +6057,7 @@ namespace AcornSharp.Cli
                         test = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 12, 12)), "x"),
-                            @operator = "<",
+                            @operator = Operator.LessThan,
                             right = new LiteralNode(default)
                             {
                                 value = 42,
@@ -6067,7 +6067,7 @@ namespace AcornSharp.Cli
                         },
                         update = new UpdateExpressionNode(default)
                         {
-                            @operator = "++",
+                            @operator = Operator.Increment,
                             prefix = false,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 19, 19), new Position(1, 20, 20)), "x"),
                             location = new SourceLocation(new Position(1, 19, 19), new Position(1, 22, 22))
@@ -6232,7 +6232,7 @@ namespace AcornSharp.Cli
                                                             value = 10,
                                                             location = new SourceLocation(new Position(1, 33, 33), new Position(1, 35, 35))
                                                         },
-                                                        @operator = "in",
+                                                        @operator = Operator.In,
                                                         right = new ArrayExpressionNode(default)
                                                         {
                                                             elements = new BaseNode[0],
@@ -6608,7 +6608,7 @@ namespace AcornSharp.Cli
                                         argument = new BinaryExpressionNode(default)
                                         {
                                             left = new IdentifierNode(new SourceLocation(new Position(1, 20, 20), new Position(1, 21, 21)), "x"),
-                                            @operator = "*",
+                                            @operator = Operator.Multiplication,
                                             right = new IdentifierNode(new SourceLocation(new Position(1, 24, 24), new Position(1, 25, 25)), "y"),
                                             location = new SourceLocation(new Position(1, 20, 20), new Position(1, 25, 25))
                                         },
@@ -6636,7 +6636,7 @@ namespace AcornSharp.Cli
                         {
                             expression = new AssignmentExpressionNode(default)
                             {
-                                @operator = "=",
+                                @operator = Operator.Assignment,
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18)), "bar"),
                                 location = new SourceLocation(new Position(1, 9, 9), new Position(1, 18, 18))
@@ -6660,7 +6660,7 @@ namespace AcornSharp.Cli
                         {
                             expression = new AssignmentExpressionNode(default)
                             {
-                                @operator = "=",
+                                @operator = Operator.Assignment,
                                 left = new IdentifierNode(new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), "foo"),
                                 right = new IdentifierNode(new SourceLocation(new Position(1, 15, 15), new Position(1, 18, 18)), "bar"),
                                 location = new SourceLocation(new Position(1, 9, 9), new Position(1, 18, 18))
@@ -6696,7 +6696,7 @@ namespace AcornSharp.Cli
                                 {
                                     expression = new AssignmentExpressionNode(default)
                                     {
-                                        @operator = "=",
+                                        @operator = Operator.Assignment,
                                         left = new IdentifierNode(new SourceLocation(new Position(1, 11, 11), new Position(1, 14, 14)), "foo"),
                                         right = new IdentifierNode(new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20)), "bar"),
                                         location = new SourceLocation(new Position(1, 11, 11), new Position(1, 20, 20))
@@ -6899,7 +6899,7 @@ namespace AcornSharp.Cli
                         argument = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)), "x"),
-                            @operator = "*",
+                            @operator = Operator.Multiplication,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), "y"),
                             location = new SourceLocation(new Position(1, 6, 6), new Position(1, 11, 11))
                         },
@@ -7754,7 +7754,7 @@ namespace AcornSharp.Cli
                             {
                                 expression = new UpdateExpressionNode(default)
                                 {
-                                    @operator = "++",
+                                    @operator = Operator.Increment,
                                     prefix = true,
                                     argument = new IdentifierNode(new SourceLocation(new Position(2, 2, 6), new Position(2, 3, 7)), "y"),
                                     location = new SourceLocation(new Position(2, 0, 4), new Position(2, 3, 7))
@@ -7785,7 +7785,7 @@ namespace AcornSharp.Cli
                             {
                                 expression = new UpdateExpressionNode(default)
                                 {
-                                    @operator = "--",
+                                    @operator = Operator.Decrement,
                                     prefix = true,
                                     argument = new IdentifierNode(new SourceLocation(new Position(2, 2, 6), new Position(2, 3, 7)), "y"),
                                     location = new SourceLocation(new Position(2, 0, 4), new Position(2, 3, 7))
@@ -8371,7 +8371,7 @@ namespace AcornSharp.Cli
                             {
                                 value = 123
                             },
-                            @operator = "+",
+                            @operator = Operator.Addition,
                             right = new LiteralNode(default)
                             {
                                 value = 2
@@ -8519,7 +8519,7 @@ namespace AcornSharp.Cli
                                 new IdentifierNode(default, "a"),
                                 new IdentifierNode(default, "in"),
                                 false),
-                            @operator = "/",
+                            @operator = Operator.Division,
                             right = new IdentifierNode(default, "b")
                         }
                     }
@@ -8576,7 +8576,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(default)
                         {
                             left = new IdentifierNode(default, "foo"),
-                            @operator = "+",
+                            @operator = Operator.Addition,
                             right = new IdentifierNode(default, "baz")
                         }
                     }
@@ -8591,17 +8591,17 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(default)
                         {
-                            @operator = "=",
+                            @operator = Operator.Assignment,
                             left = new IdentifierNode(default, "x"),
                             right = new BinaryExpressionNode(default)
                             {
                                 left = new UpdateExpressionNode(default)
                                 {
-                                    @operator = "--",
+                                    @operator = Operator.Decrement,
                                     prefix = false,
                                     argument = new IdentifierNode(default, "y")
                                 },
-                                @operator = ">",
+                                @operator = Operator.GreaterThan,
                                 right = new LiteralNode(default)
                                 {
                                     value = 10
@@ -9247,7 +9247,7 @@ namespace AcornSharp.Cli
                         expression = new UpdateExpressionNode(default)
                         {
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)),
-                            @operator = "++",
+                            @operator = Operator.Increment,
                             prefix = false,
                             argument = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), "let")
                         }
@@ -9815,7 +9815,7 @@ namespace AcornSharp.Cli
                                     body = new List<BaseNode>()
                                 }
                             },
-                            @operator = "/",
+                            @operator = Operator.Division,
                             right = new LiteralNode(default) {value = 1}
                         }
                     }
@@ -9937,10 +9937,10 @@ namespace AcornSharp.Cli
                                     },
                                     new IdentifierNode(default, "in"),
                                     false),
-                                @operator = "/",
+                                @operator = Operator.Division,
                                 right = new IdentifierNode(default, "foo")
                             },
-                            @operator = "/",
+                            @operator = Operator.Division,
                             right = new IdentifierNode(default, "i")
                         }
                     }

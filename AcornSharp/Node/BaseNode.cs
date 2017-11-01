@@ -7,8 +7,6 @@ namespace AcornSharp.Node
     public abstract class BaseNode : IEquatable<BaseNode>
     {
         public SourceLocation location;
-        public RegexNode regex;
-        public string @operator;
         public string raw;
         public IList<BaseNode> elements;
         public IList<PropertyNode> properties;
@@ -78,8 +76,6 @@ namespace AcornSharp.Node
                 return true;
 
             if (location.Start.Line > 0 && !Equals(location, other.location)) return false;
-            if (regex != null && !Equals(regex, other.regex)) return false;
-            if (!string.Equals(@operator, other.@operator, StringComparison.Ordinal)) return false;
             if (raw != null && !string.Equals(raw, other.raw, StringComparison.Ordinal)) return false;
             if (!TestEquals(elements, other.elements)) return false;
             if (!TestEquals(properties, other.properties)) return false;
@@ -191,8 +187,6 @@ namespace AcornSharp.Node
                 return true;
 
             if (!Equals(location, other.location)) return false;
-            if (!Equals(regex, other.regex)) return false;
-            if (!string.Equals(@operator, other.@operator)) return false;
             if (!string.Equals(raw, other.raw)) return false;
             if (!Equals(elements, other.elements)) return false;
             if (!Equals(properties, other.properties)) return false;
@@ -275,8 +269,6 @@ namespace AcornSharp.Node
             {
                 var hashCode = 0;
                 hashCode = (hashCode * 397) ^ (location != null ? location.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (regex != null ? regex.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (@operator != null ? @operator.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (raw != null ? raw.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (elements != null ? elements.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (properties != null ? properties.GetHashCode() : 0);

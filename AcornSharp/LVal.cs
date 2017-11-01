@@ -51,7 +51,7 @@ namespace AcornSharp
                         break;
 
                     case AssignmentExpressionNode assignmentExpression:
-                        if (assignmentExpression.@operator == "=")
+                        if (assignmentExpression.@operator == Operator.Assignment)
                         {
                             node = new AssignmentPatternNode(node.location)
                             {

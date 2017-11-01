@@ -15,7 +15,7 @@ namespace AcornSharp.Cli
                     {
                         expression = new AssignmentExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)))
                         {
-                            @operator = "**=",
+                            @operator = Operator.PowerAssignment,
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
                             right = new LiteralNode(new SourceLocation(new Position(1, 6, 6), new Position(1, 8, 8)))
                             {
@@ -40,7 +40,7 @@ namespace AcornSharp.Cli
                         expression = new BinaryExpressionNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6)))
                         {
                             left = new IdentifierNode(new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), "x"),
-                            @operator = "**",
+                            @operator = Operator.Power,
                             right = new IdentifierNode(new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), "y")
                         }
                     }
@@ -61,10 +61,10 @@ namespace AcornSharp.Cli
                     {
                         expression = new BinaryExpressionNode(default)
                         {
-                            @operator = "*",
+                            @operator = Operator.Multiplication,
                             left = new BinaryExpressionNode(default)
                             {
-                                @operator = "**",
+                                @operator = Operator.Power,
                                 left = new LiteralNode(default)
                                 {
                                     value = 3
@@ -94,14 +94,14 @@ namespace AcornSharp.Cli
                     {
                         expression = new BinaryExpressionNode(default)
                         {
-                            @operator = "%",
+                            @operator = Operator.Modulus,
                             left = new LiteralNode(default)
                             {
                                 value = 3
                             },
                             right = new BinaryExpressionNode(default)
                             {
-                                @operator = "**",
+                                @operator = Operator.Power,
                                 left = new LiteralNode(default)
                                 {
                                     value = 5
@@ -139,11 +139,11 @@ namespace AcornSharp.Cli
                         {
                             left = new UnaryExpressionNode(default)
                             {
-                                @operator = "-",
+                                @operator = Operator.Subtraction,
                                 prefix = true,
                                 argument = new IdentifierNode(default, "a")
                             },
-                            @operator = "*",
+                            @operator = Operator.Multiplication,
                             right = new LiteralNode(default)
                             {
                                 value = 5
@@ -164,14 +164,14 @@ namespace AcornSharp.Cli
                         {
                             left = new UnaryExpressionNode(default)
                             {
-                                @operator = "-",
+                                @operator = Operator.Subtraction,
                                 prefix = true,
                                 argument = new LiteralNode(default)
                                 {
                                     value = 5
                                 }
                             },
-                            @operator = "**",
+                            @operator = Operator.Power,
                             right = new IdentifierNode(default, "y")
                         }
                     }
@@ -191,11 +191,11 @@ namespace AcornSharp.Cli
                         {
                             left = new UpdateExpressionNode(default)
                             {
-                                @operator = "++",
+                                @operator = Operator.Increment,
                                 prefix = true,
                                 argument = new IdentifierNode(default, "a")
                             },
-                            @operator = "**",
+                            @operator = Operator.Power,
                             right = new LiteralNode(default)
                             {
                                 value = 2,
@@ -216,11 +216,11 @@ namespace AcornSharp.Cli
                         {
                             left = new UpdateExpressionNode(default)
                             {
-                                @operator = "--",
+                                @operator = Operator.Decrement,
                                 prefix = false,
                                 argument = new IdentifierNode(default, "a")
                             },
-                            @operator = "**",
+                            @operator = Operator.Power,
                             right = new LiteralNode(default)
                             {
                                 value = 2,
