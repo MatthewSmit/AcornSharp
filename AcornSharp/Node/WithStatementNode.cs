@@ -4,40 +4,12 @@ namespace AcornSharp.Node
 {
     public sealed class WithStatementNode : BaseNode
     {
+        public BaseNode @object;
+        public BaseNode body;
+
         public WithStatementNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
-        }
-
-        public WithStatementNode(SourceLocation location) :
-            base(location)
-        {
-        }
-
-        public override bool TestEquals(BaseNode other)
-        {
-            if (other is WithStatementNode realOther)
-            {
-                if (!base.TestEquals(other)) return false;
-                return true;
-            }
-            return false;
-        }
-
-        public override bool Equals(BaseNode other)
-        {
-            if (other is WithStatementNode realOther)
-            {
-                if (!base.Equals(other)) return false;
-                return true;
-            }
-            return false;
-        }
-
-        public override int GetHashCode()
-        {
-            var hashCode = base.GetHashCode();
-            return hashCode;
         }
     }
 }

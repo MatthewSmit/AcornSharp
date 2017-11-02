@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
+using JetBrains.Annotations;
 
 namespace AcornSharp
 {
@@ -178,7 +179,7 @@ namespace AcornSharp
         // maintains `context` and `exprAllowed`, and skips the space after
         // the token, so that the next one's `start` will point at the
         // right position.
-        private void finishToken(TokenType type, object val = null)
+        private void finishToken(TokenType type, [CanBeNull] object val = null)
         {
             end = curPosition();
             var prevType = this.type;
@@ -552,14 +553,16 @@ namespace AcornSharp
             finishToken(TokenType.num, val.Value);
         }
 
+        private static readonly Regex test89 = new Regex("[89]");
+
         // Read an integer, octal integer, or floating-point number.
         private void readNumber(bool startsWithDot)
         {
             var start = pos;
-            var isFloat = false;
-            var octal = input[pos.Index] == 48;
             if (!startsWithDot && readInt(10) == null) raise(start, "Invalid number");
-            if (octal && pos.Index == start.Index + 1) octal = false;
+            var octal = pos - start >= 2 && input.Get(start.Index) == 48;
+            if (octal && strict) raise(start, "Invalid number");
+            if (octal && test89.IsMatch(input.Substring(start.Index, pos - start))) octal = false;
             var next = input.Get(pos.Index);
 
             if (next == 46 && !octal)
@@ -567,7 +570,6 @@ namespace AcornSharp
                 // '.'
                 pos = pos.Increment(1);
                 readInt(10);
-                isFloat = true;
                 next = input.Get(pos.Index);
             }
 
@@ -578,20 +580,11 @@ namespace AcornSharp
                 next = input.Get(pos.Index);
                 if (next == 43 || next == 45) pos = pos.Increment(1);// '+-'
                 if (readInt(10) == null) raise(start, "Invalid number");
-                isFloat = true;
             }
             if (isIdentifierStart(fullCharCodeAtPos())) raise(pos, "Identifier directly after number");
 
             var str = input.Substring(start.Index, pos - start);
-            object val = null;
-            if (isFloat) val = double.Parse(str);
-            else if (!octal || str.Length == 1) val = parseInt(str, 10);
-            else if (strict)
-            {
-                raise(start, "Invalid number");
-            }
-            else if (Regex.IsMatch(str, "[89]")) val = parseInt(str, 10);
-            else val = parseInt(str, 8);
+            var val = octal ? parseInt(str, 8) : double.Parse(str);
             finishToken(TokenType.num, val);
         }
 
@@ -816,7 +809,7 @@ namespace AcornSharp
             }
         }
 
-        private static int parseInt(string str, int @base)
+        private static int parseInt([NotNull] string str, int @base)
         {
             if (@base > 10)
                 throw new NotImplementedException();
@@ -853,6 +846,7 @@ namespace AcornSharp
         //
         // Incrementally adds only escaped chars, adding other chunks as-is
         // as a micro-optimization.
+        [NotNull]
         private string readWord1()
         {
             containsEsc = false;

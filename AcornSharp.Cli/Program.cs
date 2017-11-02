@@ -9,13 +9,16 @@ namespace AcornSharp.Cli
         private static void Main()
         {
             var t0 = DateTime.Now;
-            Tests();
-            TestsHarmony();
-            TestsES7();
-            TestsAsyncAwait();
-            TestsTrailingCommasInFunc();
-            TestsTemplateLiteralRevision();
-            TestsDirective();
+            for (var i = 0; i < 100; i++)
+            {
+                Tests();
+                TestsHarmony();
+                TestsES7();
+                TestsAsyncAwait();
+                TestsTrailingCommasInFunc();
+                TestsTemplateLiteralRevision();
+                TestsDirective();
+            }
             var duration = DateTime.Now - t0;
             Console.WriteLine("Tests run in " + duration + "ms");
         }

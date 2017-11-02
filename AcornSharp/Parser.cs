@@ -51,26 +51,25 @@ namespace AcornSharp
         {
             Options = options = Options.getOptions(options);
             sourceFile = options.sourceFile;
-            keywords = keywordRegexp(options.ecmaVersion >= 6 ? ecmascript6Keywords : ecmascript5Keywords);
-            string reserved = null;
+            keywords = options.ecmaVersion >= 6 ? ecmascript6KeywordsRegex : ecmascript5KeywordsRegex;
+
             if (options.allowReserved == null || options.allowReserved is bool && (bool)options.allowReserved == false)
             {
+                var isModule = options.sourceType == SourceType.Module;
                 if (options.ecmaVersion < 3)
-                {
-                }
+                    (reservedWords, reservedWordsStrict, reservedWordsStrictBind) = isModule ? ecmascriptModuleNoReservedRegex : ecmascriptNoReservedRegex;
                 else if (options.ecmaVersion < 5)
-                    reserved = ecmascript3ReservedWords;
+                    (reservedWords, reservedWordsStrict, reservedWordsStrictBind) = isModule ? ecmascript3ModuleReservedRegex : ecmascript3ReservedRegex;
                 else if (options.ecmaVersion < 6)
-                    reserved = ecmascript5ReservedWords;
+                    (reservedWords, reservedWordsStrict, reservedWordsStrictBind) = isModule ? ecmascript5ModuleReservedRegex : ecmascript5ReservedRegex;
                 else
-                    reserved = ecmascript6ReservedWords;
-
-                if (options.sourceType == SourceType.Module) reserved += " await";
+                    (reservedWords, reservedWordsStrict, reservedWordsStrictBind) = isModule ? ecmascript6ModuleReservedRegex : ecmascript6ReservedRegex;
             }
-            reservedWords = keywordRegexp(reserved ?? "");
-            var reservedStrict = (reserved != null ? reserved + " " : "") + strictReservedWords;
-            reservedWordsStrict = keywordRegexp(reservedStrict);
-            reservedWordsStrictBind = keywordRegexp(reservedStrict + " " + strictBindReservedWords);
+            else
+            {
+                (reservedWords, reservedWordsStrict, reservedWordsStrictBind) = ecmascriptNoReservedRegex;
+            }
+
             this.input = input;
 
             // Used to signal to callers of `readWord1` whether the word
@@ -145,12 +144,6 @@ namespace AcornSharp
             nextToken();
             parseTopLevel(node);
             return node;
-        }
-
-        [NotNull]
-        private static Regex keywordRegexp([NotNull] string words)
-        {
-            return new Regex("^(?:" + string.Join('|', words.Split(' ')) + ")$");
         }
 
         public Options Options { get; }

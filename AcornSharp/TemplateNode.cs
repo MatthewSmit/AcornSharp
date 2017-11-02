@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace AcornSharp
 {
@@ -10,14 +11,14 @@ namespace AcornSharp
             Cooked = cooked;
         }
 
-        public bool Equals(TemplateNode other)
+        public bool Equals([CanBeNull] TemplateNode other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
             return string.Equals(Raw, other.Raw) && string.Equals(Cooked, other.Cooked);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals([CanBeNull] object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
@@ -33,12 +34,12 @@ namespace AcornSharp
             }
         }
 
-        public static bool operator ==(TemplateNode left, TemplateNode right)
+        public static bool operator ==([CanBeNull] TemplateNode left, [CanBeNull] TemplateNode right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(TemplateNode left, TemplateNode right)
+        public static bool operator !=([CanBeNull] TemplateNode left, [CanBeNull] TemplateNode right)
         {
             return !Equals(left, right);
         }

@@ -75,7 +75,7 @@ namespace AcornSharp
         // Object/class getters and setters are not allowed to clash —
         // either with each other or with an init property — and in
         // strict mode, init properties are also not allowed to be repeated.
-        private void checkPropClash([NotNull] BaseNode prop, IDictionary<string, Property> propHash)
+        private void checkPropClash([NotNull] PropertyNode prop, IDictionary<string, Property> propHash)
         {
             if (Options.ecmaVersion >= 6 && (prop.computed || prop.method || prop.shorthand))
                 return;
@@ -91,7 +91,7 @@ namespace AcornSharp
             {
                 return;
             }
-            var kind = prop.pkind;
+            var kind = prop.kind;
             if (Options.ecmaVersion >= 6)
             {
                 if (name == "__proto__" && kind == PropertyKind.Initialise)
@@ -757,7 +757,7 @@ namespace AcornSharp
 
         // Parse template expression.
         [NotNull]
-        private BaseNode parseTemplateElement(ref bool isTagged)
+        private TemplateElementNode parseTemplateElement(ref bool isTagged)
         {
             var startLoc = start;
             TemplateNode valueNode;
@@ -830,7 +830,7 @@ namespace AcornSharp
                 else first = false;
 
                 var prop = parseProperty(isPattern, refDestructuringErrors);
-                checkPropClash(prop, propHash);
+                if (!isPattern) checkPropClash(prop, propHash);
                 properties.Add(prop);
             }
             if (isPattern)
@@ -881,7 +881,7 @@ namespace AcornSharp
             return new PropertyNode(this, nodeStart, lastTokEnd)
             {
                 method = method,
-                pkind = kind,
+                kind = kind,
                 value = value,
                 shorthand = shorthand,
                 computed = computed,
@@ -983,7 +983,7 @@ namespace AcornSharp
 
         // Parse object or class method.
         [NotNull]
-        private BaseNode parseMethod(bool isGenerator, bool isAsync = false)
+        private FunctionExpressionNode parseMethod(bool isGenerator, bool isAsync = false)
         {
             var startLoc = start;
             var oldInGen = inGenerator;
@@ -1020,7 +1020,7 @@ namespace AcornSharp
                 generator = isGenerator,
                 async = isAsync,
                 parameters = parameters,
-                fbody = body,
+                body = body,
                 expression = expression
             };
         }
@@ -1057,7 +1057,7 @@ namespace AcornSharp
             {
                 async = isAsync,
                 parameters = parameters,
-                fbody = body,
+                body = body,
                 expression = expression
             };
         }

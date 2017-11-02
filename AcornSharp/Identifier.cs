@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using JetBrains.Annotations;
 
 namespace AcornSharp
 {
@@ -7,17 +8,55 @@ namespace AcornSharp
     {
         // Reserved word lists for various dialects of the language
 
-        private const string ecmascript3ReservedWords = "abstract boolean byte char class double enum export extends final float goto implements import int interface long native package private protected public short static super synchronized throws transient volatile";
-        private const string ecmascript5ReservedWords = "class enum extends super const export import";
+        private const string ecmascript3ReservedWords = "abstract|boolean|byte|char|class|double|enum|export|extends|final|float|goto|implements|import|int|interface|long|native|package|private|protected|public|short|static|super|synchronized|throws|transient|volatile";
+        private const string ecmascript5ReservedWords = "class|enum|extends|super|const|export|import";
         private const string ecmascript6ReservedWords = "enum";
 
-        private const string strictReservedWords = "implements interface let package private protected public static yield";
-        private const string strictBindReservedWords = "eval arguments";
+        private const string strictReservedWords = "implements|interface|let|package|private|protected|public|static|yield";
+        private const string strictBindReservedWords = "eval|arguments";
 
-        // And the keywords
-        private const string ecmascript5Keywords = "break case catch continue debugger default do else finally for function if return switch throw try var while with null true false instanceof typeof void delete new in this";
+        private static readonly Regex ecmascript5KeywordsRegex = new Regex("^(?:break|case|catch|continue|debugger|default|do|else|finally|for|function|if|return|switch|throw|try|var|while|with|null|true|false|instanceof|typeof|void|delete|new|in|this)$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        private static readonly Regex ecmascript6KeywordsRegex = new Regex("^(?:break|case|catch|continue|debugger|default|do|else|finally|for|function|if|return|switch|throw|try|var|while|with|null|true|false|instanceof|typeof|void|delete|new|in|this|const|class|extends|export|import|super)$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
-        private const string ecmascript6Keywords = ecmascript5Keywords + " const class extends export import super";
+        private static readonly (Regex, Regex, Regex) ecmascriptNoReservedRegex = (
+            new Regex("^(?:)$", RegexOptions.Compiled | RegexOptions.CultureInvariant),
+            new Regex("^(?:" + strictReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant),
+            new Regex("^(?:" + strictReservedWords + "|" + strictBindReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant));
+
+        private static readonly (Regex, Regex, Regex) ecmascriptModuleNoReservedRegex = (
+            new Regex("^(?:await)$", RegexOptions.Compiled | RegexOptions.CultureInvariant),
+            new Regex("^(?:await|" + strictReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant),
+            new Regex("^(?:await|" + strictReservedWords + "|" + strictBindReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant));
+
+        private static readonly (Regex, Regex, Regex) ecmascript3ReservedRegex = (
+            new Regex("^(?:" + ecmascript3ReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant),
+            new Regex("^(?:" + ecmascript3ReservedWords + "|" + strictReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant),
+            new Regex("^(?:" + ecmascript3ReservedWords + "|" + strictReservedWords + "|" + strictBindReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant));
+
+        private static readonly (Regex, Regex, Regex) ecmascript3ModuleReservedRegex = (
+            new Regex("^(?:" + ecmascript3ReservedWords + "|await)$", RegexOptions.Compiled | RegexOptions.CultureInvariant),
+            new Regex("^(?:" + ecmascript3ReservedWords + "|await|" + strictReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant),
+            new Regex("^(?:" + ecmascript3ReservedWords + "|await|" + strictReservedWords + "|" + strictBindReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant));
+
+        private static readonly (Regex, Regex, Regex) ecmascript5ReservedRegex = (
+            new Regex("^(?:" + ecmascript5ReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant),
+            new Regex("^(?:" + ecmascript5ReservedWords + "|" + strictReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant),
+            new Regex("^(?:" + ecmascript5ReservedWords + "|" + strictReservedWords + "|" + strictBindReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant));
+
+        private static readonly (Regex, Regex, Regex) ecmascript5ModuleReservedRegex = (
+            new Regex("^(?:" + ecmascript5ReservedWords + "|await)$", RegexOptions.Compiled | RegexOptions.CultureInvariant),
+            new Regex("^(?:" + ecmascript5ReservedWords + "|await|" + strictReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant),
+            new Regex("^(?:" + ecmascript5ReservedWords + "|await|" + strictReservedWords + "|" + strictBindReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant));
+
+        private static readonly (Regex, Regex, Regex) ecmascript6ReservedRegex = (
+            new Regex("^(?:" + ecmascript6ReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant),
+            new Regex("^(?:" + ecmascript6ReservedWords + "|" + strictReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant),
+            new Regex("^(?:" + ecmascript6ReservedWords + "|" + strictReservedWords + "|" + strictBindReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant));
+
+        private static readonly (Regex, Regex, Regex) ecmascript6ModuleReservedRegex = (
+            new Regex("^(?:" + ecmascript6ReservedWords + "|await)$", RegexOptions.Compiled | RegexOptions.CultureInvariant),
+            new Regex("^(?:" + ecmascript6ReservedWords + "|await|" + strictReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant),
+            new Regex("^(?:" + ecmascript6ReservedWords + "|await|" + strictReservedWords + "|" + strictBindReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant));
 
         // ## Character categories
 
@@ -52,7 +91,7 @@ namespace AcornSharp
         // This has a complexity linear to the value of the code. The
         // assumption is that looking up astral identifier characters is
         // rare.
-        private static bool isInAstralSet(int code, IReadOnlyList<int> set)
+        private static bool isInAstralSet(int code, [NotNull] IReadOnlyList<int> set)
         {
             var pos = 0x10000;
             for (var i = 0; i < set.Count; i += 2)

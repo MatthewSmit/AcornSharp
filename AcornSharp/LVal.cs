@@ -30,30 +30,29 @@ namespace AcornSharp
                     case ArrayPatternNode _:
                         break;
 
-                    case ObjectExpressionNode _:
-                        node = new ObjectPatternNode(node.location)
+                    case ObjectExpressionNode objectExpression:
+                        node = new ObjectPatternNode(this, node.location.Start, node.location.End)
                         {
-                            properties = node.properties
+                            properties = objectExpression.properties
                         };
-                        foreach (var prop in node.properties)
+                        foreach (var prop in objectExpression.properties)
                         {
-                            if (prop.pkind != PropertyKind.Initialise) raise(prop.key.location.Start, "Object pattern can't contain getter or setter");
-                            prop.value = toAssignable((BaseNode)prop.value, isBinding);
+                            if (prop.kind != PropertyKind.Initialise) raise(prop.key.location.Start, "Object pattern can't contain getter or setter");
+                            prop.value = toAssignable(prop.value, isBinding);
                         }
                         break;
 
-                    case ArrayExpressionNode _:
-                        node = new ArrayPatternNode(node.location)
+                    case ArrayExpressionNode arrayExpression:
+                        node = new ArrayPatternNode(this, node.location.Start, node.location.End)
                         {
-                            elements = node.elements
+                            elements = toAssignableList(arrayExpression.elements, isBinding)
                         };
-                        toAssignableList(node.elements, isBinding);
                         break;
 
                     case AssignmentExpressionNode assignmentExpression:
                         if (assignmentExpression.@operator == Operator.Assignment)
                         {
-                            node = new AssignmentPatternNode(node.location)
+                            node = new AssignmentPatternNode(this, node.location.Start, node.location.End)
                             {
                                 left = toAssignable(assignmentExpression.left, isBinding),
                                 right = assignmentExpression.right
@@ -90,22 +89,22 @@ namespace AcornSharp
             if (end != 0)
             {
                 var last = exprList[end - 1];
-                if (last != null && last is RestElementNode)
+                if (last is RestElementNode)
                 {
                     --end;
                 }
-                else if (last != null && last is SpreadElementNode)
+                else if (last is SpreadElementNode spreadElement)
                 {
-                    exprList[end - 1] = last = new RestElementNode(last.location)
+                    exprList[end - 1] = last = new RestElementNode(this, last.location.Start, last.location.End)
                     {
-                        argument = toAssignable(last.argument, isBinding)
+                        argument = toAssignable(spreadElement.argument, isBinding)
                     };
                     --end;
                 }
 
-                if (Options.ecmaVersion == 6 && isBinding && last != null && last is RestElementNode && !(last.argument is IdentifierNode))
+                if (Options.ecmaVersion == 6 && isBinding && last is RestElementNode restElementNode && !(restElementNode.argument is IdentifierNode))
                 {
-                    raise(last.argument.location.Start, "Unexpected token");
+                    raise(restElementNode.argument.location.Start, "Unexpected token");
                 }
             }
             for (var i = 0; i < end; i++)
@@ -242,10 +241,8 @@ namespace AcornSharp
                     }
                     if (bindingType != null && isBinding)
                     {
-                        if (
-                            bindingType == VariableKind.Var && !canDeclareVarName(identifierNode.name) ||
-                            bindingType != VariableKind.Var && !canDeclareLexicalName(identifierNode.name)
-                        )
+                        if (bindingType == VariableKind.Var && !canDeclareVarName(identifierNode.name) ||
+                            bindingType != VariableKind.Var && !canDeclareLexicalName(identifierNode.name))
                         {
                             raiseRecoverable(expr.location.Start, $"Identifier '{identifierNode.name}' has already been declared");
                         }
@@ -262,21 +259,26 @@ namespace AcornSharp
                 case MemberExpressionNode _:
                     if (bindingType != null) raiseRecoverable(expr.location.Start, "Binding" + " member expression");
                     break;
-                case ObjectPatternNode _:
-                    foreach (var prop in expr.properties)
-                        checkLVal((BaseNode)prop.value, isBinding, bindingType, checkClashes);
-                    break;
-                case ArrayPatternNode _:
-                    foreach (var elem in expr.elements)
+                case ObjectPatternNode objectPattern:
+                    foreach (var prop in objectPattern.properties)
                     {
-                        if (elem != null) checkLVal(elem, isBinding, bindingType, checkClashes);
+                        checkLVal(prop.value, isBinding, bindingType, checkClashes);
+                    }
+                    break;
+                case ArrayPatternNode arrayPattern:
+                    foreach (var elem in arrayPattern.elements)
+                    {
+                        if (elem != null)
+                        {
+                            checkLVal(elem, isBinding, bindingType, checkClashes);
+                        }
                     }
                     break;
                 case AssignmentPatternNode assignmentPattern:
                     checkLVal(assignmentPattern.left, isBinding, bindingType, checkClashes);
                     break;
-                case RestElementNode _:
-                    checkLVal(expr.argument, isBinding, bindingType, checkClashes);
+                case RestElementNode restElement:
+                    checkLVal(restElement.argument, isBinding, bindingType, checkClashes);
                     break;
                 case ParenthesisedExpressionNode parenthesisedExpressionNode:
                     checkLVal(parenthesisedExpressionNode.expression, isBinding, bindingType, checkClashes);
