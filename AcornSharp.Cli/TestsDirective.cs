@@ -3,15 +3,15 @@ using AcornSharp.Node;
 
 namespace AcornSharp.Cli
 {
-    internal static partial class Program
+    internal static partial class Tests
     {
-        private static void TestsDirective()
+        public static void TestsDirective()
         {
             //------------------------------------------------------------------------
             // No directives
             //------------------------------------------------------------------------
 
-            Test("foo", new TestNode
+            Program.Test("foo", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)),
@@ -24,7 +24,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 6 });
 
-            Test("function wrap() { foo }", new TestNode
+            Program.Test("function wrap() { foo }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
@@ -48,7 +48,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 6 });
 
-            Test("!function wrap() { foo }", new TestNode
+            Program.Test("!function wrap() { foo }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24)),
@@ -79,7 +79,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 6 });
 
-            Test("() => { foo }", new TestNode
+            Program.Test("() => { foo }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
@@ -106,7 +106,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 6 });
 
-            Test("100", new TestNode
+            Program.Test("100", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)),
@@ -122,7 +122,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 6 });
 
-            Test("\"use strict\" + 1", new TestNode
+            Program.Test("\"use strict\" + 1", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16)),
@@ -149,7 +149,7 @@ namespace AcornSharp.Cli
             // One directive
             //------------------------------------------------------------------------
 
-            Test("\"use strict\"\n foo", new TestNode
+            Program.Test("\"use strict\"\n foo", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 4, 17)),
@@ -169,7 +169,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 6 });
 
-            Test("'use strict'; foo", new TestNode
+            Program.Test("'use strict'; foo", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
@@ -189,7 +189,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 6 });
 
-            Test("function wrap() { \"use strict\"\n foo }", new TestNode
+            Program.Test("function wrap() { \"use strict\"\n foo }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 37)),
@@ -220,7 +220,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 6 });
 
-            Test("!function wrap() { \"use strict\"\n foo }", new TestNode
+            Program.Test("!function wrap() { \"use strict\"\n foo }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 38)),
@@ -258,7 +258,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 6 });
 
-            Test("() => { \"use strict\"\n foo }", new TestNode
+            Program.Test("() => { \"use strict\"\n foo }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 27)),
@@ -292,7 +292,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 6 });
 
-            Test("() => \"use strict\"", new TestNode
+            Program.Test("() => \"use strict\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
@@ -314,7 +314,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 6 });
 
-            Test("({ wrap() { \"use strict\"; foo } })", new TestNode
+            Program.Test("({ wrap() { \"use strict\"; foo } })", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34)),
@@ -360,7 +360,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 6 });
 
-            Test("(class { wrap() { \"use strict\"; foo } })", new TestNode
+            Program.Test("(class { wrap() { \"use strict\"; foo } })", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 40, 40)),
@@ -410,7 +410,7 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 6 });
 
             // Should not decode escape sequence.
-            Test("\"\\u0075se strict\"", new TestNode
+            Program.Test("\"\\u0075se strict\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
@@ -430,7 +430,7 @@ namespace AcornSharp.Cli
             // Two or more directives.
             //------------------------------------------------------------------------
 
-            Test("\"use asm\"; \"use strict\"; foo", new TestNode
+            Program.Test("\"use asm\"; \"use strict\"; foo", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28)),
@@ -457,7 +457,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 6 });
 
-            Test("function wrap() { \"use asm\"; \"use strict\"; foo }", new TestNode
+            Program.Test("function wrap() { \"use asm\"; \"use strict\"; foo }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 48, 48)),
@@ -499,7 +499,7 @@ namespace AcornSharp.Cli
             // One string after other expressions.
             //------------------------------------------------------------------------
 
-            Test("\"use strict\"; foo; \"use asm\"", new TestNode
+            Program.Test("\"use strict\"; foo; \"use asm\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28)),
@@ -526,7 +526,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 6 });
 
-            Test("function wrap() { \"use asm\"; foo; \"use strict\" }", new TestNode
+            Program.Test("function wrap() { \"use asm\"; foo; \"use strict\" }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 48, 48)),
@@ -568,7 +568,7 @@ namespace AcornSharp.Cli
             // One string in a block.
             //------------------------------------------------------------------------
 
-            Test("{ \"use strict\"; }", new TestNode
+            Program.Test("{ \"use strict\"; }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
@@ -589,7 +589,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 6 });
 
-            Test("function wrap() { { \"use strict\" } foo }", new TestNode
+            Program.Test("function wrap() { { \"use strict\" } foo }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 40, 40)),
@@ -629,7 +629,7 @@ namespace AcornSharp.Cli
             // One string with parentheses.
             //------------------------------------------------------------------------
 
-            Test("(\"use strict\"); foo", new TestNode
+            Program.Test("(\"use strict\"); foo", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
@@ -649,7 +649,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 6 });
 
-            Test("function wrap() { (\"use strict\"); foo }", new TestNode
+            Program.Test("function wrap() { (\"use strict\"); foo }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 39, 39)),
@@ -684,7 +684,7 @@ namespace AcornSharp.Cli
             // Complex cases such as the function in a default parameter.
             //------------------------------------------------------------------------
 
-            Test("function a() { \"use strict\" } \"use strict\"; foo", new TestNode
+            Program.Test("function a() { \"use strict\" } \"use strict\"; foo", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 47, 47)),
@@ -722,7 +722,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 6 });
 
-            Test("function a(a = function() { \"use strict\"; foo }) { \"use strict\" }", new TestNode
+            Program.Test("function a(a = function() { \"use strict\"; foo }) { \"use strict\" }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 65, 65)),
@@ -776,7 +776,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 6 });
 
-            Test("(a = () => { \"use strict\"; foo }) => { \"use strict\" }", new TestNode
+            Program.Test("(a = () => { \"use strict\"; foo }) => { \"use strict\" }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 53, 53)),

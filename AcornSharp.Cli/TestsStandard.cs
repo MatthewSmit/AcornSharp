@@ -1,14 +1,14 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using AcornSharp.Node;
 
 namespace AcornSharp.Cli
 {
-    internal static partial class Program
+    internal static partial class Tests
     {
-        private static void Tests()
+        public static void TestsStandard()
         {
-            Test("this\n", new TestNode
+            Program.Test("this\n", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 0, 5)),
@@ -25,9 +25,9 @@ namespace AcornSharp.Cli
                         location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
                     }
                 }
-            });
+            }, null);
 
-            Test("null\n", new TestNode
+            Program.Test("null\n", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 0, 5)),
@@ -45,9 +45,9 @@ namespace AcornSharp.Cli
                         location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
                     }
                 }
-            });
+            }, null);
 
-            Test("\n    42\n\n", new TestNode
+            Program.Test("\n    42\n\n", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -65,9 +65,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(4, 0, 9))
-            });
+            }, null);
 
-            Test("/foobar/", new TestNode
+            Program.Test("/foobar/", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -87,9 +87,9 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
+            }, null);
 
-            Test("/[a-z]/g", new TestNode
+            Program.Test("/[a-z]/g", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -109,9 +109,9 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
+            }, null);
 
-            Test("(1 + 2 ) * 3", new TestNode
+            Program.Test("(1 + 2 ) * 3", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -153,9 +153,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
-            });
+            }, null);
 
-            Test("(1 + 2 ) * 3", new TestNode
+            Program.Test("(1 + 2 ) * 3", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -207,7 +207,7 @@ namespace AcornSharp.Cli
                 preserveParens = true
             });
 
-            Test("(x = 23)", new TestNode
+            Program.Test("(x = 23)", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -235,7 +235,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options {preserveParens = true});
 
-            Test("x = []", new TestNode
+            Program.Test("x = []", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -260,9 +260,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("x = [ ]", new TestNode
+            Program.Test("x = [ ]", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -287,9 +287,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("x = [ 42 ]", new TestNode
+            Program.Test("x = [ 42 ]", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -322,9 +322,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
-            });
+            }, null);
 
-            Test("x = [ 42, ]", new TestNode
+            Program.Test("x = [ 42, ]", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -357,9 +357,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
-            });
+            }, null);
 
-            Test("x = [ ,, 42 ]", new TestNode
+            Program.Test("x = [ ,, 42 ]", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -394,9 +394,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
-            });
+            }, null);
 
-            Test("x = [ 1, 2, 3, ]", new TestNode
+            Program.Test("x = [ 1, 2, 3, ]", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -441,9 +441,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
-            });
+            }, null);
 
-            Test("x = [ 1, 2,, 3, ]", new TestNode
+            Program.Test("x = [ 1, 2,, 3, ]", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -489,9 +489,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
-            });
+            }, null);
 
-            Test("日本語 = []", new TestNode
+            Program.Test("日本語 = []", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -516,9 +516,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
-            });
+            }, null);
 
-            Test("T‿ = []", new TestNode
+            Program.Test("T‿ = []", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -543,9 +543,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("T‌ = []", new TestNode
+            Program.Test("T‌ = []", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -570,9 +570,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("T‍ = []", new TestNode
+            Program.Test("T‍ = []", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -597,9 +597,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("ⅣⅡ = []", new TestNode
+            Program.Test("ⅣⅡ = []", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -624,9 +624,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("ⅣⅡ = []", new TestNode
+            Program.Test("ⅣⅡ = []", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -651,9 +651,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("x = {}", new TestNode
+            Program.Test("x = {}", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -678,9 +678,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("x = { }", new TestNode
+            Program.Test("x = { }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -705,9 +705,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("x = { answer: 42 }", new TestNode
+            Program.Test("x = { answer: 42 }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -746,9 +746,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
-            });
+            }, null);
 
-            Test("x = { if: 42 }", new TestNode
+            Program.Test("x = { if: 42 }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -787,9 +787,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
-            });
+            }, null);
 
-            Test("x = { true: 42 }", new TestNode
+            Program.Test("x = { true: 42 }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -828,9 +828,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
-            });
+            }, null);
 
-            Test("x = { false: 42 }", new TestNode
+            Program.Test("x = { false: 42 }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -869,9 +869,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
-            });
+            }, null);
 
-            Test("x = { null: 42 }", new TestNode
+            Program.Test("x = { null: 42 }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -910,9 +910,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
-            });
+            }, null);
 
-            Test("x = { \"answer\": 42 }", new TestNode
+            Program.Test("x = { \"answer\": 42 }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -956,9 +956,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
-            });
+            }, null);
 
-            Test("x = { x: 1, x: 2 }", new TestNode
+            Program.Test("x = { x: 1, x: 2 }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1009,9 +1009,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
-            });
+            }, null);
 
-            Test("x = { get width() { return m_width } }", new TestNode
+            Program.Test("x = { get width() { return m_width } }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1065,9 +1065,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
-            });
+            }, null);
 
-            Test("x = { get undef() {} }", new TestNode
+            Program.Test("x = { get undef() {} }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1113,9 +1113,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
-            });
+            }, null);
 
-            Test("x = { get if() {} }", new TestNode
+            Program.Test("x = { get if() {} }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1161,9 +1161,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
-            });
+            }, null);
 
-            Test("x = { get true() {} }", new TestNode
+            Program.Test("x = { get true() {} }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1209,9 +1209,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21))
-            });
+            }, null);
 
-            Test("x = { get false() {} }", new TestNode
+            Program.Test("x = { get false() {} }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1257,9 +1257,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
-            });
+            }, null);
 
-            Test("x = { get null() {} }", new TestNode
+            Program.Test("x = { get null() {} }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1305,9 +1305,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21))
-            });
+            }, null);
 
-            Test("x = { get \"undef\"() {} }", new TestNode
+            Program.Test("x = { get \"undef\"() {} }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1358,9 +1358,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
-            });
+            }, null);
 
-            Test("x = { get 10() {} }", new TestNode
+            Program.Test("x = { get 10() {} }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1411,9 +1411,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
-            });
+            }, null);
 
-            Test("x = { set width(w) { m_width = w } }", new TestNode
+            Program.Test("x = { set width(w) { m_width = w } }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1477,9 +1477,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 36, 36))
-            });
+            }, null);
 
-            Test("x = { set if(w) { m_if = w } }", new TestNode
+            Program.Test("x = { set if(w) { m_if = w } }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1543,9 +1543,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
-            });
+            }, null);
 
-            Test("x = { set true(w) { m_true = w } }", new TestNode
+            Program.Test("x = { set true(w) { m_true = w } }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1609,9 +1609,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
-            });
+            }, null);
 
-            Test("x = { set false(w) { m_false = w } }", new TestNode
+            Program.Test("x = { set false(w) { m_false = w } }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1675,9 +1675,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 36, 36))
-            });
+            }, null);
 
-            Test("x = { set null(w) { m_null = w } }", new TestNode
+            Program.Test("x = { set null(w) { m_null = w } }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1741,9 +1741,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
-            });
+            }, null);
 
-            Test("x = { set \"null\"(w) { m_null = w } }", new TestNode
+            Program.Test("x = { set \"null\"(w) { m_null = w } }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1812,9 +1812,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 36, 36))
-            });
+            }, null);
 
-            Test("x = { set 10(w) { m_null = w } }", new TestNode
+            Program.Test("x = { set 10(w) { m_null = w } }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1883,9 +1883,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32))
-            });
+            }, null);
 
-            Test("x = { get: 42 }", new TestNode
+            Program.Test("x = { get: 42 }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1924,9 +1924,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
-            });
+            }, null);
 
-            Test("x = { set: 43 }", new TestNode
+            Program.Test("x = { set: 43 }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1965,9 +1965,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
-            });
+            }, null);
 
-            Test("/* block comment */ 42", new TestNode
+            Program.Test("/* block comment */ 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1985,9 +1985,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
-            });
+            }, null);
 
-            Test("42 /*The*/ /*Answer*/", new TestNode
+            Program.Test("42 /*The*/ /*Answer*/", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2005,9 +2005,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21))
-            });
+            }, null);
 
-            Test("42 /*the*/ /*answer*/", new TestNode
+            Program.Test("42 /*the*/ /*answer*/", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2025,9 +2025,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21))
-            });
+            }, null);
 
-            Test("/* multiline\ncomment\nshould\nbe\nignored */ 42", new TestNode
+            Program.Test("/* multiline\ncomment\nshould\nbe\nignored */ 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2045,9 +2045,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(5, 13, 44))
-            });
+            }, null);
 
-            Test("/*a\r\nb*/ 42", new TestNode
+            Program.Test("/*a\r\nb*/ 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2065,9 +2065,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 11))
-            });
+            }, null);
 
-            Test("/*a\rb*/ 42", new TestNode
+            Program.Test("/*a\rb*/ 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2085,9 +2085,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 10))
-            });
+            }, null);
 
-            Test("/*a\nb*/ 42", new TestNode
+            Program.Test("/*a\nb*/ 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2105,9 +2105,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 10))
-            });
+            }, null);
 
-            Test("/*a\nc*/ 42", new TestNode
+            Program.Test("/*a\nc*/ 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2125,9 +2125,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 10))
-            });
+            }, null);
 
-            Test("// line comment\n42", new TestNode
+            Program.Test("// line comment\n42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2145,9 +2145,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 2, 18))
-            });
+            }, null);
 
-            Test("42 // line comment", new TestNode
+            Program.Test("42 // line comment", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2165,9 +2165,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
-            });
+            }, null);
 
-            Test("// Hello, world!\n42", new TestNode
+            Program.Test("// Hello, world!\n42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2185,23 +2185,23 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 2, 19))
-            });
+            }, null);
 
-            Test("// Hello, world!\n", new TestNode
+            Program.Test("// Hello, world!\n", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>(),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 0, 17))
-            });
+            }, null);
 
-            Test("// Hallo, world!\n", new TestNode
+            Program.Test("// Hallo, world!\n", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>(),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 0, 17))
-            });
+            }, null);
 
-            Test("//\n42", new TestNode
+            Program.Test("//\n42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2219,23 +2219,23 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 2, 5))
-            });
+            }, null);
 
-            Test("//", new TestNode
+            Program.Test("//", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>(),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
-            });
+            }, null);
 
-            Test("// ", new TestNode
+            Program.Test("// ", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>(),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
-            });
+            }, null);
 
-            Test("/**/42", new TestNode
+            Program.Test("/**/42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2253,9 +2253,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("// Hello, world!\n\n//   Another hello\n42", new TestNode
+            Program.Test("// Hello, world!\n\n//   Another hello\n42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2273,9 +2273,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(4, 2, 39))
-            });
+            }, null);
 
-            Test("if (x) { // Some comment\ndoThat(); }", new TestNode
+            Program.Test("if (x) { // Some comment\ndoThat(); }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2309,9 +2309,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 11, 36))
-            });
+            }, null);
 
-            Test("switch (answer) { case 42: /* perfect */ bingo() }", new TestNode
+            Program.Test("switch (answer) { case 42: /* perfect */ bingo() }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2353,9 +2353,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 50, 50))
-            });
+            }, null);
 
-            Test("0", new TestNode
+            Program.Test("0", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2373,9 +2373,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-            });
+            }, null);
 
-            Test("3", new TestNode
+            Program.Test("3", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2393,9 +2393,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-            });
+            }, null);
 
-            Test("5", new TestNode
+            Program.Test("5", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2413,9 +2413,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-            });
+            }, null);
 
-            Test("42", new TestNode
+            Program.Test("42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2433,9 +2433,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
-            });
+            }, null);
 
-            Test(".14", new TestNode
+            Program.Test(".14", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2453,9 +2453,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
-            });
+            }, null);
 
-            Test("3.14159", new TestNode
+            Program.Test("3.14159", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2473,9 +2473,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("6.02214179e+23", new TestNode
+            Program.Test("6.02214179e+23", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2493,9 +2493,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
-            });
+            }, null);
 
-            Test("1.492417830e-10", new TestNode
+            Program.Test("1.492417830e-10", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2513,9 +2513,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
-            });
+            }, null);
 
-            Test("0x0", new TestNode
+            Program.Test("0x0", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2533,9 +2533,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
-            });
+            }, null);
 
-            Test("0e+100", new TestNode
+            Program.Test("0e+100", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2553,9 +2553,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("0xabc", new TestNode
+            Program.Test("0xabc", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2573,9 +2573,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
-            });
+            }, null);
 
-            Test("0xdef", new TestNode
+            Program.Test("0xdef", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2593,9 +2593,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
-            });
+            }, null);
 
-            Test("0X1A", new TestNode
+            Program.Test("0X1A", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2613,9 +2613,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
-            });
+            }, null);
 
-            Test("0x10", new TestNode
+            Program.Test("0x10", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2633,9 +2633,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
-            });
+            }, null);
 
-            Test("0x100", new TestNode
+            Program.Test("0x100", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2653,9 +2653,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
-            });
+            }, null);
 
-            Test("0X04", new TestNode
+            Program.Test("0X04", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2673,9 +2673,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
-            });
+            }, null);
 
-            Test("02", new TestNode
+            Program.Test("02", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2693,9 +2693,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
-            });
+            }, null);
 
-            Test("012", new TestNode
+            Program.Test("012", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2713,9 +2713,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
-            });
+            }, null);
 
-            Test("0012", new TestNode
+            Program.Test("0012", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2733,9 +2733,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
-            });
+            }, null);
 
-            Test("\"Hello\"", new TestNode
+            Program.Test("\"Hello\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2753,9 +2753,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("\"\\n\\r\\t\\v\\b\\f\\\\\\'\\\"\\0\"", new TestNode
+            Program.Test("\"\\n\\r\\t\\v\\b\\f\\\\\\'\\\"\\0\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2773,9 +2773,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
-            });
+            }, null);
 
-            Test("\"\\u0061\"", new TestNode
+            Program.Test("\"\\u0061\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2793,9 +2793,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
-            });
+            }, null);
 
-            Test("\"\\x61\"", new TestNode
+            Program.Test("\"\\x61\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2813,9 +2813,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("\"Hello\\nworld\"", new TestNode
+            Program.Test("\"Hello\\nworld\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2833,9 +2833,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
-            });
+            }, null);
 
-            Test("\"Hello\\\nworld\"", new TestNode
+            Program.Test("\"Hello\\\nworld\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2853,9 +2853,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 14))
-            });
+            }, null);
 
-            Test("\"Hello\\02World\"", new TestNode
+            Program.Test("\"Hello\\02World\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2873,9 +2873,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
-            });
+            }, null);
 
-            Test("\"Hello\\012World\"", new TestNode
+            Program.Test("\"Hello\\012World\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2893,9 +2893,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
-            });
+            }, null);
 
-            Test("\"Hello\\122World\"", new TestNode
+            Program.Test("\"Hello\\122World\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2913,9 +2913,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
-            });
+            }, null);
 
-            Test("\"Hello\\0122World\"", new TestNode
+            Program.Test("\"Hello\\0122World\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2933,9 +2933,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
-            });
+            }, null);
 
-            Test("\"Hello\\312World\"", new TestNode
+            Program.Test("\"Hello\\312World\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2953,9 +2953,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
-            });
+            }, null);
 
-            Test("\"Hello\\412World\"", new TestNode
+            Program.Test("\"Hello\\412World\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2973,9 +2973,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
-            });
+            }, null);
 
-            Test("\"Hello\\812World\"", new TestNode
+            Program.Test("\"Hello\\812World\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -2993,9 +2993,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
-            });
+            }, null);
 
-            Test("\"Hello\\712World\"", new TestNode
+            Program.Test("\"Hello\\712World\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3013,9 +3013,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
-            });
+            }, null);
 
-            Test("\"Hello\\0World\"", new TestNode
+            Program.Test("\"Hello\\0World\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3033,9 +3033,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
-            });
+            }, null);
 
-            Test("\"Hello\\\r\nworld\"", new TestNode
+            Program.Test("\"Hello\\\r\nworld\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3053,9 +3053,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 15))
-            });
+            }, null);
 
-            Test("\"Hello\\1World\"", new TestNode
+            Program.Test("\"Hello\\1World\"", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3073,9 +3073,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
-            });
+            }, null);
 
-            Test("var x = /[a-z]/i", new TestNode
+            Program.Test("var x = /[a-z]/i", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3102,9 +3102,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
-            });
+            }, null);
 
-            Test("var x = /[x-z]/i", new TestNode
+            Program.Test("var x = /[x-z]/i", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3131,9 +3131,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
-            });
+            }, null);
 
-            Test("var x = /[a-c]/i", new TestNode
+            Program.Test("var x = /[a-c]/i", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3160,9 +3160,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
-            });
+            }, null);
 
-            Test("var x = /[P QR]/i", new TestNode
+            Program.Test("var x = /[P QR]/i", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3189,9 +3189,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
-            });
+            }, null);
 
-            Test("var x = /foo\\/bar/", new TestNode
+            Program.Test("var x = /foo\\/bar/", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3218,9 +3218,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
-            });
+            }, null);
 
-            Test("var x = /=([^=\\s])+/g", new TestNode
+            Program.Test("var x = /=([^=\\s])+/g", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3247,9 +3247,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21))
-            });
+            }, null);
 
-            Test("var x = /[P QR]/\\u0067", new TestNode
+            Program.Test("var x = /[P QR]/\\u0067", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3276,9 +3276,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
-            });
+            }, null);
 
-            Test("new Button", new TestNode
+            Program.Test("new Button", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3297,9 +3297,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
-            });
+            }, null);
 
-            Test("new Button()", new TestNode
+            Program.Test("new Button()", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3318,9 +3318,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
-            });
+            }, null);
 
-            Test("new new foo", new TestNode
+            Program.Test("new new foo", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3345,9 +3345,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
-            });
+            }, null);
 
-            Test("new new foo()", new TestNode
+            Program.Test("new new foo()", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3372,9 +3372,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
-            });
+            }, null);
 
-            Test("new foo().bar()", new TestNode
+            Program.Test("new foo().bar()", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3406,9 +3406,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15))
-            });
+            }, null);
 
-            Test("new foo[bar]", new TestNode
+            Program.Test("new foo[bar]", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3434,9 +3434,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
-            });
+            }, null);
 
-            Test("new foo.bar()", new TestNode
+            Program.Test("new foo.bar()", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3462,9 +3462,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
-            });
+            }, null);
 
-            Test("( new foo).bar()", new TestNode
+            Program.Test("( new foo).bar()", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3496,9 +3496,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16))
-            });
+            }, null);
 
-            Test("foo(bar, baz)", new TestNode
+            Program.Test("foo(bar, baz)", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3521,9 +3521,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
-            });
+            }, null);
 
-            Test("(    foo  )()", new TestNode
+            Program.Test("(    foo  )()", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3542,9 +3542,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
-            });
+            }, null);
 
-            Test("universe.milkyway", new TestNode
+            Program.Test("universe.milkyway", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3564,9 +3564,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
-            });
+            }, null);
 
-            Test("universe.milkyway.solarsystem", new TestNode
+            Program.Test("universe.milkyway.solarsystem", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3593,9 +3593,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
-            });
+            }, null);
 
-            Test("universe.milkyway.solarsystem.Earth", new TestNode
+            Program.Test("universe.milkyway.solarsystem.Earth", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3629,9 +3629,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35))
-            });
+            }, null);
 
-            Test("universe[galaxyName, otherUselessName]", new TestNode
+            Program.Test("universe[galaxyName, otherUselessName]", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3660,9 +3660,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
-            });
+            }, null);
 
-            Test("universe[galaxyName]", new TestNode
+            Program.Test("universe[galaxyName]", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3682,9 +3682,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
-            });
+            }, null);
 
-            Test("universe[42].galaxies", new TestNode
+            Program.Test("universe[42].galaxies", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3716,9 +3716,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21))
-            });
+            }, null);
 
-            Test("universe(42).galaxies", new TestNode
+            Program.Test("universe(42).galaxies", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3752,9 +3752,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21))
-            });
+            }, null);
 
-            Test("universe(42).galaxies(14, 3, 77).milkyway", new TestNode
+            Program.Test("universe(42).galaxies(14, 3, 77).milkyway", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3821,9 +3821,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 41, 41))
-            });
+            }, null);
 
-            Test("earth.asia.Indonesia.prepareForElection(2014)", new TestNode
+            Program.Test("earth.asia.Indonesia.prepareForElection(2014)", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3871,9 +3871,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 45, 45))
-            });
+            }, null);
 
-            Test("universe.if", new TestNode
+            Program.Test("universe.if", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3893,9 +3893,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
-            });
+            }, null);
 
-            Test("universe.true", new TestNode
+            Program.Test("universe.true", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3915,9 +3915,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
-            });
+            }, null);
 
-            Test("universe.false", new TestNode
+            Program.Test("universe.false", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3937,9 +3937,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
-            });
+            }, null);
 
-            Test("universe.null", new TestNode
+            Program.Test("universe.null", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3959,9 +3959,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
-            });
+            }, null);
 
-            Test("x++", new TestNode
+            Program.Test("x++", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -3981,9 +3981,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
-            });
+            }, null);
 
-            Test("x--", new TestNode
+            Program.Test("x--", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4003,9 +4003,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
-            });
+            }, null);
 
-            Test("eval++", new TestNode
+            Program.Test("eval++", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4025,9 +4025,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("eval--", new TestNode
+            Program.Test("eval--", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4047,9 +4047,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("arguments++", new TestNode
+            Program.Test("arguments++", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4069,9 +4069,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
-            });
+            }, null);
 
-            Test("arguments--", new TestNode
+            Program.Test("arguments--", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4091,9 +4091,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
-            });
+            }, null);
 
-            Test("++x", new TestNode
+            Program.Test("++x", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4113,9 +4113,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
-            });
+            }, null);
 
-            Test("--x", new TestNode
+            Program.Test("--x", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4135,9 +4135,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
-            });
+            }, null);
 
-            Test("++eval", new TestNode
+            Program.Test("++eval", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4157,9 +4157,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("--eval", new TestNode
+            Program.Test("--eval", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4179,9 +4179,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("++arguments", new TestNode
+            Program.Test("++arguments", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4201,9 +4201,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
-            });
+            }, null);
 
-            Test("--arguments", new TestNode
+            Program.Test("--arguments", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4223,9 +4223,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
-            });
+            }, null);
 
-            Test("+x", new TestNode
+            Program.Test("+x", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4245,9 +4245,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
-            });
+            }, null);
 
-            Test("-x", new TestNode
+            Program.Test("-x", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4267,9 +4267,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
-            });
+            }, null);
 
-            Test("~x", new TestNode
+            Program.Test("~x", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4289,9 +4289,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
-            });
+            }, null);
 
-            Test("!x", new TestNode
+            Program.Test("!x", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4311,9 +4311,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
-            });
+            }, null);
 
-            Test("void x", new TestNode
+            Program.Test("void x", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4333,9 +4333,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("delete x", new TestNode
+            Program.Test("delete x", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4355,9 +4355,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
-            });
+            }, null);
 
-            Test("typeof x", new TestNode
+            Program.Test("typeof x", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4377,9 +4377,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
-            });
+            }, null);
 
-            Test("x * y", new TestNode
+            Program.Test("x * y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4399,9 +4399,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
-            });
+            }, null);
 
-            Test("x / y", new TestNode
+            Program.Test("x / y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4421,9 +4421,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
-            });
+            }, null);
 
-            Test("x % y", new TestNode
+            Program.Test("x % y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4443,9 +4443,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
-            });
+            }, null);
 
-            Test("x + y", new TestNode
+            Program.Test("x + y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4465,9 +4465,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
-            });
+            }, null);
 
-            Test("x - y", new TestNode
+            Program.Test("x - y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4487,9 +4487,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
-            });
+            }, null);
 
-            Test("x << y", new TestNode
+            Program.Test("x << y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4509,9 +4509,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("x >> y", new TestNode
+            Program.Test("x >> y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4531,9 +4531,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("x >>> y", new TestNode
+            Program.Test("x >>> y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4553,9 +4553,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("x < y", new TestNode
+            Program.Test("x < y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4575,9 +4575,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
-            });
+            }, null);
 
-            Test("x > y", new TestNode
+            Program.Test("x > y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4597,9 +4597,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
-            });
+            }, null);
 
-            Test("x <= y", new TestNode
+            Program.Test("x <= y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4619,9 +4619,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("x >= y", new TestNode
+            Program.Test("x >= y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4641,9 +4641,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("x in y", new TestNode
+            Program.Test("x in y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4663,9 +4663,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("x instanceof y", new TestNode
+            Program.Test("x instanceof y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4685,9 +4685,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
-            });
+            }, null);
 
-            Test("x < y < z", new TestNode
+            Program.Test("x < y < z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4714,9 +4714,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x == y", new TestNode
+            Program.Test("x == y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4736,9 +4736,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("x != y", new TestNode
+            Program.Test("x != y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4758,9 +4758,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("x === y", new TestNode
+            Program.Test("x === y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4780,9 +4780,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("x !== y", new TestNode
+            Program.Test("x !== y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4802,9 +4802,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("x & y", new TestNode
+            Program.Test("x & y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4824,9 +4824,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
-            });
+            }, null);
 
-            Test("x ^ y", new TestNode
+            Program.Test("x ^ y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4846,9 +4846,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
-            });
+            }, null);
 
-            Test("x | y", new TestNode
+            Program.Test("x | y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4868,9 +4868,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
-            });
+            }, null);
 
-            Test("x + y + z", new TestNode
+            Program.Test("x + y + z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4897,9 +4897,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x - y + z", new TestNode
+            Program.Test("x - y + z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4926,9 +4926,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x + y - z", new TestNode
+            Program.Test("x + y - z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4955,9 +4955,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x - y - z", new TestNode
+            Program.Test("x - y - z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -4984,9 +4984,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x + y * z", new TestNode
+            Program.Test("x + y * z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5013,9 +5013,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x + y / z", new TestNode
+            Program.Test("x + y / z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5042,9 +5042,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x - y % z", new TestNode
+            Program.Test("x - y % z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5071,9 +5071,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x * y * z", new TestNode
+            Program.Test("x * y * z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5100,9 +5100,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x * y / z", new TestNode
+            Program.Test("x * y / z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5129,9 +5129,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x * y % z", new TestNode
+            Program.Test("x * y % z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5158,9 +5158,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x % y * z", new TestNode
+            Program.Test("x % y * z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5187,9 +5187,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x << y << z", new TestNode
+            Program.Test("x << y << z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5216,9 +5216,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
-            });
+            }, null);
 
-            Test("x | y | z", new TestNode
+            Program.Test("x | y | z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5245,9 +5245,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x & y & z", new TestNode
+            Program.Test("x & y & z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5274,9 +5274,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x ^ y ^ z", new TestNode
+            Program.Test("x ^ y ^ z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5303,9 +5303,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x & y | z", new TestNode
+            Program.Test("x & y | z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5332,9 +5332,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x | y ^ z", new TestNode
+            Program.Test("x | y ^ z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5361,9 +5361,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x | y & z", new TestNode
+            Program.Test("x | y & z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5390,9 +5390,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x || y", new TestNode
+            Program.Test("x || y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5412,9 +5412,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("x && y", new TestNode
+            Program.Test("x && y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5434,9 +5434,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("x || y || z", new TestNode
+            Program.Test("x || y || z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5463,9 +5463,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
-            });
+            }, null);
 
-            Test("x && y && z", new TestNode
+            Program.Test("x && y && z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5492,9 +5492,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
-            });
+            }, null);
 
-            Test("x || y && z", new TestNode
+            Program.Test("x || y && z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5521,9 +5521,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
-            });
+            }, null);
 
-            Test("x || y ^ z", new TestNode
+            Program.Test("x || y ^ z", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5550,9 +5550,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
-            });
+            }, null);
 
-            Test("y ? 1 : 2", new TestNode
+            Program.Test("y ? 1 : 2", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5582,9 +5582,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x && y ? 1 : 2", new TestNode
+            Program.Test("x && y ? 1 : 2", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5621,9 +5621,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
-            });
+            }, null);
 
-            Test("x = 42", new TestNode
+            Program.Test("x = 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5648,9 +5648,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("eval = 42", new TestNode
+            Program.Test("eval = 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5675,9 +5675,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("arguments = 42", new TestNode
+            Program.Test("arguments = 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5702,9 +5702,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
-            });
+            }, null);
 
-            Test("x *= 42", new TestNode
+            Program.Test("x *= 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5729,9 +5729,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("x /= 42", new TestNode
+            Program.Test("x /= 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5756,9 +5756,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("x %= 42", new TestNode
+            Program.Test("x %= 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5783,9 +5783,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("x += 42", new TestNode
+            Program.Test("x += 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5810,9 +5810,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("x -= 42", new TestNode
+            Program.Test("x -= 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5837,9 +5837,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("x <<= 42", new TestNode
+            Program.Test("x <<= 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5864,9 +5864,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
-            });
+            }, null);
 
-            Test("x >>= 42", new TestNode
+            Program.Test("x >>= 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5891,9 +5891,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
-            });
+            }, null);
 
-            Test("x >>>= 42", new TestNode
+            Program.Test("x >>>= 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5918,9 +5918,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("x &= 42", new TestNode
+            Program.Test("x &= 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5945,9 +5945,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("x ^= 42", new TestNode
+            Program.Test("x ^= 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5972,9 +5972,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("x |= 42", new TestNode
+            Program.Test("x |= 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -5999,9 +5999,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("{ foo }", new TestNode
+            Program.Test("{ foo }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6022,9 +6022,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("{ doThis(); doThat(); }", new TestNode
+            Program.Test("{ doThis(); doThat(); }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6063,9 +6063,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
-            });
+            }, null);
 
-            Test("{}", new TestNode
+            Program.Test("{}", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6078,9 +6078,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
-            });
+            }, null);
 
-            Test("var x", new TestNode
+            Program.Test("var x", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6103,9 +6103,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
-            });
+            }, null);
 
-            Test("var await", new TestNode
+            Program.Test("var await", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6128,9 +6128,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("var x, y;", new TestNode
+            Program.Test("var x, y;", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6160,9 +6160,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("var x = 42", new TestNode
+            Program.Test("var x = 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6190,9 +6190,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
-            });
+            }, null);
 
-            Test("var eval = 42, arguments = 42", new TestNode
+            Program.Test("var eval = 42, arguments = 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6232,9 +6232,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
-            });
+            }, null);
 
-            Test("var x = 14, y = 3, z = 1977", new TestNode
+            Program.Test("var x = 14, y = 3, z = 1977", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6286,9 +6286,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
-            });
+            }, null);
 
-            Test("var implements, interface, package", new TestNode
+            Program.Test("var implements, interface, package", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6325,9 +6325,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
-            });
+            }, null);
 
-            Test("var private, protected, public, static", new TestNode
+            Program.Test("var private, protected, public, static", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6371,9 +6371,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
-            });
+            }, null);
 
-            Test(";", new TestNode
+            Program.Test(";", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6385,9 +6385,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-            });
+            }, null);
 
-            Test("x", new TestNode
+            Program.Test("x", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6400,9 +6400,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1))
-            });
+            }, null);
 
-            Test("x, y", new TestNode
+            Program.Test("x, y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6424,9 +6424,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4))
-            });
+            }, null);
 
-            Test("\\u0061", new TestNode
+            Program.Test("\\u0061", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6439,9 +6439,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
-            });
+            }, null);
 
-            Test("a\\u0061", new TestNode
+            Program.Test("a\\u0061", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6454,9 +6454,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7))
-            });
+            }, null);
 
-            Test("if (morning) goodMorning()", new TestNode
+            Program.Test("if (morning) goodMorning()", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6482,9 +6482,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
-            });
+            }, null);
 
-            Test("if (morning) (function(){})", new TestNode
+            Program.Test("if (morning) (function(){})", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6516,9 +6516,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
-            });
+            }, null);
 
-            Test("if (morning) var x = 0;", new TestNode
+            Program.Test("if (morning) var x = 0;", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6553,9 +6553,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
-            });
+            }, null);
 
-            Test("if (morning) function a(){}", new TestNode
+            Program.Test("if (morning) function a(){}", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6582,9 +6582,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
-            });
+            }, null);
 
-            Test("if (morning) goodMorning(); else goodDay()", new TestNode
+            Program.Test("if (morning) goodMorning(); else goodDay()", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6621,9 +6621,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 42, 42))
-            });
+            }, null);
 
-            Test("do keep(); while (true)", new TestNode
+            Program.Test("do keep(); while (true)", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6653,9 +6653,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
-            });
+            }, null);
 
-            Test("do keep(); while (true);", new TestNode
+            Program.Test("do keep(); while (true);", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6685,9 +6685,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
-            });
+            }, null);
 
-            Test("do { x++; y--; } while (x < 10)", new TestNode
+            Program.Test("do { x++; y--; } while (x < 10)", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6746,9 +6746,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
-            });
+            }, null);
 
-            Test("{ do { } while (false);false }", new TestNode
+            Program.Test("{ do { } while (false);false }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6791,9 +6791,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
-            });
+            }, null);
 
-            Test("while (true) doSomething()", new TestNode
+            Program.Test("while (true) doSomething()", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6823,9 +6823,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
-            });
+            }, null);
 
-            Test("while (x < 10) { x++; y--; }", new TestNode
+            Program.Test("while (x < 10) { x++; y--; }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6884,9 +6884,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
-            });
+            }, null);
 
-            Test("for(;;);", new TestNode
+            Program.Test("for(;;);", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6906,9 +6906,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
-            });
+            }, null);
 
-            Test("for(;;){}", new TestNode
+            Program.Test("for(;;){}", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6929,9 +6929,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("for(x = 0;;);", new TestNode
+            Program.Test("for(x = 0;;);", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -6963,9 +6963,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
-            });
+            }, null);
 
-            Test("for(var x = 0;;);", new TestNode
+            Program.Test("for(var x = 0;;);", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7005,9 +7005,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
-            });
+            }, null);
 
-            Test("for(var x = 0, y = 1;;);", new TestNode
+            Program.Test("for(var x = 0, y = 1;;);", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7059,9 +7059,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
-            });
+            }, null);
 
-            Test("for(x = 0; x < 42;);", new TestNode
+            Program.Test("for(x = 0; x < 42;);", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7105,9 +7105,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
-            });
+            }, null);
 
-            Test("for(x = 0; x < 42; x++);", new TestNode
+            Program.Test("for(x = 0; x < 42; x++);", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7158,9 +7158,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
-            });
+            }, null);
 
-            Test("for(x = 0; x < 42; x++) process(x);", new TestNode
+            Program.Test("for(x = 0; x < 42; x++) process(x);", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7221,9 +7221,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35))
-            });
+            }, null);
 
-            Test("for(x in list) process(x);", new TestNode
+            Program.Test("for(x in list) process(x);", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7252,9 +7252,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
-            });
+            }, null);
 
-            Test("for (var x in list) process(x);", new TestNode
+            Program.Test("for (var x in list) process(x);", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7298,9 +7298,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
-            });
+            }, null);
 
-            Test("for (var x = 42 in list) process(x);", new TestNode
+            Program.Test("for (var x = 42 in list) process(x);", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7349,9 +7349,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 36, 36))
-            });
+            }, null);
 
-            Test("for (var i = function() { return 10 in [] } in list) process(x);", new TestNode
+            Program.Test("for (var i = function() { return 10 in [] } in list) process(x);", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7432,9 +7432,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 64, 64))
-            });
+            }, null);
 
-            Test("while (true) { continue; }", new TestNode
+            Program.Test("while (true) { continue; }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7466,9 +7466,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
-            });
+            }, null);
 
-            Test("while (true) { continue }", new TestNode
+            Program.Test("while (true) { continue }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7500,9 +7500,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25))
-            });
+            }, null);
 
-            Test("done: while (true) { continue done }", new TestNode
+            Program.Test("done: while (true) { continue done }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7540,9 +7540,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 36, 36))
-            });
+            }, null);
 
-            Test("done: while (true) { continue done; }", new TestNode
+            Program.Test("done: while (true) { continue done; }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7580,9 +7580,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37))
-            });
+            }, null);
 
-            Test("while (true) { break }", new TestNode
+            Program.Test("while (true) { break }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7614,9 +7614,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
-            });
+            }, null);
 
-            Test("done: while (true) { break done }", new TestNode
+            Program.Test("done: while (true) { break done }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7654,9 +7654,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
-            });
+            }, null);
 
-            Test("done: while (true) { break done; }", new TestNode
+            Program.Test("done: while (true) { break done; }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7694,12 +7694,12 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
-            });
+            }, null);
 
-            Test("target1: target2: while (true) { continue target1; }", new TestNode {type = typeof(ProgramNode)});
-            Test("target1: target2: target3: while (true) { continue target1; }", new TestNode {type = typeof(ProgramNode)});
+            Program.Test("target1: target2: while (true) { continue target1; }", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("target1: target2: target3: while (true) { continue target1; }", new TestNode {type = typeof(ProgramNode)}, null);
 
-            Test("(function(){ return })", new TestNode
+            Program.Test("(function(){ return })", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7732,9 +7732,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
-            });
+            }, null);
 
-            Test("(function(){ return; })", new TestNode
+            Program.Test("(function(){ return; })", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7767,9 +7767,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
-            });
+            }, null);
 
-            Test("(function(){ return x; })", new TestNode
+            Program.Test("(function(){ return x; })", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7802,9 +7802,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25))
-            });
+            }, null);
 
-            Test("(function(){ return x * y })", new TestNode
+            Program.Test("(function(){ return x * y })", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7844,9 +7844,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
-            });
+            }, null);
 
-            Test("with (x) foo = bar", new TestNode
+            Program.Test("with (x) foo = bar", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7872,9 +7872,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18))
-            });
+            }, null);
 
-            Test("with (x) foo = bar;", new TestNode
+            Program.Test("with (x) foo = bar;", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7900,17 +7900,17 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
-            });
+            }, null);
 
             // Test that innocuous string that evaluates to `use strict` is not promoted to
             // Use Strict directive.
-            Test("'use\\x20strict'; with (x) foo = bar;", new TestNode {type = typeof(ProgramNode)});
+            Program.Test("'use\\x20strict'; with (x) foo = bar;", new TestNode {type = typeof(ProgramNode)}, null);
 
             // Test that innocuous string that evaluates to `use strict` is not promoted to
             // Use Strict directive.
-            Test(@"""use\\x20strict""; with (x) foo = bar;", new TestNode {type = typeof(ProgramNode)});
+            Program.Test(@"""use\\x20strict""; with (x) foo = bar;", new TestNode {type = typeof(ProgramNode)}, null);
 
-            Test("with (x) { foo = bar }", new TestNode
+            Program.Test("with (x) { foo = bar }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7944,9 +7944,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22))
-            });
+            }, null);
 
-            Test("switch (x) {}", new TestNode
+            Program.Test("switch (x) {}", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -7960,9 +7960,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13))
-            });
+            }, null);
 
-            Test("switch (answer) { case 42: hi(); break; }", new TestNode
+            Program.Test("switch (answer) { case 42: hi(); break; }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8010,9 +8010,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 41, 41))
-            });
+            }, null);
 
-            Test("switch (answer) { case 42: hi(); break; default: break }", new TestNode
+            Program.Test("switch (answer) { case 42: hi(); break; default: break }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8075,9 +8075,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 56, 56))
-            });
+            }, null);
 
-            Test("start: for (;;) break start", new TestNode
+            Program.Test("start: for (;;) break start", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8104,9 +8104,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
-            });
+            }, null);
 
-            Test("start: while (true) break start", new TestNode
+            Program.Test("start: while (true) break start", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8136,9 +8136,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
-            });
+            }, null);
 
-            Test("throw x;", new TestNode
+            Program.Test("throw x;", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8151,9 +8151,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
-            });
+            }, null);
 
-            Test("throw x * y", new TestNode
+            Program.Test("throw x * y", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8173,9 +8173,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
-            });
+            }, null);
 
-            Test("throw { message: \"Error\" }", new TestNode
+            Program.Test("throw { message: \"Error\" }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8207,9 +8207,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26))
-            });
+            }, null);
 
-            Test("try { } catch (e) { }", new TestNode
+            Program.Test("try { } catch (e) { }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8240,9 +8240,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21))
-            });
+            }, null);
 
-            Test("try { } catch (eval) { }", new TestNode
+            Program.Test("try { } catch (eval) { }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8273,9 +8273,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
-            });
+            }, null);
 
-            Test("try { } catch (arguments) { }", new TestNode
+            Program.Test("try { } catch (arguments) { }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8306,9 +8306,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
-            });
+            }, null);
 
-            Test("try { } catch (e) { say(e) }", new TestNode
+            Program.Test("try { } catch (e) { say(e) }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8356,9 +8356,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28))
-            });
+            }, null);
 
-            Test("try { } finally { cleanup(stuff) }", new TestNode
+            Program.Test("try { } finally { cleanup(stuff) }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8400,9 +8400,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
-            });
+            }, null);
 
-            Test("try { doThat(); } catch (e) { say(e) }", new TestNode
+            Program.Test("try { doThat(); } catch (e) { say(e) }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8464,9 +8464,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
-            });
+            }, null);
 
-            Test("try { doThat(); } catch (e) { say(e) } finally { cleanup(stuff) }", new TestNode
+            Program.Test("try { doThat(); } catch (e) { say(e) } finally { cleanup(stuff) }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8550,9 +8550,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 65, 65))
-            });
+            }, null);
 
-            Test("debugger;", new TestNode
+            Program.Test("debugger;", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8564,9 +8564,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
-            });
+            }, null);
 
-            Test("function hello() { sayHi(); }", new TestNode
+            Program.Test("function hello() { sayHi(); }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8600,9 +8600,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
-            });
+            }, null);
 
-            Test("function eval() { }", new TestNode
+            Program.Test("function eval() { }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8622,9 +8622,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
-            });
+            }, null);
 
-            Test("function arguments() { }", new TestNode
+            Program.Test("function arguments() { }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8644,9 +8644,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
-            });
+            }, null);
 
-            Test("function test(t, t) { }", new TestNode
+            Program.Test("function test(t, t) { }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8670,9 +8670,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23))
-            });
+            }, null);
 
-            Test("(function test(t, t) { })", new TestNode
+            Program.Test("(function test(t, t) { })", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8701,9 +8701,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25))
-            });
+            }, null);
 
-            Test("function eval() { function inner() { \"use strict\" } }", new TestNode
+            Program.Test("function eval() { function inner() { \"use strict\" } }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8751,9 +8751,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 53, 53))
-            });
+            }, null);
 
-            Test("function hello(a) { sayHi(); }", new TestNode
+            Program.Test("function hello(a) { sayHi(); }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8790,9 +8790,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 30, 30))
-            });
+            }, null);
 
-            Test("function hello(a, b) { sayHi(); }", new TestNode
+            Program.Test("function hello(a, b) { sayHi(); }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8830,9 +8830,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
-            });
+            }, null);
 
-            Test("function hello(...rest) { }", new TestNode
+            Program.Test("function hello(...rest) { }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8864,7 +8864,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("function hello(a, ...rest) { }", new TestNode
+            Program.Test("function hello(a, ...rest) { }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8897,7 +8897,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("var hi = function() { sayHi() };", new TestNode
+            Program.Test("var hi = function() { sayHi() };", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -8946,9 +8946,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32))
-            });
+            }, null);
 
-            Test("var hi = function (...r) { sayHi() };", new TestNode
+            Program.Test("var hi = function (...r) { sayHi() };", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9009,7 +9009,7 @@ namespace AcornSharp.Cli
                 ecmaVersion = 6
             });
 
-            Test("var hi = function eval() { };", new TestNode
+            Program.Test("var hi = function eval() { };", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9044,9 +9044,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
-            });
+            }, null);
 
-            Test("var hi = function arguments() { };", new TestNode
+            Program.Test("var hi = function arguments() { };", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9081,9 +9081,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
-            });
+            }, null);
 
-            Test("var hello = function hi() { sayHi() };", new TestNode
+            Program.Test("var hello = function hi() { sayHi() };", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9132,9 +9132,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 38, 38))
-            });
+            }, null);
 
-            Test("(function(){})", new TestNode
+            Program.Test("(function(){})", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9159,9 +9159,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14))
-            });
+            }, null);
 
-            Test("{ x\n++y }", new TestNode
+            Program.Test("{ x\n++y }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9195,9 +9195,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 5, 9))
-            });
+            }, null);
 
-            Test("{ x\n--y }", new TestNode
+            Program.Test("{ x\n--y }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9231,9 +9231,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 5, 9))
-            });
+            }, null);
 
-            Test("var x /* comment */;", new TestNode
+            Program.Test("var x /* comment */;", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9256,9 +9256,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20))
-            });
+            }, null);
 
-            Test("{ var x = 14, y = 3\nz; }", new TestNode
+            Program.Test("{ var x = 14, y = 3\nz; }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9312,9 +9312,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 4, 24))
-            });
+            }, null);
 
-            Test("while (true) { continue\nthere; }", new TestNode
+            Program.Test("while (true) { continue\nthere; }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9352,9 +9352,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 8, 32))
-            });
+            }, null);
 
-            Test("while (true) { continue // Comment\nthere; }", new TestNode
+            Program.Test("while (true) { continue // Comment\nthere; }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9392,9 +9392,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 8, 43))
-            });
+            }, null);
 
-            Test("while (true) { continue /* Multiline\nComment */there; }", new TestNode
+            Program.Test("while (true) { continue /* Multiline\nComment */there; }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9432,9 +9432,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 18, 55))
-            });
+            }, null);
 
-            Test("while (true) { break\nthere; }", new TestNode
+            Program.Test("while (true) { break\nthere; }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9472,9 +9472,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 8, 29))
-            });
+            }, null);
 
-            Test("while (true) { break // Comment\nthere; }", new TestNode
+            Program.Test("while (true) { break // Comment\nthere; }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9512,9 +9512,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 8, 40))
-            });
+            }, null);
 
-            Test("while (true) { break /* Multiline\nComment */there; }", new TestNode
+            Program.Test("while (true) { break /* Multiline\nComment */there; }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9552,9 +9552,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 18, 52))
-            });
+            }, null);
 
-            Test("(function(){ return\nx; })", new TestNode
+            Program.Test("(function(){ return\nx; })", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9593,9 +9593,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 5, 25))
-            });
+            }, null);
 
-            Test("(function(){ return // Comment\nx; })", new TestNode
+            Program.Test("(function(){ return // Comment\nx; })", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9634,9 +9634,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 5, 36))
-            });
+            }, null);
 
-            Test("(function(){ return/* Multiline\nComment */x; })", new TestNode
+            Program.Test("(function(){ return/* Multiline\nComment */x; })", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9675,9 +9675,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 15, 47))
-            });
+            }, null);
 
-            Test("{ throw error\nerror; }", new TestNode
+            Program.Test("{ throw error\nerror; }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9704,9 +9704,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 8, 22))
-            });
+            }, null);
 
-            Test("{ throw error// Comment\nerror; }", new TestNode
+            Program.Test("{ throw error// Comment\nerror; }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9733,9 +9733,9 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 8, 32))
-            });
+            }, null);
 
-            Test("{ throw error/* Multiline\nComment */error; }", new TestNode
+            Program.Test("{ throw error/* Multiline\nComment */error; }", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9762,16 +9762,16 @@ namespace AcornSharp.Cli
                     }
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 18, 44))
-            });
+            }, null);
 
-            Test("", new TestNode
+            Program.Test("", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>(),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 0, 0))
-            });
+            }, null);
 
-            Test("foo: if (true) break foo;", new TestNode
+            Program.Test("foo: if (true) break foo;", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25)),
@@ -9802,9 +9802,9 @@ namespace AcornSharp.Cli
                         label = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), name = "foo"}
                     }
                 }
-            });
+            }, null);
 
-            Test("(function () {\n 'use strict';\n '\0';\n}())", new TestNode
+            Program.Test("(function () {\n 'use strict';\n '\0';\n}())", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(4, 4, 40)),
@@ -9859,9 +9859,9 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
+            }, null);
 
-            Test("123..toString(10)", new TestNode
+            Program.Test("123..toString(10)", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9895,9 +9895,9 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
+            }, null);
 
-            Test("123.+2", new TestNode
+            Program.Test("123.+2", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9922,9 +9922,9 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
+            }, null);
 
-            Test("a\u2028b", new TestNode
+            Program.Test("a\u2028b", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9940,9 +9940,9 @@ namespace AcornSharp.Cli
                         expression = new TestNode {type = typeof(IdentifierNode), name = "b"}
                     }
                 }
-            });
+            }, null);
 
-            Test("'a\\u0026b'", new TestNode
+            Program.Test("'a\\u0026b'", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9957,9 +9957,9 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
+            }, null);
 
-            Test("foo: 10; foo: 20;", new TestNode
+            Program.Test("foo: 10; foo: 20;", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -9995,9 +9995,9 @@ namespace AcornSharp.Cli
                         label = new TestNode {type = typeof(IdentifierNode), name = "foo"}
                     }
                 }
-            });
+            }, null);
 
-            Test("if(1)/  foo/", new TestNode
+            Program.Test("if(1)/  foo/", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -10024,9 +10024,9 @@ namespace AcornSharp.Cli
                         alternate = null
                     }
                 }
-            });
+            }, null);
 
-            Test("price_9̶9̶_89", new TestNode
+            Program.Test("price_9̶9̶_89", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -10037,13 +10037,13 @@ namespace AcornSharp.Cli
                         expression = new TestNode {type = typeof(IdentifierNode), name = "price_9̶9̶_89"}
                     }
                 }
-            });
+            }, null);
 
             // `\0` is valid even in strict mode
-            Test("function hello() { 'use strict'; \"\\0\"; }", new TestNode {type = typeof(ProgramNode)});
+            Program.Test("function hello() { 'use strict'; \"\\0\"; }", new TestNode {type = typeof(ProgramNode)}, null);
 
             // option tests
-            Test("var a = 1;", new TestNode
+            Program.Test("var a = 1;", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10)),
@@ -10077,7 +10077,7 @@ namespace AcornSharp.Cli
                 sourceFile = "test.js"
             });
 
-            Test("a.in / b", new TestNode
+            Program.Test("a.in / b", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -10101,32 +10101,32 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
+            }, null);
 
             // A number of slash-disambiguation corner cases
-            Test("return {} / 2", new TestNode {type = typeof(ProgramNode)}, new Options {allowReturnOutsideFunction = true});
-            Test("return\n{}\n/foo/", new TestNode {type = typeof(ProgramNode)}, new Options {allowReturnOutsideFunction = true});
-            Test("+{} / 2", new TestNode {type = typeof(ProgramNode)});
-            Test("{}\n/foo/", new TestNode {type = typeof(ProgramNode)});
-            Test("x++\n{}\n/foo/", new TestNode {type = typeof(ProgramNode)});
-            Test("{{}\n/foo/}", new TestNode {type = typeof(ProgramNode)});
-            Test("while (1) /foo/", new TestNode {type = typeof(ProgramNode)});
-            Test("while (1) {} /foo/", new TestNode {type = typeof(ProgramNode)});
-            Test("(1) / 2", new TestNode {type = typeof(ProgramNode)});
-            Test("({a: [1]}+[]) / 2", new TestNode {type = typeof(ProgramNode)});
-            Test("{[1]}\n/foo/", new TestNode {type = typeof(ProgramNode)});
-            Test("switch(a) { case 1: {}\n/foo/ }", new TestNode {type = typeof(ProgramNode)});
-            Test("({1: {} / 2})", new TestNode {type = typeof(ProgramNode)});
-            Test("+x++ / 2", new TestNode {type = typeof(ProgramNode)});
-            Test("foo.in\n{}\n/foo/", new TestNode {type = typeof(ProgramNode)});
-            Test("var x = function f() {} / 3;", new TestNode {type = typeof(ProgramNode)});
-            Test("+function f() {} / 3;", new TestNode {type = typeof(ProgramNode)});
-            Test("foo: function x() {} /regexp/", new TestNode {type = typeof(ProgramNode)});
-            Test("x = {foo: function x() {} / divide}", new TestNode {type = typeof(ProgramNode)});
-            Test("foo; function f() {} /regexp/", new TestNode {type = typeof(ProgramNode)});
-            Test("{function f() {} /regexp/}", new TestNode {type = typeof(ProgramNode)});
+            Program.Test("return {} / 2", new TestNode {type = typeof(ProgramNode)}, new Options {allowReturnOutsideFunction = true});
+            Program.Test("return\n{}\n/foo/", new TestNode {type = typeof(ProgramNode)}, new Options {allowReturnOutsideFunction = true});
+            Program.Test("+{} / 2", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("{}\n/foo/", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("x++\n{}\n/foo/", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("{{}\n/foo/}", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("while (1) /foo/", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("while (1) {} /foo/", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("(1) / 2", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("({a: [1]}+[]) / 2", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("{[1]}\n/foo/", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("switch(a) { case 1: {}\n/foo/ }", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("({1: {} / 2})", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("+x++ / 2", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("foo.in\n{}\n/foo/", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("var x = function f() {} / 3;", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("+function f() {} / 3;", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("foo: function x() {} /regexp/", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("x = {foo: function x() {} / divide}", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("foo; function f() {} /regexp/", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("{function f() {} /regexp/}", new TestNode {type = typeof(ProgramNode)}, null);
 
-            Test("{}/=/", new TestNode
+            Program.Test("{}/=/", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -10146,9 +10146,9 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
+            }, null);
 
-            Test("foo <!--bar\n+baz", new TestNode
+            Program.Test("foo <!--bar\n+baz", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -10165,9 +10165,9 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
+            }, null);
 
-            Test("x = y-->10;\n --> nothing", new TestNode
+            Program.Test("x = y-->10;\n --> nothing", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -10200,9 +10200,9 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
+            }, null);
 
-            Test("'use strict';\nobject.static();", new TestNode
+            Program.Test("'use strict';\nobject.static();", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -10235,607 +10235,414 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
+            }, null);
 
             // Failure tests
-            testFail("{",
-                "Unexpected token (1:1)");
+            Program.TestFail("{", "Unexpected token (1:1)", null);
 
-            testFail("}",
-                "Unexpected token (1:0)");
+            Program.TestFail("}", "Unexpected token (1:0)", null);
 
-            testFail("3ea",
-                "Invalid number (1:0)");
+            Program.TestFail("3ea", "Invalid number (1:0)", null);
 
-            testFail("3in []",
-                "Identifier directly after number (1:1)");
+            Program.TestFail("3in []", "Identifier directly after number (1:1)", null);
 
-            testFail("3e",
-                "Invalid number (1:0)");
+            Program.TestFail("3e", "Invalid number (1:0)", null);
 
-            testFail("3e+",
-                "Invalid number (1:0)");
+            Program.TestFail("3e+", "Invalid number (1:0)", null);
 
-            testFail("3e-",
-                "Invalid number (1:0)");
+            Program.TestFail("3e-", "Invalid number (1:0)", null);
 
-            testFail("3x",
-                "Identifier directly after number (1:1)");
+            Program.TestFail("3x", "Identifier directly after number (1:1)", null);
 
-            testFail("3x0",
-                "Identifier directly after number (1:1)");
+            Program.TestFail("3x0", "Identifier directly after number (1:1)", null);
 
-            testFail("0x",
-                "Expected number in radix 16 (1:2)");
+            Program.TestFail("0x", "Expected number in radix 16 (1:2)", null);
 
-            testFail("'use strict'; 09",
-                "Invalid number (1:14)");
+            Program.TestFail("'use strict'; 09", "Invalid number (1:14)", null);
 
-            testFail("'use strict'; 018",
-                "Invalid number (1:14)");
+            Program.TestFail("'use strict'; 018", "Invalid number (1:14)", null);
 
-            testFail("01a",
-                "Identifier directly after number (1:2)");
+            Program.TestFail("01a", "Identifier directly after number (1:2)", null);
 
-            testFail("3in[]",
-                "Identifier directly after number (1:1)");
+            Program.TestFail("3in[]", "Identifier directly after number (1:1)", null);
 
-            testFail("0x3in[]",
-                "Identifier directly after number (1:3)");
+            Program.TestFail("0x3in[]", "Identifier directly after number (1:3)", null);
 
-            testFail("\"Hello\nWorld\"",
-                "Unterminated string constant (1:0)");
+            Program.TestFail("\"Hello\nWorld\"", "Unterminated string constant (1:0)", null);
 
-            testFail("x\\",
-                "Expecting Unicode escape sequence \\uXXXX (1:2)");
+            Program.TestFail("x\\", "Expecting Unicode escape sequence \\uXXXX (1:2)", null);
 
-            testFail("x\\u005c",
-                "Invalid Unicode escape (1:1)");
+            Program.TestFail("x\\u005c", "Invalid Unicode escape (1:1)", null);
 
-            testFail("x\\u002a",
-                "Invalid Unicode escape (1:1)");
+            Program.TestFail("x\\u002a", "Invalid Unicode escape (1:1)", null);
 
-            testFail("/",
-                "Unterminated regular expression (1:1)");
+            Program.TestFail("/", "Unterminated regular expression (1:1)", null);
 
-            testFail("/test",
-                "Unterminated regular expression (1:1)");
+            Program.TestFail("/test", "Unterminated regular expression (1:1)", null);
 
-            testFail("var x = /[a-z]/\\ux",
-                "Bad character escape sequence (1:17)");
+            Program.TestFail("var x = /[a-z]/\\ux", "Bad character escape sequence (1:17)", null);
 
-            testFail("3 = 4",
-                "Assigning to rvalue (1:0)");
+            Program.TestFail("3 = 4", "Assigning to rvalue (1:0)", null);
 
-            testFail("func() = 4",
-                "Assigning to rvalue (1:0)");
+            Program.TestFail("func() = 4", "Assigning to rvalue (1:0)", null);
 
-            testFail("(1 + 1) = 10",
-                "Parenthesized pattern (1:0)");
+            Program.TestFail("(1 + 1) = 10", "Parenthesized pattern (1:0)", null);
 
-            testFail("1++",
-                "Assigning to rvalue (1:0)");
+            Program.TestFail("1++", "Assigning to rvalue (1:0)", null);
 
-            testFail("1--",
-                "Assigning to rvalue (1:0)");
+            Program.TestFail("1--", "Assigning to rvalue (1:0)", null);
 
-            testFail("++1",
-                "Assigning to rvalue (1:2)");
+            Program.TestFail("++1", "Assigning to rvalue (1:2)", null);
 
-            testFail("--1",
-                "Assigning to rvalue (1:2)");
+            Program.TestFail("--1", "Assigning to rvalue (1:2)", null);
 
-            testFail("for((1 + 1) in list) process(x);",
-                "Assigning to rvalue (1:5)");
+            Program.TestFail("for((1 + 1) in list) process(x);", "Assigning to rvalue (1:5)", null);
 
-            testFail("[",
-                "Unexpected token (1:1)");
+            Program.TestFail("[", "Unexpected token (1:1)", null);
 
-            testFail("[,",
-                "Unexpected token (1:2)");
+            Program.TestFail("[,", "Unexpected token (1:2)", null);
 
-            testFail("1 + {",
-                "Unexpected token (1:5)");
+            Program.TestFail("1 + {", "Unexpected token (1:5)", null);
 
-            testFail("1 + { t:t ",
-                "Unexpected token (1:10)");
+            Program.TestFail("1 + { t:t ", "Unexpected token (1:10)", null);
 
-            testFail("1 + { t:t,",
-                "Unexpected token (1:10)");
+            Program.TestFail("1 + { t:t,", "Unexpected token (1:10)", null);
 
-            testFail("var x = /\n/",
-                "Unterminated regular expression (1:9)");
+            Program.TestFail("var x = /\n/", "Unterminated regular expression (1:9)", null);
 
-            testFail("var x = \"\n",
-                "Unterminated string constant (1:8)");
+            Program.TestFail("var x = \"\n", "Unterminated string constant (1:8)", null);
 
-            testFail("var if = 42",
-                "Unexpected keyword 'if' (1:4)");
+            Program.TestFail("var if = 42", "Unexpected keyword 'if' (1:4)", null);
 
-            testFail("i + 2 = 42",
-                "Assigning to rvalue (1:0)");
+            Program.TestFail("i + 2 = 42", "Assigning to rvalue (1:0)", null);
 
-            testFail("+i = 42",
-                "Assigning to rvalue (1:0)");
+            Program.TestFail("+i = 42", "Assigning to rvalue (1:0)", null);
 
-            testFail("1 + (",
-                "Unexpected token (1:5)");
+            Program.TestFail("1 + (", "Unexpected token (1:5)", null);
 
-            testFail("\n\n\n{",
-                "Unexpected token (4:1)");
+            Program.TestFail("\n\n\n{", "Unexpected token (4:1)", null);
 
-            testFail("\n/* Some multiline\ncomment */\n)",
-                "Unexpected token (4:0)");
+            Program.TestFail("\n/* Some multiline\ncomment */\n)", "Unexpected token (4:0)", null);
 
-            testFail("{ set 1 }",
-                "Unexpected token (1:6)");
+            Program.TestFail("{ set 1 }", "Unexpected token (1:6)", null);
 
-            testFail("{ get 2 }",
-                "Unexpected token (1:6)");
+            Program.TestFail("{ get 2 }", "Unexpected token (1:6)", null);
 
-            testFail("({ set: s(if) { } })",
-                "Unexpected token (1:10)");
+            Program.TestFail("({ set: s(if) { } })", "Unexpected token (1:10)", null);
 
-            testFail("({ set s(.) { } })",
-                "Unexpected token (1:9)");
+            Program.TestFail("({ set s(.) { } })", "Unexpected token (1:9)", null);
 
-            testFail("({ set: s() { } })",
-                "Unexpected token (1:12)");
+            Program.TestFail("({ set: s() { } })", "Unexpected token (1:12)", null);
 
-            testFail("({ set: s(a, b) { } })",
-                "Unexpected token (1:16)");
+            Program.TestFail("({ set: s(a, b) { } })", "Unexpected token (1:16)", null);
 
-            testFail("({ get: g(d) { } })",
-                "Unexpected token (1:13)");
+            Program.TestFail("({ get: g(d) { } })", "Unexpected token (1:13)", null);
 
-            testFail("({ get i() { }, i: 42 })",
-                "Redefinition of property (1:16)");
+            Program.TestFail("({ get i() { }, i: 42 })", "Redefinition of property (1:16)", null);
 
-            testFail("({ i: 42, get i() { } })",
-                "Redefinition of property (1:14)");
+            Program.TestFail("({ i: 42, get i() { } })", "Redefinition of property (1:14)", null);
 
-            testFail("({ set i(x) { }, i: 42 })",
-                "Redefinition of property (1:17)");
+            Program.TestFail("({ set i(x) { }, i: 42 })", "Redefinition of property (1:17)", null);
 
-            testFail("({ i: 42, set i(x) { } })",
-                "Redefinition of property (1:14)");
+            Program.TestFail("({ i: 42, set i(x) { } })", "Redefinition of property (1:14)", null);
 
-            testFail("({ get i() { }, get i() { } })",
-                "Redefinition of property (1:20)");
+            Program.TestFail("({ get i() { }, get i() { } })", "Redefinition of property (1:20)", null);
 
-            testFail("({ set i(x) { }, set i(x) { } })",
-                "Redefinition of property (1:21)");
+            Program.TestFail("({ set i(x) { }, set i(x) { } })", "Redefinition of property (1:21)", null);
 
-            testFail("'use strict'; ({ __proto__: 1, __proto__: 2 })",
-                "Redefinition of property (1:31)");
+            Program.TestFail("'use strict'; ({ __proto__: 1, __proto__: 2 })", "Redefinition of property (1:31)", null);
 
-            testFail("function t(...) { }",
-                "Unexpected token (1:11)");
+            Program.TestFail("function t(...) { }", "Unexpected token (1:11)", null);
 
-            testFail("function t(...) { }",
-                "Unexpected token (1:14)",
-                new Options {ecmaVersion = 6});
+            Program.TestFail("function t(...) { }", "Unexpected token (1:14)", new Options {ecmaVersion = 6});
 
-            testFail("function t(...rest, b) { }",
-                "Comma is not permitted after the rest element (1:18)",
-                new Options {ecmaVersion = 6});
+            Program.TestFail("function t(...rest, b) { }", "Comma is not permitted after the rest element (1:18)", new Options {ecmaVersion = 6});
 
-            testFail("function t(if) { }",
-                "Unexpected keyword 'if' (1:11)");
+            Program.TestFail("function t(if) { }", "Unexpected keyword 'if' (1:11)", null);
 
-            testFail("function t(true) { }",
-                "Unexpected keyword 'true' (1:11)");
+            Program.TestFail("function t(true) { }", "Unexpected keyword 'true' (1:11)", null);
 
-            testFail("function t(false) { }",
-                "Unexpected keyword 'false' (1:11)");
+            Program.TestFail("function t(false) { }", "Unexpected keyword 'false' (1:11)", null);
 
-            testFail("function t(null) { }",
-                "Unexpected keyword 'null' (1:11)");
+            Program.TestFail("function t(null) { }", "Unexpected keyword 'null' (1:11)", null);
 
-            testFail("function null() { }",
-                "Unexpected keyword 'null' (1:9)");
+            Program.TestFail("function null() { }", "Unexpected keyword 'null' (1:9)", null);
 
-            testFail("function true() { }",
-                "Unexpected keyword 'true' (1:9)");
+            Program.TestFail("function true() { }", "Unexpected keyword 'true' (1:9)", null);
 
-            testFail("function false() { }",
-                "Unexpected keyword 'false' (1:9)");
+            Program.TestFail("function false() { }", "Unexpected keyword 'false' (1:9)", null);
 
-            testFail("function if() { }",
-                "Unexpected keyword 'if' (1:9)");
+            Program.TestFail("function if() { }", "Unexpected keyword 'if' (1:9)", null);
 
-            testFail("a b;",
-                "Unexpected token (1:2)");
+            Program.TestFail("a b;", "Unexpected token (1:2)", null);
 
-            testFail("if.a;",
-                "Unexpected token (1:2)");
+            Program.TestFail("if.a;", "Unexpected token (1:2)", null);
 
-            testFail("a if;",
-                "Unexpected token (1:2)");
+            Program.TestFail("a if;", "Unexpected token (1:2)", null);
 
-            testFail("a class;",
-                "Unexpected token (1:2)");
+            Program.TestFail("a class;", "Unexpected token (1:2)", null);
 
-            testFail("break\n",
-                "Unsyntactic break (1:0)");
+            Program.TestFail("break\n", "Unsyntactic break (1:0)", null);
 
-            testFail("break 1;",
-                "Unexpected token (1:6)");
+            Program.TestFail("break 1;", "Unexpected token (1:6)", null);
 
-            testFail("continue\n",
-                "Unsyntactic continue (1:0)");
+            Program.TestFail("continue\n", "Unsyntactic continue (1:0)", null);
 
-            testFail("continue 2;",
-                "Unexpected token (1:9)");
+            Program.TestFail("continue 2;", "Unexpected token (1:9)", null);
 
-            testFail("throw",
-                "Unexpected token (1:5)");
+            Program.TestFail("throw", "Unexpected token (1:5)", null);
 
-            testFail("throw;",
-                "Unexpected token (1:5)");
+            Program.TestFail("throw;", "Unexpected token (1:5)", null);
 
-            testFail("for (var i, i2 in {});",
-                "Unexpected token (1:15)");
+            Program.TestFail("for (var i, i2 in {});", "Unexpected token (1:15)", null);
 
-            testFail("for ((i in {}));",
-                "Unexpected token (1:14)");
+            Program.TestFail("for ((i in {}));", "Unexpected token (1:14)", null);
 
-            testFail("for (i + 1 in {});",
-                "Assigning to rvalue (1:5)");
+            Program.TestFail("for (i + 1 in {});", "Assigning to rvalue (1:5)", null);
 
-            testFail("for (+i in {});",
-                "Assigning to rvalue (1:5)");
+            Program.TestFail("for (+i in {});", "Assigning to rvalue (1:5)", null);
 
-            testFail("if(false)",
-                "Unexpected token (1:9)");
+            Program.TestFail("if(false)", "Unexpected token (1:9)", null);
 
-            testFail("if(false) doThis(); else",
-                "Unexpected token (1:24)");
+            Program.TestFail("if(false) doThis(); else", "Unexpected token (1:24)", null);
 
-            testFail("do",
-                "Unexpected token (1:2)");
+            Program.TestFail("do", "Unexpected token (1:2)", null);
 
-            testFail("while(false)",
-                "Unexpected token (1:12)");
+            Program.TestFail("while(false)", "Unexpected token (1:12)", null);
 
-            testFail("for(;;)",
-                "Unexpected token (1:7)");
+            Program.TestFail("for(;;)", "Unexpected token (1:7)", null);
 
-            testFail("with(x)",
-                "Unexpected token (1:7)");
+            Program.TestFail("with(x)", "Unexpected token (1:7)", null);
 
-            testFail("try { }",
-                "Missing catch or finally clause (1:0)");
+            Program.TestFail("try { }", "Missing catch or finally clause (1:0)", null);
 
-            testFail("‿ = 10",
-                "Unexpected character '‿' (1:0)");
+            Program.TestFail("‿ = 10", "Unexpected character '‿' (1:0)", null);
 
-            testFail("if(true) let a = 1;",
-                "Unexpected token (1:13)");
+            Program.TestFail("if(true) let a = 1;", "Unexpected token (1:13)", null);
 
-            testFail("switch (c) { default: default: }",
-                "Multiple default clauses (1:22)");
+            Program.TestFail("switch (c) { default: default: }", "Multiple default clauses (1:22)", null);
 
-            testFail("new X().\"s\"",
-                "Unexpected token (1:8)");
+            Program.TestFail("new X().\"s\"", "Unexpected token (1:8)", null);
 
-            testFail("/*",
-                "Unterminated comment (1:0)");
+            Program.TestFail("/*", "Unterminated comment (1:0)", null);
 
-            testFail("/*\n\n\n",
-                "Unterminated comment (1:0)");
+            Program.TestFail("/*\n\n\n", "Unterminated comment (1:0)", null);
 
-            testFail("/**",
-                "Unterminated comment (1:0)");
+            Program.TestFail("/**", "Unterminated comment (1:0)", null);
 
-            testFail("/*\n\n*",
-                "Unterminated comment (1:0)");
+            Program.TestFail("/*\n\n*", "Unterminated comment (1:0)", null);
 
-            testFail("/*hello",
-                "Unterminated comment (1:0)");
+            Program.TestFail("/*hello", "Unterminated comment (1:0)", null);
 
-            testFail("/*hello  *",
-                "Unterminated comment (1:0)");
+            Program.TestFail("/*hello  *", "Unterminated comment (1:0)", null);
 
-            testFail("\n]",
-                "Unexpected token (2:0)");
+            Program.TestFail("\n]", "Unexpected token (2:0)", null);
 
-            testFail("\r]",
-                "Unexpected token (2:0)");
+            Program.TestFail("\r]", "Unexpected token (2:0)", null);
 
-            testFail("\r\n]",
-                "Unexpected token (2:0)");
+            Program.TestFail("\r\n]", "Unexpected token (2:0)", null);
 
-            testFail("\n\r]",
-                "Unexpected token (3:0)");
+            Program.TestFail("\n\r]", "Unexpected token (3:0)", null);
 
-            testFail("//\r\n]",
-                "Unexpected token (2:0)");
+            Program.TestFail("//\r\n]", "Unexpected token (2:0)", null);
 
-            testFail("//\n\r]",
-                "Unexpected token (3:0)");
+            Program.TestFail("//\n\r]", "Unexpected token (3:0)", null);
 
-            testFail("/a\\\n/",
-                "Unterminated regular expression (1:1)");
+            Program.TestFail("/a\\\n/", "Unterminated regular expression (1:1)", null);
 
-            testFail("//\r \n]",
-                "Unexpected token (3:0)");
+            Program.TestFail("//\r \n]", "Unexpected token (3:0)", null);
 
-            testFail("/*\r\n*/]",
-                "Unexpected token (2:2)");
+            Program.TestFail("/*\r\n*/]", "Unexpected token (2:2)", null);
 
-            testFail("/*\n\r*/]",
-                "Unexpected token (3:2)");
+            Program.TestFail("/*\n\r*/]", "Unexpected token (3:2)", null);
 
-            testFail("/*\r \n*/]",
-                "Unexpected token (3:2)");
+            Program.TestFail("/*\r \n*/]", "Unexpected token (3:2)", null);
 
-            testFail("\\\\",
-                "Expecting Unicode escape sequence \\uXXXX (1:1)");
+            Program.TestFail("\\\\", "Expecting Unicode escape sequence \\uXXXX (1:1)", null);
 
-            testFail("\\u005c",
-                "Invalid Unicode escape (1:0)");
+            Program.TestFail("\\u005c", "Invalid Unicode escape (1:0)", null);
 
-            testFail("\\x",
-                "Expecting Unicode escape sequence \\uXXXX (1:1)");
+            Program.TestFail("\\x", "Expecting Unicode escape sequence \\uXXXX (1:1)", null);
 
-            testFail("\\u0000",
-                "Invalid Unicode escape (1:0)");
+            Program.TestFail("\\u0000", "Invalid Unicode escape (1:0)", null);
 
-            testFail("‌ = []",
-                "Unexpected character '‌' (1:0)");
+            Program.TestFail("‌ = []", "Unexpected character '‌' (1:0)", null);
 
-            testFail("‍ = []",
-                "Unexpected character '‍' (1:0)");
+            Program.TestFail("‍ = []", "Unexpected character '‍' (1:0)", null);
 
-            testFail("\"\\",
-                "Unterminated string constant (1:0)");
+            Program.TestFail("\"\\", "Unterminated string constant (1:0)", null);
 
-            testFail("\"\\u",
-                "Bad character escape sequence (1:3)");
+            Program.TestFail("\"\\u", "Bad character escape sequence (1:3)", null);
 
-            testFail("return",
-                "'return' outside of function (1:0)");
+            Program.TestFail("return", "'return' outside of function (1:0)", null);
 
-            testFail("break",
-                "Unsyntactic break (1:0)");
+            Program.TestFail("break", "Unsyntactic break (1:0)", null);
 
-            testFail("continue",
-                "Unsyntactic continue (1:0)");
+            Program.TestFail("continue", "Unsyntactic continue (1:0)", null);
 
-            testFail("switch (x) { default: continue; }",
-                "Unsyntactic continue (1:22)");
+            Program.TestFail("switch (x) { default: continue; }", "Unsyntactic continue (1:22)", null);
 
-            testFail("do { x } *",
-                "Unexpected token (1:9)");
+            Program.TestFail("do { x } *", "Unexpected token (1:9)", null);
 
-            testFail("while (true) { break x; }",
-                "Unsyntactic break (1:15)");
+            Program.TestFail("while (true) { break x; }", "Unsyntactic break (1:15)", null);
 
-            testFail("while (true) { continue x; }",
-                "Unsyntactic continue (1:15)");
+            Program.TestFail("while (true) { continue x; }", "Unsyntactic continue (1:15)", null);
 
-            testFail("x: while (true) { (function () { break x; }); }",
-                "Unsyntactic break (1:33)");
+            Program.TestFail("x: while (true) { (function () { break x; }); }", "Unsyntactic break (1:33)", null);
 
-            testFail("x: while (true) { (function () { continue x; }); }",
-                "Unsyntactic continue (1:33)");
+            Program.TestFail("x: while (true) { (function () { continue x; }); }", "Unsyntactic continue (1:33)", null);
 
-            testFail("x: while (true) { (function () { break; }); }",
-                "Unsyntactic break (1:33)");
+            Program.TestFail("x: while (true) { (function () { break; }); }", "Unsyntactic break (1:33)", null);
 
-            testFail("x: while (true) { (function () { continue; }); }",
-                "Unsyntactic continue (1:33)");
+            Program.TestFail("x: while (true) { (function () { continue; }); }", "Unsyntactic continue (1:33)", null);
 
-            testFail("x: while (true) { x: while (true) { } }",
-                "Label 'x' is already declared (1:18)");
+            Program.TestFail("x: while (true) { x: while (true) { } }", "Label 'x' is already declared (1:18)", null);
 
-            testFail("(function () { 'use strict'; delete i; }())",
-                "Deleting local variable in strict mode (1:29)");
+            Program.TestFail("(function () { 'use strict'; delete i; }())", "Deleting local variable in strict mode (1:29)", null);
 
-            testFail("function x() { '\\12'; 'use strict'; }", "Octal literal in strict mode (1:16)");
+            Program.TestFail("function x() { '\\12'; 'use strict'; }", "Octal literal in strict mode (1:16)", null);
 
-            testFail("(function () { 'use strict'; with (i); }())",
-                "'with' in strict mode (1:29)");
+            Program.TestFail("(function () { 'use strict'; with (i); }())", "'with' in strict mode (1:29)", null);
 
-            testFail("function hello() {'use strict'; ({ i: 42, i: 42 }) }",
-                "Redefinition of property (1:42)");
+            Program.TestFail("function hello() {'use strict'; ({ i: 42, i: 42 }) }", "Redefinition of property (1:42)", null);
 
-            testFail("function hello() {'use strict'; ({ hasOwnProperty: 42, hasOwnProperty: 42 }) }",
-                "Redefinition of property (1:55)");
+            Program.TestFail("function hello() {'use strict'; ({ hasOwnProperty: 42, hasOwnProperty: 42 }) }", "Redefinition of property (1:55)", null);
 
-            testFail("function hello() {'use strict'; var eval = 10; }",
-                "Binding eval in strict mode (1:36)");
+            Program.TestFail("function hello() {'use strict'; var eval = 10; }", "Binding eval in strict mode (1:36)", null);
 
-            testFail("function hello() {'use strict'; var arguments = 10; }",
-                "Binding arguments in strict mode (1:36)");
+            Program.TestFail("function hello() {'use strict'; var arguments = 10; }", "Binding arguments in strict mode (1:36)", null);
 
-            testFail("function hello() {'use strict'; try { } catch (eval) { } }",
-                "Binding eval in strict mode (1:47)");
+            Program.TestFail("function hello() {'use strict'; try { } catch (eval) { } }", "Binding eval in strict mode (1:47)", null);
 
-            testFail("function hello() {'use strict'; try { } catch (arguments) { } }",
-                "Binding arguments in strict mode (1:47)");
+            Program.TestFail("function hello() {'use strict'; try { } catch (arguments) { } }", "Binding arguments in strict mode (1:47)", null);
 
-            testFail("function hello() {'use strict'; eval = 10; }",
-                "Assigning to eval in strict mode (1:32)");
+            Program.TestFail("function hello() {'use strict'; eval = 10; }", "Assigning to eval in strict mode (1:32)", null);
 
-            testFail("function hello() {'use strict'; arguments = 10; }",
-                "Assigning to arguments in strict mode (1:32)");
+            Program.TestFail("function hello() {'use strict'; arguments = 10; }", "Assigning to arguments in strict mode (1:32)", null);
 
-            testFail("function hello() {'use strict'; ++eval; }",
-                "Assigning to eval in strict mode (1:34)");
+            Program.TestFail("function hello() {'use strict'; ++eval; }", "Assigning to eval in strict mode (1:34)", null);
 
-            testFail("function hello() {'use strict'; --eval; }",
-                "Assigning to eval in strict mode (1:34)");
+            Program.TestFail("function hello() {'use strict'; --eval; }", "Assigning to eval in strict mode (1:34)", null);
 
-            testFail("function hello() {'use strict'; ++arguments; }",
-                "Assigning to arguments in strict mode (1:34)");
+            Program.TestFail("function hello() {'use strict'; ++arguments; }", "Assigning to arguments in strict mode (1:34)", null);
 
-            testFail("function hello() {'use strict'; --arguments; }",
-                "Assigning to arguments in strict mode (1:34)");
+            Program.TestFail("function hello() {'use strict'; --arguments; }", "Assigning to arguments in strict mode (1:34)", null);
 
-            testFail("function hello() {'use strict'; eval++; }",
-                "Assigning to eval in strict mode (1:32)");
+            Program.TestFail("function hello() {'use strict'; eval++; }", "Assigning to eval in strict mode (1:32)", null);
 
-            testFail("function hello() {'use strict'; eval--; }",
-                "Assigning to eval in strict mode (1:32)");
+            Program.TestFail("function hello() {'use strict'; eval--; }", "Assigning to eval in strict mode (1:32)", null);
 
-            testFail("function hello() {'use strict'; arguments++; }",
-                "Assigning to arguments in strict mode (1:32)");
+            Program.TestFail("function hello() {'use strict'; arguments++; }", "Assigning to arguments in strict mode (1:32)", null);
 
-            testFail("function hello() {'use strict'; arguments--; }",
-                "Assigning to arguments in strict mode (1:32)");
+            Program.TestFail("function hello() {'use strict'; arguments--; }", "Assigning to arguments in strict mode (1:32)", null);
 
-            testFail("function hello() {'use strict'; function eval() { } }",
-                "Binding eval in strict mode (1:41)");
+            Program.TestFail("function hello() {'use strict'; function eval() { } }", "Binding eval in strict mode (1:41)", null);
 
-            testFail("function hello() {'use strict'; function arguments() { } }",
-                "Binding arguments in strict mode (1:41)");
+            Program.TestFail("function hello() {'use strict'; function arguments() { } }", "Binding arguments in strict mode (1:41)", null);
 
-            testFail("function eval() {'use strict'; }",
-                "Binding eval in strict mode (1:9)");
+            Program.TestFail("function eval() {'use strict'; }", "Binding eval in strict mode (1:9)", null);
 
-            testFail("function arguments() {'use strict'; }",
-                "Binding arguments in strict mode (1:9)");
+            Program.TestFail("function arguments() {'use strict'; }", "Binding arguments in strict mode (1:9)", null);
 
-            testFail("function hello() {'use strict'; (function eval() { }()) }",
-                "Binding eval in strict mode (1:42)");
+            Program.TestFail("function hello() {'use strict'; (function eval() { }()) }", "Binding eval in strict mode (1:42)", null);
 
-            testFail("function hello() {'use strict'; (function arguments() { }()) }",
-                "Binding arguments in strict mode (1:42)");
+            Program.TestFail("function hello() {'use strict'; (function arguments() { }()) }", "Binding arguments in strict mode (1:42)", null);
 
-            testFail("(function eval() {'use strict'; })()",
-                "Binding eval in strict mode (1:10)");
+            Program.TestFail("(function eval() {'use strict'; })()", "Binding eval in strict mode (1:10)", null);
 
-            testFail("(function arguments() {'use strict'; })()",
-                "Binding arguments in strict mode (1:10)");
+            Program.TestFail("(function arguments() {'use strict'; })()", "Binding arguments in strict mode (1:10)", null);
 
-            testFail("function hello() {'use strict'; ({ s: function eval() { } }); }",
-                "Binding eval in strict mode (1:47)");
+            Program.TestFail("function hello() {'use strict'; ({ s: function eval() { } }); }", "Binding eval in strict mode (1:47)", null);
 
-            testFail("(function package() {'use strict'; })()",
-                "Binding package in strict mode (1:10)");
+            Program.TestFail("(function package() {'use strict'; })()", "Binding package in strict mode (1:10)", null);
 
-            testFail("function hello() {'use strict'; ({ i: 10, set s(eval) { } }); }",
-                "Binding eval in strict mode (1:48)");
+            Program.TestFail("function hello() {'use strict'; ({ i: 10, set s(eval) { } }); }", "Binding eval in strict mode (1:48)", null);
 
-            testFail("function hello() {'use strict'; ({ set s(eval) { } }); }",
-                "Binding eval in strict mode (1:41)");
+            Program.TestFail("function hello() {'use strict'; ({ set s(eval) { } }); }", "Binding eval in strict mode (1:41)", null);
 
-            testFail("function hello() {'use strict'; ({ s: function s(eval) { } }); }",
-                "Binding eval in strict mode (1:49)");
+            Program.TestFail("function hello() {'use strict'; ({ s: function s(eval) { } }); }", "Binding eval in strict mode (1:49)", null);
 
-            testFail("function hello(eval) {'use strict';}",
-                "Binding eval in strict mode (1:15)");
+            Program.TestFail("function hello(eval) {'use strict';}", "Binding eval in strict mode (1:15)", null);
 
-            testFail("function hello(arguments) {'use strict';}",
-                "Binding arguments in strict mode (1:15)");
+            Program.TestFail("function hello(arguments) {'use strict';}", "Binding arguments in strict mode (1:15)", null);
 
-            testFail("function hello() { 'use strict'; function inner(eval) {} }",
-                "Binding eval in strict mode (1:48)");
+            Program.TestFail("function hello() { 'use strict'; function inner(eval) {} }", "Binding eval in strict mode (1:48)", null);
 
-            testFail("function hello() { 'use strict'; function inner(arguments) {} }",
-                "Binding arguments in strict mode (1:48)");
+            Program.TestFail("function hello() { 'use strict'; function inner(arguments) {} }", "Binding arguments in strict mode (1:48)", null);
 
-            testFail("function hello() { 'use strict'; \"\\1\"; }",
-                "Octal literal in strict mode (1:34)");
+            Program.TestFail("function hello() { 'use strict'; \"\\1\"; }", "Octal literal in strict mode (1:34)", null);
 
-            testFail("function hello() { 'use strict'; \"\\00\"; }",
-                "Octal literal in strict mode (1:34)");
+            Program.TestFail("function hello() { 'use strict'; \"\\00\"; }", "Octal literal in strict mode (1:34)", null);
 
-            testFail("function hello() { 'use strict'; \"\\000\"; }",
-                "Octal literal in strict mode (1:34)");
+            Program.TestFail("function hello() { 'use strict'; \"\\000\"; }", "Octal literal in strict mode (1:34)", null);
 
-            testFail("function hello() { 'use strict'; 021; }",
-                "Invalid number (1:33)");
+            Program.TestFail("function hello() { 'use strict'; 021; }", "Invalid number (1:33)", null);
 
-            testFail("function hello() { 'use strict'; ({ \"\\1\": 42 }); }",
-                "Octal literal in strict mode (1:37)");
+            Program.TestFail("function hello() { 'use strict'; ({ \"\\1\": 42 }); }", "Octal literal in strict mode (1:37)", null);
 
-            testFail("function hello() { 'use strict'; ({ 021: 42 }); }",
-                "Invalid number (1:36)");
+            Program.TestFail("function hello() { 'use strict'; ({ 021: 42 }); }", "Invalid number (1:36)", null);
 
-            testFail("function hello() { \"use strict\"; function inner() { \"octal directive\\1\"; } }",
-                "Octal literal in strict mode (1:68)");
+            Program.TestFail("function hello() { \"use strict\"; function inner() { \"octal directive\\1\"; } }", "Octal literal in strict mode (1:68)", null);
 
-            testFail("function hello() { \"use strict\"; var implements; }",
-                "The keyword 'implements' is reserved (1:37)");
+            Program.TestFail("function hello() { \"use strict\"; var implements; }", "The keyword 'implements' is reserved (1:37)", null);
 
-            testFail("function hello() { \"use strict\"; var interface; }",
-                "The keyword 'interface' is reserved (1:37)");
+            Program.TestFail("function hello() { \"use strict\"; var interface; }", "The keyword 'interface' is reserved (1:37)", null);
 
-            testFail("function hello() { \"use strict\"; var package; }",
-                "The keyword 'package' is reserved (1:37)");
+            Program.TestFail("function hello() { \"use strict\"; var package; }", "The keyword 'package' is reserved (1:37)", null);
 
-            testFail("function hello() { \"use strict\"; var private; }",
-                "The keyword 'private' is reserved (1:37)");
+            Program.TestFail("function hello() { \"use strict\"; var private; }", "The keyword 'private' is reserved (1:37)", null);
 
-            testFail("function hello() { \"use strict\"; var protected; }",
-                "The keyword 'protected' is reserved (1:37)");
+            Program.TestFail("function hello() { \"use strict\"; var protected; }", "The keyword 'protected' is reserved (1:37)", null);
 
-            testFail("function hello() { \"use strict\"; var public; }",
-                "The keyword 'public' is reserved (1:37)");
+            Program.TestFail("function hello() { \"use strict\"; var public; }", "The keyword 'public' is reserved (1:37)", null);
 
-            testFail("function hello() { \"use strict\"; var static; }",
-                "The keyword 'static' is reserved (1:37)");
+            Program.TestFail("function hello() { \"use strict\"; var static; }", "The keyword 'static' is reserved (1:37)", null);
 
-            testFail("function hello(static) { \"use strict\"; }",
-                "Binding static in strict mode (1:15)");
+            Program.TestFail("function hello(static) { \"use strict\"; }", "Binding static in strict mode (1:15)", null);
 
-            testFail("function static() { \"use strict\"; }",
-                "Binding static in strict mode (1:9)");
+            Program.TestFail("function static() { \"use strict\"; }", "Binding static in strict mode (1:9)", null);
 
-            testFail("\"use strict\"; function static() { }",
-                "The keyword 'static' is reserved (1:23)");
+            Program.TestFail("\"use strict\"; function static() { }", "The keyword 'static' is reserved (1:23)", null);
 
-            testFail("function a(t, t) { \"use strict\"; }",
-                "Argument name clash (1:14)");
+            Program.TestFail("function a(t, t) { \"use strict\"; }", "Argument name clash (1:14)", null);
 
-            testFail("function a(eval) { \"use strict\"; }",
-                "Binding eval in strict mode (1:11)");
+            Program.TestFail("function a(eval) { \"use strict\"; }", "Binding eval in strict mode (1:11)", null);
 
-            testFail("function a(package) { \"use strict\"; }",
-                "Binding package in strict mode (1:11)");
+            Program.TestFail("function a(package) { \"use strict\"; }", "Binding package in strict mode (1:11)", null);
 
-            testFail("function a() { \"use strict\"; function b(t, t) { }; }",
-                "Argument name clash (1:43)");
+            Program.TestFail("function a() { \"use strict\"; function b(t, t) { }; }", "Argument name clash (1:43)", null);
 
-            testFail("(function a(t, t) { \"use strict\"; })",
-                "Argument name clash (1:15)");
+            Program.TestFail("(function a(t, t) { \"use strict\"; })", "Argument name clash (1:15)", null);
 
-            testFail("function a() { \"use strict\"; (function b(t, t) { }); }",
-                "Argument name clash (1:44)");
+            Program.TestFail("function a() { \"use strict\"; (function b(t, t) { }); }", "Argument name clash (1:44)", null);
 
-            testFail("(function a(eval) { \"use strict\"; })",
-                "Binding eval in strict mode (1:12)");
+            Program.TestFail("(function a(eval) { \"use strict\"; })", "Binding eval in strict mode (1:12)", null);
 
-            testFail("(function a(package) { \"use strict\"; })",
-                "Binding package in strict mode (1:12)");
+            Program.TestFail("(function a(package) { \"use strict\"; })", "Binding package in strict mode (1:12)", null);
 
-            testFail("\"use strict\";function foo(){\"use strict\";}function bar(){var v = 015}",
-                "Invalid number (1:65)");
+            Program.TestFail("\"use strict\";function foo(){\"use strict\";}function bar(){var v = 015}", "Invalid number (1:65)", null);
 
-            testFail("var this = 10;", "Unexpected keyword 'this' (1:4)");
+            Program.TestFail("var this = 10;", "Unexpected keyword 'this' (1:4)", null);
 
-            testFail("throw\n10;", "Illegal newline after throw (1:5)");
+            Program.TestFail("throw\n10;", "Illegal newline after throw (1:5)", null);
 
             // ECMA < 6 mode should work as before
 
-            testFail("const a;", "The keyword 'const' is reserved (1:0)");
+            Program.TestFail("const a;", "The keyword 'const' is reserved (1:0)", null);
 
-            testFail("let x;", "Unexpected token (1:4)");
+            Program.TestFail("let x;", "Unexpected token (1:4)", null);
 
-            testFail("const a = 1;", "The keyword 'const' is reserved (1:0)");
+            Program.TestFail("const a = 1;", "The keyword 'const' is reserved (1:0)", null);
 
-            testFail("let a = 1;", "Unexpected token (1:4)");
+            Program.TestFail("let a = 1;", "Unexpected token (1:4)", null);
 
-            testFail("for(const x = 0;;);", "The keyword 'const' is reserved (1:4)");
+            Program.TestFail("for(const x = 0;;);", "The keyword 'const' is reserved (1:4)", null);
 
-            testFail("for(let x = 0;;);", "Unexpected token (1:8)");
+            Program.TestFail("for(let x = 0;;);", "Unexpected token (1:8)", null);
 
-            testFail("function a(b = c) {}", "Unexpected token (1:13)");
+            Program.TestFail("function a(b = c) {}", "Unexpected token (1:13)", null);
 
-            Test("let++", new TestNode
+            Program.Test("let++", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)),
@@ -10855,10 +10662,10 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
+            }, null);
 
             // ECMA 6 support
-            Test("let x", new TestNode
+            Program.Test("let x", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -10883,7 +10690,7 @@ namespace AcornSharp.Cli
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5))
             }, new Options {ecmaVersion = 6});
 
-            Test("let x, y;", new TestNode
+            Program.Test("let x, y;", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -10915,7 +10722,7 @@ namespace AcornSharp.Cli
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9))
             }, new Options {ecmaVersion = 6});
 
-            Test("let x = 42", new TestNode
+            Program.Test("let x = 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -10945,7 +10752,7 @@ namespace AcornSharp.Cli
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10))
             }, new Options {ecmaVersion = 6});
 
-            Test("let eval = 42, arguments = 42", new TestNode
+            Program.Test("let eval = 42, arguments = 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -10987,7 +10794,7 @@ namespace AcornSharp.Cli
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
             }, new Options {ecmaVersion = 6});
 
-            Test("let x = 14, y = 3, z = 1977", new TestNode
+            Program.Test("let x = 14, y = 3, z = 1977", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -11041,7 +10848,7 @@ namespace AcornSharp.Cli
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27))
             }, new Options {ecmaVersion = 6});
 
-            Test("for(let x = 0;;);", new TestNode
+            Program.Test("for(let x = 0;;);", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -11083,7 +10890,7 @@ namespace AcornSharp.Cli
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17))
             }, new Options {ecmaVersion = 6});
 
-            Test("for(let x = 0, y = 1;;);", new TestNode
+            Program.Test("for(let x = 0, y = 1;;);", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -11137,7 +10944,7 @@ namespace AcornSharp.Cli
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24))
             }, new Options {ecmaVersion = 6});
 
-            Test("for (let x in list) process(x);", new TestNode
+            Program.Test("for (let x in list) process(x);", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -11183,7 +10990,7 @@ namespace AcornSharp.Cli
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
             }, new Options {ecmaVersion = 6});
 
-            Test("const x = 42", new TestNode
+            Program.Test("const x = 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -11213,7 +11020,7 @@ namespace AcornSharp.Cli
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
             }, new Options {ecmaVersion = 6});
 
-            Test("const eval = 42, arguments = 42", new TestNode
+            Program.Test("const eval = 42, arguments = 42", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -11255,7 +11062,7 @@ namespace AcornSharp.Cli
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31))
             }, new Options {ecmaVersion = 6});
 
-            Test("const x = 14, y = 3, z = 1977", new TestNode
+            Program.Test("const x = 14, y = 3, z = 1977", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -11309,9 +11116,9 @@ namespace AcornSharp.Cli
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29))
             }, new Options {ecmaVersion = 6});
 
-            testFail("const a;", "Unexpected token (1:7)", new Options {ecmaVersion = 6});
+            Program.TestFail("const a;", "Unexpected token (1:7)", new Options {ecmaVersion = 6});
 
-            Test("for(const x = 0;;);", new TestNode
+            Program.Test("for(const x = 0;;);", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -11353,9 +11160,9 @@ namespace AcornSharp.Cli
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19))
             }, new Options {ecmaVersion = 6});
 
-            testFail("for(x of a);", "Unexpected token (1:6)");
+            Program.TestFail("for(x of a);", "Unexpected token (1:6)", null);
 
-            testFail("for(var x of a);", "Unexpected token (1:10)");
+            Program.TestFail("for(var x of a);", "Unexpected token (1:10)", null);
 
             // Assertion Tests
             //test(@"function TestComments() {
@@ -11392,14 +11199,14 @@ namespace AcornSharp.Cli
             //  ]
             //});
 
-            Test("<!--\n;", new TestNode
+            Program.Test("<!--\n;", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
                 {
                     new TestNode {type = typeof(EmptyStatementNode)}
                 }
-            });
+            }, null);
 
             //test("\nfunction plop() {\n'use strict';\n/* Comment */\n}", new Node {}, new Options{
             //  locations = true,
@@ -11461,16 +11268,16 @@ namespace AcornSharp.Cli
             //  ]
             //});
 
-            Test("function f(f) { 'use strict'; }", new TestNode {type = typeof(ProgramNode)});
+            Program.Test("function f(f) { 'use strict'; }", new TestNode {type = typeof(ProgramNode)}, null);
 
             // https://github.com/ternjs/acorn/issues/180
-            Test("#!/usr/bin/node\n;", new TestNode {type = typeof(ProgramNode)}, new Options
+            Program.Test("#!/usr/bin/node\n;", new TestNode {type = typeof(ProgramNode)}, new Options
             {
                 allowHashBang = true,
             });
 
             // https://github.com/ternjs/acorn/issues/204
-            Test("(function () {} / 1)", new TestNode
+            Program.Test("(function () {} / 1)", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -11497,9 +11304,9 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
+            }, null);
 
-            Test("function f() {} / 1 /", new TestNode
+            Program.Test("function f() {} / 1 /", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -11525,10 +11332,10 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
+            }, null);
 
             // https://github.com/ternjs/acorn/issues/320
-            Test(@"do /x/; while (false);", new TestNode
+            Program.Test(@"do /x/; while (false);", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -11554,7 +11361,7 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
+            }, null);
 
             //var semicolons = []
             //testAssert("var x\nreturn\n10", function() {
@@ -11577,13 +11384,13 @@ namespace AcornSharp.Cli
 
             // https://github.com/ternjs/acorn/issues/275
 
-            testFail("({ get prop(x) {} })", "getter should have no params (1:11)");
-            testFail("({ set prop() {} })", "setter should have exactly one param (1:11)");
-            testFail("({ set prop(x, y) {} })", "setter should have exactly one param (1:11)");
+            Program.TestFail("({ get prop(x) {} })", "getter should have no params (1:11)", null);
+            Program.TestFail("({ set prop() {} })", "setter should have exactly one param (1:11)", null);
+            Program.TestFail("({ set prop(x, y) {} })", "setter should have exactly one param (1:11)", null);
 
             // https://github.com/ternjs/acorn/issues/363
 
-            Test("/[a-z]/gim", new TestNode
+            Program.Test("/[a-z]/gim", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -11602,14 +11409,14 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
-            testFail("/[a-z]/u", "Invalid regular expression flag (1:1)");
-            testFail("/[a-z]/y", "Invalid regular expression flag (1:1)");
-            testFail("/[a-z]/s", "Invalid regular expression flag (1:1)");
+            }, null);
+            Program.TestFail("/[a-z]/u", "Invalid regular expression flag (1:1)", null);
+            Program.TestFail("/[a-z]/y", "Invalid regular expression flag (1:1)", null);
+            Program.TestFail("/[a-z]/s", "Invalid regular expression flag (1:1)", null);
 
-            testFail("function(){}", "Unexpected token (1:8)");
+            Program.TestFail("function(){}", "Unexpected token (1:8)", null);
 
-            Test("0123. in/foo/i", new TestNode
+            Program.Test("0123. in/foo/i", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -11644,9 +11451,9 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
+            }, null);
 
-            Test("0128", new TestNode
+            Program.Test("0128", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -11662,11 +11469,11 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
+            }, null);
 
-            testFail("07.5", "Unexpected token (1:2)");
+            Program.TestFail("07.5", "Unexpected token (1:2)", null);
 
-            Test("08.5", new TestNode
+            Program.Test("08.5", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new[]
@@ -11682,42 +11489,42 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            });
+            }, null);
 
-            Test("undefined", new TestNode {type = typeof(ProgramNode)}, new Options {ecmaVersion = 8});
+            Program.Test("undefined", new TestNode {type = typeof(ProgramNode)}, new Options {ecmaVersion = 8});
 
-            testFail("\\u{74}rue", "Escape sequence in keyword true (1:0)", new Options {ecmaVersion = 6});
+            Program.TestFail("\\u{74}rue", "Escape sequence in keyword true (1:0)", new Options {ecmaVersion = 6});
 
-            testFail("(x=1)=2", "Parenthesized pattern (1:0)");
+            Program.TestFail("(x=1)=2", "Parenthesized pattern (1:0)", null);
 
-            Test("(foo = [])[0] = 4;", new TestNode {type = typeof(ProgramNode)});
+            Program.Test("(foo = [])[0] = 4;", new TestNode {type = typeof(ProgramNode)}, null);
 
-            Test("for ((foo = []).bar in {}) {}", new TestNode {type = typeof(ProgramNode)});
+            Program.Test("for ((foo = []).bar in {}) {}", new TestNode {type = typeof(ProgramNode)}, null);
 
-            Test("((b), a=1)", new TestNode {type = typeof(ProgramNode)});
+            Program.Test("((b), a=1)", new TestNode {type = typeof(ProgramNode)}, null);
 
-            Test("(x) = 1", new TestNode {type = typeof(ProgramNode)});
+            Program.Test("(x) = 1", new TestNode {type = typeof(ProgramNode)}, null);
 
-            testFail("try {} catch (foo) { var foo; }", "Identifier 'foo' has already been declared (1:25)");
-            testFail("try {} catch (foo) { let foo; }", "Identifier 'foo' has already been declared (1:25)", new Options {ecmaVersion = 6});
-            testFail("try {} catch (foo) { try {} catch (_) { var foo; } }", "Identifier 'foo' has already been declared (1:44)");
-            testFail("try {} catch ([foo]) { var foo; }", "Identifier 'foo' has already been declared (1:27)", new Options {ecmaVersion = 6});
-            testFail("try {} catch ({ foo }) { var foo; }", "Identifier 'foo' has already been declared (1:29)", new Options {ecmaVersion = 6});
-            testFail("try {} catch ([foo, foo]) {}", "Identifier 'foo' has already been declared (1:20)", new Options {ecmaVersion = 6});
-            testFail("try {} catch ({ a: foo, b: { c: [foo] } }) {}", "Identifier 'foo' has already been declared (1:33)", new Options {ecmaVersion = 6});
-            testFail("let foo; try {} catch (foo) {} let foo;", "Identifier 'foo' has already been declared (1:35)", new Options {ecmaVersion = 6});
-            testFail("try {} catch (foo) { function foo() {} }", "Identifier 'foo' has already been declared (1:30)");
+            Program.TestFail("try {} catch (foo) { var foo; }", "Identifier 'foo' has already been declared (1:25)", null);
+            Program.TestFail("try {} catch (foo) { let foo; }", "Identifier 'foo' has already been declared (1:25)", new Options {ecmaVersion = 6});
+            Program.TestFail("try {} catch (foo) { try {} catch (_) { var foo; } }", "Identifier 'foo' has already been declared (1:44)", null);
+            Program.TestFail("try {} catch ([foo]) { var foo; }", "Identifier 'foo' has already been declared (1:27)", new Options {ecmaVersion = 6});
+            Program.TestFail("try {} catch ({ foo }) { var foo; }", "Identifier 'foo' has already been declared (1:29)", new Options {ecmaVersion = 6});
+            Program.TestFail("try {} catch ([foo, foo]) {}", "Identifier 'foo' has already been declared (1:20)", new Options {ecmaVersion = 6});
+            Program.TestFail("try {} catch ({ a: foo, b: { c: [foo] } }) {}", "Identifier 'foo' has already been declared (1:33)", new Options {ecmaVersion = 6});
+            Program.TestFail("let foo; try {} catch (foo) {} let foo;", "Identifier 'foo' has already been declared (1:35)", new Options {ecmaVersion = 6});
+            Program.TestFail("try {} catch (foo) { function foo() {} }", "Identifier 'foo' has already been declared (1:30)", null);
 
-            Test("try {} catch (foo) {} var foo;", new TestNode {type = typeof(ProgramNode)});
-            Test("try {} catch (foo) {} let foo;", new TestNode {type = typeof(ProgramNode)}, new Options {ecmaVersion = 6});
-            Test("try {} catch (foo) { { let foo; } }", new TestNode {type = typeof(ProgramNode)}, new Options {ecmaVersion = 6});
-            Test("try {} catch (foo) { function x() { var foo; } }", new TestNode {type = typeof(ProgramNode)}, new Options {ecmaVersion = 6});
-            Test("try {} catch (foo) { function x(foo) {} }", new TestNode {type = typeof(ProgramNode)}, new Options {ecmaVersion = 6});
+            Program.Test("try {} catch (foo) {} var foo;", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("try {} catch (foo) {} let foo;", new TestNode {type = typeof(ProgramNode)}, new Options {ecmaVersion = 6});
+            Program.Test("try {} catch (foo) { { let foo; } }", new TestNode {type = typeof(ProgramNode)}, new Options {ecmaVersion = 6});
+            Program.Test("try {} catch (foo) { function x() { var foo; } }", new TestNode {type = typeof(ProgramNode)}, new Options {ecmaVersion = 6});
+            Program.Test("try {} catch (foo) { function x(foo) {} }", new TestNode {type = typeof(ProgramNode)}, new Options {ecmaVersion = 6});
 
-            Test("'use strict'; let foo = function foo() {}", new TestNode {type = typeof(ProgramNode)}, new Options {ecmaVersion = 6});
+            Program.Test("'use strict'; let foo = function foo() {}", new TestNode {type = typeof(ProgramNode)}, new Options {ecmaVersion = 6});
 
-            Test("/**/ --> comment\n", new TestNode {type = typeof(ProgramNode)});
-            Test("x.class++", new TestNode {type = typeof(ProgramNode)});
+            Program.Test("/**/ --> comment\n", new TestNode {type = typeof(ProgramNode)}, null);
+            Program.Test("x.class++", new TestNode {type = typeof(ProgramNode)}, null);
         }
     }
 }

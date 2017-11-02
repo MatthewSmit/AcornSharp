@@ -3,15 +3,15 @@ using AcornSharp.Node;
 
 namespace AcornSharp.Cli
 {
-    internal static partial class Program
+    internal static partial class Tests
     {
-        private static void TestsAsyncAwait()
+        public static void TestsAsyncAwait()
         {
             //-----------------------------------------------------------------------------
             // Async Function Declarations
 
             // async == false
-            Test("function foo() { }", new TestNode
+            Program.Test("function foo() { }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
@@ -32,7 +32,7 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // async == true
-            Test("async function foo() { }", new TestNode
+            Program.Test("async function foo() { }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24)),
@@ -53,7 +53,7 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // a reference and a normal function declaration if there is a linebreak between 'async' and 'function'.
-            Test("async\nfunction foo() { }", new TestNode
+            Program.Test("async\nfunction foo() { }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 18, 24)),
@@ -77,7 +77,7 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // export
-            Test("export async function foo() { }", new TestNode
+            Program.Test("export async function foo() { }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 31, 31)),
@@ -102,7 +102,7 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8, sourceType = SourceType.Module });
 
             // export default
-            Test("export default async function() { }", new TestNode
+            Program.Test("export default async function() { }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
@@ -125,10 +125,10 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8, sourceType = SourceType.Module });
 
             // cannot combine with generators
-            testFail("async function* foo() { }", "Unexpected token (1:14)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async function* foo() { }", "Unexpected token (1:14)", new Options { ecmaVersion = 8 });
 
             // 'await' is valid as function names.
-            Test("async function await() { }", new TestNode
+            Program.Test("async function await() { }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26)),
@@ -149,15 +149,15 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // cannot use 'await' inside async functions.
-            testFail("async function wrap() {\nasync function await() { }\n}", "Can not use 'await' as identifier inside an async function (2:15)", new Options { ecmaVersion = 8 });
-            testFail("async function foo(await) { }", "Can not use 'await' as identifier inside an async function (1:19)", new Options { ecmaVersion = 8 });
-            testFail("async function foo() { return {await} }", "Can not use 'await' as identifier inside an async function (1:31)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async function wrap() {\nasync function await() { }\n}", "Can not use 'await' as identifier inside an async function (2:15)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async function foo(await) { }", "Can not use 'await' as identifier inside an async function (1:19)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async function foo() { return {await} }", "Can not use 'await' as identifier inside an async function (1:31)", new Options { ecmaVersion = 8 });
 
             //-----------------------------------------------------------------------------
             // Async Function Expressions
 
             // async == false
-            Test("(function foo() { })", new TestNode
+            Program.Test("(function foo() { })", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
@@ -180,7 +180,7 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // async == true
-            Test("(async function foo() { })", new TestNode
+            Program.Test("(async function foo() { })", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 26, 26)),
@@ -203,13 +203,13 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // cannot insert a linebreak to between 'async' and 'function'.
-            testFail("(async\nfunction foo() { })", "Unexpected token (2:0)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(async\nfunction foo() { })", "Unexpected token (2:0)", new Options { ecmaVersion = 8 });
 
             // cannot combine with generators.
-            testFail("(async function* foo() { })", "Unexpected token (1:15)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(async function* foo() { })", "Unexpected token (1:15)", new Options { ecmaVersion = 8 });
 
             // export default
-            Test("export default (async function() { })", new TestNode
+            Program.Test("export default (async function() { })", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37)),
@@ -232,15 +232,15 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8, sourceType = SourceType.Module });
 
             // cannot use 'await' inside async functions.
-            testFail("(async function await() { })", "Can not use 'await' as identifier inside an async function (1:16)", new Options { ecmaVersion = 8 });
-            testFail("(async function foo(await) { })", "Can not use 'await' as identifier inside an async function (1:20)", new Options { ecmaVersion = 8 });
-            testFail("(async function foo() { return {await} })", "Can not use 'await' as identifier inside an async function (1:32)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(async function await() { })", "Can not use 'await' as identifier inside an async function (1:16)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(async function foo(await) { })", "Can not use 'await' as identifier inside an async function (1:20)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(async function foo() { return {await} })", "Can not use 'await' as identifier inside an async function (1:32)", new Options { ecmaVersion = 8 });
 
             //-----------------------------------------------------------------------------
             // Async Arrow Function Expressions
 
             // async == false
-            Test("a => a", new TestNode
+            Program.Test("a => a", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6)),
@@ -263,7 +263,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("(a) => a", new TestNode
+            Program.Test("(a) => a", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)),
@@ -287,7 +287,7 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // async == true
-            Test("async a => a", new TestNode
+            Program.Test("async a => a", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12)),
@@ -310,7 +310,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("async () => a", new TestNode
+            Program.Test("async () => a", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
@@ -330,7 +330,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("async (a, b) => a", new TestNode
+            Program.Test("async (a, b) => a", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
@@ -355,7 +355,7 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // OK even if it's an invalid syntax in the case `=>` didn't exist.
-            Test("async ({a = b}) => a", new TestNode
+            Program.Test("async ({a = b}) => a", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
@@ -394,10 +394,10 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // syntax error if `=>` didn't exist.
-            testFail("async ({a = b})", "Shorthand property assignments are valid only in destructuring patterns (1:10)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async ({a = b})", "Shorthand property assignments are valid only in destructuring patterns (1:10)", new Options { ecmaVersion = 8 });
 
             // AssignmentPattern/AssignmentExpression
-            Test("async ({a: b = c}) => a", new TestNode
+            Program.Test("async ({a: b = c}) => a", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 23, 23)),
@@ -434,7 +434,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("async ({a: b = c})", new TestNode
+            Program.Test("async ({a: b = c})", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
@@ -469,7 +469,7 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // a reference and a normal arrow function if there is a linebreak between 'async' and the 1st parameter.
-            Test("async\na => a", new TestNode
+            Program.Test("async\na => a", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(2, 6, 12)),
@@ -495,14 +495,14 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // 'async()' call expression and invalid '=>' token.
-            testFail("async\n() => a", "Unexpected token (2:3)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async\n() => a", "Unexpected token (2:3)", new Options { ecmaVersion = 8 });
 
             // cannot insert a linebreak before '=>'.
-            testFail("async a\n=> a", "Unexpected token (2:0)", new Options { ecmaVersion = 8 });
-            testFail("async ()\n=> a", "Unexpected token (2:0)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async a\n=> a", "Unexpected token (2:0)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async ()\n=> a", "Unexpected token (2:0)", new Options { ecmaVersion = 8 });
 
             // a call expression with 'await' reference.
-            Test("async (await)", new TestNode
+            Program.Test("async (await)", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
@@ -521,14 +521,14 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // cannot use 'await' inside async functions.
-            testFail("async await => 1", "Can not use 'await' as identifier inside an async function (1:6)", new Options { ecmaVersion = 8 });
-            testFail("async (await) => 1", "Can not use 'await' as identifier inside an async function (1:7)", new Options { ecmaVersion = 8 });
-            testFail("async ({await}) => 1", "Can not use 'await' as identifier inside an async function (1:8)", new Options { ecmaVersion = 8 });
-            testFail("async ({a: await}) => 1", "Can not use 'await' as identifier inside an async function (1:11)", new Options { ecmaVersion = 8 });
-            testFail("async ([await]) => 1", "Can not use 'await' as identifier inside an async function (1:8)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async await => 1", "Can not use 'await' as identifier inside an async function (1:6)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async (await) => 1", "Can not use 'await' as identifier inside an async function (1:7)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async ({await}) => 1", "Can not use 'await' as identifier inside an async function (1:8)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async ({a: await}) => 1", "Can not use 'await' as identifier inside an async function (1:11)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async ([await]) => 1", "Can not use 'await' as identifier inside an async function (1:8)", new Options { ecmaVersion = 8 });
 
             // can use 'yield' identifier outside generators.
-            Test("async yield => 1", new TestNode
+            Program.Test("async yield => 1", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 16, 16)),
@@ -557,7 +557,7 @@ namespace AcornSharp.Cli
             // Async Methods (object)
 
             // async == false
-            Test("({foo() { }})", new TestNode
+            Program.Test("({foo() { }})", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
@@ -591,7 +591,7 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // async == true
-            Test("({async foo() { }})", new TestNode
+            Program.Test("({async foo() { }})", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
@@ -625,7 +625,7 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // OK with 'async' as a method name
-            Test("({async() { }})", new TestNode
+            Program.Test("({async() { }})", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
@@ -659,15 +659,15 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // invalid syntax if there is a linebreak after 'async'.
-            testFail("({async\nfoo() { }})", "Unexpected token (2:0)", new Options { ecmaVersion = 8 });
+            Program.TestFail("({async\nfoo() { }})", "Unexpected token (2:0)", new Options { ecmaVersion = 8 });
 
             // cannot combine with getters/setters/generators.
-            testFail("({async get foo() { }})", "Unexpected token (1:12)", new Options { ecmaVersion = 8 });
-            testFail("({async set foo(value) { }})", "Unexpected token (1:12)", new Options { ecmaVersion = 8 });
-            testFail("({async* foo() { }})", "Unexpected token (1:7)", new Options { ecmaVersion = 8 });
+            Program.TestFail("({async get foo() { }})", "Unexpected token (1:12)", new Options { ecmaVersion = 8 });
+            Program.TestFail("({async set foo(value) { }})", "Unexpected token (1:12)", new Options { ecmaVersion = 8 });
+            Program.TestFail("({async* foo() { }})", "Unexpected token (1:7)", new Options { ecmaVersion = 8 });
 
             // 'await' is valid as function names.
-            Test("({async await() { }})", new TestNode
+            Program.Test("({async await() { }})", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
@@ -701,19 +701,19 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // cannot use 'await' inside async functions.
-            Test("async function wrap() {\n({async await() { }})\n}", new TestNode { type = typeof(ProgramNode) }, new Options { ecmaVersion = 8 });
-            testFail("({async foo() { var await }})", "Can not use 'await' as identifier inside an async function (1:20)", new Options { ecmaVersion = 8 });
-            testFail("({async foo(await) { }})", "Can not use 'await' as identifier inside an async function (1:12)", new Options { ecmaVersion = 8 });
-            testFail("({async foo() { return {await} }})", "Can not use 'await' as identifier inside an async function (1:24)", new Options { ecmaVersion = 8 });
+            Program.Test("async function wrap() {\n({async await() { }})\n}", new TestNode { type = typeof(ProgramNode) }, new Options { ecmaVersion = 8 });
+            Program.TestFail("({async foo() { var await }})", "Can not use 'await' as identifier inside an async function (1:20)", new Options { ecmaVersion = 8 });
+            Program.TestFail("({async foo(await) { }})", "Can not use 'await' as identifier inside an async function (1:12)", new Options { ecmaVersion = 8 });
+            Program.TestFail("({async foo() { return {await} }})", "Can not use 'await' as identifier inside an async function (1:24)", new Options { ecmaVersion = 8 });
 
             // invalid syntax 'async foo: 1'
-            testFail("({async foo: 1})", "Unexpected token (1:11)", new Options { ecmaVersion = 8 });
+            Program.TestFail("({async foo: 1})", "Unexpected token (1:11)", new Options { ecmaVersion = 8 });
 
             //-----------------------------------------------------------------------------
             // Async Methods (class)
 
             // async == false
-            Test("class A {foo() { }}", new TestNode
+            Program.Test("class A {foo() { }}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
@@ -748,7 +748,7 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // async == true
-            Test("class A {async foo() { }}", new TestNode
+            Program.Test("class A {async foo() { }}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 25, 25)),
@@ -782,7 +782,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("class A {static async foo() { }}", new TestNode
+            Program.Test("class A {static async foo() { }}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 32, 32)),
@@ -817,7 +817,7 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // OK 'async' as a method name.
-            Test("class A {async() { }}", new TestNode
+            Program.Test("class A {async() { }}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 21, 21)),
@@ -851,7 +851,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("class A {static async() { }}", new TestNode
+            Program.Test("class A {static async() { }}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28)),
@@ -885,7 +885,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("class A {*async() { }}", new TestNode
+            Program.Test("class A {*async() { }}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
@@ -919,7 +919,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("class A {static* async() { }}", new TestNode
+            Program.Test("class A {static* async() { }}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 29, 29)),
@@ -954,20 +954,20 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // invalid syntax if there is a linebreak after 'async'.
-            testFail("class A {async\nfoo() { }}", "Unexpected token (2:0)", new Options { ecmaVersion = 8 });
-            testFail("class A {static async\nfoo() { }}", "Unexpected token (2:0)", new Options { ecmaVersion = 8 });
+            Program.TestFail("class A {async\nfoo() { }}", "Unexpected token (2:0)", new Options { ecmaVersion = 8 });
+            Program.TestFail("class A {static async\nfoo() { }}", "Unexpected token (2:0)", new Options { ecmaVersion = 8 });
 
             // cannot combine with constructors/getters/setters/generators.
-            testFail("class A {async constructor() { }}", "Constructor can't be an async method (1:15)", new Options { ecmaVersion = 8 });
-            testFail("class A {async get foo() { }}", "Unexpected token (1:19)", new Options { ecmaVersion = 8 });
-            testFail("class A {async set foo(value) { }}", "Unexpected token (1:19)", new Options { ecmaVersion = 8 });
-            testFail("class A {async* foo() { }}", "Unexpected token (1:14)", new Options { ecmaVersion = 8 });
-            testFail("class A {static async get foo() { }}", "Unexpected token (1:26)", new Options { ecmaVersion = 8 });
-            testFail("class A {static async set foo(value) { }}", "Unexpected token (1:26)", new Options { ecmaVersion = 8 });
-            testFail("class A {static async* foo() { }}", "Unexpected token (1:21)", new Options { ecmaVersion = 8 });
+            Program.TestFail("class A {async constructor() { }}", "Constructor can't be an async method (1:15)", new Options { ecmaVersion = 8 });
+            Program.TestFail("class A {async get foo() { }}", "Unexpected token (1:19)", new Options { ecmaVersion = 8 });
+            Program.TestFail("class A {async set foo(value) { }}", "Unexpected token (1:19)", new Options { ecmaVersion = 8 });
+            Program.TestFail("class A {async* foo() { }}", "Unexpected token (1:14)", new Options { ecmaVersion = 8 });
+            Program.TestFail("class A {static async get foo() { }}", "Unexpected token (1:26)", new Options { ecmaVersion = 8 });
+            Program.TestFail("class A {static async set foo(value) { }}", "Unexpected token (1:26)", new Options { ecmaVersion = 8 });
+            Program.TestFail("class A {static async* foo() { }}", "Unexpected token (1:21)", new Options { ecmaVersion = 8 });
 
             // 'await' is valid as function names.
-            Test("class A {async await() { }}", new TestNode
+            Program.Test("class A {async await() { }}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)),
@@ -1001,7 +1001,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("class A {static async await() { }}", new TestNode
+            Program.Test("class A {static async await() { }}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34)),
@@ -1036,15 +1036,15 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // cannot use 'await' inside async functions.
-            Test("async function wrap() {\nclass A {async await() { }}\n}", new TestNode { type = typeof(ProgramNode) }, new Options { ecmaVersion = 8 });
-            testFail("class A {async foo() { var await }}", "Can not use 'await' as identifier inside an async function (1:27)", new Options { ecmaVersion = 8 });
-            testFail("class A {async foo(await) { }}", "Can not use 'await' as identifier inside an async function (1:19)", new Options { ecmaVersion = 8 });
-            testFail("class A {async foo() { return {await} }}", "Can not use 'await' as identifier inside an async function (1:31)", new Options { ecmaVersion = 8 });
+            Program.Test("async function wrap() {\nclass A {async await() { }}\n}", new TestNode { type = typeof(ProgramNode) }, new Options { ecmaVersion = 8 });
+            Program.TestFail("class A {async foo() { var await }}", "Can not use 'await' as identifier inside an async function (1:27)", new Options { ecmaVersion = 8 });
+            Program.TestFail("class A {async foo(await) { }}", "Can not use 'await' as identifier inside an async function (1:19)", new Options { ecmaVersion = 8 });
+            Program.TestFail("class A {async foo() { return {await} }}", "Can not use 'await' as identifier inside an async function (1:31)", new Options { ecmaVersion = 8 });
             //-----------------------------------------------------------------------------
             // Await Expressions
 
             // 'await' is an identifier in scripts.
-            Test("await", new TestNode
+            Program.Test("await", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)),
@@ -1057,14 +1057,14 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // 'await' is a keyword in modules.
-            testFail("await", "The keyword 'await' is reserved (1:0)", new Options { ecmaVersion = 8, sourceType = SourceType.Module });
+            Program.TestFail("await", "The keyword 'await' is reserved (1:0)", new Options { ecmaVersion = 8, sourceType = SourceType.Module });
 
             // Await expressions is invalid outside of async functions.
-            testFail("await a", "Unexpected token (1:6)", new Options { ecmaVersion = 8 });
-            testFail("await a", "The keyword 'await' is reserved (1:0)", new Options { ecmaVersion = 8, sourceType = SourceType.Module });
+            Program.TestFail("await a", "Unexpected token (1:6)", new Options { ecmaVersion = 8 });
+            Program.TestFail("await a", "The keyword 'await' is reserved (1:0)", new Options { ecmaVersion = 8, sourceType = SourceType.Module });
 
             // Await expressions in async functions.
-            Test("async function foo(a, b) { await a }", new TestNode
+            Program.Test("async function foo(a, b) { await a }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 36, 36)),
@@ -1094,7 +1094,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("(async function foo(a) { await a })", new TestNode
+            Program.Test("(async function foo(a) { await a })", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
@@ -1125,7 +1125,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("(async (a) => await a)", new TestNode
+            Program.Test("(async (a) => await a)", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
@@ -1149,7 +1149,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("({async foo(a) { await a }})", new TestNode
+            Program.Test("({async foo(a) { await a }})", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28)),
@@ -1192,7 +1192,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("(class {async foo(a) { await a }})", new TestNode
+            Program.Test("(class {async foo(a) { await a }})", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34)),
@@ -1239,7 +1239,7 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // Await expressions are an unary expression.
-            Test("async function foo(a, b) { await a + await b }", new TestNode
+            Program.Test("async function foo(a, b) { await a + await b }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 46, 46)),
@@ -1276,7 +1276,7 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // 'await + 1' is a binary expression outside of async functions.
-            Test("function foo() { await + 1 }", new TestNode
+            Program.Test("function foo() { await + 1 }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 28, 28)),
@@ -1308,7 +1308,7 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // 'await + 1' is an await expression in async functions.
-            Test("async function foo() { await + 1 }", new TestNode
+            Program.Test("async function foo() { await + 1 }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34)),
@@ -1342,23 +1342,23 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // Await expressions need one argument.
-            testFail("async function foo() { await }", "Unexpected token (1:29)", new Options { ecmaVersion = 8 });
-            testFail("(async function foo() { await })", "Unexpected token (1:30)", new Options { ecmaVersion = 8 });
-            testFail("async () => await", "Unexpected token (1:17)", new Options { ecmaVersion = 8 });
-            testFail("({async foo() { await }})", "Unexpected token (1:22)", new Options { ecmaVersion = 8 });
-            testFail("(class {async foo() { await }})", "Unexpected token (1:28)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async function foo() { await }", "Unexpected token (1:29)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(async function foo() { await })", "Unexpected token (1:30)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async () => await", "Unexpected token (1:17)", new Options { ecmaVersion = 8 });
+            Program.TestFail("({async foo() { await }})", "Unexpected token (1:22)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(class {async foo() { await }})", "Unexpected token (1:28)", new Options { ecmaVersion = 8 });
 
             // Forbid await expressions in default parameters:
-            testFail("async function foo(a = await b) {}", "Await expression cannot be a default value (1:23)", new Options { ecmaVersion = 8 });
-            testFail("(async function foo(a = await b) {})", "Await expression cannot be a default value (1:24)", new Options { ecmaVersion = 8 });
-            testFail("async (a = await b) => {}", "Unexpected token (1:17)", new Options { ecmaVersion = 8 });
-            testFail("async function wrapper() {\nasync (a = await b) => {}\n}", "Await expression cannot be a default value (2:11)", new Options { ecmaVersion = 8 });
-            testFail("({async foo(a = await b) {}})", "Await expression cannot be a default value (1:16)", new Options { ecmaVersion = 8 });
-            testFail("(class {async foo(a = await b) {}})", "Await expression cannot be a default value (1:22)", new Options { ecmaVersion = 8 });
-            testFail("async function foo(a = class extends (await b) {}) {}", "Await expression cannot be a default value (1:38)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async function foo(a = await b) {}", "Await expression cannot be a default value (1:23)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(async function foo(a = await b) {})", "Await expression cannot be a default value (1:24)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async (a = await b) => {}", "Unexpected token (1:17)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async function wrapper() {\nasync (a = await b) => {}\n}", "Await expression cannot be a default value (2:11)", new Options { ecmaVersion = 8 });
+            Program.TestFail("({async foo(a = await b) {}})", "Await expression cannot be a default value (1:16)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(class {async foo(a = await b) {}})", "Await expression cannot be a default value (1:22)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async function foo(a = class extends (await b) {}) {}", "Await expression cannot be a default value (1:38)", new Options { ecmaVersion = 8 });
 
             // Allow await expressions inside functions in default parameters:
-            Test("async function foo(a = async function foo() { await b }) {}", new TestNode
+            Program.Test("async function foo(a = async function foo() { await b }) {}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 59, 59)),
@@ -1399,7 +1399,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("async function foo(a = async () => await b) {}", new TestNode
+            Program.Test("async function foo(a = async () => await b) {}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 46, 46)),
@@ -1433,7 +1433,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("async function foo(a = {async bar() { await b }}) {}", new TestNode
+            Program.Test("async function foo(a = {async bar() { await b }}) {}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 52, 52)),
@@ -1486,7 +1486,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("async function foo(a = class {async bar() { await b }}) {}", new TestNode
+            Program.Test("async function foo(a = class {async bar() { await b }}) {}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 58, 58)),
@@ -1543,7 +1543,7 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // Distinguish ParenthesizedExpression or ArrowFunctionExpression
-            Test("async function wrap() {\n(a = await b)\n}", new TestNode
+            Program.Test("async function wrap() {\n(a = await b)\n}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 39)),
@@ -1572,9 +1572,9 @@ namespace AcornSharp.Cli
                     }
                 }
             }, new Options { ecmaVersion = 8 });
-            testFail("async function wrap() {\n(a = await b) => a\n}", "Await expression cannot be a default value (2:5)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async function wrap() {\n(a = await b) => a\n}", "Await expression cannot be a default value (2:5)", new Options { ecmaVersion = 8 });
 
-            Test("async function wrap() {\n({a = await b} = obj)\n}", new TestNode
+            Program.Test("async function wrap() {\n({a = await b} = obj)\n}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 47)),
@@ -1618,9 +1618,9 @@ namespace AcornSharp.Cli
                     }
                 }
             }, new Options { ecmaVersion = 8 });
-            testFail("async function wrap() {\n({a = await b} = obj) => a\n}", "Await expression cannot be a default value (2:6)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async function wrap() {\n({a = await b} = obj) => a\n}", "Await expression cannot be a default value (2:6)", new Options { ecmaVersion = 8 });
 
-            Test("function* wrap() {\nasync(a = yield b)\n}", new TestNode
+            Program.Test("function* wrap() {\nasync(a = yield b)\n}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(3, 1, 39)),
@@ -1656,10 +1656,10 @@ namespace AcornSharp.Cli
                     }
                 }
             }, new Options { ecmaVersion = 8 });
-            testFail("function* wrap() {\nasync(a = yield b) => a\n}", "Yield expression cannot be a default value (2:10)", new Options { ecmaVersion = 8 });
+            Program.TestFail("function* wrap() {\nasync(a = yield b) => a\n}", "Yield expression cannot be a default value (2:10)", new Options { ecmaVersion = 8 });
 
             // https://github.com/ternjs/acorn/issues/464
-            Test("f = ({ w = counter(), x = counter(), y = counter(), z = counter() } = { w: null, x: 0, y: false, z: '' }) => {}", new TestNode
+            Program.Test("f = ({ w = counter(), x = counter(), y = counter(), z = counter() } = { w: null, x: 0, y: false, z: '' }) => {}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 111, 111)),
@@ -1798,7 +1798,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("({ async: true })", new TestNode
+            Program.Test("({ async: true })", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
@@ -1821,280 +1821,264 @@ namespace AcornSharp.Cli
             }, new Options { ecmaVersion = 8 });
 
             // Tests for B.3.4 FunctionDeclarations in IfStatement Statement Clauses
-            Test("if (x) async function f() {}", new TestNode
+            Program.Test("if (x) async function f() {}", new TestNode
             {
                 type = typeof(ProgramNode),
                 body = new List<TestNode>
+                {
+                    new TestNode
                     {
-                        new TestNode
-                        {
-                            type = typeof(IfStatementNode),
-                            location = default,
-                            test = null,
-                            consequent = new TestNode { type = typeof(FunctionDeclarationNode),
-                                async = true
-                            },
-                            alternate = null
-                        }
+                        type = typeof(IfStatementNode),
+                        location = default,
+                        test = null,
+                        consequent = new TestNode { type = typeof(FunctionDeclarationNode),
+                            async = true
+                        },
+                        alternate = null
                     }
-            },
-                new Options { ecmaVersion = 8 }
-            );
+                }
+            }, new Options { ecmaVersion = 8 });
 
-            testFail("(async)(a) => 12", "Unexpected token (1:11)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(async)(a) => 12", "Unexpected token (1:11)", new Options { ecmaVersion = 8 });
 
-            testFail("f = async ((x)) => x", "Parenthesized pattern (1:11)", new Options { ecmaVersion = 8 });
+            Program.TestFail("f = async ((x)) => x", "Parenthesized pattern (1:11)", new Options { ecmaVersion = 8 });
 
             // allow 'async' as a shorthand property in script.
-            Test("({async})", new TestNode
+            Program.Test("({async})", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)),
                 body = new List<TestNode>
-                    {
-                        new TestNode { type = typeof(ExpressionStatementNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)),
-                            expression = new TestNode { type = typeof(ObjectExpressionNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 8, 8)),
-                                properties = new List<TestNode>
-                                {
-                                    new TestNode { type = typeof(PropertyNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)),
-                                        method = false,
-                                        shorthand = true,
-                                        computed = false,
-                                        key = new TestNode { type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)), name = "async" },
-                                        kind = PropertyKind.Initialise,
-                                        value = new TestNode { type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)), name = "async" }
-                                    }
+                {
+                    new TestNode { type = typeof(ExpressionStatementNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)),
+                        expression = new TestNode { type = typeof(ObjectExpressionNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 8, 8)),
+                            properties = new List<TestNode>
+                            {
+                                new TestNode { type = typeof(PropertyNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)),
+                                    method = false,
+                                    shorthand = true,
+                                    computed = false,
+                                    key = new TestNode { type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)), name = "async" },
+                                    kind = PropertyKind.Initialise,
+                                    value = new TestNode { type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)), name = "async" }
                                 }
                             }
                         }
                     }
-            },
-                new Options { ecmaVersion = 8 }
-            );
+                }
+            }, new Options { ecmaVersion = 8 });
 
-            Test("({async, foo})", new TestNode
+            Program.Test("({async, foo})", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
                 body = new List<TestNode>
-                    {
-                        new TestNode { type = typeof(ExpressionStatementNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
-                            expression = new TestNode { type = typeof(ObjectExpressionNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 13, 13)),
+                {
+                    new TestNode { type = typeof(ExpressionStatementNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
+                        expression = new TestNode { type = typeof(ObjectExpressionNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 13, 13)),
+                            properties = new List<TestNode>
+                            {
+                                new TestNode { type = typeof(PropertyNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)),
+                                    method = false,
+                                    shorthand = true,
+                                    computed = false,
+                                    key = new TestNode { type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)), name = "async" },
+                                    kind = PropertyKind.Initialise,
+                                    value = new TestNode { type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)), name = "async" }
+                                },
+                                new TestNode { type = typeof(PropertyNode), location = new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)),
+                                    method = false,
+                                    shorthand = true,
+                                    computed = false,
+                                    key = new TestNode { type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), name = "foo" },
+                                    kind = PropertyKind.Initialise,
+                                    value = new TestNode { type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), name = "foo" }
+                                }
+                            }
+                        }
+                    }
+                }
+            }, new Options { ecmaVersion = 8 });
+
+            Program.Test("({async = 0} = {})", new TestNode
+            {
+                type = typeof(ProgramNode),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
+                body = new List<TestNode>
+                {
+                    new TestNode { type = typeof(ExpressionStatementNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
+                        expression = new TestNode { type = typeof(AssignmentExpressionNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 17, 17)),
+                            @operator = Operator.Assignment,
+                            left = new TestNode { type = typeof(ObjectPatternNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 12, 12)),
                                 properties = new List<TestNode>
                                 {
-                                    new TestNode { type = typeof(PropertyNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)),
+                                    new TestNode { type = typeof(PropertyNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 11, 11)),
                                         method = false,
                                         shorthand = true,
                                         computed = false,
                                         key = new TestNode { type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)), name = "async" },
                                         kind = PropertyKind.Initialise,
-                                        value = new TestNode { type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)), name = "async" }
-                                    },
-                                    new TestNode { type = typeof(PropertyNode), location = new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)),
-                                        method = false,
-                                        shorthand = true,
-                                        computed = false,
-                                        key = new TestNode { type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), name = "foo" },
-                                        kind = PropertyKind.Initialise,
-                                        value = new TestNode { type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), name = "foo" }
-                                    }
-                                }
-                            }
-                        }
-                    }
-            },
-                new Options { ecmaVersion = 8 }
-            );
-
-            Test("({async = 0} = {})", new TestNode
-            {
-                type = typeof(ProgramNode),
-                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
-                body = new List<TestNode>
-                    {
-                        new TestNode { type = typeof(ExpressionStatementNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
-                            expression = new TestNode { type = typeof(AssignmentExpressionNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 17, 17)),
-                                @operator = Operator.Assignment,
-                                left = new TestNode { type = typeof(ObjectPatternNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 12, 12)),
-                                    properties = new List<TestNode>
-                                    {
-                                        new TestNode { type = typeof(PropertyNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 11, 11)),
-                                            method = false,
-                                            shorthand = true,
-                                            computed = false,
-                                            key = new TestNode { type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)), name = "async" },
-                                            kind = PropertyKind.Initialise,
-                                            value = new TestNode { type = typeof(AssignmentPatternNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 11, 11)),
-                                                left = new TestNode { type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)), name = "async" },
-                                                right = new TestNode { type = typeof(LiteralNode), location = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)),
-                                                    value = 0,
-                                                    raw = "0"
-                                                }
+                                        value = new TestNode { type = typeof(AssignmentPatternNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 11, 11)),
+                                            left = new TestNode { type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 7, 7)), name = "async" },
+                                            right = new TestNode { type = typeof(LiteralNode), location = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)),
+                                                value = 0,
+                                                raw = "0"
                                             }
                                         }
                                     }
-                                },
-                                right = new TestNode { type = typeof(ObjectExpressionNode), location = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17)),
-                                    properties = new List<TestNode>()
                                 }
+                            },
+                            right = new TestNode { type = typeof(ObjectExpressionNode), location = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17)),
+                                properties = new List<TestNode>()
                             }
                         }
                     }
-            },
-                new Options { ecmaVersion = 8 }
-            );
+                }
+            }, new Options { ecmaVersion = 8 });
 
             // async functions with vary names.
-            Test("({async \"foo\"(){}})", new TestNode
+            Program.Test("({async \"foo\"(){}})", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
                 body = new List<TestNode>
-                    {
-                        new TestNode { type = typeof(ExpressionStatementNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
-                            expression = new TestNode { type = typeof(ObjectExpressionNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 18, 18)),
-                                properties = new List<TestNode>
-                                {
-                                    new TestNode { type = typeof(PropertyNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 17, 17)),
-                                        method = true,
-                                        shorthand = false,
-                                        computed = false,
-                                        key = new TestNode { type = typeof(LiteralNode), location = new SourceLocation(new Position(1, 8, 8), new Position(1, 13, 13)),
-                                            value = "foo",
-                                            raw = "\"foo\""
-                                        },
-                                        kind = PropertyKind.Initialise,
-                                        value = new TestNode { type = typeof(FunctionExpressionNode), location = new SourceLocation(new Position(1, 13, 13), new Position(1, 17, 17)),
-                                            id = null,
-                                            generator = false,
-                                            expression = false,
-                                            async = true,
-                                            parameters = new List<TestNode>(),
-                                            body = new TestNode { type = typeof(BlockStatementNode), location = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17)),
-                                                body = new List<TestNode>()
-                                            }
+                {
+                    new TestNode { type = typeof(ExpressionStatementNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
+                        expression = new TestNode { type = typeof(ObjectExpressionNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 18, 18)),
+                            properties = new List<TestNode>
+                            {
+                                new TestNode { type = typeof(PropertyNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 17, 17)),
+                                    method = true,
+                                    shorthand = false,
+                                    computed = false,
+                                    key = new TestNode { type = typeof(LiteralNode), location = new SourceLocation(new Position(1, 8, 8), new Position(1, 13, 13)),
+                                        value = "foo",
+                                        raw = "\"foo\""
+                                    },
+                                    kind = PropertyKind.Initialise,
+                                    value = new TestNode { type = typeof(FunctionExpressionNode), location = new SourceLocation(new Position(1, 13, 13), new Position(1, 17, 17)),
+                                        id = null,
+                                        generator = false,
+                                        expression = false,
+                                        async = true,
+                                        parameters = new List<TestNode>(),
+                                        body = new TestNode { type = typeof(BlockStatementNode), location = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17)),
+                                            body = new List<TestNode>()
                                         }
                                     }
                                 }
                             }
                         }
                     }
-            },
-                new Options { ecmaVersion = 8 }
-            );
+                }
+            }, new Options { ecmaVersion = 8 });
 
-            Test("({async 'foo'(){}})", new TestNode
+            Program.Test("({async 'foo'(){}})", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
                 body = new List<TestNode>
-                    {
-                        new TestNode { type = typeof(ExpressionStatementNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
-                            expression = new TestNode { type = typeof(ObjectExpressionNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 18, 18)),
-                                properties = new List<TestNode>
-                                {
-                                    new TestNode { type = typeof(PropertyNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 17, 17)),
-                                        method = true,
-                                        shorthand = false,
-                                        computed = false,
-                                        key = new TestNode { type = typeof(LiteralNode), location = new SourceLocation(new Position(1, 8, 8), new Position(1, 13, 13)),
-                                            value = "foo",
-                                            raw = "'foo'"
-                                        },
-                                        kind = PropertyKind.Initialise,
-                                        value = new TestNode { type = typeof(FunctionExpressionNode), location = new SourceLocation(new Position(1, 13, 13), new Position(1, 17, 17)),
-                                            id = null,
-                                            generator = false,
-                                            expression = false,
-                                            async = true,
-                                            parameters = new List<TestNode>(),
-                                            body = new TestNode { type = typeof(BlockStatementNode), location = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17)),
-                                                body = new List<TestNode>()
-                                            }
+                {
+                    new TestNode { type = typeof(ExpressionStatementNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
+                        expression = new TestNode { type = typeof(ObjectExpressionNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 18, 18)),
+                            properties = new List<TestNode>
+                            {
+                                new TestNode { type = typeof(PropertyNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 17, 17)),
+                                    method = true,
+                                    shorthand = false,
+                                    computed = false,
+                                    key = new TestNode { type = typeof(LiteralNode), location = new SourceLocation(new Position(1, 8, 8), new Position(1, 13, 13)),
+                                        value = "foo",
+                                        raw = "'foo'"
+                                    },
+                                    kind = PropertyKind.Initialise,
+                                    value = new TestNode { type = typeof(FunctionExpressionNode), location = new SourceLocation(new Position(1, 13, 13), new Position(1, 17, 17)),
+                                        id = null,
+                                        generator = false,
+                                        expression = false,
+                                        async = true,
+                                        parameters = new List<TestNode>(),
+                                        body = new TestNode { type = typeof(BlockStatementNode), location = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17)),
+                                            body = new List<TestNode>()
                                         }
                                     }
                                 }
                             }
                         }
                     }
-            },
-                new Options { ecmaVersion = 8 }
-            );
+                }
+            }, new Options { ecmaVersion = 8 });
 
-            Test("({async 100(){}})", new TestNode
+            Program.Test("({async 100(){}})", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
                 body = new List<TestNode>
-                    {
-                        new TestNode { type = typeof(ExpressionStatementNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
-                            expression = new TestNode { type = typeof(ObjectExpressionNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 16, 16)),
-                                properties = new List<TestNode>
-                                {
-                                    new TestNode { type = typeof(PropertyNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 15, 15)),
-                                        method = true,
-                                        shorthand = false,
-                                        computed = false,
-                                        key = new TestNode { type = typeof(LiteralNode), location = new SourceLocation(new Position(1, 8, 8), new Position(1, 11, 11)),
-                                            value = 100,
-                                            raw = "100"
-                                        },
-                                        kind = PropertyKind.Initialise,
-                                        value = new TestNode { type = typeof(FunctionExpressionNode), location = new SourceLocation(new Position(1, 11, 11), new Position(1, 15, 15)),
-                                            id = null,
-                                            generator = false,
-                                            expression = false,
-                                            async = true,
-                                            parameters = new List<TestNode>(),
-                                            body = new TestNode { type = typeof(BlockStatementNode), location = new SourceLocation(new Position(1, 13, 13), new Position(1, 15, 15)),
-                                                body = new List<TestNode>()
-                                            }
+                {
+                    new TestNode { type = typeof(ExpressionStatementNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
+                        expression = new TestNode { type = typeof(ObjectExpressionNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 16, 16)),
+                            properties = new List<TestNode>
+                            {
+                                new TestNode { type = typeof(PropertyNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 15, 15)),
+                                    method = true,
+                                    shorthand = false,
+                                    computed = false,
+                                    key = new TestNode { type = typeof(LiteralNode), location = new SourceLocation(new Position(1, 8, 8), new Position(1, 11, 11)),
+                                        value = 100,
+                                        raw = "100"
+                                    },
+                                    kind = PropertyKind.Initialise,
+                                    value = new TestNode { type = typeof(FunctionExpressionNode), location = new SourceLocation(new Position(1, 11, 11), new Position(1, 15, 15)),
+                                        id = null,
+                                        generator = false,
+                                        expression = false,
+                                        async = true,
+                                        parameters = new List<TestNode>(),
+                                        body = new TestNode { type = typeof(BlockStatementNode), location = new SourceLocation(new Position(1, 13, 13), new Position(1, 15, 15)),
+                                            body = new List<TestNode>()
                                         }
                                     }
                                 }
                             }
                         }
                     }
-            },
-                new Options { ecmaVersion = 8 }
-            );
+                }
+            }, new Options { ecmaVersion = 8 });
 
-            Test("({async [foo](){}})", new TestNode
+            Program.Test("({async [foo](){}})", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
                 body = new List<TestNode>
-                    {
-                        new TestNode { type = typeof(ExpressionStatementNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
-                            expression = new TestNode { type = typeof(ObjectExpressionNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 18, 18)),
-                                properties = new List<TestNode>
-                                {
-                                    new TestNode { type = typeof(PropertyNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 17, 17)),
-                                        method = true,
-                                        shorthand = false,
-                                        computed = true,
-                                        key = new TestNode { type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), name = "foo" },
-                                        kind = PropertyKind.Initialise,
-                                        value = new TestNode { type = typeof(FunctionExpressionNode), location = new SourceLocation(new Position(1, 13, 13), new Position(1, 17, 17)),
-                                            id = null,
-                                            generator = false,
-                                            expression = false,
-                                            async = true,
-                                            parameters = new List<TestNode>(),
-                                            body = new TestNode { type = typeof(BlockStatementNode), location = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17)),
-                                                body = new List<TestNode>()
-                                            }
+                {
+                    new TestNode { type = typeof(ExpressionStatementNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 19, 19)),
+                        expression = new TestNode { type = typeof(ObjectExpressionNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 18, 18)),
+                            properties = new List<TestNode>
+                            {
+                                new TestNode { type = typeof(PropertyNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 17, 17)),
+                                    method = true,
+                                    shorthand = false,
+                                    computed = true,
+                                    key = new TestNode { type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 9, 9), new Position(1, 12, 12)), name = "foo" },
+                                    kind = PropertyKind.Initialise,
+                                    value = new TestNode { type = typeof(FunctionExpressionNode), location = new SourceLocation(new Position(1, 13, 13), new Position(1, 17, 17)),
+                                        id = null,
+                                        generator = false,
+                                        expression = false,
+                                        async = true,
+                                        parameters = new List<TestNode>(),
+                                        body = new TestNode { type = typeof(BlockStatementNode), location = new SourceLocation(new Position(1, 15, 15), new Position(1, 17, 17)),
+                                            body = new List<TestNode>()
                                         }
                                     }
                                 }
                             }
                         }
                     }
-            },
-                new Options { ecmaVersion = 8 }
-            );
+                }
+            }, new Options { ecmaVersion = 8 });
 
-            Test("({ async delete() {} })", new TestNode { type = typeof(ProgramNode) }, new Options { ecmaVersion = 8 });
+            Program.Test("({ async delete() {} })", new TestNode { type = typeof(ProgramNode) }, new Options { ecmaVersion = 8 });
         }
     }
 }

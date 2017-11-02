@@ -3,11 +3,11 @@ using AcornSharp.Node;
 
 namespace AcornSharp.Cli
 {
-    internal static partial class Program
+    internal static partial class Tests
     {
-        private static void TestsTemplateLiteralRevision()
+        public static void TestsTemplateLiteralRevision()
         {
-            Test("`foo`", new TestNode
+            Program.Test("`foo`", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)),
@@ -28,7 +28,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 9 });
 
-            Test("`foo\\u25a0`", new TestNode
+            Program.Test("`foo\\u25a0`", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)),
@@ -49,7 +49,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 9 });
 
-            Test("`foo${bar}\\u25a0`", new TestNode
+            Program.Test("`foo${bar}\\u25a0`", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 17, 17)),
@@ -77,7 +77,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 9 });
 
-            Test("foo`\\u25a0`", new TestNode
+            Program.Test("foo`\\u25a0`", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)),
@@ -101,7 +101,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 9 });
 
-            Test("foo`foo${bar}\\u25a0`", new TestNode
+            Program.Test("foo`foo${bar}\\u25a0`", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
@@ -132,20 +132,20 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 9 });
 
-            testFail("`\\unicode`", "Bad escape sequence in untagged template literal (1:1)", new Options { ecmaVersion = 9 });
-            testFail("`\\u`", "Bad escape sequence in untagged template literal (1:1)", new Options { ecmaVersion = 9 });
-            testFail("`\\u{`", "Bad escape sequence in untagged template literal (1:1)", new Options { ecmaVersion = 9 });
-            testFail("`\\u{abcdx`", "Bad escape sequence in untagged template literal (1:1)", new Options { ecmaVersion = 9 });
-            testFail("`\\u{abcdx}`", "Bad escape sequence in untagged template literal (1:1)", new Options { ecmaVersion = 9 });
-            testFail("`\\xylophone`", "Bad escape sequence in untagged template literal (1:1)", new Options { ecmaVersion = 9 });
+            Program.TestFail("`\\unicode`", "Bad escape sequence in untagged template literal (1:1)", new Options { ecmaVersion = 9 });
+            Program.TestFail("`\\u`", "Bad escape sequence in untagged template literal (1:1)", new Options { ecmaVersion = 9 });
+            Program.TestFail("`\\u{`", "Bad escape sequence in untagged template literal (1:1)", new Options { ecmaVersion = 9 });
+            Program.TestFail("`\\u{abcdx`", "Bad escape sequence in untagged template literal (1:1)", new Options { ecmaVersion = 9 });
+            Program.TestFail("`\\u{abcdx}`", "Bad escape sequence in untagged template literal (1:1)", new Options { ecmaVersion = 9 });
+            Program.TestFail("`\\xylophone`", "Bad escape sequence in untagged template literal (1:1)", new Options { ecmaVersion = 9 });
 
-            testFail("foo`\\unicode`", "Bad character escape sequence (1:6)", new Options { ecmaVersion = 8 });
-            testFail("foo`\\xylophone`", "Bad character escape sequence (1:6)", new Options { ecmaVersion = 8 });
+            Program.TestFail("foo`\\unicode`", "Bad character escape sequence (1:6)", new Options { ecmaVersion = 8 });
+            Program.TestFail("foo`\\xylophone`", "Bad character escape sequence (1:6)", new Options { ecmaVersion = 8 });
 
-            testFail("foo`\\unicode", "Unterminated template (1:4)", new Options { ecmaVersion = 9 });
-            testFail("foo`\\unicode\\`", "Unterminated template (1:4)", new Options { ecmaVersion = 9 });
+            Program.TestFail("foo`\\unicode", "Unterminated template (1:4)", new Options { ecmaVersion = 9 });
+            Program.TestFail("foo`\\unicode\\`", "Unterminated template (1:4)", new Options { ecmaVersion = 9 });
 
-            Test("foo`\\unicode`", new TestNode
+            Program.Test("foo`\\unicode`", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
@@ -169,7 +169,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 9 });
 
-            Test("foo`foo${bar}\\unicode`", new TestNode
+            Program.Test("foo`foo${bar}\\unicode`", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
@@ -200,7 +200,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 9 });
 
-            Test("foo`\\u`", new TestNode
+            Program.Test("foo`\\u`", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7)),
@@ -224,7 +224,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 9 });
 
-            Test("foo`\\u{`", new TestNode
+            Program.Test("foo`\\u{`", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8)),
@@ -248,7 +248,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 9 });
 
-            Test("foo`\\u{abcdx`", new TestNode
+            Program.Test("foo`\\u{abcdx`", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 13, 13)),
@@ -272,7 +272,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 9 });
 
-            Test("foo`\\u{abcdx}`", new TestNode
+            Program.Test("foo`\\u{abcdx}`", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
@@ -296,7 +296,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 9 });
 
-            Test("foo`\\unicode\\\\`", new TestNode
+            Program.Test("foo`\\unicode\\\\`", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
@@ -320,10 +320,10 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 9 });
 
-            Test("`${ {class: 1} }`", new TestNode { type = typeof(ProgramNode) }, new Options { ecmaVersion = 9 });
-            Test("`${ {delete: 1} }`", new TestNode { type = typeof(ProgramNode) }, new Options { ecmaVersion = 9 });
-            Test("`${ {enum: 1} }`", new TestNode { type = typeof(ProgramNode) }, new Options { ecmaVersion = 9 });
-            Test("`${ {function: 1} }`", new TestNode { type = typeof(ProgramNode) }, new Options { ecmaVersion = 9 });
+            Program.Test("`${ {class: 1} }`", new TestNode { type = typeof(ProgramNode) }, new Options { ecmaVersion = 9 });
+            Program.Test("`${ {delete: 1} }`", new TestNode { type = typeof(ProgramNode) }, new Options { ecmaVersion = 9 });
+            Program.Test("`${ {enum: 1} }`", new TestNode { type = typeof(ProgramNode) }, new Options { ecmaVersion = 9 });
+            Program.Test("`${ {function: 1} }`", new TestNode { type = typeof(ProgramNode) }, new Options { ecmaVersion = 9 });
         }
     }
 }

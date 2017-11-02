@@ -14,7 +14,8 @@ namespace AcornSharp
         // API][api].
         //
         // [api]: https://developer.mozilla.org/en-US/docs/SpiderMonkey/Parser_API
-        public static BaseNode Parse(string input, Options options)
+        [NotNull]
+        public static BaseNode Parse(string input, [CanBeNull] Options options = null)
         {
             return new Parser(options, input).Parse();
         }
@@ -22,7 +23,7 @@ namespace AcornSharp
         // This function tries to parse a single expression at a given
         // offset in a string. Useful for parsing mixed-language formats
         // that embed JavaScript expressions.
-        public static BaseNode ParseExpressionAt(string input, int pos, Options options)
+        public static BaseNode ParseExpressionAt(string input, int pos, [CanBeNull] Options options = null)
         {
             var p = new Parser(options, input, pos);
             p.nextToken();

@@ -1,5 +1,6 @@
 using System;
 using AcornSharp.Node;
+using JetBrains.Annotations;
 
 namespace AcornSharp
 {
@@ -67,8 +68,12 @@ namespace AcornSharp
         // (non-standard) ParenthesizedExpression nodes
         public bool preserveParens = false;
 
-        public static Options getOptions(Options options)
+        [NotNull]
+        public static Options getOptions([CanBeNull] Options options)
         {
+            if (options == null)
+                options = new Options();
+
             if (options.ecmaVersion == 0)
                 options.ecmaVersion = 7;
 

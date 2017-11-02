@@ -1,29 +1,43 @@
 ﻿using System;
-using AcornSharp.Node;
+using System.IO;
 using JetBrains.Annotations;
 
 namespace AcornSharp.Cli
 {
-    internal static partial class Program
+    internal static class Program
     {
         private static void Main()
         {
+//            var text = File.ReadAllText(@"C:\Work\arewefastyet\benchmarks\octane\pdfjs.js");
+//
+//            var t0 = DateTime.Now;
+//            for (var i = 0; i < 10; i++)
+//            {
+//                var ast = Acorn.Parse(text);
+//            }
+//            var duration = DateTime.Now - t0;
+//            Console.WriteLine(duration + "ms");
+
+                        TestSuite();
+        }
+
+        private static void TestSuite()
+        {
             var t0 = DateTime.Now;
-            for (var i = 0; i < 100; i++)
+            //            for (var i = 0; i < 100; i++)
             {
-                Tests();
-                TestsHarmony();
-                TestsES7();
-                TestsAsyncAwait();
-                TestsTrailingCommasInFunc();
-                TestsTemplateLiteralRevision();
-                TestsDirective();
+                Tests.TestsStandard();
+                Tests.TestsHarmony();
+                Tests.TestsES7();
+                Tests.TestsAsyncAwait();
+                Tests.TestsTrailingCommasInFunc();
+                Tests.TestsTemplateLiteralRevision();
+                Tests.TestsDirective();
             }
             var duration = DateTime.Now - t0;
             Console.WriteLine("Tests run in " + duration + "ms");
         }
-
-        public static void Test(string code, [NotNull] TestNode expectedAst, Options options = null)
+        public static void Test([NotNull] string code, [NotNull] TestNode expectedAst, [CanBeNull] Options options = null)
         {
             if (options == null)
                 options = new Options();
@@ -36,7 +50,7 @@ namespace AcornSharp.Cli
                 throw new NotImplementedException();
         }
 
-        private static void testFail(string code, string error, Options options = null)
+        public static void TestFail([NotNull] string code, string error, [CanBeNull] Options options = null)
         {
             if (options == null)
                 options = new Options();

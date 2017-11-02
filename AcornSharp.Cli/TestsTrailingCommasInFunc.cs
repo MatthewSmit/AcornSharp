@@ -3,14 +3,14 @@ using AcornSharp.Node;
 
 namespace AcornSharp.Cli
 {
-    internal static partial class Program
+    internal static partial class Tests
     {
-        private static void TestsTrailingCommasInFunc()
+        public static void TestsTrailingCommasInFunc()
         {
             //------------------------------------------------------------------------------
             // allow
 
-            Test("function foo(a,) { }", new TestNode
+            Program.Test("function foo(a,) { }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
@@ -32,7 +32,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("(function(a,) { })", new TestNode
+            Program.Test("(function(a,) { })", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 18, 18)),
@@ -56,7 +56,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("(a,) => a", new TestNode
+            Program.Test("(a,) => a", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)),
@@ -78,7 +78,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("async (a,) => a", new TestNode
+            Program.Test("async (a,) => a", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 15, 15)),
@@ -100,7 +100,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("({foo(a,) {}})", new TestNode
+            Program.Test("({foo(a,) {}})", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
@@ -136,7 +136,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("class A {foo(a,) {}}", new TestNode
+            Program.Test("class A {foo(a,) {}}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
@@ -173,7 +173,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("class A {static foo(a,) {}}", new TestNode
+            Program.Test("class A {static foo(a,) {}}", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)),
@@ -210,7 +210,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("(class {foo(a,) {}})", new TestNode
+            Program.Test("(class {foo(a,) {}})", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 20, 20)),
@@ -249,7 +249,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("(class {static foo(a,) {}})", new TestNode
+            Program.Test("(class {static foo(a,) {}})", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)),
@@ -288,7 +288,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("export default function foo(a,) { }", new TestNode
+            Program.Test("export default function foo(a,) { }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 35, 35)),
@@ -313,7 +313,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8, sourceType = SourceType.Module });
 
-            Test("export default (function foo(a,) { })", new TestNode
+            Program.Test("export default (function foo(a,) { })", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 37, 37)),
@@ -338,7 +338,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8, sourceType = SourceType.Module });
 
-            Test("export function foo(a,) { }", new TestNode
+            Program.Test("export function foo(a,) { }", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 27, 27)),
@@ -365,7 +365,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8, sourceType = SourceType.Module });
 
-            Test("foo(a,)", new TestNode
+            Program.Test("foo(a,)", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 7, 7)),
@@ -383,7 +383,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("new foo(a,)", new TestNode
+            Program.Test("new foo(a,)", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11)),
@@ -401,7 +401,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("foo(...a,)", new TestNode
+            Program.Test("foo(...a,)", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 10, 10)),
@@ -421,7 +421,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options { ecmaVersion = 8 });
 
-            Test("new foo(...a,)", new TestNode
+            Program.Test("new foo(...a,)", new TestNode
             {
                 type = typeof(ProgramNode),
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
@@ -444,58 +444,58 @@ namespace AcornSharp.Cli
             //------------------------------------------------------------------------------
             // disallow in new Options {ecmaVersion = 7}
 
-            testFail("function foo(a,) { }", "Unexpected token (1:15)", new Options { ecmaVersion = 7 });
-            testFail("(function(a,) { })", "Unexpected token (1:12)", new Options { ecmaVersion = 7 });
-            testFail("(a,) => a", "Unexpected token (1:3)", new Options { ecmaVersion = 7 });
-            testFail("async (a,) => a", "Unexpected token (1:9)", new Options { ecmaVersion = 7 });
-            testFail("({foo(a,) {}})", "Unexpected token (1:8)", new Options { ecmaVersion = 7 });
-            testFail("class A {foo(a,) {}}", "Unexpected token (1:15)", new Options { ecmaVersion = 7 });
-            testFail("class A {static foo(a,) {}}", "Unexpected token (1:22)", new Options { ecmaVersion = 7 });
-            testFail("(class {foo(a,) {}})", "Unexpected token (1:14)", new Options { ecmaVersion = 7 });
-            testFail("(class {static foo(a,) {}})", "Unexpected token (1:21)", new Options { ecmaVersion = 7 });
-            testFail("export default function foo(a,) { }", "Unexpected token (1:30)", new Options { ecmaVersion = 7, sourceType = SourceType.Module });
-            testFail("export default (function foo(a,) { })", "Unexpected token (1:31)", new Options { ecmaVersion = 7, sourceType = SourceType.Module });
-            testFail("export function foo(a,) { }", "Unexpected token (1:22)", new Options { ecmaVersion = 7, sourceType = SourceType.Module });
-            testFail("foo(a,)", "Unexpected token (1:6)", new Options { ecmaVersion = 7 });
-            testFail("new foo(a,)", "Unexpected token (1:10)", new Options { ecmaVersion = 7 });
+            Program.TestFail("function foo(a,) { }", "Unexpected token (1:15)", new Options { ecmaVersion = 7 });
+            Program.TestFail("(function(a,) { })", "Unexpected token (1:12)", new Options { ecmaVersion = 7 });
+            Program.TestFail("(a,) => a", "Unexpected token (1:3)", new Options { ecmaVersion = 7 });
+            Program.TestFail("async (a,) => a", "Unexpected token (1:9)", new Options { ecmaVersion = 7 });
+            Program.TestFail("({foo(a,) {}})", "Unexpected token (1:8)", new Options { ecmaVersion = 7 });
+            Program.TestFail("class A {foo(a,) {}}", "Unexpected token (1:15)", new Options { ecmaVersion = 7 });
+            Program.TestFail("class A {static foo(a,) {}}", "Unexpected token (1:22)", new Options { ecmaVersion = 7 });
+            Program.TestFail("(class {foo(a,) {}})", "Unexpected token (1:14)", new Options { ecmaVersion = 7 });
+            Program.TestFail("(class {static foo(a,) {}})", "Unexpected token (1:21)", new Options { ecmaVersion = 7 });
+            Program.TestFail("export default function foo(a,) { }", "Unexpected token (1:30)", new Options { ecmaVersion = 7, sourceType = SourceType.Module });
+            Program.TestFail("export default (function foo(a,) { })", "Unexpected token (1:31)", new Options { ecmaVersion = 7, sourceType = SourceType.Module });
+            Program.TestFail("export function foo(a,) { }", "Unexpected token (1:22)", new Options { ecmaVersion = 7, sourceType = SourceType.Module });
+            Program.TestFail("foo(a,)", "Unexpected token (1:6)", new Options { ecmaVersion = 7 });
+            Program.TestFail("new foo(a,)", "Unexpected token (1:10)", new Options { ecmaVersion = 7 });
 
             //------------------------------------------------------------------------------
             // disallow after rest parameters
 
-            testFail("function foo(...a,) { }", "Comma is not permitted after the rest element (1:17)", new Options { ecmaVersion = 8 });
-            testFail("(function(...a,) { })", "Comma is not permitted after the rest element (1:14)", new Options { ecmaVersion = 8 });
-            testFail("(...a,) => a", "Comma is not permitted after the rest element (1:5)", new Options { ecmaVersion = 8 });
-            testFail("async (...a,) => a", "Comma is not permitted after the rest element (1:11)", new Options { ecmaVersion = 8 });
-            testFail("({foo(...a,) {}})", "Comma is not permitted after the rest element (1:10)", new Options { ecmaVersion = 8 });
-            testFail("class A {foo(...a,) {}}", "Comma is not permitted after the rest element (1:17)", new Options { ecmaVersion = 8 });
-            testFail("class A {static foo(...a,) {}}", "Comma is not permitted after the rest element (1:24)", new Options { ecmaVersion = 8 });
-            testFail("(class {foo(...a,) {}})", "Comma is not permitted after the rest element (1:16)", new Options { ecmaVersion = 8 });
-            testFail("(class {static foo(...a,) {}})", "Comma is not permitted after the rest element (1:23)", new Options { ecmaVersion = 8 });
-            testFail("export default function foo(...a,) { }", "Comma is not permitted after the rest element (1:32)", new Options { ecmaVersion = 8, sourceType = SourceType.Module });
-            testFail("export default (function foo(...a,) { })", "Comma is not permitted after the rest element (1:33)", new Options { ecmaVersion = 8, sourceType = SourceType.Module });
-            testFail("export function foo(...a,) { }", "Comma is not permitted after the rest element (1:24)", new Options { ecmaVersion = 8, sourceType = SourceType.Module });
+            Program.TestFail("function foo(...a,) { }", "Comma is not permitted after the rest element (1:17)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(function(...a,) { })", "Comma is not permitted after the rest element (1:14)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(...a,) => a", "Comma is not permitted after the rest element (1:5)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async (...a,) => a", "Comma is not permitted after the rest element (1:11)", new Options { ecmaVersion = 8 });
+            Program.TestFail("({foo(...a,) {}})", "Comma is not permitted after the rest element (1:10)", new Options { ecmaVersion = 8 });
+            Program.TestFail("class A {foo(...a,) {}}", "Comma is not permitted after the rest element (1:17)", new Options { ecmaVersion = 8 });
+            Program.TestFail("class A {static foo(...a,) {}}", "Comma is not permitted after the rest element (1:24)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(class {foo(...a,) {}})", "Comma is not permitted after the rest element (1:16)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(class {static foo(...a,) {}})", "Comma is not permitted after the rest element (1:23)", new Options { ecmaVersion = 8 });
+            Program.TestFail("export default function foo(...a,) { }", "Comma is not permitted after the rest element (1:32)", new Options { ecmaVersion = 8, sourceType = SourceType.Module });
+            Program.TestFail("export default (function foo(...a,) { })", "Comma is not permitted after the rest element (1:33)", new Options { ecmaVersion = 8, sourceType = SourceType.Module });
+            Program.TestFail("export function foo(...a,) { }", "Comma is not permitted after the rest element (1:24)", new Options { ecmaVersion = 8, sourceType = SourceType.Module });
 
             //------------------------------------------------------------------------------
             // disallow empty
 
-            testFail("function foo(,) { }", "Unexpected token (1:13)", new Options { ecmaVersion = 8 });
-            testFail("(function(,) { })", "Unexpected token (1:10)", new Options { ecmaVersion = 8 });
-            testFail("(,) => a", "Unexpected token (1:1)", new Options { ecmaVersion = 8 });
-            testFail("async (,) => a", "Unexpected token (1:7)", new Options { ecmaVersion = 8 });
-            testFail("({foo(,) {}})", "Unexpected token (1:6)", new Options { ecmaVersion = 8 });
-            testFail("class A {foo(,) {}}", "Unexpected token (1:13)", new Options { ecmaVersion = 8 });
-            testFail("class A {static foo(,) {}}", "Unexpected token (1:20)", new Options { ecmaVersion = 8 });
-            testFail("(class {foo(,) {}})", "Unexpected token (1:12)", new Options { ecmaVersion = 8 });
-            testFail("(class {static foo(,) {}})", "Unexpected token (1:19)", new Options { ecmaVersion = 8 });
-            testFail("export default function foo(,) { }", "Unexpected token (1:28)", new Options { ecmaVersion = 8, sourceType = SourceType.Module });
-            testFail("export default (function foo(,) { })", "Unexpected token (1:29)", new Options { ecmaVersion = 8, sourceType = SourceType.Module });
-            testFail("export function foo(,) { }", "Unexpected token (1:20)", new Options { ecmaVersion = 8, sourceType = SourceType.Module });
+            Program.TestFail("function foo(,) { }", "Unexpected token (1:13)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(function(,) { })", "Unexpected token (1:10)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(,) => a", "Unexpected token (1:1)", new Options { ecmaVersion = 8 });
+            Program.TestFail("async (,) => a", "Unexpected token (1:7)", new Options { ecmaVersion = 8 });
+            Program.TestFail("({foo(,) {}})", "Unexpected token (1:6)", new Options { ecmaVersion = 8 });
+            Program.TestFail("class A {foo(,) {}}", "Unexpected token (1:13)", new Options { ecmaVersion = 8 });
+            Program.TestFail("class A {static foo(,) {}}", "Unexpected token (1:20)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(class {foo(,) {}})", "Unexpected token (1:12)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(class {static foo(,) {}})", "Unexpected token (1:19)", new Options { ecmaVersion = 8 });
+            Program.TestFail("export default function foo(,) { }", "Unexpected token (1:28)", new Options { ecmaVersion = 8, sourceType = SourceType.Module });
+            Program.TestFail("export default (function foo(,) { })", "Unexpected token (1:29)", new Options { ecmaVersion = 8, sourceType = SourceType.Module });
+            Program.TestFail("export function foo(,) { }", "Unexpected token (1:20)", new Options { ecmaVersion = 8, sourceType = SourceType.Module });
 
             //------------------------------------------------------------------------------
             // disallow in parens without arrow
 
-            testFail("(a,)", "Unexpected token (1:3)", new Options { ecmaVersion = 7 });
-            testFail("(a,)", "Unexpected token (1:3)", new Options { ecmaVersion = 8 });
+            Program.TestFail("(a,)", "Unexpected token (1:3)", new Options { ecmaVersion = 7 });
+            Program.TestFail("(a,)", "Unexpected token (1:3)", new Options { ecmaVersion = 8 });
         }
     }
 }
