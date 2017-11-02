@@ -6,7 +6,7 @@ namespace AcornSharp.Node
     {
         public IdentifierNode local;
 
-        public ImportNamespaceSpecifierNode([NotNull] Parser parser, Position start, Position end) :
+        internal ImportNamespaceSpecifierNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

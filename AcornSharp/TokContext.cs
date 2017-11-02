@@ -2,7 +2,7 @@
 
 namespace AcornSharp
 {
-    public sealed class TokContext
+    internal sealed class TokContext
     {
         public static readonly TokContext b_stat = new TokContext("{", false);
         public static readonly TokContext b_expr = new TokContext("{", true);

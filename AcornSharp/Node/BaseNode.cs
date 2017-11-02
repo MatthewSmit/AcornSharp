@@ -6,12 +6,7 @@ namespace AcornSharp.Node
     {
         public SourceLocation location;
 
-        protected BaseNode(SourceLocation location)
-        {
-            this.location = location;
-        }
-
-        protected BaseNode([NotNull] Parser parser, Position start, Position end)
+        internal BaseNode([NotNull] Parser parser, Position start, Position end)
         {
             location = new SourceLocation(start, end, parser.sourceFile);
         }

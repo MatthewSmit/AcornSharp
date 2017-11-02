@@ -7,7 +7,7 @@ namespace AcornSharp.Node
         public BaseNode test;
         public BaseNode body;
 
-        public WhileStatementNode([NotNull] Parser parser, Position start, Position end) :
+        internal WhileStatementNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

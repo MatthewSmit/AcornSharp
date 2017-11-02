@@ -5,9 +5,9 @@ namespace AcornSharp.Node
 {
     public sealed class ProgramNode : BaseNode
     {
-        public IList<BaseNode> body;
+        public List<BaseNode> body;
 
-        public ProgramNode([NotNull] Parser parser, Position start, Position end, SourceType sourceType = SourceType.Script) :
+        internal ProgramNode([NotNull] Parser parser, Position start, Position end, SourceType sourceType = SourceType.Script) :
             base(parser, start, end)
         {
             SourceType = sourceType;

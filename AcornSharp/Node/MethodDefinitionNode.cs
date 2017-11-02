@@ -10,7 +10,7 @@ namespace AcornSharp.Node
         public BaseNode key;
         public BaseNode value;
 
-        public MethodDefinitionNode([NotNull] Parser parser, Position start, Position end) :
+        internal MethodDefinitionNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

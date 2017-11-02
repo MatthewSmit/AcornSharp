@@ -9,10 +9,10 @@ namespace AcornSharp.Node
         public bool async;
         public bool generator;
         public IdentifierNode id;
-        public IList<BaseNode> parameters;
+        public IReadOnlyList<BaseNode> parameters;
         public BaseNode body;
 
-        public FunctionDeclarationNode([NotNull] Parser parser, Position start, Position end) :
+        internal FunctionDeclarationNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

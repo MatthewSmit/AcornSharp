@@ -4,10 +4,10 @@ namespace AcornSharp.Node
 {
     public sealed class DoWhileStatementNode : BaseNode
     {
-        public BaseNode test;
+        public ExpressionNode test;
         public BaseNode body;
 
-        public DoWhileStatementNode([NotNull] Parser parser, Position start, Position end) :
+        internal DoWhileStatementNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

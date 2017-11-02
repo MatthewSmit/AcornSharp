@@ -8,7 +8,7 @@ namespace AcornSharp
 {
     [SuppressMessage("ReSharper", "LocalVariableHidesMember")]
     [SuppressMessage("ReSharper", "ParameterHidesMember")]
-    public sealed partial class Parser
+    internal sealed partial class Parser
     {
         private static readonly Regex literal = new Regex(@"^(?:'((?:\\.|[^'])*?)'|""((?:\\.|[^""])*?)""|;)");
 

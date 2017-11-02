@@ -13,7 +13,7 @@ namespace AcornSharp
 
     [SuppressMessage("ReSharper", "LocalVariableHidesMember")]
     [SuppressMessage("ReSharper", "ParameterHidesMember")]
-    public sealed partial class Parser : IEnumerable<Token>
+    internal sealed partial class Parser : IEnumerable<Token>
     {
         // Move to the next token
         private void next()

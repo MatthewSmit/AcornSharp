@@ -8,7 +8,7 @@ namespace AcornSharp.Node
         public BaseNode id;
         public BaseNode init;
 
-        public VariableDeclaratorNode([NotNull] Parser parser, Position start, Position end) :
+        internal VariableDeclaratorNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

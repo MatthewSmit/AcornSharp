@@ -2,9 +2,9 @@ using JetBrains.Annotations;
 
 namespace AcornSharp.Node
 {
-    public sealed class ThisExpressionNode : BaseNode
+    public sealed class ThisExpressionNode : ExpressionNode
     {
-        public ThisExpressionNode([NotNull] Parser parser, Position start, Position end) :
+        internal ThisExpressionNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

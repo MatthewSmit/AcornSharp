@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 
 namespace AcornSharp
 {
-    public sealed partial class Parser
+    internal sealed partial class Parser
     {
         private sealed class Label
         {
@@ -80,12 +80,11 @@ namespace AcornSharp
             // Set up token state
 
             // The current position of the tokenizer in the input.
-            if (startPos.HasValue)
+            if (startPos.HasValue && startPos.Value > 0)
             {
-//                pos = startPos.Value;
-//                lineStart = this.input.LastIndexOf('\n', startPos.Value - 1) + 1;
-//                curLine = this.input.slice(0, lineStart).split(lineBreak).length;
-                throw new NotImplementedException();
+                var lineStart = input.LastIndexOf('\n', startPos.Value - 1) + 1;
+                var currentLine = lineBreak.Matches(input.Substring(0, lineStart)).Count;
+                pos = new Position(currentLine, startPos.Value - lineStart, startPos.Value);
             }
             else
             {

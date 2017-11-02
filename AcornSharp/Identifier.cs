@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 
 namespace AcornSharp
 {
-    public sealed partial class Parser
+    internal sealed partial class Parser
     {
         // Reserved word lists for various dialects of the language
 

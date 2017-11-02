@@ -1327,7 +1327,6 @@ namespace AcornSharp.Cli
                                     expression = new TestNode { type = typeof(AwaitExpressionNode), location = new SourceLocation(new Position(1, 23, 23), new Position(1, 32, 32)),
                                         argument = new TestNode { type = typeof(UnaryExpressionNode), location = new SourceLocation(new Position(1, 29, 29), new Position(1, 32, 32)),
                                             @operator = Operator.Addition,
-                                            prefix = true,
                                             argument = new TestNode { type = typeof(LiteralNode), location = new SourceLocation(new Position(1, 31, 31), new Position(1, 32, 32)),
                                                 value = 1,
                                                 raw = "1"

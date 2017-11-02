@@ -9,9 +9,9 @@ namespace AcornSharp.Node
         public bool shorthand;
         public bool method;
         public BaseNode key;
-        public BaseNode value;
+        public ExpressionNode value;
 
-        public PropertyNode([NotNull] Parser parser, Position start, Position end) :
+        internal PropertyNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

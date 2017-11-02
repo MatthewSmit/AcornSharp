@@ -2,7 +2,7 @@
 
 namespace AcornSharp
 {
-    public sealed partial class Parser
+    internal sealed partial class Parser
     {
         // This function is used to raise exceptions on parse errors. It
         // takes an offset integer (into the current `input`) to indicate

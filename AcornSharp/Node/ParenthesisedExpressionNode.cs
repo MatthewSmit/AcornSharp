@@ -2,11 +2,11 @@ using JetBrains.Annotations;
 
 namespace AcornSharp.Node
 {
-    public sealed class ParenthesisedExpressionNode : BaseNode
+    public sealed class ParenthesisedExpressionNode : ExpressionNode
     {
-        public BaseNode expression;
+        public ExpressionNode expression;
 
-        public ParenthesisedExpressionNode([NotNull] Parser parser, Position start, Position end) :
+        internal ParenthesisedExpressionNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

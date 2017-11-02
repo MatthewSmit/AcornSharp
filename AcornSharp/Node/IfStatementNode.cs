@@ -8,7 +8,7 @@ namespace AcornSharp.Node
         public readonly BaseNode consequent;
         public readonly BaseNode alternate;
 
-        public IfStatementNode([NotNull] Parser parser, Position start, Position end, BaseNode test, BaseNode consequent, BaseNode alternate) :
+        internal IfStatementNode([NotNull] Parser parser, Position start, Position end, BaseNode test, BaseNode consequent, BaseNode alternate) :
             base(parser, start, end)
         {
             this.test = test;

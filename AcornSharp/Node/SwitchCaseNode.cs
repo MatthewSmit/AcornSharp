@@ -6,9 +6,9 @@ namespace AcornSharp.Node
     public sealed class SwitchCaseNode : BaseNode
     {
         public BaseNode test;
-        public IList<BaseNode> consequent;
+        public IReadOnlyList<BaseNode> consequent;
 
-        public SwitchCaseNode([NotNull] Parser parser, Position start, Position end) :
+        internal SwitchCaseNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

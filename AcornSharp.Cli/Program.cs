@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using JetBrains.Annotations;
 
 namespace AcornSharp.Cli
@@ -8,17 +7,7 @@ namespace AcornSharp.Cli
     {
         private static void Main()
         {
-//            var text = File.ReadAllText(@"C:\Work\arewefastyet\benchmarks\octane\pdfjs.js");
-//
-//            var t0 = DateTime.Now;
-//            for (var i = 0; i < 10; i++)
-//            {
-//                var ast = Acorn.Parse(text);
-//            }
-//            var duration = DateTime.Now - t0;
-//            Console.WriteLine(duration + "ms");
-
-                        TestSuite();
+            TestSuite();
         }
 
         private static void TestSuite()

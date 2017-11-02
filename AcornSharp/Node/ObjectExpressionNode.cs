@@ -3,11 +3,11 @@ using JetBrains.Annotations;
 
 namespace AcornSharp.Node
 {
-    public sealed class ObjectExpressionNode : BaseNode
+    public sealed class ObjectExpressionNode : ExpressionNode
     {
-        public IList<PropertyNode> properties;
+        public IReadOnlyList<PropertyNode> properties;
 
-        public ObjectExpressionNode([NotNull] Parser parser, Position start, Position end) :
+        internal ObjectExpressionNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

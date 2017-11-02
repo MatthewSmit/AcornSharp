@@ -4,9 +4,9 @@ namespace AcornSharp.Node
 {
     public sealed class ThrowStatementNode : BaseNode
     {
-        public BaseNode argument;
+        public ExpressionNode argument;
 
-        public ThrowStatementNode([NotNull] Parser parser, Position start, Position end) :
+        internal ThrowStatementNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

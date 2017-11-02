@@ -2,13 +2,13 @@ using JetBrains.Annotations;
 
 namespace AcornSharp.Node
 {
-    public sealed class ConditionalExpressionNode : BaseNode
+    public sealed class ConditionalExpressionNode : ExpressionNode
     {
-        public readonly BaseNode test;
-        public readonly BaseNode consequent;
-        public readonly BaseNode alternate;
+        public readonly ExpressionNode test;
+        public readonly ExpressionNode consequent;
+        public readonly ExpressionNode alternate;
 
-        public ConditionalExpressionNode([NotNull] Parser parser, Position start, Position end, BaseNode test, BaseNode consequent, BaseNode alternate) :
+        internal ConditionalExpressionNode([NotNull] Parser parser, Position start, Position end, ExpressionNode test, ExpressionNode consequent, ExpressionNode alternate) :
             base(parser, start, end)
         {
             this.test = test;

@@ -44,7 +44,6 @@ namespace AcornSharp.Cli
         public object consequent;
         public TestNode alternate;
         public object kind;
-        public bool? prefix;
         public TestNode property;
         public bool? computed;
         public TestNode block;
@@ -155,11 +154,11 @@ namespace AcornSharp.Cli
                     return true;
 
                 case AssignmentExpressionNode realNode:
-                    if (!left?.TestEquals(realNode.left) == true)
+                    if (!left?.TestEquals(realNode.Left) == true)
                         return false;
-                    if (!right?.TestEquals(realNode.right) == true)
+                    if (!right?.TestEquals(realNode.Right) == true)
                         return false;
-                    if (@operator.HasValue && @operator != realNode.@operator)
+                    if (@operator.HasValue && @operator != realNode.Operator)
                         return false;
                     return true;
 
@@ -174,7 +173,7 @@ namespace AcornSharp.Cli
                     return true;
 
                 case ArrayExpressionNode realNode:
-                    if (elements != null && !TestEquals(elements, realNode.elements))
+                    if (elements != null && !TestEquals(elements, realNode.Elements))
                         return false;
                     return true;
 
@@ -234,13 +233,13 @@ namespace AcornSharp.Cli
 
                 case ArrowFunctionExpressionNode realNode:
                 {
-                    if (expression is bool boolExpression && boolExpression != realNode.expression)
+                    if (expression is bool boolExpression && boolExpression != realNode.Expression)
                         return false;
-                    if (async.HasValue && async != realNode.async)
+                    if (async.HasValue && async != realNode.Async)
                         return false;
-                    if (parameters != null && !TestEquals(parameters, realNode.parameters))
+                    if (parameters != null && !TestEquals(parameters, realNode.Parameters))
                         return false;
-                    if (!((TestNode)body)?.TestEquals(realNode.body) == true)
+                    if (!((TestNode)body)?.TestEquals(realNode.Body) == true)
                         return false;
                     return true;
                 }
@@ -327,16 +326,12 @@ namespace AcornSharp.Cli
                         return false;
                     if (!argument?.TestEquals(realNode.argument) == true)
                         return false;
-                    if (prefix.HasValue && prefix != realNode.prefix)
-                        return false;
                     return true;
 
                 case UnaryExpressionNode realNode:
                     if (@operator.HasValue && @operator != realNode.@operator)
                         return false;
                     if (!argument?.TestEquals(realNode.argument) == true)
-                        return false;
-                    if (prefix.HasValue && prefix != realNode.prefix)
                         return false;
                     return true;
 
@@ -464,14 +459,14 @@ namespace AcornSharp.Cli
                     return true;
 
                 case ArrayPatternNode realNode:
-                    if (elements != null && !TestEquals(elements, realNode.elements))
+                    if (elements != null && !TestEquals(elements, realNode.Elements))
                         return false;
                     return true;
 
                 case AssignmentPatternNode realNode:
-                    if (!left?.TestEquals(realNode.left) == true)
+                    if (!left?.TestEquals(realNode.Left) == true)
                         return false;
-                    if (!right?.TestEquals(realNode.right) == true)
+                    if (!right?.TestEquals(realNode.Right) == true)
                         return false;
                     return true;
 
@@ -586,7 +581,7 @@ namespace AcornSharp.Cli
                     return true;
 
                 case AwaitExpressionNode realNode:
-                    if (!argument?.TestEquals(realNode.argument) == true)
+                    if (!argument?.TestEquals(realNode.Argument) == true)
                         return false;
                     return true;
 
@@ -595,7 +590,7 @@ namespace AcornSharp.Cli
             }
         }
 
-        private static bool TestEquals<T>([NotNull] IList<TestNode> lhs, [NotNull] IList<T> rhs)
+        private static bool TestEquals<T>([NotNull] IList<TestNode> lhs, [NotNull] IReadOnlyList<T> rhs)
             where T : BaseNode
         {
             if (lhs.Count != rhs.Count)

@@ -1,6 +1,6 @@
 ﻿namespace AcornSharp
 {
-    public sealed partial class Parser
+    internal sealed partial class Parser
     {
         // The `getLineInfo` function is mostly useful when the
         // `locations` option is off (for performance reasons) and you

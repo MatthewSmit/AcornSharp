@@ -7,7 +7,7 @@ namespace AcornSharp.Node
         public TemplateNode value;
         public bool tail;
 
-        public TemplateElementNode([NotNull] Parser parser, Position start, Position end) :
+        internal TemplateElementNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

@@ -5,10 +5,10 @@ namespace AcornSharp.Node
     public sealed class ClassDeclarationNode : BaseNode, IDeclarationNode
     {
         public IdentifierNode id;
-        public BaseNode superClass;
-        public BaseNode body;
+        public ExpressionNode superClass;
+        public ClassBodyNode body;
 
-        public ClassDeclarationNode([NotNull] Parser parser, Position start, Position end) :
+        internal ClassDeclarationNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

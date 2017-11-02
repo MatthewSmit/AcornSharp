@@ -2,11 +2,11 @@ using JetBrains.Annotations;
 
 namespace AcornSharp.Node
 {
-    public sealed class SpreadElementNode : BaseNode
+    public sealed class SpreadElementNode : ExpressionNode
     {
-        public BaseNode argument;
+        public ExpressionNode argument;
 
-        public SpreadElementNode([NotNull] Parser parser, Position start, Position end) :
+        internal SpreadElementNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

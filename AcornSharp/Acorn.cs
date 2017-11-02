@@ -27,13 +27,13 @@ namespace AcornSharp
         {
             var p = new Parser(options, input, pos);
             p.nextToken();
-            return p.parseExpression();
+            return p.ParseExpression();
         }
 
         // Acorn is organized as a tokenizer and a recursive-descent parser.
         // The `tokenizer` export provides an interface to the tokenizer.
         [NotNull]
-        public static IEnumerable<Token> Tokeniser(string input, Options options)
+        public static IEnumerable<Token> Tokeniser(string input, [CanBeNull] Options options = null)
         {
             return new Parser(options, input);
         }

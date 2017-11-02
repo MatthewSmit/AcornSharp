@@ -6,7 +6,7 @@ namespace AcornSharp.Node
     {
         public BaseNode argument;
 
-        public ReturnStatementNode([NotNull] Parser parser, Position start, Position end) :
+        internal ReturnStatementNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

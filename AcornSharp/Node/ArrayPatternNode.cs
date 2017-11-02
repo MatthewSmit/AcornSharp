@@ -3,13 +3,14 @@ using JetBrains.Annotations;
 
 namespace AcornSharp.Node
 {
-    public sealed class ArrayPatternNode : BaseNode
+    public sealed class ArrayPatternNode : ExpressionNode
     {
-        public IList<BaseNode> elements;
-
-        public ArrayPatternNode([NotNull] Parser parser, Position start, Position end) :
+        internal ArrayPatternNode([NotNull] Parser parser, Position start, Position end, IReadOnlyList<ExpressionNode> elements) :
             base(parser, start, end)
         {
+            Elements = elements;
         }
+
+        public IReadOnlyList<ExpressionNode> Elements { get; }
     }
 }

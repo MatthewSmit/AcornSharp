@@ -2,7 +2,7 @@
 
 namespace AcornSharp
 {
-    public sealed partial class Parser
+    internal sealed partial class Parser
     {
         private sealed class Scope
         {

@@ -9,7 +9,7 @@ namespace AcornSharp.Node
         public BaseNode update;
         public BaseNode body;
 
-        public ForStatementNode([NotNull] Parser parser, Position start, Position end) :
+        internal ForStatementNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

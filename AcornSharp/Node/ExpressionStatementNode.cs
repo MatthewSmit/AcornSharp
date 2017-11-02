@@ -7,7 +7,7 @@ namespace AcornSharp.Node
         public BaseNode expression;
         public string directive;
 
-        public ExpressionStatementNode([NotNull] Parser parser, Position start, Position end) :
+        internal ExpressionStatementNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

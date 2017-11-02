@@ -2,7 +2,7 @@
 
 namespace AcornSharp
 {
-    public sealed partial class Parser
+    internal sealed partial class Parser
     {
         private static readonly Regex lineBreak = new Regex("\r\n?|\n|\u2028|\u2029");
         private static readonly Regex nonASCIIwhitespace = new Regex(@"[\u1680\u180e\u2000-\u200a\u202f\u205f\u3000\ufeff]");

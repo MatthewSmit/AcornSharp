@@ -3972,8 +3972,7 @@ namespace AcornSharp.Cli
                         expression = new TestNode
                         {
                             type = typeof(UpdateExpressionNode),
-                            @operator = Operator.Increment,
-                            prefix = false,
+                            @operator = Operator.IncrementPostfix,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), name = "x"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                         },
@@ -3994,8 +3993,7 @@ namespace AcornSharp.Cli
                         expression = new TestNode
                         {
                             type = typeof(UpdateExpressionNode),
-                            @operator = Operator.Decrement,
-                            prefix = false,
+                            @operator = Operator.DecrementPostfix,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)), name = "x"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                         },
@@ -4016,8 +4014,7 @@ namespace AcornSharp.Cli
                         expression = new TestNode
                         {
                             type = typeof(UpdateExpressionNode),
-                            @operator = Operator.Increment,
-                            prefix = false,
+                            @operator = Operator.IncrementPostfix,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4)), name = "eval"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                         },
@@ -4038,8 +4035,7 @@ namespace AcornSharp.Cli
                         expression = new TestNode
                         {
                             type = typeof(UpdateExpressionNode),
-                            @operator = Operator.Decrement,
-                            prefix = false,
+                            @operator = Operator.DecrementPostfix,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4)), name = "eval"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                         },
@@ -4060,8 +4056,7 @@ namespace AcornSharp.Cli
                         expression = new TestNode
                         {
                             type = typeof(UpdateExpressionNode),
-                            @operator = Operator.Increment,
-                            prefix = false,
+                            @operator = Operator.IncrementPostfix,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)), name = "arguments"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
                         },
@@ -4082,8 +4077,7 @@ namespace AcornSharp.Cli
                         expression = new TestNode
                         {
                             type = typeof(UpdateExpressionNode),
-                            @operator = Operator.Decrement,
-                            prefix = false,
+                            @operator = Operator.DecrementPostfix,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)), name = "arguments"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
                         },
@@ -4105,7 +4099,6 @@ namespace AcornSharp.Cli
                         {
                             type = typeof(UpdateExpressionNode),
                             @operator = Operator.Increment,
-                            prefix = true,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), name = "x"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                         },
@@ -4127,7 +4120,6 @@ namespace AcornSharp.Cli
                         {
                             type = typeof(UpdateExpressionNode),
                             @operator = Operator.Decrement,
-                            prefix = true,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 3, 3)), name = "x"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3))
                         },
@@ -4149,7 +4141,6 @@ namespace AcornSharp.Cli
                         {
                             type = typeof(UpdateExpressionNode),
                             @operator = Operator.Increment,
-                            prefix = true,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 6, 6)), name = "eval"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                         },
@@ -4171,7 +4162,6 @@ namespace AcornSharp.Cli
                         {
                             type = typeof(UpdateExpressionNode),
                             @operator = Operator.Decrement,
-                            prefix = true,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 6, 6)), name = "eval"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                         },
@@ -4193,7 +4183,6 @@ namespace AcornSharp.Cli
                         {
                             type = typeof(UpdateExpressionNode),
                             @operator = Operator.Increment,
-                            prefix = true,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 11, 11)), name = "arguments"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
                         },
@@ -4215,7 +4204,6 @@ namespace AcornSharp.Cli
                         {
                             type = typeof(UpdateExpressionNode),
                             @operator = Operator.Decrement,
-                            prefix = true,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 2, 2), new Position(1, 11, 11)), name = "arguments"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 11, 11))
                         },
@@ -4237,7 +4225,6 @@ namespace AcornSharp.Cli
                         {
                             type = typeof(UnaryExpressionNode),
                             @operator = Operator.Addition,
-                            prefix = true,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), name = "x"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
                         },
@@ -4259,7 +4246,6 @@ namespace AcornSharp.Cli
                         {
                             type = typeof(UnaryExpressionNode),
                             @operator = Operator.Subtraction,
-                            prefix = true,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), name = "x"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
                         },
@@ -4281,7 +4267,6 @@ namespace AcornSharp.Cli
                         {
                             type = typeof(UnaryExpressionNode),
                             @operator = Operator.BitwiseNot,
-                            prefix = true,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), name = "x"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
                         },
@@ -4303,7 +4288,6 @@ namespace AcornSharp.Cli
                         {
                             type = typeof(UnaryExpressionNode),
                             @operator = Operator.LogicalNot,
-                            prefix = true,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)), name = "x"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 2, 2))
                         },
@@ -4325,7 +4309,6 @@ namespace AcornSharp.Cli
                         {
                             type = typeof(UnaryExpressionNode),
                             @operator = Operator.Void,
-                            prefix = true,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), name = "x"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 6, 6))
                         },
@@ -4347,7 +4330,6 @@ namespace AcornSharp.Cli
                         {
                             type = typeof(UnaryExpressionNode),
                             @operator = Operator.Delete,
-                            prefix = true,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), name = "x"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
                         },
@@ -4369,7 +4351,6 @@ namespace AcornSharp.Cli
                         {
                             type = typeof(UnaryExpressionNode),
                             @operator = Operator.TypeOf,
-                            prefix = true,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 7, 7), new Position(1, 8, 8)), name = "x"},
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
                         },
@@ -6706,8 +6687,7 @@ namespace AcornSharp.Cli
                                     expression = new TestNode
                                     {
                                         type = typeof(UpdateExpressionNode),
-                                        @operator = Operator.Increment,
-                                        prefix = false,
+                                        @operator = Operator.IncrementPostfix,
                                         argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)), name = "x"},
                                         location = new SourceLocation(new Position(1, 5, 5), new Position(1, 8, 8))
                                     },
@@ -6719,8 +6699,7 @@ namespace AcornSharp.Cli
                                     expression = new TestNode
                                     {
                                         type = typeof(UpdateExpressionNode),
-                                        @operator = Operator.Decrement,
-                                        prefix = false,
+                                        @operator = Operator.DecrementPostfix,
                                         argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 10, 10), new Position(1, 11, 11)), name = "y"},
                                         location = new SourceLocation(new Position(1, 10, 10), new Position(1, 13, 13))
                                     },
@@ -6857,8 +6836,7 @@ namespace AcornSharp.Cli
                                     expression = new TestNode
                                     {
                                         type = typeof(UpdateExpressionNode),
-                                        @operator = Operator.Increment,
-                                        prefix = false,
+                                        @operator = Operator.IncrementPostfix,
                                         argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 17, 17), new Position(1, 18, 18)), name = "x"},
                                         location = new SourceLocation(new Position(1, 17, 17), new Position(1, 20, 20))
                                     },
@@ -6870,8 +6848,7 @@ namespace AcornSharp.Cli
                                     expression = new TestNode
                                     {
                                         type = typeof(UpdateExpressionNode),
-                                        @operator = Operator.Decrement,
-                                        prefix = false,
+                                        @operator = Operator.DecrementPostfix,
                                         argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 22, 22), new Position(1, 23, 23)), name = "y"},
                                         location = new SourceLocation(new Position(1, 22, 22), new Position(1, 25, 25))
                                     },
@@ -7144,8 +7121,7 @@ namespace AcornSharp.Cli
                         update = new TestNode
                         {
                             type = typeof(UpdateExpressionNode),
-                            @operator = Operator.Increment,
-                            prefix = false,
+                            @operator = Operator.IncrementPostfix,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 19, 19), new Position(1, 20, 20)), name = "x"},
                             location = new SourceLocation(new Position(1, 19, 19), new Position(1, 22, 22))
                         },
@@ -7197,8 +7173,7 @@ namespace AcornSharp.Cli
                         update = new TestNode
                         {
                             type = typeof(UpdateExpressionNode),
-                            @operator = Operator.Increment,
-                            prefix = false,
+                            @operator = Operator.IncrementPostfix,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 19, 19), new Position(1, 20, 20)), name = "x"},
                             location = new SourceLocation(new Position(1, 19, 19), new Position(1, 22, 22))
                         },
@@ -9184,7 +9159,6 @@ namespace AcornSharp.Cli
                                 {
                                     type = typeof(UpdateExpressionNode),
                                     @operator = Operator.Increment,
-                                    prefix = true,
                                     argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(2, 2, 6), new Position(2, 3, 7)), name = "y"},
                                     location = new SourceLocation(new Position(2, 0, 4), new Position(2, 3, 7))
                                 },
@@ -9220,7 +9194,6 @@ namespace AcornSharp.Cli
                                 {
                                     type = typeof(UpdateExpressionNode),
                                     @operator = Operator.Decrement,
-                                    prefix = true,
                                     argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(2, 2, 6), new Position(2, 3, 7)), name = "y"},
                                     location = new SourceLocation(new Position(2, 0, 4), new Position(2, 3, 7))
                                 },
@@ -10186,8 +10159,7 @@ namespace AcornSharp.Cli
                                 left = new TestNode
                                 {
                                     type = typeof(UpdateExpressionNode),
-                                    @operator = Operator.Decrement,
-                                    prefix = false,
+                                    @operator = Operator.DecrementPostfix,
                                     argument = new TestNode {type = typeof(IdentifierNode), name = "y"}
                                 },
                                 @operator = Operator.GreaterThan,
@@ -10656,8 +10628,7 @@ namespace AcornSharp.Cli
                         {
                             type = typeof(UpdateExpressionNode),
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)),
-                            @operator = Operator.Increment,
-                            prefix = false,
+                            @operator = Operator.IncrementPostfix,
                             argument = new TestNode {type = typeof(IdentifierNode), location = new SourceLocation(new Position(1, 0, 0), new Position(1, 3, 3)), name = "let"}
                         }
                     }

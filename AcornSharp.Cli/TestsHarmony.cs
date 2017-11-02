@@ -11721,7 +11721,6 @@ namespace AcornSharp.Cli
                         {
                             type = typeof(UpdateExpressionNode),
                             @operator = Operator.Increment,
-                            prefix = true,
                             argument = new TestNode {type = typeof(IdentifierNode), name = "x"}
                         }
                     }

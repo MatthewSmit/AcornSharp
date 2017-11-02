@@ -42,6 +42,8 @@
 
         Increment,
         Decrement,
+        IncrementPostfix,
+        DecrementPostfix,
         BitwiseNot,
         LogicalNot,
         Delete,

@@ -6,7 +6,7 @@ namespace AcornSharp.Node
     {
         public IdentifierNode label;
 
-        public ContinueStatementNode([NotNull] Parser parser, Position start, Position end) :
+        internal ContinueStatementNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

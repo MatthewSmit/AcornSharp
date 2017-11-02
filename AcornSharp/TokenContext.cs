@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AcornSharp
 {
-    public sealed partial class Parser
+    internal sealed partial class Parser
     {
         public static List<TokContext> initialContext()
         {

@@ -4,10 +4,10 @@ namespace AcornSharp.Node
 {
     public sealed class CatchClauseNode : BaseNode
     {
-        public BaseNode param;
-        public BaseNode body;
+        public ExpressionNode param;
+        public BlockStatementNode body;
 
-        public CatchClauseNode([NotNull] Parser parser, Position start, Position end) :
+        internal CatchClauseNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

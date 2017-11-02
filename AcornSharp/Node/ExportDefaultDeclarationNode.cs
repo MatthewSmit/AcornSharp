@@ -6,7 +6,7 @@ namespace AcornSharp.Node
     {
         public BaseNode declaration;
 
-        public ExportDefaultDeclarationNode([NotNull] Parser parser, Position start, Position end) :
+        internal ExportDefaultDeclarationNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

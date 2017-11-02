@@ -127,7 +127,6 @@ namespace AcornSharp.Cli
                         expression = new TestNode { type = typeof(BinaryExpressionNode),
                             left = new TestNode { type = typeof(UnaryExpressionNode),
                                 @operator = Operator.Subtraction,
-                                prefix = true,
                                 argument = new TestNode { type = typeof(IdentifierNode),  name = "a" }
                             },
                             @operator = Operator.Multiplication,
@@ -149,7 +148,6 @@ namespace AcornSharp.Cli
                         expression = new TestNode { type = typeof(BinaryExpressionNode),
                             left = new TestNode { type = typeof(UnaryExpressionNode),
                                 @operator = Operator.Subtraction,
-                                prefix = true,
                                 argument = new TestNode { type = typeof(LiteralNode),
                                     value = 5
                                 }
@@ -173,7 +171,6 @@ namespace AcornSharp.Cli
                         expression = new TestNode { type = typeof(BinaryExpressionNode),
                             left = new TestNode { type = typeof(UpdateExpressionNode),
                                 @operator = Operator.Increment,
-                                prefix = true,
                                 argument = new TestNode { type = typeof(IdentifierNode),  name = "a" }
                             },
                             @operator = Operator.Power,
@@ -194,8 +191,7 @@ namespace AcornSharp.Cli
                     new TestNode { type = typeof(ExpressionStatementNode),
                         expression = new TestNode { type = typeof(BinaryExpressionNode),
                             left = new TestNode { type = typeof(UpdateExpressionNode),
-                                @operator = Operator.Decrement,
-                                prefix = false,
+                                @operator = Operator.DecrementPostfix,
                                 argument = new TestNode { type = typeof(IdentifierNode),  name = "a" }
                             },
                             @operator = Operator.Power,

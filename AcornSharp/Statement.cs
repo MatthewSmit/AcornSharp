@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 namespace AcornSharp
 {
     [SuppressMessage("ReSharper", "LocalVariableHidesMember")]
-    public sealed partial class Parser
+    internal sealed partial class Parser
     {
         private static readonly Label loopLabel = new Label {kind = "loop"};
         private static readonly Label switchLabel = new Label {kind = "switch"};
@@ -153,7 +153,7 @@ namespace AcornSharp
             }
 
             var maybeName = value;
-            var expr = parseExpression();
+            var expr = ParseExpression();
             if (starttype == TokenType.name && expr is IdentifierNode identifierNode && eat(TokenType.colon))
                 return parseLabelledStatement(start, (string)maybeName, identifierNode);
             return parseExpressionStatement(start, expr);
@@ -284,7 +284,7 @@ namespace AcornSharp
             else
             {
                 var refDestructuringErrors = new DestructuringErrors();
-                var init = parseExpression(true, refDestructuringErrors);
+                var init = ParseExpression(true, refDestructuringErrors);
                 if (type == TokenType._in || Options.ecmaVersion >= 6 && isContextual("of"))
                 {
                     init = toAssignable(init);
@@ -334,7 +334,7 @@ namespace AcornSharp
             BaseNode argument = null;
             if (!eat(TokenType.semi) && !insertSemicolon())
             {
-                argument = parseExpression();
+                argument = ParseExpression();
                 semicolon();
             }
             return new ReturnStatementNode(this, nodeStart, lastTokEnd)
@@ -358,7 +358,7 @@ namespace AcornSharp
             // adding statements to.
 
             var startLoc = start;
-            IList<BaseNode> consequent = null;
+            List<BaseNode> consequent = null;
             BaseNode test = null;
             for (var sawDefault = false; type != TokenType.braceR;)
             {
@@ -380,7 +380,7 @@ namespace AcornSharp
                     next();
                     if (isCase)
                     {
-                        test = parseExpression();
+                        test = ParseExpression();
                     }
                     else
                     {
@@ -424,7 +424,7 @@ namespace AcornSharp
             next();
             if (lineBreak.IsMatch(input.Substring(lastTokEnd.Index, start.Index - lastTokEnd.Index)))
                 raise(lastTokEnd, "Illegal newline after throw");
-            var argument = parseExpression();
+            var argument = ParseExpression();
             semicolon();
             return new ThrowStatementNode(this, nodeStart, lastTokEnd)
             {
@@ -589,9 +589,9 @@ namespace AcornSharp
         private BaseNode parseFor(Position nodeStart, BaseNode init)
         {
             expect(TokenType.semi);
-            var test = type == TokenType.semi ? null : parseExpression();
+            var test = type == TokenType.semi ? null : ParseExpression();
             expect(TokenType.semi);
-            var update = type == TokenType.parenR ? null : parseExpression();
+            var update = type == TokenType.parenR ? null : ParseExpression();
             expect(TokenType.parenR);
             exitLexicalScope();
             var body = parseStatement(false);
@@ -612,8 +612,7 @@ namespace AcornSharp
         {
             var isIn = type == TokenType._in;
             next();
-            var left = init;
-            var right = parseExpression();
+            var right = ParseExpression();
             expect(TokenType.parenR);
             exitLexicalScope();
             var body = parseStatement(false);
@@ -623,14 +622,14 @@ namespace AcornSharp
             {
                 return new ForInStatementNode(this, nodeStart, lastTokEnd)
                 {
-                    left = left,
+                    left = init,
                     right = right,
                     body = body
                 };
             }
             return new ForOfStatementNode(this, nodeStart, lastTokEnd)
             {
-                left = left,
+                left = init,
                 right = right,
                 body = body
             };
@@ -648,7 +647,7 @@ namespace AcornSharp
                 BaseNode init = null;
                 if (eat(TokenType.eq))
                 {
-                    init = parseMaybeAssign(isFor);
+                    init = ParseMaybeAssign(isFor);
                 }
                 else if (kind == VariableKind.Const && !(type == TokenType._in || Options.ecmaVersion >= 6 && isContextual("of")))
                 {
@@ -747,7 +746,7 @@ namespace AcornSharp
         }
 
         [NotNull]
-        private IList<BaseNode> parseFunctionParams()
+        private IReadOnlyList<BaseNode> parseFunctionParams()
         {
             expect(TokenType.parenL);
             var parameters = parseBindingList(TokenType.parenR, false, Options.ecmaVersion >= 8);
@@ -879,9 +878,9 @@ namespace AcornSharp
         }
 
         [CanBeNull]
-        private BaseNode parseClassSuper()
+        private ExpressionNode parseClassSuper()
         {
-            return eat(TokenType._extends) ? parseExprSubscripts() : null;
+            return eat(TokenType._extends) ? ParseExpressionSubscripts() : null;
         }
 
         // Parses module export declaration.
@@ -894,7 +893,7 @@ namespace AcornSharp
             {
                 expectContextual("from");
                 BaseNode source = null;
-                if (type == TokenType.@string) source = parseExprAtom();
+                if (type == TokenType.@string) source = ParseExpressionAtom();
                 else
                 {
                     raise(start, "Unexpected token");
@@ -924,7 +923,7 @@ namespace AcornSharp
                 }
                 else
                 {
-                    declaration = parseMaybeAssign();
+                    declaration = ParseMaybeAssign();
                     semicolon();
                 }
                 return new ExportDefaultDeclarationNode(this, nodeStart, lastTokEnd)
@@ -936,7 +935,7 @@ namespace AcornSharp
             {
                 // export var|const|let|function|class ...
                 BaseNode declaration;
-                IList<ExportSpecifierNode> specifiers;
+                IReadOnlyList<ExportSpecifierNode> specifiers;
                 BaseNode source = null;
                 if (shouldParseExportStatement())
                 {
@@ -959,7 +958,7 @@ namespace AcornSharp
                     specifiers = parseExportSpecifiers(exports);
                     if (eatContextual("from"))
                     {
-                        if (type == TokenType.@string) source = parseExprAtom();
+                        if (type == TokenType.@string) source = ParseExpressionAtom();
                         else
                         {
                             raise(start, "Unexpected token");
@@ -1006,13 +1005,13 @@ namespace AcornSharp
                     }
                     break;
                 case ArrayPatternNode arrayPattern:
-                    foreach (var elt in arrayPattern.elements)
+                    foreach (var elt in arrayPattern.Elements)
                     {
                         if (elt != null) checkPatternExport(exports, elt);
                     }
                     break;
                 case AssignmentPatternNode assignmentPattern:
-                    checkPatternExport(exports, assignmentPattern.left);
+                    checkPatternExport(exports, assignmentPattern.Left);
                     break;
                 case ParenthesisedExpressionNode parenthesisedExpressionNode:
                     checkPatternExport(exports, parenthesisedExpressionNode.expression);
@@ -1042,7 +1041,7 @@ namespace AcornSharp
 
         // Parses a comma-separated list of module exports.
         [NotNull]
-        private IList<ExportSpecifierNode> parseExportSpecifiers(IDictionary<string, bool> exports)
+        private IReadOnlyList<ExportSpecifierNode> parseExportSpecifiers(IDictionary<string, bool> exports)
         {
             var nodes = new List<ExportSpecifierNode>();
             var first = true;
@@ -1077,18 +1076,18 @@ namespace AcornSharp
         {
             next();
             // import '...'
-            IList<BaseNode> specifiers;
+            IReadOnlyList<BaseNode> specifiers;
             BaseNode source = null;
             if (type == TokenType.@string)
             {
                 specifiers = new List<BaseNode>();
-                source = parseExprAtom();
+                source = ParseExpressionAtom();
             }
             else
             {
                 specifiers = parseImportSpecifiers();
                 expectContextual("from");
-                if (type == TokenType.@string) source = parseExprAtom();
+                if (type == TokenType.@string) source = ParseExpressionAtom();
                 else
                 {
                     raise(start, "Unexpected token");
@@ -1104,7 +1103,7 @@ namespace AcornSharp
 
         // Parses a comma-separated list of module imports.
         [NotNull]
-        private IList<BaseNode> parseImportSpecifiers()
+        private IReadOnlyList<BaseNode> parseImportSpecifiers()
         {
             var nodes = new List<BaseNode>();
             var first = true;
@@ -1169,7 +1168,7 @@ namespace AcornSharp
         }
 
         // Set `ExpressionStatement#directive` property for directive prologues.
-        private void adaptDirectivePrologue([NotNull] IList<BaseNode> statements)
+        private void adaptDirectivePrologue([NotNull] IReadOnlyList<BaseNode> statements)
         {
             for (var i = 0; i < statements.Count && isDirectiveCandidate(statements[i]); ++i)
             {

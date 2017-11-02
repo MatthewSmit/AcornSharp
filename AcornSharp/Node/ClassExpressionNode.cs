@@ -2,13 +2,13 @@ using JetBrains.Annotations;
 
 namespace AcornSharp.Node
 {
-    public sealed class ClassExpressionNode : BaseNode, IDeclarationNode
+    public sealed class ClassExpressionNode : ExpressionNode, IDeclarationNode
     {
         public IdentifierNode id;
-        public BaseNode superClass;
-        public BaseNode body;
+        public ExpressionNode superClass;
+        public ClassBodyNode body;
 
-        public ClassExpressionNode([NotNull] Parser parser, Position start, Position end) :
+        internal ClassExpressionNode([NotNull] Parser parser, Position start, Position end) :
             base(parser, start, end)
         {
         }

@@ -8,7 +8,7 @@ namespace AcornSharp.Node
         public readonly BaseNode handler;
         public readonly BaseNode finaliser;
 
-        public TryStatementNode([NotNull] Parser parser, Position start, Position end, BaseNode block, BaseNode handler, BaseNode finaliser) :
+        internal TryStatementNode([NotNull] Parser parser, Position start, Position end, BaseNode block, BaseNode handler, BaseNode finaliser) :
             base(parser, start, end)
         {
             this.block = block;
