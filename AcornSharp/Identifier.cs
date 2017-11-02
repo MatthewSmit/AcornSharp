@@ -7,7 +7,6 @@ namespace AcornSharp
     internal sealed partial class Parser
     {
         // Reserved word lists for various dialects of the language
-
         private const string ecmascript3ReservedWords = "abstract|boolean|byte|char|class|double|enum|export|extends|final|float|goto|implements|import|int|interface|long|native|package|private|protected|public|short|static|super|synchronized|throws|transient|volatile";
         private const string ecmascript5ReservedWords = "class|enum|extends|super|const|export|import";
         private const string ecmascript6ReservedWords = "enum";

@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace AcornSharp
 {
     internal sealed partial class Parser
     {
+        [NotNull]
         public static List<TokContext> initialContext()
         {
-            return new List<TokContext> {TokContext.b_stat};
+            return new List<TokContext>
+            {
+                TokContext.b_stat
+            };
         }
 
         private bool braceIsBlock(TokenType prevType)
@@ -53,7 +58,7 @@ namespace AcornSharp
                 exprAllowed = TokenInformation.Types[type].BeforeExpression;
         }
 
-        internal static void ParenBraceRUpdateContext(Parser parser, TokenType _)
+        internal static void ParenBraceRUpdateContext([NotNull] Parser parser, TokenType _)
         {
             if (parser.context.Count == 1)
             {
@@ -68,19 +73,19 @@ namespace AcornSharp
             parser.exprAllowed = !@out.IsExpression;
         }
 
-        internal static void BraceLUpdateContext(Parser parser, TokenType prevType)
+        internal static void BraceLUpdateContext([NotNull] Parser parser, TokenType prevType)
         {
             parser.context.Add(parser.braceIsBlock(prevType) ? TokContext.b_stat : TokContext.b_expr);
             parser.exprAllowed = true;
         }
 
-        internal static void DollarBraceLUpdateContext(Parser parser, TokenType prevType)
+        internal static void DollarBraceLUpdateContext([NotNull] Parser parser, TokenType prevType)
         {
             parser.context.Add(TokContext.b_tmpl);
             parser.exprAllowed = true;
         }
 
-        internal static void ParenLUpdateContext(Parser parser, TokenType prevType)
+        internal static void ParenLUpdateContext([NotNull] Parser parser, TokenType prevType)
         {
             var statementParens = prevType == TokenType._if || prevType == TokenType._for || prevType == TokenType._with || prevType == TokenType._while;
             parser.context.Add(statementParens ? TokContext.p_stat : TokContext.p_expr);
@@ -92,7 +97,7 @@ namespace AcornSharp
             // tokExprAllowed stays unchanged
         }
 
-        internal static void FunctionClassUpdateContext(Parser parser, TokenType prevType)
+        internal static void FunctionClassUpdateContext([NotNull] Parser parser, TokenType prevType)
         {
             if (TokenInformation.Types[prevType].BeforeExpression && prevType != TokenType.semi && prevType != TokenType._else &&
                 !((prevType == TokenType.colon || prevType == TokenType.braceL) && parser.curContext() == TokContext.b_stat))
@@ -102,7 +107,7 @@ namespace AcornSharp
             parser.exprAllowed = false;
         }
 
-        internal static void BackQuoteUpdateContext(Parser parser, TokenType prevType)
+        internal static void BackQuoteUpdateContext([NotNull] Parser parser, TokenType prevType)
         {
             if (parser.curContext() == TokContext.q_tmpl)
                 parser.context.Pop();
@@ -111,7 +116,7 @@ namespace AcornSharp
             parser.exprAllowed = false;
         }
 
-        internal static void StarUpdateContext(Parser parser, TokenType prevType)
+        internal static void StarUpdateContext([NotNull] Parser parser, TokenType prevType)
         {
             if (prevType == TokenType._function)
             {
@@ -124,7 +129,7 @@ namespace AcornSharp
             parser.exprAllowed = true;
         }
 
-        internal static void NameUpdateContext(Parser parser, TokenType prevType)
+        internal static void NameUpdateContext([NotNull] Parser parser, TokenType prevType)
         {
             var allowed = false;
             if (parser.Options.ecmaVersion >= 6)

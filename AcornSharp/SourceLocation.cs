@@ -1,10 +1,11 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace AcornSharp
 {
     public struct SourceLocation : IEquatable<SourceLocation>
     {
-        public SourceLocation(Position start, Position end, string sourceFile = null)
+        public SourceLocation(Position start, Position end, [CanBeNull] string sourceFile = null)
         {
             Start = start;
             End = end;
@@ -15,6 +16,7 @@ namespace AcornSharp
         public Position End { get; }
         public string Source { get; }
 
+        [NotNull]
         public override string ToString()
         {
             if (Source == null)
@@ -27,7 +29,7 @@ namespace AcornSharp
             return Equals(Start, other.Start) && Equals(End, other.End);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals([CanBeNull] object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             return obj is SourceLocation location && Equals(location);

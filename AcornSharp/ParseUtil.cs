@@ -1,13 +1,10 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using AcornSharp.Node;
 using JetBrains.Annotations;
 
 namespace AcornSharp
 {
-    [SuppressMessage("ReSharper", "LocalVariableHidesMember")]
-    [SuppressMessage("ReSharper", "ParameterHidesMember")]
     internal sealed partial class Parser
     {
         private static readonly Regex literal = new Regex(@"^(?:'((?:\\.|[^'])*?)'|""((?:\\.|[^""])*?)""|;)");

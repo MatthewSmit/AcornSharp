@@ -1,24 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 
 namespace AcornSharp
 {
-    // Object type used to represent tokens. Note that normally, tokens
-    // simply exist as properties on the parser object. This is only
-    // used for the onToken callback and the external tokenizer.
-
-    [SuppressMessage("ReSharper", "LocalVariableHidesMember")]
-    [SuppressMessage("ReSharper", "ParameterHidesMember")]
     internal sealed partial class Parser : IEnumerable<Token>
     {
         // Move to the next token
         private void next()
         {
-            Options.onToken?.Invoke(new Token(type, value, new SourceLocation(start, end, sourceFile)));
+            Options.onToken?.Invoke(new Token(type, value, new SourceLocation(start, end, SourceFile)));
 
             lastTokEnd = end;
             lastTokStart = start;
@@ -28,7 +21,7 @@ namespace AcornSharp
         private Token getToken()
         {
             next();
-            return new Token(type, value, new SourceLocation(start, end, sourceFile));
+            return new Token(type, value, new SourceLocation(start, end, SourceFile));
         }
 
         public IEnumerator<Token> GetEnumerator()
@@ -94,12 +87,12 @@ namespace AcornSharp
 
         private void skipBlockComment()
         {
-            var start = pos;
+            var startLocation = pos;
             pos = pos.Increment(2);
             var end = input.IndexOf("*/", pos.Index, StringComparison.Ordinal);
             if (end == -1) raise(pos.Increment(-2), "Unterminated comment");
-            pos = new Position(pos.Line, pos.Column + (end - start.Index), end + 2);
-            var lastIndex = start.Index;
+            pos = new Position(pos.Line, pos.Column + (end - startLocation.Index), end + 2);
+            var lastIndex = startLocation.Index;
             while (true)
             {
                 var match = lineBreak.Match(input, lastIndex);
@@ -110,7 +103,7 @@ namespace AcornSharp
                 pos = new Position(pos.Line + 1, pos.Index - lineStart, pos.Index);
                 lastIndex = lineStart;
             }
-            Options.onComment?.Invoke(true, input.Substring(start.Index + 2, end - (start.Index + 2)), new SourceLocation(start, curPosition(), sourceFile));
+            Options.onComment?.Invoke(true, input.Substring(startLocation.Index + 2, end - (startLocation.Index + 2)), new SourceLocation(startLocation, curPosition(), SourceFile));
         }
 
         private void skipLineComment(int startSkip)
@@ -123,7 +116,7 @@ namespace AcornSharp
                 pos = pos.Increment(1);
                 ch = input.Get(pos.Index);
             }
-            Options.onComment?.Invoke(false, input.Substring(start.Index + startSkip, pos.Index - (start.Index + startSkip)), new SourceLocation(start, curPosition(), sourceFile));
+            Options.onComment?.Invoke(false, input.Substring(start.Index + startSkip, pos.Index - (start.Index + startSkip)), new SourceLocation(start, curPosition(), SourceFile));
         }
 
         // Called at the start of the parse and after every token. Skips

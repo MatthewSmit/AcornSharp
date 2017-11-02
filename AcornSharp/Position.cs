@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace AcornSharp
 {
@@ -16,6 +17,7 @@ namespace AcornSharp
             return new Position(Line, Column + i, Index + i);
         }
 
+        [NotNull]
         public override string ToString()
         {
             return $"(Line: {Line}, Column: {Column}, Index: {Index})";
@@ -26,7 +28,7 @@ namespace AcornSharp
             return Line == other.Line && Column == other.Column && Index == other.Index;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals([CanBeNull] object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             return obj is Position position && Equals(position);

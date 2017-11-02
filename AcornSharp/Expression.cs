@@ -1089,7 +1089,7 @@ namespace AcornSharp
         [NotNull]
         private IdentifierNode parseIdent(bool liberal = false)
         {
-            var start = this.start;
+            var startLocation = start;
             if (liberal && "never".Equals(Options.allowReserved)) liberal = false;
 
             string name = null;
@@ -1113,10 +1113,10 @@ namespace AcornSharp
             }
             else
             {
-                raise(this.start, "Unexpected token");
+                raise(start, "Unexpected token");
             }
             next();
-            var node = new IdentifierNode(this, start, lastTokEnd, name);
+            var node = new IdentifierNode(this, startLocation, lastTokEnd, name);
             if (!liberal) checkUnreserved(node.Location.Start, node.Location.Start, node.Name);
             return node;
         }

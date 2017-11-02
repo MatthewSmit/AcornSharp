@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace AcornSharp
 {
@@ -239,7 +240,7 @@ namespace AcornSharp
             name.UpdateContext = Parser.NameUpdateContext;
         }
 
-        public TokenInformation(string keyword = null,
+        public TokenInformation([CanBeNull] string keyword = null,
             bool beforeExpr = false,
             bool startsExpr = false,
             bool isLoop = false,
@@ -257,12 +258,14 @@ namespace AcornSharp
             UpdateContext = null;
         }
 
+        [NotNull]
         private static TokenInformation CreateBinaryOperation(int prec)
         {
             return new TokenInformation(beforeExpr: true, binaryOperation: prec);
         }
 
         // Succinct definitions of keyword token types
+        [NotNull]
         private static TokenInformation CreateKeyword(string keyword,
             bool beforeExpr = false,
             bool startsExpr = false,

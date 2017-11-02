@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using AcornSharp.Node;
 using JetBrains.Annotations;
 
 namespace AcornSharp
 {
-    [SuppressMessage("ReSharper", "LocalVariableHidesMember")]
     internal sealed partial class Parser
     {
         private static readonly Label loopLabel = new Label {kind = "loop"};
@@ -39,9 +37,11 @@ namespace AcornSharp
             if (isIdentifierStart(nextCh, true))
             {
                 var pos = next + 1;
-                while (isIdentifierChar(input.Get(pos), true)) ++pos;
+                while (isIdentifierChar(input.Get(pos), true))
+                    ++pos;
                 var ident = input.Substring(next, pos - next);
-                if (!keywords.IsMatch(ident)) return true;
+                if (!keywords.IsMatch(ident))
+                    return true;
             }
             return false;
         }
@@ -71,7 +71,7 @@ namespace AcornSharp
         private BaseNode parseStatement(bool declaration, bool topLevel = false, [CanBeNull] IDictionary<string, bool> exports = null)
         {
             var starttype = type;
-            var start = this.start;
+            var startLocation = start;
             VariableKind? kind = null;
 
             if (isLet())
@@ -88,74 +88,74 @@ namespace AcornSharp
             {
                 case TokenType._break:
                 case TokenType._continue:
-                    return parseBreakContinueStatement(start, TokenInformation.Types[starttype].Keyword);
+                    return parseBreakContinueStatement(startLocation, TokenInformation.Types[starttype].Keyword);
                 case TokenType._debugger:
-                    return parseDebuggerStatement(start);
+                    return parseDebuggerStatement(startLocation);
                 case TokenType._do:
-                    return parseDoStatement(start);
+                    return parseDoStatement(startLocation);
                 case TokenType._for:
-                    return parseForStatement(start);
+                    return parseForStatement(startLocation);
                 case TokenType._function:
                     if (!declaration && Options.ecmaVersion >= 6)
                     {
-                        raise(start, "Unexpected token");
+                        raise(startLocation, "Unexpected token");
                     }
-                    return parseFunctionStatement(start, false);
+                    return parseFunctionStatement(startLocation, false);
                 case TokenType._class:
                     if (!declaration)
                     {
-                        raise(start, "Unexpected token");
+                        raise(startLocation, "Unexpected token");
                     }
-                    return parseClass(start, "true");
+                    return parseClass(startLocation, "true");
                 case TokenType._if:
-                    return parseIfStatement(start);
+                    return parseIfStatement(startLocation);
                 case TokenType._return:
-                    return parseReturnStatement(start);
+                    return parseReturnStatement(startLocation);
                 case TokenType._switch:
-                    return parseSwitchStatement(start);
+                    return parseSwitchStatement(startLocation);
                 case TokenType._throw:
-                    return parseThrowStatement(start);
+                    return parseThrowStatement(startLocation);
                 case TokenType._try:
-                    return parseTryStatement(start);
+                    return parseTryStatement(startLocation);
                 case TokenType._const:
                 case TokenType._var:
                     var realKind = kind ?? ToVariableKind((string)value);
                     if (!declaration && realKind != VariableKind.Var)
                     {
-                        raise(start, "Unexpected token");
+                        raise(startLocation, "Unexpected token");
                     }
-                    return parseVarStatement(start, realKind);
+                    return parseVarStatement(startLocation, realKind);
                 case TokenType._while:
-                    return parseWhileStatement(start);
+                    return parseWhileStatement(startLocation);
                 case TokenType._with:
-                    return parseWithStatement(start);
+                    return parseWithStatement(startLocation);
                 case TokenType.braceL:
                     return parseBlock();
                 case TokenType.semi:
-                    return parseEmptyStatement(start);
+                    return parseEmptyStatement(startLocation);
                 case TokenType._export:
                 case TokenType._import:
                     if (!Options.allowImportExportEverywhere)
                     {
                         if (!topLevel)
-                            raise(start, "'import' and 'export' may only appear at the top level");
+                            raise(startLocation, "'import' and 'export' may only appear at the top level");
                         if (!inModule)
-                            raise(start, "'import' and 'export' may appear only with 'sourceType: module'");
+                            raise(startLocation, "'import' and 'export' may appear only with 'sourceType: module'");
                     }
-                    return starttype == TokenType._import ? parseImport(start) : parseExport(start, exports);
+                    return starttype == TokenType._import ? parseImport(startLocation) : parseExport(startLocation, exports);
             }
 
             if (isAsyncFunction() && declaration)
             {
                 next();
-                return parseFunctionStatement(start, true);
+                return parseFunctionStatement(startLocation, true);
             }
 
             var maybeName = value;
             var expr = ParseExpression();
             if (starttype == TokenType.name && expr is IdentifierNode identifierNode && eat(TokenType.colon))
-                return parseLabelledStatement(start, (string)maybeName, identifierNode);
-            return parseExpressionStatement(start, expr);
+                return parseLabelledStatement(startLocation, (string)maybeName, identifierNode);
+            return parseExpressionStatement(startLocation, expr);
         }
 
         private static VariableKind ToVariableKind([NotNull] string s)
@@ -407,7 +407,7 @@ namespace AcornSharp
             CatchClauseNode handler = null;
             if (type == TokenType._catch)
             {
-                var start = this.start;
+                var startLocation = start;
                 next();
                 expect(TokenType.parenL);
                 var param = parseBindingAtom();
@@ -416,7 +416,7 @@ namespace AcornSharp
                 expect(TokenType.parenR);
                 var body = parseBlock(false);
                 exitLexicalScope();
-                handler = new CatchClauseNode(this, start, lastTokEnd, param, body);
+                handler = new CatchClauseNode(this, startLocation, lastTokEnd, param, body);
             }
             var finaliser = eat(TokenType._finally) ? parseBlock() : null;
             if (handler == null && finaliser == null)
@@ -504,7 +504,7 @@ namespace AcornSharp
         [NotNull]
         private BlockStatementNode parseBlock(bool createNewLexicalScope = true)
         {
-            var start = this.start;
+            var startLocation = start;
             var body = new List<BaseNode>();
             expect(TokenType.braceL);
             if (createNewLexicalScope)
@@ -520,7 +520,7 @@ namespace AcornSharp
             {
                 exitLexicalScope();
             }
-            return new BlockStatementNode(this, start, lastTokEnd, body);
+            return new BlockStatementNode(this, startLocation, lastTokEnd, body);
         }
 
         // Parse a regular `for` loop. The disambiguation code in
@@ -567,7 +567,7 @@ namespace AcornSharp
             var declarations = new List<VariableDeclaratorNode>();
             for (;;)
             {
-                var start = this.start;
+                var startLocation = start;
                 var id = parseVarId(kind);
                 ExpressionNode init = null;
                 if (eat(TokenType.eq))
@@ -576,13 +576,13 @@ namespace AcornSharp
                 }
                 else if (kind == VariableKind.Const && !(type == TokenType._in || Options.ecmaVersion >= 6 && isContextual("of")))
                 {
-                    raise(this.start, "Unexpected token");
+                    raise(start, "Unexpected token");
                 }
                 else if (!(id is IdentifierNode) && !(isFor && (type == TokenType._in || isContextual("of"))))
                 {
                     raise(lastTokEnd, "Complex binding patterns require an initialization value");
                 }
-                var decl = new VariableDeclaratorNode(this, start, lastTokEnd, kind, id, init);
+                var decl = new VariableDeclaratorNode(this, startLocation, lastTokEnd, kind, id, init);
                 declarations.Add(decl);
                 if (!eat(TokenType.comma)) break;
             }
@@ -724,11 +724,11 @@ namespace AcornSharp
                     var paramCount = kind == PropertyKind.Get ? 0 : 1;
                     if (methodValue.Parameters.Count != paramCount)
                     {
-                        var start = methodValue.Location.Start;
+                        var startLocation = methodValue.Location.Start;
                         if (kind == PropertyKind.Get)
-                            raiseRecoverable(start, "getter should have no params");
+                            raiseRecoverable(startLocation, "getter should have no params");
                         else
-                            raiseRecoverable(start, "setter should have exactly one param");
+                            raiseRecoverable(startLocation, "setter should have exactly one param");
                     }
                     else
                     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
 
-namespace AcornSharp
+namespace AcornSharp.Node
 {
     public sealed class TemplateNode : IEquatable<TemplateNode>
     {

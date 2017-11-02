@@ -15,15 +15,15 @@ namespace AcornSharp
             public int statementStart;
         }
 
-        internal string sourceFile;
-        private string input;
+        internal readonly string SourceFile;
+        private readonly string input;
         private bool containsEsc;
-        private Regex keywords;
-        private Regex reservedWords;
-        private Regex reservedWordsStrict;
-        private Regex reservedWordsStrictBind;
+        private readonly Regex keywords;
+        private readonly Regex reservedWords;
+        private readonly Regex reservedWordsStrict;
+        private readonly Regex reservedWordsStrictBind;
         private Position pos;
-        private Stack<Scope> scopeStack;
+        private readonly Stack<Scope> scopeStack;
         private List<Label> labels;
         private Position awaitPos;
         private Position yieldPos;
@@ -38,19 +38,15 @@ namespace AcornSharp
         private Position lastTokStart;
         private Position lastTokEnd;
         private bool exprAllowed;
-        private List<TokContext> context;
-        private bool inModule;
+        private readonly List<TokContext> context;
+        private readonly bool inModule;
         private bool strict;
-        private Position shorthandAssign;
-        private Position trailingComma;
-        private Position parenthesizedAssign;
-        private Position parenthesizedBind;
         private bool inTemplateElement;
 
         public Parser(Options options, string input, int? startPos = null)
         {
             Options = options = Options.getOptions(options);
-            sourceFile = options.sourceFile;
+            SourceFile = options.sourceFile;
             keywords = options.ecmaVersion >= 6 ? ecmascript6KeywordsRegex : ecmascript5KeywordsRegex;
 
             if (options.allowReserved == null || options.allowReserved is bool && (bool)options.allowReserved == false)

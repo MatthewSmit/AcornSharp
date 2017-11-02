@@ -1,12 +1,10 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using AcornSharp.Node;
 using JetBrains.Annotations;
 
 namespace AcornSharp
 {
-    [SuppressMessage("ReSharper", "LocalVariableHidesMember")]
     internal sealed partial class Parser
     {
         // Convert existing expression atom to assignable pattern
