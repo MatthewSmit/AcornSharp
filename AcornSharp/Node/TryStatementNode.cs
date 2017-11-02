@@ -4,16 +4,16 @@ namespace AcornSharp.Node
 {
     public sealed class TryStatementNode : BaseNode
     {
-        public readonly BaseNode block;
-        public readonly BaseNode handler;
-        public readonly BaseNode finaliser;
-
-        internal TryStatementNode([NotNull] Parser parser, Position start, Position end, BaseNode block, BaseNode handler, BaseNode finaliser) :
+        internal TryStatementNode([NotNull] Parser parser, Position start, Position end, BlockStatementNode block, CatchClauseNode handler, BlockStatementNode finaliser) :
             base(parser, start, end)
         {
-            this.block = block;
-            this.handler = handler;
-            this.finaliser = finaliser;
+            Block = block;
+            Handler = handler;
+            Finaliser = finaliser;
         }
+
+        public BlockStatementNode Block { get; }
+        public CatchClauseNode Handler { get; }
+        public BlockStatementNode Finaliser { get; }
     }
 }

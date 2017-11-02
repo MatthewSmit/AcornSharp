@@ -4,12 +4,14 @@ namespace AcornSharp.Node
 {
     public sealed class ImportSpecifierNode : BaseNode
     {
-        public IdentifierNode local;
-        public IdentifierNode imported;
-
-        internal ImportSpecifierNode([NotNull] Parser parser, Position start, Position end) :
+        internal ImportSpecifierNode([NotNull] Parser parser, Position start, Position end, IdentifierNode local, IdentifierNode imported) :
             base(parser, start, end)
         {
+            Local = local;
+            Imported = imported;
         }
+
+        public IdentifierNode Local { get; }
+        public IdentifierNode Imported { get; }
     }
 }

@@ -4,11 +4,12 @@ namespace AcornSharp.Node
 {
     public sealed class RestElementNode : ExpressionNode
     {
-        public BaseNode argument;
-
-        internal RestElementNode([NotNull] Parser parser, Position start, Position end) :
+        internal RestElementNode([NotNull] Parser parser, Position start, Position end, ExpressionNode argument) :
             base(parser, start, end)
         {
+            Argument = argument;
         }
+
+        public ExpressionNode Argument { get; }
     }
 }

@@ -69,7 +69,7 @@ namespace AcornSharp.Cli
             if (type != node.GetType())
                 return false;
 
-            if (!location?.Equals(node.location) == true)
+            if (!location?.Equals(node.Location) == true)
                 return false;
 
             switch (node)
@@ -83,19 +83,19 @@ namespace AcornSharp.Cli
                 case ProgramNode realNode:
                     if (source != null && (SourceType)source != realNode.SourceType)
                         return false;
-                    if (body != null && !TestEquals((IList<TestNode>)body, realNode.body))
+                    if (body != null && !TestEquals((IList<TestNode>)body, realNode.Body))
                         return false;
                     return true;
 
                 case ExpressionStatementNode realNode:
-                    if (!((TestNode)expression)?.TestEquals(realNode.expression) == true)
+                    if (!((TestNode)expression)?.TestEquals(realNode.Expression) == true)
                         return false;
-                    if (directive != null && !string.Equals(directive, realNode.directive, StringComparison.Ordinal))
+                    if (directive != null && !string.Equals(directive, realNode.Directive, StringComparison.Ordinal))
                         return false;
                     return true;
 
                 case LiteralNode realNode:
-                    if (raw != null && !string.Equals(raw, realNode.raw, StringComparison.Ordinal))
+                    if (raw != null && !string.Equals(raw, realNode.Raw, StringComparison.Ordinal))
                         return false;
 
                     if (value != null)
@@ -103,23 +103,23 @@ namespace AcornSharp.Cli
                         if (value is int intValue)
                         {
                             // ReSharper disable once CompareOfFloatsByEqualityOperator
-                            if (!realNode.value.IsDouble || intValue != realNode.value.AsDouble)
+                            if (!realNode.Value.IsDouble || intValue != realNode.Value.AsDouble)
                                 return false;
                         }
                         else if (value is double doubleValue)
                         {
                             // ReSharper disable once CompareOfFloatsByEqualityOperator
-                            if (!realNode.value.IsDouble || doubleValue != realNode.value.AsDouble)
+                            if (!realNode.Value.IsDouble || doubleValue != realNode.Value.AsDouble)
                                 return false;
                         }
                         else if (value is bool boolValue)
                         {
-                            if (!realNode.value.IsBoolean || boolValue != realNode.value.AsBoolean)
+                            if (!realNode.Value.IsBoolean || boolValue != realNode.Value.AsBoolean)
                                 return false;
                         }
                         else if (value is string stringValue)
                         {
-                            if (!realNode.value.IsString || !string.Equals(stringValue, realNode.value.AsString, StringComparison.Ordinal))
+                            if (!realNode.Value.IsString || !string.Equals(stringValue, realNode.Value.AsString, StringComparison.Ordinal))
                                 return false;
                         }
                         else throw new NotImplementedException();
@@ -127,29 +127,29 @@ namespace AcornSharp.Cli
 
                     if (regex != null)
                     {
-                        if (realNode.regex == null ||
-                            !string.Equals(regex.pattern, realNode.regex.pattern, StringComparison.Ordinal) ||
-                            !string.Equals(regex.flags, realNode.regex.flags, StringComparison.Ordinal))
+                        if (!realNode.Value.IsRegex ||
+                            !string.Equals(regex.Pattern, realNode.Value.AsRegex.Pattern, StringComparison.Ordinal) ||
+                            !string.Equals(regex.Flags, realNode.Value.AsRegex.Flags, StringComparison.Ordinal))
                             return false;
                     }
 
                     return true;
 
                 case BinaryExpressionNode realNode:
-                    if (!left?.TestEquals(realNode.left) == true)
+                    if (!left?.TestEquals(realNode.Left) == true)
                         return false;
-                    if (!right?.TestEquals(realNode.right) == true)
+                    if (!right?.TestEquals(realNode.Right) == true)
                         return false;
-                    if (@operator.HasValue && @operator != realNode.@operator)
+                    if (@operator.HasValue && @operator != realNode.Operator)
                         return false;
                     return true;
 
                 case LogicalExpressionNode realNode:
-                    if (!left?.TestEquals(realNode.left) == true)
+                    if (!left?.TestEquals(realNode.Left) == true)
                         return false;
-                    if (!right?.TestEquals(realNode.right) == true)
+                    if (!right?.TestEquals(realNode.Right) == true)
                         return false;
-                    if (@operator.HasValue && @operator != realNode.@operator)
+                    if (@operator.HasValue && @operator != realNode.Operator)
                         return false;
                     return true;
 
@@ -163,12 +163,12 @@ namespace AcornSharp.Cli
                     return true;
 
                 case ParenthesisedExpressionNode realNode:
-                    if (!((TestNode)expression)?.TestEquals(realNode.expression) == true)
+                    if (!((TestNode)expression)?.TestEquals(realNode.Expression) == true)
                         return false;
                     return true;
 
                 case IdentifierNode realNode:
-                    if (name != null && !string.Equals(name, realNode.name, StringComparison.Ordinal))
+                    if (name != null && !string.Equals(name, realNode.Name, StringComparison.Ordinal))
                         return false;
                     return true;
 
@@ -178,55 +178,55 @@ namespace AcornSharp.Cli
                     return true;
 
                 case ObjectExpressionNode realNode:
-                    if (properties != null && !TestEquals(properties, realNode.properties))
+                    if (properties != null && !TestEquals(properties, realNode.Properties))
                         return false;
                     return true;
 
                 case PropertyNode realNode:
-                    if (kind != null && (PropertyKind)kind != realNode.kind)
+                    if (kind != null && (PropertyKind)kind != realNode.Kind)
                         return false;
-                    if (computed.HasValue && computed != realNode.computed)
+                    if (computed.HasValue && computed != realNode.Computed)
                         return false;
-                    if (shorthand.HasValue && shorthand != realNode.shorthand)
+                    if (shorthand.HasValue && shorthand != realNode.Shorthand)
                         return false;
-                    if (method.HasValue && method != realNode.method)
+                    if (method.HasValue && method != realNode.Method)
                         return false;
-                    if (!key?.TestEquals(realNode.key) == true)
+                    if (!key?.TestEquals(realNode.Key) == true)
                         return false;
-                    if (!((TestNode)value)?.TestEquals(realNode.value) == true)
+                    if (!((TestNode)value)?.TestEquals(realNode.Value) == true)
                         return false;
                     return true;
 
                 case FunctionExpressionNode realNode:
                 {
-                    if (expression is bool boolExpression && boolExpression != realNode.expression)
+                    if (expression is bool boolExpression && boolExpression != realNode.Expression)
                         return false;
-                    if (async.HasValue && async != realNode.async)
+                    if (async.HasValue && async != realNode.Async)
                         return false;
-                    if (generator.HasValue && generator != realNode.generator)
+                    if (generator.HasValue && generator != realNode.Generator)
                         return false;
-                    if (!id?.TestEquals(realNode.id) == true)
+                    if (!id?.TestEquals(realNode.Id) == true)
                         return false;
-                    if (parameters != null && !TestEquals(parameters, realNode.parameters))
+                    if (parameters != null && !TestEquals(parameters, realNode.Parameters))
                         return false;
-                    if (!((TestNode)body)?.TestEquals(realNode.body) == true)
+                    if (!((TestNode)body)?.TestEquals(realNode.Body) == true)
                         return false;
                     return true;
                 }
 
                 case FunctionDeclarationNode realNode:
                 {
-                    if (expression is bool boolExpression && boolExpression != realNode.expression)
+                    if (expression is bool boolExpression && boolExpression != realNode.Expression)
                         return false;
-                    if (async.HasValue && async != realNode.async)
+                    if (async.HasValue && async != realNode.Async)
                         return false;
-                    if (generator.HasValue && generator != realNode.generator)
+                    if (generator.HasValue && generator != realNode.Generator)
                         return false;
-                    if (!id?.TestEquals(realNode.id) == true)
+                    if (!id?.TestEquals(realNode.Id) == true)
                         return false;
-                    if (parameters != null && !TestEquals(parameters, realNode.parameters))
+                    if (parameters != null && !TestEquals(parameters, realNode.Parameters))
                         return false;
-                    if (!((TestNode)body)?.TestEquals(realNode.body) == true)
+                    if (!((TestNode)body)?.TestEquals(realNode.Body) == true)
                         return false;
                     return true;
                 }
@@ -245,216 +245,216 @@ namespace AcornSharp.Cli
                 }
 
                 case BlockStatementNode realNode:
-                    if (body != null && !TestEquals((IList<TestNode>)body, realNode.body))
+                    if (body != null && !TestEquals((IList<TestNode>)body, realNode.Body))
                         return false;
                     return true;
 
                 case ReturnStatementNode realNode:
-                    if (!argument?.TestEquals(realNode.argument) == true)
+                    if (!argument?.TestEquals(realNode.Argument) == true)
                         return false;
                     return true;
 
                 case IfStatementNode realNode:
-                    if (!test?.TestEquals(realNode.test) == true)
+                    if (!test?.TestEquals(realNode.Test) == true)
                         return false;
-                    if (!((TestNode)consequent)?.TestEquals(realNode.consequent) == true)
+                    if (!((TestNode)consequent)?.TestEquals(realNode.Consequent) == true)
                         return false;
-                    if (!alternate?.TestEquals(realNode.alternate) == true)
+                    if (!alternate?.TestEquals(realNode.Alternate) == true)
                         return false;
                     return true;
 
                 case CallExpressionNode realNode:
-                    if (!callee?.TestEquals(realNode.callee) == true)
+                    if (!callee?.TestEquals(realNode.Callee) == true)
                         return false;
-                    if (arguments != null && !TestEquals(arguments, realNode.arguments))
+                    if (arguments != null && !TestEquals(arguments, realNode.Arguments))
                         return false;
                     return true;
 
                 case SwitchStatementNode realNode:
-                    if (!discriminant?.TestEquals(realNode.discriminant) == true)
+                    if (!discriminant?.TestEquals(realNode.Discriminant) == true)
                         return false;
-                    if (cases != null && !TestEquals(cases, realNode.cases))
+                    if (cases != null && !TestEquals(cases, realNode.Cases))
                         return false;
                     return true;
 
                 case SwitchCaseNode realNode:
-                    if (!test?.TestEquals(realNode.test) == true)
+                    if (!test?.TestEquals(realNode.Test) == true)
                         return false;
-                    if (consequent != null && !TestEquals((IList<TestNode>)consequent, realNode.consequent))
+                    if (consequent != null && !TestEquals((IList<TestNode>)consequent, realNode.Consequent))
                         return false;
                     return true;
 
                 case VariableDeclarationNode realNode:
-                    if (kind != null && (VariableKind)kind != realNode.kind)
+                    if (kind != null && (VariableKind)kind != realNode.Kind)
                         return false;
-                    if (declarations != null && !TestEquals(declarations, realNode.declarations))
+                    if (declarations != null && !TestEquals(declarations, realNode.Declarations))
                         return false;
                     return true;
 
                 case VariableDeclaratorNode realNode:
-                    if (kind != null && (VariableKind)kind != realNode.kind)
+                    if (kind != null && (VariableKind)kind != realNode.Kind)
                         return false;
-                    if (!id?.TestEquals(realNode.id) == true)
+                    if (!id?.TestEquals(realNode.Id) == true)
                         return false;
-                    if (!init?.TestEquals(realNode.init) == true)
+                    if (!init?.TestEquals(realNode.Init) == true)
                         return false;
                     return true;
 
                 case NewExpressionNode realNode:
-                    if (!callee?.TestEquals(realNode.callee) == true)
+                    if (!callee?.TestEquals(realNode.Callee) == true)
                         return false;
-                    if (arguments != null && !TestEquals(arguments, realNode.arguments))
+                    if (arguments != null && !TestEquals(arguments, realNode.Arguments))
                         return false;
                     return true;
 
                 case MemberExpressionNode realNode:
-                    if (!@object?.TestEquals(realNode.@object) == true)
+                    if (!@object?.TestEquals(realNode.Object) == true)
                         return false;
-                    if (!property?.TestEquals(realNode.property) == true)
+                    if (!property?.TestEquals(realNode.Property) == true)
                         return false;
-                    if (computed.HasValue && computed != realNode.computed)
+                    if (computed.HasValue && computed != realNode.Computed)
                         return false;
                     return true;
 
                 case SequenceExpressionNode realNode:
-                    if (expressions != null && !TestEquals(expressions, realNode.expressions))
+                    if (expressions != null && !TestEquals(expressions, realNode.Expressions))
                         return false;
                     return true;
 
                 case UpdateExpressionNode realNode:
-                    if (@operator.HasValue && @operator != realNode.@operator)
+                    if (@operator.HasValue && @operator != realNode.Operator)
                         return false;
-                    if (!argument?.TestEquals(realNode.argument) == true)
+                    if (!argument?.TestEquals(realNode.Argument) == true)
                         return false;
                     return true;
 
                 case UnaryExpressionNode realNode:
-                    if (@operator.HasValue && @operator != realNode.@operator)
+                    if (@operator.HasValue && @operator != realNode.Operator)
                         return false;
-                    if (!argument?.TestEquals(realNode.argument) == true)
+                    if (!argument?.TestEquals(realNode.Argument) == true)
                         return false;
                     return true;
 
                 case ConditionalExpressionNode realNode:
-                    if (!test?.TestEquals(realNode.test) == true)
+                    if (!test?.TestEquals(realNode.Test) == true)
                         return false;
-                    if (!((TestNode)consequent)?.TestEquals(realNode.consequent) == true)
+                    if (!((TestNode)consequent)?.TestEquals(realNode.Consequent) == true)
                         return false;
-                    if (!alternate?.TestEquals(realNode.alternate) == true)
+                    if (!alternate?.TestEquals(realNode.Alternate) == true)
                         return false;
                     return true;
 
                 case DoWhileStatementNode realNode:
-                    if (!test?.TestEquals(realNode.test) == true)
+                    if (!test?.TestEquals(realNode.Test) == true)
                         return false;
-                    if (!((TestNode)body)?.TestEquals(realNode.body) == true)
+                    if (!((TestNode)body)?.TestEquals(realNode.Body) == true)
                         return false;
                     return true;
 
                 case WhileStatementNode realNode:
-                    if (!test?.TestEquals(realNode.test) == true)
+                    if (!test?.TestEquals(realNode.Test) == true)
                         return false;
-                    if (!((TestNode)body)?.TestEquals(realNode.body) == true)
+                    if (!((TestNode)body)?.TestEquals(realNode.Body) == true)
                         return false;
                     return true;
 
                 case ForStatementNode realNode:
-                    if (!init?.TestEquals(realNode.init) == true)
+                    if (!init?.TestEquals(realNode.Init) == true)
                         return false;
-                    if (!test?.TestEquals(realNode.test) == true)
+                    if (!test?.TestEquals(realNode.Test) == true)
                         return false;
-                    if (!update?.TestEquals(realNode.update) == true)
+                    if (!update?.TestEquals(realNode.Update) == true)
                         return false;
-                    if (!((TestNode)body)?.TestEquals(realNode.body) == true)
+                    if (!((TestNode)body)?.TestEquals(realNode.Body) == true)
                         return false;
                     return true;
 
                 case ForInStatementNode realNode:
-                    if (!left?.TestEquals(realNode.left) == true)
+                    if (!left?.TestEquals(realNode.Left) == true)
                         return false;
-                    if (!right?.TestEquals(realNode.right) == true)
+                    if (!right?.TestEquals(realNode.Right) == true)
                         return false;
-                    if (!((TestNode)body)?.TestEquals(realNode.body) == true)
+                    if (!((TestNode)body)?.TestEquals(realNode.Body) == true)
                         return false;
                     return true;
 
                 case ForOfStatementNode realNode:
-                    if (!left?.TestEquals(realNode.left) == true)
+                    if (!left?.TestEquals(realNode.Left) == true)
                         return false;
-                    if (!right?.TestEquals(realNode.right) == true)
+                    if (!right?.TestEquals(realNode.Right) == true)
                         return false;
-                    if (!((TestNode)body)?.TestEquals(realNode.body) == true)
+                    if (!((TestNode)body)?.TestEquals(realNode.Body) == true)
                         return false;
                     return true;
 
                 case ContinueStatementNode realNode:
-                    if (!label?.TestEquals(realNode.label) == true)
+                    if (!label?.TestEquals(realNode.Label) == true)
                         return false;
                     return true;
 
                 case BreakStatementNode realNode:
-                    if (!label?.TestEquals(realNode.label) == true)
+                    if (!label?.TestEquals(realNode.Label) == true)
                         return false;
                     return true;
 
                 case LabelledStatementNode realNode:
-                    if (!label?.TestEquals(realNode.label) == true)
+                    if (!label?.TestEquals(realNode.Label) == true)
                         return false;
-                    if (!((TestNode)body)?.TestEquals(realNode.body) == true)
+                    if (!((TestNode)body)?.TestEquals(realNode.Body) == true)
                         return false;
                     return true;
 
                 case WithStatementNode realNode:
-                    if (!@object?.TestEquals(realNode.@object) == true)
+                    if (!@object?.TestEquals(realNode.Object) == true)
                         return false;
-                    if (!((TestNode)body)?.TestEquals(realNode.body) == true)
+                    if (!((TestNode)body)?.TestEquals(realNode.Body) == true)
                         return false;
                     return true;
 
                 case ThrowStatementNode realNode:
-                    if (!argument?.TestEquals(realNode.argument) == true)
+                    if (!argument?.TestEquals(realNode.Argument) == true)
                         return false;
                     return true;
 
                 case TryStatementNode realNode:
-                    if (!block?.TestEquals(realNode.block) == true)
+                    if (!block?.TestEquals(realNode.Block) == true)
                         return false;
-                    if (!handler?.TestEquals(realNode.handler) == true)
+                    if (!handler?.TestEquals(realNode.Handler) == true)
                         return false;
-                    if (!finaliser?.TestEquals(realNode.finaliser) == true)
+                    if (!finaliser?.TestEquals(realNode.Finaliser) == true)
                         return false;
                     return true;
 
                 case CatchClauseNode realNode:
-                    if (!param?.TestEquals(realNode.param) == true)
+                    if (!param?.TestEquals(realNode.Param) == true)
                         return false;
-                    if (!((TestNode)body)?.TestEquals(realNode.body) == true)
+                    if (!((TestNode)body)?.TestEquals(realNode.Body) == true)
                         return false;
                     return true;
 
                 case RestElementNode realNode:
-                    if (!argument?.TestEquals(realNode.argument) == true)
+                    if (!argument?.TestEquals(realNode.Argument) == true)
                         return false;
                     return true;
 
                 case TemplateLiteralNode realNode:
-                    if (expressions != null && !TestEquals(expressions, realNode.expressions))
+                    if (expressions != null && !TestEquals(expressions, realNode.Expressions))
                         return false;
-                    if (quasis != null && !TestEquals(quasis, realNode.quasis))
+                    if (quasis != null && !TestEquals(quasis, realNode.Quasis))
                         return false;
                     return true;
 
                 case TemplateElementNode realNode:
-                    if (!((TemplateNode)value)?.Equals(realNode.value) == true)
+                    if (!((TemplateNode)value)?.Equals(realNode.Value) == true)
                         return false;
-                    if (tail.HasValue && tail != realNode.tail)
+                    if (tail.HasValue && tail != realNode.Tail)
                         return false;
                     return true;
 
                 case TaggedTemplateExpressionNode realNode:
-                    if (!tag?.TestEquals(realNode.tag) == true)
+                    if (!tag?.TestEquals(realNode.Tag) == true)
                         return false;
-                    if (!quasi?.TestEquals(realNode.quasi) == true)
+                    if (!quasi?.TestEquals(realNode.Quasi) == true)
                         return false;
                     return true;
 
@@ -471,112 +471,112 @@ namespace AcornSharp.Cli
                     return true;
 
                 case ObjectPatternNode realNode:
-                    if (properties != null && !TestEquals(properties, realNode.properties))
+                    if (properties != null && !TestEquals(properties, realNode.Properties))
                         return false;
                     return true;
 
                 case ExportNamedDeclarationNode realNode:
-                    if (!((TestNode)source)?.TestEquals(realNode.source) == true)
+                    if (!((TestNode)source)?.TestEquals(realNode.Source) == true)
                         return false;
-                    if (!declaration?.TestEquals(realNode.declaration) == true)
+                    if (!declaration?.TestEquals(realNode.Declaration) == true)
                         return false;
-                    if (specifiers != null && !TestEquals(specifiers, realNode.specifiers))
+                    if (specifiers != null && !TestEquals(specifiers, realNode.Specifiers))
                         return false;
                     return true;
 
                 case ClassDeclarationNode realNode:
-                    if (!id?.TestEquals(realNode.id) == true)
+                    if (!id?.TestEquals(realNode.Id) == true)
                         return false;
-                    if (!superClass?.TestEquals(realNode.superClass) == true)
+                    if (!superClass?.TestEquals(realNode.SuperClass) == true)
                         return false;
-                    if (!((TestNode)body)?.TestEquals(realNode.body) == true)
+                    if (!((TestNode)body)?.TestEquals(realNode.Body) == true)
                         return false;
                     return true;
 
                 case ClassExpressionNode realNode:
-                    if (!id?.TestEquals(realNode.id) == true)
+                    if (!id?.TestEquals(realNode.Id) == true)
                         return false;
-                    if (!superClass?.TestEquals(realNode.superClass) == true)
+                    if (!superClass?.TestEquals(realNode.SuperClass) == true)
                         return false;
-                    if (!((TestNode)body)?.TestEquals(realNode.body) == true)
+                    if (!((TestNode)body)?.TestEquals(realNode.Body) == true)
                         return false;
                     return true;
 
                 case ClassBodyNode realNode:
-                    if (body != null && !TestEquals((IList<TestNode>)body, realNode.body))
+                    if (body != null && !TestEquals((IList<TestNode>)body, realNode.Body))
                         return false;
                     return true;
 
                 case ExportDefaultDeclarationNode realNode:
-                    if (!declaration?.TestEquals(realNode.declaration) == true)
+                    if (!declaration?.TestEquals(realNode.Declaration) == true)
                         return false;
                     return true;
 
                 case ExportAllDeclarationNode realNode:
-                    if (!((TestNode)source)?.TestEquals(realNode.source) == true)
+                    if (!((TestNode)source)?.TestEquals(realNode.Source) == true)
                         return false;
                     return true;
 
                 case ExportSpecifierNode realNode:
-                    if (!local?.TestEquals(realNode.local) == true)
+                    if (!local?.TestEquals(realNode.Local) == true)
                         return false;
-                    if (!exported?.TestEquals(realNode.exported) == true)
+                    if (!exported?.TestEquals(realNode.Exported) == true)
                         return false;
                     return true;
 
                 case ImportDeclarationNode realNode:
-                    if (!((TestNode)source)?.TestEquals(realNode.source) == true)
+                    if (!((TestNode)source)?.TestEquals(realNode.Source) == true)
                         return false;
-                    if (specifiers != null && !TestEquals(specifiers, realNode.specifiers))
+                    if (specifiers != null && !TestEquals(specifiers, realNode.Specifiers))
                         return false;
                     return true;
 
                 case ImportDefaultSpecifierNode realNode:
-                    if (!local?.TestEquals(realNode.local) == true)
+                    if (!local?.TestEquals(realNode.Local) == true)
                         return false;
                     return true;
 
                 case ImportSpecifierNode realNode:
-                    if (!local?.TestEquals(realNode.local) == true)
+                    if (!local?.TestEquals(realNode.Local) == true)
                         return false;
-                    if (!imported?.TestEquals(realNode.imported) == true)
+                    if (!imported?.TestEquals(realNode.Imported) == true)
                         return false;
                     return true;
 
                 case ImportNamespaceSpecifierNode realNode:
-                    if (!local?.TestEquals(realNode.local) == true)
+                    if (!local?.TestEquals(realNode.Local) == true)
                         return false;
                     return true;
 
                 case YieldExpressionNode realNode:
-                    if (@delegate.HasValue && @delegate != realNode.@delegate)
+                    if (@delegate.HasValue && @delegate != realNode.Delegate)
                         return false;
-                    if (!argument?.TestEquals(realNode.argument) == true)
+                    if (!argument?.TestEquals(realNode.Argument) == true)
                         return false;
                     return true;
 
                 case MethodDefinitionNode realNode:
-                    if (kind != null && (PropertyKind)kind != realNode.kind)
+                    if (kind != null && (PropertyKind)kind != realNode.Kind)
                         return false;
-                    if (computed.HasValue && computed != realNode.computed)
+                    if (computed.HasValue && computed != realNode.Computed)
                         return false;
-                    if (@static.HasValue && @static != realNode.@static)
+                    if (@static.HasValue && @static != realNode.Static)
                         return false;
-                    if (!key?.TestEquals(realNode.key) == true)
+                    if (!key?.TestEquals(realNode.Key) == true)
                         return false;
-                    if (!((TestNode)value)?.TestEquals(realNode.value) == true)
+                    if (!((TestNode)value)?.TestEquals(realNode.Value) == true)
                         return false;
                     return true;
 
                 case SpreadElementNode realNode:
-                    if (!argument?.TestEquals(realNode.argument) == true)
+                    if (!argument?.TestEquals(realNode.Argument) == true)
                         return false;
                     return true;
 
                 case MetaPropertyNode realNode:
-                    if (!meta?.TestEquals(realNode.meta) == true)
+                    if (!meta?.TestEquals(realNode.Meta) == true)
                         return false;
-                    if (!property?.TestEquals(realNode.property) == true)
+                    if (!property?.TestEquals(realNode.Property) == true)
                         return false;
                     return true;
 

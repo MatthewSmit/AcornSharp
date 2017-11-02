@@ -4,15 +4,20 @@ namespace AcornSharp.Node
 {
     public sealed class MethodDefinitionNode : BaseNode
     {
-        public PropertyKind kind;
-        public bool computed;
-        public bool @static;
-        public BaseNode key;
-        public BaseNode value;
-
-        internal MethodDefinitionNode([NotNull] Parser parser, Position start, Position end) :
+        internal MethodDefinitionNode([NotNull] Parser parser, Position start, Position end, PropertyKind kind, bool computed, bool @static, ExpressionNode key, ExpressionNode value) :
             base(parser, start, end)
         {
+            Kind = kind;
+            Computed = computed;
+            Static = @static;
+            Key = key;
+            Value = value;
         }
+
+        public PropertyKind Kind { get; }
+        public bool Computed { get; }
+        public bool Static { get; }
+        public ExpressionNode Key { get; }
+        public ExpressionNode Value { get; }
     }
 }

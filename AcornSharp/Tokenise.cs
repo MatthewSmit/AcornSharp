@@ -512,8 +512,8 @@ namespace AcornSharp
             }
             finishToken(TokenType.regexp, new RegexNode
             {
-                pattern = content,
-                flags = mods
+                Pattern = content,
+                Flags = mods
             });
         }
 

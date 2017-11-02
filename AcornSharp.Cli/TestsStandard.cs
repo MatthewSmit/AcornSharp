@@ -80,8 +80,8 @@ namespace AcornSharp.Cli
                             type = typeof(LiteralNode),
                             regex = new RegexNode
                             {
-                                pattern = "foobar",
-                                flags = ""
+                                Pattern = "foobar",
+                                Flags = ""
                             },
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
                         }
@@ -102,8 +102,8 @@ namespace AcornSharp.Cli
                             type = typeof(LiteralNode),
                             regex = new RegexNode
                             {
-                                pattern = "[a-z]",
-                                flags = "g"
+                                Pattern = "[a-z]",
+                                Flags = "g"
                             },
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
                         }
@@ -11299,7 +11299,7 @@ namespace AcornSharp.Cli
                         expression = new TestNode
                         {
                             type = typeof(LiteralNode),
-                            regex = new RegexNode {pattern = " 1 ", flags = ""}
+                            regex = new RegexNode {Pattern = " 1 ", Flags = ""}
                         }
                     }
                 }
@@ -11321,7 +11321,7 @@ namespace AcornSharp.Cli
                             {
                                 type = typeof(LiteralNode),
                                 raw = "/x/",
-                                regex = new RegexNode {pattern = "x", flags = ""}
+                                regex = new RegexNode {Pattern = "x", Flags = ""}
                             }
                         },
                         test = new TestNode
@@ -11374,8 +11374,8 @@ namespace AcornSharp.Cli
                             type = typeof(LiteralNode),
                             regex = new RegexNode
                             {
-                                pattern = "[a-z]",
-                                flags = "gim"
+                                Pattern = "[a-z]",
+                                Flags = "gim"
                             }
                         }
                     }

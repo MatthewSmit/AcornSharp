@@ -19,15 +19,14 @@ namespace AcornSharp
         private void parseTopLevel([NotNull] ProgramNode node)
         {
             var exports = new Dictionary<string, bool>();
-            if (node.body == null) node.body = new List<BaseNode>();
             while (type != TokenType.EOF)
             {
                 var stmt = parseStatement(true, true, exports);
-                node.body.Add(stmt);
+                node.Body.Add(stmt);
             }
-            adaptDirectivePrologue(node.body);
+            adaptDirectivePrologue(node.Body);
             next();
-            node.location = new SourceLocation(node.location.Start, lastTokEnd, node.location.Source);
+            node.Location = new SourceLocation(node.Location.Start, lastTokEnd, node.Location.Source);
         }
 
         private bool isLet()
@@ -199,7 +198,7 @@ namespace AcornSharp
             for (; i < labels.Count; ++i)
             {
                 var lab = labels[i];
-                if (label == null || lab.name == label.name)
+                if (label == null || lab.name == label.Name)
                 {
                     if (lab.kind != null && (isBreak || lab.kind == "loop")) break;
                     if (label != null && isBreak) break;
@@ -209,15 +208,9 @@ namespace AcornSharp
 
             if (isBreak)
             {
-                return new BreakStatementNode(this, nodeStart, lastTokEnd)
-                {
-                    label = label
-                };
+                return new BreakStatementNode(this, nodeStart, lastTokEnd, label);
             }
-            return new ContinueStatementNode(this, nodeStart, lastTokEnd)
-            {
-                label = label
-            };
+            return new ContinueStatementNode(this, nodeStart, lastTokEnd, label);
         }
 
         [NotNull]
@@ -242,11 +235,7 @@ namespace AcornSharp
             else
                 semicolon();
 
-            return new DoWhileStatementNode(this, nodeStart, lastTokEnd)
-            {
-                body = body,
-                test = test
-            };
+            return new DoWhileStatementNode(this, nodeStart, lastTokEnd, test, body);
         }
 
         // Disambiguating between a `for` and a `for`/`in` or `for`/`of`
@@ -271,13 +260,9 @@ namespace AcornSharp
                 var kind = isLet ? VariableKind.Let : ToVariableKind((string)value);
                 next();
                 var declarations = parseVar(true, kind);
-                var init = new VariableDeclarationNode(this, startLoc, lastTokEnd)
-                {
-                    declarations = declarations,
-                    kind = kind
-                };
-                if ((type == TokenType._in || Options.ecmaVersion >= 6 && isContextual("of")) && init.declarations.Count == 1 &&
-                    !(kind != VariableKind.Var && ((VariableDeclaratorNode)init.declarations[0]).init != null))
+                var init = new VariableDeclarationNode(this, startLoc, lastTokEnd, kind, declarations);
+                if ((type == TokenType._in || Options.ecmaVersion >= 6 && isContextual("of")) && init.Declarations.Count == 1 &&
+                    !(kind != VariableKind.Var && init.Declarations[0].Init != null))
                     return parseForIn(nodeStart, init);
                 return parseFor(nodeStart, init);
             }
@@ -331,16 +316,13 @@ namespace AcornSharp
             // optional arguments, we eagerly look for a semicolon or the
             // possibility to insert one.
 
-            BaseNode argument = null;
+            ExpressionNode argument = null;
             if (!eat(TokenType.semi) && !insertSemicolon())
             {
                 argument = ParseExpression();
                 semicolon();
             }
-            return new ReturnStatementNode(this, nodeStart, lastTokEnd)
-            {
-                argument = argument
-            };
+            return new ReturnStatementNode(this, nodeStart, lastTokEnd, argument);
         }
 
         [NotNull]
@@ -348,7 +330,7 @@ namespace AcornSharp
         {
             next();
             var discriminant = parseParenExpression();
-            var cases = new List<BaseNode>();
+            var cases = new List<SwitchCaseNode>();
             expect(TokenType.braceL);
             labels.Add(switchLabel);
             enterLexicalScope();
@@ -367,11 +349,7 @@ namespace AcornSharp
                     var isCase = type == TokenType._case;
                     if (consequent != null)
                     {
-                        var current = new SwitchCaseNode(this, startLoc, lastTokEnd)
-                        {
-                            consequent = consequent,
-                            test = test
-                        };
+                        var current = new SwitchCaseNode(this, startLoc, lastTokEnd, test, consequent);
                         cases.Add(current);
                     }
 
@@ -402,20 +380,12 @@ namespace AcornSharp
             exitLexicalScope();
             if (consequent != null)
             {
-                var current = new SwitchCaseNode(this, startLoc, lastTokEnd)
-                {
-                    consequent = consequent,
-                    test = test
-                };
+                var current = new SwitchCaseNode(this, startLoc, lastTokEnd, test, consequent);
                 cases.Add(current);
             }
             next(); // Closing brace
             labels.Pop();
-            return new SwitchStatementNode(this, nodeStart, lastTokEnd)
-            {
-                discriminant = discriminant,
-                cases = cases
-            };
+            return new SwitchStatementNode(this, nodeStart, lastTokEnd, discriminant, cases);
         }
 
         [NotNull]
@@ -426,10 +396,7 @@ namespace AcornSharp
                 raise(lastTokEnd, "Illegal newline after throw");
             var argument = ParseExpression();
             semicolon();
-            return new ThrowStatementNode(this, nodeStart, lastTokEnd)
-            {
-                argument = argument
-            };
+            return new ThrowStatementNode(this, nodeStart, lastTokEnd, argument);
         }
 
         [NotNull]
@@ -437,7 +404,7 @@ namespace AcornSharp
         {
             next();
             var block = parseBlock();
-            BaseNode handler = null;
+            CatchClauseNode handler = null;
             if (type == TokenType._catch)
             {
                 var start = this.start;
@@ -449,11 +416,7 @@ namespace AcornSharp
                 expect(TokenType.parenR);
                 var body = parseBlock(false);
                 exitLexicalScope();
-                handler = new CatchClauseNode(this, start, lastTokEnd)
-                {
-                    param = param,
-                    body = body
-                };
+                handler = new CatchClauseNode(this, start, lastTokEnd, param, body);
             }
             var finaliser = eat(TokenType._finally) ? parseBlock() : null;
             if (handler == null && finaliser == null)
@@ -467,11 +430,7 @@ namespace AcornSharp
             next();
             var declarations = parseVar(false, kind);
             semicolon();
-            return new VariableDeclarationNode(this, nodeStart, lastTokEnd)
-            {
-                declarations = declarations,
-                kind = kind
-            };
+            return new VariableDeclarationNode(this, nodeStart, lastTokEnd, kind, declarations);
         }
 
         [NotNull]
@@ -482,11 +441,7 @@ namespace AcornSharp
             labels.Add(loopLabel);
             var body = parseStatement(false);
             labels.Pop();
-            return new WhileStatementNode(this, nodeStart, lastTokEnd)
-            {
-                test = test,
-                body = body
-            };
+            return new WhileStatementNode(this, nodeStart, lastTokEnd, test, body);
         }
 
         [NotNull]
@@ -496,11 +451,7 @@ namespace AcornSharp
             next();
             var @object = parseParenExpression();
             var body = parseStatement(false);
-            return new WithStatementNode(this, nodeStart, lastTokEnd)
-            {
-                @object = @object,
-                body = body
-            };
+            return new WithStatementNode(this, nodeStart, lastTokEnd, @object, body);
         }
 
         [NotNull]
@@ -516,7 +467,7 @@ namespace AcornSharp
             foreach (var label in labels)
             {
                 if (label.name == maybeName)
-                    raise(expr.location.Start, "Label '" + maybeName + "' is already declared");
+                    raise(expr.Location.Start, "Label '" + maybeName + "' is already declared");
             }
             var kind = TokenInformation.Types[type].IsLoop ? "loop" : type == TokenType._switch ? "switch" : null;
             for (var i = labels.Count - 1; i >= 0; i--)
@@ -532,26 +483,19 @@ namespace AcornSharp
             labels.Add(new Label {name = maybeName, kind = kind, statementStart = start.Index });
             var body = parseStatement(true);
             if (body is ClassDeclarationNode ||
-                body is VariableDeclarationNode variableDeclaration && variableDeclaration.kind != VariableKind.Var ||
-                body is FunctionDeclarationNode functionDeclaration && (strict || functionDeclaration.generator))
-                raiseRecoverable(body.location.Start, "Invalid labelled declaration");
+                body is VariableDeclarationNode variableDeclaration && variableDeclaration.Kind != VariableKind.Var ||
+                body is FunctionDeclarationNode functionDeclaration && (strict || functionDeclaration.Generator))
+                raiseRecoverable(body.Location.Start, "Invalid labelled declaration");
             labels.Pop();
 
-            return new LabelledStatementNode(this, nodeStart, lastTokEnd)
-            {
-                body = body,
-                label = expr
-            };
+            return new LabelledStatementNode(this, nodeStart, lastTokEnd, expr, body);
         }
 
         [NotNull]
-        private ExpressionStatementNode parseExpressionStatement(Position nodeStart, BaseNode expr)
+        private ExpressionStatementNode parseExpressionStatement(Position nodeStart, ExpressionNode expr)
         {
             semicolon();
-            return new ExpressionStatementNode(this, nodeStart, lastTokEnd)
-            {
-                expression = expr
-            };
+            return new ExpressionStatementNode(this, nodeStart, lastTokEnd, expr);
         }
 
         // Parse a semicolon-enclosed block of statements, handling `"use
@@ -576,10 +520,7 @@ namespace AcornSharp
             {
                 exitLexicalScope();
             }
-            return new BlockStatementNode(this, start, lastTokEnd)
-            {
-                body = body
-            };
+            return new BlockStatementNode(this, start, lastTokEnd, body);
         }
 
         // Parse a regular `for` loop. The disambiguation code in
@@ -596,13 +537,7 @@ namespace AcornSharp
             exitLexicalScope();
             var body = parseStatement(false);
             labels.Pop();
-            return new ForStatementNode(this, nodeStart, lastTokEnd)
-            {
-                init = init,
-                test = test,
-                update = update,
-                body = body
-            };
+            return new ForStatementNode(this, nodeStart, lastTokEnd, init, test, update, body);
         }
 
         // Parse a `for`/`in` and `for`/`of` loop, which are almost
@@ -620,31 +555,21 @@ namespace AcornSharp
 
             if (isIn)
             {
-                return new ForInStatementNode(this, nodeStart, lastTokEnd)
-                {
-                    left = init,
-                    right = right,
-                    body = body
-                };
+                return new ForInStatementNode(this, nodeStart, lastTokEnd, init, right, body);
             }
-            return new ForOfStatementNode(this, nodeStart, lastTokEnd)
-            {
-                left = init,
-                right = right,
-                body = body
-            };
+            return new ForOfStatementNode(this, nodeStart, lastTokEnd, init, right, body);
         }
 
         // Parse a list of variable declarations.
         [NotNull]
-        private List<BaseNode> parseVar(bool isFor, VariableKind kind)
+        private List<VariableDeclaratorNode> parseVar(bool isFor, VariableKind kind)
         {
-            var declarations = new List<BaseNode>();
+            var declarations = new List<VariableDeclaratorNode>();
             for (;;)
             {
                 var start = this.start;
                 var id = parseVarId(kind);
-                BaseNode init = null;
+                ExpressionNode init = null;
                 if (eat(TokenType.eq))
                 {
                     init = ParseMaybeAssign(isFor);
@@ -657,12 +582,7 @@ namespace AcornSharp
                 {
                     raise(lastTokEnd, "Complex binding patterns require an initialization value");
                 }
-                var decl = new VariableDeclaratorNode(this, start, lastTokEnd)
-                {
-                    init = init,
-                    id = id,
-                    kind = kind
-                };
+                var decl = new VariableDeclaratorNode(this, start, lastTokEnd, kind, id, init);
                 declarations.Add(decl);
                 if (!eat(TokenType.comma)) break;
             }
@@ -724,29 +644,13 @@ namespace AcornSharp
 
             if (isStatement != null)
             {
-                return new FunctionDeclarationNode(this, startLoc, lastTokEnd)
-                {
-                    generator = generator,
-                    async = isAsync,
-                    id = id,
-                    body = body,
-                    expression = expression,
-                    parameters = parameters
-                };
+                return new FunctionDeclarationNode(this, startLoc, lastTokEnd, expression, isAsync, generator, id, parameters, body);
             }
-            return new FunctionExpressionNode(this, startLoc, lastTokEnd)
-            {
-                generator = generator,
-                async = isAsync,
-                id = id,
-                body = body,
-                expression = expression,
-                parameters = parameters
-            };
+            return new FunctionExpressionNode(this, startLoc, lastTokEnd, expression, isAsync, generator, id, parameters, body);
         }
 
         [NotNull]
-        private IReadOnlyList<BaseNode> parseFunctionParams()
+        private IReadOnlyList<ExpressionNode> parseFunctionParams()
         {
             expect(TokenType.parenL);
             var parameters = parseBindingList(TokenType.parenR, false, Options.ecmaVersion >= 8);
@@ -786,7 +690,7 @@ namespace AcornSharp
                     (computed, key) = parsePropertyName();
                 }
                 if (Options.ecmaVersion >= 8 && !isGenerator && !computed &&
-                    key is IdentifierNode identifierNode && identifierNode.name == "async" && type != TokenType.parenL &&
+                    key is IdentifierNode identifierNode && identifierNode.Name == "async" && type != TokenType.parenL &&
                     !canInsertSemicolon())
                 {
                     isAsync = true;
@@ -796,19 +700,19 @@ namespace AcornSharp
                 var isGetSet = false;
                 if (!computed)
                 {
-                    if (!isGenerator && !isAsync && key is IdentifierNode identifierNode2 && type != TokenType.parenL && (identifierNode2.name == "get" || identifierNode2.name == "set"))
+                    if (!isGenerator && !isAsync && key is IdentifierNode identifierNode2 && type != TokenType.parenL && (identifierNode2.Name == "get" || identifierNode2.Name == "set"))
                     {
                         isGetSet = true;
-                        kind = identifierNode2.name == "get" ? PropertyKind.Get : PropertyKind.Set;
+                        kind = identifierNode2.Name == "get" ? PropertyKind.Get : PropertyKind.Set;
                         (computed, key) = parsePropertyName();
                     }
-                    if (!@static && (key is IdentifierNode identifierNode3 && identifierNode3.name == "constructor" ||
-                                            key is LiteralNode literal && literal.value.ToString() == "constructor"))
+                    if (!@static && (key is IdentifierNode identifierNode3 && identifierNode3.Name == "constructor" ||
+                                            key is LiteralNode literal && literal.Value.ToString() == "constructor"))
                     {
-                        if (hadConstructor) raise(key.location.Start, "Duplicate constructor in the same class");
-                        if (isGetSet) raise(key.location.Start, "Constructor can't have get/set modifier");
-                        if (isGenerator) raise(key.location.Start, "Constructor can't be a generator");
-                        if (isAsync) raise(key.location.Start, "Constructor can't be an async method");
+                        if (hadConstructor) raise(key.Location.Start, "Duplicate constructor in the same class");
+                        if (isGetSet) raise(key.Location.Start, "Constructor can't have get/set modifier");
+                        if (isGenerator) raise(key.Location.Start, "Constructor can't be a generator");
+                        if (isAsync) raise(key.Location.Start, "Constructor can't be an async method");
                         kind = PropertyKind.Constructor;
                         hadConstructor = true;
                     }
@@ -818,9 +722,9 @@ namespace AcornSharp
                 if (isGetSet)
                 {
                     var paramCount = kind == PropertyKind.Get ? 0 : 1;
-                    if (methodValue.parameters.Count != paramCount)
+                    if (methodValue.Parameters.Count != paramCount)
                     {
-                        var start = methodValue.location.Start;
+                        var start = methodValue.Location.Start;
                         if (kind == PropertyKind.Get)
                             raiseRecoverable(start, "getter should have no params");
                         else
@@ -828,41 +732,20 @@ namespace AcornSharp
                     }
                     else
                     {
-                        if (kind == PropertyKind.Set && methodValue.parameters[0] is RestElementNode)
-                            raiseRecoverable(methodValue.parameters[0].location.Start, "Setter cannot use rest params");
+                        if (kind == PropertyKind.Set && methodValue.Parameters[0] is RestElementNode)
+                            raiseRecoverable(methodValue.Parameters[0].Location.Start, "Setter cannot use rest params");
                     }
                 }
 
-                var method = new MethodDefinitionNode(this, methodStart, lastTokEnd)
-                {
-                    computed = computed,
-                    key = key,
-                    @static = @static,
-                    kind = kind,
-                    value = methodValue
-                };
-                body.Add(method);
+                body.Add(new MethodDefinitionNode(this, methodStart, lastTokEnd, kind, computed, @static, key, methodValue));
             }
-            var classBody = new ClassBodyNode(this, classBodyStart, lastTokEnd)
-            {
-                body = body
-            };
+            var classBody = new ClassBodyNode(this, classBodyStart, lastTokEnd, body);
 
             if (isStatement != null)
             {
-                return new ClassDeclarationNode(this, nodeStart, lastTokEnd)
-                {
-                    id = id,
-                    body = classBody,
-                    superClass = superClass
-                };
+                return new ClassDeclarationNode(this, nodeStart, lastTokEnd, id, superClass, classBody);
             }
-            return new ClassExpressionNode(this, nodeStart, lastTokEnd)
-            {
-                id = id,
-                body = classBody,
-                superClass = superClass
-            };
+            return new ClassExpressionNode(this, nodeStart, lastTokEnd, id, superClass, classBody);
         }
 
         [CanBeNull]
@@ -892,17 +775,17 @@ namespace AcornSharp
             if (eat(TokenType.star))
             {
                 expectContextual("from");
-                BaseNode source = null;
-                if (type == TokenType.@string) source = ParseExpressionAtom();
+                ExpressionNode source = null;
+                if (type == TokenType.@string)
+                {
+                    source = ParseExpressionAtom();
+                }
                 else
                 {
                     raise(start, "Unexpected token");
                 }
                 semicolon();
-                return new ExportAllDeclarationNode(this, nodeStart, lastTokEnd)
-                {
-                    source = source
-                };
+                return new ExportAllDeclarationNode(this, nodeStart, lastTokEnd, source);
             }
             if (eat(TokenType._default))
             {
@@ -926,28 +809,25 @@ namespace AcornSharp
                     declaration = ParseMaybeAssign();
                     semicolon();
                 }
-                return new ExportDefaultDeclarationNode(this, nodeStart, lastTokEnd)
-                {
-                    declaration = declaration
-                };
+                return new ExportDefaultDeclarationNode(this, nodeStart, lastTokEnd, declaration);
             }
             else
             {
                 // export var|const|let|function|class ...
                 BaseNode declaration;
                 IReadOnlyList<ExportSpecifierNode> specifiers;
-                BaseNode source = null;
+                ExpressionNode source = null;
                 if (shouldParseExportStatement())
                 {
                     declaration = parseStatement(true);
                     if (declaration is VariableDeclarationNode variableDeclaration)
                     {
-                        checkVariableExport(exports, variableDeclaration.declarations);
+                        checkVariableExport(exports, variableDeclaration.Declarations);
                     }
                     else
                     {
                         var declarationNode = (IDeclarationNode)declaration;
-                        checkExport(exports, declarationNode.Id.name, declarationNode.Id.location.Start);
+                        checkExport(exports, declarationNode.Id.Name, declarationNode.Id.Location.Start);
                     }
                     specifiers = Array.Empty<ExportSpecifierNode>();
                 }
@@ -958,7 +838,10 @@ namespace AcornSharp
                     specifiers = parseExportSpecifiers(exports);
                     if (eatContextual("from"))
                     {
-                        if (type == TokenType.@string) source = ParseExpressionAtom();
+                        if (type == TokenType.@string)
+                        {
+                            source = ParseExpressionAtom();
+                        }
                         else
                         {
                             raise(start, "Unexpected token");
@@ -969,17 +852,12 @@ namespace AcornSharp
                         // check for keywords used as local names
                         foreach (var spec in specifiers)
                         {
-                            checkUnreserved(spec.local.location.Start, spec.local.location.End, spec.local.name);
+                            checkUnreserved(spec.Local.Location.Start, spec.Local.Location.End, spec.Local.Name);
                         }
                     }
                     semicolon();
                 }
-                return new ExportNamedDeclarationNode(this, nodeStart, lastTokEnd)
-                {
-                    declaration = declaration,
-                    specifiers = specifiers,
-                    source = source
-                };
+                return new ExportNamedDeclarationNode(this, nodeStart, lastTokEnd, source, declaration, specifiers);
             }
         }
 
@@ -996,12 +874,12 @@ namespace AcornSharp
             switch (pattern)
             {
                 case IdentifierNode identifierNode:
-                    checkExport(exports, identifierNode.name, pattern.location.Start);
+                    checkExport(exports, identifierNode.Name, pattern.Location.Start);
                     break;
                 case ObjectPatternNode objectPattern:
-                    foreach (var prop in objectPattern.properties)
+                    foreach (var prop in objectPattern.Properties)
                     {
-                        checkPatternExport(exports, prop.value);
+                        checkPatternExport(exports, prop.Value);
                     }
                     break;
                 case ArrayPatternNode arrayPattern:
@@ -1014,7 +892,7 @@ namespace AcornSharp
                     checkPatternExport(exports, assignmentPattern.Left);
                     break;
                 case ParenthesisedExpressionNode parenthesisedExpressionNode:
-                    checkPatternExport(exports, parenthesisedExpressionNode.expression);
+                    checkPatternExport(exports, parenthesisedExpressionNode.Expression);
                     break;
             }
         }
@@ -1059,13 +937,8 @@ namespace AcornSharp
                 var startLoc = start;
                 var local = parseIdent(true);
                 var exported = eatContextual("as") ? parseIdent(true) : local;
-                checkExport(exports, exported.name, exported.location.Start);
-                var node = new ExportSpecifierNode(this, startLoc, lastTokEnd)
-                {
-                    local = local,
-                    exported = exported
-                };
-                nodes.Add(node);
+                checkExport(exports, exported.Name, exported.Location.Start);
+                nodes.Add(new ExportSpecifierNode(this, startLoc, lastTokEnd, local, exported));
             }
             return nodes;
         }
@@ -1077,7 +950,7 @@ namespace AcornSharp
             next();
             // import '...'
             IReadOnlyList<BaseNode> specifiers;
-            BaseNode source = null;
+            ExpressionNode source = null;
             if (type == TokenType.@string)
             {
                 specifiers = new List<BaseNode>();
@@ -1087,18 +960,17 @@ namespace AcornSharp
             {
                 specifiers = parseImportSpecifiers();
                 expectContextual("from");
-                if (type == TokenType.@string) source = ParseExpressionAtom();
+                if (type == TokenType.@string)
+                {
+                    source = ParseExpressionAtom();
+                }
                 else
                 {
                     raise(start, "Unexpected token");
                 }
             }
             semicolon();
-            return new ImportDeclarationNode(this, nodeStart, lastTokEnd)
-            {
-                specifiers = specifiers,
-                source = source
-            };
+            return new ImportDeclarationNode(this, nodeStart, lastTokEnd, source, specifiers);
         }
 
         // Parses a comma-separated list of module imports.
@@ -1113,12 +985,9 @@ namespace AcornSharp
                 var startLoc = start;
                 var local = parseIdent();
                 checkLVal(local, true, VariableKind.Let);
-                var node = new ImportDefaultSpecifierNode(this, startLoc, lastTokEnd)
-                {
-                    local = local
-                };
-                nodes.Add(node);
-                if (!eat(TokenType.comma)) return nodes;
+                nodes.Add(new ImportDefaultSpecifierNode(this, startLoc, lastTokEnd, local));
+                if (!eat(TokenType.comma))
+                    return nodes;
             }
             if (type == TokenType.star)
             {
@@ -1127,11 +996,7 @@ namespace AcornSharp
                 expectContextual("as");
                 var local = parseIdent();
                 checkLVal(local, true, VariableKind.Let);
-                var node = new ImportNamespaceSpecifierNode(this, startLoc, lastTokEnd)
-                {
-                    local = local
-                };
-                nodes.Add(node);
+                nodes.Add(new ImportNamespaceSpecifierNode(this, startLoc, lastTokEnd, local));
                 return nodes;
             }
             expect(TokenType.braceL);
@@ -1153,16 +1018,11 @@ namespace AcornSharp
                 }
                 else
                 {
-                    checkUnreserved(imported.location.Start, imported.location.End, imported.name);
+                    checkUnreserved(imported.Location.Start, imported.Location.End, imported.Name);
                     local = imported;
                 }
                 checkLVal(local, true, VariableKind.Let);
-                var node = new ImportSpecifierNode(this, startLoc, lastTokEnd)
-                {
-                    imported = imported,
-                    local = local
-                };
-                nodes.Add(node);
+                nodes.Add(new ImportSpecifierNode(this, startLoc, lastTokEnd, local, imported));
             }
             return nodes;
         }
@@ -1173,18 +1033,18 @@ namespace AcornSharp
             for (var i = 0; i < statements.Count && isDirectiveCandidate(statements[i]); ++i)
             {
                 var expressionStatement = (ExpressionStatementNode)statements[i];
-                var literal = (LiteralNode)expressionStatement.expression;
-                expressionStatement.directive = literal.raw.Substring(1, literal.raw.Length - 2);
+                var literal = (LiteralNode)expressionStatement.Expression;
+                expressionStatement.Directive = literal.Raw.Substring(1, literal.Raw.Length - 2);
             }
         }
 
         private bool isDirectiveCandidate([NotNull] BaseNode statement)
         {
             return statement is ExpressionStatementNode expressionStatementNode &&
-                   expressionStatementNode.expression is LiteralNode literal &&
-                   literal.value.IsString &&
+                   expressionStatementNode.Expression is LiteralNode literal &&
+                   literal.Value.IsString &&
                    // Reject parenthesized strings.
-                   (input[statement.location.Start.Index] == '\"' || input[statement.location.Start.Index] == '\'');
+                   (input[statement.Location.Start.Index] == '\"' || input[statement.Location.Start.Index] == '\'');
         }
     }
 }

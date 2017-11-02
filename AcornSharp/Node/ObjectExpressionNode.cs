@@ -5,11 +5,12 @@ namespace AcornSharp.Node
 {
     public sealed class ObjectExpressionNode : ExpressionNode
     {
-        public IReadOnlyList<PropertyNode> properties;
-
-        internal ObjectExpressionNode([NotNull] Parser parser, Position start, Position end) :
+        internal ObjectExpressionNode([NotNull] Parser parser, Position start, Position end, IReadOnlyList<PropertyNode> properties) :
             base(parser, start, end)
         {
+            Properties = properties;
         }
+
+        public IReadOnlyList<PropertyNode> Properties { get; }
     }
 }

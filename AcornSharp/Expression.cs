@@ -74,26 +74,26 @@ namespace AcornSharp
         // strict mode, init properties are also not allowed to be repeated.
         private void CheckPropertyClash([NotNull] PropertyNode prop, IDictionary<string, Property> propHash)
         {
-            if (Options.ecmaVersion >= 6 && (prop.computed || prop.method || prop.shorthand))
+            if (Options.ecmaVersion >= 6 && (prop.Computed || prop.Method || prop.Shorthand))
                 return;
-            var key = prop.key;
+            var key = prop.Key;
             string name;
             if (key is IdentifierNode identifierNode)
-                name = identifierNode.name;
+                name = identifierNode.Name;
             else if (key is LiteralNode literalNode)
             {
-                name = literalNode.value.ToString();
+                name = literalNode.Value.ToString();
             }
             else
             {
                 return;
             }
-            var kind = prop.kind;
+            var kind = prop.Kind;
             if (Options.ecmaVersion >= 6)
             {
                 if (name == "__proto__" && kind == PropertyKind.Initialise)
                 {
-                    if (propHash.ContainsKey("proto")) raiseRecoverable(key.location.Start, "Redefinition of __proto__ property");
+                    if (propHash.ContainsKey("proto")) raiseRecoverable(key.Location.Start, "Redefinition of __proto__ property");
                     propHash.Add("proto", new Property());
                 }
                 return;
@@ -111,7 +111,7 @@ namespace AcornSharp
                     redefinition = other.init || other[kind];
                 }
                 if (redefinition)
-                    raiseRecoverable(key.location.Start, "Redefinition of property");
+                    raiseRecoverable(key.Location.Start, "Redefinition of property");
             }
             else
             {
@@ -136,7 +136,7 @@ namespace AcornSharp
         // delayed syntax error at correct position).
         public ExpressionNode ParseExpression(bool noIn = false, [CanBeNull] DestructuringErrors refDestructuringErrors = null)
         {
-            var start = this.start;
+            var startLocation = start;
             var expr = ParseMaybeAssign(noIn, refDestructuringErrors);
             if (type == TokenType.comma)
             {
@@ -144,11 +144,12 @@ namespace AcornSharp
                 {
                     expr
                 };
-                while (eat(TokenType.comma)) expressions.Add(ParseMaybeAssign(noIn, refDestructuringErrors));
-                return new SequenceExpressionNode(this, start, lastTokEnd)
+                while (eat(TokenType.comma))
                 {
-                    expressions = expressions
-                };
+                    expressions.Add(ParseMaybeAssign(noIn, refDestructuringErrors));
+                }
+
+                return new SequenceExpressionNode(this, startLocation, lastTokEnd, expressions);
             }
             return expr;
         }
@@ -280,7 +281,7 @@ namespace AcornSharp
             var expr = ParseMaybeUnary(refDestructuringErrors, false);
             if (checkExpressionErrors(refDestructuringErrors))
                 return expr;
-            return expr.location.Start.Index == startLoc.Index && expr is ArrowFunctionExpressionNode ? expr : ParseExpressionOperator(expr, startLoc, -1, noIn);
+            return expr.Location.Start.Index == startLoc.Index && expr is ArrowFunctionExpressionNode ? expr : ParseExpressionOperator(expr, startLoc, -1, noIn);
         }
 
         // Parse binary operators with the operator precedence parsing
@@ -312,20 +313,10 @@ namespace AcornSharp
         {
             if (logical)
             {
-                return new LogicalExpressionNode(this, startLoc, lastTokEnd)
-                {
-                    left = left,
-                    @operator = op,
-                    right = right
-                };
+                return new LogicalExpressionNode(this, startLoc, lastTokEnd, left, right, op);
             }
 
-            return new BinaryExpressionNode(this, startLoc, lastTokEnd)
-            {
-                left = left,
-                @operator = op,
-                right = right
-            };
+            return new BinaryExpressionNode(this, startLoc, lastTokEnd, left, right, op);
         }
 
         // Parse unary operators, both prefix and postfix.
@@ -352,19 +343,11 @@ namespace AcornSharp
                 else sawUnary = true;
                 if (update)
                 {
-                    expr = new UpdateExpressionNode(this, startLoc, lastTokEnd)
-                    {
-                        @operator = @operator,
-                        argument = argument
-                    };
+                    expr = new UpdateExpressionNode(this, startLoc, lastTokEnd, @operator, argument);
                 }
                 else
                 {
-                    expr = new UnaryExpressionNode(this, startLoc, lastTokEnd)
-                    {
-                        @operator = @operator,
-                        argument = argument
-                    };
+                    expr = new UnaryExpressionNode(this, startLoc, lastTokEnd, @operator, argument);
                 }
             }
             else
@@ -377,11 +360,7 @@ namespace AcornSharp
                     var @operator = StringToOperator((string)value);
                     checkLVal(expr, false, null);
                     next();
-                    expr = new UpdateExpressionNode(this, startLoc, lastTokEnd)
-                    {
-                        @operator = ToPostfix(@operator),
-                        argument = expr
-                    };
+                    expr = new UpdateExpressionNode(this, startLoc, lastTokEnd, ToPostfix(@operator), expr);
                 }
             }
 
@@ -414,16 +393,16 @@ namespace AcornSharp
             var result = ParseSubscripts(expr, startLoc);
             if (refDestructuringErrors != null && result is MemberExpressionNode)
             {
-                if (refDestructuringErrors.parenthesizedAssign.Index >= result.location.Start.Index) refDestructuringErrors.parenthesizedAssign = default;
-                if (refDestructuringErrors.parenthesizedBind.Index >= result.location.Start.Index) refDestructuringErrors.parenthesizedBind = default;
+                if (refDestructuringErrors.parenthesizedAssign.Index >= result.Location.Start.Index) refDestructuringErrors.parenthesizedAssign = default;
+                if (refDestructuringErrors.parenthesizedBind.Index >= result.Location.Start.Index) refDestructuringErrors.parenthesizedBind = default;
             }
             return result;
         }
 
         private ExpressionNode ParseSubscripts(ExpressionNode @base, Position startLoc, bool noCalls = false)
         {
-            var maybeAsyncArrow = Options.ecmaVersion >= 8 && @base is IdentifierNode identifierNode && identifierNode.name == "async" &&
-                                  lastTokEnd.Index == @base.location.End.Index && !canInsertSemicolon();
+            var maybeAsyncArrow = Options.ecmaVersion >= 8 && @base is IdentifierNode identifierNode && identifierNode.Name == "async" &&
+                                  lastTokEnd.Index == @base.Location.End.Index && !canInsertSemicolon();
             for (;;)
             {
                 bool computed;
@@ -452,20 +431,12 @@ namespace AcornSharp
                     checkExpressionErrors(refDestructuringErrors, true);
                     yieldPos = oldYieldPos.Line != 0 ? oldYieldPos : yieldPos;
                     awaitPos = oldAwaitPos.Line != 0 ? oldAwaitPos : awaitPos;
-                    @base = new CallExpressionNode(this, startLoc, lastTokEnd)
-                    {
-                        callee = @base,
-                        arguments = expressionList
-                    };
+                    @base = new CallExpressionNode(this, startLoc, lastTokEnd, @base, expressionList);
                 }
                 else if (type == TokenType.backQuote)
                 {
                     var quasi = parseTemplate(true);
-                    @base = new TaggedTemplateExpressionNode(this, startLoc, lastTokEnd)
-                    {
-                        tag = @base,
-                        quasi = quasi
-                    };
+                    @base = new TaggedTemplateExpressionNode(this, startLoc, lastTokEnd, @base, quasi);
                 }
                 else
                 {
@@ -505,13 +476,13 @@ namespace AcornSharp
                     return new ThisExpressionNode(this, startLoc, lastTokEnd);
                 case TokenType.name:
                     var id = parseIdent(type != TokenType.name);
-                    if (Options.ecmaVersion >= 8 && id.name == "async" && !canInsertSemicolon() && eat(TokenType._function))
+                    if (Options.ecmaVersion >= 8 && id.Name == "async" && !canInsertSemicolon() && eat(TokenType._function))
                         return (ExpressionNode)parseFunction(startLoc, null, false, true);
                     if (canBeArrow && !canInsertSemicolon())
                     {
                         if (eat(TokenType.arrow))
                             return parseArrowExpression(startLoc, new ExpressionNode[] {id});
-                        if (Options.ecmaVersion >= 8 && id.name == "async" && type == TokenType.name)
+                        if (Options.ecmaVersion >= 8 && id.Name == "async" && type == TokenType.name)
                         {
                             id = parseIdent();
                             if (canInsertSemicolon() || !eat(TokenType.arrow))
@@ -537,11 +508,7 @@ namespace AcornSharp
                     var value = type == TokenType._null ? default : (LiteralValue)(type == TokenType._true);
                     var raw = TokenInformation.Types[type].Keyword;
                     next();
-                    return new LiteralNode(this, startLoc, lastTokEnd)
-                    {
-                        value = value,
-                        raw = raw
-                    };
+                    return new LiteralNode(this, startLoc, lastTokEnd, value, raw);
                 }
                 case TokenType.parenL:
                     var expr = parseParenAndDistinguishExpression(canBeArrow);
@@ -579,24 +546,7 @@ namespace AcornSharp
             var startLoc = start;
             var raw = input.Substring(start.Index, end.Index - start.Index);
             next();
-            return new LiteralNode(this, startLoc, lastTokEnd)
-            {
-                value = value,
-                raw = raw
-            };
-        }
-
-        [NotNull]
-        private ExpressionNode ParseLiteral(RegexNode value)
-        {
-            var startLoc = start;
-            var raw = input.Substring(start.Index, end.Index - start.Index);
-            next();
-            return new LiteralNode(this, startLoc, lastTokEnd)
-            {
-                regex = value,
-                raw = raw
-            };
+            return new LiteralNode(this, startLoc, lastTokEnd, value, raw);
         }
 
         private ExpressionNode parseParenExpression()
@@ -680,10 +630,7 @@ namespace AcornSharp
 
                 if (exprList.Count > 1)
                 {
-                    node = new SequenceExpressionNode(this, innerStartLoc, innerEndLoc)
-                    {
-                        expressions = exprList
-                    };
+                    node = new SequenceExpressionNode(this, innerStartLoc, innerEndLoc, exprList);
                 }
                 else
                 {
@@ -697,10 +644,7 @@ namespace AcornSharp
 
             if (Options.preserveParens)
             {
-                return new ParenthesisedExpressionNode(this, startLoc, lastTokEnd)
-                {
-                    expression = node
-                };
+                return new ParenthesisedExpressionNode(this, startLoc, lastTokEnd, node);
             }
             return node;
         }
@@ -724,26 +668,18 @@ namespace AcornSharp
             if (Options.ecmaVersion >= 6 && eat(TokenType.dot))
             {
                 var identifierNode = parseIdent(true);
-                if (identifierNode.name != "target")
-                    raiseRecoverable(identifierNode.location.Start, "The only valid meta property for new is new.target");
+                if (identifierNode.Name != "target")
+                    raiseRecoverable(identifierNode.Location.Start, "The only valid meta property for new is new.target");
                 if (!inFunction)
                     raiseRecoverable(nodeStart, "new.target can only be used in functions");
-                return new MetaPropertyNode(this, nodeStart, lastTokEnd)
-                {
-                    meta = meta,
-                    property = identifierNode
-                };
+                return new MetaPropertyNode(this, nodeStart, lastTokEnd, meta, identifierNode);
             }
             var startLoc = start;
             var callee = ParseSubscripts(ParseExpressionAtom(), startLoc, true);
             IReadOnlyList<ExpressionNode> arguments;
             if (eat(TokenType.parenL)) arguments = ParseExpressionList(TokenType.parenR, Options.ecmaVersion >= 8, false);
             else arguments = Array.Empty<ExpressionNode>();
-            return new NewExpressionNode(this, nodeStart, lastTokEnd)
-            {
-                callee = callee,
-                arguments = arguments
-            };
+            return new NewExpressionNode(this, nodeStart, lastTokEnd, callee, arguments);
         }
 
         private static readonly Regex templateRawRegex = new Regex("\r\n?");
@@ -767,11 +703,7 @@ namespace AcornSharp
                 valueNode = new TemplateNode(templateRawRegex.Replace(input.Substring(start.Index, end.Index - start.Index), "\n"), (string)value);
             }
             next();
-            return new TemplateElementNode(this, startLoc, lastTokEnd)
-            {
-                tail = type == TokenType.backQuote,
-                value = valueNode
-            };
+            return new TemplateElementNode(this, startLoc, lastTokEnd, valueNode, type == TokenType.backQuote);
         }
 
         [NotNull]
@@ -779,10 +711,10 @@ namespace AcornSharp
         {
             var startLoc = start;
             next();
-            var expressions = new List<BaseNode>();
+            var expressions = new List<ExpressionNode>();
             var curElt = parseTemplateElement(ref isTagged);
-            var quasis = new List<BaseNode> {curElt};
-            while (!curElt.tail)
+            var quasis = new List<TemplateElementNode> {curElt};
+            while (!curElt.Tail)
             {
                 expect(TokenType.dollarBraceL);
                 expressions.Add(ParseExpression());
@@ -790,16 +722,12 @@ namespace AcornSharp
                 quasis.Add(curElt = parseTemplateElement(ref isTagged));
             }
             next();
-            return new TemplateLiteralNode(this, startLoc, lastTokEnd)
-            {
-                expressions = expressions,
-                quasis = quasis
-            };
+            return new TemplateLiteralNode(this, startLoc, lastTokEnd, expressions, quasis);
         }
 
         private bool isAsyncProp(bool computed, [NotNull] BaseNode key)
         {
-            return !computed && key is IdentifierNode identifierNode && identifierNode.name == "async" &&
+            return !computed && key is IdentifierNode identifierNode && identifierNode.Name == "async" &&
                    (type == TokenType.name || type == TokenType.num || type == TokenType.@string || type == TokenType.bracketL || TokenInformation.Types[type].Keyword != null) &&
                    !lineBreak.IsMatch(input.Substring(lastTokEnd.Index, start.Index - lastTokEnd.Index));
         }
@@ -828,15 +756,9 @@ namespace AcornSharp
             }
             if (isPattern)
             {
-                return new ObjectPatternNode(this, startLoc, lastTokEnd)
-                {
-                    properties = properties
-                };
+                return new ObjectPatternNode(this, startLoc, lastTokEnd, properties);
             }
-            return new ObjectExpressionNode(this, startLoc, lastTokEnd)
-            {
-                properties = properties
-            };
+            return new ObjectExpressionNode(this, startLoc, lastTokEnd, properties);
         }
 
         [NotNull]
@@ -871,15 +793,7 @@ namespace AcornSharp
             bool method;
             bool shorthand;
             (value, kind, method, shorthand, computed, key) = parsePropertyValue(computed, key, isPattern, isGenerator, isAsync, startLoc, refDestructuringErrors);
-            return new PropertyNode(this, nodeStart, lastTokEnd)
-            {
-                method = method,
-                kind = kind,
-                value = value,
-                shorthand = shorthand,
-                computed = computed,
-                key = key
-            };
+            return new PropertyNode(this, nodeStart, lastTokEnd, kind, computed, shorthand, method, key, value);
         }
 
         private (ExpressionNode value, PropertyKind kind, bool method, bool shorthand, bool computed, ExpressionNode key) parsePropertyValue(bool computed, ExpressionNode key, bool isPattern, bool isGenerator, bool isAsync, Position startLoc, [CanBeNull] DestructuringErrors refDestructuringErrors)
@@ -907,20 +821,20 @@ namespace AcornSharp
 
             if (!isPattern &&
                 Options.ecmaVersion >= 5 && !computed && key is IdentifierNode identifierNode &&
-                (identifierNode.name == "get" || identifierNode.name == "set") &&
+                (identifierNode.Name == "get" || identifierNode.Name == "set") &&
                 type != TokenType.comma && type != TokenType.braceR)
             {
                 if (isGenerator || isAsync)
                 {
                     raise(start, "Unexpected token");
                 }
-                var kind = identifierNode.name == "get" ? PropertyKind.Get : PropertyKind.Set;
+                var kind = identifierNode.Name == "get" ? PropertyKind.Get : PropertyKind.Set;
                 (computed, key) = parsePropertyName();
                 var value = parseMethod(false);
                 var paramCount = kind == PropertyKind.Get ? 0 : 1;
-                if (value.parameters.Count != paramCount)
+                if (value.Parameters.Count != paramCount)
                 {
-                    var start = value.location.Start;
+                    var start = value.Location.Start;
                     if (kind == PropertyKind.Get)
                         raiseRecoverable(start, "getter should have no params");
                     else
@@ -928,8 +842,8 @@ namespace AcornSharp
                 }
                 else
                 {
-                    if (kind == PropertyKind.Set && value.parameters[0] is RestElementNode)
-                        raiseRecoverable(value.parameters[0].location.Start, "Setter cannot use rest params");
+                    if (kind == PropertyKind.Set && value.Parameters[0] is RestElementNode)
+                        raiseRecoverable(value.Parameters[0].Location.Start, "Setter cannot use rest params");
                 }
 
                 return (value, kind, false, false, computed, key);
@@ -937,7 +851,7 @@ namespace AcornSharp
 
             if (Options.ecmaVersion >= 6 && !computed && key is IdentifierNode identifierNode2)
             {
-                checkUnreserved(key.location.Start, key.location.End, identifierNode2.name);
+                checkUnreserved(key.Location.Start, key.Location.End, identifierNode2.Name);
                 ExpressionNode value;
                 if (isPattern)
                 {
@@ -1008,14 +922,7 @@ namespace AcornSharp
             awaitPos = oldAwaitPos;
             inFunction = oldInFunc;
 
-            return new FunctionExpressionNode(this, startLoc, lastTokEnd)
-            {
-                generator = isGenerator,
-                async = isAsync,
-                parameters = parameters,
-                body = body,
-                expression = expression
-            };
+            return new FunctionExpressionNode(this, startLoc, lastTokEnd, expression, isAsync, isGenerator, null, parameters, body);
         }
 
         // Parse arrow function expression with given parameters.
@@ -1088,7 +995,7 @@ namespace AcornSharp
                 var block = parseBlock(false);
                 body = block;
                 expression = false;
-                adaptDirectivePrologue(block.body);
+                adaptDirectivePrologue(block.Body);
                 labels = oldLabels;
             }
             exitFunctionScope();
@@ -1210,7 +1117,7 @@ namespace AcornSharp
             }
             next();
             var node = new IdentifierNode(this, start, lastTokEnd, name);
-            if (!liberal) checkUnreserved(node.location.Start, node.location.Start, node.name);
+            if (!liberal) checkUnreserved(node.Location.Start, node.Location.Start, node.Name);
             return node;
         }
 
@@ -1223,17 +1130,13 @@ namespace AcornSharp
             var startLoc = start;
             next();
             var @delegate = false;
-            BaseNode argument = null;
+            ExpressionNode argument = null;
             if (type != TokenType.semi && !canInsertSemicolon() && (type == TokenType.star || TokenInformation.Types[type].StartsExpression))
             {
                 @delegate = eat(TokenType.star);
                 argument = ParseMaybeAssign();
             }
-            return new YieldExpressionNode(this, startLoc, lastTokEnd)
-            {
-                @delegate = @delegate,
-                argument = argument
-            };
+            return new YieldExpressionNode(this, startLoc, lastTokEnd, @delegate, argument);
         }
 
         [NotNull]

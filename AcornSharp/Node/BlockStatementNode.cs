@@ -5,11 +5,12 @@ namespace AcornSharp.Node
 {
     public sealed class BlockStatementNode : BaseNode
     {
-        public IReadOnlyList<BaseNode> body;
-
-        internal BlockStatementNode([NotNull] Parser parser, Position start, Position end) :
+        internal BlockStatementNode([NotNull] Parser parser, Position start, Position end, IReadOnlyList<BaseNode> body) :
             base(parser, start, end)
         {
+            Body = body;
         }
+
+        public IReadOnlyList<BaseNode> Body { get; }
     }
 }

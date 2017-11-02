@@ -4,12 +4,14 @@ namespace AcornSharp.Node
 {
     public sealed class UpdateExpressionNode : ExpressionNode
     {
-        public Operator @operator;
-        public ExpressionNode argument;
-
-        internal UpdateExpressionNode([NotNull] Parser parser, Position start, Position end) :
+        internal UpdateExpressionNode([NotNull] Parser parser, Position start, Position end, Operator @operator, ExpressionNode argument) :
             base(parser, start, end)
         {
+            Operator = @operator;
+            Argument = argument;
         }
+
+        public Operator Operator { get; }
+        public ExpressionNode Argument { get; }
     }
 }

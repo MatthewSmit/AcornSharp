@@ -5,12 +5,14 @@ namespace AcornSharp.Node
 {
     public sealed class TemplateLiteralNode : ExpressionNode
     {
-        public IReadOnlyList<BaseNode> expressions;
-        public IReadOnlyList<BaseNode> quasis;
-
-        internal TemplateLiteralNode([NotNull] Parser parser, Position start, Position end) :
+        internal TemplateLiteralNode([NotNull] Parser parser, Position start, Position end, IReadOnlyList<ExpressionNode> expressions, IReadOnlyList<TemplateElementNode> quasis) :
             base(parser, start, end)
         {
+            Expressions = expressions;
+            Quasis = quasis;
         }
+
+        public IReadOnlyList<ExpressionNode> Expressions { get; }
+        public IReadOnlyList<TemplateElementNode> Quasis { get; }
     }
 }

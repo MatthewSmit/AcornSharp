@@ -4,12 +4,14 @@ namespace AcornSharp.Node
 {
     public sealed class WithStatementNode : BaseNode
     {
-        public BaseNode @object;
-        public BaseNode body;
-
-        internal WithStatementNode([NotNull] Parser parser, Position start, Position end) :
+        internal WithStatementNode([NotNull] Parser parser, Position start, Position end, ExpressionNode @object, BaseNode body) :
             base(parser, start, end)
         {
+            Object = @object;
+            Body = body;
         }
+
+        public ExpressionNode Object { get; }
+        public BaseNode Body { get; }
     }
 }

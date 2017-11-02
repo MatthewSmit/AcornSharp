@@ -5,18 +5,22 @@ namespace AcornSharp.Node
 {
     public sealed class FunctionExpressionNode : ExpressionNode, IDeclarationNode
     {
-        public bool expression;
-        public bool async;
-        public bool generator;
-        public IdentifierNode id;
-        public IReadOnlyList<BaseNode> parameters;
-        public BaseNode body;
-
-        internal FunctionExpressionNode([NotNull] Parser parser, Position start, Position end) :
+        internal FunctionExpressionNode([NotNull] Parser parser, Position start, Position end, bool expression, bool async, bool generator, IdentifierNode id, IReadOnlyList<ExpressionNode> parameters, BaseNode body) :
             base(parser, start, end)
         {
+            Expression = expression;
+            Async = async;
+            Generator = generator;
+            Id = id;
+            Parameters = parameters;
+            Body = body;
         }
 
-        public IdentifierNode Id => id;
+        public bool Expression { get; }
+        public bool Async { get; }
+        public bool Generator { get; }
+        public IdentifierNode Id { get; }
+        public IReadOnlyList<ExpressionNode> Parameters { get; }
+        public BaseNode Body { get; }
     }
 }

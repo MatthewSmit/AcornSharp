@@ -4,13 +4,16 @@ namespace AcornSharp.Node
 {
     public sealed class ForInStatementNode : BaseNode
     {
-        public BaseNode left;
-        public ExpressionNode right;
-        public BaseNode body;
-
-        internal ForInStatementNode([NotNull] Parser parser, Position start, Position end) :
+        internal ForInStatementNode([NotNull] Parser parser, Position start, Position end, BaseNode left, ExpressionNode right, BaseNode body) :
             base(parser, start, end)
         {
+            Left = left;
+            Right = right;
+            Body = body;
         }
+
+        public BaseNode Left { get; }
+        public ExpressionNode Right { get; }
+        public BaseNode Body { get; }
     }
 }

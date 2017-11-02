@@ -4,13 +4,16 @@ namespace AcornSharp.Node
 {
     public sealed class BinaryExpressionNode : ExpressionNode
     {
-        public ExpressionNode left;
-        public ExpressionNode right;
-        public Operator @operator;
-
-        internal BinaryExpressionNode([NotNull] Parser parser, Position start, Position end) :
+        internal BinaryExpressionNode([NotNull] Parser parser, Position start, Position end, ExpressionNode left, ExpressionNode right, Operator @operator) :
             base(parser, start, end)
         {
+            Left = left;
+            Right = right;
+            Operator = @operator;
         }
+
+        public ExpressionNode Left { get; }
+        public ExpressionNode Right { get; }
+        public Operator Operator { get; }
     }
 }

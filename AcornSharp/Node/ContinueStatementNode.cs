@@ -4,11 +4,12 @@ namespace AcornSharp.Node
 {
     public sealed class ContinueStatementNode : BaseNode
     {
-        public IdentifierNode label;
-
-        internal ContinueStatementNode([NotNull] Parser parser, Position start, Position end) :
+        internal ContinueStatementNode([NotNull] Parser parser, Position start, Position end, IdentifierNode label) :
             base(parser, start, end)
         {
+            Label = label;
         }
+
+        public IdentifierNode Label { get; }
     }
 }

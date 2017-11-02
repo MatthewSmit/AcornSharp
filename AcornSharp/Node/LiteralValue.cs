@@ -12,7 +12,8 @@ namespace AcornSharp.Node
             Null,
             Boolean,
             Double,
-            String
+            String,
+            Regex
         }
 
         [StructLayout(LayoutKind.Explicit)]
@@ -36,6 +37,7 @@ namespace AcornSharp.Node
 
         private readonly Union union;
         private readonly string stringValue;
+        private readonly RegexNode regexValue;
         private readonly Type type;
 
         private LiteralValue(Type type)
@@ -62,6 +64,12 @@ namespace AcornSharp.Node
             stringValue = value;
         }
 
+        public LiteralValue(RegexNode value)
+            : this(Type.Regex)
+        {
+            regexValue = value;
+        }
+
         public bool Equals(LiteralValue other)
         {
             if (type != other.type)
@@ -77,6 +85,8 @@ namespace AcornSharp.Node
                     return union.doubleValue == other.union.doubleValue;
                 case Type.String:
                     return stringValue == other.stringValue;
+                case Type.Regex:
+                    return regexValue.Equals(other.regexValue);
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -100,6 +110,8 @@ namespace AcornSharp.Node
                     return union.doubleValue.GetHashCode();
                 case Type.String:
                     return stringValue.GetHashCode();
+                case Type.Regex:
+                    return regexValue.GetHashCode();
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -118,6 +130,8 @@ namespace AcornSharp.Node
                     return union.doubleValue.ToString(CultureInfo.InvariantCulture);
                 case Type.String:
                     return stringValue;
+                case Type.Regex:
+                    return regexValue.ToString();
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -140,6 +154,13 @@ namespace AcornSharp.Node
             return new LiteralValue(value);
         }
 
+        public static implicit operator LiteralValue([CanBeNull] RegexNode value)
+        {
+            if (value == null)
+                return new LiteralValue();
+            return new LiteralValue(value);
+        }
+
         public static bool operator ==(LiteralValue left, LiteralValue right)
         {
             return left.Equals(right);
@@ -154,6 +175,7 @@ namespace AcornSharp.Node
         public bool IsBoolean => type == Type.Boolean;
         public bool IsDouble => type == Type.Double;
         public bool IsString => type == Type.String;
+        public bool IsRegex => type == Type.Regex;
 
         public bool AsBoolean
         {
@@ -182,6 +204,16 @@ namespace AcornSharp.Node
                 if (!IsString)
                     throw new InvalidOperationException();
                 return stringValue;
+            }
+        }
+
+        public RegexNode AsRegex
+        {
+            get
+            {
+                if (!IsRegex)
+                    throw new InvalidOperationException();
+                return regexValue;
             }
         }
     }

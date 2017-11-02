@@ -4,12 +4,14 @@ namespace AcornSharp.Node
 {
     public sealed class LabelledStatementNode : BaseNode
     {
-        public IdentifierNode label;
-        public BaseNode body;
-
-        internal LabelledStatementNode([NotNull] Parser parser, Position start, Position end) :
+        internal LabelledStatementNode([NotNull] Parser parser, Position start, Position end, IdentifierNode label, BaseNode body) :
             base(parser, start, end)
         {
+            Label = label;
+            Body = body;
         }
+
+        public IdentifierNode Label { get; }
+        public BaseNode Body { get; }
     }
 }

@@ -4,12 +4,14 @@ namespace AcornSharp.Node
 {
     public sealed class ExportSpecifierNode : BaseNode
     {
-        public IdentifierNode local;
-        public IdentifierNode exported;
-
-        internal ExportSpecifierNode([NotNull] Parser parser, Position start, Position end) :
+        internal ExportSpecifierNode([NotNull] Parser parser, Position start, Position end, IdentifierNode local, IdentifierNode exported) :
             base(parser, start, end)
         {
+            Local = local;
+            Exported = exported;
         }
+
+        public IdentifierNode Local { get; }
+        public IdentifierNode Exported { get; }
     }
 }

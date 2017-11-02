@@ -4,11 +4,12 @@ namespace AcornSharp.Node
 {
     public sealed class ExportDefaultDeclarationNode : BaseNode
     {
-        public BaseNode declaration;
-
-        internal ExportDefaultDeclarationNode([NotNull] Parser parser, Position start, Position end) :
+        internal ExportDefaultDeclarationNode([NotNull] Parser parser, Position start, Position end, BaseNode declaration) :
             base(parser, start, end)
         {
+            Declaration = declaration;
         }
+
+        public BaseNode Declaration { get; }
     }
 }

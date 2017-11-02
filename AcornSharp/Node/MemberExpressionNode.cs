@@ -4,16 +4,16 @@ namespace AcornSharp.Node
 {
     public sealed class MemberExpressionNode : ExpressionNode
     {
-        public readonly BaseNode @object;
-        public readonly BaseNode property;
-        public readonly bool computed;
-
-        internal MemberExpressionNode([NotNull] Parser parser, Position start, Position end, BaseNode @object, BaseNode property, bool computed) :
+        internal MemberExpressionNode([NotNull] Parser parser, Position start, Position end, ExpressionNode @object, ExpressionNode property, bool computed) :
             base(parser, start, end)
         {
-            this.@object = @object;
-            this.property = property;
-            this.computed = computed;
+            Object = @object;
+            Property = property;
+            Computed = computed;
         }
+
+        public ExpressionNode Object { get; }
+        public ExpressionNode Property { get; }
+        public bool Computed { get; }
     }
 }

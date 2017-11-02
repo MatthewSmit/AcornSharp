@@ -8931,8 +8931,8 @@ namespace AcornSharp.Cli
                             type = typeof(LiteralNode),
                             regex = new RegexNode
                             {
-                                pattern = "[a-z]",
-                                flags = "u"
+                                Pattern = "[a-z]",
+                                Flags = "u"
                             },
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 8, 8))
                         }
@@ -8956,8 +8956,8 @@ namespace AcornSharp.Cli
                             type = typeof(LiteralNode),
                             regex = new RegexNode
                             {
-                                pattern = "[\\uD834\\uDF06-\\uD834\\uDF08a-z]",
-                                flags = "u"
+                                Pattern = "[\\uD834\\uDF06-\\uD834\\uDF08a-z]",
+                                Flags = "u"
                             },
                             location = new SourceLocation(new Position(1, 0, 0), new Position(1, 33, 33))
                         }
@@ -10357,8 +10357,8 @@ namespace AcornSharp.Cli
                                                 location = new SourceLocation(new Position(1, 3, 3), new Position(1, 7, 7)),
                                                 regex = new RegexNode
                                                 {
-                                                    pattern = "\\d",
-                                                    flags = ""
+                                                    Pattern = "\\d",
+                                                    Flags = ""
                                                 },
                                                 raw = "/\\d/"
                                             },
@@ -10819,8 +10819,8 @@ namespace AcornSharp.Cli
                             type = typeof(LiteralNode),
                             regex = new RegexNode
                             {
-                                pattern = "[a-z]",
-                                flags = "gimuy"
+                                Pattern = "[a-z]",
+                                Flags = "gimuy"
                             }
                         }
                     }
@@ -11765,8 +11765,8 @@ namespace AcornSharp.Cli
                                         raw = "/1/g",
                                         regex = new RegexNode
                                         {
-                                            pattern = "1",
-                                            flags = "g"
+                                            Pattern = "1",
+                                            Flags = "g"
                                         }
                                     }
                                 }

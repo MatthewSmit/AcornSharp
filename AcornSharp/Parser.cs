@@ -134,7 +134,7 @@ namespace AcornSharp
         [NotNull]
         public ProgramNode Parse()
         {
-            var node = Options.program ?? new ProgramNode(this, start, lastTokEnd, Options.sourceType);
+            var node = Options.program ?? new ProgramNode(this, start, lastTokEnd, Options.sourceType, new List<BaseNode>());
             if (node.SourceType != Options.sourceType)
                 throw new InvalidOperationException();
             if (Options.ecmaVersion < 6 && node.SourceType != SourceType.Script)

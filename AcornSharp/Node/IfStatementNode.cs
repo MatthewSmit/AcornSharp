@@ -4,16 +4,16 @@ namespace AcornSharp.Node
 {
     public sealed class IfStatementNode : BaseNode
     {
-        public readonly BaseNode test;
-        public readonly BaseNode consequent;
-        public readonly BaseNode alternate;
-
-        internal IfStatementNode([NotNull] Parser parser, Position start, Position end, BaseNode test, BaseNode consequent, BaseNode alternate) :
+        internal IfStatementNode([NotNull] Parser parser, Position start, Position end, ExpressionNode test, BaseNode consequent, BaseNode alternate) :
             base(parser, start, end)
         {
-            this.test = test;
-            this.consequent = consequent;
-            this.alternate = alternate;
+            Test = test;
+            Consequent = consequent;
+            Alternate = alternate;
         }
+
+        public ExpressionNode Test { get; }
+        public BaseNode Consequent { get; }
+        public BaseNode Alternate { get; }
     }
 }
