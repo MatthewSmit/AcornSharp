@@ -20,7 +20,7 @@ namespace AcornSharp.Cli
             Console.WriteLine("Tests run in " + duration + "ms");
         }
 
-        public static void Test(string code, [NotNull] BaseNode expectedAst, Options options = null)
+        public static void Test(string code, [NotNull] TestNode expectedAst, Options options = null)
         {
             if (options == null)
                 options = new Options();
