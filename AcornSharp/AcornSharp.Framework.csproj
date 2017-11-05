@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DF45A515-EB67-407D-98D4-939DA28D0A66}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AcornSharp</RootNamespace>
+    <AssemblyName>AcornSharp</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=11.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.11.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Acorn.cs" />
+    <Compile Include="Expression.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Identifier.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="LVal.cs" />
+    <Compile Include="Node\ArrayExpressionNode.cs" />
+    <Compile Include="Node\ArrayPatternNode.cs" />
+    <Compile Include="Node\ArrowFunctionExpressionNode.cs" />
+    <Compile Include="Node\AssignmentExpressionNode.cs" />
+    <Compile Include="Node\AssignmentPatternNode.cs" />
+    <Compile Include="Node\AwaitExpressionNode.cs" />
+    <Compile Include="Node\BaseNode.cs" />
+    <Compile Include="Node\BinaryExpressionNode.cs" />
+    <Compile Include="Node\BlockStatementNode.cs" />
+    <Compile Include="Node\BreakStatementNode.cs" />
+    <Compile Include="Node\CallExpressionNode.cs" />
+    <Compile Include="Node\CatchClauseNode.cs" />
+    <Compile Include="Node\ClassBodyNode.cs" />
+    <Compile Include="Node\ClassDeclarationNode.cs" />
+    <Compile Include="Node\ClassExpressionNode.cs" />
+    <Compile Include="Node\ConditionalExpressionNode.cs" />
+    <Compile Include="Node\ContinueStatementNode.cs" />
+    <Compile Include="Node\DebuggerStatementNode.cs" />
+    <Compile Include="Node\DoWhileStatementNode.cs" />
+    <Compile Include="Node\EmptyStatementNode.cs" />
+    <Compile Include="Node\ExportAllDeclarationNode.cs" />
+    <Compile Include="Node\ExportDefaultDeclarationNode.cs" />
+    <Compile Include="Node\ExportNamedDeclarationNode.cs" />
+    <Compile Include="Node\ExportSpecifierNode.cs" />
+    <Compile Include="Node\ExpressionNode.cs" />
+    <Compile Include="Node\ExpressionStatementNode.cs" />
+    <Compile Include="Node\ForInStatementNode.cs" />
+    <Compile Include="Node\ForOfStatementNode.cs" />
+    <Compile Include="Node\ForStatementNode.cs" />
+    <Compile Include="Node\FunctionDeclarationNode.cs" />
+    <Compile Include="Node\FunctionExpressionNode.cs" />
+    <Compile Include="Node\IDeclarationNode.cs" />
+    <Compile Include="Node\IdentifierNode.cs" />
+    <Compile Include="Node\IfStatementNode.cs" />
+    <Compile Include="Node\ImportDeclarationNode.cs" />
+    <Compile Include="Node\ImportDefaultSpecifierNode.cs" />
+    <Compile Include="Node\ImportNamespaceSpecifierNode.cs" />
+    <Compile Include="Node\ImportSpecifierNode.cs" />
+    <Compile Include="Node\LabelledStatementNode.cs" />
+    <Compile Include="Node\LiteralNode.cs" />
+    <Compile Include="Node\LiteralValue.cs" />
+    <Compile Include="Node\LogicalExpressionNode.cs" />
+    <Compile Include="Node\MemberExpressionNode.cs" />
+    <Compile Include="Node\MetaPropertyNode.cs" />
+    <Compile Include="Node\MethodDefinitionNode.cs" />
+    <Compile Include="Node\NewExpressionNode.cs" />
+    <Compile Include="Node\ObjectExpressionNode.cs" />
+    <Compile Include="Node\ObjectPatternNode.cs" />
+    <Compile Include="Node\ParenthesisedExpressionNode.cs" />
+    <Compile Include="Node\ProgramNode.cs" />
+    <Compile Include="Node\PropertyNode.cs" />
+    <Compile Include="Node\RestElementNode.cs" />
+    <Compile Include="Node\ReturnStatementNode.cs" />
+    <Compile Include="Node\SequenceExpressionNode.cs" />
+    <Compile Include="Node\SpreadElementNode.cs" />
+    <Compile Include="Node\SuperNode.cs" />
+    <Compile Include="Node\SwitchCaseNode.cs" />
+    <Compile Include="Node\SwitchStatementNode.cs" />
+    <Compile Include="Node\TaggedTemplateExpressionNode.cs" />
+    <Compile Include="Node\TemplateElementNode.cs" />
+    <Compile Include="Node\TemplateLiteralNode.cs" />
+    <Compile Include="Node\TemplateNode.cs" />
+    <Compile Include="Node\ThisExpressionNode.cs" />
+    <Compile Include="Node\ThrowStatementNode.cs" />
+    <Compile Include="Node\TryStatementNode.cs" />
+    <Compile Include="Node\UnaryExpressionNode.cs" />
+    <Compile Include="Node\UpdateExpressionNode.cs" />
+    <Compile Include="Node\VariableDeclarationNode.cs" />
+    <Compile Include="Node\VariableDeclaratorNode.cs" />
+    <Compile Include="Node\WhileStatementNode.cs" />
+    <Compile Include="Node\WithStatementNode.cs" />
+    <Compile Include="Node\YieldExpressionNode.cs" />
+    <Compile Include="Operator.cs" />
+    <Compile Include="Options.cs" />
+    <Compile Include="Parser.cs" />
+    <Compile Include="ParseUtil.cs" />
+    <Compile Include="Position.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyKind.cs" />
+    <Compile Include="RegexNode.cs" />
+    <Compile Include="Scope.cs" />
+    <Compile Include="SourceLocation.cs" />
+    <Compile Include="SourceType.cs" />
+    <Compile Include="Statement.cs" />
+    <Compile Include="SyntaxError.cs" />
+    <Compile Include="TokContext.cs" />
+    <Compile Include="Token.cs" />
+    <Compile Include="TokenContext.cs" />
+    <Compile Include="TokenInformation.cs" />
+    <Compile Include="Tokenise.cs" />
+    <Compile Include="TokenType.cs" />
+    <Compile Include="VariableKind.cs" />
+    <Compile Include="Whitespace.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

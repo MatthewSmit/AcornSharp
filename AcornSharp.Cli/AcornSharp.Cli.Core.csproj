@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AcornSharp\AcornSharp.csproj" />
+    <ProjectReference Include="..\AcornSharp\AcornSharp.Core.csproj" />
   </ItemGroup>
 
 </Project>
