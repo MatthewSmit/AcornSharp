@@ -17,6 +17,8 @@ namespace AcornSharp
         private static readonly Regex ecmascript5KeywordsRegex = new Regex("^(?:break|case|catch|continue|debugger|default|do|else|finally|for|function|if|return|switch|throw|try|var|while|with|null|true|false|instanceof|typeof|void|delete|new|in|this)$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
         private static readonly Regex ecmascript6KeywordsRegex = new Regex("^(?:break|case|catch|continue|debugger|default|do|else|finally|for|function|if|return|switch|throw|try|var|while|with|null|true|false|instanceof|typeof|void|delete|new|in|this|const|class|extends|export|import|super)$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
+        private static readonly Regex keywordRelationalOperator = new Regex("^in(stanceof)?$");
+
         private static readonly (Regex, Regex, Regex) ecmascriptNoReservedRegex = (
             new Regex("^(?:)$", RegexOptions.Compiled | RegexOptions.CultureInvariant),
             new Regex("^(?:" + strictReservedWords + ")$", RegexOptions.Compiled | RegexOptions.CultureInvariant),

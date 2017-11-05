@@ -40,7 +40,7 @@ namespace AcornSharp
                 while (isIdentifierChar(input.Get(pos), true))
                     ++pos;
                 var ident = input.Substring(next, pos - next);
-                if (!keywords.IsMatch(ident))
+                if (!keywordRelationalOperator.IsMatch(ident))
                     return true;
             }
             return false;

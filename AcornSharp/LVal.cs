@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using AcornSharp.Node;
 using JetBrains.Annotations;
 
@@ -27,31 +26,22 @@ namespace AcornSharp
 
                     case ObjectPatternNode _:
                     case ArrayPatternNode _:
+                    case RestElementNode _:
                         break;
 
                     case ObjectExpressionNode objectExpression:
                         var newProperties = new PropertyNode[objectExpression.Properties.Count];
                         for (var i = 0; i < newProperties.Length; i++)
-                        {
-                            var property = objectExpression.Properties[i];
-                            if (property.Kind != PropertyKind.Initialise)
-                                raise(property.Key.Location.Start, "Object pattern can't contain getter or setter");
-
-                            newProperties[i] = new PropertyNode(this,
-                                property.Location.Start,
-                                property.Location.End,
-                                property.Kind,
-                                property.Computed,
-                                property.Shorthand,
-                                property.Method,
-                                property.Key,
-                                toAssignable(property.Value, isBinding));
-                        }
+                            newProperties[i] = toAssignable(objectExpression.Properties[i], isBinding);
                         node = new ObjectPatternNode(this, node.Location.Start, node.Location.End, newProperties);
                         break;
 
                     case ArrayExpressionNode arrayExpression:
                         node = new ArrayPatternNode(this, node.Location.Start, node.Location.End, toAssignableList(arrayExpression.Elements, isBinding));
+                        break;
+
+                    case SpreadElementNode spreadElement:
+                        node = new RestElementNode(this, node.Location.Start, node.Location.End, toAssignable(spreadElement.Argument, isBinding));
                         break;
 
                     case AssignmentExpressionNode assignmentExpression:
@@ -84,35 +74,44 @@ namespace AcornSharp
             return node;
         }
 
+        [ContractAnnotation("property:notnull=>notnull")]
+        private PropertyNode toAssignable([CanBeNull] PropertyNode property, bool isBinding = false)
+        {
+            if (property == null)
+                return null;
+
+            if (property.Kind != PropertyKind.Initialise)
+                raise(property.Key.Location.Start, "Object pattern can't contain getter or setter");
+
+            return new PropertyNode(this,
+                property.Location.Start,
+                property.Location.End,
+                property.Kind,
+                property.Computed,
+                property.Shorthand,
+                property.Method,
+                property.Key,
+                toAssignable(property.Value, isBinding));
+        }
+
         // Convert list of expression atoms to binding list.
         [NotNull]
         private IReadOnlyList<ExpressionNode> toAssignableList([NotNull] IReadOnlyList<ExpressionNode> expressionList, bool isBinding)
         {
-            var newList = expressionList.ToArray();
-            var end = expressionList.Count;
-            if (end != 0)
+            var newList = new ExpressionNode[expressionList.Count];
+            for (var i = 0; i < newList.Length; i++)
             {
-                var last = expressionList[end - 1];
-                if (last is RestElementNode)
-                {
-                    --end;
-                }
-                else if (last is SpreadElementNode spreadElement)
-                {
-                    newList[end - 1] = last = new RestElementNode(this, last.Location.Start, last.Location.End, toAssignable(spreadElement.Argument, isBinding));
-                    --end;
-                }
+                var element = expressionList[i];
+                if (element != null) newList[i] = toAssignable(element, isBinding);
+            }
 
+            if (newList.Length != 0)
+            {
+                var last = newList[newList.Length - 1];
                 if (Options.ecmaVersion == 6 && isBinding && last is RestElementNode restElementNode && !(restElementNode.Argument is IdentifierNode))
                 {
                     raise(restElementNode.Argument.Location.Start, "Unexpected token");
                 }
-            }
-
-            for (var i = 0; i < end; i++)
-            {
-                if (newList[i] != null)
-                    newList[i] = toAssignable(newList[i], isBinding);
             }
 
             return newList;
@@ -246,15 +245,23 @@ namespace AcornSharp
                         }
                     }
                     break;
+
                 case MemberExpressionNode _:
                     if (bindingType != null) raiseRecoverable(expr.Location.Start, "Binding" + " member expression");
                     break;
+
                 case ObjectPatternNode objectPattern:
                     foreach (var prop in objectPattern.Properties)
                     {
-                        checkLVal(prop.Value, isBinding, bindingType, checkClashes);
+                        checkLVal(prop, isBinding, bindingType, checkClashes);
                     }
                     break;
+
+                case PropertyNode property:
+                    // AssignmentProperty has type == "Property"
+                    checkLVal(property.Value, isBinding, bindingType, checkClashes);
+                    break;
+
                 case ArrayPatternNode arrayPattern:
                     foreach (var elem in arrayPattern.Elements)
                     {
@@ -264,15 +271,19 @@ namespace AcornSharp
                         }
                     }
                     break;
+
                 case AssignmentPatternNode assignmentPattern:
                     checkLVal(assignmentPattern.Left, isBinding, bindingType, checkClashes);
                     break;
+
                 case RestElementNode restElement:
                     checkLVal(restElement.Argument, isBinding, bindingType, checkClashes);
                     break;
+
                 case ParenthesisedExpressionNode parenthesisedExpressionNode:
                     checkLVal(parenthesisedExpressionNode.Expression, isBinding, bindingType, checkClashes);
                     break;
+
                 default:
                     raise(expr.Location.Start, (bindingType != null ? "Binding" : "Assigning to") + " rvalue");
                     break;

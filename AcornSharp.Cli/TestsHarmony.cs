@@ -2515,7 +2515,7 @@ namespace AcornSharp.Cli
                                 init = new TestNode
                                 {
                                     type = typeof(ArrayExpressionNode),
-                                    elements = new List<TestNode> { },
+                                    elements = new List<TestNode>(),
                                     location = new SourceLocation(new Position(1, 12, 12), new Position(1, 14, 14))
                                 },
                                 location = new SourceLocation(new Position(1, 6, 6), new Position(1, 14, 14))
@@ -2607,7 +2607,7 @@ namespace AcornSharp.Cli
                                 init = new TestNode
                                 {
                                     type = typeof(ArrayExpressionNode),
-                                    elements = new List<TestNode> { },
+                                    elements = new List<TestNode>(),
                                     location = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12))
                                 },
                                 location = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12))
@@ -2699,7 +2699,7 @@ namespace AcornSharp.Cli
                                 init = new TestNode
                                 {
                                     type = typeof(ArrayExpressionNode),
-                                    elements = new List<TestNode> { },
+                                    elements = new List<TestNode>(),
                                     location = new SourceLocation(new Position(1, 10, 10), new Position(1, 12, 12))
                                 },
                                 location = new SourceLocation(new Position(1, 4, 4), new Position(1, 12, 12))
@@ -7700,6 +7700,7 @@ namespace AcornSharp.Cli
             });
 
             Program.TestFail("function x(...[ a, b ]){}", "Unexpected token (1:14)", new Options {ecmaVersion = 6});
+            Program.TestFail("(([...[ a, b ]]) => {})", "Unexpected token (1:6)", new Options {ecmaVersion = 6});
 
             Program.TestFail("function x({ a: { w, x }, b: [y, z] }, ...[a, b, c]){}", "Unexpected token (1:42)", new Options {ecmaVersion = 6});
 
@@ -9078,7 +9079,7 @@ namespace AcornSharp.Cli
 
             Program.TestFail("var default", "Unexpected keyword 'default' (1:4)", new Options {ecmaVersion = 6});
 
-            Program.TestFail("let default", "Unexpected token (1:4)", new Options {ecmaVersion = 6});
+            Program.TestFail("let default", "Unexpected keyword 'default' (1:4)", new Options {ecmaVersion = 6});
 
             Program.TestFail("const default", "Unexpected keyword 'default' (1:6)", new Options {ecmaVersion = 6});
 

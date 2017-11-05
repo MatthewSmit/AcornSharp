@@ -574,7 +574,6 @@ namespace AcornSharp
                 var oldYieldPos = yieldPos;
                 var oldAwaitPos = awaitPos;
                 Position spreadStart = default;
-                Position innerParenStart = default;
                 yieldPos = default;
                 awaitPos = default;
                 while (type != TokenType.parenR)
@@ -594,10 +593,6 @@ namespace AcornSharp
                         if (type == TokenType.comma) raise(start, "Comma is not permitted after the rest element");
                         break;
                     }
-                    if (type == TokenType.parenL && innerParenStart.Line == 0)
-                    {
-                        innerParenStart = start;
-                    }
                     exprList.Add(ParseMaybeAssign(false, refDestructuringErrors, (parser, item, position, location) => item));
                 }
                 var innerEndLoc = start;
@@ -607,10 +602,6 @@ namespace AcornSharp
                 {
                     checkPatternErrors(refDestructuringErrors, false);
                     checkYieldAwaitInDefaultParams();
-                    if (innerParenStart.Line > 0)
-                    {
-                        raise(innerParenStart, "Unexpected token");
-                    }
                     yieldPos = oldYieldPos;
                     awaitPos = oldAwaitPos;
                     return parseParenArrowList(startLoc, exprList);
