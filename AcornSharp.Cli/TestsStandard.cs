@@ -7670,6 +7670,60 @@ namespace AcornSharp.Cli
                 },
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 34, 34))
             }, null);
+            
+            Program.Test("done: switch (a) { default: break done }", new TestNode
+            {
+                type = typeof(ProgramNode),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 40, 40)),
+                body = new List<TestNode>
+                {
+                    new TestNode
+                    {
+                        type = typeof(LabelledStatementNode),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 40, 40)),
+                        body = new TestNode
+                        {
+                            type = typeof(SwitchStatementNode),
+                            location = new SourceLocation(new Position(1, 6, 6), new Position(1, 40, 40)),
+                            discriminant = new TestNode
+                            {
+                                type = typeof(IdentifierNode),
+                                location = new SourceLocation(new Position(1, 14, 14), new Position(1, 15, 15)),
+                                name = "a"
+                            },
+                            cases = new List<TestNode>
+                            {
+                                new TestNode
+                                {
+                                    type = typeof(SwitchCaseNode),
+                                    location = new SourceLocation(new Position(1, 19, 19), new Position(1, 38, 38)),
+                                    consequent = new List<TestNode>
+                                    {
+                                        new TestNode
+                                        {
+                                            type = typeof(BreakStatementNode),
+                                            location = new SourceLocation(new Position(1, 28, 28), new Position(1, 38, 38)),
+                                            label = new TestNode
+                                            {
+                                                type = typeof(IdentifierNode),
+                                                location = new SourceLocation(new Position(1, 34, 34), new Position(1, 38, 38)),
+                                                name = "done"
+                                            }
+                                        }
+                                    },
+                                    test = null
+                                }
+                            }
+                        },
+                        label = new TestNode
+                        {
+                            type = typeof(IdentifierNode),
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 4, 4)),
+                            name = "done"
+                        }
+                    }
+                }
+            });
 
             Program.Test("target1: target2: while (true) { continue target1; }", new TestNode {type = typeof(ProgramNode)}, null);
             Program.Test("target1: target2: target3: while (true) { continue target1; }", new TestNode {type = typeof(ProgramNode)}, null);
@@ -9776,6 +9830,57 @@ namespace AcornSharp.Cli
                     }
                 }
             }, null);
+            
+            Program.Test("a: { b: switch(x) {} }", new TestNode
+            {
+                type = typeof(ProgramNode),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
+                body = new List<TestNode>
+                {
+                    new TestNode
+                    {
+                        type = typeof(LabelledStatementNode),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 22, 22)),
+                        body = new TestNode
+                        {
+                            type = typeof(BlockStatementNode),
+                            location = new SourceLocation(new Position(1, 3, 3), new Position(1, 22, 22)),
+                            body = new List<TestNode>
+                            {
+                                new TestNode
+                                {
+                                    type = typeof(LabelledStatementNode),
+                                    location = new SourceLocation(new Position(1, 5, 5), new Position(1, 20, 20)),
+                                    body = new TestNode
+                                    {
+                                        type = typeof(SwitchStatementNode),
+                                        location = new SourceLocation(new Position(1, 8, 8), new Position(1, 20, 20)),
+                                        discriminant = new TestNode
+                                        {
+                                            type = typeof(IdentifierNode),
+                                            location = new SourceLocation(new Position(1, 15, 15), new Position(1, 16, 16)),
+                                            name = "x"
+                                        },
+                                        cases = new List<TestNode>()
+                                    },
+                                    label = new TestNode
+                                    {
+                                        type = typeof(IdentifierNode),
+                                        location = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)),
+                                        name = "b"
+                                    }
+                                }
+                            }
+                        },
+                        label = new TestNode
+                        {
+                            type = typeof(IdentifierNode),
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 1, 1)),
+                            name = "a"
+                        }
+                    }
+                }
+            });
 
             Program.Test("(function () {\n 'use strict';\n '\0';\n}())", new TestNode
             {
@@ -10613,6 +10718,10 @@ namespace AcornSharp.Cli
             Program.TestFail("for(let x = 0;;);", "Unexpected token (1:8)", null);
 
             Program.TestFail("function a(b = c) {}", "Unexpected token (1:13)", null);
+            
+            Program.TestFail("switch (x) { something }", "Unexpected token (1:13)");
+            
+            Program.TestFail("`abc`", "Unexpected character '`' (1:0)", new Options {ecmaVersion = 5});
 
             Program.Test("let++", new TestNode
             {

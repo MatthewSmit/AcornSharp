@@ -475,6 +475,7 @@ namespace AcornSharp
                 var label = labels[i];
                 if (label.statementStart == nodeStart.Index)
                 {
+                    // Update information about previous labels on this node
                     label.statementStart = start.Index;
                     label.kind = kind;
                 }
@@ -707,7 +708,7 @@ namespace AcornSharp
                         (computed, key) = parsePropertyName();
                     }
                     if (!@static && (key is IdentifierNode identifierNode3 && identifierNode3.Name == "constructor" ||
-                                            key is LiteralNode literal && literal.Value.ToString() == "constructor"))
+                                     key is LiteralNode literal && literal.Value.ToString() == "constructor"))
                     {
                         if (hadConstructor) raise(key.Location.Start, "Duplicate constructor in the same class");
                         if (isGetSet) raise(key.Location.Start, "Constructor can't have get/set modifier");
@@ -716,7 +717,12 @@ namespace AcornSharp
                         kind = PropertyKind.Constructor;
                         hadConstructor = true;
                     }
+                    else if (@static && key is IdentifierNode keyIdentifier && keyIdentifier.Name == "prototype")
+                    {
+                        raise(key.Location.Start, "Classes may not have a static property named prototype");
+                    }
                 }
+
                 var methodValue = parseMethod(isGenerator, isAsync);
 
                 if (isGetSet)
@@ -775,15 +781,9 @@ namespace AcornSharp
             if (eat(TokenType.star))
             {
                 expectContextual("from");
-                ExpressionNode source = null;
-                if (type == TokenType.@string)
-                {
-                    source = ParseExpressionAtom();
-                }
-                else
-                {
+                if (type != TokenType.@string)
                     raise(start, "Unexpected token");
-                }
+                var source = ParseExpressionAtom();
                 semicolon();
                 return new ExportAllDeclarationNode(this, nodeStart, lastTokEnd, source);
             }
@@ -838,14 +838,9 @@ namespace AcornSharp
                     specifiers = parseExportSpecifiers(exports);
                     if (eatContextual("from"))
                     {
-                        if (type == TokenType.@string)
-                        {
-                            source = ParseExpressionAtom();
-                        }
-                        else
-                        {
+                        if (type != TokenType.@string)
                             raise(start, "Unexpected token");
-                        }
+                        source = ParseExpressionAtom();
                     }
                     else
                     {

@@ -45,18 +45,14 @@ namespace AcornSharp
                         break;
 
                     case AssignmentExpressionNode assignmentExpression:
-                        if (assignmentExpression.Operator == Operator.Assignment)
-                        {
-                            var left = toAssignable(assignmentExpression.Left, isBinding);
-                            var right = assignmentExpression.Right;
-                            node = new AssignmentPatternNode(this, node.Location.Start, node.Location.End, left, right);
-                            goto AssignmentPatternNode;
-                        }
-                        else
+                        if (assignmentExpression.Operator != Operator.Assignment)
                         {
                             raise(assignmentExpression.Left.Location.End, "Only '=' operator can be used for specifying default value.");
-                            break;
                         }
+                        var left = toAssignable(assignmentExpression.Left, isBinding);
+                        var right = assignmentExpression.Right;
+                        node = new AssignmentPatternNode(this, node.Location.Start, node.Location.End, left, right);
+                        goto AssignmentPatternNode;
 
                     case AssignmentPatternNode _:
                         AssignmentPatternNode:

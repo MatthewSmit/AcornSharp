@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using AcornSharp.Node;
 using JetBrains.Annotations;
 
 namespace AcornSharp.Cli
@@ -7,6 +9,7 @@ namespace AcornSharp.Cli
     {
         private static void Main()
         {
+//            SandboxTest.Test();
             TestSuite();
         }
 
@@ -26,6 +29,7 @@ namespace AcornSharp.Cli
             var duration = DateTime.Now - t0;
             Console.WriteLine("Tests run in " + duration + "ms");
         }
+
         public static void Test([NotNull] string code, [NotNull] TestNode expectedAst, [CanBeNull] Options options = null)
         {
             if (options == null)
@@ -57,6 +61,13 @@ namespace AcornSharp.Cli
                     throw;
                 }
             }
+        }
+    }
+
+    internal static class SandboxTest
+    {
+        public static void Test()
+        {
         }
     }
 }

@@ -2395,6 +2395,110 @@ namespace AcornSharp.Cli
             {
                 ecmaVersion = 6
             });
+            
+            Program.Test("[a.r] = b", new TestNode
+            {
+                type = typeof(ProgramNode),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)),
+                body = new List<TestNode>
+                {
+                    new TestNode
+                    {
+                        type = typeof(ExpressionStatementNode),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)),
+                        expression = new TestNode
+                        {
+                            type = typeof(AssignmentExpressionNode),
+                            location = new SourceLocation(new Position(1, 0, 0), new Position(1, 9, 9)),
+                            @operator = Operator.Assignment,
+                            left = new TestNode
+                            {
+                                type = typeof(ArrayPatternNode),
+                                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 5, 5)),
+                                elements = new List<TestNode>
+                                {
+                                    new TestNode
+                                    {
+                                        type = typeof(MemberExpressionNode),
+                                        location = new SourceLocation(new Position(1, 1, 1), new Position(1, 4, 4)),
+                                        @object = new TestNode
+                                        {
+                                            type = typeof(IdentifierNode),
+                                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 2, 2)),
+                                            name = "a"
+                                        },
+                                        property = new TestNode
+                                        {
+                                            type = typeof(IdentifierNode),
+                                            location = new SourceLocation(new Position(1, 3, 3), new Position(1, 4, 4)),
+                                            name = "r"
+                                        },
+                                        computed = false
+                                    }
+                                }
+                            },
+                            right = new TestNode
+                            {
+                                type = typeof(IdentifierNode),
+                                location = new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)),
+                                name = "b"
+                            }
+                        }
+                    }
+                },
+                source = SourceType.Script
+            }, new Options {ecmaVersion = 6});
+
+            Program.Test("let [a,,b] = c", new TestNode
+            {
+                type = typeof(ProgramNode),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
+                body = new List<TestNode>
+                {
+                    new TestNode
+                    {
+                        type = typeof(VariableDeclarationNode),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 14, 14)),
+                        declarations = new List<TestNode>
+                        {
+                            new TestNode
+                            {
+                                type = typeof(VariableDeclaratorNode),
+                                location = new SourceLocation(new Position(1, 4, 4), new Position(1, 14, 14)),
+                                id = new TestNode
+                                {
+                                    type = typeof(ArrayPatternNode),
+                                    location = new SourceLocation(new Position(1, 4, 4), new Position(1, 10, 10)),
+                                    elements = new List<TestNode>
+                                    {
+                                        new TestNode
+                                        {
+                                            type = typeof(IdentifierNode),
+                                            location = new SourceLocation(new Position(1, 5, 5), new Position(1, 6, 6)),
+                                            name = "a"
+                                        },
+                                        null,
+                                        new TestNode
+                                        {
+                                            type = typeof(IdentifierNode),
+                                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 9, 9)),
+                                            name = "b"
+                                        }
+                                    }
+                                },
+                                init = new TestNode
+                                {
+                                    type = typeof(IdentifierNode),
+                                    location = new SourceLocation(new Position(1, 13, 13), new Position(1, 14, 14)),
+                                    name = "c"
+                                }
+                            }
+                        },
+                        kind = VariableKind.Let
+                    }
+                },
+                source = SourceType.Script
+            }, new Options {ecmaVersion = 6});
 
             Program.Test("({ responseText: text } = res)", new TestNode
             {
@@ -3764,6 +3868,9 @@ namespace AcornSharp.Cli
             Program.TestFail("import { enum } from 'foo'", "The keyword 'enum' is reserved (1:9)", new Options {ecmaVersion = 6, sourceType = SourceType.Module});
             Program.TestFail("import { a as enum } from 'foo'", "The keyword 'enum' is reserved (1:14)", new Options {ecmaVersion = 6, sourceType = SourceType.Module});
             Program.TestFail("import * as enum from 'foo'", "The keyword 'enum' is reserved (1:12)", new Options {ecmaVersion = 6, sourceType = SourceType.Module});
+            Program.TestFail("() => { class a extends b { static get prototype(){} } }", "Classes may not have a static property named prototype (1:39)", new Options {ecmaVersion= 6});
+            Program.TestFail("class a extends b { static set prototype(){} }", "Classes may not have a static property named prototype (1:31)", new Options {ecmaVersion= 6});
+            Program.TestFail("class a { static prototype(){} }", "Classes may not have a static property named prototype (1:17)", new Options {ecmaVersion= 6});
 
             // Harmony: Yield Expression
 
@@ -4986,6 +5093,66 @@ namespace AcornSharp.Cli
             {
                 ecmaVersion = 6
             });
+            
+            Program.TestFail("(class { *static x() {} })", "Unexpected token (1:17)", new Options{ecmaVersion= 6});
+            Program.Test("(class { *static() {} })", new TestNode
+            {
+                type = typeof(ProgramNode),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24)),
+                body = new List<TestNode>
+                {
+                    new TestNode
+                    {
+                        type = typeof(ExpressionStatementNode),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 24, 24)),
+                        expression = new TestNode
+                        {
+                            type = typeof(ClassExpressionNode),
+                            location = new SourceLocation(new Position(1, 1, 1), new Position(1, 23, 23)),
+                            id = null,
+                            superClass = null,
+                            body = new TestNode
+                            {
+                                type = typeof(ClassBodyNode),
+                                location = new SourceLocation(new Position(1, 7, 7), new Position(1, 23, 23)),
+                                body = new List<TestNode>
+                                {
+                                    new TestNode
+                                    {
+                                        type = typeof(MethodDefinitionNode),
+                                        location = new SourceLocation(new Position(1, 9, 9), new Position(1, 21, 21)),
+                                        computed = false,
+                                        key = new TestNode
+                                        {
+                                            type = typeof(IdentifierNode),
+                                            location = new SourceLocation(new Position(1, 10, 10), new Position(1, 16, 16)),
+                                            name = "static"
+                                        },
+                                        @static = false,
+                                        kind = PropertyKind.Method,
+                                        value = new TestNode
+                                        {
+                                            type = typeof(FunctionExpressionNode),
+                                            location = new SourceLocation(new Position(1, 16, 16), new Position(1, 21, 21)),
+                                            id = null,
+                                            generator = true,
+                                            expression = false,
+                                            parameters = new List<TestNode>(),
+                                            body = new TestNode
+                                            {
+                                                type = typeof(BlockStatementNode),
+                                                location = new SourceLocation(new Position(1, 19, 19), new Position(1, 21, 21)),
+                                                body = new List<TestNode>()
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                source = SourceType.Script
+            }, new Options {ecmaVersion = 6});
 
             Program.Test("\"use strict\"; (class A {constructor() { super() }})", new TestNode
             {
@@ -7703,6 +7870,7 @@ namespace AcornSharp.Cli
             Program.TestFail("(([...[ a, b ]]) => {})", "Unexpected token (1:6)", new Options {ecmaVersion = 6});
 
             Program.TestFail("function x({ a: { w, x }, b: [y, z] }, ...[a, b, c]){}", "Unexpected token (1:42)", new Options {ecmaVersion = 6});
+            Program.TestFail("(function ({ a(){} }) {})", "Unexpected token (1:14)", new Options {ecmaVersion = 6});
 
             Program.Test("(function x([ a, b ]){})", new TestNode
             {
@@ -10116,6 +10284,8 @@ namespace AcornSharp.Cli
 
             Program.TestFail("f({x = 0})", "Shorthand property assignments are valid only in destructuring patterns (1:5)", new Options {ecmaVersion = 6});
 
+            Program.TestFail("(localVar |= defaultValue) => {}", "Only '=' operator can be used for specifying default value. (1:9)", new Options {ecmaVersion = 6});
+
             // https://github.com/ternjs/acorn/issues/191
 
             Program.Test("try {} catch ({message}) {}", new TestNode
@@ -11788,8 +11958,10 @@ namespace AcornSharp.Cli
             Program.Test("export { x as y } from './y.js';\nexport { x as z } from './z.js';", new TestNode {type = typeof(ProgramNode)}, new Options {sourceType = SourceType.Module, ecmaVersion = 6});
 
             Program.Test("export { default as y } from './y.js';\nexport default 42;", new TestNode {type = typeof(ProgramNode)}, new Options {sourceType = SourceType.Module, ecmaVersion = 6});
-
+            
             Program.TestFail("export { default} from './y.js';\nexport default 42;", "Duplicate export 'default' (2:7)", new Options {sourceType = SourceType.Module, ecmaVersion = 6});
+            Program.TestFail("export * from foo", "Unexpected token (1:14)", new Options{sourceType = SourceType.Module, ecmaVersion = 6});
+            Program.TestFail("export { bar } from foo", "Unexpected token (1:20)", new Options{sourceType = SourceType.Module, ecmaVersion = 6});
 
             Program.TestFail("foo: class X {}", "Invalid labelled declaration (1:5)", new Options {ecmaVersion = 6});
 
