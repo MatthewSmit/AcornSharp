@@ -4,12 +4,18 @@ namespace AcornSharp.Node
 {
     public sealed class IdentifierNode : ExpressionNode
     {
-        internal IdentifierNode([NotNull] Parser parser, Position start, Position end, string name) :
+        public IdentifierNode(SourceLocation sourceLocation, [NotNull] string name) :
+            base(sourceLocation)
+        {
+            Name = name;
+        }
+
+        internal IdentifierNode([NotNull] Parser parser, Position start, Position end, [NotNull] string name) :
             base(parser, start, end)
         {
             Name = name;
         }
 
-        public string Name { get; }
+        [NotNull]        public string Name { get; }
     }
 }

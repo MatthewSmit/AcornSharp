@@ -670,7 +670,7 @@ namespace AcornSharp
             var superClass = parseClassSuper();
             var classBodyStart = start;
             var hadConstructor = false;
-            var body = new List<BaseNode>();
+            var body = new List<MethodDefinitionNode>();
             expect(TokenType.braceL);
             while (!eat(TokenType.braceR))
             {
@@ -707,7 +707,7 @@ namespace AcornSharp
                         kind = identifierNode2.Name == "get" ? PropertyKind.Get : PropertyKind.Set;
                         (computed, key) = parsePropertyName();
                     }
-                    if (!@static && (key is IdentifierNode identifierNode3 && identifierNode3.Name == "constructor" ||
+                    if (!@static && !computed && (key is IdentifierNode identifierNode3 && identifierNode3.Name == "constructor" ||
                                      key is LiteralNode literal && literal.Value.ToString() == "constructor"))
                     {
                         if (hadConstructor) raise(key.Location.Start, "Duplicate constructor in the same class");

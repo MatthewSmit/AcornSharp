@@ -399,7 +399,8 @@ namespace AcornSharp
             return result;
         }
 
-        private ExpressionNode ParseSubscripts(ExpressionNode @base, Position startLoc, bool noCalls = false)
+        [NotNull]
+        private ExpressionNode ParseSubscripts([NotNull] ExpressionNode @base, Position startLoc, bool noCalls = false)
         {
             var maybeAsyncArrow = Options.ecmaVersion >= 8 && @base is IdentifierNode identifierNode && identifierNode.Name == "async" &&
                                   lastTokEnd.Index == @base.Location.End.Index && !canInsertSemicolon();

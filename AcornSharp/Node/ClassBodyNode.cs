@@ -5,12 +5,13 @@ namespace AcornSharp.Node
 {
     public sealed class ClassBodyNode : BaseNode
     {
-        internal ClassBodyNode([NotNull] Parser parser, Position start, Position end, IReadOnlyList<BaseNode> body) :
+        internal ClassBodyNode([NotNull] Parser parser, Position start, Position end, [NotNull] IReadOnlyList<MethodDefinitionNode> body) :
             base(parser, start, end)
         {
             Body = body;
         }
 
-        public IReadOnlyList<BaseNode> Body { get; }
+        [NotNull]
+        public IReadOnlyList<MethodDefinitionNode> Body { get; }
     }
 }

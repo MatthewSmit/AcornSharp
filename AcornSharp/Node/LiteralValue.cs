@@ -7,7 +7,7 @@ namespace AcornSharp.Node
 {
     public struct LiteralValue : IEquatable<LiteralValue>
     {
-        private enum Type
+        public enum LiteralType
         {
             Null,
             Boolean,
@@ -38,61 +38,60 @@ namespace AcornSharp.Node
         private readonly Union union;
         private readonly string stringValue;
         private readonly RegexNode regexValue;
-        private readonly Type type;
 
-        private LiteralValue(Type type)
+        private LiteralValue(LiteralType type)
             : this()
         {
-            this.type = type;
+            Type = type;
         }
 
         public LiteralValue(bool value)
-            : this(Type.Boolean)
+            : this(LiteralType.Boolean)
         {
             union = new Union(value);
         }
 
         public LiteralValue(double value)
-            : this(Type.Double)
+            : this(LiteralType.Double)
         {
             union = new Union(value);
         }
 
         public LiteralValue(string value)
-            : this(Type.String)
+            : this(LiteralType.String)
         {
             stringValue = value;
         }
 
         public LiteralValue(RegexNode value)
-            : this(Type.Regex)
+            : this(LiteralType.Regex)
         {
             regexValue = value;
         }
 
         public bool Equals(LiteralValue other)
         {
-            if (type != other.type)
+            if (Type != other.Type)
                 return false;
-            switch (type)
+            switch (Type)
             {
-                case Type.Null:
+                case LiteralType.Null:
                     return true;
-                case Type.Boolean:
+                case LiteralType.Boolean:
                     return union.boolValue == other.union.boolValue;
-                case Type.Double:
+                case LiteralType.Double:
                     // ReSharper disable once CompareOfFloatsByEqualityOperator
                     return union.doubleValue == other.union.doubleValue;
-                case Type.String:
+                case LiteralType.String:
                     return stringValue == other.stringValue;
-                case Type.Regex:
+                case LiteralType.Regex:
                     return regexValue.Equals(other.regexValue);
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
 
-        public override bool Equals([CanBeNull] object obj)
+        public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             return obj is LiteralValue value && Equals(value);
@@ -100,17 +99,17 @@ namespace AcornSharp.Node
 
         public override int GetHashCode()
         {
-            switch (type)
+            switch (Type)
             {
-                case Type.Null:
+                case LiteralType.Null:
                     return 0;
-                case Type.Boolean:
+                case LiteralType.Boolean:
                     return union.boolValue.GetHashCode();
-                case Type.Double:
+                case LiteralType.Double:
                     return union.doubleValue.GetHashCode();
-                case Type.String:
+                case LiteralType.String:
                     return stringValue.GetHashCode();
-                case Type.Regex:
+                case LiteralType.Regex:
                     return regexValue.GetHashCode();
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -119,18 +118,18 @@ namespace AcornSharp.Node
 
         public override string ToString()
         {
-            switch (type)
+            switch (Type)
             {
-                case Type.Null:
+                case LiteralType.Null:
                     return "null";
-                case Type.Boolean:
+                case LiteralType.Boolean:
                     return union.boolValue.ToString();
-                case Type.Double:
+                case LiteralType.Double:
                     // ReSharper disable once ImpureMethodCallOnReadonlyValueField
                     return union.doubleValue.ToString(CultureInfo.InvariantCulture);
-                case Type.String:
+                case LiteralType.String:
                     return stringValue;
-                case Type.Regex:
+                case LiteralType.Regex:
                     return regexValue.ToString();
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -171,11 +170,11 @@ namespace AcornSharp.Node
             return !left.Equals(right);
         }
 
-        public bool IsNull => type == Type.Null;
-        public bool IsBoolean => type == Type.Boolean;
-        public bool IsDouble => type == Type.Double;
-        public bool IsString => type == Type.String;
-        public bool IsRegex => type == Type.Regex;
+        public bool IsNull => Type == LiteralType.Null;
+        public bool IsBoolean => Type == LiteralType.Boolean;
+        public bool IsDouble => Type == LiteralType.Double;
+        public bool IsString => Type == LiteralType.String;
+        public bool IsRegex => Type == LiteralType.Regex;
 
         public bool AsBoolean
         {
@@ -216,5 +215,7 @@ namespace AcornSharp.Node
                 return regexValue;
             }
         }
+
+        public LiteralType Type { get; }
     }
 }
