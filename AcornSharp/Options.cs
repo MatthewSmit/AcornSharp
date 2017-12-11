@@ -63,10 +63,11 @@ namespace AcornSharp
         public ProgramNode program = null;
         // When `locations` is on, you can pass this to record the source
         // file in every node's `loc` object.
-        public string sourceFile = null;
+        public string SourceFile = null;
         // When enabled, parenthesized expressions are represented by
         // (non-standard) ParenthesizedExpression nodes
-        public bool preserveParens = false;
+        public bool PreserveParentheses = false;
+        public bool StartInFunction;
 
         [NotNull]
         public static Options getOptions([CanBeNull] Options options)

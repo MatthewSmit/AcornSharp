@@ -46,7 +46,7 @@ namespace AcornSharp
         public Parser(Options options, string input, int? startPos = null)
         {
             Options = options = Options.getOptions(options);
-            SourceFile = options.sourceFile;
+            SourceFile = options.SourceFile;
             keywords = options.ecmaVersion >= 6 ? ecmascript6KeywordsRegex : ecmascript5KeywordsRegex;
 
             if (options.allowReserved == null || options.allowReserved is bool && (bool)options.allowReserved == false)
@@ -112,7 +112,7 @@ namespace AcornSharp
             potentialArrowAt = default;
 
             // Flags to track whether we are in a function, a generator, an async function.
-            inFunction = inGenerator = inAsync = false;
+            inFunction = options.StartInFunction;
             // Positions to delayed-check that yield/await does not exist in default parameters.
             yieldPos = awaitPos = default;
             // Labels in scope.

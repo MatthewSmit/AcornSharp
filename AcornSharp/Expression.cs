@@ -634,7 +634,7 @@ namespace AcornSharp
                 node = parseParenExpression();
             }
 
-            if (Options.preserveParens)
+            if (Options.PreserveParentheses)
             {
                 return new ParenthesisedExpressionNode(this, startLoc, lastTokEnd, node);
             }
