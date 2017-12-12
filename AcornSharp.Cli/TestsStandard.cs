@@ -204,7 +204,7 @@ namespace AcornSharp.Cli
                 location = new SourceLocation(new Position(1, 0, 0), new Position(1, 12, 12))
             }, new Options
             {
-                preserveParens = true
+                PreserveParentheses = true
             });
 
             Program.Test("(x = 23)", new TestNode
@@ -233,7 +233,7 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            }, new Options {preserveParens = true});
+            }, new Options {PreserveParentheses = true});
 
             Program.Test("x = []", new TestNode
             {
@@ -10152,7 +10152,7 @@ namespace AcornSharp.Cli
                 }
             }, new Options
             {
-                sourceFile = "test.js"
+                SourceFile = "test.js"
             });
 
             Program.Test("a.in / b", new TestNode

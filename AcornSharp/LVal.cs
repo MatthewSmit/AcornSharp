@@ -42,6 +42,10 @@ namespace AcornSharp
 
                     case SpreadElementNode spreadElement:
                         node = new RestElementNode(this, node.Location.Start, node.Location.End, toAssignable(spreadElement.Argument, isBinding));
+                        if (((RestElementNode)node).Argument is AssignmentPatternNode)
+                        {
+                            raise(((RestElementNode)node).Argument.Location.Start, "Rest elements cannot have a default value");
+                        }
                         break;
 
                     case AssignmentExpressionNode assignmentExpression:

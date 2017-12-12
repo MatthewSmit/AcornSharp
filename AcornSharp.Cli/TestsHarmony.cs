@@ -5150,8 +5150,7 @@ namespace AcornSharp.Cli
                             }
                         }
                     }
-                },
-                source = SourceType.Script
+                }
             }, new Options {ecmaVersion = 6});
 
             Program.Test("\"use strict\"; (class A {constructor() { super() }})", new TestNode
@@ -5289,6 +5288,55 @@ namespace AcornSharp.Cli
             Program.TestFail("class A { constructor() {} 'constructor'() }", "Duplicate constructor in the same class (1:27)", new Options {ecmaVersion = 6});
 
             Program.TestFail("class A { get constructor() {} }", "Constructor can't have get/set modifier (1:14)", new Options {ecmaVersion = 6});
+            Program.Test("class A { get ['constructor']() {} }", new TestNode {
+                type = typeof(ProgramNode),
+                location = new SourceLocation(new Position(1, 0, 0), new Position(1, 36, 36)),
+                body = new List<TestNode> {
+                    new TestNode {
+                        type = typeof(ClassDeclarationNode),
+                        location = new SourceLocation(new Position(1, 0, 0), new Position(1, 36, 36)),
+                        id = new TestNode {
+                            type = typeof(IdentifierNode),
+                            location = new SourceLocation(new Position(1, 6, 6), new Position(1, 7, 7)),
+                            name = "A"
+                        },
+                        superClass = null,
+                        body = new TestNode {
+                            type = typeof(ClassBodyNode),
+                            location = new SourceLocation(new Position(1, 8, 8), new Position(1, 36, 36)),
+                            body = new List<TestNode> {
+                                new TestNode {
+                                    type = typeof(MethodDefinitionNode),
+                                    location = new SourceLocation(new Position(1, 10, 10), new Position(1, 34, 34)),
+                                    @static = false,
+                                    computed = true,
+                                    key = new TestNode {
+                                        type = typeof(LiteralNode),
+                                        location = new SourceLocation(new Position(1, 15, 15), new Position(1, 28, 28)),
+                                        value = "constructor",
+                                        raw = "'constructor'"
+                                    },
+                                    kind = PropertyKind.Get,
+                                    value = new TestNode {
+                                        type = typeof(FunctionExpressionNode),
+                                        location = new SourceLocation(new Position(1, 29, 29), new Position(1, 34, 34)),
+                                        id = null,
+                                        parameters = new TestNode[0],
+                                        generator = false,
+                                        expression = false,
+                                        body = new TestNode {
+                                            type = typeof(BlockStatementNode),
+                                            location = new SourceLocation(new Position(1, 32, 32), new Position(1, 34, 34)),
+                                            body = new TestNode[0]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                source = SourceType.Script
+            }, new Options {ecmaVersion = 6});
 
             Program.TestFail("class A { *constructor() {} }", "Constructor can't be a generator (1:11)", new Options {ecmaVersion = 6});
 
@@ -9544,6 +9592,8 @@ namespace AcornSharp.Cli
             Program.TestFail("function f(a, ...b, c)", "Comma is not permitted after the rest element (1:18)", new Options {ecmaVersion = 6});
 
             Program.TestFail("function f(a, ...b = 0)", "Unexpected token (1:19)", new Options {ecmaVersion = 6});
+			Program.TestFail("(([a, ...b = 0]) => {})", "Rest elements cannot have a default value (1:9)", new Options {ecmaVersion = 7});
+			Program.TestFail("[a, ...b = 0] = []", "Rest elements cannot have a default value (1:7)", new Options {ecmaVersion = 6});
 
             Program.TestFail("function x(...{ a }){}", "Unexpected token (1:14)", new Options {ecmaVersion = 6});
 
@@ -9703,7 +9753,7 @@ namespace AcornSharp.Cli
                         }
                     }
                 }
-            }, new Options {ecmaVersion = 6, preserveParens = true});
+            }, new Options {ecmaVersion = 6, PreserveParentheses = true});
 
             // https://github.com/ternjs/acorn/issues/161
             Program.Test("import foo, * as bar from 'baz';", new TestNode
