@@ -5,6 +5,13 @@ namespace AcornSharp.Node
 {
     public sealed class CallExpressionNode : ExpressionNode
     {
+        public CallExpressionNode(SourceLocation sourceLocation, ExpressionNode callee, IReadOnlyList<ExpressionNode> arguments) :
+            base(sourceLocation)
+        {
+            Callee = callee;
+            Arguments = arguments;
+        }
+
         internal CallExpressionNode([NotNull] Parser parser, Position start, Position end, ExpressionNode callee, IReadOnlyList<ExpressionNode> arguments) :
             base(parser, start, end)
         {

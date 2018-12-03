@@ -72,14 +72,24 @@ namespace AcornSharp
         // Object/class getters and setters are not allowed to clash —
         // either with each other or with an init property — and in
         // strict mode, init properties are also not allowed to be repeated.
-        private void CheckPropertyClash([NotNull] PropertyNode prop, IDictionary<string, Property> propHash)
+        private void CheckPropertyClash([NotNull] PropertyNode prop, IDictionary<string, Property> propHash/*, DestructuringErrors refDestructuringErrors*/)
         {
-            if (Options.ecmaVersion >= 6 && (prop.Computed || prop.Method || prop.Shorthand))
+            if (Options.ecmaVersion >= 9 && prop is SpreadElementNode)
+            {
                 return;
+            }
+
+            if (Options.ecmaVersion >= 6 && (prop.Computed || prop.Method || prop.Shorthand))
+            {
+                return;
+            }
+
             var key = prop.Key;
             string name;
             if (key is IdentifierNode identifierNode)
+            {
                 name = identifierNode.Name;
+            }
             else if (key is LiteralNode literalNode)
             {
                 name = literalNode.Value.ToString();
@@ -93,7 +103,19 @@ namespace AcornSharp
             {
                 if (name == "__proto__" && kind == PropertyKind.Initialise)
                 {
-                    if (propHash.ContainsKey("proto")) raiseRecoverable(key.Location.Start, "Redefinition of __proto__ property");
+                    if (propHash.ContainsKey("proto"))
+                    {
+//                        if (refDestructuringErrors != null && refDestructuringErrors.doubleProto)
+//                        {
+//                            refDestructuringErrors.doubleProto = key.Location.Start;
+//                        }
+//                        else
+                        {
+                            // Backwards-compat kludge. Can be removed in version 6.0
+                            raiseRecoverable(key.Location.Start, "Redefinition of __proto__ property");
+                        }
+                    }
+
                     propHash.Add("proto", new Property());
                 }
                 return;
@@ -111,7 +133,9 @@ namespace AcornSharp
                     redefinition = other.init || other[kind];
                 }
                 if (redefinition)
+                {
                     raiseRecoverable(key.Location.Start, "Redefinition of property");
+                }
             }
             else
             {
@@ -158,17 +182,27 @@ namespace AcornSharp
         // operators like `+=`.
         private ExpressionNode ParseMaybeAssign(bool noIn = false, DestructuringErrors refDestructuringErrors = null, [CanBeNull] Func<Parser, ExpressionNode, int, Position, ExpressionNode> afterLeftParse = null)
         {
-            if (inGenerator && isContextual("yield"))
-                return parseYield();
+            if (isContextual("yield"))
+            {
+                if (inGenerator)
+                {
+                    return parseYield();
+                }
+
+                // The tokenizer will assume an expression is allowed after
+                // `yield`, but this isn't that kind of yield
+                exprAllowed = false;
+            }
 
             var ownDestructuringErrors = false;
             Position oldParenAssign = default;
             Position oldTrailingComma = default;
+            Position oldShorthandAssign = default;
             if (refDestructuringErrors != null)
             {
                 oldParenAssign = refDestructuringErrors.parenthesizedAssign;
-                oldTrailingComma = refDestructuringErrors.trailingComma;
-                refDestructuringErrors.parenthesizedAssign = refDestructuringErrors.trailingComma = default;
+                oldShorthandAssign = refDestructuringErrors.shorthandAssign;
+                refDestructuringErrors.parenthesizedAssign = refDestructuringErrors.trailingComma = refDestructuringErrors.shorthandAssign = default;
             }
             else
             {
@@ -178,14 +212,24 @@ namespace AcornSharp
 
             var startLoc = start;
             if (type == TokenType.parenL || type == TokenType.name)
+            {
                 potentialArrowAt = start;
+            }
+
             var left = ParseMaybeConditional(noIn, refDestructuringErrors);
             if (afterLeftParse != null)
+            {
                 left = afterLeftParse(this, left, start.Index, startLoc);
+            }
+
             if (type == TokenType.eq || type == TokenType.assign)
             {
                 checkPatternErrors(refDestructuringErrors, true);
-                if (!ownDestructuringErrors) refDestructuringErrors.Reset();
+                if (!ownDestructuringErrors)
+                {
+                    refDestructuringErrors.Reset();
+                }
+
                 var @operator = StringToOperator((string)value);
                 var leftNode = type == TokenType.eq ? toAssignable(left) : left;
                 refDestructuringErrors.shorthandAssign = default; // reset because shorthand default was used correctly
@@ -194,9 +238,21 @@ namespace AcornSharp
                 var right = ParseMaybeAssign(noIn);
                 return new AssignmentExpressionNode(this, startLoc, lastTokEnd, leftNode, right, @operator);
             }
-            if (ownDestructuringErrors) checkExpressionErrors(refDestructuringErrors, true);
-            if (oldParenAssign.Line > 0) refDestructuringErrors.parenthesizedAssign = oldParenAssign;
-            if (oldTrailingComma.Line > 0) refDestructuringErrors.trailingComma = oldTrailingComma;
+            if (ownDestructuringErrors)
+            {
+                checkExpressionErrors(refDestructuringErrors, true);
+            }
+
+            if (oldParenAssign.Line > 0)
+            {
+                refDestructuringErrors.parenthesizedAssign = oldParenAssign;
+            }
+
+            if (oldTrailingComma.Line > 0)
+            {
+                refDestructuringErrors.trailingComma = oldTrailingComma;
+            }
+
             return left;
         }
 
@@ -263,7 +319,10 @@ namespace AcornSharp
             var startLoc = start;
             var expr = ParseExpressionOperators(noIn, refDestructuringErrors);
             if (checkExpressionErrors(refDestructuringErrors))
+            {
                 return expr;
+            }
+
             if (eat(TokenType.question))
             {
                 var consequent = ParseMaybeAssign();
@@ -280,7 +339,10 @@ namespace AcornSharp
             var startLoc = start;
             var expr = ParseMaybeUnary(refDestructuringErrors, false);
             if (checkExpressionErrors(refDestructuringErrors))
+            {
                 return expr;
+            }
+
             return expr.Location.Start.Index == startLoc.Index && expr is ArrowFunctionExpressionNode ? expr : ParseExpressionOperator(expr, startLoc, -1, noIn);
         }
 
@@ -336,11 +398,20 @@ namespace AcornSharp
                 next();
                 var argument = ParseMaybeUnary(null, true);
                 checkExpressionErrors(refDestructuringErrors, true);
-                if (update) checkLVal(argument, false, null);
+                if (update)
+                {
+                    checkLVal(argument, false, null);
+                }
                 else if (strict && @operator == Operator.Delete &&
                          argument is IdentifierNode)
+                {
                     raiseRecoverable(startLoc, "Deleting local variable in strict mode");
-                else sawUnary = true;
+                }
+                else
+                {
+                    sawUnary = true;
+                }
+
                 if (update)
                 {
                     expr = new UpdateExpressionNode(this, startLoc, lastTokEnd, @operator, argument);
@@ -354,7 +425,10 @@ namespace AcornSharp
             {
                 expr = ParseExpressionSubscripts(refDestructuringErrors);
                 if (checkExpressionErrors(refDestructuringErrors))
+                {
                     return expr;
+                }
+
                 while (TokenInformation.Types[type].Postfix && !canInsertSemicolon())
                 {
                     var @operator = StringToOperator((string)value);
@@ -365,7 +439,10 @@ namespace AcornSharp
             }
 
             if (!sawUnary && eat(TokenType.starstar))
+            {
                 return BuildBinary(startLoc, expr, ParseMaybeUnary(null, false), Operator.Power, false);
+            }
+
             return expr;
         }
 
@@ -389,12 +466,22 @@ namespace AcornSharp
             var expr = ParseExpressionAtom(refDestructuringErrors);
             var skipArrowSubscripts = expr is ArrowFunctionExpressionNode && input.Substring(lastTokStart.Index, lastTokEnd.Index - lastTokStart.Index) != ")";
             if (checkExpressionErrors(refDestructuringErrors) || skipArrowSubscripts)
+            {
                 return expr;
+            }
+
             var result = ParseSubscripts(expr, startLoc);
             if (refDestructuringErrors != null && result is MemberExpressionNode)
             {
-                if (refDestructuringErrors.parenthesizedAssign.Index >= result.Location.Start.Index) refDestructuringErrors.parenthesizedAssign = default;
-                if (refDestructuringErrors.parenthesizedBind.Index >= result.Location.Start.Index) refDestructuringErrors.parenthesizedBind = default;
+                if (refDestructuringErrors.parenthesizedAssign.Index >= result.Location.Start.Index)
+                {
+                    refDestructuringErrors.parenthesizedAssign = default;
+                }
+
+                if (refDestructuringErrors.parenthesizedBind.Index >= result.Location.Start.Index)
+                {
+                    refDestructuringErrors.parenthesizedBind = default;
+                }
             }
             return result;
         }
@@ -410,7 +497,11 @@ namespace AcornSharp
                 if ((computed = eat(TokenType.bracketL)) || eat(TokenType.dot))
                 {
                     var property = computed ? ParseExpression() : parseIdent(true);
-                    if (computed) expect(TokenType.bracketR);
+                    if (computed)
+                    {
+                        expect(TokenType.bracketR);
+                    }
+
                     @base = new MemberExpressionNode(this, startLoc, lastTokEnd, @base, property, computed);
                 }
                 else if (!noCalls && eat(TokenType.parenL))
@@ -458,7 +549,10 @@ namespace AcornSharp
             {
                 case TokenType._super:
                     if (!inFunction)
+                    {
                         raise(startLoc, "'super' outside of function or class");
+                    }
+
                     next();
 
                     // The `super` keyword can appear at below:
@@ -478,11 +572,17 @@ namespace AcornSharp
                 case TokenType.name:
                     var id = parseIdent(type != TokenType.name);
                     if (Options.ecmaVersion >= 8 && id.Name == "async" && !canInsertSemicolon() && eat(TokenType._function))
+                    {
                         return (ExpressionNode)parseFunction(startLoc, null, false, true);
+                    }
+
                     if (canBeArrow && !canInsertSemicolon())
                     {
                         if (eat(TokenType.arrow))
+                        {
                             return parseArrowExpression(startLoc, new ExpressionNode[] {id});
+                        }
+
                         if (Options.ecmaVersion >= 8 && id.Name == "async" && type == TokenType.name)
                         {
                             id = parseIdent();
@@ -498,7 +598,10 @@ namespace AcornSharp
                     return ParseLiteral((RegexNode)this.value);
                 case TokenType.num:
                     if (value is int intValue)
+                    {
                         return ParseLiteral(intValue);
+                    }
+
                     return ParseLiteral((double)value);
                 case TokenType.@string:
                     return ParseLiteral((string)value);
@@ -516,9 +619,14 @@ namespace AcornSharp
                     if (refDestructuringErrors != null)
                     {
                         if (refDestructuringErrors.parenthesizedAssign.Line == 0 && !isSimpleAssignTarget(expr))
+                        {
                             refDestructuringErrors.parenthesizedAssign = startLoc;
+                        }
+
                         if (refDestructuringErrors.parenthesizedBind.Line == 0)
+                        {
                             refDestructuringErrors.parenthesizedBind = startLoc;
+                        }
                     }
                     return expr;
                 case TokenType.bracketL:
@@ -580,8 +688,14 @@ namespace AcornSharp
                 while (type != TokenType.parenR)
                 {
                     if (first)
+                    {
                         first = false;
-                    else expect(TokenType.comma);
+                    }
+                    else
+                    {
+                        expect(TokenType.comma);
+                    }
+
                     if (allowTrailingComma && afterTrailingComma(TokenType.parenR, true))
                     {
                         lastIsComma = true;
@@ -591,7 +705,11 @@ namespace AcornSharp
                     {
                         spreadStart = start;
                         exprList.Add(parseRestBinding());
-                        if (type == TokenType.comma) raise(start, "Comma is not permitted after the rest element");
+                        if (type == TokenType.comma)
+                        {
+                            raise(start, "Comma is not permitted after the rest element");
+                        }
+
                         break;
                     }
                     exprList.Add(ParseMaybeAssign(false, refDestructuringErrors, (parser, item, position, location) => item));
@@ -661,16 +779,29 @@ namespace AcornSharp
             {
                 var identifierNode = parseIdent(true);
                 if (identifierNode.Name != "target")
+                {
                     raiseRecoverable(identifierNode.Location.Start, "The only valid meta property for new is new.target");
+                }
+
                 if (!inFunction)
+                {
                     raiseRecoverable(nodeStart, "new.target can only be used in functions");
+                }
+
                 return new MetaPropertyNode(this, nodeStart, lastTokEnd, meta, identifierNode);
             }
             var startLoc = start;
             var callee = ParseSubscripts(ParseExpressionAtom(), startLoc, true);
             IReadOnlyList<ExpressionNode> arguments;
-            if (eat(TokenType.parenL)) arguments = ParseExpressionList(TokenType.parenR, Options.ecmaVersion >= 8, false);
-            else arguments = Array.Empty<ExpressionNode>();
+            if (eat(TokenType.parenL))
+            {
+                arguments = ParseExpressionList(TokenType.parenR, Options.ecmaVersion >= 8, false);
+            }
+            else
+            {
+                arguments = Array.Empty<ExpressionNode>();
+            }
+
             return new NewExpressionNode(this, nodeStart, lastTokEnd, callee, arguments);
         }
 
@@ -738,12 +869,22 @@ namespace AcornSharp
                 if (!first)
                 {
                     expect(TokenType.comma);
-                    if (afterTrailingComma(TokenType.braceR)) break;
+                    if (afterTrailingComma(TokenType.braceR))
+                    {
+                        break;
+                    }
                 }
-                else first = false;
+                else
+                {
+                    first = false;
+                }
 
                 var prop = parseProperty(isPattern, refDestructuringErrors);
-                if (!isPattern) CheckPropertyClash(prop, propHash);
+                if (!isPattern)
+                {
+                    CheckPropertyClash(prop, propHash);
+                }
+
                 properties.Add(prop);
             }
             if (isPattern)
@@ -767,7 +908,9 @@ namespace AcornSharp
                     startLoc = start;
                 }
                 if (!isPattern)
+                {
                     isGenerator = eat(TokenType.star);
+                }
             }
             var (computed, key) = parsePropertyName();
             if (!isPattern && Options.ecmaVersion >= 8 && !isGenerator && isAsyncProp(computed, key))
@@ -828,14 +971,20 @@ namespace AcornSharp
                 {
                     var start = value.Location.Start;
                     if (kind == PropertyKind.Get)
+                    {
                         raiseRecoverable(start, "getter should have no params");
+                    }
                     else
+                    {
                         raiseRecoverable(start, "setter should have exactly one param");
+                    }
                 }
                 else
                 {
                     if (kind == PropertyKind.Set && value.Parameters[0] is RestElementNode)
+                    {
                         raiseRecoverable(value.Parameters[0].Location.Start, "Setter cannot use rest params");
+                    }
                 }
 
                 return (value, kind, false, false, computed, key);
@@ -852,7 +1001,10 @@ namespace AcornSharp
                 else if (type == TokenType.eq && refDestructuringErrors != null)
                 {
                     if (refDestructuringErrors.shorthandAssign.Line == 0)
+                    {
                         refDestructuringErrors.shorthandAssign = start;
+                    }
+
                     value = parseMaybeDefault(startLoc, key);
                 }
                 else
@@ -892,9 +1044,14 @@ namespace AcornSharp
             var oldInFunc = inFunction;
 
             if (Options.ecmaVersion < 6 && isGenerator)
+            {
                 throw new InvalidOperationException();
+            }
+
             if (Options.ecmaVersion < 8 && isAsync)
+            {
                 throw new InvalidOperationException();
+            }
 
             inGenerator = isGenerator;
             inAsync = isAsync;
@@ -929,7 +1086,9 @@ namespace AcornSharp
 
             enterFunctionScope();
             if (Options.ecmaVersion < 8 && isAsync)
+            {
                 throw new InvalidOperationException();
+            }
 
             inGenerator = false;
             inAsync = isAsync;
@@ -973,13 +1132,18 @@ namespace AcornSharp
                     // are not repeated, and it does not try to bind the words `eval`
                     // or `arguments`.
                     if (useStrict && nonSimple)
+                    {
                         raiseRecoverable(startLoc, "Illegal 'use strict' directive in function with non-simple parameter list");
+                    }
                 }
                 // Start a new scope with regard to labels and the `inFunction`
                 // flag (restore them to their old value afterwards).
                 var oldLabels = labels;
                 labels = new List<Label>();
-                if (useStrict) strict = true;
+                if (useStrict)
+                {
+                    strict = true;
+                }
 
                 // Add the params to varDeclaredNames to ensure that an error is thrown
                 // if a let/const declaration in the function clashes with one of the params.
@@ -1020,7 +1184,9 @@ namespace AcornSharp
         {
             var nameHash = new HashSet<string>();
             foreach (var param in parameters)
+            {
                 checkLVal(param, true, VariableKind.Var, allowDuplicates ? null : nameHash);
+            }
         }
 
         // Parses a comma-separated list of expressions, and returns them as
@@ -1038,18 +1204,28 @@ namespace AcornSharp
                 if (!first)
                 {
                     expect(TokenType.comma);
-                    if (allowTrailingComma && afterTrailingComma(close)) break;
+                    if (allowTrailingComma && afterTrailingComma(close))
+                    {
+                        break;
+                    }
                 }
-                else first = false;
+                else
+                {
+                    first = false;
+                }
 
                 ExpressionNode element;
                 if (allowEmpty && type == TokenType.comma)
+                {
                     element = null;
+                }
                 else if (type == TokenType.ellipsis)
                 {
                     element = parseSpread(refDestructuringErrors);
                     if (refDestructuringErrors != null && type == TokenType.comma && refDestructuringErrors.trailingComma.Line == 0)
+                    {
                         refDestructuringErrors.trailingComma = start;
+                    }
                 }
                 else
                 {
@@ -1063,16 +1239,30 @@ namespace AcornSharp
         private void checkUnreserved(Position start, Position end, string name)
         {
             if (inGenerator && name == "yield")
+            {
                 raiseRecoverable(start, "Can not use 'yield' as identifier inside a generator");
+            }
+
             if (inAsync && name == "await")
+            {
                 raiseRecoverable(start, "Can not use 'await' as identifier inside an async function");
+            }
+
             if (keywords.IsMatch(name))
+            {
                 raise(start, $"Unexpected keyword '{name}'");
+            }
+
             if (Options.ecmaVersion < 6 && input.Substring(start.Index, end - start).IndexOf("\\", StringComparison.Ordinal) != -1)
+            {
                 return;
+            }
+
             var re = strict ? reservedWordsStrict : reservedWords;
             if (re.IsMatch(name))
+            {
                 raiseRecoverable(start, $"The keyword '{name}' is reserved");
+            }
         }
 
         // Parse the next token as an identifier. If `liberal` is true (used
@@ -1082,7 +1272,10 @@ namespace AcornSharp
         private IdentifierNode parseIdent(bool liberal = false)
         {
             var startLocation = start;
-            if (liberal && "never".Equals(Options.allowReserved)) liberal = false;
+            if (liberal && "never".Equals(Options.allowReserved))
+            {
+                liberal = false;
+            }
 
             string name = null;
             if (type == TokenType.name)
@@ -1109,7 +1302,11 @@ namespace AcornSharp
             }
             next();
             var node = new IdentifierNode(this, startLocation, lastTokEnd, name);
-            if (!liberal) checkUnreserved(node.Location.Start, node.Location.Start, node.Name);
+            if (!liberal)
+            {
+                checkUnreserved(node.Location.Start, node.Location.Start, node.Name);
+            }
+
             return node;
         }
 
@@ -1117,7 +1314,10 @@ namespace AcornSharp
         [NotNull]
         private YieldExpressionNode parseYield()
         {
-            if (yieldPos.Line == 0) yieldPos = start;
+            if (yieldPos.Line == 0)
+            {
+                yieldPos = start;
+            }
 
             var startLoc = start;
             next();
@@ -1134,7 +1334,10 @@ namespace AcornSharp
         [NotNull]
         private AwaitExpressionNode parseAwait()
         {
-            if (awaitPos.Line == 0) awaitPos = start;
+            if (awaitPos.Line == 0)
+            {
+                awaitPos = start;
+            }
 
             var startLoc = start;
             next();

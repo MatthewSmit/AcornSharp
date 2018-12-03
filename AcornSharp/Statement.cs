@@ -591,7 +591,7 @@ namespace AcornSharp
         }
 
         [NotNull]
-        private BaseNode parseVarId(VariableKind kind)
+        private ExpressionNode parseVarId(VariableKind kind)
         {
             var id = parseBindingAtom();
             checkLVal(id, true, kind);

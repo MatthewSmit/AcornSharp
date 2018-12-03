@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using AcornSharp.Node;
 using JetBrains.Annotations;
 
 namespace AcornSharp.Cli
@@ -33,22 +31,34 @@ namespace AcornSharp.Cli
         public static void Test([NotNull] string code, [NotNull] TestNode expectedAst, [CanBeNull] Options options = null)
         {
             if (options == null)
+            {
                 options = new Options();
+            }
 
-            if (options.ecmaVersion == 0) options.ecmaVersion = 5;
+            if (options.ecmaVersion == 0)
+            {
+                options.ecmaVersion = 5;
+            }
 
             var ast = Acorn.Parse(code, options);
             var mis = !expectedAst.TestEquals(ast);
             if (mis)
+            {
                 throw new NotImplementedException();
+            }
         }
 
         public static void TestFail([NotNull] string code, string error, [CanBeNull] Options options = null)
         {
             if (options == null)
+            {
                 options = new Options();
+            }
 
-            if (options.ecmaVersion == 0) options.ecmaVersion = 5;
+            if (options.ecmaVersion == 0)
+            {
+                options.ecmaVersion = 5;
+            }
 
             try
             {
