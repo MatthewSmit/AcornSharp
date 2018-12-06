@@ -164,7 +164,7 @@ namespace AcornSharp
             // |Pattern[~U, +N]| and use this result instead. Throw a *SyntaxError*
             // exception if _P_ did not conform to the grammar, if any elements of _P_
             // were not matched by the parse, or if any Early Error conditions exist.
-            if (!state.switchN && options.EcmaVersion >= 9 && state.groupNames.Count > 0)
+            if (!state.switchN && Options.EcmaVersion >= 9 && state.groupNames.Count > 0)
             {
                 state.switchN = true;
                 RegexpPattern(state);
@@ -298,7 +298,7 @@ namespace AcornSharp
             if (state.Eat(0x28 /* ( */) && state.Eat(0x3F /* ? */))
             {
                 var lookbehind = false;
-                if (options.EcmaVersion >= 9)
+                if (Options.EcmaVersion >= 9)
                 {
                     lookbehind = state.Eat(0x3C /* < */);
                 }
@@ -431,7 +431,7 @@ namespace AcornSharp
         {
             if (state.Eat(0x28 /* ( */))
             {
-                if (options.EcmaVersion >= 9)
+                if (Options.EcmaVersion >= 9)
                 {
                     RegexpGroupSpecifier(state);
                 }
@@ -953,7 +953,7 @@ namespace AcornSharp
 
             if (
                 state.switchU &&
-                options.EcmaVersion >= 9 &&
+                Options.EcmaVersion >= 9 &&
                 (ch == 0x50 /* P */ || ch == 0x70 /* p */)
             )
             {

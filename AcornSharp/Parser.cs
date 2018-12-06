@@ -40,34 +40,27 @@ namespace AcornSharp
         private static readonly Label loopLabel = new Label(LabelKind.Loop);
         private static readonly Label switchLabel = new Label(LabelKind.Switch);
 
-        private Options options;
-        private Regex keywords;
-        private Regex reservedWords;
-        private Regex reservedWordsStrict;
-        private Regex reservedWordsStrictBind;
-        private string input;
-        private bool containsEsc; // TODO: rename to containsEscape
-        private int pos; // TODO: rename to position
+        private readonly Regex keywords;
+        private readonly Regex reservedWords;
+        private readonly Regex reservedWordsStrict;
+        private readonly Regex reservedWordsStrictBind;
+
+        private bool containsEscape;
+        private int position;
         private int lineStart;
-        private int curLine; // TODO: rename to currentLine
-        private TokenType type;
-        private object value;
-        private int start;
-        private int end;
-        private Position startLoc; // TODO: rename startLocation
-        private Position endLoc; // TODO: rename endLocation
-        private Position? lastTokStartLoc; // TODO: rename lastTokenStartLocation
-        private Position? lastTokEndLoc; // TODO: rename lastTokenEndLocation
-        private int lastTokStart; // TODO: rename lastTokenStart
-        private int lastTokEnd; // TODO: rename lastTokenEnd
-        private IList<TokenContext> context;
-        private bool exprAllowed; // TODO: rename expressionAllowed
-        private bool inModule;
+        private int currentLine;
+        private Position? lastTokenStartLocation;
+        private Position? lastTokenEndLocation;
+        private int lastTokenStart;
+        private int lastTokenEnd;
+        private readonly IList<TokenContext> context;
+        private bool expressionAllowed;
+        private readonly bool inModule;
         private bool strict;
         private int potentialArrowAt;
-        private int awaitPos; // TODO: rename awaitPosition
-        private int yieldPos; // TODO: rename yieldPosition
-        private List<Scope> scopeStack;
+        private int awaitPosition;
+        private int yieldPosition;
+        private readonly List<Scope> scopeStack;
         private RegExpValidationState regexpState;
         private List<Label> labels;
         private bool inTemplateElement;
@@ -80,7 +73,7 @@ namespace AcornSharp
             {
                 if (parser.context.Count == 1)
                 {
-                    parser.exprAllowed = true;
+                    parser.expressionAllowed = true;
                     return;
                 }
 
@@ -92,26 +85,26 @@ namespace AcornSharp
                     parser.context.RemoveAt(parser.context.Count - 1);
                 }
 
-                parser.exprAllowed = !@out.IsExpression;
+                parser.expressionAllowed = !@out.IsExpression;
             };
 
             TokenType.BraceLeft.UpdateContext = (parser, previousType) =>
             {
                 parser.context.Add(parser.BraceIsBlock(previousType) ? TokenContext.BasicStatement : TokenContext.BasicExpression);
-                parser.exprAllowed = true;
+                parser.expressionAllowed = true;
             };
 
             TokenType.DollarBraceLeft.UpdateContext = (parser, previousType) =>
             {
                 parser.context.Add(TokenContext.BasicTemplate);
-                parser.exprAllowed = true;
+                parser.expressionAllowed = true;
             };
 
             TokenType.ParenLeft.UpdateContext = (parser, previousType) =>
             {
                 var statementParens = previousType == TokenType.If || previousType == TokenType.For || previousType == TokenType.With || previousType == TokenType.While;
                 parser.context.Add(statementParens ? TokenContext.ParenthesesStatatement : TokenContext.ParenthesesExpression);
-                parser.exprAllowed = true;
+                parser.expressionAllowed = true;
             };
 
             TokenType.IncrementDecrement.UpdateContext = (parser, previousType) =>
@@ -122,7 +115,7 @@ namespace AcornSharp
             TokenType.Function.UpdateContext = TokenType.Class.UpdateContext = (parser, previousType) =>
             {
                 if (previousType.BeforeExpression && previousType != TokenType.Semicolon && previousType != TokenType.Else &&
-                    !(previousType == TokenType.Return && Whitespace.LineBreak.IsMatch(parser.input.Substring(parser.lastTokEnd, parser.start - parser.lastTokEnd))) &&
+                    !(previousType == TokenType.Return && Whitespace.LineBreak.IsMatch(parser.Input.Substring(parser.lastTokenEnd, parser.Start - parser.lastTokenEnd))) &&
                     !((previousType == TokenType.Colon || previousType == TokenType.BraceLeft) && parser.CurrentContext() == TokenContext.BasicStatement))
                 {
                     parser.context.Add(TokenContext.FunctionExpression);
@@ -132,7 +125,7 @@ namespace AcornSharp
                     parser.context.Add(TokenContext.FunctionStatement);
                 }
 
-                parser.exprAllowed = false;
+                parser.expressionAllowed = false;
             };
 
             TokenType.BackQuote.UpdateContext = (parser, previousType) =>
@@ -146,7 +139,7 @@ namespace AcornSharp
                     parser.context.Add(TokenContext.QuoteTemplate);
                 }
 
-                parser.exprAllowed = false;
+                parser.expressionAllowed = false;
             };
 
             TokenType.Star.UpdateContext = (parser, previousType) =>
@@ -164,28 +157,28 @@ namespace AcornSharp
                     }
                 }
 
-                parser.exprAllowed = true;
+                parser.expressionAllowed = true;
             };
 
             TokenType.Name.UpdateContext = (parser, previousType) =>
             {
                 var allowed = false;
-                if (parser.options.EcmaVersion >= 6 && previousType != TokenType.Dot && parser.value is string value)
+                if (parser.Options.EcmaVersion >= 6 && previousType != TokenType.Dot && parser.Value is string value)
                 {
-                    if (value == "of" && !parser.exprAllowed ||
+                    if (value == "of" && !parser.expressionAllowed ||
                         value == "yield" && parser.InGeneratorContext())
                     {
                         allowed = true;
                     }
                 }
 
-                parser.exprAllowed = allowed;
+                parser.expressionAllowed = allowed;
             };
         }
 
         public Parser(Options options, string input, int startPosition = 0)
         {
-            this.options = options = Options.GetOptions(options);
+            Options = options = Options.GetOptions(options);
             SourceFile = options.SourceFile;
             keywords = options.EcmaVersion >= 6 ? Identifier.Ecma6Keywords : Identifier.Ecma5Keywords;
 
@@ -226,63 +219,63 @@ namespace AcornSharp
                 reservedWordsStrictBind = Identifier.ReservedWordsEmptyStrictBind;
             }
 
-            this.input = input;
+            Input = input;
 
             // Used to signal to callers of `ReadWord1` whether the word
             // contained any escape sequences. This is needed because words with
             // escape sequences must not be interpreted as keywords.
-            containsEsc = false;
+            containsEscape = false;
 
             // Set up token state
 
             // The current position of the tokenizer in the input.
             if (startPosition != 0)
             {
-                pos = startPosition;
-                lineStart = this.input.LastIndexOf('\n', startPosition - 1) + 1;
-                curLine = Whitespace.LineBreak.Split(this.input.Substring(0, lineStart)).Length;
+                position = startPosition;
+                lineStart = Input.LastIndexOf('\n', startPosition - 1) + 1;
+                currentLine = Whitespace.LineBreak.Split(Input.Substring(0, lineStart)).Length;
             }
             else
             {
-                pos = lineStart = 0;
-                curLine = 1;
+                position = lineStart = 0;
+                currentLine = 1;
             }
 
             // Properties of the current token:
             // Its type
-            type = TokenType.Eof;
+            Type = TokenType.Eof;
             // For tokens that include more information than their type, the value
-            value = null;
+            Value = null;
             // Its start and end offset
-            start = end = pos;
+            Start = End = position;
             // And, if locations are used, the {line, column} object
             // corresponding to those offsets
-            startLoc = endLoc = CurrentPosition();
+            StartLocation = EndLocation = CurrentPosition;
 
             // Position information for the previous token
-            lastTokEndLoc = lastTokStartLoc = null;
-            lastTokStart = lastTokEnd = pos;
+            lastTokenEndLocation = lastTokenStartLocation = null;
+            lastTokenStart = lastTokenEnd = position;
 
             // The context stack is used to superficially track syntactic
             // context to predict whether a regular expression is allowed in a
             // given position.
             context = InitialContext();
-            exprAllowed = true;
+            expressionAllowed = true;
 
             // Figure out if it's a module code.
             inModule = options.SourceType == SourceType.Module;
-            strict = inModule || StrictDirective(pos);
+            strict = inModule || StrictDirective(position);
 
             // Used to signify the start of a potential arrow function
             potentialArrowAt = -1;
 
             // Positions to delayed-check that yield/await does not exist in default parameters.
-            yieldPos = awaitPos = 0;
+            yieldPosition = awaitPosition = 0;
             // Labels in scope.
             labels = new List<Label>();
 
             // If enabled, skip leading hashbang line.
-            if (pos == 0 && options.AllowHashBang && this.input.Substring(0, 2) == "#!")
+            if (position == 0 && options.AllowHashBang && Input.Substring(0, 2) == "#!")
             {
                 SkipLineComment(2);
             }
@@ -295,7 +288,7 @@ namespace AcornSharp
         [NotNull]
         private ProgramNode Parse()
         {
-            var node = options.Program ?? new ProgramNode(this, start, startLoc);
+            var node = Options.Program ?? new ProgramNode(this, Start, StartLocation);
             NextToken();
             return ParseTopLevel(node);
         }
@@ -319,15 +312,19 @@ namespace AcornSharp
             return new Parser(options, input).Parse();
         }
 
-        //static parseExpressionAt(input, pos, options) {
-        //  let parser = new this(options, input, pos)
-        //  parser.nextToken()
-        //  return parser.parseExpression()
-        //}
+        [NotNull]
+        public static ExpressionNode ParseExpressionAt(string input, int pos, [CanBeNull] Options options)
+        {
+            var parser = new Parser(options, input, pos);
+            parser.NextToken();
+            return parser.ParseExpression();
+        }
 
-        //static tokenizer(input, options) {
-        //  return new this(options, input)
-        //}
+        [NotNull]
+        public static Parser Tokeniser(string input, Options options)
+        {
+            return new Parser(options, input);
+        }
 
         // This function is used to raise exceptions on parse errors. It
         // takes an offset integer (into the current `input`) to indicate
@@ -336,7 +333,7 @@ namespace AcornSharp
         // message.
         private void Raise(int position, string message)
         {
-            var loc = GetLineInfo(input, position);
+            var loc = GetLineInfo(Input, position);
             message += " (" + loc.Line + ":" + loc.Column + ")";
             throw new SyntaxException(message, position, loc);
         }
@@ -344,16 +341,6 @@ namespace AcornSharp
         public void RaiseRecoverable(int position, string message)
         {
             Raise(position, message);
-        }
-
-        private Position CurrentPosition()
-        {
-            if (options.Locations)
-            {
-                return new Position(curLine, pos - lineStart);
-            }
-
-            return default;
         }
 
         [NotNull]
@@ -381,9 +368,9 @@ namespace AcornSharp
             // The check for `tt.name && exprAllowed` detects whether we are
             // after a `yield` or `of` construct. See the `updateContext` for
             // `tt.name`.
-            if (previousType == TokenType.Return || previousType == TokenType.Name && exprAllowed)
+            if (previousType == TokenType.Return || previousType == TokenType.Name && expressionAllowed)
             {
-                return Whitespace.LineBreak.IsMatch(input.Substring(lastTokEnd, start - lastTokEnd));
+                return Whitespace.LineBreak.IsMatch(Input.Substring(lastTokenEnd, Start - lastTokenEnd));
             }
 
             if (previousType == TokenType.Else || previousType == TokenType.Semicolon || previousType == TokenType.Eof || previousType == TokenType.ParenRight || previousType == TokenType.Arrow)
@@ -401,7 +388,7 @@ namespace AcornSharp
                 return false;
             }
 
-            return !exprAllowed;
+            return !expressionAllowed;
         }
 
         private bool InGeneratorContext()
@@ -421,10 +408,10 @@ namespace AcornSharp
         private void UpdateContext(TokenType previousType)
         {
             Action<Parser, TokenType> update;
-            var currentType = type;
+            var currentType = Type;
             if (currentType.Keyword != null && previousType == TokenType.Dot)
             {
-                exprAllowed = false;
+                expressionAllowed = false;
             }
             else if ((update = currentType.UpdateContext) != null)
             {
@@ -432,7 +419,7 @@ namespace AcornSharp
             }
             else
             {
-                exprAllowed = currentType.BeforeExpression;
+                expressionAllowed = currentType.BeforeExpression;
             }
         }
 
@@ -444,8 +431,8 @@ namespace AcornSharp
         {
             for (; ; )
             {
-                start += Whitespace.SkipWhiteSpace.Match(input, start).Length;
-                var match = literal.Match(input, start);
+                start += Whitespace.SkipWhiteSpace.Match(Input, start).Length;
+                var match = literal.Match(Input, start);
                 if (!match.Success)
                 {
                     return false;
@@ -468,7 +455,7 @@ namespace AcornSharp
         // type, and if yes, consumes it as a side effect.
         private bool Eat(TokenType type)
         {
-            if (this.type == type)
+            if (Type == type)
             {
                 Next();
                 return true;
@@ -480,7 +467,7 @@ namespace AcornSharp
         // Tests whether parsed token is a contextual keyword.
         private bool IsContextual(string name)
         {
-            return type == TokenType.Name && value is string valueString && string.Equals(valueString, name, StringComparison.Ordinal) && !containsEsc;
+            return Type == TokenType.Name && Value is string valueString && string.Equals(valueString, name, StringComparison.Ordinal) && !containsEscape;
         }
 
         // Consumes contextual keyword if possible.
@@ -507,16 +494,16 @@ namespace AcornSharp
         // Test whether a semicolon can be inserted at the current position.
         private bool CanInsertSemicolon()
         {
-            return type == TokenType.Eof ||
-                   type == TokenType.BraceRight ||
-                   Whitespace.LineBreak.IsMatch(input.Substring(lastTokEnd, start - lastTokEnd));
+            return Type == TokenType.Eof ||
+                   Type == TokenType.BraceRight ||
+                   Whitespace.LineBreak.IsMatch(Input.Substring(lastTokenEnd, Start - lastTokenEnd));
         }
 
         public bool InsertSemicolon()
         {
             if (CanInsertSemicolon())
             {
-                options.OnInsertedSemicolon?.Invoke(this, lastTokEnd, lastTokEndLoc.GetValueOrDefault());
+                Options.OnInsertedSemicolon?.Invoke(this, lastTokenEnd, lastTokenEndLocation.GetValueOrDefault());
                 return true;
             }
 
@@ -535,9 +522,9 @@ namespace AcornSharp
 
         private bool AfterTrailingComma(TokenType tokType, bool notNext = false)
         {
-            if (type == tokType)
+            if (Type == tokType)
             {
-                options.OnTrailingComma?.Invoke(this, lastTokStart, lastTokStartLoc.GetValueOrDefault());
+                Options.OnTrailingComma?.Invoke(this, lastTokenStart, lastTokenStartLocation.GetValueOrDefault());
 
                 if (!notNext)
                 {
@@ -563,7 +550,7 @@ namespace AcornSharp
         // Raise an unexpected token error.
         private void Unexpected(int? pos = null)
         {
-            Raise(pos ?? start, "Unexpected token");
+            Raise(pos ?? Start, "Unexpected token");
         }
 
         //export function DestructuringErrors() {
@@ -621,14 +608,14 @@ namespace AcornSharp
 
         private void CheckYieldAwaitInDefaultParams()
         {
-            if (yieldPos != 0 && (awaitPos == 0 || yieldPos < awaitPos))
+            if (yieldPosition != 0 && (awaitPosition == 0 || yieldPosition < awaitPosition))
             {
-                Raise(yieldPos, "Yield expression cannot be a default value");
+                Raise(yieldPosition, "Yield expression cannot be a default value");
             }
 
-            if (awaitPos != 0)
+            if (awaitPosition != 0)
             {
-                Raise(awaitPos, "Await expression cannot be a default value");
+                Raise(awaitPosition, "Await expression cannot be a default value");
             }
         }
 
@@ -645,18 +632,14 @@ namespace AcornSharp
         // ## Tokenizer
 
         // Move to the next token
-        private void Next()
+        public void Next()
         {
-            if (options.OnToken != null)
-            {
-                //                this.options.OnToken(new Token(this));
-                throw new NotImplementedException();
-            }
+            Options.OnToken?.Invoke(this, new Token(this));
 
-            lastTokEnd = end;
-            lastTokStart = start;
-            lastTokEndLoc = endLoc;
-            lastTokStartLoc = startLoc;
+            lastTokenEnd = End;
+            lastTokenStart = Start;
+            lastTokenEndLocation = EndLocation;
+            lastTokenStartLocation = StartLocation;
             NextToken();
         }
 
@@ -696,13 +679,13 @@ namespace AcornSharp
                 SkipSpace();
             }
 
-            start = pos;
-            if (options.Locations)
+            Start = position;
+            if (Options.Locations)
             {
-                startLoc = CurrentPosition();
+                StartLocation = CurrentPosition;
             }
 
-            if (pos >= input.Length)
+            if (position >= Input.Length)
             {
                 FinishToken(TokenType.Eof);
                 return;
@@ -723,7 +706,7 @@ namespace AcornSharp
         {
             // Identifier or keyword. '\uXXXX' sequences are allowed in
             // identifiers, so '\' also dispatches to that.
-            if (Identifier.IsIdentifierStart(code, options.EcmaVersion >= 6) || code == '\\')
+            if (Identifier.IsIdentifierStart(code, Options.EcmaVersion >= 6) || code == '\\')
             {
                 ReadWord();
                 return;
@@ -734,36 +717,36 @@ namespace AcornSharp
 
         private int FullCharCodeAtPosition()
         {
-            var code = input.CharCodeAt(pos);
+            var code = Input.CharCodeAt(position);
             if (code <= 0xd7ff || code >= 0xe000)
             {
                 return code;
             }
 
-            var next = input.CharCodeAt(pos + 1);
+            var next = Input.CharCodeAt(position + 1);
             return (code << 10) + next - 0x35fdc00;
         }
 
         private void SkipBlockComment()
         {
-            var startLoc = options.OnComment != null ? CurrentPosition() : default;
-            var start = pos;
-            var end = input.IndexOf("*/", pos += 2, StringComparison.Ordinal);
+            var startLoc = Options.OnComment != null ? CurrentPosition : default;
+            var start = position;
+            var end = Input.IndexOf("*/", position += 2, StringComparison.Ordinal);
             if (end == -1)
             {
-                Raise(pos - 2, "Unterminated comment");
+                Raise(position - 2, "Unterminated comment");
             }
 
-            pos = end + 2;
-            if (options.Locations)
+            position = end + 2;
+            if (Options.Locations)
             {
                 var index = start;
                 while (true)
                 {
-                    var match = Whitespace.LineBreak.Match(input, index);
-                    if (match.Success && match.Index < pos)
+                    var match = Whitespace.LineBreak.Match(Input, index);
+                    if (match.Success && match.Index < position)
                     {
-                        ++curLine;
+                        ++currentLine;
                         index = lineStart = match.Index + match.Length;
                     }
                     else
@@ -773,40 +756,40 @@ namespace AcornSharp
                 }
             }
 
-            options.OnComment?.Invoke(this, true, input.Substring(start + 2, end - (start + 2)), start, pos, startLoc, CurrentPosition());
+            Options.OnComment?.Invoke(this, true, Input.Substring(start + 2, end - (start + 2)), start, position, startLoc, CurrentPosition);
         }
 
         private void SkipLineComment(int startSkip)
         {
-            var start = pos;
-            var startLoc = options.OnComment != null ? CurrentPosition() : default;
-            var ch = input.CharCodeAt(pos += startSkip);
-            while (pos < input.Length && !Whitespace.IsNewLine(ch))
+            var start = position;
+            var startLoc = Options.OnComment != null ? CurrentPosition : default;
+            var ch = Input.CharCodeAt(position += startSkip);
+            while (position < Input.Length && !Whitespace.IsNewLine(ch))
             {
-                ch = input.CharCodeAt(++pos);
+                ch = Input.CharCodeAt(++position);
             }
 
-            options.OnComment?.Invoke(this, false, input.Substring(start + startSkip, pos - (start + startSkip)), start, pos, startLoc, CurrentPosition());
+            Options.OnComment?.Invoke(this, false, Input.Substring(start + startSkip, position - (start + startSkip)), start, position, startLoc, CurrentPosition);
         }
 
         // Called at the start of the parse and after every token. Skips
         // whitespace and comments, and.
         private void SkipSpace()
         {
-            while (pos < input.Length)
+            while (position < Input.Length)
             {
-                var ch = input[pos];
+                var ch = Input[position];
                 switch (ch)
                 {
                     case ' ':
                     case (char)160:
-                        ++pos;
+                        ++position;
                         break;
 
                     case '\r':
-                        if (input[pos + 1] == 10)
+                        if (Input[position + 1] == 10)
                         {
-                            ++pos;
+                            ++position;
                         }
 
                         goto case '\n';
@@ -814,16 +797,16 @@ namespace AcornSharp
                     case '\n':
                     case (char)8232:
                     case (char)8233:
-                        ++pos;
-                        if (options.Locations)
+                        ++position;
+                        if (Options.Locations)
                         {
-                            ++curLine;
-                            lineStart = pos;
+                            ++currentLine;
+                            lineStart = position;
                         }
                         break;
 
                     case '/':
-                        switch (input.CharCodeAt(pos + 1))
+                        switch (Input.CharCodeAt(position + 1))
                         {
                             case '*':
                                 SkipBlockComment();
@@ -841,7 +824,7 @@ namespace AcornSharp
                     default:
                         if (ch > 8 && ch < 14 || ch >= 5760 && Whitespace.NonASCIIwhitespace.IsMatch(ch.ToString()))
                         {
-                            ++pos;
+                            ++position;
                         }
                         else
                         {
@@ -858,15 +841,15 @@ namespace AcornSharp
         // right position.
         private void FinishToken(TokenType type, [CanBeNull] object value = null)
         {
-            end = pos;
-            if (options.Locations)
+            End = position;
+            if (Options.Locations)
             {
-                endLoc = CurrentPosition();
+                EndLocation = CurrentPosition;
             }
 
-            var prevType = this.type;
-            this.type = type;
-            this.value = value;
+            var prevType = Type;
+            Type = type;
+            Value = value;
 
             UpdateContext(prevType);
         }
@@ -881,23 +864,23 @@ namespace AcornSharp
         // All in the name of speed.
         private void ReadTokenDot()
         {
-            var next = input.CharCodeAt(pos + 1);
+            var next = Input.CharCodeAt(position + 1);
             if (next >= 48 && next <= 57)
             {
                 ReadNumber(true);
             }
             else
             {
-                var next2 = input.CharCodeAt(pos + 2);
-                if (options.EcmaVersion >= 6 && next == 46 && next2 == 46)
+                var next2 = Input.CharCodeAt(position + 2);
+                if (Options.EcmaVersion >= 6 && next == 46 && next2 == 46)
                 {
                     // 46 = dot '.'
-                    pos += 3;
+                    position += 3;
                     FinishToken(TokenType.Ellipsis);
                 }
                 else
                 {
-                    ++pos;
+                    ++position;
                     FinishToken(TokenType.Dot);
                 }
             }
@@ -905,10 +888,10 @@ namespace AcornSharp
 
         private void ReadTokenSlash()
         {
-            var next = input.CharCodeAt(pos + 1);
-            if (exprAllowed)
+            var next = Input.CharCodeAt(position + 1);
+            if (expressionAllowed)
             {
-                ++pos;
+                ++position;
                 ReadRegexp();
             }
             else if (next == 61)
@@ -924,16 +907,16 @@ namespace AcornSharp
         private void ReadTokenMultiplyModuloExponent(int code)
         {
             // '%*'
-            var next = input.CharCodeAt(pos + 1);
+            var next = Input.CharCodeAt(position + 1);
             var size = 1;
             var tokentype = code == 42 ? TokenType.Star : TokenType.Modulo;
 
             // exponentiation operator ** and **=
-            if (options.EcmaVersion >= 7 && code == 42 && next == 42)
+            if (Options.EcmaVersion >= 7 && code == 42 && next == 42)
             {
                 ++size;
                 tokentype = TokenType.StarStar;
-                next = input[pos + 2];
+                next = Input[position + 2];
             }
 
             if (next == 61)
@@ -949,7 +932,7 @@ namespace AcornSharp
         private void ReadTokenPipeAmp(int code)
         {
             // '|&'
-            var next = input.CharCodeAt(pos + 1);
+            var next = Input.CharCodeAt(position + 1);
             if (next == code)
             {
                 FinishOperand(code == 124 ? TokenType.LogicalOR : TokenType.LogicalAND, 2);
@@ -967,7 +950,7 @@ namespace AcornSharp
         private void ReadTokenCaret()
         {
             // '^'
-            var next = input.CharCodeAt(pos + 1);
+            var next = Input.CharCodeAt(position + 1);
             if (next == 61)
             {
                 FinishOperand(TokenType.Assignment, 2);
@@ -981,11 +964,11 @@ namespace AcornSharp
         private void ReadTokenPlusMinus(int code)
         {
             // '+-'
-            var next = input[pos + 1];
+            var next = Input[position + 1];
             if (next == code)
             {
-                if (next == 45 && !inModule && input.CharCodeAt(pos + 2) == 62 &&
-                    (lastTokEnd == 0 || Whitespace.LineBreak.IsMatch(input.Substring(lastTokEnd, pos - lastTokEnd))))
+                if (next == 45 && !inModule && Input.CharCodeAt(position + 2) == 62 &&
+                    (lastTokenEnd == 0 || Whitespace.LineBreak.IsMatch(Input.Substring(lastTokenEnd, position - lastTokenEnd))))
                 {
                     // A `-->` line comment
                     SkipLineComment(3);
@@ -1010,12 +993,12 @@ namespace AcornSharp
         private void ReadTokenLtGt(int code)
         {
             // '<>'
-            var next = input.CharCodeAt(pos + 1);
+            var next = Input.CharCodeAt(position + 1);
             var size = 1;
             if (next == code)
             {
-                size = code == 62 && input.CharCodeAt(pos + 2) == 62 ? 3 : 2;
-                if (input.CharCodeAt(pos + size) == 61)
+                size = code == 62 && Input.CharCodeAt(position + 2) == 62 ? 3 : 2;
+                if (Input.CharCodeAt(position + size) == 61)
                 {
                     FinishOperand(TokenType.Assignment, size + 1);
                 }
@@ -1024,8 +1007,8 @@ namespace AcornSharp
                     FinishOperand(TokenType.BitShift, size);
                 }
             }
-            else if (next == 33 && code == 60 && !inModule && input.CharCodeAt(pos + 2) == 45 &&
-                input.CharCodeAt(pos + 3) == 45)
+            else if (next == 33 && code == 60 && !inModule && Input.CharCodeAt(position + 2) == 45 &&
+                Input.CharCodeAt(position + 3) == 45)
             {
                 // `<!--`, an XML-style comment that should be interpreted as a line comment
                 SkipLineComment(4);
@@ -1046,15 +1029,15 @@ namespace AcornSharp
         private void ReadTokenEqExcl(int code)
         {
             // '=!'
-            var next = input.CharCodeAt(pos + 1);
+            var next = Input.CharCodeAt(position + 1);
             if (next == 61)
             {
-                FinishOperand(TokenType.Equality, input.CharCodeAt(pos + 2) == 61 ? 3 : 2);
+                FinishOperand(TokenType.Equality, Input.CharCodeAt(position + 2) == 61 ? 3 : 2);
             }
-            else if (code == 61 && next == 62 && options.EcmaVersion >= 6)
+            else if (code == 61 && next == 62 && Options.EcmaVersion >= 6)
             {
                 // '=>'
-                pos += 2;
+                position += 2;
                 FinishToken(TokenType.Arrow);
             }
             else
@@ -1075,74 +1058,74 @@ namespace AcornSharp
 
                 // Punctuation tokens.
                 case 40:
-                    ++pos;
+                    ++position;
                     FinishToken(TokenType.ParenLeft);
                     return;
 
                 case 41:
-                    ++pos;
+                    ++position;
                     FinishToken(TokenType.ParenRight);
                     return;
 
                 case 59:
-                    ++pos;
+                    ++position;
                     FinishToken(TokenType.Semicolon);
                     return;
 
                 case 44:
-                    ++pos;
+                    ++position;
                     FinishToken(TokenType.Comma);
                     return;
 
                 case 91:
-                    ++pos;
+                    ++position;
                     FinishToken(TokenType.BracketLeft);
                     return;
 
                 case 93:
-                    ++pos;
+                    ++position;
                     FinishToken(TokenType.BracketRight);
                     return;
 
                 case 123:
-                    ++pos;
+                    ++position;
                     FinishToken(TokenType.BraceLeft);
                     return;
 
                 case 125:
-                    ++pos;
+                    ++position;
                     FinishToken(TokenType.BraceRight);
                     return;
 
                 case 58:
-                    ++pos;
+                    ++position;
                     FinishToken(TokenType.Colon);
                     return;
 
                 case 63:
-                    ++pos;
+                    ++position;
                     FinishToken(TokenType.Question);
                     return;
 
                 case 96: // '`'
-                    if (options.EcmaVersion < 6)
+                    if (Options.EcmaVersion < 6)
                     {
                         break;
                     }
 
-                    ++pos;
+                    ++position;
                     FinishToken(TokenType.BackQuote);
                     return;
 
                 case 48: // '0'
-                    var next = input.CharCodeAt(pos + 1);
+                    var next = Input.CharCodeAt(position + 1);
                     if (next == 120 || next == 88)
                     {
                         ReadRadixNumber(16); // '0x', '0X' - hex number
                         return;
                     }
 
-                    if (options.EcmaVersion >= 6)
+                    if (Options.EcmaVersion >= 6)
                     {
                         if (next == 111 || next == 79)
                         {
@@ -1222,14 +1205,14 @@ namespace AcornSharp
                     return;
             }
 
-            Raise(pos, "Unexpected character '" + CodePointToString(code) + "'");
+            Raise(position, "Unexpected character '" + CodePointToString(code) + "'");
         }
 
 
         private void FinishOperand(TokenType type, int size)
         {
-            var str = input.Substring(pos, size);
-            pos += size;
+            var str = Input.Substring(position, size);
+            position += size;
             FinishToken(type, str);
         }
 
@@ -1237,15 +1220,15 @@ namespace AcornSharp
         {
             var escaped = false;
             var inClass = false;
-            var start = pos;
+            var start = position;
             for (;;)
             {
-                if (pos >= input.Length)
+                if (position >= Input.Length)
                 {
                     Raise(start, "Unterminated regular expression");
                 }
 
-                var ch = input[pos];
+                var ch = Input[position];
                 if (Whitespace.LineBreak.IsMatch(ch.ToString()))
                 {
                     Raise(start, "Unterminated regular expression");
@@ -1273,14 +1256,14 @@ namespace AcornSharp
                     escaped = false;
                 }
 
-                ++pos;
+                ++position;
             }
 
-            var pattern = input.Substring(start, pos - start);
-            ++pos;
-            var flagsStart = pos;
+            var pattern = Input.Substring(start, position - start);
+            ++position;
+            var flagsStart = position;
             var flags = ReadWord1();
-            if (containsEsc)
+            if (containsEscape)
             {
                 Unexpected(flagsStart);
             }
@@ -1299,11 +1282,11 @@ namespace AcornSharp
         // will return `null` unless the integer has exactly `len` digits.
         private int? ReadInt(int radix, int? len = null)
         {
-            var start = pos;
+            var start = position;
             var total = 0;
             for (int i = 0, e = len ?? int.MaxValue; i < e; ++i)
             {
-                var code = input.CharCodeAt(pos);
+                var code = Input.CharCodeAt(position);
                 int val;
                 if (code >= 97)
                 {
@@ -1327,11 +1310,11 @@ namespace AcornSharp
                     break;
                 }
 
-                ++pos;
+                ++position;
                 total = total * radix + val;
             }
 
-            if (pos == start || len != null && pos - start != len)
+            if (position == start || len != null && position - start != len)
             {
                 return null;
             }
@@ -1341,16 +1324,16 @@ namespace AcornSharp
 
         private void ReadRadixNumber(int radix)
         {
-            pos += 2;// 0x
+            position += 2;// 0x
             var val = ReadInt(radix);
             if (val == null)
             {
-                Raise(start + 2, "Expected number in radix " + radix);
+                Raise(Start + 2, "Expected number in radix " + radix);
             }
 
             if (Identifier.IsIdentifierStart(FullCharCodeAtPosition()))
             {
-                Raise(pos, "Identifier directly after number");
+                Raise(position, "Identifier directly after number");
             }
 
             FinishToken(TokenType.Number, val);
@@ -1359,39 +1342,39 @@ namespace AcornSharp
         // Read an integer, octal integer, or floating-point number.
         private void ReadNumber(bool startsWithDot)
         {
-            var start = pos;
+            var start = position;
             if (!startsWithDot && ReadInt(10) == null)
             {
                 Raise(start, "Invalid number");
             }
 
-            var octal = pos - start >= 2 && input[start] == 48;
+            var octal = position - start >= 2 && Input[start] == 48;
             if (octal && strict)
             {
                 Raise(start, "Invalid number");
             }
 
-            if (octal && Regex.IsMatch(input.Substring(start, pos - start), "[89]"))
+            if (octal && Regex.IsMatch(Input.Substring(start, position - start), "[89]"))
             {
                 octal = false;
             }
 
-            var next = input.CharCodeAt(pos);
+            var next = Input.CharCodeAt(position);
             if (next == 46 && !octal)
             {
                 // '.'
-                ++pos;
+                ++position;
                 ReadInt(10);
-                next = input.CharCodeAt(pos);
+                next = Input.CharCodeAt(position);
             }
 
             if ((next == 69 || next == 101) && !octal)
             {
                 // 'eE'
-                next = input.CharCodeAt(++pos);
+                next = Input.CharCodeAt(++position);
                 if (next == 43 || next == 45)
                 {
-                    ++pos; // '+-'
+                    ++position; // '+-'
                 }
 
                 if (ReadInt(10) == null)
@@ -1402,10 +1385,10 @@ namespace AcornSharp
 
             if (Identifier.IsIdentifierStart(FullCharCodeAtPosition()))
             {
-                Raise(pos, "Identifier directly after number");
+                Raise(position, "Identifier directly after number");
             }
 
-            var str = input.Substring(start, pos - start);
+            var str = Input.Substring(start, position - start);
             var val = octal ? ParseInt(str, 8) : double.Parse(str);
             FinishToken(TokenType.Number, val);
         }
@@ -1448,20 +1431,20 @@ namespace AcornSharp
         // Read a string value, interpreting backslash-escapes.
         private int ReadCodePoint()
         {
-            var ch = input.CharCodeAt(pos);
+            var ch = Input.CharCodeAt(position);
             int code;
 
             if (ch == 123)
             {
                 // '{'
-                if (options.EcmaVersion < 6)
+                if (Options.EcmaVersion < 6)
                 {
                     Unexpected();
                 }
 
-                var codePos = ++pos;
-                code = ReadHexChar(input.IndexOf("}", pos, StringComparison.Ordinal) - pos);
-                ++pos;
+                var codePos = ++position;
+                code = ReadHexChar(Input.IndexOf("}", position, StringComparison.Ordinal) - position);
+                ++position;
                 if (code > 0x10FFFF)
                 {
                     InvalidStringToken(codePos, "Code point out of bounds");
@@ -1495,15 +1478,15 @@ namespace AcornSharp
         private void ReadString(int quote)
         {
             var @out = "";
-            var chunkStart = ++pos;
+            var chunkStart = ++position;
             for (;;)
             {
-                if (pos >= input.Length)
+                if (position >= Input.Length)
                 {
-                    Raise(start, "Unterminated string constant");
+                    Raise(Start, "Unterminated string constant");
                 }
 
-                var ch = input.CharCodeAt(pos);
+                var ch = Input.CharCodeAt(position);
                 if (ch == quote)
                 {
                     break;
@@ -1512,22 +1495,22 @@ namespace AcornSharp
                 if (ch == 92)
                 {
                     // '\'
-                    @out += input.Substring(chunkStart, pos - chunkStart);
+                    @out += Input.Substring(chunkStart, position - chunkStart);
                     @out += ReadEscapedChar(false);
-                    chunkStart = pos;
+                    chunkStart = position;
                 }
                 else
                 {
-                    if (Whitespace.IsNewLine(ch, options.EcmaVersion >= 10))
+                    if (Whitespace.IsNewLine(ch, Options.EcmaVersion >= 10))
                     {
-                        Raise(start, "Unterminated string constant");
+                        Raise(Start, "Unterminated string constant");
                     }
 
-                    ++pos;
+                    ++position;
                 }
             }
 
-            @out += input.Substring(chunkStart, pos++ - chunkStart);
+            @out += Input.Substring(chunkStart, position++ - chunkStart);
             FinishToken(TokenType.String, @out);
         }
 
@@ -1553,7 +1536,7 @@ namespace AcornSharp
 
         private void InvalidStringToken(int position, string message)
         {
-            if (inTemplateElement && options.EcmaVersion >= 9)
+            if (inTemplateElement && Options.EcmaVersion >= 9)
             {
                 throw new InvalidTemplateEscapeException();
             }
@@ -1564,36 +1547,36 @@ namespace AcornSharp
         private void ReadTmplToken()
         {
             var @out = "";
-            var chunkStart = pos;
+            var chunkStart = position;
             for (;;)
             {
-                if (pos >= input.Length)
+                if (position >= Input.Length)
                 {
-                    Raise(start, "Unterminated template");
+                    Raise(Start, "Unterminated template");
                 }
 
-                var ch = input.CharCodeAt(pos);
-                if (ch == 96 || ch == 36 && input.CharCodeAt(pos + 1) == 123)
+                var ch = Input.CharCodeAt(position);
+                if (ch == 96 || ch == 36 && Input.CharCodeAt(position + 1) == 123)
                 {
                     // '`', '${'
 
-                    if (pos == start && (type == TokenType.Template || type == TokenType.InvalidTemplate))
+                    if (position == Start && (Type == TokenType.Template || Type == TokenType.InvalidTemplate))
                     {
                         if (ch == 36)
                         {
-                            pos += 2;
+                            position += 2;
                             FinishToken(TokenType.DollarBraceLeft);
                         }
                         else
                         {
-                            ++pos;
+                            ++position;
                             FinishToken(TokenType.BackQuote);
                         }
 
                         return;
                     }
 
-                    @out += input.Substring(chunkStart, pos - chunkStart);
+                    @out += Input.Substring(chunkStart, position - chunkStart);
                     FinishToken(TokenType.Template, @out);
                     return;
                 }
@@ -1602,20 +1585,20 @@ namespace AcornSharp
                 {
                     // '\'
 
-                    @out += input.Substring(chunkStart, pos - chunkStart);
+                    @out += Input.Substring(chunkStart, position - chunkStart);
                     @out += ReadEscapedChar(true);
-                    chunkStart = pos;
+                    chunkStart = position;
                 }
                 else if (Whitespace.IsNewLine(ch))
                 {
-                    @out += input.Substring(chunkStart, pos - chunkStart);
-                    ++pos;
+                    @out += Input.Substring(chunkStart, position - chunkStart);
+                    ++position;
                     switch (ch)
                     {
                         case 13:
-                            if (input.CharCodeAt(pos) == 10)
+                            if (Input.CharCodeAt(position) == 10)
                             {
-                                ++pos;
+                                ++position;
                             }
 
                             goto case 10;
@@ -1627,17 +1610,17 @@ namespace AcornSharp
                             break;
                     }
 
-                    if (options.Locations)
+                    if (Options.Locations)
                     {
-                        ++curLine;
-                        lineStart = pos;
+                        ++currentLine;
+                        lineStart = position;
                     }
 
-                    chunkStart = pos;
+                    chunkStart = position;
                 }
                 else
                 {
-                    ++pos;
+                    ++position;
                 }
             }
         }
@@ -1645,16 +1628,16 @@ namespace AcornSharp
         // Reads a template token to search for the end, without validating any escape sequences
         private void ReadInvalidTemplateToken()
         {
-            for (; pos < input.Length; pos++)
+            for (; position < Input.Length; position++)
             {
-                switch (input[pos])
+                switch (Input[position])
                 {
                     case '\\':
-                        ++pos;
+                        ++position;
                         break;
 
                     case '$':
-                        if (input[pos + 1] != '{')
+                        if (Input[position + 1] != '{')
                         {
                             break;
                         }
@@ -1663,20 +1646,20 @@ namespace AcornSharp
                         goto case '`';
 
                     case '`':
-                        FinishToken(TokenType.InvalidTemplate, input.Substring(start, pos - start));
+                        FinishToken(TokenType.InvalidTemplate, Input.Substring(Start, position - Start));
                         return;
                 }
             }
 
-            Raise(start, "Unterminated template");
+            Raise(Start, "Unterminated template");
         }
 
         // Used to read escaped characters
         [NotNull]
         private string ReadEscapedChar(bool inTemplate)
         {
-            var ch = input.CharCodeAt(++pos);
-            ++pos;
+            var ch = Input.CharCodeAt(++position);
+            ++position;
             switch (ch)
             {
                 case 110: return "\n"; // 'n' -> '\n'
@@ -1688,18 +1671,18 @@ namespace AcornSharp
                 case 118: return "\u000b"; // 'v' -> '\u000b'
                 case 102: return "\f"; // 'f' -> '\f'
                 case 13:
-                    if (input.CharCodeAt(pos) == 10)
+                    if (Input.CharCodeAt(position) == 10)
                     {
-                        ++pos; // '\r\n'
+                        ++position; // '\r\n'
                     }
 
                     goto case 10;
 
                 case 10: // ' \n'
-                    if (options.Locations)
+                    if (Options.Locations)
                     {
-                        lineStart = pos;
-                        ++curLine;
+                        lineStart = position;
+                        ++currentLine;
                     }
 
                     return "";
@@ -1707,7 +1690,7 @@ namespace AcornSharp
                 default:
                     if (ch >= 48 && ch <= 55)
                     {
-                        var octalStr = Regex.Match(input.Substring(pos - 1, Math.Min(3, input.Length - pos + 1)), "^[0-7]+").Value;
+                        var octalStr = Regex.Match(Input.Substring(position - 1, Math.Min(3, Input.Length - position + 1)), "^[0-7]+").Value;
                         var octal = ParseInt(octalStr, 8);
                         if (octal > 255)
                         {
@@ -1715,12 +1698,12 @@ namespace AcornSharp
                             octal = ParseInt(octalStr, 8);
                         }
 
-                        pos += octalStr.Length - 1;
-                        ch = input.CharCodeAt(pos);
+                        position += octalStr.Length - 1;
+                        ch = Input.CharCodeAt(position);
                         if ((octalStr != "0" || ch == 56 || ch == 57) && (strict || inTemplate))
                         {
                             InvalidStringToken(
-                                pos - 1 - octalStr.Length,
+                                position - 1 - octalStr.Length,
                                 inTemplate
                                     ? "Octal literal in template string"
                                     : "Octal literal in strict mode"
@@ -1737,7 +1720,7 @@ namespace AcornSharp
         // Used to read character escape sequences ('\x', '\u', '\U').
         private int ReadHexChar(int len)
         {
-            var codePos = pos;
+            var codePos = position;
             var n = ReadInt(16, len);
             if (n == null)
             {
@@ -1756,30 +1739,30 @@ namespace AcornSharp
         [NotNull]
         private string ReadWord1()
         {
-            containsEsc = false;
+            containsEscape = false;
             var word = "";
             var first = true;
-            var chunkStart = pos;
-            var astral = options.EcmaVersion >= 6;
+            var chunkStart = position;
+            var astral = Options.EcmaVersion >= 6;
 
-            while (pos < input.Length)
+            while (position < Input.Length)
             {
                 var ch = FullCharCodeAtPosition();
                 if (Identifier.IsIdentifierChar(ch, astral))
                 {
-                    pos += ch <= 0xffff ? 1 : 2;
+                    position += ch <= 0xffff ? 1 : 2;
                 }
                 else if (ch == '\\')
                 {
-                    containsEsc = true;
-                    word += input.Substring(chunkStart, pos - chunkStart);
-                    var escStart = pos;
-                    if (input.CharCodeAt(++pos) != 'u')
+                    containsEscape = true;
+                    word += Input.Substring(chunkStart, position - chunkStart);
+                    var escStart = position;
+                    if (Input.CharCodeAt(++position) != 'u')
                     {
-                        InvalidStringToken(pos, "Expecting Unicode escape sequence \\uXXXX");
+                        InvalidStringToken(position, "Expecting Unicode escape sequence \\uXXXX");
                     }
 
-                    ++pos;
+                    ++position;
                     var esc = ReadCodePoint();
                     if (first && !Identifier.IsIdentifierStart(esc, astral) ||
                         !first && !Identifier.IsIdentifierChar(esc, astral))
@@ -1788,7 +1771,7 @@ namespace AcornSharp
                     }
 
                     word += CodePointToString(esc);
-                    chunkStart = pos;
+                    chunkStart = position;
                 }
                 else
                 {
@@ -1798,7 +1781,7 @@ namespace AcornSharp
                 first = false;
             }
 
-            return word + input.Substring(chunkStart, pos - chunkStart);
+            return word + Input.Substring(chunkStart, position - chunkStart);
         }
 
         // Read an identifier or keyword token. Will check for reserved
@@ -1809,9 +1792,9 @@ namespace AcornSharp
             var tokenType = TokenType.Name;
             if (keywords.IsMatch(word))
             {
-                if (containsEsc)
+                if (containsEscape)
                 {
-                    RaiseRecoverable(start, "Escape sequence in keyword " + word);
+                    RaiseRecoverable(Start, "Escape sequence in keyword " + word);
                 }
 
                 tokenType = TokenType.Keywords[word];
@@ -1920,7 +1903,7 @@ namespace AcornSharp
         private T FinishNode<T>([NotNull] T node)
             where T : BaseNode
         {
-            node.Finish(this, lastTokEnd, lastTokEndLoc);
+            node.Finish(this, lastTokenEnd, lastTokenEndLocation);
             return node;
         }
 
@@ -1951,7 +1934,30 @@ namespace AcornSharp
             }
         }
 
-        public Options Options => options;
+        public Options Options { get; }
+
+        public string Input { get; }
+
         public string SourceFile { get; }
+
+        public Position CurrentPosition
+        {
+            get
+            {
+                if (Options.Locations)
+                {
+                    return new Position(currentLine, position - lineStart);
+                }
+
+                return default;
+            }
+        }
+
+        public TokenType Type { get; set; }
+        public int Start { get; set; }
+        public int End { get; set; }
+        public object Value { get; set; }
+        public Position StartLocation { get; set; }
+        public Position EndLocation { get; set; }
     }
 }

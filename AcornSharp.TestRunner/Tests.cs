@@ -1,4 +1,5 @@
-﻿using AcornSharp.Nodes;
+﻿using System.Collections.Generic;
+using AcornSharp.Nodes;
 
 namespace AcornSharp.TestRunner
 {
@@ -37535,182 +37536,6 @@ namespace AcornSharp.TestRunner
                 }
             });
 
-                // TODO
-//            var tokTypes = acorn.tokTypes;
-//
-//            Program.test("var x = (1 + 2)", new TestNode
-//            {
-//            }, new TestOptions
-//            {
-//                locations = true,
-//                loose = false,
-//                onToken = new TestNode[]
-//                {
-//                    new TestNode
-//                    {
-//                        type = tokTypes._var,
-//                        value = "var",
-//                        loc = new TestNode
-//                        {
-//                            start = new TestNode
-//                            {
-//                                line = 1,
-//                                column = 0
-//                            },
-//                            end = new TestNode
-//                            {
-//                                line = 1,
-//                                column = 3
-//                            }
-//                        }
-//                    },
-//                    new TestNode
-//                    {
-//                        type = tokTypes.name,
-//                        value = "x",
-//                        loc = new TestNode
-//                        {
-//                            start = new TestNode
-//                            {
-//                                line = 1,
-//                                column = 4
-//                            },
-//                            end = new TestNode
-//                            {
-//                                line = 1,
-//                                column = 5
-//                            }
-//                        }
-//                    },
-//                    new TestNode
-//                    {
-//                        type = tokTypes.eq,
-//                        value = "=",
-//                        loc = new TestNode
-//                        {
-//                            start = new TestNode
-//                            {
-//                                line = 1,
-//                                column = 6
-//                            },
-//                            end = new TestNode
-//                            {
-//                                line = 1,
-//                                column = 7
-//                            }
-//                        }
-//                    },
-//                    new TestNode
-//                    {
-//                        type = tokTypes.parenL,
-//                        value = null,
-//                        loc = new TestNode
-//                        {
-//                            start = new TestNode
-//                            {
-//                                line = 1,
-//                                column = 8
-//                            },
-//                            end = new TestNode
-//                            {
-//                                line = 1,
-//                                column = 9
-//                            }
-//                        }
-//                    },
-//                    new TestNode
-//                    {
-//                        type = tokTypes.num,
-//                        value = 1,
-//                        loc = new TestNode
-//                        {
-//                            start = new TestNode
-//                            {
-//                                line = 1,
-//                                column = 9
-//                            },
-//                            end = new TestNode
-//                            {
-//                                line = 1,
-//                                column = 10
-//                            }
-//                        }
-//                    },
-//                    new TestNode
-//                    {
-//                        type = tokTypes.plusMin,
-//                        value = "+",
-//                        loc = new TestNode
-//                        {
-//                            start = new TestNode
-//                            {
-//                                line = 1,
-//                                column = 11
-//                            },
-//                            end = new TestNode
-//                            {
-//                                line = 1,
-//                                column = 12
-//                            }
-//                        }
-//                    },
-//                    new TestNode
-//                    {
-//                        type = tokTypes.num,
-//                        value = 2,
-//                        loc = new TestNode
-//                        {
-//                            start = new TestNode
-//                            {
-//                                line = 1,
-//                                column = 13
-//                            },
-//                            end = new TestNode
-//                            {
-//                                line = 1,
-//                                column = 14
-//                            }
-//                        }
-//                    },
-//                    new TestNode
-//                    {
-//                        type = tokTypes.parenR,
-//                        value = null,
-//                        loc = new TestNode
-//                        {
-//                            start = new TestNode
-//                            {
-//                                line = 1,
-//                                column = 14
-//                            },
-//                            end = new TestNode
-//                            {
-//                                line = 1,
-//                                column = 15
-//                            }
-//                        }
-//                    },
-//                    new TestNode
-//                    {
-//                        type = tokTypes.eof,
-//                        value = null,
-//                        loc = new TestNode
-//                        {
-//                            start = new TestNode
-//                            {
-//                                line = 1,
-//                                column = 15
-//                            },
-//                            end = new TestNode
-//                            {
-//                                line = 1,
-//                                column = 15
-//                            }
-//                        }
-//                    }
-//                }
-//            });
-
             Program.test("function f(f) { 'use strict'; }", new TestNode
             {
             });
@@ -37837,25 +37662,40 @@ namespace AcornSharp.TestRunner
                 }
             });
 
-            //TODO
-            //var semicolons = []
-            //Program.testAssert("var x\nreturn\n10", function() {
-            //  var result = semicolons.join(" ");
-            //  semicolons.length = 0;
-            //  if (result != "5 12 15")
-            //    return "Unexpected result for onInsertedSemicolon: " + result;
-            //}, new TestNode {onInsertedSemicolon: function(pos) { semicolons.push(pos); },
-            //    allowReturnOutsideFunction = true,
-            //    loose = false})
-            //
-            //var trailingCommas = []
-            //Program.testAssert("[1,2,] + {foo: 1,}", function() {
-            //  var result = trailingCommas.join(" ");
-            //  trailingCommas.length = 0;
-            //  if (result != "4 16")
-            //    return "Unexpected result for onTrailingComma: " + result;
-            //}, new TestNode {onTrailingComma: function(pos) { trailingCommas.push(pos); },
-            //    loose = false})
+            var semicolons = new List<int>();
+            Program.testAssert("var x\nreturn\n10", node =>
+            {
+                var result = string.Join(' ', semicolons);
+                semicolons.Clear();
+                if (result != "5 12 15")
+                {
+                    return "Unexpected result for onInsertedSemicolon: " + result;
+                }
+
+                return null;
+            }, new TestOptions
+            {
+                onInsertedSemicolon = (parser, lastTokenEnd, lastTokenEndLocation) => semicolons.Add(lastTokenEnd),
+                allowReturnOutsideFunction = true,
+                loose = false
+            });
+
+            var trailingCommas = new List<int>();
+            Program.testAssert("[1,2,] + {foo: 1,}", node =>
+            {
+                var result = string.Join(' ', trailingCommas);
+                trailingCommas.Clear();
+                if (result != "4 16")
+                {
+                    return "Unexpected result for onTrailingComma: " + result;
+                }
+
+                return null;
+            }, new TestOptions
+            {
+                onTrailingComma = (parser, lastTokenEnd, lastTokenEndLocation) => trailingCommas.Add(lastTokenEnd),
+                loose = false
+            });
 
             // https://github.com/acornjs/acorn/issues/275
 
@@ -38194,6 +38034,105 @@ namespace AcornSharp.TestRunner
             });
             Program.test("x.class++", new TestNode
             {
+            });
+
+            Program.test("var x = (1 + 2)", new TestNode(), new TestOptions
+            {
+                locations = true,
+                loose = false,
+                onToken = new[]
+                {
+                    new TestNode
+                    {
+                        type = TokenType.Var,
+                        value = "var",
+                        loc = new TestNode
+                        {
+                            start = new Position(1, 0),
+                            end = new Position(1, 3)
+                        },
+                    },
+                    new TestNode
+                    {
+                        type = TokenType.Name,
+                        value = "x",
+                        loc = new TestNode
+                        {
+                            start = new Position(1, 4),
+                            end = new Position(1, 5)
+                        }
+                    },
+                    new TestNode
+                    {
+                        type = TokenType.Equal,
+                        value = "=",
+                        loc = new TestNode
+                        {
+                            start = new Position(1, 6),
+                            end = new Position(1, 7)
+                        }
+                    },
+                    new TestNode
+                    {
+                        type = TokenType.ParenLeft,
+                        value = null,
+                        loc = new TestNode
+                        {
+                            start = new Position(1, 8),
+                            end = new Position(1, 9)
+                        }
+                    },
+                    new TestNode
+                    {
+                        type = TokenType.Number,
+                        value = 1,
+                        loc = new TestNode
+                        {
+                            start = new Position(1, 9),
+                            end = new Position(1, 10)
+                        }
+                    },
+                    new TestNode
+                    {
+                        type = TokenType.PlusMinus,
+                        value = "+",
+                        loc = new TestNode
+                        {
+                            start = new Position(1, 11),
+                            end = new Position(1, 12)
+                        }
+                    },
+                    new TestNode
+                    {
+                        type = TokenType.Number,
+                        value = 2,
+                        loc = new TestNode
+                        {
+                            start = new Position(1, 13),
+                            end = new Position(1, 14)
+                        }
+                    },
+                    new TestNode
+                    {
+                        type = TokenType.ParenRight,
+                        value = null,
+                        loc = new TestNode
+                        {
+                            start = new Position(1, 14),
+                            end = new Position(1, 15)
+                        }
+                    },
+                    new TestNode
+                    {
+                        type = TokenType.Eof,
+                        value = null,
+                        loc = new TestNode
+                        {
+                            start = new Position(1, 15),
+                            end = new Position(1, 15)
+                        }
+                    }
+                }
             });
         }
     }

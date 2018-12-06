@@ -2,13 +2,10 @@ using System.Text.RegularExpressions;
 
 namespace AcornSharp
 {
-    internal static class Whitespace
+    public static class Whitespace
     {
-        // Matches a whole line break (where CRLF is considered a single
-        // line break). Used to count lines.
-
+        // Matches a whole line break (where CRLF is considered a single line break). Used to count lines.
         public static readonly Regex LineBreak = new Regex("\r\n?|\n|\u2028|\u2029");
-        //export const lineBreakG = new RegExp(lineBreak.source, "g")
 
         public static bool IsNewLine(int code, bool ecma2019String = false)
         {

@@ -4,7 +4,7 @@ namespace AcornSharp
 {
     public struct SourceLocation
     {
-        internal SourceLocation([NotNull] Parser parser, Position start, Position end = default)
+        public SourceLocation([NotNull] Parser parser, Position start, Position end = default)
         {
             Start = start;
             End = end;

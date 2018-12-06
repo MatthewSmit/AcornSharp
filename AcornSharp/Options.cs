@@ -118,6 +118,8 @@ namespace AcornSharp
         // (non-standard) ParenthesizedExpression nodes
         public bool PreserveParens;
 
+        public int TabSize = 4;
+
         // Interpret and default an options object
         [NotNull]
         public static Options GetOptions([CanBeNull] Options options)

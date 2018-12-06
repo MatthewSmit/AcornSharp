@@ -35,13 +35,13 @@ namespace AcornSharp
             return Parser.Parse(input, options);
         }
 
-        //
-        //// This function tries to parse a single expression at a given
-        //// offset in a string. Useful for parsing mixed-language formats
-        //// that embed JavaScript expressions.
-        //
-        //        function parseExpressionAt(input: string, pos?: number, options?: Options) : Node {
-        //  return Parser.parseExpressionAt(input, pos, options)
-        //    }
+        // This function tries to parse a single expression at a given
+        // offset in a string. Useful for parsing mixed-language formats
+        // that embed JavaScript expressions.
+        [NotNull]
+        public static ExpressionNode ParseExpressionAt(string input, int pos = 0, [CanBeNull] Options options = null)
+        {
+            return Parser.ParseExpressionAt(input, pos, options);
+        }
     }
 }

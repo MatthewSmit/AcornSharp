@@ -2,7 +2,7 @@
 
 namespace AcornSharp
 {
-    internal static class Extensions
+    public static class Extensions
     {
         public static int CharCodeAt([NotNull] this string str, int index)
         {

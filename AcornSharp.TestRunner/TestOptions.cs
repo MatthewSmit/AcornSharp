@@ -2,6 +2,8 @@
 {
     internal sealed class TestOptions
     {
+        public OnInsertedSemicolon onInsertedSemicolon;
+        public OnTrailingComma onTrailingComma;
         public int ecmaVersion;
         public SourceType sourceType = SourceType.Script;
         public bool allowReturnOutsideFunction;

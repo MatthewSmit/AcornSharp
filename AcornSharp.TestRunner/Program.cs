@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using AcornSharp.Nodes;
 using JetBrains.Annotations;
 
@@ -36,15 +37,11 @@ namespace AcornSharp.TestRunner
 //                }
 //
 //                return true;
-//            }, (code, options) =>
-//            {
-//                throw new NotImplementedException();
-//            });
+//            }, AcornLoose.Parse);
         }
 
         private static void RunTests(Func<TestCase, bool> filter, Func<string, Options, ProgramNode> parse)
         {
-//            for (var i = 0; i < tests.Count; i++)
             for (var i = 0; i < tests.Count; i++)
             {
                 var test = tests[i];
@@ -69,6 +66,8 @@ namespace AcornSharp.TestRunner
 
                 var options = new Options
                 {
+                    OnInsertedSemicolon = testOptions.onInsertedSemicolon,
+                    OnTrailingComma = testOptions.onTrailingComma,
                     AllowAwaitOutsideFunction = testOptions.allowAwaitOutsideFunction,
                     AllowHashBang = testOptions.allowHashBang,
                     AllowReserved = testOptions.allowReserved,
@@ -118,25 +117,13 @@ namespace AcornSharp.TestRunner
                 }
                 else if (test.assert != null)
                 {
-                    //    try {
                     var ast = parse(test.code, options);
-                    //    } catch(e) {
-                    //      if (!(e instanceof SyntaxError)) { console.log(e.stack); throw e; }
-                    //      if (test.error) {
-                    //        if (test.error.charAt(0) == "~" ? e.message.indexOf(test.error.slice(1)) > -1 : e.message == test.error)
-                    //          callback("ok", test.code);
-                    //        else
-                    //          callback("fail", test.code, "Expected error message: " + test.error + "\nGot error message: " + e.message);
-                    //      } else {
-                    //        callback("error", test.code, e.message || e.toString());
-                    //      }
-                    //      continue
-                    //    }
 
-                    //      var error = test.assert(ast);
-                    //      if (error) callback("fail", test.code, "\n  Assertion failed:\n " + error);
-                    //      else callback("ok", test.code);
-                    throw new NotImplementedException();
+                    var error = test.assert(ast);
+                    if (!string.IsNullOrEmpty(error))
+                    {
+                        throw new NotImplementedException();
+                    }
                 }
                 else
                 {
@@ -206,7 +193,19 @@ namespace AcornSharp.TestRunner
                 }
                 else
                 {
-                    var astValue = ast.GetType().GetProperty(char.ToUpperInvariant(name[0]) + name.Substring(1)).GetValue(ast);
+                    var propertyName = char.ToUpperInvariant(name[0]) + name.Substring(1);
+                    var astType = ast.GetType();
+                    var property = astType.GetProperty(propertyName);
+                    object astValue;
+                    if (property != null)
+                    {
+                        astValue = property.GetValue(ast);
+                    }
+                    else
+                    {
+                        var field = astType.GetField(propertyName, BindingFlags.Instance | BindingFlags.Public);
+                        astValue = field.GetValue(ast);
+                    }
                     VerifyValue(value, astValue, ref mismatched);
                 }
             }

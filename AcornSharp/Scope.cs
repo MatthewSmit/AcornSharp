@@ -9,7 +9,7 @@ namespace AcornSharp
 
         public Scope(ScopeFlags flags)
         {
-            this.Flags = flags;
+            Flags = flags;
             // A list of var-declared names in the current lexical scope
             var = new List<string>();
             // A list of lexically-declared names in the current lexical scope

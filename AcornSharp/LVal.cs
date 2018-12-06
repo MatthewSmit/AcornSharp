@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using AcornSharp.Nodes;
 using JetBrains.Annotations;
@@ -12,7 +11,7 @@ namespace AcornSharp
         [ContractAnnotation("node: null => null; node: notnull => notnull")]
         private ExpressionNode ToAssignable(ref ExpressionNode node, bool isBinding, [CanBeNull] DestructuringErrors refDestructuringErrors = null)
         {
-            if (options.EcmaVersion >= 6 && node != null)
+            if (Options.EcmaVersion >= 6 && node != null)
             {
                 if (node is IdentifierNode identifier)
                 {
@@ -134,7 +133,7 @@ namespace AcornSharp
             if (end != 0)
             {
                 var last = exprList[end - 1];
-                if (options.EcmaVersion == 6 && isBinding && last != null && last is RestElementNode restElement && !(restElement.Argument is IdentifierNode))
+                if (Options.EcmaVersion == 6 && isBinding && last != null && last is RestElementNode restElement && !(restElement.Argument is IdentifierNode))
                 {
                     Unexpected(restElement.Argument.Start);
                 }
@@ -147,8 +146,8 @@ namespace AcornSharp
         [NotNull]
         private SpreadElementNode ParseSpread(DestructuringErrors refDestructuringErrors)
         {
-            var start = this.start;
-            var startLoc = this.startLoc;
+            var start = Start;
+            var startLoc = StartLocation;
             Next();
             var argument = ParseMaybeAssign(false, refDestructuringErrors);
             var node = new SpreadElementNode(this, start, startLoc, argument);
@@ -158,12 +157,12 @@ namespace AcornSharp
         [NotNull]
         private RestElementNode ParseRestBinding()
         {
-            var start = this.start;
-            var startLoc = this.startLoc;
+            var start = Start;
+            var startLoc = StartLocation;
             Next();
 
             // RestElement inside of a function parameter must be an identifier
-            if (options.EcmaVersion == 6 && type != TokenType.Name)
+            if (Options.EcmaVersion == 6 && Type != TokenType.Name)
             {
                 Unexpected();
             }
@@ -177,18 +176,18 @@ namespace AcornSharp
         [NotNull]
         private ExpressionNode ParseBindingAtom()
         {
-            if (options.EcmaVersion >= 6)
+            if (Options.EcmaVersion >= 6)
             {
-                if (type == TokenType.BracketLeft)
+                if (Type == TokenType.BracketLeft)
                 {
-                    var start = this.start;
-                    var startLoc = this.startLoc;
+                    var start = Start;
+                    var startLoc = StartLocation;
                     Next();
                     var elements = ParseBindingList(TokenType.BracketRight, true, true);
                     return FinishNode(new ArrayPatternNode(this, start, startLoc, elements));
                 }
 
-                if (type == TokenType.BraceLeft)
+                if (Type == TokenType.BraceLeft)
                 {
                     return ParseObject(true);
                 }
@@ -214,7 +213,7 @@ namespace AcornSharp
                     Expect(TokenType.Comma);
                 }
 
-                if (allowEmpty && type == TokenType.Comma)
+                if (allowEmpty && Type == TokenType.Comma)
                 {
                     elements.Add(null);
                 }
@@ -222,14 +221,14 @@ namespace AcornSharp
                 {
                     break;
                 }
-                else if (type == TokenType.Ellipsis)
+                else if (Type == TokenType.Ellipsis)
                 {
                     var rest = ParseRestBinding();
                     ParseBindingListItem(rest);
                     elements.Add(rest);
-                    if (type == TokenType.Comma)
+                    if (Type == TokenType.Comma)
                     {
-                        Raise(start, "Comma is not permitted after the rest element");
+                        Raise(Start, "Comma is not permitted after the rest element");
                     }
 
                     Expect(close);
@@ -237,7 +236,7 @@ namespace AcornSharp
                 }
                 else
                 {
-                    var element = ParseMaybeDefault(start, startLoc);
+                    var element = ParseMaybeDefault(Start, StartLocation);
                     ParseBindingListItem(element);
                     elements.Add(element);
                 }
@@ -246,7 +245,7 @@ namespace AcornSharp
             return elements;
         }
 
-        private ExpressionNode ParseBindingListItem(ExpressionNode param)
+        private static ExpressionNode ParseBindingListItem(ExpressionNode param)
         {
             return param;
         }
@@ -256,7 +255,7 @@ namespace AcornSharp
         private ExpressionNode ParseMaybeDefault(int startPos, Position startLoc, ExpressionNode left = null)
         {
             left = left ?? ParseBindingAtom();
-            if (options.EcmaVersion < 6 || !Eat(TokenType.Equal))
+            if (Options.EcmaVersion < 6 || !Eat(TokenType.Equal))
             {
                 return left;
             }
