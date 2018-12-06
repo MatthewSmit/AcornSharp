@@ -1,292 +1,343 @@
+using System;
 using System.Collections.Generic;
-using AcornSharp.Node;
+using AcornSharp.Nodes;
 using JetBrains.Annotations;
 
 namespace AcornSharp
 {
-    internal sealed partial class Parser
+    public sealed partial class Parser
     {
         // Convert existing expression atom to assignable pattern
         // if possible.
-        [ContractAnnotation("node:notnull=>notnull")]
-        private ExpressionNode toAssignable([CanBeNull] ExpressionNode node, bool isBinding = false)
+        [ContractAnnotation("node: null => null; node: notnull => notnull")]
+        private ExpressionNode ToAssignable(ref ExpressionNode node, bool isBinding, [CanBeNull] DestructuringErrors refDestructuringErrors = null)
         {
-            if (Options.ecmaVersion >= 6 && node != null)
+            if (options.EcmaVersion >= 6 && node != null)
             {
-                switch (node)
+                if (node is IdentifierNode identifier)
                 {
-                    case IdentifierNode identifierNode:
-                        if (inAsync && identifierNode.Name == "await")
-                            raise(node.Location.Start, "Can not use 'await' as identifier inside an async function");
-                        break;
+                    if (InAsync && identifier.Name == "await")
+                    {
+                        Raise(node.Start, "Can not use 'await' as identifier inside an async function");
+                    }
+                }
+                else if (node is ObjectPatternNode || node is ArrayPatternNode || node is RestElementNode)
+                {
+                }
+                else if (node is ObjectExpressionNode objectExpression)
+                {
+                    node = new ObjectPatternNode(this, node.Start, node.End, node.Location.Start, node.Location.End, objectExpression.Properties);
+                    if (refDestructuringErrors != null)
+                    {
+                        CheckPatternErrors(refDestructuringErrors, true);
+                    }
 
-                    case MemberExpressionNode _:
-                        if (!isBinding) break;
-                        goto default;
-
-                    case ObjectPatternNode _:
-                    case ArrayPatternNode _:
-                    case RestElementNode _:
-                        break;
-
-                    case ObjectExpressionNode objectExpression:
-                        var newProperties = new PropertyNode[objectExpression.Properties.Count];
-                        for (var i = 0; i < newProperties.Length; i++)
-                            newProperties[i] = toAssignable(objectExpression.Properties[i], isBinding);
-                        node = new ObjectPatternNode(this, node.Location.Start, node.Location.End, newProperties);
-                        break;
-
-                    case ArrayExpressionNode arrayExpression:
-                        node = new ArrayPatternNode(this, node.Location.Start, node.Location.End, toAssignableList(arrayExpression.Elements, isBinding));
-                        break;
-
-                    case SpreadElementNode spreadElement:
-                        node = new RestElementNode(this, node.Location.Start, node.Location.End, toAssignable(spreadElement.Argument, isBinding));
-                        if (((RestElementNode)node).Argument is AssignmentPatternNode)
+                    for (var i = 0; i < objectExpression.Properties.Count; i++)
+                    {
+                        var prop = objectExpression.Properties[i];
+                        ToAssignable(ref prop, isBinding);
+                        // Early error:
+                        //   AssignmentRestProperty[Yield, Await] :
+                        //     `...` DestructuringAssignmentTarget[Yield, Await]
+                        //
+                        //   It is a Syntax Error if |DestructuringAssignmentTarget| is an |ArrayLiteral| or an |ObjectLiteral|.
+                        if (prop is RestElementNode restElement &&
+                            (restElement.Argument is ArrayPatternNode || restElement.Argument is ObjectPatternNode))
                         {
-                            raise(((RestElementNode)node).Argument.Location.Start, "Rest elements cannot have a default value");
+                            Raise(restElement.Argument.Start, "Unexpected token");
                         }
-                        break;
 
-                    case AssignmentExpressionNode assignmentExpression:
-                        if (assignmentExpression.Operator != Operator.Assignment)
-                        {
-                            raise(assignmentExpression.Left.Location.End, "Only '=' operator can be used for specifying default value.");
-                        }
-                        var left = toAssignable(assignmentExpression.Left, isBinding);
-                        var right = assignmentExpression.Right;
-                        node = new AssignmentPatternNode(this, node.Location.Start, node.Location.End, left, right);
-                        goto AssignmentPatternNode;
+                        objectExpression.Properties[i] = prop;
+                    }
+                }
+                else if (node is PropertyNode property)
+                {
+                    // AssignmentProperty has type === "Property"
+                    if (property.Kind != PropertyKind.Init)
+                    {
+                        Raise(property.Key.Start, "Object pattern can't contain getter or setter");
+                    }
 
-                    case AssignmentPatternNode _:
-                        AssignmentPatternNode:
-                        break;
+                    ToAssignable(ref property.RefValue, isBinding);
+                }
+                else if (node is ArrayExpressionNode arrayExpression)
+                {
+                    node = new ArrayPatternNode(this, node.Start, node.End, node.Location.Start, node.Location.End, arrayExpression.Elements);
+                    if (refDestructuringErrors != null)
+                    {
+                        CheckPatternErrors(refDestructuringErrors, true);
+                    }
 
-                    case ParenthesisedExpressionNode parenthesisedExpressionNode:
-                        node = new ParenthesisedExpressionNode(this, node.Location.Start, node.Location.End, toAssignable(parenthesisedExpressionNode.Expression, isBinding));
-                        break;
+                    ToAssignableList(arrayExpression.Elements, isBinding);
+                }
+                else if (node is SpreadElementNode spread)
+                {
+                    var argument = spread.Argument;
+                    ToAssignable(ref argument, isBinding);
+                    node = new RestElementNode(this, node.Start, node.End, node.Location.Start, node.Location.End, argument);
+                    if (argument is AssignmentPatternNode)
+                    {
+                        Raise(argument.Start, "Rest elements cannot have a default value");
+                    }
+                }
+                else if (node is AssignmentExpressionNode assignmentExpression)
+                {
+                    if (assignmentExpression.Operator != Operator.Assignment)
+                    {
+                        Raise(assignmentExpression.Left.End, "Only '=' operator can be used for specifying default value.");
+                    }
 
-                    default:
-                        raise(node.Location.Start, "Assigning to rvalue");
-                        break;
+                    var left = assignmentExpression.Left;
+                    ToAssignable(ref left, isBinding);
+                    node = new AssignmentPatternNode(this, assignmentExpression.Start, assignmentExpression.End, assignmentExpression.Location.Start, assignmentExpression.Location.End, left, assignmentExpression.Right);
+                    // falls through to AssignmentPattern
+                }
+                else if (node is AssignmentPatternNode)
+                {
+                }
+                else if (node is ParenthesisedExpressionNode parenthesised)
+                {
+                    ToAssignable(ref parenthesised.ExpressionRef, isBinding);
+                }
+                else if (node is MemberExpressionNode && !isBinding)
+                {
+                }
+                else
+                {
+                    Raise(node.Start, "Assigning to rvalue");
                 }
             }
+            else if (refDestructuringErrors != null)
+            {
+                CheckPatternErrors(refDestructuringErrors, true);
+            }
+
             return node;
-        }
-
-        [ContractAnnotation("property:notnull=>notnull")]
-        private PropertyNode toAssignable([CanBeNull] PropertyNode property, bool isBinding = false)
-        {
-            if (property == null)
-                return null;
-
-            if (property.Kind != PropertyKind.Initialise)
-                raise(property.Key.Location.Start, "Object pattern can't contain getter or setter");
-
-            return new PropertyNode(this,
-                property.Location.Start,
-                property.Location.End,
-                property.Kind,
-                property.Computed,
-                property.Shorthand,
-                property.Method,
-                property.Key,
-                toAssignable(property.Value, isBinding));
         }
 
         // Convert list of expression atoms to binding list.
         [NotNull]
-        private IReadOnlyList<ExpressionNode> toAssignableList([NotNull] IReadOnlyList<ExpressionNode> expressionList, bool isBinding)
+        private IList<ExpressionNode> ToAssignableList([NotNull] IList<ExpressionNode> exprList, bool isBinding)
         {
-            var newList = new ExpressionNode[expressionList.Count];
-            for (var i = 0; i < newList.Length; i++)
+            var end = exprList.Count;
+            for (var i = 0; i < end; i++)
             {
-                var element = expressionList[i];
-                if (element != null) newList[i] = toAssignable(element, isBinding);
+                var elt = exprList[i];
+                if (elt != null)
+                {
+                    ToAssignable(ref elt, isBinding);
+                }
+
+                exprList[i] = elt;
             }
 
-            if (newList.Length != 0)
+            if (end != 0)
             {
-                var last = newList[newList.Length - 1];
-                if (Options.ecmaVersion == 6 && isBinding && last is RestElementNode restElementNode && !(restElementNode.Argument is IdentifierNode))
+                var last = exprList[end - 1];
+                if (options.EcmaVersion == 6 && isBinding && last != null && last is RestElementNode restElement && !(restElement.Argument is IdentifierNode))
                 {
-                    raise(restElementNode.Argument.Location.Start, "Unexpected token");
+                    Unexpected(restElement.Argument.Start);
                 }
             }
 
-            return newList;
+            return exprList;
         }
 
         // Parses spread element.
         [NotNull]
-        private SpreadElementNode parseSpread(DestructuringErrors refDestructuringErrors)
+        private SpreadElementNode ParseSpread(DestructuringErrors refDestructuringErrors)
         {
-            var startLoc = start;
-            next();
+            var start = this.start;
+            var startLoc = this.startLoc;
+            Next();
             var argument = ParseMaybeAssign(false, refDestructuringErrors);
-            return new SpreadElementNode(this, startLoc, lastTokEnd, argument);
+            var node = new SpreadElementNode(this, start, startLoc, argument);
+            return FinishNode(node);
         }
 
         [NotNull]
-        private ExpressionNode parseRestBinding()
+        private RestElementNode ParseRestBinding()
         {
-            var startLoc = start;
-            next();
+            var start = this.start;
+            var startLoc = this.startLoc;
+            Next();
 
             // RestElement inside of a function parameter must be an identifier
-            if (Options.ecmaVersion == 6 && type != TokenType.name)
+            if (options.EcmaVersion == 6 && type != TokenType.Name)
             {
-                raise(start, "Unexpected token");
+                Unexpected();
             }
 
-            var argument = parseBindingAtom();
-            return new RestElementNode(this, startLoc, lastTokEnd, argument);
+            var argument = ParseBindingAtom();
+
+            return FinishNode(new RestElementNode(this, start, startLoc, argument));
         }
 
         // Parses lvalue (assignable) atom.
         [NotNull]
-        private ExpressionNode parseBindingAtom()
+        private ExpressionNode ParseBindingAtom()
         {
-            if (Options.ecmaVersion >= 6)
+            if (options.EcmaVersion >= 6)
             {
-                switch (type)
+                if (type == TokenType.BracketLeft)
                 {
-                    case TokenType.bracketL:
-                        var startLoc = start;
-                        next();
-                        var elements = parseBindingList(TokenType.bracketR, true, true);
-                        return new ArrayPatternNode(this, startLoc, lastTokEnd, elements);
+                    var start = this.start;
+                    var startLoc = this.startLoc;
+                    Next();
+                    var elements = ParseBindingList(TokenType.BracketRight, true, true);
+                    return FinishNode(new ArrayPatternNode(this, start, startLoc, elements));
+                }
 
-                    case TokenType.braceL:
-                        return parseObj(true);
+                if (type == TokenType.BraceLeft)
+                {
+                    return ParseObject(true);
                 }
             }
-            return parseIdent();
+
+            return ParseIdentifier();
         }
 
         [NotNull]
-        private List<ExpressionNode> parseBindingList(TokenType close, bool allowEmpty, bool allowTrailingComma)
+        [ItemCanBeNull]
+        private IList<ExpressionNode> ParseBindingList(TokenType close, bool allowEmpty, bool allowTrailingComma)
         {
-            var elts = new List<ExpressionNode>();
+            var elements = new List<ExpressionNode>();
             var first = true;
-            while (!eat(close))
+            while (!Eat(close))
             {
-                if (first) first = false;
-                else expect(TokenType.comma);
-                if (allowEmpty && type == TokenType.comma)
+                if (first)
                 {
-                    elts.Add(null);
+                    first = false;
                 }
-                else if (allowTrailingComma && afterTrailingComma(close))
+                else
+                {
+                    Expect(TokenType.Comma);
+                }
+
+                if (allowEmpty && type == TokenType.Comma)
+                {
+                    elements.Add(null);
+                }
+                else if (allowTrailingComma && AfterTrailingComma(close))
                 {
                     break;
                 }
-                else if (type == TokenType.ellipsis)
+                else if (type == TokenType.Ellipsis)
                 {
-                    var rest = parseRestBinding();
-                    elts.Add(rest);
-                    if (type == TokenType.comma) raise(start, "Comma is not permitted after the rest element");
-                    expect(close);
+                    var rest = ParseRestBinding();
+                    ParseBindingListItem(rest);
+                    elements.Add(rest);
+                    if (type == TokenType.Comma)
+                    {
+                        Raise(start, "Comma is not permitted after the rest element");
+                    }
+
+                    Expect(close);
                     break;
                 }
                 else
                 {
-                    var elem = parseMaybeDefault(start);
-                    elts.Add(elem);
+                    var element = ParseMaybeDefault(start, startLoc);
+                    ParseBindingListItem(element);
+                    elements.Add(element);
                 }
             }
-            return elts;
+
+            return elements;
+        }
+
+        private ExpressionNode ParseBindingListItem(ExpressionNode param)
+        {
+            return param;
         }
 
         // Parses assignment pattern around given atom if possible.
         [NotNull]
-        private ExpressionNode parseMaybeDefault(Position startLoc, ExpressionNode left = null)
+        private ExpressionNode ParseMaybeDefault(int startPos, Position startLoc, ExpressionNode left = null)
         {
-            left = left ?? parseBindingAtom();
-            if (Options.ecmaVersion < 6 || !eat(TokenType.eq))
+            left = left ?? ParseBindingAtom();
+            if (options.EcmaVersion < 6 || !Eat(TokenType.Equal))
+            {
                 return left;
+            }
+
             var right = ParseMaybeAssign();
-            return new AssignmentPatternNode(this, startLoc, lastTokEnd, left, right);
+            return FinishNode(new AssignmentPatternNode(this, startPos, startLoc, left, right));
         }
 
-        // Verify that a node is an lval — something that can be assigned
-        // to.
+        // Verify that a node is an lval — something that can be assigned to.
         // bindingType can be either:
-        // var indicating that the lval creates a 'var' binding
-        // let indicating that the lval creates a lexical ('let' or 'const') binding
-        // null indicating that the binding should be checked for illegal identifiers, but not for duplicate references
-        private void checkLVal([NotNull] BaseNode expr, bool isBinding, VariableKind? bindingType, [CanBeNull] ISet<string> checkClashes = null)
+        // 'var' indicating that the lval creates a 'var' binding
+        // 'let' indicating that the lval creates a lexical ('let' or 'const') binding
+        // 'none' indicating that the binding should be checked for illegal identifiers, but not for duplicate references
+        private void CheckLeftValue([NotNull] BaseNode expr, BindType bindingType = BindType.None, [CanBeNull] ISet<string> checkClashes = null)
         {
-            switch (expr)
+            if (expr is IdentifierNode identifier)
             {
-                case IdentifierNode identifierNode:
-                    if (strict && reservedWordsStrictBind.IsMatch(identifierNode.Name))
-                        raiseRecoverable(expr.Location.Start, (isBinding ? "Binding " : "Assigning to ") + identifierNode.Name + " in strict mode");
-                    if (checkClashes != null)
+                if (strict && reservedWordsStrictBind.IsMatch(identifier.Name))
+                {
+                    RaiseRecoverable(expr.Start, (bindingType != BindType.None ? "Binding " : "Assigning to ") + identifier.Name + " in strict mode");
+                }
+
+                if (checkClashes != null)
+                {
+                    if (checkClashes.Contains(identifier.Name))
                     {
-                        if (checkClashes.Contains(identifierNode.Name))
-                            raiseRecoverable(expr.Location.Start, "Argument name clash");
-                        checkClashes.Add(identifierNode.Name);
+                        RaiseRecoverable(expr.Start, "Argument name clash");
                     }
-                    if (bindingType != null && isBinding)
+
+                    checkClashes.Add(identifier.Name);
+                }
+
+                if (bindingType != BindType.None && bindingType != BindType.Outside)
+                {
+                    DeclareName(identifier.Name, bindingType, expr.Start);
+                }
+            }
+            else if (expr is MemberExpressionNode)
+            {
+                if (bindingType != BindType.None)
+                {
+                    RaiseRecoverable(expr.Start, "Binding member expression");
+                }
+            }
+            else if (expr is ObjectPatternNode objectPattern)
+            {
+                foreach (var property in objectPattern.Properties)
+                {
+                    CheckLeftValue(property, bindingType, checkClashes);
+                }
+            }
+            else if (expr is PropertyNode property)
+            {
+                // AssignmentProperty has type === "Property"
+                CheckLeftValue(property.Value, bindingType, checkClashes);
+            }
+            else if (expr is ArrayPatternNode arrayPattern)
+            {
+                foreach (var element in arrayPattern.Elements)
+                {
+                    if (element != null)
                     {
-                        if (bindingType == VariableKind.Var && !canDeclareVarName(identifierNode.Name) ||
-                            bindingType != VariableKind.Var && !canDeclareLexicalName(identifierNode.Name))
-                        {
-                            raiseRecoverable(expr.Location.Start, $"Identifier '{identifierNode.Name}' has already been declared");
-                        }
-                        if (bindingType == VariableKind.Var)
-                        {
-                            declareVarName(identifierNode.Name);
-                        }
-                        else
-                        {
-                            declareLexicalName(identifierNode.Name);
-                        }
+                        CheckLeftValue(element, bindingType, checkClashes);
                     }
-                    break;
-
-                case MemberExpressionNode _:
-                    if (bindingType != null) raiseRecoverable(expr.Location.Start, "Binding" + " member expression");
-                    break;
-
-                case ObjectPatternNode objectPattern:
-                    foreach (var prop in objectPattern.Properties)
-                    {
-                        checkLVal(prop, isBinding, bindingType, checkClashes);
-                    }
-                    break;
-
-                case PropertyNode property:
-                    // AssignmentProperty has type == "Property"
-                    checkLVal(property.Value, isBinding, bindingType, checkClashes);
-                    break;
-
-                case ArrayPatternNode arrayPattern:
-                    foreach (var elem in arrayPattern.Elements)
-                    {
-                        if (elem != null)
-                        {
-                            checkLVal(elem, isBinding, bindingType, checkClashes);
-                        }
-                    }
-                    break;
-
-                case AssignmentPatternNode assignmentPattern:
-                    checkLVal(assignmentPattern.Left, isBinding, bindingType, checkClashes);
-                    break;
-
-                case RestElementNode restElement:
-                    checkLVal(restElement.Argument, isBinding, bindingType, checkClashes);
-                    break;
-
-                case ParenthesisedExpressionNode parenthesisedExpressionNode:
-                    checkLVal(parenthesisedExpressionNode.Expression, isBinding, bindingType, checkClashes);
-                    break;
-
-                default:
-                    raise(expr.Location.Start, (bindingType != null ? "Binding" : "Assigning to") + " rvalue");
-                    break;
+                }
+            }
+            else if (expr is AssignmentPatternNode assignmentPattern)
+            {
+                CheckLeftValue(assignmentPattern.Left, bindingType, checkClashes);
+            }
+            else if (expr is RestElementNode restElement)
+            {
+                CheckLeftValue(restElement.Argument, bindingType, checkClashes);
+            }
+            else if (expr is ParenthesisedExpressionNode parenthesised)
+            {
+                CheckLeftValue(parenthesised.Expression, bindingType, checkClashes);
+            }
+            else
+            {
+                Raise(expr.Start, (bindingType != BindType.None ? "Binding" : "Assigning to") + " rvalue");
             }
         }
     }

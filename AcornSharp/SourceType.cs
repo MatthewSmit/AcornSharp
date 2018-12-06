@@ -1,8 +1,8 @@
-namespace AcornSharp
+﻿namespace AcornSharp
 {
     public enum SourceType
     {
         Script,
-        Module
+        Module,
     }
 }

@@ -1,12 +1,27 @@
-﻿using System.Collections.Generic;
-using AcornSharp.Node;
+﻿using AcornSharp.Nodes;
 using JetBrains.Annotations;
 
 namespace AcornSharp
 {
+    // Acorn# is a tiny, fast JavaScript parser written in C#.
+    //
+    // Acorn was written by Marijn Haverbeke, Ingvar Stepanyan, and
+    // various contributors and released under an MIT license.
+    //
+    // Acorn# was ported by Matthew Smit and released under an MIT license.
+    //
+    // Git repositories for Acorn# are available at
+    //
+    //     https://github.com/MatthewSmit/AcornSharp.git
+    //
+    // Please use the [github bug tracker][ghbt] to report issues.
+    //
+    // [ghbt]: https://github.com/MatthewSmit/AcornSharp/issues
+    //
+    // [walk]: util/walk.js
     public static class Acorn
     {
-        public const string VERSION = "5.2.1";
+        public static readonly string Version = "6.0.4";
 
         // The main exported interface (under `self.acorn` when in the
         // browser) is a `parse` function that takes a code string and
@@ -15,27 +30,18 @@ namespace AcornSharp
         //
         // [api]: https://developer.mozilla.org/en-US/docs/SpiderMonkey/Parser_API
         [NotNull]
-        public static ProgramNode Parse(string input, [CanBeNull] Options options = null)
+        public static ProgramNode Parse([NotNull] string input, [CanBeNull] Options options = null)
         {
-            return new Parser(options, input).Parse();
+            return Parser.Parse(input, options);
         }
 
-        // This function tries to parse a single expression at a given
-        // offset in a string. Useful for parsing mixed-language formats
-        // that embed JavaScript expressions.
-        public static ExpressionNode ParseExpressionAt(string input, int pos, [CanBeNull] Options options = null)
-        {
-            var p = new Parser(options, input, pos);
-            p.nextToken();
-            return p.ParseExpression();
-        }
-
-        // Acorn is organized as a tokenizer and a recursive-descent parser.
-        // The `tokenizer` export provides an interface to the tokenizer.
-        [NotNull]
-        public static IEnumerable<Token> Tokeniser(string input, [CanBeNull] Options options = null)
-        {
-            return new Parser(options, input);
-        }
+        //
+        //// This function tries to parse a single expression at a given
+        //// offset in a string. Useful for parsing mixed-language formats
+        //// that embed JavaScript expressions.
+        //
+        //        function parseExpressionAt(input: string, pos?: number, options?: Options) : Node {
+        //  return Parser.parseExpressionAt(input, pos, options)
+        //    }
     }
 }

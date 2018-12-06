@@ -1,64 +1,89 @@
 using System;
 using System.Collections.Generic;
-using AcornSharp.Node;
+using System.Diagnostics;
+using AcornSharp.Nodes;
 using JetBrains.Annotations;
 
 namespace AcornSharp
 {
-    internal sealed partial class Parser
+    public sealed partial class Parser
     {
-        private static readonly Label loopLabel = new Label {kind = "loop"};
-        private static readonly Label switchLabel = new Label {kind = "switch"};
+        // ### Statement parsing
 
         // Parse a program. Initializes the parser, reads any number of
         // statements, and wraps them in a Program node.  Optionally takes a
         // `program` argument.  If present, the statements will be appended
         // to its body instead of creating a new node.
-        private void parseTopLevel([NotNull] ProgramNode node)
+        [NotNull]
+        private ProgramNode ParseTopLevel([NotNull] ProgramNode node)
         {
-            var exports = new Dictionary<string, bool>();
-            while (type != TokenType.EOF)
+            var exports = new HashSet<string>();
+            while (type != TokenType.Eof)
             {
-                var stmt = parseStatement(true, true, exports);
-                node.Body.Add(stmt);
+                var statement = ParseStatement(null, true, exports);
+                node.Body.Add(statement);
             }
-            adaptDirectivePrologue(node.Body);
-            next();
-            node.Location = new SourceLocation(node.Location.Start, lastTokEnd, node.Location.Source);
+
+            AdaptDirectivePrologue(node.Body);
+            Next();
+            if (options.EcmaVersion >= 6)
+            {
+                node.SourceType = options.SourceType;
+            }
+
+            return FinishNode(node);
         }
 
-        private bool isLet()
+        private bool IsLet()
         {
-            if (type != TokenType.name || Options.ecmaVersion < 6 || (string)value != "let") return false;
-            var skip = skipWhiteSpace.Match(input, pos.Index);
-            var next = this.pos.Index + skip.Groups[0].Length;
+            if (options.EcmaVersion < 6 || !IsContextual("let"))
+            {
+                return false;
+            }
+
+            var skip = Whitespace.SkipWhiteSpace.Match(input, pos);
+            var next = this.pos + skip.Length;
             var nextCh = input[next];
-            if (nextCh == 91 || nextCh == 123) return true; // '{' and '['
-            if (isIdentifierStart(nextCh, true))
+            if (nextCh == '{' && !Whitespace.LineBreak.IsMatch(input.Substring(end, next - end))
+                || nextCh == '[')
+            {
+                return true;
+            }
+
+            if (Identifier.IsIdentifierStart(nextCh, true))
             {
                 var pos = next + 1;
-                while (isIdentifierChar(input.Get(pos), true))
+                while (Identifier.IsIdentifierChar(input.CharCodeAt(pos), true))
+                {
                     ++pos;
+                }
+
                 var ident = input.Substring(next, pos - next);
-                if (!keywordRelationalOperator.IsMatch(ident))
+                if (!Identifier.KeywordRelationalOperator.IsMatch(ident))
+                {
                     return true;
+                }
             }
+
             return false;
         }
 
         // check 'async [no LineTerminator here] function'
         // - 'async /*foo*/ function' is OK.
         // - 'async /*\n*/ function' is invalid.
-        private bool isAsyncFunction()
+        private bool IsAsyncFunction()
         {
-            if (type != TokenType.name || Options.ecmaVersion < 8 || (string)value != "async")
+            if (options.EcmaVersion < 8 || !IsContextual("async"))
+            {
                 return false;
+            }
 
-            var skip = skipWhiteSpace.Match(input, pos.Index);
-            var next = pos.Index + skip.Groups[0].Length;
-            return !lineBreak.IsMatch(input.Substring(pos.Index, next - pos.Index)) &&
-                   input.Length >= next + 8 && input.Substring(next, 8) == "function" &&
-                   (next + 8 == input.Length || !isIdentifierChar(input.Get(next + 8)));
+            var skip = Whitespace.SkipWhiteSpace.Match(input, pos);
+            var next = pos + skip.Length;
+            return !Whitespace.LineBreak.IsMatch(input.Substring(pos, next - pos)) &&
+                   next + 8 <= input.Length &&
+                   input.Substring(next, 8) == "function" &&
+                   (next + 8 == input.Length || !Identifier.IsIdentifierChar(input[next + 8]));
         }
 
         // Parse a single statement.
@@ -68,128 +93,188 @@ namespace AcornSharp
         // `if (foo) /blah/.exec(foo)`, where looking at the previous token
         // does not help.
         [NotNull]
-        private BaseNode parseStatement(bool declaration, bool topLevel = false, [CanBeNull] IDictionary<string, bool> exports = null)
+        private StatementNode ParseStatement([CanBeNull] string context, bool topLevel = false, [CanBeNull] ISet<string> exports = null)
         {
-            var starttype = type;
-            var startLocation = start;
-            VariableKind? kind = null;
+            var startType = type;
+            var start = this.start;
+            var startLoc = this.startLoc;
+            var kind = PropertyKind.Var;
 
-            if (isLet())
+            if (IsLet())
             {
-                starttype = TokenType._var;
-                kind = VariableKind.Let;
+                startType = TokenType.Var;
+                kind = PropertyKind.Let;
             }
 
             // Most types of statements are recognized by the keyword they
             // start with. Many are trivial to parse, some require a bit of
             // complexity.
 
-            switch (starttype)
+            if (startType == TokenType.Break || startType == TokenType.Continue)
             {
-                case TokenType._break:
-                case TokenType._continue:
-                    return parseBreakContinueStatement(startLocation, TokenInformation.Types[starttype].Keyword);
-                case TokenType._debugger:
-                    return parseDebuggerStatement(startLocation);
-                case TokenType._do:
-                    return parseDoStatement(startLocation);
-                case TokenType._for:
-                    return parseForStatement(startLocation);
-                case TokenType._function:
-                    if (!declaration && Options.ecmaVersion >= 6)
-                    {
-                        raise(startLocation, "Unexpected token");
-                    }
-                    return parseFunctionStatement(startLocation, false);
-                case TokenType._class:
-                    if (!declaration)
-                    {
-                        raise(startLocation, "Unexpected token");
-                    }
-                    return parseClass(startLocation, "true");
-                case TokenType._if:
-                    return parseIfStatement(startLocation);
-                case TokenType._return:
-                    return parseReturnStatement(startLocation);
-                case TokenType._switch:
-                    return parseSwitchStatement(startLocation);
-                case TokenType._throw:
-                    return parseThrowStatement(startLocation);
-                case TokenType._try:
-                    return parseTryStatement(startLocation);
-                case TokenType._const:
-                case TokenType._var:
-                    var realKind = kind ?? ToVariableKind((string)value);
-                    if (!declaration && realKind != VariableKind.Var)
-                    {
-                        raise(startLocation, "Unexpected token");
-                    }
-                    return parseVarStatement(startLocation, realKind);
-                case TokenType._while:
-                    return parseWhileStatement(startLocation);
-                case TokenType._with:
-                    return parseWithStatement(startLocation);
-                case TokenType.braceL:
-                    return parseBlock();
-                case TokenType.semi:
-                    return parseEmptyStatement(startLocation);
-                case TokenType._export:
-                case TokenType._import:
-                    if (!Options.allowImportExportEverywhere)
-                    {
-                        if (!topLevel)
-                            raise(startLocation, "'import' and 'export' may only appear at the top level");
-                        if (!inModule)
-                            raise(startLocation, "'import' and 'export' may appear only with 'sourceType: module'");
-                    }
-                    return starttype == TokenType._import ? parseImport(startLocation) : parseExport(startLocation, exports);
+                return ParseBreakContinueStatement(start, startLoc, startType.Keyword);
             }
 
-            if (isAsyncFunction() && declaration)
+            if (startType == TokenType.Debugger)
             {
-                next();
-                return parseFunctionStatement(startLocation, true);
+                return ParseDebuggerStatement(start, startLoc);
+            }
+
+            if (startType == TokenType.Do)
+            {
+                return ParseDoStatement(start, startLoc);
+            }
+
+            if (startType == TokenType.For)
+            {
+                return ParseForStatement(start, startLoc);
+            }
+
+            if (startType == TokenType.Function)
+            {
+                if (context != null && (strict || context != "if") && options.EcmaVersion >= 6)
+                {
+                    Unexpected();
+                }
+
+                return ParseFunctionStatement(start, startLoc, false, context == null);
+            }
+
+            if (startType == TokenType.Class)
+            {
+                if (context != null)
+                {
+                    Unexpected();
+                }
+
+                return (StatementNode)ParseClass(start, startLoc, true, true);
+            }
+
+            if (startType == TokenType.If)
+            {
+                return ParseIfStatement(start, startLoc);
+            }
+
+            if (startType == TokenType.Return)
+            {
+                return ParseReturnStatement(start, startLoc);
+            }
+
+            if (startType == TokenType.Switch)
+            {
+                return ParseSwitchStatement(start, startLoc);
+            }
+
+            if (startType == TokenType.Throw)
+            {
+                return ParseThrowStatement(start, startLoc);
+            }
+
+            if (startType == TokenType.Try)
+            {
+                return ParseTryStatement(start, startLoc);
+            }
+
+            if (startType == TokenType.Const || startType == TokenType.Var)
+            {
+                if (kind == PropertyKind.Var)
+                {
+                    switch (value)
+                    {
+                        case "let":
+                            kind = PropertyKind.Let;
+                            break;
+
+                        case "const":
+                            kind = PropertyKind.Const;
+                            break;
+                    }
+                }
+
+                if (context != null && kind != PropertyKind.Var)
+                {
+                    Unexpected();
+                }
+
+                return ParseVarStatement(start, startLoc, kind);
+            }
+
+            if (startType == TokenType.While)
+            {
+                return ParseWhileStatement(start, startLoc);
+            }
+
+            if (startType == TokenType.With)
+            {
+                return ParseWithStatement(start, startLoc);
+            }
+
+            if (startType == TokenType.BraceLeft)
+            {
+                return ParseBlock(true, start, startLoc);
+            }
+
+            if (startType == TokenType.Semicolon)
+            {
+                return ParseEmptyStatement(start, startLoc);
+            }
+
+            if (startType == TokenType.Export || startType == TokenType.Import)
+            {
+                if (!options.AllowImportExportEverywhere)
+                {
+                    if (!topLevel)
+                    {
+                        Raise(this.start, "'import' and 'export' may only appear at the top level");
+                    }
+
+                    if (!inModule)
+                    {
+                        Raise(this.start, "'import' and 'export' may appear only with 'sourceType: module'");
+                    }
+                }
+
+                return startType == TokenType.Import ? ParseImport(start, startLoc) : (StatementNode)ParseExport(start, startLoc, exports);
+            }
+
+            if (IsAsyncFunction())
+            {
+                if (context != null)
+                {
+                    Unexpected();
+                }
+
+                Next();
+                return ParseFunctionStatement(start, startLoc, true, context == null);
             }
 
             var maybeName = value;
             var expr = ParseExpression();
-            if (starttype == TokenType.name && expr is IdentifierNode identifierNode && eat(TokenType.colon))
-                return parseLabelledStatement(startLocation, (string)maybeName, identifierNode);
-            return parseExpressionStatement(startLocation, expr);
-        }
-
-        private static VariableKind ToVariableKind([NotNull] string s)
-        {
-            switch (s)
+            if (startType == TokenType.Name && expr is IdentifierNode && Eat(TokenType.Colon))
             {
-                case "var":
-                    return VariableKind.Var;
-                case "let":
-                    return VariableKind.Let;
-                case "const":
-                    return VariableKind.Const;
-                default:
-                    throw new ArgumentException();
+                return ParseLabelledStatement(start, startLoc, (string)maybeName, expr, context);
             }
+
+            return ParseExpressionStatement(start, startLoc, expr);
         }
 
         [NotNull]
-        private BaseNode parseBreakContinueStatement(Position nodeStart, string keyword)
+        private StatementNode ParseBreakContinueStatement(int start, Position startLoc, string keyword)
         {
             var isBreak = keyword == "break";
+            Next();
             IdentifierNode label = null;
-            next();
-            if (eat(TokenType.semi) || insertSemicolon())
+            if (Eat(TokenType.Semicolon) || InsertSemicolon())
             {
             }
-            else if (type != TokenType.name)
+            else if (type != TokenType.Name)
             {
-                raise(start, "Unexpected token");
+                Unexpected();
             }
             else
             {
-                label = parseIdent();
-                semicolon();
+                label = ParseIdentifier();
+                Semicolon();
             }
 
             // Verify that there is an actual destination to break or
@@ -198,44 +283,66 @@ namespace AcornSharp
             for (; i < labels.Count; ++i)
             {
                 var lab = labels[i];
-                if (label == null || lab.name == label.Name)
+                if (label == null || lab.Name == label.Name)
                 {
-                    if (lab.kind != null && (isBreak || lab.kind == "loop")) break;
-                    if (label != null && isBreak) break;
+                    if (lab.Kind != LabelKind.None && (isBreak || lab.Kind == LabelKind.Loop))
+                    {
+                        break;
+                    }
+
+                    if (label != null && isBreak)
+                    {
+                        break;
+                    }
                 }
             }
-            if (i == labels.Count) raise(nodeStart, "Unsyntactic " + keyword);
 
+            if (i == labels.Count)
+            {
+                Raise(start, "Unsyntactic " + keyword);
+            }
+
+            StatementNode node;
             if (isBreak)
             {
-                return new BreakStatementNode(this, nodeStart, lastTokEnd, label);
+                node = new BreakStatementNode(this, start, startLoc, label);
             }
-            return new ContinueStatementNode(this, nodeStart, lastTokEnd, label);
-        }
-
-        [NotNull]
-        private DebuggerStatementNode parseDebuggerStatement(Position nodeStart)
-        {
-            next();
-            semicolon();
-            return new DebuggerStatementNode(this, nodeStart, lastTokEnd);
-        }
-
-        [NotNull]
-        private DoWhileStatementNode parseDoStatement(Position nodeStart)
-        {
-            next();
-            labels.Add(loopLabel);
-            var body = parseStatement(false);
-            labels.Pop();
-            expect(TokenType._while);
-            var test = parseParenExpression();
-            if (Options.ecmaVersion >= 6)
-                eat(TokenType.semi);
             else
-                semicolon();
+            {
+                node = new ContinueStatementNode(this, start, startLoc, label);
+            }
 
-            return new DoWhileStatementNode(this, nodeStart, lastTokEnd, test, body);
+            return FinishNode(node);
+        }
+
+        [NotNull]
+        private DebuggerStatementNode ParseDebuggerStatement(int start, Position startLoc)
+        {
+            Next();
+            Semicolon();
+            return FinishNode(new DebuggerStatementNode(this, start, startLoc));
+        }
+
+        [NotNull]
+        private DoWhileStatementNode ParseDoStatement(int start, Position startLoc)
+        {
+            Next();
+            labels.Add(loopLabel);
+            var body = ParseStatement("do");
+            labels.RemoveAt(labels.Count - 1);
+            Expect(TokenType.While);
+            var test = ParseParenthesisExpression();
+            if (options.EcmaVersion >= 6)
+            {
+                Eat(TokenType.Semicolon);
+            }
+            else
+            {
+                Semicolon();
+            }
+
+            var node = new DoWhileStatementNode(this, start, startLoc, body, test);
+            return FinishNode(node);
         }
 
         // Disambiguating between a `for` and a `for`/`in` or `for`/`of`
@@ -246,800 +353,1131 @@ namespace AcornSharp
         // part (semicolon immediately after the opening parenthesis), it
         // is a regular `for` loop.
         [NotNull]
-        private BaseNode parseForStatement(Position nodeStart)
+        private StatementNode ParseForStatement(int start, Position startLoc)
         {
-            next();
+            Next();
+            var awaitAt = options.EcmaVersion >= 9 && (InAsync || !InFunction && options.AllowAwaitOutsideFunction) && EatContextual("await") ? lastTokStart : -1;
             labels.Add(loopLabel);
-            enterLexicalScope();
-            expect(TokenType.parenL);
-            if (type == TokenType.semi) return parseFor(nodeStart, null);
-            var isLet = this.isLet();
-            if (type == TokenType._var || type == TokenType._const || isLet)
+            EnterScope(0);
+            Expect(TokenType.ParenLeft);
+            if (type == TokenType.Semicolon)
             {
-                var startLoc = start;
-                var kind = isLet ? VariableKind.Let : ToVariableKind((string)value);
-                next();
-                var declarations = parseVar(true, kind);
-                var init = new VariableDeclarationNode(this, startLoc, lastTokEnd, kind, declarations);
-                if ((type == TokenType._in || Options.ecmaVersion >= 6 && isContextual("of")) && init.Declarations.Count == 1 &&
-                    !(kind != VariableKind.Var && init.Declarations[0].Init != null))
-                    return parseForIn(nodeStart, init);
-                return parseFor(nodeStart, init);
+                if (awaitAt > -1)
+                {
+                    Unexpected(awaitAt);
+                }
+
+                return ParseFor(start, startLoc, null);
+            }
+
+            var isLet = IsLet();
+            if (type == TokenType.Var || type == TokenType.Const || isLet)
+            {
+                var initStart = this.start;
+                var initStartLoc = this.startLoc;
+
+                PropertyKind kind;
+                if (isLet)
+                {
+                    kind = PropertyKind.Let;
+                }
+                else
+                {
+                    switch (value)
+                    {
+                        case "var":
+                            kind = PropertyKind.Var;
+                            break;
+
+                        case "let":
+                            kind = PropertyKind.Let;
+                            break;
+
+                        case "const":
+                            kind = PropertyKind.Const;
+                            break;
+
+                        default:
+                            throw new NotImplementedException();
+                    }
+                }
+
+                Next();
+                var declarations = ParseVar(true, kind);
+                var init = new VariableDeclarationNode(this, initStart, initStartLoc, kind, declarations);
+                FinishNode(init);
+                if ((type == TokenType.In || options.EcmaVersion >= 6 && IsContextual("of")) && init.Declarations.Count == 1 &&
+                    !(kind != PropertyKind.Var && init.Declarations[0].Init != null))
+                {
+                    var isAwait = false;
+                    if (options.EcmaVersion >= 9)
+                    {
+                        if (type == TokenType.In)
+                        {
+                            if (awaitAt > -1)
+                            {
+                                Unexpected(awaitAt);
+                            }
+                        }
+                        else
+                        {
+                            isAwait = awaitAt > -1;
+                        }
+                    }
+
+                    return ParseForIn(start, startLoc, isAwait, init);
+                }
+
+                if (awaitAt > -1)
+                {
+                    Unexpected(awaitAt);
+                }
+
+                return ParseFor(start, startLoc, init);
             }
             else
             {
                 var refDestructuringErrors = new DestructuringErrors();
                 var init = ParseExpression(true, refDestructuringErrors);
-                if (type == TokenType._in || Options.ecmaVersion >= 6 && isContextual("of"))
+                if (type == TokenType.In || options.EcmaVersion >= 6 && IsContextual("of"))
                 {
-                    init = toAssignable(init);
-                    checkLVal(init, false, null);
-                    checkPatternErrors(refDestructuringErrors, true);
-                    return parseForIn(nodeStart, init);
+                    var isAwait = false;
+                    if (options.EcmaVersion >= 9)
+                    {
+                        if (type == TokenType.In)
+                        {
+                            if (awaitAt > -1)
+                            {
+                                Unexpected(awaitAt);
+                            }
+                        }
+                        else
+                        {
+                            isAwait = awaitAt > -1;
+                        }
+                    }
+
+                    ToAssignable(ref init, false, refDestructuringErrors);
+                    CheckLeftValue(init);
+                    return ParseForIn(start, startLoc, isAwait, init);
                 }
-                checkExpressionErrors(refDestructuringErrors, true);
-                return parseFor(nodeStart, init);
+
+                CheckExpressionErrors(refDestructuringErrors, true);
+
+                if (awaitAt > -1)
+                {
+                    Unexpected(awaitAt);
+                }
+
+                return ParseFor(start, startLoc, init);
             }
         }
 
         [NotNull]
-        private BaseNode parseFunctionStatement(Position nodeStart, bool isAsync)
+        private FunctionDeclarationNode ParseFunctionStatement(int start, Position startLoc, bool isAsync, bool declarationPosition)
         {
-            next();
-            return parseFunction(nodeStart, "true", false, isAsync);
-        }
-
-        private bool isFunction()
-        {
-            return type == TokenType._function || isAsyncFunction();
+            Next();
+            return (FunctionDeclarationNode)ParseFunction(start, startLoc, FUNC_STATEMENT | (declarationPosition ? 0 : FUNC_HANGING_STATEMENT), false, isAsync);
         }
 
         [NotNull]
-        private IfStatementNode parseIfStatement(Position nodeStart)
+        private IfStatementNode ParseIfStatement(int start, Position startLoc)
         {
-            next();
-            var test = parseParenExpression();
+            Next();
+            var test = ParseParenthesisExpression();
             // allow function declarations in branches, but only in non-strict mode
-            var consequent = parseStatement(!strict && isFunction());
-            var alternate = eat(TokenType._else) ? parseStatement(!strict && isFunction()) : null;
-            return new IfStatementNode(this, nodeStart, lastTokEnd, test, consequent, alternate);
+            var consequent = ParseStatement("if");
+            var alternate = Eat(TokenType.Else) ? ParseStatement("if") : null;
+            var node = new IfStatementNode(this, start, startLoc, test, consequent, alternate);
+            return FinishNode(node);
         }
 
         [NotNull]
-        private ReturnStatementNode parseReturnStatement(Position nodeStart)
+        private ReturnStatementNode ParseReturnStatement(int start, Position startLoc)
         {
-            if (!inFunction && !Options.allowReturnOutsideFunction)
-                raise(start, "'return' outside of function");
-            next();
+            if (!InFunction && !options.AllowReturnOutsideFunction)
+            {
+                Raise(this.start, "'return' outside of function");
+            }
+
+            Next();
 
             // In `return` (and `break`/`continue`), the keywords with
             // optional arguments, we eagerly look for a semicolon or the
             // possibility to insert one.
 
-            ExpressionNode argument = null;
-            if (!eat(TokenType.semi) && !insertSemicolon())
+            ExpressionNode argument;
+            if (Eat(TokenType.Semicolon) || InsertSemicolon())
+            {
+                argument = null;
+            }
+            else
             {
                 argument = ParseExpression();
-                semicolon();
+                Semicolon();
             }
-            return new ReturnStatementNode(this, nodeStart, lastTokEnd, argument);
+
+            var node = new ReturnStatementNode(this, start, startLoc, argument);
+            return FinishNode(node);
         }
 
         [NotNull]
-        private SwitchStatementNode parseSwitchStatement(Position nodeStart)
+        private SwitchStatementNode ParseSwitchStatement(int start, Position startLoc)
         {
-            next();
-            var discriminant = parseParenExpression();
+            Next();
+            var discriminant = ParseParenthesisExpression();
             var cases = new List<SwitchCaseNode>();
-            expect(TokenType.braceL);
+            Expect(TokenType.BraceLeft);
             labels.Add(switchLabel);
-            enterLexicalScope();
+            EnterScope(0);
 
             // Statements under must be grouped (by label) in SwitchCase
             // nodes. `cur` is used to keep the node that we are currently
             // adding statements to.
 
-            var startLoc = start;
-            List<BaseNode> consequent = null;
-            BaseNode test = null;
-            for (var sawDefault = false; type != TokenType.braceR;)
+            SwitchCaseNode current = null;
+            for (var sawDefault = false; type != TokenType.BraceRight;)
             {
-                if (type == TokenType._case || type == TokenType._default)
+                if (type == TokenType.Case || type == TokenType.Default)
                 {
-                    var isCase = type == TokenType._case;
-                    if (consequent != null)
+                    var isCase = type == TokenType.Case;
+                    if (current != null)
                     {
-                        var current = new SwitchCaseNode(this, startLoc, lastTokEnd, test, consequent);
-                        cases.Add(current);
+                        FinishNode(current);
                     }
 
-                    startLoc = start;
-                    consequent = new List<BaseNode>();
-                    next();
+                    var caseStart = this.start;
+                    var caseStartLoc = this.startLoc;
+                    Next();
+                    ExpressionNode test;
                     if (isCase)
                     {
                         test = ParseExpression();
                     }
                     else
                     {
-                        if (sawDefault) raiseRecoverable(lastTokStart, "Multiple default clauses");
+                        if (sawDefault)
+                        {
+                            RaiseRecoverable(lastTokStart, "Multiple default clauses");
+                        }
+
                         sawDefault = true;
                         test = null;
                     }
-                    expect(TokenType.colon);
+
+                    current = new SwitchCaseNode(this, caseStart, caseStartLoc, test, new List<StatementNode>());
+                    cases.Add(current);
+
+                    Expect(TokenType.Colon);
                 }
                 else
                 {
-                    if (consequent == null)
+                    if (current == null)
                     {
-                        raise(start, "Unexpected token");
+                        Unexpected();
+                        throw new InvalidOperationException();
                     }
-                    consequent.Add(parseStatement(true));
+
+                    current.Consequent.Add(ParseStatement(null));
                 }
             }
-            exitLexicalScope();
-            if (consequent != null)
+
+            ExitScope();
+            if (current != null)
             {
-                var current = new SwitchCaseNode(this, startLoc, lastTokEnd, test, consequent);
-                cases.Add(current);
+                FinishNode(current);
             }
-            next(); // Closing brace
-            labels.Pop();
-            return new SwitchStatementNode(this, nodeStart, lastTokEnd, discriminant, cases);
+
+            Next();
+            labels.RemoveAt(labels.Count - 1);
+
+            var node = new SwitchStatementNode(this, start, startLoc, discriminant, cases);
+            return FinishNode(node);
         }
 
         [NotNull]
-        private ThrowStatementNode parseThrowStatement(Position nodeStart)
+        private ThrowStatementNode ParseThrowStatement(int start, Position startLoc)
         {
-            next();
-            if (lineBreak.IsMatch(input.Substring(lastTokEnd.Index, start.Index - lastTokEnd.Index)))
-                raise(lastTokEnd, "Illegal newline after throw");
+            Next();
+            if (Whitespace.LineBreak.IsMatch(input.Substring(lastTokEnd, this.start - lastTokEnd)))
+            {
+                Raise(lastTokEnd, "Illegal newline after throw");
+            }
+
             var argument = ParseExpression();
-            semicolon();
-            return new ThrowStatementNode(this, nodeStart, lastTokEnd, argument);
+            Semicolon();
+            var node = new ThrowStatementNode(this, start, startLoc, argument);
+            return FinishNode(node);
         }
 
         [NotNull]
-        private TryStatementNode parseTryStatement(Position nodeStart)
+        private TryStatementNode ParseTryStatement(int start, Position startLoc)
         {
-            next();
-            var block = parseBlock();
+            Next();
+            var block = ParseBlock();
             CatchClauseNode handler = null;
-            if (type == TokenType._catch)
+            if (type == TokenType.Catch)
             {
-                var startLocation = start;
-                next();
-                expect(TokenType.parenL);
-                var param = parseBindingAtom();
-                enterLexicalScope();
-                checkLVal(param, true, VariableKind.Let);
-                expect(TokenType.parenR);
-                var body = parseBlock(false);
-                exitLexicalScope();
-                handler = new CatchClauseNode(this, startLocation, lastTokEnd, param, body);
+                var clauseStart = this.start;
+                var clauseStartLoc = this.startLoc;
+                Next();
+                ExpressionNode param;
+                if (Eat(TokenType.ParenLeft))
+                {
+                    param = ParseBindingAtom();
+                    var simple = param is IdentifierNode;
+                    EnterScope(simple ? ScopeFlags.SimpleCatch : 0);
+                    CheckLeftValue(param, simple ? BindType.SimpleCatch : BindType.Lexical);
+                    Expect(TokenType.ParenRight);
+                }
+                else
+                {
+                    if (options.EcmaVersion < 10)
+                    {
+                        Unexpected();
+                    }
+
+                    param = null;
+                    EnterScope(0);
+                }
+
+                var body = ParseBlock(false);
+                ExitScope();
+                handler = FinishNode(new CatchClauseNode(this, clauseStart, clauseStartLoc, param, body));
             }
-            var finaliser = eat(TokenType._finally) ? parseBlock() : null;
+
+            var finaliser = Eat(TokenType.Finally) ? ParseBlock() : null;
             if (handler == null && finaliser == null)
-                raise(nodeStart, "Missing catch or finally clause");
-            return new TryStatementNode(this, nodeStart, lastTokEnd, block, handler, finaliser);
+            {
+                Raise(start, "Missing catch or finally clause");
+            }
+
+            return FinishNode(new TryStatementNode(this, start, startLoc, block, handler, finaliser));
         }
 
         [NotNull]
-        private VariableDeclarationNode parseVarStatement(Position nodeStart, VariableKind kind)
+        private VariableDeclarationNode ParseVarStatement(int start, Position startLoc, PropertyKind kind)
         {
-            next();
-            var declarations = parseVar(false, kind);
-            semicolon();
-            return new VariableDeclarationNode(this, nodeStart, lastTokEnd, kind, declarations);
+            Next();
+            var declarations = ParseVar(false, kind);
+            Semicolon();
+            var node = new VariableDeclarationNode(this, start, startLoc, kind, declarations);
+            return FinishNode(node);
         }
 
         [NotNull]
-        private WhileStatementNode parseWhileStatement(Position nodeStart)
+        private WhileStatementNode ParseWhileStatement(int start, Position startLoc)
         {
-            next();
-            var test = parseParenExpression();
+            Next();
+            var test = ParseParenthesisExpression();
             labels.Add(loopLabel);
-            var body = parseStatement(false);
-            labels.Pop();
-            return new WhileStatementNode(this, nodeStart, lastTokEnd, test, body);
+            var body = ParseStatement("while");
+            labels.RemoveAt(labels.Count - 1);
+            var node = new WhileStatementNode(this, start, startLoc, test, body);
+            return FinishNode(node);
         }
 
         [NotNull]
-        private WithStatementNode parseWithStatement(Position nodeStart)
+        private WithStatementNode ParseWithStatement(int start, Position startLoc)
         {
-            if (strict) raise(start, "'with' in strict mode");
-            next();
-            var @object = parseParenExpression();
-            var body = parseStatement(false);
-            return new WithStatementNode(this, nodeStart, lastTokEnd, @object, body);
+            if (strict)
+            {
+                Raise(this.start, "'with' in strict mode");
+            }
+
+            Next();
+            var @object = ParseParenthesisExpression();
+            var body = ParseStatement("with");
+            var node = new WithStatementNode(this, start, startLoc, @object, body);
+            return FinishNode(node);
         }
 
         [NotNull]
-        private EmptyStatementNode parseEmptyStatement(Position nodeStart)
+        private EmptyStatementNode ParseEmptyStatement(int start, Position startLoc)
         {
-            next();
-            return new EmptyStatementNode(this, nodeStart, lastTokEnd);
+            Next();
+            return FinishNode(new EmptyStatementNode(this, start, startLoc));
         }
 
         [NotNull]
-        private BaseNode parseLabelledStatement(Position nodeStart, string maybeName, IdentifierNode expr)
+        private LabelledStatementNode ParseLabelledStatement(int start, Position startLoc, string maybeName, [NotNull] ExpressionNode expr, string context)
         {
             foreach (var label in labels)
             {
-                if (label.name == maybeName)
-                    raise(expr.Location.Start, "Label '" + maybeName + "' is already declared");
+                if (label.Name == maybeName)
+                {
+                    Raise(expr.Start, "Label '" + maybeName + "' is already declared");
+                }
             }
-            var kind = TokenInformation.Types[type].IsLoop ? "loop" : type == TokenType._switch ? "switch" : null;
+
+            var kind = type.IsLoop ? LabelKind.Loop : type == TokenType.Switch ? LabelKind.Switch : LabelKind.None;
             for (var i = labels.Count - 1; i >= 0; i--)
             {
                 var label = labels[i];
-                if (label.statementStart == nodeStart.Index)
+                if (label.StatementStart == start)
                 {
                     // Update information about previous labels on this node
-                    label.statementStart = start.Index;
-                    label.kind = kind;
+                    label.StatementStart = this.start;
+                    label.Kind = kind;
                 }
-                else break;
+                else
+                {
+                    break;
+                }
             }
-            labels.Add(new Label {name = maybeName, kind = kind, statementStart = start.Index });
-            var body = parseStatement(true);
-            if (body is ClassDeclarationNode ||
-                body is VariableDeclarationNode variableDeclaration && variableDeclaration.Kind != VariableKind.Var ||
-                body is FunctionDeclarationNode functionDeclaration && (strict || functionDeclaration.Generator))
-                raiseRecoverable(body.Location.Start, "Invalid labelled declaration");
-            labels.Pop();
 
-            return new LabelledStatementNode(this, nodeStart, lastTokEnd, expr, body);
+            labels.Add(new Label(kind, maybeName, this.start));
+            var body = ParseStatement(context);
+            if (body is ClassDeclarationNode ||
+                body is VariableDeclarationNode variable && variable.Kind != PropertyKind.Var ||
+                body is FunctionDeclarationNode function && (strict || function.Generator || function.Async))
+            {
+                RaiseRecoverable(body.Start, "Invalid labeled declaration");
+            }
+
+            labels.RemoveAt(labels.Count - 1);
+            return FinishNode(new LabelledStatementNode(this, start, startLoc, body, expr));
         }
 
         [NotNull]
-        private ExpressionStatementNode parseExpressionStatement(Position nodeStart, ExpressionNode expr)
+        private ExpressionStatementNode ParseExpressionStatement(int start, Position startLocation, [NotNull] ExpressionNode expressionNode)
         {
-            semicolon();
-            return new ExpressionStatementNode(this, nodeStart, lastTokEnd, expr);
+            var node = new ExpressionStatementNode(this, start, startLocation, expressionNode);
+            Semicolon();
+            return FinishNode(node);
         }
 
         // Parse a semicolon-enclosed block of statements, handling `"use
         // strict"` declarations when `allowStrict` is true (used for
         // function bodies).
         [NotNull]
-        private BlockStatementNode parseBlock(bool createNewLexicalScope = true)
+        private BlockStatementNode ParseBlock(bool createNewLexicalScope = true, int start = -1, Position startLoc = default)
         {
-            var startLocation = start;
-            var body = new List<BaseNode>();
-            expect(TokenType.braceL);
+            if (start < 0)
+            {
+                start = this.start;
+                startLoc = this.startLoc;
+            }
+
+            var body = new List<StatementNode>();
+            Expect(TokenType.BraceLeft);
             if (createNewLexicalScope)
             {
-                enterLexicalScope();
+                EnterScope(0);
             }
-            while (!eat(TokenType.braceR))
+
+            while (!Eat(TokenType.BraceRight))
             {
-                var stmt = parseStatement(true);
-                body.Add(stmt);
+                var statement = ParseStatement(null);
+                body.Add(statement);
             }
+
             if (createNewLexicalScope)
             {
-                exitLexicalScope();
+                ExitScope();
             }
-            return new BlockStatementNode(this, startLocation, lastTokEnd, body);
+
+            var node = new BlockStatementNode(this, start, startLoc, body);
+            return FinishNode(node);
         }
 
         // Parse a regular `for` loop. The disambiguation code in
         // `parseStatement` will already have parsed the init statement or
         // expression.
         [NotNull]
-        private BaseNode parseFor(Position nodeStart, BaseNode init)
+        private ForStatementNode ParseFor(int start, Position startLoc, [CanBeNull] BaseNode init)
         {
-            expect(TokenType.semi);
-            var test = type == TokenType.semi ? null : ParseExpression();
-            expect(TokenType.semi);
-            var update = type == TokenType.parenR ? null : ParseExpression();
-            expect(TokenType.parenR);
-            exitLexicalScope();
-            var body = parseStatement(false);
-            labels.Pop();
-            return new ForStatementNode(this, nodeStart, lastTokEnd, init, test, update, body);
+            Expect(TokenType.Semicolon);
+            var test = type == TokenType.Semicolon ? null : ParseExpression();
+            Expect(TokenType.Semicolon);
+            var update = type == TokenType.ParenRight ? null : ParseExpression();
+            Expect(TokenType.ParenRight);
+            ExitScope();
+            var body = ParseStatement("for");
+            labels.RemoveAt(labels.Count - 1);
+
+            var node = new ForStatementNode(this, start, startLoc, init, test, update, body);
+            return FinishNode(node);
         }
 
         // Parse a `for`/`in` and `for`/`of` loop, which are almost
         // same from parser's perspective.
         [NotNull]
-        private BaseNode parseForIn(Position nodeStart, BaseNode init)
+        private StatementNode ParseForIn(int start, Position startLoc, bool isAwait, [NotNull] BaseNode init)
         {
-            var isIn = type == TokenType._in;
-            next();
-            var right = ParseExpression();
-            expect(TokenType.parenR);
-            exitLexicalScope();
-            var body = parseStatement(false);
-            labels.Pop();
-
+            var isIn = type == TokenType.In;
+            Next();
             if (isIn)
             {
-                return new ForInStatementNode(this, nodeStart, lastTokEnd, init, right, body);
+                if (init is AssignmentPatternNode ||
+                    init is VariableDeclarationNode declarationNode && declarationNode.Declarations[0].Init != null &&
+                    (strict || !(declarationNode.Declarations[0].Id is IdentifierNode)))
+                {
+                    Raise(init.Start, "Invalid assignment in for-in loop head");
+                }
             }
-            return new ForOfStatementNode(this, nodeStart, lastTokEnd, init, right, body);
+
+            var left = init;
+            var right = isIn ? ParseExpression() : ParseMaybeAssign();
+            Expect(TokenType.ParenRight);
+            ExitScope();
+            var body = ParseStatement("for");
+            labels.RemoveAt(labels.Count - 1);
+
+            StatementNode node;
+            if (isIn)
+            {
+                node = new ForInStatementNode(this, start, startLoc, isAwait, left, right, body);
+            }
+            else
+            {
+                node = new ForOfStatementNode(this, start, startLoc, isAwait, left, right, body);
+            }
+
+            return FinishNode(node);
         }
 
         // Parse a list of variable declarations.
         [NotNull]
-        private List<VariableDeclaratorNode> parseVar(bool isFor, VariableKind kind)
+        [ItemNotNull]
+        private List<VariableDeclaratorNode> ParseVar(bool isFor, PropertyKind kind)
         {
             var declarations = new List<VariableDeclaratorNode>();
             for (;;)
             {
-                var startLocation = start;
-                var id = parseVarId(kind);
+                var start = this.start;
+                var startLoc = this.startLoc;
+                var id = ParseVarId(kind);
                 ExpressionNode init = null;
-                if (eat(TokenType.eq))
+                if (Eat(TokenType.Equal))
                 {
                     init = ParseMaybeAssign(isFor);
                 }
-                else if (kind == VariableKind.Const && !(type == TokenType._in || Options.ecmaVersion >= 6 && isContextual("of")))
+                else if (kind == PropertyKind.Const && !(type == TokenType.In || options.EcmaVersion >= 6 && IsContextual("of")))
                 {
-                    raise(start, "Unexpected token");
+                    Unexpected();
                 }
-                else if (!(id is IdentifierNode) && !(isFor && (type == TokenType._in || isContextual("of"))))
+                else if (!(id is IdentifierNode) && !(isFor && (type == TokenType.In || IsContextual("of"))))
                 {
-                    raise(lastTokEnd, "Complex binding patterns require an initialization value");
+                    Raise(lastTokEnd, "Complex binding patterns require an initialization value");
                 }
-                var decl = new VariableDeclaratorNode(this, startLocation, lastTokEnd, kind, id, init);
-                declarations.Add(decl);
-                if (!eat(TokenType.comma)) break;
+
+                var decl = new VariableDeclaratorNode(this, start, startLoc, id, init);
+                declarations.Add(FinishNode(decl));
+                if (!Eat(TokenType.Comma))
+                {
+                    break;
+                }
             }
+
             return declarations;
         }
 
         [NotNull]
-        private ExpressionNode parseVarId(VariableKind kind)
+        private ExpressionNode ParseVarId(PropertyKind kind)
         {
-            var id = parseBindingAtom();
-            checkLVal(id, true, kind);
+            var id = ParseBindingAtom();
+            CheckLeftValue(id, kind == PropertyKind.Var ? BindType.Var : BindType.Lexical);
             return id;
         }
+
+        private const int FUNC_STATEMENT = 1;
+        private const int FUNC_HANGING_STATEMENT = 2;
+        private const int FUNC_NULLABLE_ID = 4;
 
         // Parse a function declaration or literal (depending on the
         // `isStatement` parameter).
         [NotNull]
-        private BaseNode parseFunction(Position startLoc, [CanBeNull] string isStatement, bool allowExpressionBody = false, bool isAsync = false)
+        private BaseNode ParseFunction(int startPos, Position startLoc, int statement, bool allowExpressionBody = false, bool isAsync = false)
         {
             var generator = false;
-            if (Options.ecmaVersion >= 6 && !isAsync)
-                generator = eat(TokenType.star);
-            if (Options.ecmaVersion < 8 && isAsync)
-                throw new InvalidOperationException();
+            var async = false;
+            if (options.EcmaVersion >= 9 || options.EcmaVersion >= 6 && !isAsync)
+            {
+                generator = Eat(TokenType.Star);
+            }
+
+            if (options.EcmaVersion >= 8)
+            {
+                async = isAsync;
+            }
 
             IdentifierNode id = null;
-            if (isStatement != null)
+            if ((statement & FUNC_STATEMENT) != 0)
             {
-                id = isStatement == "nullableID" && type != TokenType.name ? null : parseIdent();
-                if (id != null)
+                id = (statement & FUNC_NULLABLE_ID) != 0 && type != TokenType.Name ? null : ParseIdentifier();
+                if (id != null && (statement & FUNC_HANGING_STATEMENT) == 0)
                 {
-                    checkLVal(id, true, VariableKind.Var);
+                    CheckLeftValue(id, inModule && !InFunction ? BindType.Lexical : BindType.Function);
                 }
             }
 
-            var oldInGen = inGenerator;
-            var oldInAsync = inAsync;
             var oldYieldPos = yieldPos;
             var oldAwaitPos = awaitPos;
-            var oldInFunc = inFunction;
-            inGenerator = generator;
-            inAsync = isAsync;
-            yieldPos = default;
-            awaitPos = default;
-            inFunction = true;
-            enterFunctionScope();
+            yieldPos = 0;
+            awaitPos = 0;
+            EnterScope(FunctionFlags(async, generator));
 
-            if (isStatement == null)
-                id = type == TokenType.name ? parseIdent() : null;
+            if ((statement & FUNC_STATEMENT) == 0)
+            {
+                id = type == TokenType.Name ? ParseIdentifier() : null;
+            }
 
-            var parameters = parseFunctionParams();
-            var (body, expression) = parseFunctionBody(parameters, startLoc, id, allowExpressionBody);
+            var parameters = ParseFunctionParams();
+            var (expression, body) = ParseFunctionBody(startPos, id, parameters, allowExpressionBody);
 
-            inGenerator = oldInGen;
-            inAsync = oldInAsync;
             yieldPos = oldYieldPos;
             awaitPos = oldAwaitPos;
-            inFunction = oldInFunc;
 
-            if (isStatement != null)
+            BaseNode node;
+            if ((statement & FUNC_STATEMENT) != 0)
             {
-                return new FunctionDeclarationNode(this, startLoc, lastTokEnd, expression, isAsync, generator, id, parameters, body);
+                node = new FunctionDeclarationNode(this, startPos, startLoc, id, generator, async, parameters, expression, body);
             }
-            return new FunctionExpressionNode(this, startLoc, lastTokEnd, expression, isAsync, generator, id, parameters, body);
+            else
+            {
+                node = new FunctionExpressionNode(this, startPos, startLoc, id, generator, async, parameters, expression, body);
+            }
+
+            return FinishNode(node);
         }
 
         [NotNull]
-        private IReadOnlyList<ExpressionNode> parseFunctionParams()
+        private IList<ExpressionNode> ParseFunctionParams()
         {
-            expect(TokenType.parenL);
-            var parameters = parseBindingList(TokenType.parenR, false, Options.ecmaVersion >= 8);
-            checkYieldAwaitInDefaultParams();
+            Expect(TokenType.ParenLeft);
+            var parameters = ParseBindingList(TokenType.ParenRight, false, options.EcmaVersion >= 8);
+            CheckYieldAwaitInDefaultParams();
             return parameters;
         }
 
         // Parse a class declaration or literal (depending on the
         // `isStatement` parameter).
         [NotNull]
-        private BaseNode parseClass(Position nodeStart, [CanBeNull] string isStatement)
+        private BaseNode ParseClass(int start, Position startLoc, bool isStatement, bool needsId)
         {
-            next();
+            Next();
 
-            var id = parseClassId(isStatement);
-            var superClass = parseClassSuper();
-            var classBodyStart = start;
+            var id = ParseClassId(needsId);
+            var superClass = ParseClassSuper();
+            var classBodyStart = this.start;
+            var classBodyStartLoc = this.startLoc;
             var hadConstructor = false;
             var body = new List<MethodDefinitionNode>();
-            expect(TokenType.braceL);
-            while (!eat(TokenType.braceR))
+            Expect(TokenType.BraceLeft);
+            while (!Eat(TokenType.BraceRight))
             {
-                if (eat(TokenType.semi)) continue;
-                var methodStart = start;
-                var isGenerator = eat(TokenType.star);
-                var isAsync = false;
-                var isMaybeStatic = type == TokenType.name && (string)value == "static";
-                var (computed, key) = parsePropertyName();
-                var @static = isMaybeStatic && type != TokenType.parenL;
-                if (@static)
+                var element = ParseClassElement(superClass != null);
+                if (element != null)
                 {
-                    if (isGenerator)
+                    body.Add(element);
+                    if (element is MethodDefinitionNode methodDefinition && methodDefinition.Kind == PropertyKind.Constructor)
                     {
-                        raise(start, "Unexpected token");
-                    }
-                    isGenerator = eat(TokenType.star);
-                    (computed, key) = parsePropertyName();
-                }
-                if (Options.ecmaVersion >= 8 && !isGenerator && !computed &&
-                    key is IdentifierNode identifierNode && identifierNode.Name == "async" && type != TokenType.parenL &&
-                    !canInsertSemicolon())
-                {
-                    isAsync = true;
-                    (computed, key) = parsePropertyName();
-                }
-                var kind = PropertyKind.Method;
-                var isGetSet = false;
-                if (!computed)
-                {
-                    if (!isGenerator && !isAsync && key is IdentifierNode identifierNode2 && type != TokenType.parenL && (identifierNode2.Name == "get" || identifierNode2.Name == "set"))
-                    {
-                        isGetSet = true;
-                        kind = identifierNode2.Name == "get" ? PropertyKind.Get : PropertyKind.Set;
-                        (computed, key) = parsePropertyName();
-                    }
-                    if (!@static && !computed && (key is IdentifierNode identifierNode3 && identifierNode3.Name == "constructor" ||
-                                     key is LiteralNode literal && literal.Value.ToString() == "constructor"))
-                    {
-                        if (hadConstructor) raise(key.Location.Start, "Duplicate constructor in the same class");
-                        if (isGetSet) raise(key.Location.Start, "Constructor can't have get/set modifier");
-                        if (isGenerator) raise(key.Location.Start, "Constructor can't be a generator");
-                        if (isAsync) raise(key.Location.Start, "Constructor can't be an async method");
-                        kind = PropertyKind.Constructor;
+                        if (hadConstructor)
+                        {
+                            Raise(element.Start, "Duplicate constructor in the same class");
+                        }
+
                         hadConstructor = true;
                     }
-                    else if (@static && key is IdentifierNode keyIdentifier && keyIdentifier.Name == "prototype")
-                    {
-                        raise(key.Location.Start, "Classes may not have a static property named prototype");
-                    }
                 }
-
-                var methodValue = parseMethod(isGenerator, isAsync);
-
-                if (isGetSet)
-                {
-                    var paramCount = kind == PropertyKind.Get ? 0 : 1;
-                    if (methodValue.Parameters.Count != paramCount)
-                    {
-                        var startLocation = methodValue.Location.Start;
-                        if (kind == PropertyKind.Get)
-                            raiseRecoverable(startLocation, "getter should have no params");
-                        else
-                            raiseRecoverable(startLocation, "setter should have exactly one param");
-                    }
-                    else
-                    {
-                        if (kind == PropertyKind.Set && methodValue.Parameters[0] is RestElementNode)
-                            raiseRecoverable(methodValue.Parameters[0].Location.Start, "Setter cannot use rest params");
-                    }
-                }
-
-                body.Add(new MethodDefinitionNode(this, methodStart, lastTokEnd, kind, computed, @static, key, methodValue));
             }
-            var classBody = new ClassBodyNode(this, classBodyStart, lastTokEnd, body);
 
-            if (isStatement != null)
+            var bodyNode = FinishNode(new ClassBodyNode(this, classBodyStart, classBodyStartLoc, body));
+            BaseNode node;
+            if (isStatement)
             {
-                return new ClassDeclarationNode(this, nodeStart, lastTokEnd, id, superClass, classBody);
+                node = new ClassDeclarationNode(this, start, startLoc, id, superClass, bodyNode);
             }
-            return new ClassExpressionNode(this, nodeStart, lastTokEnd, id, superClass, classBody);
+            else
+            {
+                node = new ClassExpressionNode(this, start, startLoc, id, superClass, bodyNode);
+            }
+
+            return FinishNode(node);
         }
 
         [CanBeNull]
-        private IdentifierNode parseClassId(string isStatement)
+        private MethodDefinitionNode ParseClassElement(bool constructorAllowsSuper)
         {
-            if (type == TokenType.name)
-                return parseIdent();
-            if (isStatement == "true")
+            if (Eat(TokenType.Semicolon))
             {
-                raise(start, "Unexpected token");
+                return null;
             }
+
+            var start = this.start;
+            var startLoc = this.startLoc;
+            ExpressionNode key = null;
+
+            bool TryContextual(string k, bool noLineBreak)
+            {
+                var cstart = this.start;
+                var cstartLoc = this.startLoc;
+                if (!EatContextual(k))
+                {
+                    return false;
+                }
+
+                if (type != TokenType.ParenLeft && (!noLineBreak || !CanInsertSemicolon()))
+                {
+                    return true;
+                }
+
+                if (key != null)
+                {
+                    Unexpected();
+                }
+
+                key = new IdentifierNode(this, cstart, cstartLoc, k);
+                FinishNode(key);
+                return false;
+            }
+
+            var kind = PropertyKind.Method;
+            var @static = TryContextual("static", false);
+            var isGenerator = Eat(TokenType.Star);
+            var computed = false;
+            var isAsync = false;
+            if (!isGenerator)
+            {
+                if (options.EcmaVersion >= 8 && TryContextual("async", true))
+                {
+                    isAsync = true;
+                    isGenerator = options.EcmaVersion >= 9 && Eat(TokenType.Star);
+                }
+                else if (TryContextual("get", false))
+                {
+                    kind = PropertyKind.Get;
+                }
+                else if (TryContextual("set", false))
+                {
+                    kind = PropertyKind.Set;
+                }
+            }
+
+            if (key == null)
+            {
+                (computed, key) = ParsePropertyName();
+            }
+
+            var allowsDirectSuper = false;
+            if (!computed && !@static && (key is IdentifierNode identifier && identifier.Name == "constructor" ||
+                                          key is LiteralNode literal && literal.IsString && (string)literal.Value == "constructor"))
+            {
+                if (kind != PropertyKind.Method)
+                {
+                    Raise(key.Start, "Constructor can't have get/set modifier");
+                }
+
+                if (isGenerator)
+                {
+                    Raise(key.Start, "Constructor can't be a generator");
+                }
+
+                if (isAsync)
+                {
+                    Raise(key.Start, "Constructor can't be an async method");
+                }
+
+                kind = PropertyKind.Constructor;
+                allowsDirectSuper = constructorAllowsSuper;
+            }
+            else if (@static && key is IdentifierNode node && node.Name == "prototype")
+            {
+                Raise(node.Start, "Classes may not have a static property named prototype");
+            }
+
+            var method = ParseClassMethod(start, startLoc, key, computed, kind, @static, isGenerator, isAsync, allowsDirectSuper);
+            if (method.Kind == PropertyKind.Get && method.Value.Parameters.Count != 0)
+            {
+                RaiseRecoverable(method.Value.Start, "getter should have no params");
+            }
+
+            if (method.Kind == PropertyKind.Set && method.Value.Parameters.Count != 1)
+            {
+                RaiseRecoverable(method.Value.Start, "setter should have exactly one param");
+            }
+
+            if (method.Kind == PropertyKind.Set && method.Value.Parameters[0] is RestElementNode)
+            {
+                RaiseRecoverable(method.Value.Parameters[0].Start, "Setter cannot use rest params");
+            }
+
+            return method;
+        }
+
+        [NotNull]
+        private MethodDefinitionNode ParseClassMethod(int start, Position startLoc, [NotNull] ExpressionNode key, bool computed, PropertyKind kind, bool @static, bool isGenerator, bool isAsync, bool allowsDirectSuper)
+        {
+            var value = ParseMethod(isGenerator, isAsync, allowsDirectSuper);
+            return FinishNode(new MethodDefinitionNode(this, start, startLoc, key, computed, kind, @static, value));
+        }
+
+        [CanBeNull]
+        private IdentifierNode ParseClassId(bool isStatement)
+        {
+            if (type == TokenType.Name)
+            {
+                return ParseIdentifier();
+            }
+
+            if (isStatement)
+            {
+                Unexpected();
+            }
+
             return null;
         }
 
         [CanBeNull]
-        private ExpressionNode parseClassSuper()
+        private ExpressionNode ParseClassSuper()
         {
-            return eat(TokenType._extends) ? ParseExpressionSubscripts() : null;
+            return Eat(TokenType.Extends) ? ParseExprSubscripts() : null;
         }
 
         // Parses module export declaration.
         [NotNull]
-        private BaseNode parseExport(Position nodeStart, IDictionary<string, bool> exports)
+        private BaseExportDeclarationNode ParseExport(int start, Position startLoc, ISet<string> exports)
         {
-            next();
+            Next();
             // export * from '...'
-            if (eat(TokenType.star))
+            if (Eat(TokenType.Star))
             {
-                expectContextual("from");
-                if (type != TokenType.@string)
-                    raise(start, "Unexpected token");
-                var source = ParseExpressionAtom();
-                semicolon();
-                return new ExportAllDeclarationNode(this, nodeStart, lastTokEnd, source);
+                ExpectContextual("from");
+                if (type != TokenType.String)
+                {
+                    Unexpected();
+                }
+
+                var source = ParseExprAtom();
+                Semicolon();
+                return FinishNode(new ExportAllDeclarationNode(this, start, startLoc, source));
             }
-            if (eat(TokenType._default))
+
+            if (Eat(TokenType.Default))
             {
                 // export default ...
-                checkExport(exports, "default", lastTokStart);
+                CheckExport(exports, "default", lastTokStart);
                 var isAsync = false;
                 BaseNode declaration;
-                if (type == TokenType._function || (isAsync = isAsyncFunction()))
+                if (type == TokenType.Function || (isAsync = IsAsyncFunction()))
                 {
-                    var startLoc = start;
-                    next();
-                    if (isAsync) next();
-                    declaration = parseFunction(startLoc, "nullableID", false, isAsync);
+                    var functionStart = this.start;
+                    var functionStartLoc = this.startLoc;
+                    Next();
+                    if (isAsync)
+                    {
+                        Next();
+                    }
+
+                    declaration = ParseFunction(functionStart, functionStartLoc, FUNC_STATEMENT | FUNC_NULLABLE_ID, false, isAsync);
                 }
-                else if (type == TokenType._class)
+                else if (type == TokenType.Class)
                 {
-                    declaration = parseClass(start, "nullableID");
+                    declaration = ParseClass(this.start, this.startLoc, true, false);
                 }
                 else
                 {
                     declaration = ParseMaybeAssign();
-                    semicolon();
+                    Semicolon();
                 }
-                return new ExportDefaultDeclarationNode(this, nodeStart, lastTokEnd, declaration);
+
+                return FinishNode(new ExportDefaultDeclarationNode(this, start, startLoc, declaration));
             }
             else
             {
-                // export var|const|let|function|class ...
-                BaseNode declaration;
-                IReadOnlyList<ExportSpecifierNode> specifiers;
-                ExpressionNode source = null;
-                if (shouldParseExportStatement())
+                StatementNode declaration;
+                IList<ExportSpecifierNode> specifiers;
+                ExpressionNode source;
+                if (ShouldParseExportStatement())
                 {
-                    declaration = parseStatement(true);
+                    // export var|const|let|function|class ...
+
+                    declaration = ParseStatement(null);
                     if (declaration is VariableDeclarationNode variableDeclaration)
                     {
-                        checkVariableExport(exports, variableDeclaration.Declarations);
+                        CheckVariableExport(exports, variableDeclaration.Declarations);
+                    }
+                    else if (declaration is FunctionDeclarationNode functionDeclaration)
+                    {
+                        Debug.Assert(functionDeclaration.Id != null, "functionDeclaration.Id != null");
+                        CheckExport(exports, functionDeclaration.Id.Name, functionDeclaration.Id.Start);
+                    }
+                    else if (declaration is ClassDeclarationNode classDeclaration)
+                    {
+                        CheckExport(exports, classDeclaration.Id.Name, classDeclaration.Id.Start);
                     }
                     else
                     {
-                        var declarationNode = (IDeclarationNode)declaration;
-                        checkExport(exports, declarationNode.Id.Name, declarationNode.Id.Location.Start);
+//                        CheckExport(exports, declaration.id.name, declaration.id.start);
+                        throw new NotImplementedException();
                     }
+
                     specifiers = Array.Empty<ExportSpecifierNode>();
+                    source = null;
                 }
                 else
                 {
                     // export { x, y as z } [from '...']
+
                     declaration = null;
-                    specifiers = parseExportSpecifiers(exports);
-                    if (eatContextual("from"))
+                    specifiers = ParseExportSpecifiers(exports);
+                    if (EatContextual("from"))
                     {
-                        if (type != TokenType.@string)
-                            raise(start, "Unexpected token");
-                        source = ParseExpressionAtom();
+                        if (type != TokenType.String)
+                        {
+                            Unexpected();
+                        }
+
+                        source = ParseExprAtom();
                     }
                     else
                     {
                         // check for keywords used as local names
                         foreach (var spec in specifiers)
                         {
-                            checkUnreserved(spec.Local.Location.Start, spec.Local.Location.End, spec.Local.Name);
+                            CheckUnreserved(spec.Local.Start, spec.Local.End, spec.Local.Name);
                         }
+
+                        source = null;
                     }
-                    semicolon();
+
+                    Semicolon();
                 }
-                return new ExportNamedDeclarationNode(this, nodeStart, lastTokEnd, source, declaration, specifiers);
+
+                return FinishNode(new ExportNamedDeclarationNode(this, start, startLoc, declaration, specifiers, source));
             }
         }
 
-        private static void checkExport([CanBeNull] IDictionary<string, bool> exports, string name, Position pos)
-        {
-            if (exports == null) return;
-            if (exports.ContainsKey(name))
-                raiseRecoverable(pos, "Duplicate export '" + name + "'");
-            exports[name] = true;
-        }
-
-        private static void checkPatternExport(IDictionary<string, bool> exports, BaseNode pattern)
-        {
-            switch (pattern)
-            {
-                case IdentifierNode identifierNode:
-                    checkExport(exports, identifierNode.Name, pattern.Location.Start);
-                    break;
-                case ObjectPatternNode objectPattern:
-                    foreach (var prop in objectPattern.Properties)
-                    {
-                        checkPatternExport(exports, prop.Value);
-                    }
-                    break;
-                case ArrayPatternNode arrayPattern:
-                    foreach (var elt in arrayPattern.Elements)
-                    {
-                        if (elt != null) checkPatternExport(exports, elt);
-                    }
-                    break;
-                case AssignmentPatternNode assignmentPattern:
-                    checkPatternExport(exports, assignmentPattern.Left);
-                    break;
-                case ParenthesisedExpressionNode parenthesisedExpressionNode:
-                    checkPatternExport(exports, parenthesisedExpressionNode.Expression);
-                    break;
-            }
-        }
-
-        private static void checkVariableExport([CanBeNull] IDictionary<string, bool> exports, IEnumerable<BaseNode> decls)
+        private void CheckExport([CanBeNull] ISet<string> exports, string name, int pos)
         {
             if (exports == null)
-                return;
-            foreach (var decl in decls)
             {
-                checkPatternExport(exports, ((IDeclarationNode)decl).Id);
+                return;
+            }
+
+            if (exports.Contains(name))
+            {
+                RaiseRecoverable(pos, "Duplicate export '" + name + "'");
+            }
+
+            exports.Add(name);
+        }
+
+        private void CheckPatternExport(ISet<string> exports, ExpressionNode pattern)
+        {
+            if (pattern is IdentifierNode identifier)
+            {
+                CheckExport(exports, identifier.Name, identifier.Start);
+            }
+            else if (pattern is ObjectPatternNode objectPattern)
+            {
+                foreach (var prop in objectPattern.Properties)
+                {
+                    CheckPatternExport(exports, prop);
+                }
+            }
+            else if (pattern is ArrayPatternNode arrayPattern)
+            {
+                foreach (var elt in arrayPattern.Elements)
+                {
+                    if (elt != null)
+                    {
+                        CheckPatternExport(exports, elt);
+                    }
+                }
+            }
+            else if (pattern is PropertyNode property)
+            {
+                CheckPatternExport(exports, property.Value);
+            }
+            else if (pattern is AssignmentPatternNode assignment)
+            {
+                CheckPatternExport(exports, assignment.Left);
+            }
+            else if (pattern is RestElementNode restElement)
+            {
+                CheckPatternExport(exports, restElement.Argument);
+            }
+            else if (pattern is ParenthesisedExpressionNode parenthesised)
+            {
+                CheckPatternExport(exports, parenthesised.Expression);
             }
         }
 
-        private bool shouldParseExportStatement()
+        private void CheckVariableExport([CanBeNull] ISet<string> exports, [NotNull] IEnumerable<VariableDeclaratorNode> decls)
         {
-            return TokenInformation.Types[type].Keyword == "var" ||
-                   TokenInformation.Types[type].Keyword == "const" ||
-                   TokenInformation.Types[type].Keyword == "class" ||
-                   TokenInformation.Types[type].Keyword == "function" ||
-                   isLet() ||
-                   isAsyncFunction();
+            if (exports == null)
+            {
+                return;
+            }
+
+            foreach (var decl in decls)
+            {
+                CheckPatternExport(exports, decl.Id);
+            }
+        }
+
+        private bool ShouldParseExportStatement()
+        {
+            return type.Keyword == "var" ||
+                   type.Keyword == "const" ||
+                   type.Keyword == "class" ||
+                   type.Keyword == "function" ||
+                   IsLet() ||
+                   IsAsyncFunction();
         }
 
         // Parses a comma-separated list of module exports.
         [NotNull]
-        private IReadOnlyList<ExportSpecifierNode> parseExportSpecifiers(IDictionary<string, bool> exports)
+        [ItemNotNull]
+        private IList<ExportSpecifierNode> ParseExportSpecifiers(ISet<string> exports)
         {
             var nodes = new List<ExportSpecifierNode>();
             var first = true;
             // export { x, y as z } [from '...']
-            expect(TokenType.braceL);
-            while (!eat(TokenType.braceR))
+            Expect(TokenType.BraceLeft);
+            while (!Eat(TokenType.BraceRight))
             {
                 if (!first)
                 {
-                    expect(TokenType.comma);
-                    if (afterTrailingComma(TokenType.braceR)) break;
+                    Expect(TokenType.Comma);
+                    if (AfterTrailingComma(TokenType.BraceRight))
+                    {
+                        break;
+                    }
                 }
-                else first = false;
+                else
+                {
+                    first = false;
+                }
 
-                var startLoc = start;
-                var local = parseIdent(true);
-                var exported = eatContextual("as") ? parseIdent(true) : local;
-                checkExport(exports, exported.Name, exported.Location.Start);
-                nodes.Add(new ExportSpecifierNode(this, startLoc, lastTokEnd, local, exported));
+                var start = this.start;
+                var startLoc = this.startLoc;
+                var local = ParseIdentifier(true);
+                var exported = EatContextual("as") ? ParseIdentifier(true) : local;
+                CheckExport(exports, exported.Name, exported.Start);
+                nodes.Add(FinishNode(new ExportSpecifierNode(this, start, startLoc, local, exported)));
             }
+
             return nodes;
         }
 
         // Parses import declaration.
         [NotNull]
-        private ImportDeclarationNode parseImport(Position nodeStart)
+        private ImportDeclarationNode ParseImport(int start, Position startLoc)
         {
-            next();
+            Next();
             // import '...'
-            IReadOnlyList<BaseNode> specifiers;
-            ExpressionNode source = null;
-            if (type == TokenType.@string)
+            IList<BaseImportSpecifierNode> specifiers;
+            ExpressionNode source;
+            if (type == TokenType.String)
             {
-                specifiers = new List<BaseNode>();
-                source = ParseExpressionAtom();
+                specifiers = Array.Empty<BaseImportSpecifierNode>();
+                source = ParseExprAtom();
             }
             else
             {
-                specifiers = parseImportSpecifiers();
-                expectContextual("from");
-                if (type == TokenType.@string)
+                specifiers = ParseImportSpecifiers();
+                ExpectContextual("from");
+                if (type != TokenType.String)
                 {
-                    source = ParseExpressionAtom();
+                    Unexpected();
                 }
-                else
-                {
-                    raise(start, "Unexpected token");
-                }
+
+                source = ParseExprAtom();
             }
-            semicolon();
-            return new ImportDeclarationNode(this, nodeStart, lastTokEnd, source, specifiers);
+
+            Semicolon();
+            return FinishNode(new ImportDeclarationNode(this, start, startLoc, specifiers, source));
         }
 
         // Parses a comma-separated list of module imports.
         [NotNull]
-        private IReadOnlyList<BaseNode> parseImportSpecifiers()
+        private IList<BaseImportSpecifierNode> ParseImportSpecifiers()
         {
-            var nodes = new List<BaseNode>();
+            var nodes = new List<BaseImportSpecifierNode>();
             var first = true;
-            if (type == TokenType.name)
+            var start = this.start;
+            var startLoc = this.startLoc;
+
+            if (type == TokenType.Name)
             {
                 // import defaultObj, { x, y as z } from '...'
-                var startLoc = start;
-                var local = parseIdent();
-                checkLVal(local, true, VariableKind.Let);
-                nodes.Add(new ImportDefaultSpecifierNode(this, startLoc, lastTokEnd, local));
-                if (!eat(TokenType.comma))
+
+                var local = ParseIdentifier();
+                CheckLeftValue(local, BindType.Lexical);
+                nodes.Add(FinishNode(new ImportDefaultSpecifierNode(this, start, startLoc, local)));
+                if (!Eat(TokenType.Comma))
+                {
                     return nodes;
+                }
             }
-            if (type == TokenType.star)
+
+            if (type == TokenType.Star)
             {
-                var startLoc = start;
-                next();
-                expectContextual("as");
-                var local = parseIdent();
-                checkLVal(local, true, VariableKind.Let);
-                nodes.Add(new ImportNamespaceSpecifierNode(this, startLoc, lastTokEnd, local));
+                Next();
+                ExpectContextual("as");
+                var local = ParseIdentifier();
+                CheckLeftValue(local, BindType.Lexical);
+                nodes.Add(FinishNode(new ImportNamespaceSpecifierNode(this, start, startLoc, local)));
                 return nodes;
             }
-            expect(TokenType.braceL);
-            while (!eat(TokenType.braceR))
+
+            Expect(TokenType.BraceLeft);
+            while (!Eat(TokenType.BraceRight))
             {
                 if (!first)
                 {
-                    expect(TokenType.comma);
-                    if (afterTrailingComma(TokenType.braceR)) break;
-                }
-                else first = false;
-
-                var startLoc = start;
-                var imported = parseIdent(true);
-                IdentifierNode local;
-                if (eatContextual("as"))
-                {
-                    local = parseIdent();
+                    Expect(TokenType.Comma);
+                    if (AfterTrailingComma(TokenType.BraceRight))
+                    {
+                        break;
+                    }
                 }
                 else
                 {
-                    checkUnreserved(imported.Location.Start, imported.Location.End, imported.Name);
+                    first = false;
+                }
+
+                var nstart = this.start;
+                var nstartLoc = this.startLoc;
+                var imported = ParseIdentifier(true);
+                IdentifierNode local;
+                if (EatContextual("as"))
+                {
+                    local = ParseIdentifier();
+                }
+                else
+                {
+                    CheckUnreserved(imported.Start, imported.End, imported.Name);
                     local = imported;
                 }
-                checkLVal(local, true, VariableKind.Let);
-                nodes.Add(new ImportSpecifierNode(this, startLoc, lastTokEnd, local, imported));
+
+                CheckLeftValue(local, BindType.Lexical);
+                nodes.Add(FinishNode(new ImportSpecifierNode(this, nstart, nstartLoc, imported, local)));
             }
+
             return nodes;
         }
 
         // Set `ExpressionStatement#directive` property for directive prologues.
-        private void adaptDirectivePrologue([NotNull] IReadOnlyList<BaseNode> statements)
+        private void AdaptDirectivePrologue([NotNull] IList<StatementNode> statements)
         {
-            for (var i = 0; i < statements.Count && isDirectiveCandidate(statements[i]); ++i)
+            for (var i = 0; i < statements.Count && IsDirectiveCandidate(statements[i]); ++i)
             {
-                var expressionStatement = (ExpressionStatementNode)statements[i];
-                var literal = (LiteralNode)expressionStatement.Expression;
-                expressionStatement.Directive = literal.Raw.Substring(1, literal.Raw.Length - 2);
+                var raw = ((LiteralNode)((ExpressionStatementNode)statements[i]).Expression).Raw;
+                ((ExpressionStatementNode)statements[i]).Directive = raw.Substring(1, raw.Length - 2);
             }
         }
 
-        private bool isDirectiveCandidate([NotNull] BaseNode statement)
+        private bool IsDirectiveCandidate(BaseNode statement)
         {
-            return statement is ExpressionStatementNode expressionStatementNode &&
-                   expressionStatementNode.Expression is LiteralNode literal &&
-                   literal.Value.IsString &&
+            return statement is ExpressionStatementNode expressionStatement &&
+                   expressionStatement.Expression is LiteralNode literalNode &&
+                   literalNode.IsString &&
                    // Reject parenthesized strings.
-                   (input[statement.Location.Start.Index] == '\"' || input[statement.Location.Start.Index] == '\'');
+                   (input[statement.Start] == '"' || input[statement.Start] == '\'');
         }
     }
 }

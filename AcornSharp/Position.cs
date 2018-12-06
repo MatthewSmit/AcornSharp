@@ -1,66 +1,23 @@
-﻿using System;
-using JetBrains.Annotations;
-
-namespace AcornSharp
+﻿namespace AcornSharp
 {
-    public struct Position : IEquatable<Position>
+    // These are used when `options.Locations` is on, for the
+    // `StartLocation` and `EndLocation` properties.
+    public struct Position
     {
-        public Position(int line, int column, int index)
+        public Position(int line, int column)
         {
             Line = line;
             Column = column;
-            Index = index;
         }
 
-        public Position Increment(int i)
+        public Position Offset(int n)
         {
-            return new Position(Line, Column + i, Index + i);
+            return new Position(Line, Column + n);
         }
 
-        [NotNull]
-        public override string ToString()
-        {
-            return $"(Line: {Line}, Column: {Column}, Index: {Index})";
-        }
-
-        public bool Equals(Position other)
-        {
-            return Line == other.Line && Column == other.Column && Index == other.Index;
-        }
-
-        public override bool Equals([CanBeNull] object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            return obj is Position position && Equals(position);
-        }
-
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                return (((Line * 397) ^ Column) * 397) ^ Index;
-            }
-        }
+        public bool IsNull => Line == 0;
 
         public int Line { get; }
-
         public int Column { get; }
-
-        public int Index { get; }
-
-        public static bool operator ==(Position left, Position right)
-        {
-            return Equals(left, right);
-        }
-
-        public static bool operator !=(Position left, Position right)
-        {
-            return !Equals(left, right);
-        }
-
-        public static int operator -(Position left, Position right)
-        {
-            return left.Index - right.Index;
-        }
     }
 }

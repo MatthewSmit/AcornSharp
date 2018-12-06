@@ -1,10 +1,13 @@
-﻿namespace AcornSharp
+namespace AcornSharp
 {
     public enum PropertyKind
     {
-        Initialise,
+        Init,
         Get,
         Set,
+        Var,
+        Let,
+        Const,
         Method,
         Constructor
     }

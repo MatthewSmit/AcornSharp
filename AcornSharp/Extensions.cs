@@ -1,22 +1,12 @@
-﻿using System.Collections.Generic;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 
 namespace AcornSharp
 {
     internal static class Extensions
     {
-        public static T Pop<T>([NotNull] this IList<T> list)
+        public static int CharCodeAt([NotNull] this string str, int index)
         {
-            var item = list[list.Count - 1];
-            list.RemoveAt(list.Count - 1);
-            return item;
-        }
-
-        public static char Get(this string s, int index)
-        {
-            if (index < 0 || index >= s.Length)
-                return '\0';
-            return s[index];
+            return str.Length <= index ? -1 : str[index];
         }
     }
 }
