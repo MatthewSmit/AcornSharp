@@ -74,7 +74,7 @@ namespace AcornSharp
         [NotNull]
         private static Regex KeywordRegex([NotNull] string words)
         {
-            return new Regex("^(?:" + words.Replace(' ', '|') + ")$");
+            return new Regex("^(?:" + words.Replace(' ', '|') + ")$", RegexOptions.Compiled);
         }
 
         // This has a complexity linear to the value of the code. The

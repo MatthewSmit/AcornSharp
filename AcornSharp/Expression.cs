@@ -1461,7 +1461,7 @@ namespace AcornSharp
                 if ((name == "class" || name == "function") &&
                     (lastTokenEnd != lastTokenStart + 1 || Input.CharCodeAt(lastTokenStart) != 46))
                 {
-                    context.RemoveAt(context.Count - 1);
+                    contextStack.RemoveAt(contextStack.Count - 1);
                 }
             }
             else

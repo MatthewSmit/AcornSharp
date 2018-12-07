@@ -28,16 +28,6 @@ namespace AcornSharp.TestRunner
             TestsTrailingCommasInFunc.Run();
 
             RunTests(null, Acorn.Parse);
-//            RunTests(test =>
-//            {
-//                var options = test.options;
-//                if (options != null)
-//                {
-//                    return options.loose;
-//                }
-//
-//                return true;
-//            }, AcornLoose.Parse);
         }
 
         private static void RunTests(Func<TestCase, bool> filter, Func<string, Options, ProgramNode> parse)

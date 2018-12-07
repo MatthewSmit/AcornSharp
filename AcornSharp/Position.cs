@@ -15,8 +15,6 @@
             return new Position(Line, Column + n);
         }
 
-        public bool IsNull => Line == 0;
-
         public int Line { get; }
         public int Column { get; }
     }

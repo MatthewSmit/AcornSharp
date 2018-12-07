@@ -53,7 +53,7 @@ namespace AcornSharp
         private Position? lastTokenEndLocation;
         private int lastTokenStart;
         private int lastTokenEnd;
-        private readonly IList<TokenContext> context;
+        private readonly IList<TokenContext> contextStack;
         private bool expressionAllowed;
         private readonly bool inModule;
         private bool strict;
@@ -71,18 +71,18 @@ namespace AcornSharp
 
             TokenType.ParenRight.UpdateContext = TokenType.BraceRight.UpdateContext = (parser, previousType) =>
             {
-                if (parser.context.Count == 1)
+                if (parser.contextStack.Count == 1)
                 {
                     parser.expressionAllowed = true;
                     return;
                 }
 
-                var @out = parser.context[parser.context.Count - 1];
-                parser.context.RemoveAt(parser.context.Count - 1);
+                var @out = parser.contextStack[parser.contextStack.Count - 1];
+                parser.contextStack.RemoveAt(parser.contextStack.Count - 1);
                 if (@out == TokenContext.BasicStatement && parser.CurrentContext().Token == "function")
                 {
-                    @out = parser.context[parser.context.Count - 1];
-                    parser.context.RemoveAt(parser.context.Count - 1);
+                    @out = parser.contextStack[parser.contextStack.Count - 1];
+                    parser.contextStack.RemoveAt(parser.contextStack.Count - 1);
                 }
 
                 parser.expressionAllowed = !@out.IsExpression;
@@ -90,20 +90,20 @@ namespace AcornSharp
 
             TokenType.BraceLeft.UpdateContext = (parser, previousType) =>
             {
-                parser.context.Add(parser.BraceIsBlock(previousType) ? TokenContext.BasicStatement : TokenContext.BasicExpression);
+                parser.contextStack.Add(parser.BraceIsBlock(previousType) ? TokenContext.BasicStatement : TokenContext.BasicExpression);
                 parser.expressionAllowed = true;
             };
 
             TokenType.DollarBraceLeft.UpdateContext = (parser, previousType) =>
             {
-                parser.context.Add(TokenContext.BasicTemplate);
+                parser.contextStack.Add(TokenContext.BasicTemplate);
                 parser.expressionAllowed = true;
             };
 
             TokenType.ParenLeft.UpdateContext = (parser, previousType) =>
             {
                 var statementParens = previousType == TokenType.If || previousType == TokenType.For || previousType == TokenType.With || previousType == TokenType.While;
-                parser.context.Add(statementParens ? TokenContext.ParenthesesStatatement : TokenContext.ParenthesesExpression);
+                parser.contextStack.Add(statementParens ? TokenContext.ParenthesesStatatement : TokenContext.ParenthesesExpression);
                 parser.expressionAllowed = true;
             };
 
@@ -118,11 +118,11 @@ namespace AcornSharp
                     !(previousType == TokenType.Return && Whitespace.LineBreak.IsMatch(parser.Input.Substring(parser.lastTokenEnd, parser.Start - parser.lastTokenEnd))) &&
                     !((previousType == TokenType.Colon || previousType == TokenType.BraceLeft) && parser.CurrentContext() == TokenContext.BasicStatement))
                 {
-                    parser.context.Add(TokenContext.FunctionExpression);
+                    parser.contextStack.Add(TokenContext.FunctionExpression);
                 }
                 else
                 {
-                    parser.context.Add(TokenContext.FunctionStatement);
+                    parser.contextStack.Add(TokenContext.FunctionStatement);
                 }
 
                 parser.expressionAllowed = false;
@@ -132,11 +132,11 @@ namespace AcornSharp
             {
                 if (parser.CurrentContext() == TokenContext.QuoteTemplate)
                 {
-                    parser.context.RemoveAt(parser.context.Count - 1);
+                    parser.contextStack.RemoveAt(parser.contextStack.Count - 1);
                 }
                 else
                 {
-                    parser.context.Add(TokenContext.QuoteTemplate);
+                    parser.contextStack.Add(TokenContext.QuoteTemplate);
                 }
 
                 parser.expressionAllowed = false;
@@ -146,14 +146,14 @@ namespace AcornSharp
             {
                 if (previousType == TokenType.Function)
                 {
-                    var index = parser.context.Count - 1;
-                    if (parser.context[index] == TokenContext.FunctionExpression)
+                    var index = parser.contextStack.Count - 1;
+                    if (parser.contextStack[index] == TokenContext.FunctionExpression)
                     {
-                        parser.context[index] = TokenContext.FunctionExpressionGenerator;
+                        parser.contextStack[index] = TokenContext.FunctionExpressionGenerator;
                     }
                     else
                     {
-                        parser.context[index] = TokenContext.FunctionGenerator;
+                        parser.contextStack[index] = TokenContext.FunctionGenerator;
                     }
                 }
 
@@ -259,7 +259,7 @@ namespace AcornSharp
             // The context stack is used to superficially track syntactic
             // context to predict whether a regular expression is allowed in a
             // given position.
-            context = InitialContext();
+            contextStack = InitialContext();
             expressionAllowed = true;
 
             // Figure out if it's a module code.
@@ -393,9 +393,9 @@ namespace AcornSharp
 
         private bool InGeneratorContext()
         {
-            for (var i = this.context.Count - 1; i >= 1; i--)
+            for (var i = contextStack.Count - 1; i >= 1; i--)
             {
-                var context = this.context[i];
+                var context = contextStack[i];
                 if (context.Token == "function")
                 {
                     return context.Generator;
@@ -666,7 +666,7 @@ namespace AcornSharp
         // pedantic tests (`"use strict"; 010;` should fail).
         private TokenContext CurrentContext()
         {
-            return context[context.Count - 1];
+            return contextStack[contextStack.Count - 1];
         }
 
         // Read a single token, updating the parser object's token-related
